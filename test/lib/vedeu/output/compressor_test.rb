@@ -29,42 +29,49 @@ module Vedeu
           context 'when the output is all Vedeu::Views::Char elements' do
             let(:output) {
               Vedeu::Models::Page.coerce([
-                Vedeu::Views::Char.new(value:  'Y',
-                                       name:   _name,
-                                       colour: { foreground: '#ff0000' }),
-                Vedeu::Views::Char.new(value:  'e',
-                                       name:   _name,
-                                       colour: { foreground: '#ff0000' }),
-                Vedeu::Views::Char.new(value:  's',
-                                       name:   _name,
-                                       colour: { foreground: '#ff0000' }),
+                Vedeu::Views::Char.new(value:    'Y',
+                                       name:     _name,
+                                       colour:   { foreground: '#ff0000' },
+                                       position: [1, 1]),
+                Vedeu::Views::Char.new(value:    'e',
+                                       name:     _name,
+                                       colour:   { foreground: '#ff0000' },
+                                       position: [1, 2]),
+                Vedeu::Views::Char.new(value:    's',
+                                       name:     _name,
+                                       colour:   { foreground: '#ff0000' },
+                                       position: [1, 3])
               ])
             }
             it 'converts the non-Vedeu::Views::Char elements into String ' \
                'elements' do
-              subject.must_equal("\e[38;2;255;0;0mYes")
+              subject.must_equal("\e[1;1H\e[38;2;255;0;0mYes")
             end
           end
 
           context 'when the output is all Vedeu::Views::Char elements' do
             let(:output) {
               Vedeu::Models::Page.coerce([
-                Vedeu::Views::Char.new(value:  'a',
-                                       name:   _name,
-                                       colour: { foreground: '#ff0000' }),
-                Vedeu::Views::Char.new(value:  'b',
-                                       name:   _name,
-                                       colour: { foreground: '#ff0000' }),
-                Vedeu::Views::Char.new(value:  'c',
-                                       name:   _name,
-                                       colour: { foreground: '#0000ff' }),
-                Vedeu::Views::Char.new(value:  'd',
-                                       name:   _name,
-                                       colour: { foreground: '#0000ff' }),
+                Vedeu::Views::Char.new(value:    'a',
+                                       name:     _name,
+                                       colour:   { foreground: '#ff0000' },
+                                       position: [1, 1]),
+                Vedeu::Views::Char.new(value:    'b',
+                                       name:     _name,
+                                       colour:   { foreground: '#ff0000' },
+                                       position: [1, 2]),
+                Vedeu::Views::Char.new(value:    'c',
+                                       name:     _name,
+                                       colour:   { foreground: '#0000ff' },
+                                       position: [1, 3]),
+                Vedeu::Views::Char.new(value:    'd',
+                                       name:     _name,
+                                       colour:   { foreground: '#0000ff' },
+                                       position: [1, 4]),
               ])
             }
             it 'compresses multiple colours and styles where possible' do
-              subject.must_equal("\e[38;2;255;0;0mab\e[38;2;0;0;255mcd")
+              subject.must_equal("\e[1;1H\e[38;2;255;0;0mab\e[38;2;0;0;255mcd")
             end
           end
 
@@ -72,14 +79,14 @@ module Vedeu
                   'elements' do
             let(:output) {
               Vedeu::Models::Page.coerce([
-                Vedeu::Views::Char.new(name: _name, value: 'N'),
+                Vedeu::Views::Char.new(name: _name, value: 'N', position: [1, 1]),
                 Vedeu::Models::Escape.new(value: "\e[?25l"),
-                Vedeu::Views::Char.new(name: _name, value: 't'),
+                Vedeu::Views::Char.new(name: _name, value: 't', position: [1, 3]),
               ])
             }
             it 'converts the non-Vedeu::Views::Char elements into String ' \
                'elements' do
-              subject.must_equal("N\e[1;1H\e[?25lt")
+              subject.must_equal("\e[1;1HN\e[?25lt")
             end
           end
         end

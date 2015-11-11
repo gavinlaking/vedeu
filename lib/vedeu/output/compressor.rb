@@ -62,7 +62,7 @@ module Vedeu
           out = ''
 
           content.each do |cell|
-            out << cell.position.to_s
+            out << position_for(cell)
             out << colour_for(cell)
             out << style_for(cell)
             out << cell.value
@@ -91,6 +91,23 @@ module Vedeu
         out
       end
 
+      # Compress by not repeatedly sending a position when only the x
+      # coordinate has changed; i.e. we are on the same line, just
+      # advancing a character.
+      #
+      # @param char [Vedeu::Views::Char]
+      # @return [String]
+      def position_for(char)
+        return ''.freeze if char.position.y == @y
+
+        @y = char.position.y
+        char.position.to_s
+      end
+
+      # Compress by not repeatedly sending the same colours for each
+      # character which has the same colours as the last character
+      # output.
+      #
       # @param char [Vedeu::Views::Char]
       # @return [String]
       def colour_for(char)
@@ -100,6 +117,10 @@ module Vedeu
         @colour.to_s
       end
 
+      # Compress by not repeatedly sending the same style(s) for each
+      # character which has the same style(s) as the last character
+      # output.
+      #
       # @param char [Vedeu::Views::Char]
       # @return [String]
       def style_for(char)
