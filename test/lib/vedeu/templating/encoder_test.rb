@@ -12,7 +12,7 @@ module Vedeu
         Vedeu::Colours::Colour.new(background: '#ff0000', foreground: '#00ff00')
       }
       let(:expected)  {
-        "{{eJxj4ci3kg5LTUkttbJyzs/JLy0qhjHYrQQckhKTs9OL8kvzUvKt5NGVOcEl2ax4HJLBwp5KPMppaQZAwGbF5hoCNCItvygVpxFucEk2aw6QXgMDkG42a84QAEnkMPA=}}"
+        "{{eJxj4ci3kg5LTUkttbJyzs/JLy0qhjHYrQQckhKTs9OL8kvzUjyVeJTT0gyAgM2KzTUEKJeWX5SKkDMwAMmyWbOHAAAseBhK}}"
       }
 
       describe '#initialize' do

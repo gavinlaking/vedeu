@@ -17,7 +17,7 @@ module Vedeu
 
       describe '#background' do
         let(:expected) {
-          "{{eJx1UE1rAjEQ7UGiNbEI7aX0oKx/wPPsZVAs7E1QvMfdaVlcNyWZtEr/fLPRdUHoXDLDm/eR6Q0MvO6oIA+wK+nHAWzYkj4qGKNmtuXeM7lfCTKvSqp5HhpTGW8NvF15yzi7tukH5l7nh09rfF0YmNyvLW6gAIUXtSxRs3ksAWK1DRIfxtK/Eu83UKQqSx5EOtqC/NI2Jhw6PlfU0daWXAA0l6Zu/hdAARK/deUpbMc3S1660FOmE0fNx1ofqTUIYS83SBX2w9T6SYyGqNJnHMEQGw4+/QF64W6r}}"
+          "{{eJxdj0+LwjAQxT1I6poqy7IX8aDUL+B5ehlYXOhNULynOkqxbSSZ+If98sZ0q+BcMsObN7+Xbk/DaEM7cgCbgi4WYMWGVBXDJypmU+SOyf5JkNuyoJrnvtGldkbD+N/3E2bbNpF35mp7PBjt6l2WxLN5KAFisfbaXhtqNA2T9xO/T1FAjA0pSzoilWuQJ2VCgr7lW0kv99KQ9YLiQteP/F4UIPGsSkd+O7xZ8v0KNWW6crj5UauKWoAHNn9Mhxj5qeVJDECU6RfG0MeHBwd3NqRjxg==}}"
         }
 
         subject { instance.background('#000000') { 'background text' } }
@@ -43,7 +43,7 @@ module Vedeu
             }
           }
           let(:expected) {
-            "{{eJx1j09rAjEQxXso0ZooQk/Sg2X9AsHj7GVoqbC3guI96lQW140kk/7BL2/MdhUETzPDm/ebN49dC6MlbSgALEv68QBzdmT2CoZomF25Ckz+KEGuq5Jq1rGxlQ3Owsu/7z3Nvm060bky693W2VBvLIxv194uogCFDa3I1ETr6VRrAeJjERFf1tFdxOwiilwV2YPI+wuQB+NSwp7nv4qutk9HPgqGS1uf/4uiAInfpgoUt1MtsmGT5JXplxPvqTZ7auExaPN/rrATp/aWxHQMVf6Mfejh2YODE6SObR8=}}"
+            "{{eJxdj0GLAjEMhT1Ide0osjfxoIx/oHjMXAKLC3MTVrxXjTI4TqVNXcU/v7Wzo+ApCV/ee0m7a2C0ph15gHVBvw7ghy3pUwJD1My22Hgmd5cgt2VBFavQmNJ4a2D8r/uKs2uaTlBu9PZ4sMZXuzxNZkrN50oJEItVYHtjqWYGJu8W308oIME6KU9bIpMrkGdt4wU9x7eSXuqlJReA5sJUj/sDFCDxoktPYTvWPB3WblOmK0e/j0qfqDEPYfV/2QA7YWqyJMYwlNknJtDDhwb7f4vpYjo=}}"
           }
 
           it { subject.must_equal(expected) }
@@ -56,7 +56,7 @@ module Vedeu
             }
           }
           let(:expected) {
-            "{{eJx1j09rAjEQxXuQaE0UoSfpoWX7BTzPXgaLhb0VFO9RZ8vSdVOSSVX65Tub9Q8Umkvm8eY386Y3cDBd044iwLqiQwBYsie7NzBBy+yrTWQKPxr0tq6o4ZkUrnbRO3g8c69Jh0vRF3Jjt58f3sVm5+Dpb9v8aiow2E0rsjsFarEStnSe/mXfrqbKTZGZl7KcyVP5aAX6y/qUcBj4VNONfvcUxLBcuaa9T0wFGr9tHUm6019kky7JM9OR07z7xu6pDdYKCdrdnxvsi7rs0piWockfcARDbBkc/wISY22H}}"
+            "{{eJxdTz1vwjAQ7VCZgo2E2BBDq/QPZL4sp1YM2ZBA7AYuVdQkruxzW8Sf5+IAlerF9/Tufdzjk4PFjo4UAXY1/QSADXuyrYEZWmZf7yNTOGvQh6amjnMZXOOid7C86t4TDrdhJMq9PXx+eBe7o4Pn/2tvd1KBwcGtzB4UqNVWtJXzNNBlZl6rKpeniukW9Jf1qcEk8KmhP+e1pyCE5dp1fX8hFWj8tk0k2U5/mc2GpBemX05+48621Af3QIoM9xUGR4JuWRpTGOpijgYm2GtwegEm12KL}}"
           }
 
           it { subject.must_equal(expected) }
@@ -70,7 +70,7 @@ module Vedeu
             }
           }
           let(:expected) {
-            "{{eJx1UMFqAjEQ7aFEa6IIPUkPFf2BxYswexlaWvBWqHiPOiuL66Ykk2rpz3c2WxUKzSXz5s1785LbroPRirYUAVYlHQPAO3uyBwNDtMy+XEem8K1Bb6qSas6kcJWL3sHDr+454XAuOqJc281+512stw4e/449XUgFBlu3xcRMMzmzmQL1shSLwnn61+L1QqrcNNqimM+zTOX9JegP61PQXuCviq7qN09BCMulq5tnCqlA46etIsl0uheTYRtozHTi5HdX24P0bxKQvO035AY7gs67NKZlaPJ77EMPGw0OfgB4C27o}}"
+            "{{eJxFTj0LwkAMdZCqvQ5dxUHRP1BcCnEJiIOboLifmkqx7cldzg/888bTYpa85OXlvW7fwHBPJ/IA+5LuDmDLlnSdQIqa2ZYHz+ReCtSxKqnhTICpjLcGRj/dMsyuBT1RHvTxcrbGN6f1NJllUvN5BNFqJ1xhLP25osjzLIsWagfqqm1wiB0/KzIw/hlsLDkhNJem+eQTMgKFN115kuvQ19P0m2vC9ODwb9DoWvadMCTY5hcUDrEnsLVUGDwxXqSoIMaPFJM3E8dZBA==}}"
           }
 
           it { subject.must_equal(expected) }
@@ -79,7 +79,7 @@ module Vedeu
 
       describe '#foreground' do
         let(:expected) {
-          "{{eJx1kMuKAjEQRV1IfCSK4GxkFkr7A66rN4XiQO8ExX3UmqGx7UhS8cH8/KTjC4TJJnW5depWUm8aGKxpRx5gndPZASzZkj4o6KFmtvnGM7lfCXJb5FTyJBSmMN4a+Lxzs6jdo2gEcqO3+x9rfLkzMHxvmz5NAQpv07KkJkDMV4H9Npb+Zb+epkhVlqjxJB6RdlYgj9rGDduOrwW96IUlFwzNuSmr9wVTgMSTLjyF7nhnyccreMR04TizVeoDVctVIix7+4NUYSOoR57EGIgq7WMH2lgx2P0DtPJuxg==}}"
+          "{{eJxdT02LwjAQ9SDRNSmIeFk8rNQ/0PP0MigeeltY8R51lGJtJJnsKv5509QP2FwyjzfvY7p9A59r2pEHWJf05wB+2JI+KRiiZrblxjO5mwS5rUqqOQuDqYy3BiYP3SJi9xx6QbnR2+PBGl/vDHz9X5u/SAEKW7ci7QgQy1XQ7o2lli5SNcviE3myAnnWNjYYOL5W9Hb+tuQCobk0ddM/kAIk/urKU9iOf5GO38ZTpgtHz49an6gJb0Ao096YK+wF9MyTGANR5iNUMMBGg8kdnYZjyg==}}"
         }
 
         subject { instance.foreground('#000000') { 'foreground text' } }
@@ -91,7 +91,7 @@ module Vedeu
 
       describe '#style' do
         let(:expected) {
-          "{{eJx1j0FLAzEQhT1IajepFTyJB0t/Qc+zl0Gp0Jtg6T3bnZal6U5JJrbinzebuhUEb/N48715c33D8LCimiLAqqFjAHgXT3Zv4A6tiG+qKBS+NOi1a6iVWRrYcfQMjz/cS9ahHwaJrOx6t/Uc25rh6e/a88VUYPCctpheKVDzZWI37Olf9vViqtJ0UDlagj5Yn6sVQT4d/WJvnkIyrDTcdo8lU4HGD+siwbBiV0ORxWI6zuhE6CQ5c9jaPfUHUsvz86XBQVL9PY2ZQlPe4wgK7Bi8/QYTK20c}}"
+          "{{eJx1kD9vAjEMxRlQCneB0oEBdSjiE3R2lghUJLZKRew5zlSnhjNKnALqlycX/kmV2J7z/Hu20+4QjFZYYgBYVbj3AF/s0GwlDLRhdlURGP1fDvnaVljzexRkKTiC1ws3S7W/ik4kC7P++XYU6pLg7X/b9GYKkPqctpi0BIiPZWQ35PAhO7+ZQskGUr0l5Nrz0SJ0C7Il5Dvj0qJZer2HfDr00TBcUd2cGU0R2V9jA6oXyJJYTJ4TNmY8cErv1maL11Fx3/M3KKmfYnWZpQZaqqHuQaabbt0/AcA1bbY=}}"
         }
 
         subject { instance.style(:bold) { 'style text' } }
