@@ -86,6 +86,11 @@ module Vedeu
       end
       alias_method :==, :eql?
 
+      # @return [NilClass|String|Symbol]
+      def name
+        parent.name if parent
+      end
+
       # Returns the size of the content in characters without
       # formatting.
       #
