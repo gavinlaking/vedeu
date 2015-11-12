@@ -104,6 +104,7 @@ module Vedeu
         Vedeu::Views::Char.new(value:    value,
                                parent:   interface,
                                colour:   colour,
+                               name:     name,
                                style:    style,
                                position: [iy, ix],
                                border:   type)

@@ -19,12 +19,14 @@ module Vedeu
         {
           border: border,
           colour: colour,
+          name:   _name,
           parent: parent,
           value:  _value
         }
       }
       let(:border) {}
       let(:colour) {}
+      let(:_name)  {}
       let(:parent) { Vedeu::Views::Line.new(colour: parent_colour) }
       let(:parent_colour) {}
       let(:_value) {}

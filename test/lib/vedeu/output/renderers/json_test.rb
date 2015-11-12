@@ -10,6 +10,7 @@ module Vedeu
       let(:instance)  { described.new(options) }
       let(:options)   { {} }
       let(:output)    { Vedeu::Models::Page.new }
+      let(:_name)     {}
 
       before do
         ::File.stubs(:write)
@@ -33,7 +34,8 @@ module Vedeu
       describe '#render' do
         let(:output) {
           Vedeu::Models::Page.coerce([
-            Vedeu::Views::Char.new(value: 'a',
+            Vedeu::Views::Char.new(value:  'a',
+                                   name:   _name,
                                    colour: {
                                      background: '#ff0000',
                                      foreground: '#ffffff' }),

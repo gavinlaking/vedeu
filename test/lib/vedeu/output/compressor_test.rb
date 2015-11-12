@@ -9,6 +9,7 @@ module Vedeu
       let(:described) { Vedeu::Output::Compressor }
       let(:instance)  { described.new(output) }
       let(:output)    {}
+      let(:_name)     {}
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -29,10 +30,13 @@ module Vedeu
             let(:output) {
               Vedeu::Models::Page.coerce([
                 Vedeu::Views::Char.new(value:  'Y',
+                                       name:   _name,
                                        colour: { foreground: '#ff0000' }),
                 Vedeu::Views::Char.new(value:  'e',
+                                       name:   _name,
                                        colour: { foreground: '#ff0000' }),
                 Vedeu::Views::Char.new(value:  's',
+                                       name:   _name,
                                        colour: { foreground: '#ff0000' }),
               ])
             }
@@ -46,12 +50,16 @@ module Vedeu
             let(:output) {
               Vedeu::Models::Page.coerce([
                 Vedeu::Views::Char.new(value:  'a',
+                                       name:   _name,
                                        colour: { foreground: '#ff0000' }),
                 Vedeu::Views::Char.new(value:  'b',
+                                       name:   _name,
                                        colour: { foreground: '#ff0000' }),
                 Vedeu::Views::Char.new(value:  'c',
+                                       name:   _name,
                                        colour: { foreground: '#0000ff' }),
                 Vedeu::Views::Char.new(value:  'd',
+                                       name:   _name,
                                        colour: { foreground: '#0000ff' }),
               ])
             }
@@ -64,9 +72,9 @@ module Vedeu
                   'elements' do
             let(:output) {
               Vedeu::Models::Page.coerce([
-                Vedeu::Views::Char.new(value: 'N'),
+                Vedeu::Views::Char.new(name: _name, value: 'N'),
                 Vedeu::Models::Escape.new(value: "\e[?25l"),
-                Vedeu::Views::Char.new(value: 't'),
+                Vedeu::Views::Char.new(name: _name, value: 't'),
               ])
             }
             it 'converts the non-Vedeu::Views::Char elements into String ' \
@@ -83,10 +91,13 @@ module Vedeu
             let(:output) {
               Vedeu::Models::Page.coerce([
                 Vedeu::Views::Char.new(value:  'Y',
+                                       name:   _name,
                                        colour: { foreground: '#ff0000' }),
                 Vedeu::Views::Char.new(value:  'e',
+                                       name:   _name,
                                        colour: { foreground: '#ff0000' }),
                 Vedeu::Views::Char.new(value:  's',
+                                       name:   _name,
                                        colour: { foreground: '#ff0000' }),
               ])
             }
@@ -102,12 +113,16 @@ module Vedeu
             let(:output) {
               Vedeu::Models::Page.coerce([
                 Vedeu::Views::Char.new(value:  'a',
+                                       name:   _name,
                                        colour: { foreground: '#ff0000' }),
                 Vedeu::Views::Char.new(value:  'b',
+                                       name:   _name,
                                        colour: { foreground: '#ff0000' }),
                 Vedeu::Views::Char.new(value:  'c',
+                                       name:   _name,
                                        colour: { foreground: '#0000ff' }),
                 Vedeu::Views::Char.new(value:  'd',
+                                       name:   _name,
                                        colour: { foreground: '#0000ff' }),
               ])
             }
@@ -124,9 +139,9 @@ module Vedeu
           context 'when the output is not all Vedeu::Views::Char elements' do
             let(:output) {
               Vedeu::Models::Page.coerce([
-                Vedeu::Views::Char.new(value: 'N'),
+                Vedeu::Views::Char.new(name: _name, value: 'N'),
                 Vedeu::Models::Escape.new(value: "\e[?25l"),
-                Vedeu::Views::Char.new(value: 't'),
+                Vedeu::Views::Char.new(name: _name, value: 't'),
               ])
             }
             it 'converts the non-Vedeu::Views::Char elements into String ' \
