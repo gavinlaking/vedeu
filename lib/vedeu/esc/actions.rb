@@ -31,13 +31,6 @@ module Vedeu
 
       # @return [void]
       def setup!
-        define_actions!
-      end
-
-      private
-
-      # @return [void]
-      def define_actions!
         characters.each { |key, code| define_method(key) { code } }
       end
 

@@ -51,13 +51,6 @@ module Vedeu
 
       # @return [void]
       def setup!
-        define_borders!
-      end
-
-      private
-
-      # @return [void]
-      def define_borders!
         characters.each { |key, code| define_method(key) { code } }
       end
 
