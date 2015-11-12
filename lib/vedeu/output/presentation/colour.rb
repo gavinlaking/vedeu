@@ -15,6 +15,9 @@ module Vedeu
         @background ||= if colour
                           colour.background
 
+                        elsif self.is_a?(Vedeu::Views::Char) && name
+                          interface.colour.background
+
                         elsif parent
                           parent.background
 
@@ -38,6 +41,9 @@ module Vedeu
       def colour
         @colour ||= if attributes[:colour]
                       Vedeu::Colours::Colour.coerce(attributes[:colour])
+
+                    elsif self.is_a?(Vedeu::Views::Char) && name
+                      Vedeu::Colours::Colour.coerce(interface.colour)
 
                     elsif parent
                       Vedeu::Colours::Colour.coerce(parent.colour)
@@ -64,6 +70,9 @@ module Vedeu
       def foreground
         @foreground ||= if colour
                           colour.foreground
+
+                        elsif self.is_a?(Vedeu::Views::Char) && name
+                          interface.colour.background
 
                         elsif parent
                           parent.foreground

@@ -26,7 +26,7 @@ module Vedeu
       }
       let(:border) {}
       let(:colour) {}
-      let(:_name)  {}
+      let(:_name)  { 'Vedeu::Views::HTMLChar' }
       let(:parent) { Vedeu::Views::Line.new(colour: parent_colour) }
       let(:parent_colour) {}
       let(:_value) {}
@@ -63,25 +63,36 @@ module Vedeu
           end
 
           context 'when there is no colour' do
-            context 'when there is a parent colour' do
-              let(:parent_colour) {
-                Vedeu::Colours::Colour.new(background: '#002222',
-                                           foreground: '#dd2200')
-              }
-
-              it { subject.must_equal(
-                "<td style='" \
-                "border:1px #002222 solid;" \
-                "background:#002222;" \
-                "color:#dd2200;"      \
-                "border-top:1px #dd2200 solid;" \
-                "border-left:1px #dd2200 solid;" \
-                "'>&nbsp;</td>"
-              ) }
+            context 'when there is an interface' do
+              it { subject.must_equal("<td style=''>&nbsp;</td>") }
             end
 
-            context 'when there is no parent colour' do
-              it { subject.must_equal("<td style=''>&nbsp;</td>") }
+            context 'when there is no interface' do
+              let(:_name) {}
+
+              context 'when there is a parent colour' do
+                let(:parent_colour) {
+                  Vedeu::Colours::Colour.new(background: '#002222',
+                                             foreground: '#dd2200')
+                }
+
+                it { subject.must_equal(
+                  "<td style='" \
+                  "border:1px #002222 solid;" \
+                  "background:#002222;" \
+                  "color:#dd2200;"      \
+                  "border-top:1px #dd2200 solid;" \
+                  "border-left:1px #dd2200 solid;" \
+                  "'>&nbsp;</td>"
+                ) }
+              end
+
+              context 'when there is no parent colour' do
+                let(:parent) {}
+                let(:parent_colour) {}
+
+                it { subject.must_equal("<td style=''>&nbsp;</td>") }
+              end
             end
           end
         end

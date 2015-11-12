@@ -44,7 +44,7 @@ module Vedeu
       }
       let(:border)        { nil }
       let(:colour)        { nil }
-      let(:_name)         { nil }
+      let(:_name)         { 'Vedeu::Views::Char' }
       let(:style)         { nil }
       let(:position)      { nil }
       let(:parent_colour) { nil }
@@ -128,7 +128,7 @@ module Vedeu
                 background: '',
                 foreground: '',
               },
-              name: '',
+              name: 'Vedeu::Views::Char',
               parent: {
                 background: '',
                 foreground: '',

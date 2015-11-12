@@ -10,7 +10,7 @@ module Vedeu
       let(:instance)  { described.new(options) }
       let(:options)   { {} }
       let(:output)    { Vedeu::Models::Page.new }
-      let(:_name)     {}
+      let(:_name)     { 'Vedeu::Renderers::JSON' }
 
       before do
         ::File.stubs(:write)
@@ -49,7 +49,7 @@ module Vedeu
           "      \"background\": \"\\u001b[48;2;255;0;0m\",\n" \
           "      \"foreground\": \"\\u001b[38;2;255;255;255m\"\n" \
           "    },\n" \
-          "    \"name\": \"\",\n" \
+          "    \"name\": \"Vedeu::Renderers::JSON\",\n" \
           "    \"parent\": {\n" \
           "    },\n" \
           "    \"position\": {\n" \
