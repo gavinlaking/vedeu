@@ -47,6 +47,7 @@ module Vedeu
           "      \"background\": \"\\u001b[48;2;255;0;0m\",\n" \
           "      \"foreground\": \"\\u001b[38;2;255;255;255m\"\n" \
           "    },\n" \
+          "    \"name\": \"\",\n" \
           "    \"parent\": {\n" \
           "    },\n" \
           "    \"position\": {\n" \
