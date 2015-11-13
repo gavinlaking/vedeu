@@ -19,6 +19,7 @@ module Vedeu
 end # Vedeu
 
 require 'vedeu/buffers/empty'
+require 'vedeu/buffers/view'
 require 'vedeu/buffers/buffer'
 require 'vedeu/buffers/null'
 require 'vedeu/buffers/repository'
