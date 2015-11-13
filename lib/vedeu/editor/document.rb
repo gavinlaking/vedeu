@@ -159,6 +159,8 @@ module Vedeu
 
         @lines = defaults[:data]
 
+        cursor.refresh
+
         refresh
       end
 
