@@ -157,6 +157,8 @@ module Vedeu
 
   # See {file:docs/events/system.md#\_keypress_}
   Vedeu.bind(:_keypress_) do |key, name|
+    Vedeu.trigger(:key, key)
+
     Vedeu.add_keypress(key)
 
     Vedeu.keypress(key, name)
