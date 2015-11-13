@@ -96,3 +96,31 @@ given, that mode will be activated instead.
 
     Vedeu.trigger(:_mode_switch_, mode) # Valid values for mode are
                                         # :raw, :cooked or :fake
+
+## Accessing Input
+
+Accessing the input can be achieved in the following ways:
+
+- Via a keymap: Vedeu will interpret the input and trigger events or
+  call methods based on the input received.
+
+- Via API calls: You can access that which is entered into the client
+  application with the following methods:
+
+        Vedeu.all_commands   # => Returns an array of all the commands
+                             #    entered.
+        Vedeu.last_command   # => Returns the last command entered.
+        Vedeu.all_keypresses # => Returns all the individual
+                             #    keypresses entered as an array.
+        Vedeu.last_keypress  # => Returns the last keypress entered.
+
+- Via events: You can access that which is entered by binding to
+  events which Vedeu will trigger as input is received:
+
+        Vedeu.bind(:key) do
+          # ... do something with the key
+        end
+
+        Vedeu.bind(:command) do
+          # ... do something with the command
+        end
