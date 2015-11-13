@@ -12,6 +12,10 @@ module Vedeu
       # @return [NilClass|String]
       attr_reader :colour
 
+      # @!attribute [r] name
+      # @return [String|Symbol]
+      attr_reader :name
+
       # @!attribute [r] style
       # @return [NilClass|Array<Symbol|String>|Symbol|String]
       attr_reader :style
@@ -56,6 +60,11 @@ module Vedeu
       end
       alias_method :==, :eql?
 
+      # @return [Vedeu::Interfaces::Interface]
+      def interface
+        @interface ||= Vedeu.interfaces.by_name(name)
+      end
+
       # @return [Vedeu::Geometry::Position]
       def position
         Vedeu::Geometry::Position.coerce(@position)
@@ -90,6 +99,7 @@ module Vedeu
       def defaults
         {
           colour:   nil,
+          name:     nil,
           style:    nil,
           value:    '',
           position: [1, 1],

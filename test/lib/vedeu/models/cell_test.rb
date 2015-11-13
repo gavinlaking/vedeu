@@ -11,12 +11,14 @@ module Vedeu
       let(:attributes) {
         {
           colour:   colour,
+          name:     _name,
           style:    style,
           value:    _value,
           position: position,
         }
       }
       let(:colour)   { Vedeu::Colours::Colour.new(background: '#000000') }
+      let(:_name)    {}
       let(:style)    {}
       let(:_value)   {}
       let(:position) {}
@@ -24,6 +26,7 @@ module Vedeu
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@colour').must_equal(colour) }
+        it { instance.instance_variable_get('@name').must_equal(_name) }
         it { instance.instance_variable_get('@style').must_equal(style) }
         it { instance.instance_variable_get('@value').must_equal('') }
         it { instance.instance_variable_get('@position').must_equal([1, 1]) }
@@ -32,6 +35,7 @@ module Vedeu
       describe 'accessors' do
         it {
           instance.must_respond_to(:colour)
+          instance.must_respond_to(:name)
           instance.must_respond_to(:style)
           instance.must_respond_to(:value)
         }
@@ -55,6 +59,18 @@ module Vedeu
 
           it { subject.must_equal(false) }
         end
+      end
+
+      describe '#interface' do
+        let(:interface) { Vedeu::Interfaces::Interface.new }
+
+        before do
+          Vedeu.interfaces.stubs(:by_name).with(_name).returns(interface)
+        end
+
+        subject { instance.interface }
+
+        it { subject.must_be_instance_of(Vedeu::Interfaces::Interface) }
       end
 
       describe '#position' do
