@@ -30,6 +30,10 @@ module Vedeu
       # @return [NilClass|Symbol]
       attr_accessor :border
 
+      # @!attribute [rw] name
+      # @return [String|Symbol]
+      attr_accessor :name
+
       # @!attribute [rw] parent
       # @return [Vedeu::Views::Line]
       attr_accessor :parent
@@ -45,6 +49,7 @@ module Vedeu
       #   A symbol representing the border 'piece' this
       #   {Vedeu::Views::Char} represents.
       # @option attributes colour [Vedeu::Colours::Colour]
+      # @option attributes name [String|Symbol]
       # @option attributes parent [Vedeu::Views::Line]
       # @option attributes position [Vedeu::Geometry::Position]
       # @option attributes style [Vedeu::Presentation::Style]
@@ -53,6 +58,7 @@ module Vedeu
       def initialize(attributes = {})
         @attributes = attributes
         @border     = @attributes[:border]
+        @name       = @attributes[:name]
         @parent     = @attributes[:parent]
         @value      = @attributes[:value]
       end
@@ -82,6 +88,11 @@ module Vedeu
           position == other.position
       end
       alias_method :==, :eql?
+
+      # @return [Vedeu::Interfaces::Interface]
+      def interface
+        @interface ||= Vedeu.interfaces.by_name(name)
+      end
 
       # @return [Vedeu::Geometry::Position]
       def position
@@ -130,6 +141,7 @@ module Vedeu
         {
           border:   border.to_s,
           colour:   colour_to_hash,
+          name:     name.to_s,
           parent:   parent_to_hash,
           position: position_to_hash,
           style:    style.to_s,

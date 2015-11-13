@@ -67,7 +67,7 @@ module Vedeu
       # @return [Float]
       def timestamp
         if options[:timestamp]
-          "_#{Time.now.to_f}".freeze
+          "_#{Vedeu.clock_time}".freeze
 
         else
           ''.freeze

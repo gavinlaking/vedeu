@@ -77,9 +77,9 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Document]
       def delete_character
-        return self if (x == 0 || x - 1 < 0) && y == 0
+        return self if document_start?
 
-        if (x == 0 || x - 1 < 0) && y > 0
+        if first_char? && y > 0
           delete_line
 
           return
@@ -132,13 +132,12 @@ module Vedeu
 
         down
 
-        cursor.bol.refresh
-
         refresh
       end
 
       # Returns the current line from the collection of lines.
       #
+      # @param index [Fixnum]
       # @return [Array<String|void>]
       def line(index = y)
         lines.line(index)
@@ -160,6 +159,8 @@ module Vedeu
 
         @lines = defaults[:data]
 
+        cursor.refresh
+
         refresh
       end
 
@@ -172,9 +173,9 @@ module Vedeu
 
         Vedeu.trigger(:_clear_view_content_, name)
 
-        Vedeu.render_output(output)
+        Vedeu.buffer_update(output)
 
-        cursor.refresh
+        Vedeu.direct_write(output.map(&:to_s).join)
 
         self
       end
@@ -183,7 +184,7 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Document]
       def left
-        return self if x - 1 < 0
+        return self if first_char?
 
         cursor.left.refresh
 
@@ -194,7 +195,7 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Document]
       def right
-        return self if x + 1 > line.size
+        return self if last_char?
 
         cursor.right.refresh
 
@@ -205,11 +206,9 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Document]
       def up
-        return self if y - 1 < 0
+        return self if first_line?
 
-        cursor.up.refresh
-
-        reposition_cursor_x!
+        cursor.up(prev_line_size).refresh
 
         self
       end
@@ -218,29 +217,26 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Document]
       def down
-        return self if y + 1 >= lines.size
+        return self if last_line?
 
-        cursor.down.refresh
-
-        reposition_cursor_x!
+        cursor.down(next_line_size).refresh
 
         self
       end
 
       private
 
-      # Repositions the x coordinate of the virtual cursor to the end
-      # of the line if the x coordinate is beyond the end of the line.
-      #
-      # This is used when the cursor moves up or down, moving from a
-      # long line to a shorter line.
+      # @return [Boolean]
+      def document_start?
+        first_char? && first_line?
+      end
+
+      # Return a virtual cursor to track the cursor position within
+      # the document.
       #
       # @return [Vedeu::Editor::Cursor]
-      def reposition_cursor_x!
-        if x > line.size
-          cursor.x = line.size
-          cursor.refresh
-        end
+      def cursor
+        @cursor ||= Vedeu::Editor::Cursor.new(name: name)
       end
 
       # Returns the default options/attributes for this class.
@@ -252,6 +248,31 @@ module Vedeu
           name:       nil,
           repository: Vedeu.documents,
         }
+      end
+
+      # @return [Boolean]
+      def first_char?
+        x - 1 < 0
+      end
+
+      # @return [Boolean]
+      def first_line?
+        y - 1 < 0
+      end
+
+      # @return [Boolean]
+      def last_char?
+        x + 1 > line.size
+      end
+
+      # @return [Boolean]
+      def last_line?
+        y + 1 >= lines.size
+      end
+
+      # @return [Fixnum]
+      def next_line_size
+        line(y + 1).size
       end
 
       # Return the data needed to render the document, based on the
@@ -267,12 +288,9 @@ module Vedeu
                                    oy:    oy).viewport
       end
 
-      # Return a virtual cursor to track the cursor position within
-      # the document.
-      #
-      # @return [Vedeu::Editor::Cursor]
-      def cursor
-        @cursor ||= Vedeu::Editor::Cursor.new(name: name)
+      # @return [Fixnum]
+      def prev_line_size
+        line(y - 1).size
       end
 
     end # Document

@@ -74,8 +74,6 @@ module Vedeu
         define_foregrounds!
       end
 
-      private
-
       # @return [void]
       def define_backgrounds!
         background_codes.each do |key, code|

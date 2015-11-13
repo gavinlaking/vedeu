@@ -15,6 +15,9 @@ module Vedeu
         @style ||= if attributes[:style]
                      Vedeu::Presentation::Style.coerce(attributes[:style])
 
+                   elsif self.is_a?(Vedeu::Views::Char) && name
+                     Vedeu::Presentation::Style.coerce(interface.style)
+
                    elsif parent
                      Vedeu::Presentation::Style.coerce(parent.style)
 

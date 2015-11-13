@@ -19,19 +19,8 @@ module Vedeu
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
-        it {
-          instance.instance_variable_get('@background').
-            must_be_instance_of(Vedeu::Colours::Background)
-        }
-        it {
-          instance.instance_variable_get('@foreground').
-            must_be_instance_of(Vedeu::Colours::Foreground)
-        }
-      end
-
-      describe 'accessors' do
-        it { instance.must_respond_to(:background) }
-        it { instance.must_respond_to(:foreground) }
+        it { instance.instance_variable_get('@background').must_equal(background)}
+        it { instance.instance_variable_get('@foreground').must_equal(foreground)}
       end
 
       describe '.coerce' do
@@ -187,6 +176,10 @@ module Vedeu
         it { subject.must_equal(expected) }
       end
 
+      describe '#background' do
+        # @todo Add more tests.
+      end
+
       describe '#background=' do
         let(:_value) { '#000000' }
 
@@ -207,6 +200,10 @@ module Vedeu
 
           it { subject.must_equal(false) }
         end
+      end
+
+      describe '#foreground' do
+        # @todo Add more tests.
       end
 
       describe '#foreground=' do

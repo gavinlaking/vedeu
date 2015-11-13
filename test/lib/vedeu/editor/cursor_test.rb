@@ -68,13 +68,22 @@ module Vedeu
       end
 
       describe '#down' do
-        let(:y) { 11 }
+        let(:y)    { 11 }
+        let(:size) {}
 
-        subject { instance.down }
+        subject { instance.down(size) }
 
         it { subject.must_be_instance_of(described) }
 
         it { subject.y.must_equal(12) }
+        it { subject.x.must_equal(0) }
+
+        context 'when a size is given and x > size' do
+          let(:x)    { 15 }
+          let(:size) { 11 }
+
+          it { subject.x.must_equal(11) }
+        end
       end
 
       describe '#left' do
@@ -144,15 +153,24 @@ module Vedeu
       end
 
       describe '#up' do
-        let(:y)  { 11 }
-        let(:oy) { 2 }
+        let(:y)    { 11 }
+        let(:oy)   { 2 }
+        let(:size) {}
 
-        subject { instance.up }
+        subject { instance.up(size) }
 
         it { subject.must_be_instance_of(described) }
 
         it { subject.y.must_equal(10) }
         it { subject.oy.must_equal(1) }
+        it { subject.x.must_equal(0) }
+
+        context 'when a size is given and x > size' do
+          let(:x)    { 15 }
+          let(:size) { 11 }
+
+          it { subject.x.must_equal(11) }
+        end
       end
 
       describe '#x' do

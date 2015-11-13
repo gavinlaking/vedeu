@@ -25,6 +25,7 @@ module Vedeu
         {
           border:   border,
           colour:   colour,
+          name:     _name,
           parent:   parent,
           position: position,
           style:    style,
@@ -43,6 +44,7 @@ module Vedeu
       }
       let(:border)        { nil }
       let(:colour)        { nil }
+      let(:_name)         { 'Vedeu::Views::Char' }
       let(:style)         { nil }
       let(:position)      { nil }
       let(:parent_colour) { nil }
@@ -51,6 +53,7 @@ module Vedeu
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@border').must_equal(border) }
+        it { instance.instance_variable_get('@name').must_equal(_name) }
         it { instance.instance_variable_get('@parent').must_equal(parent) }
         it { instance.instance_variable_get('@value').must_equal(_value) }
 
@@ -61,6 +64,8 @@ module Vedeu
         it {
           instance.must_respond_to(:border)
           instance.must_respond_to(:border=)
+          instance.must_respond_to(:name)
+          instance.must_respond_to(:name=)
           instance.must_respond_to(:parent)
           instance.must_respond_to(:parent=)
           instance.must_respond_to(:attributes)
@@ -92,6 +97,18 @@ module Vedeu
         end
       end
 
+      describe '#interface' do
+        let(:interface) { Vedeu::Interfaces::Interface.new }
+
+        before do
+          Vedeu.interfaces.stubs(:by_name).with(_name).returns(interface)
+        end
+
+        subject { instance.interface }
+
+        it { subject.must_be_instance_of(Vedeu::Interfaces::Interface) }
+      end
+
       describe '#position' do
         subject { instance.position }
       end
@@ -111,6 +128,7 @@ module Vedeu
                 background: '',
                 foreground: '',
               },
+              name: 'Vedeu::Views::Char',
               parent: {
                 background: '',
                 foreground: '',

@@ -71,6 +71,7 @@ module Vedeu
 
         @chars ||= value.chars.map do |char|
           member.new(value:    char,
+                     name:     name,
                      parent:   parent,
                      colour:   colour,
                      style:    style,
@@ -100,6 +101,11 @@ module Vedeu
           parent == other.parent
       end
       alias_method :==, :eql?
+
+      # @return [NilClass|String|Symbol]
+      def name
+        parent.name if parent
+      end
 
       # Returns the size of the content in characters without
       # formatting.

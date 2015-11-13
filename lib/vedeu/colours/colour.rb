@@ -37,14 +37,6 @@ module Vedeu
     #
     class Colour
 
-      # @!attribute [r] background
-      # @return [Vedeu::Colours::Background]
-      attr_reader :background
-
-      # @!attribute [r] foreground
-      # @return [Vedeu::Colours::Foreground]
-      attr_reader :foreground
-
       # @param value [Vedeu::Colours::Colour|Hash<Symbol => void>]
       # @return [Vedeu::Colours::Colour]
       def self.coerce(value)
@@ -78,17 +70,23 @@ module Vedeu
       # @option attributes foreground [String]
       # @return [Vedeu::Colours::Colour]
       def initialize(attributes = {})
-        @background = Vedeu::Colours::Background.coerce(attributes[:background])
-        @foreground = Vedeu::Colours::Foreground.coerce(attributes[:foreground])
+        defaults.merge!(attributes).each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
       end
 
       # @return [Hash<Symbol => Vedeu::Colours::Background,
       #   Vedeu::Colours::Foreground>]
       def attributes
         {
-          background: Vedeu::Colours::Background.coerce(@background),
-          foreground: Vedeu::Colours::Foreground.coerce(@foreground),
+          background: background,
+          foreground: foreground,
         }
+      end
+
+      # @return [Vedeu::Colours::Background]
+      def background
+        @background = Vedeu::Colours::Background.coerce(@background)
       end
 
       # Converts the value into a Vedeu::Colours::Background.
@@ -109,6 +107,11 @@ module Vedeu
       end
       alias_method :==, :eql?
 
+      # @return [Vedeu::Colours::Foreground]
+      def foreground
+        @foreground = Vedeu::Colours::Foreground.coerce(@foreground)
+      end
+
       # Converts the value into a Vedeu::Colours::Foreground.
       #
       # @param value [String]
@@ -125,6 +128,15 @@ module Vedeu
         foreground.to_s + background.to_s
       end
       alias_method :to_str, :to_s
+
+      private
+
+      def defaults
+        {
+          background: Vedeu::Colours::Background.new,
+          foreground: Vedeu::Colours::Foreground.new
+        }
+      end
 
     end # Colour
 

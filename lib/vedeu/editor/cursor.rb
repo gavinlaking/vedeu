@@ -65,9 +65,11 @@ module Vedeu
 
       # Move the virtual cursor down by one line.
       #
+      # @param size [Fixnum]
       # @return [Vedeu::Editor::Cursor]
-      def down
+      def down(size = nil)
         @y += 1
+        @x = size if size && x > size
 
         self
       end
@@ -132,10 +134,12 @@ module Vedeu
 
       # Move the virtual cursor up by one line.
       #
+      # @param size [Fixnum]
       # @return [Vedeu::Editor::Cursor]
-      def up
+      def up(size = nil)
         @oy -= 1 unless @oy == 0
         @y -= 1
+        @x = size if size && x > size
 
         self
       end

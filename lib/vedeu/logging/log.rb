@@ -54,6 +54,24 @@ module Vedeu
           $stderr.puts log_entry(type, message)
         end
 
+        # Returns a formatted timestamp.
+        # eg. [137.7824]
+        #
+        # @return [String]
+        def timestamp
+          @now  = Vedeu.clock_time
+          @time ||= 0.0
+          @last ||= @now
+
+          unless @last == @time
+            @time += (@now - @last).round(4)
+            @last = @now
+          end
+
+          "[#{format('%7.4f', @time.to_s)}] ".rjust(7)
+        end
+        alias_method :log_timestamp, :timestamp
+
         private
 
         # @return [TrueClass]
@@ -163,23 +181,6 @@ module Vedeu
           }
         end
 
-        # Returns a formatted timestamp.
-        # eg. [137.7824]
-        #
-        # @return [String]
-        def timestamp
-          @now  = Time.now.to_f
-          @time ||= 0.0
-          @last ||= @now
-
-          unless @last == @time
-            @time += (@now - @last).round(4)
-            @last = @now
-          end
-
-          "[#{format('%7.4f', @time.to_s)}] ".rjust(7)
-        end
-
       end # Eigenclass
 
     end # Log
@@ -195,7 +196,8 @@ module Vedeu
   def_delegators Vedeu::Logging::Log,
                  :log,
                  :log_stdout,
-                 :log_stderr
+                 :log_stderr,
+                 :log_timestamp
 
   # :nocov:
 

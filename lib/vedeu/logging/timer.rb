@@ -35,7 +35,7 @@ module Vedeu
       # @return [Vedeu::Logging::Timer]
       def initialize(message = '')
         @message = message
-        @started = Time.now.to_f
+        @started = Vedeu.clock_time
       end
 
       # Write an entry to the log file stating how long a section of
@@ -75,7 +75,7 @@ module Vedeu
       #
       # @return [Float]
       def elapsed
-        ((Time.now.to_f - started) * 1000).round(3)
+        ((Vedeu.clock_time - started) * 1000).round(3)
       end
 
     end # Timer
