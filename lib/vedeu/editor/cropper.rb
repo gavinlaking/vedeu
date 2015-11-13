@@ -44,7 +44,6 @@ module Vedeu
         visible.each_with_index do |line, iy|
           line.chars.each_with_index do |char, ix|
             out << Vedeu::Views::Char.new(name:     name,
-                                          parent:   interface,
                                           position: [(by + iy), (bx + ix)],
                                           value:    char.freeze)
           end
