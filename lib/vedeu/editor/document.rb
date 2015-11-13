@@ -173,7 +173,9 @@ module Vedeu
 
         Vedeu.trigger(:_clear_view_content_, name)
 
-        Vedeu.render_output(output)
+        Vedeu.buffer_update(output)
+
+        Vedeu.direct_write(output.map(&:to_s).join)
 
         self
       end

@@ -12,6 +12,15 @@ module Vedeu
       # @param output [Array<Array<Vedeu::Views::Char>>|
       #   NilClass|Vedeu::Models::Escape]
       # @return [Array]
+      def self.buffer_update(output)
+        return nil if output.nil?
+
+        new(output).buffer_update
+      end
+
+      # @param output [Array<Array<Vedeu::Views::Char>>|
+      #   NilClass|Vedeu::Models::Escape]
+      # @return [Array]
       def self.buffer_write(output)
         return nil if output.nil?
 
@@ -45,6 +54,11 @@ module Vedeu
       # @return [Vedeu::Output::Output]
       def initialize(output)
         @output = output
+      end
+
+      # @return [Array]
+      def buffer_update
+        buffer_update!
       end
 
       # @return [Array]
@@ -85,6 +99,11 @@ module Vedeu
       private
 
       # @return [Array]
+      def buffer_update!
+        Vedeu::Terminal::Buffer.update(output)
+      end
+
+      # @return [Array]
       def buffer_write!
         Vedeu::Terminal::Buffer.write(output)
       end
@@ -106,13 +125,17 @@ module Vedeu
   # Write the given output to the configured or default renderers.
   #
   # @example
+  #   Vedeu.buffer_update(output)
+  #   Vedeu.buffer_write(output)
+  #   Vedeu.direct_write(output)
   #   Vedeu.render_output(output)
   #
   # @!method render_output
   # @return [Array|NilClass]
   def_delegators Vedeu::Output::Output,
-                 :render_output,
+                 :buffer_update,
                  :buffer_write,
-                 :direct_write
+                 :direct_write,
+                 :render_output
 
 end # Vedeu
