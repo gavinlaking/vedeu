@@ -1,4 +1,4 @@
-if ENV['RUBOCOP']
+if ENV['RUBOCOP'] == 1
   guard :rubocop do
     watch(/.+\.rb$/)
     watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }

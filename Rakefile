@@ -8,7 +8,7 @@ Rake::TestTask.new(:test) do |task|
   task.libs.push 'test'
   task.pattern = 'test/**/*_test.rb'
   task.verbose = false
-  task.warning = true if ENV['WARNINGS']
+  task.warning = true if ENV['WARNINGS'] == 1
 end
 
 YARD::Rake::YardocTask.new(:yard) do |task|
@@ -51,7 +51,7 @@ RuboCop::RakeTask.new(:rubocop) do |task|
 end
 
 tasks_to_run = [:test]
-tasks_to_run << :rubocop if ENV['RUBOCOP']
-tasks_to_run << :yard if ENV['YARD']
+tasks_to_run << :rubocop if ENV['RUBOCOP'] == 1
+tasks_to_run << :yard if ENV['YARD'] == 1
 
 task default: tasks_to_run
