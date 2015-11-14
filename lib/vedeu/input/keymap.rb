@@ -94,7 +94,7 @@ module Vedeu
         {
           name:       '',
           keys:       [],
-          repository: Vedeu::Input::Keymaps.keymaps,
+          repository: Vedeu::Input::Repository.keymaps,
         }
       end
 

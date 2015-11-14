@@ -4,13 +4,13 @@ module Vedeu
 
     # Allows the storing of keymaps.
     #
-    class Keymaps < Vedeu::Repositories::Repository
+    class Repository < Vedeu::Repositories::Repository
 
       singleton_class.send(:alias_method, :keymaps, :repository)
 
       real Vedeu::Input::Keymap
 
-    end # Keymaps
+    end # Repository
 
   end # Input
 
@@ -20,8 +20,8 @@ module Vedeu
   #   Vedeu.keymaps
   #
   # @!method keymaps
-  # @return [Vedeu::Input::Keymaps]
-  def_delegators Vedeu::Input::Keymaps,
+  # @return [Vedeu::Input::Repository]
+  def_delegators Vedeu::Input::Repository,
                  :keymaps
 
 end # Vedeu
