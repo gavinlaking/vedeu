@@ -34,7 +34,7 @@ module Vedeu
       #
       # @param name [String|Symbol] The name of the interface/view to
       #   be refreshed. Defaults to `Vedeu.focus`.
-      # @param options [Hash]
+      # @param options [Hash<Symbol => Boolean>]
       # @option options content_only [Boolean]
       # @return [Vedeu::Buffers::Refresh]
       def initialize(name, options = {})

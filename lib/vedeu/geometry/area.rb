@@ -32,7 +32,7 @@ module Vedeu
       attr_reader :xn
       alias_method :right, :xn
 
-      # @param attributes [Hash]
+      # @param attributes [Hash<Symbol => Boolean|Fixnum|Symbol>]
       # @option attributes y [Fixnum]
       # @option attributes yn [Fixnum]
       # @option attributes y_yn [Fixnum]

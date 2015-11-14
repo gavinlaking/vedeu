@@ -65,7 +65,8 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Colours::Colour.
       #
-      # @param attributes [Hash]
+      # @param attributes [Hash<Symbol => String|
+      #   Vedeu::Colours::Background|Vedeu::Colours:Foreground>]
       # @option attributes background [String]
       # @option attributes foreground [String]
       # @return [Vedeu::Colours::Colour]

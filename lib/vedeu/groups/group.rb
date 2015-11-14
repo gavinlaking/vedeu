@@ -26,7 +26,8 @@ module Vedeu
       #   A group being visible or not may not necessarily mean the
       #   members are of the same state.
       #
-      # @param attributes [Hash]
+      # @param attributes [Hash<Symbol => Boolean|Set|String|
+      #   Vedeu::Groups::Repository]
       # @option attributes members [Set] A collection of names of
       #   interfaces belonging to this group.
       # @option attributes name [String|Symbol] The name of the group.
@@ -162,7 +163,8 @@ module Vedeu
 
       # Returns the default options/attributes for this class.
       #
-      # @return [Hash]
+      # @return [Hash<Symbol => Boolean|Set|String|
+      #   Vedeu::Groups::Repository]
       def defaults
         {
           members:    Set.new,

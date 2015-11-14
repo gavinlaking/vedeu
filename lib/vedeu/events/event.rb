@@ -41,8 +41,8 @@ module Vedeu
         #
         # @param name [Symbol] The name of the event to be triggered
         #   later.
-        # @param options [Hash] The options to register the event
-        #   with.
+        # @param options [Hash<Symbol => void>] The options to
+        #   register the event with.
         # @option options :delay [Fixnum|Float] Limits the execution
         #   of the triggered event to only execute when first
         #   triggered, with subsequent triggering being ignored until
@@ -281,14 +281,14 @@ module Vedeu
       # Combines the options provided at instantiation with the
       # default values.
       #
-      # @return [Hash]
+      # @return [Hash<Symbol => void>]
       def options
         defaults.merge!(@options)
       end
 
       # The default values for a new instance of this class.
       #
-      # @return [Hash]
+      # @return [Hash<Symbol => void>]
       def defaults
         {
           delay:      0.0,

@@ -25,7 +25,7 @@ module Vedeu
       #
       # Overrides {Vedeu::DSL#attributes}.
       #
-      # @return [Hash]
+      # @return [Hash<Symbol => void>]
       def attributes
         {
           client: client,

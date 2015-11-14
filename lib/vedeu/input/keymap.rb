@@ -18,7 +18,8 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Input::Keymap.
       #
-      # @param attributes [Hash]
+      # @param attributes [Hash<Symbol => Array|String|Symbol|
+      #   Vedeu::Input::Keys|Vedeu::Repositories::Repository>]
       # @option attributes name [String|Symbol] The name of the
       #   keymap.
       # @option attributes keys [Vedeu::Input::Keys|Array]
@@ -89,7 +90,7 @@ module Vedeu
 
       # Returns the default options/attributes for this class.
       #
-      # @return [Hash]
+      # @return [Hash<Symbol => Array|String|Vedeu::Input::Repository]
       def defaults
         {
           name:       '',

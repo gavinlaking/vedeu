@@ -47,7 +47,8 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Cursors::Cursor.
       #
-      # @param attributes [Hash]
+      # @params attributes [Hash<Symbol => Boolean|Fixnum|String|
+      #   Vedeu::Cursors::Repository>]
       # @option attributes name [String|Symbol] The name of the
       #   interface this cursor belongs to.
       # @option attributes ox [Fixnum] The offset x coordinate.
@@ -67,7 +68,8 @@ module Vedeu
         end
       end
 
-      # @return [Hash]
+      # @return [Hash<Symbol => Boolean|Fixnum|String|
+      #   Vedeu::Cursors::Repository>]
       def attributes
         {
           name:       @name,
@@ -267,7 +269,8 @@ module Vedeu
 
       # The default values for a new instance of this class.
       #
-      # @return [Hash]
+      # @return [Hash<Symbol => Boolean|Fixnum|String|
+      #   Vedeu::Cursors::Repository>]
       def defaults
         {
           name:       '',
@@ -285,7 +288,7 @@ module Vedeu
         Vedeu::Models::Escape.new(position: position, value: visibility)
       end
 
-      # @return [Hash]
+      # @return [Hash<Symbol => Fixnum>]
       def new_attributes(new_y = y, new_x = x, new_oy = oy, new_ox = ox)
         attributes.merge!(x: new_x, y: new_y, ox: new_ox, oy: new_oy)
       end

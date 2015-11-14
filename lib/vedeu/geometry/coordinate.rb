@@ -10,7 +10,7 @@ module Vedeu
 
       # Return a new instance of Vedeu::Geometry::Coordinate.
       #
-      # @param attributes [Hash]
+      # @param attributes [Hash<Symbol => Fixnum|String|Symbol>]
       # @option attributes name [String|Symbol]
       # @option attributes type [Symbol]
       # @option attributes offset [Fixnum]
@@ -161,7 +161,7 @@ module Vedeu
 
       # The default values for a new instance of this class.
       #
-      # @return [Hash]
+      # @return [Hash<Symbol => Fixnum|String|Symbol>]
       def defaults
         {
           name:   '',

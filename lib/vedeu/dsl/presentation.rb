@@ -66,7 +66,8 @@ module Vedeu
       #   stream overrides previously defined entries in the same
       #   block.
       #
-      # @param attrs [Hash] See {Vedeu::Colours::Colour}
+      # @param attrs [Hash<Symbol => void>]
+      #   See {Vedeu::Colours::Colour}
       #
       # @example
       #   interface 'my_interface' do

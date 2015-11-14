@@ -84,7 +84,8 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Geometry::Geometry.
       #
-      # @param attributes [Hash]
+      # @param attributes [Hash<Symbol => Boolean|Fixnum|String|
+      #   Symbol|Vedeu::Geometry::Repository]
       # @option attributes horizontal_alignment [Symbol]
       # @option attributes vertical_alignment [Symbol]
       # @option attributes maximised [Boolean]
@@ -103,7 +104,8 @@ module Vedeu
         end
       end
 
-      # @return [Hash]
+      # @return [Hash<Symbol => Boolean|Fixnum|String|Symbol|
+      #   Vedeu::Geometry::Repository]
       def attributes
         {
           client:               @client,
@@ -238,7 +240,7 @@ module Vedeu
         @area = Vedeu::Geometry::Area.from_attributes(area_attributes)
       end
 
-      # @return [Hash<Symbol => Boolean, Fixnum>]
+      # @return [Hash<Symbol => Boolean|Fixnum>]
       def area_attributes
         {
           horizontal_alignment: @horizontal_alignment,
@@ -281,7 +283,8 @@ module Vedeu
 
       # Returns the default options/attributes for this class.
       #
-      # @return [Hash]
+      # @return [Hash<Symbol => Boolean|Fixnum|NilClass|String|Symbol|
+      #   Vedeu::Geometry::Repository]
       def defaults
         {
           client:               nil,

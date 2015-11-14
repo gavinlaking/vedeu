@@ -109,7 +109,9 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Borders::Border.
       #
-      # @param attributes [Hash]
+      # @param attributes [Hash<Symbol => Boolean|Hash|NilClass|
+      #   String|Symbol|Vedeu::Borders::Repository|
+      #   Vedeu::Presentation::Style>]
       # @option attributes bottom_left [String] The bottom left border
       #   character.
       # @option attributes bottom_right [String] The bottom right
@@ -147,7 +149,8 @@ module Vedeu
         end
       end
 
-      # @return [Hash]
+      # @return [Hash<Symbol => Boolean|Hash|NilClass|String|Symbol|
+      #   Vedeu::Borders::Repository|Vedeu::Presentation::Style>]
       def attributes
         {
           bottom_left:  @bottom_left,
@@ -265,7 +268,8 @@ module Vedeu
 
       # The default values for a new instance of this class.
       #
-      # @return [Hash]
+      # @return [Hash<Symbol => Boolean|Hash|NilClass|String|Symbol|
+      #   Vedeu::Borders::Repository|Vedeu::Presentation::Style>]
       # @see Vedeu::EscapeSequences::Borders
       def defaults
         {

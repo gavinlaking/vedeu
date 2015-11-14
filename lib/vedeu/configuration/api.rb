@@ -570,7 +570,7 @@ module Vedeu
       #   end
       #
       # @param attrs [Hash<Symbol => String>]
-      # @return [Hash]
+      # @return [Hash<Symbol => void>]
       def colour(attrs = {})
         options[:background] = background(attrs[:background])
         options[:foreground] = foreground(attrs[:foreground])
@@ -619,7 +619,7 @@ module Vedeu
       # Returns the options set via the configuration API DSL or an
       # empty Hash when none were set.
       #
-      # @return [Hash]
+      # @return [Hash<Symbol => void>]
       def options
         @options ||= {}
       end

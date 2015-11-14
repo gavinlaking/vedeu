@@ -39,7 +39,7 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Editor::Cursor.
       #
-      # @param attributes [Hash]
+      # @param attributes [Hash<Symbol => Fixnum|String|Symbol>]
       # @option attributes y [Fixnum] The current line.
       # @option attributes x [Fixnum] The current character with the
       #   line.
