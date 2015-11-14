@@ -44,7 +44,8 @@ module Vedeu
       #   parameter, then it is added with the respective value from
       #   #defaults.
       #
-      # @param attributes [Hash]
+      # @param attributes [Hash<Symbol => String|Symbol|
+      #   Vedeu::Repositories::Repository>]
       # @option attributes data [String]
       # @option attributes name [String|Symbol]
       # @option attributes repository

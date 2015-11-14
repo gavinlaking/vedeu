@@ -89,7 +89,7 @@ module Vedeu
       #   use relative paths.
       # @param object [Object] The object for which the values of
       #   template's variables can be obtained.
-      # @param options [Hash] See {Vedeu::Output::Wordwrap}
+      # @param options [Hash<Symbol => void>] See {Vedeu::Output::Wordwrap}
       # @raise [Vedeu::Error::MissingRequired]
       # @return [Vedeu::Views::Views<Vedeu::Views::View>]
       def template_for(name, filename, object = nil, options = {})
@@ -116,7 +116,7 @@ module Vedeu
 
       # @param name [String|Symbol]
       # @param lines [Vedeu::Views::Lines]
-      # @return [Hash]
+      # @return [Hash<Symbol => void>]
       def template_attributes(name, lines)
         new_attributes(name).merge!(value: lines)
       end
@@ -125,7 +125,7 @@ module Vedeu
       # interface attributes defined by the interface.
       #
       # @param name [String|Symbol] The name of the interface.
-      # @return [Hash]
+      # @return [Hash<Symbol => void>]
       def new_attributes(name)
         existing_attributes(name).merge!(attributes)
       end
@@ -133,7 +133,7 @@ module Vedeu
       # Retrieve the attributes of the interface by name.
       #
       # @param name [String|Symbol] The name of the interface.
-      # @return [Hash]
+      # @return [Hash<Symbol => void>]
       def existing_attributes(name)
         Vedeu.interfaces.by_name(name).attributes
       end

@@ -9,8 +9,8 @@ module Vedeu
     # Custom log for configuration.
     #
     # @param from [String] Which configuration set the options.
-    # @param options [Hash] The configuration options set.
-    # @return [Hash] The options param.
+    # @param options [Hash<Symbol => void>] The configuration options set.
+    # @return [Hash<Symbol => void>] The options param.
     def log(from, options)
       options.each do |option, value|
         Vedeu.log(type:    :config,
@@ -65,14 +65,14 @@ module Vedeu
       #     # ...
       #   end
       #
-      # @param opts [Hash]
+      # @param opts [Hash<Symbol => void>]
       # @option opts stdin [File|IO]
       # @option opts stdout [File|IO]
       # @option opts stderr [File|IO]
       # @param block [Proc]
       # @raise [Vedeu::Error::InvalidSyntax]
       #   When the required block is not given.
-      # @return [Hash]
+      # @return [Hash<Symbol => void>]
       def configure(opts = {}, &block)
         instance.configure(opts, &block)
       end
@@ -281,7 +281,7 @@ module Vedeu
 
       # Reset the configuration to the default values.
       #
-      # @return [Hash]
+      # @return [Hash<Symbol => void>]
       def reset!
         instance.reset!
       end
@@ -289,7 +289,7 @@ module Vedeu
     end # Eigenclass
 
     # @!attribute [r] options
-    # @return [Hash]
+    # @return [Hash<Symbol => void>]
     attr_reader :options
 
     # Create a new singleton instance of Vedeu::Configuration.
@@ -303,7 +303,7 @@ module Vedeu
     # application to modify it via the configuration API.
     #
     # @param block [Proc]
-    # @return [Hash]
+    # @return [Hash<Symbol => void>]
     def configure(opts = {}, &block)
       @options.merge!(opts)
 
@@ -316,7 +316,7 @@ module Vedeu
 
     # Reset the configuration to the default values.
     #
-    # @return [Hash]
+    # @return [Hash<Symbol => void>]
     def reset!
       @options = defaults
     end

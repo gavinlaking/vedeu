@@ -275,6 +275,11 @@ module Vedeu
       #
       #   Vedeu.configure do
       #     height 25
+      #
+      #     # or...
+      #
+      #     height = 25
+      #
       #     # ...
       #   end
       #
@@ -283,6 +288,7 @@ module Vedeu
       def height(height = 25)
         options[:height] = height
       end
+      alias_method :height=, :height
 
       # Sets the location of the log file.
       #
@@ -478,6 +484,12 @@ module Vedeu
       #
       #     terminal_mode :raw
       #
+      #     # or...
+      #
+      #     terminal_mode = :raw
+      #     terminal_mode = :fake
+      #     terminal_mode = :cooked
+      #
       #     # ... some code
       #   end
       #
@@ -493,11 +505,17 @@ module Vedeu
 
         options[:terminal_mode] = mode
       end
+      alias_method :terminal_mode=, :terminal_mode
 
       # Sets the width of the terminal.
       #
       #   Vedeu.configure do
       #     width 80
+      #
+      #     # or...
+      #
+      #     width = 80
+      #
       #     # ...
       #   end
       #
@@ -506,6 +524,7 @@ module Vedeu
       def width(width = 80)
         options[:width] = width
       end
+      alias_method :width=, :width
 
       # Sets the background of the terminal.
       #
@@ -551,7 +570,7 @@ module Vedeu
       #   end
       #
       # @param attrs [Hash<Symbol => String>]
-      # @return [Hash]
+      # @return [Hash<Symbol => void>]
       def colour(attrs = {})
         options[:background] = background(attrs[:background])
         options[:foreground] = foreground(attrs[:foreground])
@@ -600,7 +619,7 @@ module Vedeu
       # Returns the options set via the configuration API DSL or an
       # empty Hash when none were set.
       #
-      # @return [Hash]
+      # @return [Hash<Symbol => void>]
       def options
         @options ||= {}
       end

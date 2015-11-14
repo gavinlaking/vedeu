@@ -50,7 +50,7 @@ module Vedeu
       #
       # @param value [String|Object] A string or object that responds
       #   to `to_s`.
-      # @param options [Hash] Text options.
+      # @param options [Hash<Symbol => void>] Text options.
       # @option options :anchor [Symbol] One of `:left`,
       #   `:centre`/`:center`, or `:right`.
       # @option options :width [Integer|NilClass] The width of the

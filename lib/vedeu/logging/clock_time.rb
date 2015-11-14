@@ -10,16 +10,15 @@ module Vedeu
     #
     module ClockTime
 
-      if defined?(Process::CLOCK_MONOTONIC)
-        def self.clock_time
+      # @return [Float|Time]
+      def self.clock_time
+        if defined?(Process::CLOCK_MONOTONIC)
           Process.clock_gettime(Process::CLOCK_MONOTONIC)
-        end
 
-      else
-        def self.clock_time
+        else
           Time.now
-        end
 
+        end
       end
 
     end # ClockTime

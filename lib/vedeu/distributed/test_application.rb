@@ -93,7 +93,7 @@ module Vedeu
 
     # @todo Don't like all this file reading.
     #
-    # @return [Hash]
+    # @return [Hash<Symbol => String>]
     def defaults
       {
         borders:       read('default_borders.vedeu'),

@@ -4,13 +4,13 @@ module Vedeu
 
   module Input
 
-    describe Keymaps do
+    describe Repository do
 
-      let(:described) { Vedeu::Input::Keymaps }
+      let(:described) { Vedeu::Input::Repository }
 
       it { described.must_respond_to(:keymaps) }
 
-    end # Keymaps
+    end # Repository
 
   end # Input
 
