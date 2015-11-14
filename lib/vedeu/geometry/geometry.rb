@@ -255,6 +255,11 @@ module Vedeu
         }
       end
 
+      # @return [Vedeu::Borders::Border]
+      def border
+        @border = Vedeu.borders.by_name(name)
+      end
+
       # When moving an interface;
       # 1) Reset the alignment and maximised states to false;
       #    it wont be aligned to a side if moved, and cannot be moved
