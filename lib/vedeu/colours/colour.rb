@@ -131,6 +131,8 @@ module Vedeu
 
       private
 
+      # @return [Hash<Symbol => Vedeu::Colours::Background|
+      #   Vedeu::Colours:Foreground]
       def defaults
         {
           background: Vedeu::Colours::Background.new,
