@@ -134,7 +134,7 @@ module Vedeu
       def defaults
         {
           background: Vedeu::Colours::Background.new,
-          foreground: Vedeu::Colours::Foreground.new
+          foreground: Vedeu::Colours::Foreground.new,
         }
       end
 
