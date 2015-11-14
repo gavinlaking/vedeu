@@ -175,9 +175,7 @@ module Vedeu
   Vedeu.bind(:_drb_retrieve_output_) { Vedeu::Terminal::Buffer.output }
 
   # See {file:docs/events/drb.md#\_drb_store_output_}
-  Vedeu.bind(:_drb_store_output_) do |data|
-    Vedeu::Terminal::Buffer.write(data)
-  end
+  Vedeu.bind(:_drb_store_output_) { |data| Vedeu::Terminal::Buffer.write(data) }
 
   # :nocov:
 
