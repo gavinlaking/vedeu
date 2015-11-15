@@ -72,25 +72,6 @@ module Vedeu
         end
       end
 
-      describe '#retrieve_or_register' do
-        let(:colour)          { '#cc0000' }
-        let(:escape_sequence) { 'escape_sequence' }
-
-        subject { instance.retrieve_or_register(colour, escape_sequence) }
-
-        context 'when the colour is registered' do
-          let(:colour) { '#cc0000' }
-
-          before { instance.register(colour, 'fake_escape_sequence') }
-
-          it { subject.must_equal('fake_escape_sequence') }
-        end
-
-        context 'when the colour is not registered' do
-          it { subject.must_equal('escape_sequence') }
-        end
-      end
-
     end # Repository
 
   end # Colours
