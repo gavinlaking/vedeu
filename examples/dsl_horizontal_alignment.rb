@@ -121,6 +121,27 @@ class HorizontalAlignmentApp
 
       HorizontalAlignmentApp::CentreHorizontalAlignmentView.new.render
     }
+
+    key('1') {
+      Vedeu.trigger(:_maximise_, :left_interface)
+    }
+    key('2') {
+      Vedeu.trigger(:_unmaximise_, :left_interface)
+    }
+    key('3') {
+      Vedeu.trigger(:_maximise_, :centre_interface)
+      HorizontalAlignmentApp::CentreHorizontalAlignmentView.new.render
+    }
+    key('4') {
+      Vedeu.trigger(:_unmaximise_, :centre_interface)
+      HorizontalAlignmentApp::CentreHorizontalAlignmentView.new.render
+    }
+    key('5') {
+      Vedeu.trigger(:_maximise_, :right_interface)
+    }
+    key('6') {
+      Vedeu.trigger(:_unmaximise_, :right_interface)
+    }
   end
 
   Vedeu.render do

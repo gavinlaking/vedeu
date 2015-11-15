@@ -45,7 +45,8 @@ module Vedeu
             }
             it 'converts the non-Vedeu::Views::Char elements into String ' \
                'elements' do
-              subject.must_equal("\e[1;1H\e[38;2;255;0;0mYes")
+              # subject.must_equal("\e[1;1H\e[38;2;255;0;0mYes")
+              subject.must_equal("\e[1;1H\e[38;2;255;0;0mY\e[1;2He\e[1;3Hs")
             end
           end
 
@@ -71,7 +72,8 @@ module Vedeu
               ])
             }
             it 'compresses multiple colours and styles where possible' do
-              subject.must_equal("\e[1;1H\e[38;2;255;0;0mab\e[38;2;0;0;255mcd")
+              # subject.must_equal("\e[1;1H\e[38;2;255;0;0mab\e[38;2;0;0;255mcd")
+              subject.must_equal("\e[1;1H\e[38;2;255;0;0ma\e[1;2Hb\e[1;3H\e[38;2;0;0;255mc\e[1;4Hd")
             end
           end
 
@@ -86,7 +88,8 @@ module Vedeu
             }
             it 'converts the non-Vedeu::Views::Char elements into String ' \
                'elements' do
-              subject.must_equal("\e[1;1HN\e[?25lt")
+              # subject.must_equal("\e[1;1HN\e[?25lt")
+              subject.must_equal("\e[1;1HN\e[1;1H\e[?25l\e[1;3Ht")
             end
           end
         end
