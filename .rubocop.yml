@@ -97,6 +97,9 @@ Style/Next:
     - skip_modifier_ifs
     - always
 
+Style/RescueModifier:
+  Enabled: false
+
 Style/SpaceAroundOperators:
   Enabled: false
 
