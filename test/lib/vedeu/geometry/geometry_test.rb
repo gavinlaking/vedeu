@@ -186,6 +186,10 @@ module Vedeu
         let(:y)  { 4 }
         let(:yn) { 8 }
 
+        before do
+          Vedeu.stubs(:trigger)
+        end
+
         subject { instance.move_origin }
 
         it { subject.must_be_instance_of(described) }
