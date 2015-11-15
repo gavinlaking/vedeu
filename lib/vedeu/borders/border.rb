@@ -37,6 +37,11 @@ module Vedeu
       #   border if enabled.
       attr_accessor :bottom_right
 
+      # @!attribute [rw] caption
+      # @return [String] An optional caption for when the bottom
+      #   border is to be shown.
+      attr_accessor :caption
+
       # @!attribute [rw] horizontal
       # @return [String] The character to be used for the horizontal
       #   side border.
@@ -66,15 +71,10 @@ module Vedeu
       attr_accessor :show_top
       alias_method :top?, :show_top
 
-      # # @!attribute [rw] caption
-      # # @return [String] An optional caption for when the bottom
-      #   border is to be shown.
-      # attr_accessor :caption
-
       # @!attribute [rw] title
-      # @return [String] An optional title for when the top
-      #   border is to be shown.
-      # attr_accessor :title
+      # @return [String] An optional title for when the top border is
+      #   to be shown.
+      attr_accessor :title
 
       # @!attribute [rw] top_left
       # @return [String] The character to be used for the top left

@@ -95,6 +95,18 @@ module Vedeu
         end
       end
 
+      # @return [Vedeu::Borders::Caption] An optional caption for when
+      #   the bottom border is to be shown.
+      def render_caption
+        @_caption ||= Vedeu::Borders::Caption.coerce(caption, width)
+      end
+
+      # @return [Vedeu::Borders::Title] An optional title for when the
+      #   top border is to be shown.
+      def render_title
+        @_title ||= Vedeu::Borders::Title.coerce(title, width)
+      end
+
       # @param value [String]
       # @param type [Symbol|NilClass]
       # @param iy [Fixnum]
@@ -233,16 +245,16 @@ module Vedeu
       #
       # @return [Array<Vedeu::Views::Char>]
       def captionbar
-        return build_bottom if caption.empty?
+        return build_bottom if render_caption.empty?
 
-        caption_starts_at = (width - caption.size) - 2
+        caption_starts_at = (width - render_caption.size) - 2
 
         caption_index = 0
         build_bottom.each_with_index do |char, index|
           next if index <= caption_starts_at || index > (width - 2)
 
           char.border   = nil
-          char.value    = caption.characters[caption_index]
+          char.value    = render_caption.characters[caption_index]
           caption_index += 1
         end
       end
@@ -252,13 +264,13 @@ module Vedeu
       #
       # @return [Array<Vedeu::Views::Char>]
       def titlebar
-        return build_top if title.empty?
+        return build_top if render_title.empty?
 
         build_top.each_with_index do |char, index|
-          next if index == 0 || index > title.size
+          next if index == 0 || index > render_title.size
 
           char.border = nil
-          char.value  = title.characters[index - 1]
+          char.value  = render_title.characters[index - 1]
         end
       end
 
