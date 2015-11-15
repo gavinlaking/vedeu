@@ -35,6 +35,12 @@ module Vedeu
         it { instance.instance_variable_get('@alignment').must_equal(alignment) }
       end
 
+      # @todo Add more tests.
+
+
+
+
+
       # describe '.pair' do
       #   let(:d)  { 15 }
       #   let(:dn) { 38 }

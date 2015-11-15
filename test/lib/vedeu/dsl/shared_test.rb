@@ -15,6 +15,14 @@ module Vedeu
 
           it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
         end
+
+        # @todo Add more tests.
+      end
+
+      describe '#border!' do
+        subject { instance.border! }
+
+        # @todo Add more tests.
       end
 
       describe '#geometry' do
@@ -23,6 +31,8 @@ module Vedeu
 
           it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
         end
+
+        # @todo Add more tests.
       end
 
     end # Shared

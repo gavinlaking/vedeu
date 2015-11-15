@@ -29,6 +29,8 @@ module Vedeu
         end
       end
 
+      # @todo Add more tests.
+
     end # View
 
   end # Buffers
