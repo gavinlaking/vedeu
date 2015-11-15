@@ -21,16 +21,17 @@ module Vedeu
 
       private
 
-      # @return [Vedeu::Borders::Border]
-      def border
-        Vedeu.borders.by_name(name)
+      # @return [Vedeu::Geometry::Geometry]
+      def geometry
+        Vedeu.geometries.by_name(name)
       end
 
       # @return [Vedeu::Buffers::Empty]
       def buffer
-        @_buffer ||= Vedeu::Buffers::Empty.new(height: border.height,
-                                               name:   name,
-                                               width:  border.width).buffer
+        @_buffer ||= Vedeu::Buffers::Empty.
+                       new(height: geometry.bordered_height,
+                           name:   name,
+                           width:  geometry.bordered_width).buffer
       end
 
       # @return [Vedeu::Buffers::Empty]

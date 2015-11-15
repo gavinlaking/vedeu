@@ -13,7 +13,7 @@ module Vedeu
       include Vedeu::Toggleable
       extend Forwardable
 
-      def_delegators :border,
+      def_delegators :geometry,
                      :bx,
                      :bxn,
                      :by,
@@ -253,11 +253,11 @@ module Vedeu
 
       private
 
-      # Returns the border for the interface.
+      # Returns the geometry for the interface.
       #
-      # @return (see Vedeu::Borders::Repository#by_name)
-      def border
-        @border ||= Vedeu.borders.by_name(name)
+      # @return (see Vedeu::Geometry::Repository#by_name)
+      def geometry
+        @geometry ||= Vedeu.geometries.by_name(name)
       end
 
       # Determine correct x and y related coordinates.

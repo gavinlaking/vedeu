@@ -82,39 +82,39 @@ module Vedeu
 
       private
 
-      # Returns the border for the interface.
+      # Returns the geometry for the interface.
       #
-      # @return (see Vedeu::Borders::Repository#by_name)
-      def border
-        @border ||= Vedeu.borders.by_name(name)
+      # @return (see Vedeu::Geometry::Repository#by_name)
+      def geometry
+        @geometry ||= Vedeu.geometries.by_name(name)
       end
 
-      # Return the :x or :y value from the border.
+      # Return the :x or :y value from the geometry.
       #
       # @return [Fixnum]
       def d
-        border.send(coordinate_type[0])
+        geometry.send(coordinate_type[0])
       end
 
-      # Return the :bx or :by value from the border.
+      # Return the :bx or :by value from the geometry.
       #
       # @return [Fixnum]
       def bd
-        border.send(coordinate_type[1])
+        geometry.send(coordinate_type[1])
       end
 
-      # Return the :bxn or :byn value from the border.
+      # Return the :bxn or :byn value from the geometry.
       #
       # @return [Fixnum]
       def bdn
-        border.send(coordinate_type[2])
+        geometry.send(coordinate_type[2])
       end
 
-      # Return the :width or :height value from the border.
+      # Return the :width or :height value from the geometry.
       #
       # @return [Fixnum]
       def d_dn
-        border.send(coordinate_type[3])
+        geometry.send(coordinate_type[3])
       end
 
       # Ascertain the correct methods to use for determining the
@@ -125,8 +125,8 @@ module Vedeu
       # @return [Fixnum]
       def coordinate_type
         @_type ||= case type
-                   when :x then [:x, :bx, :bxn, :width]
-                   when :y then [:y, :by, :byn, :height]
+                   when :x then [:x, :bx, :bxn, :bordered_width]
+                   when :y then [:y, :by, :byn, :bordered_height]
                    else
                      fail Vedeu::Error::InvalidSyntax,
                           'Coordinate type not given, cannot continue.'.freeze

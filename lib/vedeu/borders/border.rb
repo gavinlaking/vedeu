@@ -22,6 +22,10 @@ module Vedeu
       include Vedeu::Presentation
 
       def_delegators :geometry,
+                     :bx,
+                     :bxn,
+                     :by,
+                     :byn,
                      :x,
                      :xn,
                      :y,
@@ -175,60 +179,6 @@ module Vedeu
         }
       end
 
-      # Return the column position for 1 character right of the left
-      #   border.
-      #
-      # @return [Fixnum]
-      def bx
-        (enabled? && left?) ? x + 1 : x
-      end
-
-      # Return the column position for 1 character left of the right
-      #   border.
-      #
-      # @return [Fixnum]
-      def bxn
-        (enabled? && right?) ? xn - 1 : xn
-      end
-
-      # Return the row position for 1 character under of the top
-      #   border.
-      #
-      # @return [Fixnum]
-      def by
-        (enabled? && top?) ? y + 1 : y
-      end
-
-      # Return the column position for 1 character above of the bottom
-      #   border.
-      #
-      # @return [Fixnum]
-      def byn
-        (enabled? && bottom?) ? yn - 1 : yn
-      end
-
-      # @return [Vedeu::Borders::Caption]
-      def caption
-        Vedeu::Borders::Caption.coerce(@caption, width)
-      end
-
-      # @param value [String]
-      # @return [Vedeu::Borders::Caption]
-      def caption=(value)
-        @caption = Vedeu::Borders::Caption.coerce(value, width)
-      end
-
-      # @return [Vedeu::Borders::Title]
-      def title
-        Vedeu::Borders::Title.coerce(@title, width)
-      end
-
-      # @param value [String]
-      # @return [Vedeu::Borders::Title]
-      def title=(value)
-        @title = Vedeu::Borders::Title.coerce(value, width)
-      end
-
       # Returns a DSL instance responsible for defining the DSL
       # methods of this model.
       #
@@ -239,22 +189,6 @@ module Vedeu
       # @return [Vedeu::Borders::DSL] The DSL instance for this model.
       def deputy(client = nil)
         Vedeu::Borders::DSL.new(self, client)
-      end
-
-      # Returns the width of the interface determined by whether a
-      # left, right, both or neither borders are shown.
-      #
-      # @return [Fixnum]
-      def width
-        (bx..bxn).size
-      end
-
-      # Returns the height of the interface determined by whether a
-      # top, bottom, both or neither borders are shown.
-      #
-      # @return [Fixnum]
-      def height
-        (by..byn).size
       end
 
       private

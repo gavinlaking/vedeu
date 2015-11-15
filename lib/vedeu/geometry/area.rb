@@ -8,6 +8,15 @@ module Vedeu
     #
     class Area
 
+      extend Forwardable
+
+      def_delegators :border,
+                     :bottom?,
+                     :enabled?,
+                     :left?,
+                     :right?,
+                     :top?
+
       # @!attribute [r] y
       # @return [Fixnum] Returns the top coordinate (row/line start
       #   position) of the interface.
@@ -33,51 +42,58 @@ module Vedeu
       alias_method :right, :xn
 
       # @param attributes [Hash<Symbol => Boolean|Fixnum|Symbol>]
-      # @option attributes y [Fixnum]
-      # @option attributes yn [Fixnum]
-      # @option attributes y_yn [Fixnum]
-      # @option attributes y_default [Fixnum]
+      # @option attributes horizontal_alignment [Symbol]
+      # @option attributes maximised [Boolean]
+      # @option attributes name [String|Symbol]
+      # @option attributes vertical_alignment [Symbol]
       # @option attributes x [Fixnum]
       # @option attributes xn [Fixnum]
       # @option attributes x_xn [Fixnum]
       # @option attributes x_default [Fixnum]
-      # @option attributes maximised [Boolean]
-      # @option attributes horizontal_alignment [Symbol]
-      # @option attributes vertical_alignment [Symbol]
+      # @option attributes y [Fixnum]
+      # @option attributes yn [Fixnum]
+      # @option attributes y_yn [Fixnum]
+      # @option attributes y_default [Fixnum]
       # @return [Vedeu::Geometry::Area]
       def self.from_attributes(attributes = {})
         y_attributes = {
+          alignment: attributes[:vertical_alignment],
           d:         attributes[:y],
           dn:        attributes[:yn],
           d_dn:      attributes[:y_yn],
           maximised: attributes[:maximised],
-          alignment: attributes[:vertical_alignment],
         }
         x_attributes = {
+          alignment: attributes[:horizontal_alignment],
           d:         attributes[:x],
           dn:        attributes[:xn],
           d_dn:      attributes[:x_xn],
           maximised: attributes[:maximised],
-          alignment: attributes[:horizontal_alignment],
         }
         y_yn = Vedeu::Geometry::YDimension.pair(y_attributes)
         x_xn = Vedeu::Geometry::XDimension.pair(x_attributes)
 
-        new(y: y_yn[0], yn: y_yn[-1], x: x_xn[0], xn: x_xn[-1])
+        new(name: attributes[:name],
+            y:    y_yn[0],
+            yn:   y_yn[-1],
+            x:    x_xn[0],
+            xn:   x_xn[-1])
       end
 
       # Returns a new instance of Vedeu::Area.
       #
+      # @param name [Symbol|String]
       # @param y [Fixnum] The starting row/line position.
       # @param yn [Fixnum] The ending row/line position.
       # @param x [Fixnum] The starting column/character position.
       # @param xn [Fixnum] The ending column/character position.
       # @return [Vedeu::Geometry::Area]
-      def initialize(y:, yn:, x:, xn:)
-        @y  = y
-        @yn = yn
-        @x  = x
-        @xn = xn
+      def initialize(name:, y:, yn:, x:, xn:)
+        @name = name
+        @y    = y
+        @yn   = yn
+        @x    = x
+        @xn   = xn
       end
 
       # An object is equal when its values are the same.
@@ -89,6 +105,54 @@ module Vedeu
           x == other.x && xn == other.xn
       end
       alias_method :==, :eql?
+
+      # Returns the width of the interface determined by whether a
+      # left, right, both or neither borders are shown.
+      #
+      # @return [Fixnum]
+      def bordered_width
+        (bxn - bx) + 1
+      end
+
+      # Returns the height of the interface determined by whether a
+      # top, bottom, both or neither borders are shown.
+      #
+      # @return [Fixnum]
+      def bordered_height
+        (byn - by) + 1
+      end
+
+      # Return the column position for 1 character right of the left
+      #   border.
+      #
+      # @return [Fixnum]
+      def bx
+        (enabled? && left?) ? x + 1 : x
+      end
+
+      # Return the column position for 1 character left of the right
+      #   border.
+      #
+      # @return [Fixnum]
+      def bxn
+        (enabled? && right?) ? xn - 1 : xn
+      end
+
+      # Return the row position for 1 character under of the top
+      #   border.
+      #
+      # @return [Fixnum]
+      def by
+        (enabled? && top?) ? y + 1 : y
+      end
+
+      # Return the column position for 1 character above of the bottom
+      #   border.
+      #
+      # @return [Fixnum]
+      def byn
+        (enabled? && bottom?) ? yn - 1 : yn
+      end
 
       # Returns an array containing the centred y and x coordinates of
       # the interface.
@@ -118,14 +182,14 @@ module Vedeu
       #
       # @return [Fixnum]
       def height
-        (y..yn).size
+        (yn - y) + 1
       end
 
       # Returns the width of the interface.
       #
       # @return [Fixnum]
       def width
-        (x..xn).size
+        (xn - x) + 1
       end
 
       # Returns the row above the top by default.
@@ -186,6 +250,19 @@ module Vedeu
       # @return [Fixnum]
       def west(offset = 1)
         x - offset
+      end
+
+      protected
+
+      # @!attribute [r] name
+      # @return [String|Symbol]
+      attr_reader :name
+
+      private
+
+      # @return [Vedeu::Borders::Border]
+      def border
+        @border = Vedeu.borders.by_name(name)
       end
 
     end # Area

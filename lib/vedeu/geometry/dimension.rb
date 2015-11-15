@@ -127,7 +127,7 @@ module Vedeu
       # @return [Fixnum|NilClass]
       def length
         if d && dn
-          (d..dn).size
+          (dn - d) + 1
 
         elsif d_dn
           d_dn

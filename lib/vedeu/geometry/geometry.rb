@@ -16,20 +16,26 @@ module Vedeu
       include Vedeu::Repositories::Model
 
       def_delegators :area,
-                     :north,
-                     :east,
-                     :south,
-                     :west,
-                     :top,
-                     :right,
+                     :bordered_height,
+                     :bordered_width,
                      :bottom,
-                     :left,
-                     :y,
-                     :xn,
-                     :yn,
-                     :x,
+                     :bx,
+                     :bxn,
+                     :by,
+                     :byn,
+                     :east,
                      :height,
-                     :width
+                     :left,
+                     :north,
+                     :right,
+                     :south,
+                     :top,
+                     :west,
+                     :width,
+                     :x,
+                     :xn,
+                     :y,
+                     :yn
 
       # @!attribute [rw] horizontal_alignment
       # @return [Symbol]
@@ -245,6 +251,7 @@ module Vedeu
         {
           horizontal_alignment: @horizontal_alignment,
           maximised:            @maximised,
+          name:                 name,
           vertical_alignment:   @vertical_alignment,
           x:                    @x.is_a?(Proc)      ? @x.call      : @x,
           xn:                   @xn.is_a?(Proc)     ? @xn.call     : @xn,
@@ -253,11 +260,6 @@ module Vedeu
           yn:                   @yn.is_a?(Proc)     ? @yn.call     : @yn,
           y_yn:                 @height.is_a?(Proc) ? @height.call : @height,
         }
-      end
-
-      # @return [Vedeu::Borders::Border]
-      def border
-        @border = Vedeu.borders.by_name(name)
       end
 
       # When moving an interface;

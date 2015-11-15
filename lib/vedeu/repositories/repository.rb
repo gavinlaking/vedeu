@@ -63,9 +63,7 @@ module Vedeu
       # @param name [String|Symbol] The name of the stored model.
       # @return [void]
       def by_name(name = Vedeu.focus)
-        name = present?(name) ? name : Vedeu.focus
-
-        return find(name) if registered?(name)
+        return find(name) if present?(name) && registered?(name)
 
         null_model.new(name: name)
       end

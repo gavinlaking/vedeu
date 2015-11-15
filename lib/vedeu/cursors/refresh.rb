@@ -13,9 +13,9 @@ module Vedeu
       extend Forwardable
       include Vedeu::Common
 
-      def_delegators :border,
-                     :height,
-                     :width
+      def_delegators :geometry,
+                     :bordered_height,
+                     :bordered_width
 
       # @example
       #   Vedeu.trigger(:_refresh_cursor_, name)
@@ -61,11 +61,13 @@ module Vedeu
 
       # Returns true when the view should be refreshed. This is
       # determined by checking that the offsets for x and y are
-      # outside the width and height of the named interface.
+      # outside the (bordered) width and (bordered) height of the
+      # named interface.
       #
       # @return [Boolean]
       def refresh_view?
-        cursor.visible? && cursor.ox >= width || cursor.oy >= height
+        cursor.visible? && (cursor.ox >= bordered_width ||
+                            cursor.oy >= bordered_height)
       end
 
       # @return [Vedeu::Cursors::Cursor]
@@ -74,21 +76,11 @@ module Vedeu
         @cursor ||= Vedeu.cursors.by_name(name)
       end
 
-      # Fetch the border by name.
+      # Fetch the geometry by name.
       #
-      # @note
-      #   {Vedeu::Borders::Border} is used in this way because when
-      #   there is not a border defined, it will fallback to a
-      #   {Vedeu::Borders::Null} which uses
-      #   {Vedeu::Geometry::Geometry} to determine it's dimensions
-      #   based on the name also. When a {Vedeu::Geometry::Geometry}
-      #   cannot be found, this falls back to a
-      #   {Vedeu::Geometry::Null} which uses the dimensions of the
-      #   current terminal.
-      #
-      # @return (see Vedeu::Borders::Repository#by_name)
-      def border
-        @border ||= Vedeu.borders.by_name(name)
+      # @return (see Vedeu::Geometry::Repository#by_name)
+      def geometry
+        @geometry ||= Vedeu.geometries.by_name(name)
       end
 
     end # Refresh

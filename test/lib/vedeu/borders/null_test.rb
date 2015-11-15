@@ -32,39 +32,10 @@ module Vedeu
         it { instance.must_respond_to(:name) }
       end
 
-      describe '#bx' do
-        subject { instance.bx }
+      describe '#enabled' do
+        subject { instance.enabled? }
 
-        it { subject.must_be_instance_of(Fixnum) }
-        it { subject.must_equal(4) }
-      end
-
-      describe '#by' do
-        subject { instance.by }
-
-        it { subject.must_be_instance_of(Fixnum) }
-        it { subject.must_equal(6) }
-      end
-
-      describe '#bxn' do
-        subject { instance.bxn }
-
-        it { subject.must_be_instance_of(Fixnum) }
-        it { subject.must_equal(10) }
-      end
-
-      describe '#byn' do
-        subject { instance.byn }
-
-        it { subject.must_be_instance_of(Fixnum) }
-        it { subject.must_equal(12) }
-      end
-
-      describe '#height' do
-        subject { instance.height }
-
-        it { subject.must_be_instance_of(Fixnum) }
-        it { subject.must_equal(7) }
+        it { subject.must_equal(false) }
       end
 
       describe '#render' do
@@ -72,13 +43,6 @@ module Vedeu
 
         it { subject.must_be_instance_of(Array) }
         it { subject.must_equal([]) }
-      end
-
-      describe '#width' do
-        subject { instance.width }
-
-        it { subject.must_be_instance_of(Fixnum) }
-        it { subject.must_equal(7) }
       end
 
     end # Null

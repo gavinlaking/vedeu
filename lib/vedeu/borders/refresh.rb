@@ -15,14 +15,9 @@ module Vedeu
                      :bottom?,
                      :bottom_left,
                      :bottom_right,
-                     :bx,
-                     :bxn,
-                     :by,
-                     :byn,
                      :caption,
                      :colour,
                      :enabled?,
-                     :height,
                      :horizontal,
                      :left?,
                      :right?,
@@ -31,10 +26,17 @@ module Vedeu
                      :top?,
                      :top_left,
                      :top_right,
-                     :width,
                      :vertical
 
       def_delegators :geometry,
+                     :bordered_height,
+                     :bordered_width,
+                     :bx,
+                     :bxn,
+                     :by,
+                     :byn,
+                     :height,
+                     :width,
                      :x,
                      :xn,
                      :y,
@@ -89,7 +91,7 @@ module Vedeu
         Vedeu.timer("Drawing border: '#{name}'".freeze) do
           out = [top, bottom]
 
-          height.times { |y| out << [left(y), right(y)] }
+          bordered_height.times { |y| out << [left(y), right(y)] }
 
           out.flatten
         end
@@ -190,7 +192,7 @@ module Vedeu
       # @param y_coordinate [Fixnum] The value of either y or yn.
       # @return [Array<Vedeu::Views::Char>]
       def build_horizontal(position, y_coordinate)
-        Array.new(width) do |ix|
+        Array.new(bordered_width) do |ix|
           build(horizontal, position, y_coordinate, (bx + ix))
         end
       end

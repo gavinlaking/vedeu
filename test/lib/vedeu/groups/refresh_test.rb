@@ -49,7 +49,7 @@ module Vedeu
           context 'when no interfaces/views have been registered' do
             before { Vedeu::Models::Focus.reset }
 
-            it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
+            it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
           end
         end
 

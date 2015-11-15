@@ -9,6 +9,20 @@ module Vedeu
     #
     class Null
 
+      extend Forwardable
+
+      def_delegators :geometry,
+                     :bordered_width,
+                     :bordered_height,
+                     :bx,
+                     :bxn,
+                     :by,
+                     :byn,
+                     :x,
+                     :xn,
+                     :y,
+                     :yn
+
       # @!attribute [r] name
       # @return [String|Symbol|NilClass]
       attr_reader :name
@@ -23,48 +37,14 @@ module Vedeu
         @name       = @attributes[:name]
       end
 
-      # @return [Fixnum]
-      def bx
-        geometry.x
-      end
-      alias_method :x, :bx
-
-      # @return [Fixnum]
-      def bxn
-        geometry.xn
-      end
-      alias_method :xn, :bxn
-
-      # @return [Fixnum]
-      def by
-        geometry.y
-      end
-      alias_method :y, :by
-
-      # @return [Fixnum]
-      def byn
-        geometry.yn
-      end
-      alias_method :yn, :byn
-
       # @return [Boolean]
       def enabled?
         false
       end
 
-      # @return [Fixnum]
-      def height
-        (by..byn).size
-      end
-
       # @return [Array]
       def render
         []
-      end
-
-      # @return [Fixnum]
-      def width
-        (bx..bxn).size
       end
 
       private
