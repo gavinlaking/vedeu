@@ -47,7 +47,7 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Cursors::Cursor.
       #
-      # @params attributes [Hash<Symbol => Boolean|Fixnum|String|
+      # @param attributes [Hash<Symbol => Boolean|Fixnum|String|
       #   Vedeu::Cursors::Repository>]
       # @option attributes name [String|Symbol] The name of the
       #   interface this cursor belongs to.
