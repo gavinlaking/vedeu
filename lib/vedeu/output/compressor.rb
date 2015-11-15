@@ -62,7 +62,9 @@ module Vedeu
           out = ''
 
           content.each do |cell|
-            out << position_for(cell)
+            # out << position_for(cell)
+
+            out << cell.position.to_s
             out << colour_for(cell)
             out << style_for(cell)
             out << cell.value
