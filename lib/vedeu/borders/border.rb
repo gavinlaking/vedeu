@@ -92,8 +92,8 @@ module Vedeu
       attr_accessor :vertical
 
       # @!attribute [r] name
-      # @return [String] Associates the border with the same-named
-      #   interface/view.
+      # @return [String|Symbol] Associates the border with the
+      #   same-named interface/view.
       attr_reader :name
 
       # @!attribute [r] parent

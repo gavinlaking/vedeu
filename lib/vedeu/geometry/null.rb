@@ -31,7 +31,7 @@ module Vedeu
       attr_accessor :maximised
 
       # @!attribute [r] name
-      # @return [String|NilClass]
+      # @return [NilClass|String|Symbol]
       attr_reader :name
 
       # Returns a new instance of Vedeu::Geometry::Null.

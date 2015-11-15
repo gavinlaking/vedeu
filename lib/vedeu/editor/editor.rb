@@ -71,7 +71,7 @@ module Vedeu
       attr_reader :input
 
       # @!attribute [r] name
-      # @return [String]
+      # @return [String|Symbol]
       attr_reader :name
 
       private

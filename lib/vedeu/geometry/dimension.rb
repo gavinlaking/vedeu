@@ -28,6 +28,7 @@ module Vedeu
       # Returns a new instance of Vedeu::Geometry::Dimension.
       #
       # @param attributes [Hash<Symbol => Fixnum, NilClass>]
+      # @option attributes alignment [Symbol]
       # @option attributes d [Fixnum|NilClass]
       #   The starting value (y or x).
       # @option attributes dn [Fixnum|NilClass]
@@ -36,7 +37,6 @@ module Vedeu
       # @option attributes default [Fixnum|NilClass]
       #   The terminal width or height.
       # @option attributes maximised [Boolean]
-      # @option attributes alignment [Symbol]
       # @return [Vedeu::Geometry::Dimension]
       def initialize(attributes = {})
         defaults.merge!(attributes).each do |key, value|

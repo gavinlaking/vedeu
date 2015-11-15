@@ -5,7 +5,7 @@ module Vedeu
   class Plugin
 
     # @!attribute [r] name
-    # @return [String]
+    # @return [String|Symbol]
     attr_reader :name
 
     # @!attribute [r] gem

@@ -180,7 +180,7 @@ module Vedeu
       attr_reader :closure
 
       # @!attribute [r] name
-      # @return [String]
+      # @return [String|Symbol]
       attr_reader :name
 
       private

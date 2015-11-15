@@ -40,7 +40,7 @@ module Vedeu
       attr_accessor :vertical_alignment
 
       # @!attribute [rw] name
-      # @return [String]
+      # @return [String|Symbol]
       attr_accessor :name
 
       # @!attribute [w] height
