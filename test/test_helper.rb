@@ -1,9 +1,9 @@
-if ENV['SIMPLECOV'] == 1 || ENV['CONSOLE_COVERAGE'] == 1
+if ENV['SIMPLECOV'].to_i == 1 || ENV['CONSOLE_COVERAGE'].to_i == 1
   require 'simplecov'
-  require 'simplecov-console' if ENV['CONSOLE_COVERAGE'] == 1
+  require 'simplecov-console' if ENV['CONSOLE_COVERAGE'].to_i == 1
 
   SimpleCov.start do
-    formatter SimpleCov::Formatter::Console if ENV['CONSOLE_COVERAGE'] == 1
+    formatter SimpleCov::Formatter::Console if ENV['CONSOLE_COVERAGE'].to_i == 1
     command_name 'MiniTest::Spec'
     add_filter '/test/'
     add_group  'application',   'vedeu/application'
@@ -40,7 +40,7 @@ require 'minitest/pride'
 require 'minitest/hell'
 
 # Appears to remove ~20ms from test run speed.
-if ENV['DISABLE_GC'] == 1
+if ENV['DISABLE_GC'].to_i == 1
   GC.disable
 end
 
@@ -89,7 +89,7 @@ require 'mocha/setup'
 require 'vedeu'
 require 'support/helpers/model_test_class'
 
-if ENV['PERFORMANCE'] == 1
+if ENV['PERFORMANCE'].to_i == 1
   require 'minitest/reporters'
   require 'minitest/reporters/mean_time_reporter'
 
