@@ -27,11 +27,9 @@ module Vedeu
 
       # @return [Vedeu::Cursors::Cursor]
       def reposition
-        cursor = Vedeu::Cursors::Cursor.store(new_attributes)
-
-        Vedeu.trigger(:_refresh_cursor_, name)
-
-        cursor
+        Vedeu::Cursors::Cursor.store(new_attributes) do
+          Vedeu.trigger(:_refresh_cursor_, name)
+        end
       end
 
       protected
