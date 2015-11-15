@@ -28,10 +28,10 @@ module Vedeu
 
       # @return [Vedeu::Buffers::Empty]
       def buffer
-        @_buffer ||= Vedeu::Buffers::Empty.
-                       new(height: geometry.bordered_height,
-                           name:   name,
-                           width:  geometry.bordered_width).buffer
+        @_buffer ||= Vedeu::Buffers::Empty
+                       .new(height: geometry.bordered_height,
+                            name:   name,
+                            width:  geometry.bordered_width).buffer
       end
 
       # @return [Vedeu::Buffers::Empty]
