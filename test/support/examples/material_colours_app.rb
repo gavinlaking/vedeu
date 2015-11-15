@@ -71,37 +71,199 @@ class VedeuMaterialColoursApp
     zindex(1)
   end
 
-  Vedeu.interface 'empty_interface' do
-    border 'empty_interface' do
-      colour(foreground: '#ffffff', background: :default)
-      title('Empty!')
-      horizontal('-')
-      top_right('+')
-      top_left('+')
-      bottom_right('+')
-      bottom_left('+')
+  Vedeu.interface 'default_border' do
+    geometry do
+      x      50
+      y      2
+      height 4
+      width  10
     end
-    colour(foreground: '#ffffff', background: :default)
-    cursor!
-    geometry 'empty_interface' do
-      x(50)
-      xn(64)
-      y(5)
-      yn(13)
+    colour  foreground: '#ffffff', background: '#f44336'
+  end
+
+  Vedeu.interface 'border_off' do
+    geometry do
+      x      62
+      y      2
+      height 4
+      width  10
     end
-    group :my_group
-    zindex(1)
+    colour  foreground: '#ffffff', background: '#e91e63'
+  end
+
+  Vedeu.interface 'no_top' do
+    geometry do
+      x      50
+      y      7
+      height 4
+      width  10
+    end
+    colour  foreground: '#000000', background: '#9c27b0'
+  end
+
+  Vedeu.interface 'no_bottom' do
+    geometry do
+      x      62
+      y      7
+      height 4
+      width  10
+    end
+    colour  foreground: '#000000', background: '#673ab7'
+  end
+
+  Vedeu.interface 'no_left' do
+    geometry do
+      x      50
+      y      12
+      height 4
+      width  10
+    end
+    colour  foreground: '#000000', background: '#3f51b5'
+  end
+
+  Vedeu.interface 'no_right' do
+    geometry do
+      x      62
+      y      12
+      height 4
+      width  10
+    end
+    colour  foreground: '#000000', background: '#2196f3'
+  end
+
+  Vedeu.interface 'custom_corners' do
+    geometry do
+      x      50
+      y      17
+      height 4
+      width  10
+    end
+    colour  foreground: '#000000', background: '#03a9f4'
+  end
+
+  Vedeu.interface 'custom_sides' do
+    geometry do
+      x      62
+      y      17
+      height 4
+      width  10
+    end
+    colour  foreground: '#000000', background: '#00bcd4'
+  end
+
+  # Borders can be defined as part of the interface definition.
+  Vedeu.interface 'only_top' do
+    border do
+      foreground  '#ffffff'
+      show_right  false
+      show_bottom false
+      show_left   false
+    end
+    geometry do
+      x      50
+      y      22
+      height 4
+      width  10
+    end
+    colour  foreground: '#ffffff', background: '#009688'
+  end
+
+  Vedeu.interface 'only_bottom' do
+    border do
+      foreground  '#000000'
+      show_top   false
+      show_right false
+      show_left  false
+    end
+    geometry do
+      x      62
+      y      22
+      height 4
+      width  10
+    end
+    colour  foreground: '#000000', background: '#8bc34a'
+  end
+
+  Vedeu.interface 'only_left' do
+    border do
+      foreground  '#000000'
+      show_top    false
+      show_bottom false
+      show_right  false
+    end
+    geometry do
+      x      50
+      y      27
+      height 4
+      width  10
+    end
+    colour  foreground: '#000000', background: '#cddc39'
+  end
+
+  Vedeu.interface 'only_right' do
+    border do
+      foreground  '#000000'
+      show_top    false
+      show_bottom false
+      show_left   false
+    end
+    geometry do
+      x      62
+      y      27
+      height 4
+      width  10
+    end
+    colour  foreground: '#000000', background: '#ffeb3b'
+  end
+
+  Vedeu.interface 'custom_colour' do
+    geometry do
+      x      50
+      y      32
+      height 4
+      width  10
+    end
+    colour foreground: '#000000', background: '#ffc107'
+  end
+
+  Vedeu.interface 'negative' do
+    geometry do
+      x      62
+      y      32
+      height 4
+      width  10
+    end
+    colour foreground: '#000000', background: '#ff9800'
+    style  'normal'
   end
 
   Vedeu.interface 'keys_interface' do
     colour(foreground: '#ffffff', background: :default)
     geometry 'keys_interface' do
       x(3)
-      xn(64)
+      xn(45)
       y(15)
       yn(34)
     end
-    zindex(1)
+    zindex(0)
+  end
+
+  # Borders can be defined as standalone declarations.
+  Vedeu.border 'no_bottom' do
+    foreground  '#ffffff'
+    show_bottom false
+  end
+  Vedeu.border 'no_left' do
+    foreground  '#ffffff'
+    show_left false
+  end
+  Vedeu.border 'no_right' do
+    foreground  '#ffffff'
+    show_right false
+  end
+  Vedeu.border 'no_top' do
+    foreground  '#ffffff'
+    show_top false
   end
 
   Vedeu.keymap('_global_') do
@@ -204,104 +366,100 @@ class VedeuMaterialColoursApp
       line { centre 'Red',         width: 20, background: '#f44336' }
     end
 
-    view 'empty_interface' do
-      line { line '' }
-    end
-
     view 'keys_interface' do
-      cursor false
+      # cursor false
       line {
         stream {
           left "\u2190 \u2193 \u2191 \u2192",
-               foreground: '#ffff00', width: 20
+               foreground: '#ffff00', width: 15
         }
         stream { left "Move cursor" }
       }
       line {
         stream {
           left "home",
-               foreground: '#ffff00', width: 20
+               foreground: '#ffff00', width: 15
         }
-        stream { left "Move cursor to first line of content." }
+        stream { left "Move cursor to first line" }
       }
       line {
         stream {
           left "end",
-               foreground: '#ffff00', width: 20
+               foreground: '#ffff00', width: 15
         }
-        stream { left "Move cursor to last line of content." }
+        stream { left "Move cursor to last line" }
       }
       line {}
       line {
         stream {
           left 'a, s, d, f',
-          foreground: '#ffff00', width: 20
+          foreground: '#ffff00', width: 15
         }
-        stream { left 'Move Rainbow! left, down, up, right' }
+        stream { left "Move Rainbow! (\u2190 \u2193 \u2191 \u2192)" }
       }
       line {
         stream {
           left 'h, j, k, l',
-          foreground: '#ffff00', width: 20
+          foreground: '#ffff00', width: 15
         }
-        stream { left 'Move Wow! left, down, up, right' }
+        stream { left "Move Wow! (\u2190 \u2193 \u2191 \u2192)" }
       }
       line {}
       line {
         stream {
           left 't',
-          foreground: '#ffff00', width: 20
+          foreground: '#ffff00', width: 15
         }
         stream { left 'Toggle Rainbow!/Wow!' }
       }
       line {
         stream {
           left '1, 2',
-          foreground: '#ffff00', width: 20
+          foreground: '#ffff00', width: 15
         }
         stream { left 'Hide/Show Rainbow!' }
       }
       line {
         stream {
           left '3, 4',
-          foreground: '#ffff00', width: 20
+          foreground: '#ffff00', width: 15
         }
         stream { left 'Hide/Show Wow!' }
       }
       line {}
       line {
         stream {
-          left 'm, n',
-          foreground: '#ffff00', width: 20
+          left 'n, m',
+          foreground: '#ffff00', width: 15
         }
-        stream { left 'Maximise/Unmaximise Rainbow!' }
+        stream { left 'Un/Maximise Rainbow!' }
       }
       line {
         stream {
-          left 'b, v',
-          foreground: '#ffff00', width: 20
+          left 'v, b',
+          foreground: '#ffff00', width: 15
         }
-        stream { left 'Maximise/Unmaximise Wow!' }
+        stream { left 'Un/Maximise Wow!' }
       }
       line {}
       line {
         stream {
           left 'escape',
-                foreground: '#ffff00', width: 20
+                foreground: '#ffff00', width: 15
         }
         stream { left 'Mode Switch' }
       }
       line {
         stream {
           left 'shift+tab',
-          foreground: '#ffff00', width: 20
+          foreground: '#ffff00', width: 15
         }
         stream { left 'Focus previous view' }
       }
       line {
         stream {
           left 'tab',
-          foreground: '#ffff00', width: 20
+          foreground: '#ffff00', width: 15
         }
         stream { left 'Focus next view' }
       }
@@ -309,10 +467,111 @@ class VedeuMaterialColoursApp
       line {
         stream {
           left 'q',
-               foreground: '#ffff00', width: 20
+               foreground: '#ffff00', width: 15
         }
         stream { left 'Exit' }
       }
+    end
+    view('default_border') do
+      border do
+        foreground '#ffffff'
+      end
+      lines do
+        line 'default'
+      end
+    end
+    view('border_off') do
+      lines do
+        line 'border'
+        line 'off'
+      end
+    end
+    view('no_top') do
+      lines do
+        line 'no top'
+      end
+    end
+    view('no_bottom') do
+      lines do
+        line 'no'
+        line 'bottom'
+      end
+    end
+    view('no_left') do
+      lines do
+        line 'no left'
+      end
+    end
+    view('no_right') do
+      lines do
+        line 'no right'
+      end
+    end
+    view('custom_corners') do
+      border do
+        foreground   '#ffffff'
+        top_right    'B'
+        top_left     'A'
+        bottom_right 'D'
+        bottom_left  'C'
+      end
+      lines do
+        line 'custom'
+        line 'corners'
+      end
+    end
+    view('custom_sides') do
+      border do
+        background '#ff5722'
+        horizontal '*'
+        vertical   '$'
+      end
+      lines do
+        line 'custom'
+        line 'sides'
+      end
+    end
+    view('only_top') do
+      lines do
+        line 'only'
+        line 'top'
+      end
+    end
+    view('only_bottom') do
+      lines do
+        line 'only'
+        line 'bottom'
+      end
+    end
+    view('only_left') do
+      lines do
+        line 'only'
+        line 'left'
+      end
+    end
+    view('only_right') do
+      lines do
+        line 'only'
+        line 'right'
+      end
+    end
+    view('custom_colour') do
+      border do
+        colour foreground: '#ff5500', background: '#0000ff'
+      end
+      lines do
+        line 'custom'
+        line 'color'
+      end
+    end
+    view('negative') do
+      border do
+        style 'negative'
+      end
+      lines do
+        line 'custom'
+        line 'style'
+      end
     end
   end
 
