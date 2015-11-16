@@ -51,7 +51,7 @@ module Vedeu
 
       # @return [FalseClass|Vedeu::Geometry::Geometry]
       def move
-        return false unless valid_direction? && valid_offset?
+        return false unless valid?
 
         Vedeu::Geometry::Geometry.store(new_attributes) do
           update_cursor!
@@ -186,19 +186,14 @@ module Vedeu
       end
 
       # @return [Boolean]
-      def valid_direction?
-        [:down, :left, :origin, :right, :up].include?(direction)
-      end
-
-      # @return [Boolean]
-      def valid_offset?
+      def valid?
         {
-          down:   proc { yn + offset <= Vedeu.height },
-          left:   proc { x  - offset >= 1 },
-          origin: proc { true },
-          right:  proc { xn + offset <= Vedeu.width },
-          up:     proc { y  - offset >= 1 },
-        }.fetch(direction, proc { false }).call
+          down:   (yn + offset <= Vedeu.height),
+          left:   (x - offset >= 1),
+          origin: true,
+          right:  (xn + offset <= Vedeu.width),
+          up:     (y - offset >= 1),
+        }.fetch(direction, false)
       end
 
     end # Move
