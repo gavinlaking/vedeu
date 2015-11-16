@@ -83,12 +83,13 @@ module Vedeu
     end
 
     # @example
-    #   Vedeu.renderers.reset
+    #   Vedeu.renderers.reset!
     #
     # @return [Set]
-    def reset
+    def reset!
       @storage = in_memory
     end
+    alias_method :reset, :reset!
 
     private
 

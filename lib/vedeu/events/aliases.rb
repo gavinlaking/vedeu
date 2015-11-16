@@ -69,10 +69,10 @@ module Vedeu
       alias_method :remove, :unbind_alias
 
       # @return [Hash<Symbol => Array<Symbol>>]
-      def reset
+      def reset!
         @storage = in_memory
       end
-      alias_method :reset!, :reset
+      alias_method :reset, :reset!
 
       # Access to the storage for this repository.
       #
