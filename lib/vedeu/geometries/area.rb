@@ -262,7 +262,7 @@ module Vedeu
 
       # @return [Vedeu::Borders::Border]
       def border
-        @border = Vedeu.borders.by_name(name)
+        @_border ||= Vedeu.borders.by_name(name)
       end
 
     end # Area
