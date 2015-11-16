@@ -166,7 +166,7 @@ module Vedeu
       #
       # @return (see Vedeu::Geometries::Repository#by_name)
       def geometry
-        @border ||= Vedeu.geometries.by_name(name)
+        @geometry ||= Vedeu.geometries.by_name(name)
       end
 
       # Returns the default options/attributes for this class.
