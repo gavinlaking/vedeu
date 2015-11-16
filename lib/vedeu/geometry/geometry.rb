@@ -84,8 +84,8 @@ module Vedeu
 
       # @param (see #initialize)
       # @return (see #initialize)
-      def self.store(attributes)
-        new(attributes).store
+      def self.store(attributes, &block)
+        new(attributes).store(&block)
       end
 
       # Returns a new instance of Vedeu::Geometry::Geometry.
@@ -169,51 +169,6 @@ module Vedeu
         end
       end
 
-      # Moves the geometry down by one row.
-      #
-      # @return [Vedeu::Geometry::Geometry]
-      def move_down
-        return self if yn + 1 > Vedeu.height
-
-        move(y: y + 1, yn: yn + 1) { Vedeu.trigger(:_cursor_down_, name) }
-      end
-
-      # Moves the geometry left by one column.
-      #
-      # @return [Vedeu::Geometry::Geometry]
-      def move_left
-        return self if x - 1 < 1
-
-        move(x: x - 1, xn: xn - 1) { Vedeu.trigger(:_cursor_left_, name) }
-      end
-
-      # Moves the geometry to the top left of the terminal.
-      #
-      # @return [Vedeu::Geometry::Geometry]
-      def move_origin
-        move(x: 1, xn: (xn - x + 1), y: 1, yn: (yn - y + 1)) do
-          Vedeu.trigger(:_cursor_origin_, name)
-        end
-      end
-
-      # Moves the geometry right by one column.
-      #
-      # @return [Vedeu::Geometry::Geometry]
-      def move_right
-        return self if xn + 1 > Vedeu.width
-
-        move(x: x + 1, xn: xn + 1) { Vedeu.trigger(:_cursor_right_, name) }
-      end
-
-      # Moves the geometry up by one column.
-      #
-      # @return [Vedeu::Geometry::Geometry]
-      def move_up
-        return self if y - 1 < 1
-
-        move(y: y - 1, yn: yn - 1) { Vedeu.trigger(:_cursor_up_, name) }
-      end
-
       # Will unmaximise the named interface geometry. Previously, when
       # a geometry was maximised, then triggering the unmaximise event
       # will return it to its usual defined size (terminal size
@@ -257,36 +212,6 @@ module Vedeu
           yn:                   @yn.is_a?(Proc)     ? @yn.call     : @yn,
           y_yn:                 @height.is_a?(Proc) ? @height.call : @height,
         }
-      end
-
-      # When moving an interface;
-      # 1) Reset the alignment and maximised states to false;
-      #    it wont be aligned to a side if moved, and cannot be moved
-      #    if maximised.
-      # 2) Get the current coordinates of the interface, then:
-      # 3) Override the attributes with the new coordinates for
-      #    desired movement; these are usually +/- 1 of the current
-      #    state, depending on direction.
-      #
-      # @param coordinates [Hash<Symbol => Fixnum>]
-      # @option coordinates x [Fixnum] The starting column/character
-      #   position.
-      # @option coordinates xn [Fixnum] The ending column/character
-      #   position.
-      # @option coordinates y [Fixnum] The starting row/line position.
-      # @option coordinates yn [Fixnum] The ending row/line position.
-      # @return [Hash<Symbol => Boolean, Fixnum>]
-      def move(coordinates = {})
-        attrs = attributes.merge!(horizontal_alignment: :none,
-                                  maximised:            false,
-                                  vertical_alignment:   :none)
-                .merge!(coordinates)
-
-        geometry = Vedeu::Geometry::Geometry.store(attrs)
-
-        yield if block_given?
-
-        geometry
       end
 
       # Returns the default options/attributes for this class.
