@@ -188,12 +188,32 @@ module Vedeu
       # @return [Boolean]
       def valid?
         {
-          down:   (yn + offset <= Vedeu.height),
-          left:   (x - offset >= 1),
+          down:   valid_down?,
+          left:   valid_left?,
           origin: true,
-          right:  (xn + offset <= Vedeu.width),
-          up:     (y - offset >= 1),
+          right:  valid_right?,
+          up:     valid_up?,
         }.fetch(direction, false)
+      end
+
+      # @return [Boolean]
+      def valid_down?
+        yn + offset <= Vedeu.height
+      end
+
+      # @return [Boolean]
+      def valid_left?
+        x - offset >= 1
+      end
+
+      # @return [Boolean]
+      def valid_right?
+        xn + offset <= Vedeu.width
+      end
+
+      # @return [Boolean]
+      def valid_up?
+        y - offset >= 1
       end
 
     end # Move
