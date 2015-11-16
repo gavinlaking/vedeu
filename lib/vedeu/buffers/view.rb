@@ -9,13 +9,51 @@ module Vedeu
     class View
 
       include Vedeu::Repositories::Defaults
+      include Enumerable
+
+      # @return [Hash<Symbol => String|Symbol>]
+      def attributes
+        {
+          name: name
+        }
+      end
+
+      # Provides iteration over the buffer.
+      #
+      # @param block [Proc]
+      # @return [Enumerator]
+      def each(&block)
+        current.each(&block)
+      end
+
+      # Resets the named view buffer back to its empty state.
+      #
+      # @return [Vedeu::Buffers::View]
+      def reset!
+        Vedeu::Buffers::View.new(attributes)
+      end
+
+      # @param value_or_values [Array<Array<Vedeu::Views::Char>>|
+      #   Vedeu::Views::Char]
+      # @return [Vedeu::Buffers::View]
+      def update(value_or_values)
+        Array(value_or_values).flatten.each do |value|
+          if valid?(value)
+            current[value.position.y][value.position.x] = value
+            dirty << value.position.to_a
+          end
+        end
+
+        self
+      end
+
+      protected
+
+      # @!attribute [r] name
+      # @return [String|Symbol]
+      attr_reader :name
 
       private
-
-      # @return [Vedeu::Geometries::Geometry]
-      def geometry
-        Vedeu.geometries.by_name(name)
-      end
 
       # @return [Vedeu::Buffers::Empty]
       def buffer
@@ -25,7 +63,7 @@ module Vedeu
                             width:  geometry.bordered_width).buffer
       end
 
-      # @return [Vedeu::Buffers::Empty]
+      # @return [Array<Vedeu::Models::Cell>]
       def current
         @current ||= buffer
       end
@@ -44,7 +82,7 @@ module Vedeu
 
       # @return [Vedeu::Buffers::Empty]
       def dirty
-        @dirty ||= buffer
+        @dirty ||= []
       end
 
       # @return [Vedeu::Buffers::Empty]

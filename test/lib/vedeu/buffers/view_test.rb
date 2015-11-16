@@ -29,7 +29,54 @@ module Vedeu
         end
       end
 
-      # @todo Add more tests.
+      describe '#attributes' do
+        subject { instance.attributes }
+
+        it { subject.must_be_instance_of(Hash) }
+        it { subject.must_equal(attributes) }
+      end
+
+      describe '#each' do
+        # @todo Add more tests.
+      end
+
+      describe '#reset!' do
+        subject { instance.reset! }
+
+        it { subject.must_be_instance_of(described) }
+      end
+
+      describe '#update' do
+        let(:value_or_values) {}
+
+        subject { instance.update(value_or_values) }
+
+        it { subject.must_be_instance_of(described) }
+
+        context 'when given a single value' do
+          let(:value_or_values) {}
+
+          context 'when the value is valid' do
+            # @todo Add more tests.
+          end
+
+          context 'when the value is not valid' do
+            # @todo Add more tests.
+          end
+        end
+
+        context 'when given multiple values' do
+          let(:value_or_values) {}
+
+          context 'when the value is valid' do
+            # @todo Add more tests.
+          end
+
+          context 'when the value is not valid' do
+            # @todo Add more tests.
+          end
+        end
+      end
 
     end # View
 
