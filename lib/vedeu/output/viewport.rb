@@ -20,9 +20,9 @@ module Vedeu
                      :name,
                      :visible?
 
-      def_delegators :border,
-                     :height,
-                     :width
+      def_delegators :geometry,
+                     :bordered_height,
+                     :bordered_width
 
       def_delegators :cursor,
                      :ox,
@@ -106,7 +106,7 @@ module Vedeu
       #
       # @return [Range]
       def rows
-        top...(top + height)
+        top...(top + bordered_height)
       end
 
       # Using the current cursor's x position, return a range of
@@ -121,17 +121,17 @@ module Vedeu
       #
       # @return [Range]
       def columns
-        left...(left + width)
+        left...(left + bordered_width)
       end
 
       # @return [Fixnum]
       def left
-        @left ||= content_offset(ox, width)
+        @left ||= content_offset(ox, bordered_width)
       end
 
       # @return [Fixnum]
       def top
-        @top ||= content_offset(oy, height)
+        @top ||= content_offset(oy, bordered_height)
       end
 
       # Returns the offset for the content (the number of rows or
@@ -147,21 +147,21 @@ module Vedeu
         offset - dimension
       end
 
-      # Returns the border for the interface.
+      # Returns the geometry for the interface.
       #
-      # @return (see Vedeu::Borders::Repository#by_name)
-      def border
-        @border ||= Vedeu.borders.by_name(name)
+      # @return (see Vedeu::Geometry::Repository#by_name)
+      def geometry
+        @geometry ||= Vedeu.geometries.by_name(name)
       end
 
       # @return [Fixnum]
       def bx
-        @bx ||= border.bx
+        @bx ||= geometry.bx
       end
 
       # @return [Fixnum]
       def by
-        @by ||= border.by
+        @by ||= geometry.by
       end
 
       # @return [Vedeu::Cursors::Cursor]

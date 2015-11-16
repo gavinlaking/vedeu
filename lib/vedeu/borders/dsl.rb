@@ -233,7 +233,7 @@ module Vedeu
       #   +- My Cool Title --------------------------------+
       #
       # @param value [String] The title.
-      # @return [Vedeu::Borders::Title]
+      # @return [String]
       def title(value)
         model.title = value
         model.title
@@ -253,7 +253,7 @@ module Vedeu
       #   +------------------------------ My Cool Caption -+
       #
       # @param value [String] The caption.
-      # @return [Vedeu::Borders::Caption]
+      # @return [String]
       def caption(value)
         model.caption = value
         model.caption

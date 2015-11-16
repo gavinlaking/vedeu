@@ -27,6 +27,8 @@ module Vedeu
         subject { described.buffer }
 
         it { subject.must_be_instance_of(Array) }
+
+        # @todo Add more tests.
       end
 
       describe '#clear' do
@@ -51,6 +53,14 @@ module Vedeu
         context 'when Vedeu is not ready' do
           # @todo Add more tests.
         end
+      end
+
+      describe '#output' do
+        # @todo Add more tests.
+      end
+
+      describe '#read' do
+        # @todo Add more tests.
       end
 
       describe '#render' do

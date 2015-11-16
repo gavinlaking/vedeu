@@ -12,13 +12,13 @@ module Vedeu
       extend Forwardable
       include Vedeu::Common
 
-      def_delegators :border,
+      def_delegators :geometry,
+                     :bordered_height,
+                     :bordered_width,
                      :bx,
                      :bxn,
                      :by,
-                     :byn,
-                     :height,
-                     :width
+                     :byn
 
       # Returns a new instance of Vedeu::Editor::Cropper.
       #
@@ -87,7 +87,7 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Lines]
       def lines
-        @lines[oy...(oy + height)] || []
+        @lines[oy...(oy + bordered_height)] || []
       end
 
       # Returns the interface by name.
@@ -101,14 +101,14 @@ module Vedeu
       #
       # @return [String]
       def columns(line)
-        line[ox...(ox + width)] || ''
+        line[ox...(ox + bordered_width)] || ''
       end
 
       # Returns the border for the interface.
       #
-      # @return (see Vedeu::Borders::Repository#by_name)
-      def border
-        @border ||= Vedeu.borders.by_name(name)
+      # @return (see Vedeu::Geometry::Repository#by_name)
+      def geometry
+        @geometry ||= Vedeu.geometries.by_name(name)
       end
 
     end # Editor

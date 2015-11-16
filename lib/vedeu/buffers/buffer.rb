@@ -31,7 +31,7 @@ module Vedeu
       attr_accessor :previous
 
       # @!attribute [r] name
-      # @return [String]
+      # @return [String|Symbol]
       attr_reader :name
 
       # Return a new instance of Buffer. Generally a Buffer is

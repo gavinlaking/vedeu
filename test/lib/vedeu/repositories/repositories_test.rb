@@ -6,6 +6,12 @@ module Vedeu
 
     let(:described) { Vedeu::Repositories }
 
+    describe '.all' do
+      subject { described.all }
+
+      # @todo Add more tests.
+    end
+
     describe '.register' do
       subject { described.register(klass) }
 
@@ -30,7 +36,7 @@ module Vedeu
 
       subject { described.registered }
 
-      # @todo
+      # @todo Add more tests.
       # it { skip }
     end
 

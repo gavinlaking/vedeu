@@ -73,6 +73,8 @@ module Vedeu
         context 'when a colour is set' do
           it { subject.colour.must_equal('#000033') }
         end
+
+        # @todo Add more tests.
       end
 
       describe '#background=' do
@@ -110,6 +112,8 @@ module Vedeu
         context 'when a colour is set' do
           it { subject.colour.must_equal('#aadd00') }
         end
+
+        # @todo Add more tests.
       end
 
       describe '#foreground=' do

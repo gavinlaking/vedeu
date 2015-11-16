@@ -49,7 +49,7 @@ module Vedeu
       protected
 
       # @!attribute [r] name
-      # @return [Symbol]
+      # @return [Symbol|String]
       attr_reader :name
 
       # @!attribute [r] args

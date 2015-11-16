@@ -76,17 +76,10 @@ module Vedeu
       protected
 
       # @!attribute [r] name
-      # @return [String]
+      # @return [String|Symbol]
       attr_reader :name
 
       private
-
-      # Returns the border for the interface.
-      #
-      # @return (see Vedeu::Borders::Repository#by_name)
-      def border
-        @border ||= Vedeu.borders.by_name(name)
-      end
 
       # @return [String] A string of blank characters.
       def chars
@@ -126,7 +119,7 @@ module Vedeu
       # @return [Fixnum]
       def height
         @height ||= if content_only?
-                      border.height
+                      geometry.bordered_height
 
                     else
                       geometry.height
@@ -188,7 +181,7 @@ module Vedeu
       # @return [Fixnum]
       def width
         @width ||= if content_only?
-                     border.width
+                     geometry.bordered_width
 
                    else
                      geometry.width
@@ -199,7 +192,7 @@ module Vedeu
       # @return [Fixnum]
       def y
         @y ||= if content_only?
-                 border.by
+                 geometry.by
 
                else
                  geometry.y
@@ -210,7 +203,7 @@ module Vedeu
       # @return [Fixnum]
       def x
         @x ||= if content_only?
-                 border.bx
+                 geometry.bx
 
                else
                  geometry.x

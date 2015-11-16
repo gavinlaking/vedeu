@@ -11,27 +11,33 @@ module Vedeu
       extend Forwardable
 
       def_delegators :area,
-                     :north,
-                     :east,
-                     :south,
-                     :west,
-                     :top,
-                     :right,
+                     :bordered_height,
+                     :bordered_width,
                      :bottom,
-                     :left,
-                     :y,
-                     :xn,
-                     :yn,
-                     :x,
+                     :bx,
+                     :bxn,
+                     :by,
+                     :byn,
+                     :east,
                      :height,
-                     :width
+                     :left,
+                     :north,
+                     :right,
+                     :south,
+                     :top,
+                     :west,
+                     :width,
+                     :x,
+                     :xn,
+                     :y,
+                     :yn
 
       # @!attribute [rw] maximised
       # @return [Boolean]
       attr_accessor :maximised
 
       # @!attribute [r] name
-      # @return [String|NilClass]
+      # @return [NilClass|String|Symbol]
       attr_reader :name
 
       # Returns a new instance of Vedeu::Geometry::Null.

@@ -16,20 +16,26 @@ module Vedeu
       include Vedeu::Repositories::Model
 
       def_delegators :area,
-                     :north,
-                     :east,
-                     :south,
-                     :west,
-                     :top,
-                     :right,
+                     :bordered_height,
+                     :bordered_width,
                      :bottom,
-                     :left,
-                     :y,
-                     :xn,
-                     :yn,
-                     :x,
+                     :bx,
+                     :bxn,
+                     :by,
+                     :byn,
+                     :east,
                      :height,
-                     :width
+                     :left,
+                     :north,
+                     :right,
+                     :south,
+                     :top,
+                     :west,
+                     :width,
+                     :x,
+                     :xn,
+                     :y,
+                     :yn
 
       # @!attribute [rw] horizontal_alignment
       # @return [Symbol]
@@ -40,7 +46,7 @@ module Vedeu
       attr_accessor :vertical_alignment
 
       # @!attribute [rw] name
-      # @return [String]
+      # @return [String|Symbol]
       attr_accessor :name
 
       # @!attribute [w] height
@@ -165,50 +171,47 @@ module Vedeu
 
       # Moves the geometry down by one row.
       #
-      # @todo Move cursor also.
       # @return [Vedeu::Geometry::Geometry]
       def move_down
         return self if yn + 1 > Vedeu.height
 
-        move(y: y + 1, yn: yn + 1)
+        move(y: y + 1, yn: yn + 1) { Vedeu.trigger(:_cursor_down_, name) }
       end
 
       # Moves the geometry left by one column.
       #
-      # @todo Move cursor also.
       # @return [Vedeu::Geometry::Geometry]
       def move_left
         return self if x - 1 < 1
 
-        move(x: x - 1, xn: xn - 1)
+        move(x: x - 1, xn: xn - 1) { Vedeu.trigger(:_cursor_left_, name) }
       end
 
       # Moves the geometry to the top left of the terminal.
       #
-      # @todo Move cursor also.
       # @return [Vedeu::Geometry::Geometry]
       def move_origin
-        move(x: 1, xn: (xn - x + 1), y: 1, yn: (yn - y + 1))
+        move(x: 1, xn: (xn - x + 1), y: 1, yn: (yn - y + 1)) do
+          Vedeu.trigger(:_cursor_origin_, name)
+        end
       end
 
       # Moves the geometry right by one column.
       #
-      # @todo Move cursor also.
       # @return [Vedeu::Geometry::Geometry]
       def move_right
         return self if xn + 1 > Vedeu.width
 
-        move(x: x + 1, xn: xn + 1)
+        move(x: x + 1, xn: xn + 1) { Vedeu.trigger(:_cursor_right_, name) }
       end
 
       # Moves the geometry up by one column.
       #
-      # @todo Move cursor also.
       # @return [Vedeu::Geometry::Geometry]
       def move_up
         return self if y - 1 < 1
 
-        move(y: y - 1, yn: yn - 1)
+        move(y: y - 1, yn: yn - 1) { Vedeu.trigger(:_cursor_up_, name) }
       end
 
       # Will unmaximise the named interface geometry. Previously, when
@@ -245,6 +248,7 @@ module Vedeu
         {
           horizontal_alignment: @horizontal_alignment,
           maximised:            @maximised,
+          name:                 name,
           vertical_alignment:   @vertical_alignment,
           x:                    @x.is_a?(Proc)      ? @x.call      : @x,
           xn:                   @xn.is_a?(Proc)     ? @xn.call     : @xn,
@@ -253,11 +257,6 @@ module Vedeu
           yn:                   @yn.is_a?(Proc)     ? @yn.call     : @yn,
           y_yn:                 @height.is_a?(Proc) ? @height.call : @height,
         }
-      end
-
-      # @return [Vedeu::Borders::Border]
-      def border
-        @border = Vedeu.borders.by_name(name)
       end
 
       # When moving an interface;
@@ -283,7 +282,11 @@ module Vedeu
                                   vertical_alignment:   :none)
                 .merge!(coordinates)
 
-        Vedeu::Geometry::Geometry.store(attrs)
+        geometry = Vedeu::Geometry::Geometry.store(attrs)
+
+        yield if block_given?
+
+        geometry
       end
 
       # Returns the default options/attributes for this class.

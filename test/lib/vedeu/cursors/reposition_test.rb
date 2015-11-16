@@ -43,12 +43,25 @@ module Vedeu
       end
 
       describe '#reposition' do
+        # let(:new_attributes) {
+        #   {
+        #     name: :reposition_test,
+        #     ox:   0,
+        #     oy:   0,
+        #     repository: Vedeu.cursors,
+        #     visible: false,
+        #     x: 4,
+        #     y: 4,
+        #   }
+        # }
+
         subject { instance.reposition }
 
-        it {
-          Vedeu.expects(:trigger).with(:_refresh_cursor_, _name)
-          subject
-        }
+        # it {
+        #   subject
+        #   Vedeu::Cursors::Cursor.expects(:store).with(new_attributes)
+        #   Vedeu.expects(:trigger).with(:_refresh_cursor_, _name)
+        # }
 
         it { subject.must_be_instance_of(Vedeu::Cursors::Cursor) }
 
