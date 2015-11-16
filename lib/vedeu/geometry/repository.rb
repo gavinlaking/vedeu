@@ -46,15 +46,15 @@ module Vedeu
     Vedeu.geometries.by_name(name).unmaximise
   end
 
-  %w(down left right up).each do |direction|
-    Vedeu.bind(:"_view_#{direction}_") do |name|
-      Vedeu.geometries.by_name(name).send("move_#{direction}")
-
-      Vedeu.trigger(:_movement_refresh_, name)
+  [:down, :left, :right, :up].each do |direction|
+    Vedeu.bind(:"_view_#{direction}_") do |name, offset|
+      Vedeu::Geometry::Move.move(direction: direction,
+                                 name:      name,
+                                 offset:    offset)
     end
   end
 
-  %w(down left right up).each do |direction|
+  [:down, :left, :right, :up].each do |direction|
     Vedeu.bind_alias(:"_geometry_#{direction}_", :"_view_#{direction}_")
   end
 
