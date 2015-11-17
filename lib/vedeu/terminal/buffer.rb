@@ -37,7 +37,7 @@ module Vedeu
       def clear
         reset
 
-        Vedeu.renderers.clear if Vedeu.ready?
+        Vedeu.renderers.clear
       end
 
       # @return [Vedeu::Models::Page]
@@ -66,9 +66,12 @@ module Vedeu
 
       # Send the cells to the renderer and return the rendered result.
       #
+      # @example
+      #   Vedeu.refresh
+      #
       # @return [String|void] Most likely to be a String.
       def render
-        Vedeu.renderers.render(output) if Vedeu.ready?
+        Vedeu.renderers.render(output)
       end
       alias_method :refresh, :render
 

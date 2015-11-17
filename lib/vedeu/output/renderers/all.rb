@@ -17,7 +17,7 @@ module Vedeu
     #
     # @return [Array<void>]
     def clear
-      threads = storage.map do |renderer|
+      storage.map do |renderer|
         Vedeu.log(type:    :output,
                   message: "Clearing via #{renderer.class.name}".freeze)
 
@@ -26,8 +26,7 @@ module Vedeu
             toggle_cursor { renderer.clear }
           end
         end
-      end
-      threads.each(&:join)
+      end.each(&:join) if Vedeu.ready?
 
       ''
     end
@@ -51,7 +50,7 @@ module Vedeu
     # @param output [void]
     # @return [Array<void>]
     def render(output)
-      threads = storage.map do |renderer|
+      storage.map do |renderer|
         Vedeu.log(type:    :output,
                   message: "Rendering via #{renderer.class.name}".freeze)
 
@@ -60,8 +59,7 @@ module Vedeu
             toggle_cursor { renderer.render(output) }
           end
         end
-      end
-      threads.each(&:join)
+      end.each(&:join) if Vedeu.ready?
 
       output
     end
