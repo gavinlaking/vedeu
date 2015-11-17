@@ -8,6 +8,8 @@ module Vedeu
     #
     class Cell
 
+      include Vedeu::Repositories::Defaults
+
       # @!attribute [r] colour
       # @return [NilClass|String]
       attr_reader :colour
@@ -23,27 +25,6 @@ module Vedeu
       # @!attribute [r] value
       # @return [NilClass|String]
       attr_reader :value
-
-      # Returns a new instance of Vedeu::Models::Cell.
-      #
-      # @note
-      #   If a particular key is missing from the attributes
-      #   parameter, then it is added with the respective value from
-      #   #defaults.
-      #
-      # @param attributes [Hash<Symbol => Array<Symbol|String>,
-      #                                   Fixnum, String, Symbol]
-      # @option attributes colour [NilClass|String]
-      # @option attributes style
-      #   [NilClass|Array<Symbol|String>|Symbol|String]
-      # @option attributes value [NilClass|String]
-      # @option attributes position [Vedeu::Geometry::Position]
-      # @return [Vedeu::Models::Cell]
-      def initialize(attributes = {})
-        defaults.merge!(attributes).each do |key, value|
-          instance_variable_set("@#{key}", value || defaults.fetch(key))
-        end
-      end
 
       # @return [Boolean]
       def cell?

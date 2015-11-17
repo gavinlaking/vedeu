@@ -8,6 +8,7 @@ module Vedeu
     #
     class Document
 
+      include Vedeu::Repositories::Defaults
       include Vedeu::Repositories::Model
       extend Forwardable
 
@@ -18,7 +19,8 @@ module Vedeu
                      :y
 
       # @!attribute [r] attributes
-      # @return [Hash]
+      # @return [Hash<Symbol => String|Symbol|
+      #   Vedeu::Repositories::Repository>]
       attr_reader :attributes
 
       # @!attribute [rw] data
@@ -35,26 +37,6 @@ module Vedeu
       # @return (see #initialize)
       def self.store(attributes = {})
         new(attributes).store
-      end
-
-      # Returns a new instance of Vedeu::Editor::Document.
-      #
-      # @note
-      #   If a particular key is missing from the attributes
-      #   parameter, then it is added with the respective value from
-      #   #defaults.
-      #
-      # @param attributes [Hash<Symbol => String|Symbol|
-      #   Vedeu::Repositories::Repository>]
-      # @option attributes data [String]
-      # @option attributes name [String|Symbol]
-      # @option attributes repository
-      #   [Vedeu::Repositories::Repository]
-      # @return [Vedeu::Editor::Document]
-      def initialize(attributes = {})
-        defaults.merge!(attributes).each do |key, value|
-          instance_variable_set("@#{key}", value || defaults.fetch(key))
-        end
       end
 
       # Returns the document as a string with line breaks if there is
