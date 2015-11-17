@@ -8,16 +8,7 @@ module Vedeu
     #
     class View
 
-      # Returns a new instance of Vedeu::Buffers::View.
-      #
-      # @param attributes [Hash<Symbol => NilClass|String|Symbol]
-      # @option attributes name [NilClass|String|Symbol]
-      # @return [Vedeu::Buffers::View]
-      def initialize(attributes = {})
-        defaults.merge!(attributes).each do |key, value|
-          instance_variable_set("@#{key}", value || defaults.fetch(key))
-        end
-      end
+      include Vedeu::Repositories::Defaults
 
       private
 

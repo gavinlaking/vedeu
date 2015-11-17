@@ -18,6 +18,7 @@ module Vedeu
     #
     class Move
 
+      include Vedeu::Repositories::Defaults
       extend Forwardable
 
       def_delegators :geometry,
@@ -30,23 +31,6 @@ module Vedeu
       # @return See #move
       def self.move(attributes = {})
         new(attributes).move
-      end
-
-      # Returns a new instance of Vedeu::Geometry::Move.
-      #
-      # @param attributes [Hash<Symbol => Boolean|Fixnum|String|
-      #   Symbol|Vedeu::Geometry::Repository]
-      # @option attributes name [String|Symbol] The name of the
-      #   interface/view.
-      # @option attributes direction [Symbol] The direction to move;
-      #   one of: :down, :left, :origin, :right, :up.
-      # @option attributes offset [Fixnum] The number of columns or
-      #   rows to move by.
-      # @return [Vedeu::Geometry::Move]
-      def initialize(attributes = {})
-        defaults.merge!(attributes).each do |key, value|
-          instance_variable_set("@#{key}", value || defaults.fetch(key))
-        end
       end
 
       # @return [FalseClass|Vedeu::Geometry::Geometry]
@@ -62,15 +46,16 @@ module Vedeu
       protected
 
       # @!attribute [r] direction
-      # @return [Symbol]
+      # @return [Symbol] The direction to move; one of: :down, :left,
+      #   :origin, :right, :up.
       attr_reader :direction
 
       # @!attribute [r] name
-      # @return [String|Symbol]
+      # @return [String|Symbol] The name of the interface/view.
       attr_reader :name
 
       # @!attribute [r] offset
-      # @return [Symbol]
+      # @return [Symbol] The number of columns or rows to move by.
       attr_reader :offset
 
       private

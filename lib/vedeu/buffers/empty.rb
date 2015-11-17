@@ -8,28 +8,11 @@ module Vedeu
     # @api private
     class Empty
 
+      include Vedeu::Repositories::Defaults
+
       # @!attribute [r] name
       # @return [NilClass|String|Symbol]
       attr_reader :name
-
-      # Returns a new instance of Vedeu::Buffers::Empty.
-      #
-      # @note
-      #   If a particular key is missing from the attributes
-      #   parameter, then it is added with the respective value from
-      #   #defaults.
-      #
-      # @param attributes [Hash<Symbol => Fixnum, NilClass, String,
-      #   Symbol]
-      # @option attributes name [NilClass|String|Symbol]
-      # @option attributes height [Fixnum]
-      # @option attributes width [Fixnum]
-      # @return [Vedeu::Buffers::Empty]
-      def initialize(attributes = {})
-        defaults.merge!(attributes).each do |key, value|
-          instance_variable_set("@#{key}", value || defaults.fetch(key))
-        end
-      end
 
       # @return [Array<Array<Vedeu::Models::Cell>>]
       def buffer
@@ -62,7 +45,7 @@ module Vedeu
 
       # Returns the default options/attributes for this class.
       #
-      # @return [Hash<Symbol => void>]
+      # @return [Hash<Symbol => Fixnum|NilClass|String|Symbol>]
       def defaults
         {
           height: Vedeu.height,

@@ -9,7 +9,7 @@ module Vedeu
 
       singleton_class.send(:alias_method, :geometries, :repository)
 
-      null Vedeu::Geometry::Null
+      null Vedeu::Geometry::Geometry, height: Vedeu.height, width: Vedeu.width
       real Vedeu::Geometry::Geometry
 
     end # Repository

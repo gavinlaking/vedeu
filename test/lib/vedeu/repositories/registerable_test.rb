@@ -26,7 +26,9 @@ module Vedeu
         it { RegisterableTestClass.must_respond_to(:null) }
 
         it { subject.must_respond_to(:null_model) }
+        it { subject.must_respond_to(:null_attributes) }
         it { subject.null_model.must_equal(Vedeu::Repositories::ModelTestClass) }
+        it { subject.null_attributes.must_equal({}) }
       end
 
       describe '.real' do

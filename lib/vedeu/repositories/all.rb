@@ -9,6 +9,7 @@ module Vedeu
 end # Vedeu
 
 require 'vedeu/repositories/collection'
+require 'vedeu/repositories/defaults'
 require 'vedeu/repositories/repositories'
 require 'vedeu/repositories/model'
 require 'vedeu/repositories/store'
