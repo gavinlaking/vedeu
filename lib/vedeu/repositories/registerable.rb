@@ -13,9 +13,11 @@ module Vedeu
         # The null model is used when the repository cannot be found.
         #
         # @param klass [Class]
+        # @param attributes [Hash]
         # @return [Symbol]
-        def null(klass)
-          define_method(:null_model) { klass }
+        def null(klass, attributes = {})
+          define_method(:null_model)      { klass }
+          define_method(:null_attributes) { attributes }
         end
 
         # The real model is the usual model to use for a given

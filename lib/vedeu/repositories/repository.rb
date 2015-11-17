@@ -65,7 +65,17 @@ module Vedeu
       def by_name(name = Vedeu.focus)
         return find(name) if present?(name) && registered?(name)
 
-        null_model.new(name: name)
+        attrs = if null_attributes.any?
+                  null_attributes.merge!(name: name)
+
+                else
+                  {
+                    name: name
+                  }
+
+                end
+
+        null_model.new(attrs)
       end
 
       # Return the model for the interface currently in focus.
