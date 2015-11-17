@@ -27,6 +27,28 @@ class VedeuMaterialColoursApp
     # width  20
   end
 
+  # Borders can be defined as standalone declarations.
+  Vedeu.border 'no_bottom' do
+    background  '#000000'
+    foreground  '#ffffff'
+    show_bottom false
+  end
+  Vedeu.border 'no_left' do
+    background  '#000000'
+    foreground  '#ffffff'
+    show_left false
+  end
+  Vedeu.border 'no_right' do
+    background  '#000000'
+    foreground  '#ffffff'
+    show_right false
+  end
+  Vedeu.border 'no_top' do
+    background  '#000000'
+    foreground  '#ffffff'
+    show_top false
+  end
+
   Vedeu.interface 'main_interface' do
     border 'main_interface' do
       colour foreground: '#ffffff', background: :default
@@ -98,7 +120,7 @@ class VedeuMaterialColoursApp
       height 4
       width  10
     end
-    colour  foreground: '#000000', background: '#9c27b0'
+    colour  foreground: '#ffffff', background: '#9c27b0'
   end
 
   Vedeu.interface 'no_bottom' do
@@ -108,7 +130,7 @@ class VedeuMaterialColoursApp
       height 4
       width  10
     end
-    colour  foreground: '#000000', background: '#673ab7'
+    colour  foreground: '#ffffff', background: '#673ab7'
   end
 
   Vedeu.interface 'no_left' do
@@ -118,7 +140,7 @@ class VedeuMaterialColoursApp
       height 4
       width  10
     end
-    colour  foreground: '#000000', background: '#3f51b5'
+    colour  foreground: '#ffffff', background: '#3f51b5'
   end
 
   Vedeu.interface 'no_right' do
@@ -128,7 +150,7 @@ class VedeuMaterialColoursApp
       height 4
       width  10
     end
-    colour  foreground: '#000000', background: '#2196f3'
+    colour  foreground: '#ffffff', background: '#2196f3'
   end
 
   Vedeu.interface 'custom_corners' do
@@ -138,7 +160,7 @@ class VedeuMaterialColoursApp
       height 4
       width  10
     end
-    colour  foreground: '#000000', background: '#03a9f4'
+    colour  foreground: '#ffffff', background: '#03a9f4'
   end
 
   Vedeu.interface 'custom_sides' do
@@ -153,6 +175,7 @@ class VedeuMaterialColoursApp
 
   # Borders can be defined as part of the interface definition.
   Vedeu.interface 'only_top' do
+    colour  foreground: '#ffffff', background: '#009688'
     border do
       foreground  '#ffffff'
       show_right  false
@@ -165,10 +188,10 @@ class VedeuMaterialColoursApp
       height 4
       width  10
     end
-    colour  foreground: '#ffffff', background: '#009688'
   end
 
   Vedeu.interface 'only_bottom' do
+    colour  foreground: '#000000', background: '#8bc34a'
     border do
       foreground  '#000000'
       show_top   false
@@ -181,10 +204,10 @@ class VedeuMaterialColoursApp
       height 4
       width  10
     end
-    colour  foreground: '#000000', background: '#8bc34a'
   end
 
   Vedeu.interface 'only_left' do
+    colour  foreground: '#000000', background: '#cddc39'
     border do
       foreground  '#000000'
       show_top    false
@@ -197,10 +220,10 @@ class VedeuMaterialColoursApp
       height 4
       width  10
     end
-    colour  foreground: '#000000', background: '#cddc39'
   end
 
   Vedeu.interface 'only_right' do
+    colour  foreground: '#000000', background: '#ffeb3b'
     border do
       foreground  '#000000'
       show_top    false
@@ -213,7 +236,6 @@ class VedeuMaterialColoursApp
       height 4
       width  10
     end
-    colour  foreground: '#000000', background: '#ffeb3b'
   end
 
   Vedeu.interface 'custom_colour' do
@@ -248,23 +270,7 @@ class VedeuMaterialColoursApp
     zindex(0)
   end
 
-  # Borders can be defined as standalone declarations.
-  Vedeu.border 'no_bottom' do
-    foreground  '#ffffff'
-    show_bottom false
-  end
-  Vedeu.border 'no_left' do
-    foreground  '#ffffff'
-    show_left false
-  end
-  Vedeu.border 'no_right' do
-    foreground  '#ffffff'
-    show_right false
-  end
-  Vedeu.border 'no_top' do
-    foreground  '#ffffff'
-    show_top false
-  end
+
 
   Vedeu.keymap('_global_') do
     key(:up)    { Vedeu.trigger(:_cursor_up_)    }
@@ -509,7 +515,7 @@ class VedeuMaterialColoursApp
     end
     view('custom_corners') do
       border do
-        foreground   '#ffffff'
+        foreground   '#000000'
         top_right    'B'
         top_left     'A'
         bottom_right 'D'
