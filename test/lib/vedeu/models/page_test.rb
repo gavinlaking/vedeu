@@ -112,8 +112,16 @@ module Vedeu
                   Vedeu::Models::Row.new([:hydrogen, :helium]),
                   nil,
                   [:lithium],
-                  Vedeu::Models::Row.new([:beryllium, :boron]),
+                  Vedeu::Models::Row.new([:beryllium]),
+                  [
+                    Vedeu::Views::Char.new(value: 'b'),
+                    Vedeu::Views::Char.new(value: 'o'),
+                    Vedeu::Views::Char.new(value: 'r'),
+                    Vedeu::Views::Char.new(value: 'o'),
+                    Vedeu::Views::Char.new(value: 'n'),
+                  ],
                   [nil, :carbon],
+                  :nitrogen,
                 ]
               }
               let(:expected) {
@@ -121,8 +129,16 @@ module Vedeu
                   Vedeu::Models::Row.new([:hydrogen, :helium]),
                   Vedeu::Models::Row.new([]),
                   Vedeu::Models::Row.new([:lithium]),
-                  Vedeu::Models::Row.new([:beryllium, :boron]),
+                  Vedeu::Models::Row.new([:beryllium]),
+                  Vedeu::Models::Row.new([
+                    Vedeu::Views::Char.new(value: 'b'),
+                    Vedeu::Views::Char.new(value: 'o'),
+                    Vedeu::Views::Char.new(value: 'r'),
+                    Vedeu::Views::Char.new(value: 'o'),
+                    Vedeu::Views::Char.new(value: 'n'),
+                  ]),
                   Vedeu::Models::Row.new([:carbon]),
+                  Vedeu::Models::Row.new([:nitrogen]),
                 ])
               }
 

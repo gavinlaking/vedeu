@@ -25,14 +25,15 @@ module Vedeu
         elsif value.is_a?(Array) && value.empty?
           Vedeu::Models::Page.new([Vedeu::Models::Row.coerce(value)])
 
-        elsif value.is_a?(Array)
+        elsif value.is_a?(Array) || value.is_a?(Vedeu::Buffers::View)
           values = value.map { |v| Vedeu::Models::Row.coerce(v) }
 
           Vedeu::Models::Page.new(values)
 
         else
           fail Vedeu::Error::InvalidSyntax,
-               'Cannot coerce as value is not an Array.'.freeze
+               'Cannot coerce as value is not an Array, Vedeu::Models::Page ' \
+               "or Vedeu::Models::Row. Is a '#{value.class.name}'.".freeze
 
         end
       end
