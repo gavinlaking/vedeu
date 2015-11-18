@@ -9,7 +9,7 @@ module Vedeu
 
       singleton_class.send(:alias_method, :borders, :repository)
 
-      null Vedeu::Borders::Null
+      null Vedeu::Borders::Border, enabled: false
       real Vedeu::Borders::Border
 
     end # Repository

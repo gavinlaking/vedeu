@@ -270,14 +270,12 @@ class VedeuMaterialColoursApp
     zindex(0)
   end
 
-
-
   Vedeu.keymap('_global_') do
-    key(:up)    { Vedeu.trigger(:_cursor_up_)    }
-    key(:right) { Vedeu.trigger(:_cursor_right_) }
-    key(:down)  { Vedeu.trigger(:_cursor_down_)  }
-    key(:left)  { Vedeu.trigger(:_cursor_left_)  }
-    key(:home)  { Vedeu.trigger(:_cursor_top_) }
+    key(:up)    { Vedeu.trigger(:_cursor_up_)     }
+    key(:right) { Vedeu.trigger(:_cursor_right_)  }
+    key(:down)  { Vedeu.trigger(:_cursor_down_)   }
+    key(:left)  { Vedeu.trigger(:_cursor_left_)   }
+    key(:home)  { Vedeu.trigger(:_cursor_top_)    }
     key(:end)   { Vedeu.trigger(:_cursor_bottom_) }
 
     key(:insert) do
@@ -373,7 +371,7 @@ class VedeuMaterialColoursApp
     end
 
     view 'keys_interface' do
-      # cursor false
+      cursor false
       line {
         stream {
           left "\u2190 \u2193 \u2191 \u2192",

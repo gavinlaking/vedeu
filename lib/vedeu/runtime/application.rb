@@ -102,7 +102,7 @@ module Vedeu
       # @return [void]
       def main_sequence
         if configuration.interactive?
-          Vedeu::Input::Capture.read(Terminal)
+          Vedeu::Input::Capture.read
 
         else
           Vedeu.trigger(:_standalone_)

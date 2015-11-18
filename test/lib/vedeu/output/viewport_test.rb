@@ -22,9 +22,15 @@ module Vedeu
       }
       let(:visible)   { true }
       let(:interface) {
-        Vedeu::Interfaces::Interface.new(style: nil, visible: visible)
+        Vedeu::Interfaces::Interface.new(name:    'lithium',
+                                         style:   nil,
+                                         visible: visible)
       }
-      let(:geometry)  { Vedeu::Geometry::Geometry.new(height: 3, width: 3) }
+      let(:geometry)  {
+        Vedeu::Geometry::Geometry.new(name:   'lithium',
+                                      height: 3,
+                                      width:  3)
+      }
       let(:ready)     { true }
 
       before do
