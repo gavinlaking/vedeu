@@ -62,8 +62,10 @@ module Vedeu
       #
       # @param name [String|Symbol] The name of the stored model.
       # @return [void]
-      def by_name(name = Vedeu.focus)
-        return find(name) if present?(name) && registered?(name)
+      def by_name(name = nil)
+        name = present?(name) ? name : Vedeu.focus
+
+        return find(name) if registered?(name)
 
         attrs = if null_attributes.any?
                   null_attributes.merge!(name: name)
