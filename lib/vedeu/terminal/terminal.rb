@@ -29,23 +29,6 @@ module Vedeu
       restore_screen
     end
 
-    # Takes input from the user via the keyboard. Accepts special keys
-    # like the F-Keys etc, by capturing the entire sequence.
-    #
-    # @return [String]
-    def input
-      Vedeu.log(type: :input, message: 'Waiting for user input...'.freeze)
-
-      if raw_mode? || fake_mode?
-        Vedeu::Editor::Capture.read(console)
-
-      else
-        console.gets.chomp
-
-      end
-    end
-    alias_method :read, :input
-
     # Prints the streams to the screen and returns the streams.
     #
     # @param streams [String|Array]

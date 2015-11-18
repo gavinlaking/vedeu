@@ -44,40 +44,6 @@ module Vedeu
       end
     end
 
-    describe '.input' do
-      before { Vedeu.stubs(:log) }
-
-      subject { Vedeu::Terminal.input }
-
-      it { described.must_respond_to(:read) }
-
-      context 'when the terminal is in cooked mode' do
-        let(:mode)  { :cooked }
-        let(:input) { "Some input\r\n" }
-
-        before do
-          Vedeu::Terminal.stubs(:mode).returns(mode)
-          console.stubs(:gets).returns(input)
-        end
-
-        it { subject.must_equal('Some input') }
-      end
-
-      # context 'when the terminal is in raw mode' do
-      #   let(:mode)  { :raw }
-      #   let(:input) { "\e[A" }
-
-      #   before do
-      #     Vedeu::Terminal.stubs(:mode).returns(mode)
-      #     # console.stubs(:getch).returns(input)
-      #     # input.stubs(:ord).returns(27)
-      #     # console.stubs(:read_nonblock)
-      #   end
-
-      #   it { subject.must_be_instance_of(Symbol) }
-      # end
-    end
-
     describe '.output' do
       before { IO.console.stubs(:print) }
 
