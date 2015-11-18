@@ -25,6 +25,7 @@ module Vedeu
           let(:input) { "\e[M ,%" }
 
           it {
+            Vedeu.expects(:trigger).with(:_mouse_event_, input)
             Vedeu.expects(:trigger).with(:_cursor_reposition_, Vedeu.focus, 5, 12)
             subject
           }
@@ -34,6 +35,7 @@ module Vedeu
           let(:input) { "\e[M`6E" }
 
           it {
+            Vedeu.expects(:trigger).with(:_mouse_event_, input)
             Vedeu.expects(:trigger).with(:_cursor_up_, Vedeu.focus)
             subject
           }
@@ -43,6 +45,7 @@ module Vedeu
           let(:input) { "\e[MaN5" }
 
           it {
+            Vedeu.expects(:trigger).with(:_mouse_event_, input)
             Vedeu.expects(:trigger).with(:_cursor_down_, Vedeu.focus)
             subject
           }
@@ -52,6 +55,7 @@ module Vedeu
           let(:input) { "\e[Mb0(" }
 
           it {
+            Vedeu.expects(:trigger).with(:_mouse_event_, input)
             subject.must_equal("\e[93m[input]  \e[39m\e[33mVedeu does not " \
                                "support mouse button '66' yet.\e[39m")
           }

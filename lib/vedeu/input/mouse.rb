@@ -29,6 +29,8 @@ module Vedeu
         Vedeu.log(type:    :input,
                   message: "Mouse pressed: '#{button}' (x: #{x}, y: #{y})")
 
+        Vedeu.trigger(:_mouse_event_, input)
+
         if left_click?
           Vedeu.trigger(:_cursor_reposition_, Vedeu.focus, y, x)
 
