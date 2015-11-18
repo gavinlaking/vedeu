@@ -2,27 +2,31 @@ module Vedeu
 
   module Input
 
-    # Captures input from the user via {Vedeu::Terminal#input} and
+    # Captures input from the user terminal via 'getch' and
     # translates special characters into symbols.
     #
     class Capture
 
+      ESCAPE_KEY_CODE = 27 # \e
+
+      extend Forwardable
+
+      def_delegators Vedeu::Terminal::Mode,
+                     :cooked_mode?,
+                     :fake_mode?,
+                     :raw_mode?
+
       # Instantiate Vedeu::Input::Input and capture keypress(es).
       #
-      # @param (see #initialize)
       # @return (see #read)
-      def self.read(reader)
-        new(reader).read
+      def self.read
+        new.read
       end
 
       # Returns a new instance of Vedeu::Input::Input.
       #
-      # @param reader [IO] An object that responds to `#read`.
-      #   Typically, this is Vedeu::Terminal.
       # @return [Vedeu::Input::Input]
-      def initialize(reader)
-        @reader = reader
-      end
+      def initialize; end
 
       # Triggers various events dependent on the terminal mode.
       #
@@ -42,68 +46,97 @@ module Vedeu
       #
       # @return [Array|String|Symbol]
       def read
-        if click?(keypress)
-          Vedeu.trigger(:_mouse_event_, keypress)
+        Vedeu.log(type: :input, message: 'Waiting for user input...'.freeze)
 
-        elsif reader.raw_mode?
+        if raw_mode?
           Vedeu.trigger(:_keypress_, keypress)
 
-        elsif reader.fake_mode?
-          name      = Vedeu.focus
-          interface = Vedeu.interfaces.by_name(name)
-          key       = keypress
+        elsif fake_mode?
+          @key ||= keypress
 
-          if Vedeu::Input::Mapper.registered?(key, name)
-            Vedeu.trigger(:_keypress_, key, name)
+          if click?(@key)
+            Vedeu.trigger(:_mouse_event_, @key)
+
+          elsif Vedeu::Input::Mapper.registered?(@key, name)
+            Vedeu.trigger(:_keypress_, @key, name)
 
           elsif interface.editable?
-            Vedeu.trigger(:_editor_, key)
+            Vedeu.trigger(:_editor_, @key)
+
+          elsif @key.nil?
+            nil
 
           else
-            Vedeu.trigger(:key, key)
+            Vedeu.trigger(:key, @key)
 
           end
-        else
+
+        elsif cooked_mode?
           Vedeu.trigger(:_command_, command)
 
         end
       end
 
-      protected
-
-      # @!attribute [r] reader
-      # @return [IO]
-      attr_reader :reader
-
       private
-
-      # Returns a boolean indicating whether a mouse click was
-      # received.
-      #
-      # @param key [String]
-      # @return [Boolean]
-      def click?(key)
-        return false if key.is_a?(Symbol)
-
-        key.is_a?(Vedeu::Cursors::Cursor) || key.start_with?("\e[M")
-      end
 
       # Returns the translated (when possible) keypress(es).
       #
       # @return [String|Symbol]
       def keypress
-        key = input
-
-        @keypress ||= Vedeu::Input::Translator.translate(key)
+        Vedeu::Input::Translator.translate(input)
       end
 
-      # Returns the input from the terminal.
+      # Takes input from the user via the keyboard. Accepts special
+      # keys like the F-Keys etc, by capturing the entire sequence.
       #
       # @return [String]
       def input
-        @input ||= reader.read
+        keys = console.getch
+
+        if keys.ord == ESCAPE_KEY_CODE
+          keys << console.read_nonblock(4) rescue nil
+          keys << console.read_nonblock(3) rescue nil
+          keys << console.read_nonblock(2) rescue nil
+        end
+
+        return Vedeu::Input::Mouse.click(keys) if click?(keys)
+
+        keys
       end
-      alias_method :command, :input
+
+      # Returns a boolean indicating whether a mouse click was
+      # received.
+      #
+      # @param key [NilClass|String|Symbol|Vedeu::Cursors::Cursor]
+      # @return [Boolean]
+      def click?(input)
+        return false if input.nil? || input.is_a?(Symbol)
+
+        input.is_a?(Vedeu::Cursors::Cursor) || input.start_with?("\e[M")
+      end
+
+      # @return [IO]
+      def console
+        @console ||= Vedeu::Terminal.console
+      end
+
+      # Takes input from the user via the keyboard. Accepts special
+      # keys like the F-Keys etc, by capturing the entire sequence.
+      #
+      # @return [String]
+      def command
+        console.gets.chomp
+      end
+
+      # @return [String|Symbol]
+      def name
+        Vedeu.focus
+      end
+
+      # @return [Vedeu::Interfaces::Interface]
+      def interface
+        Vedeu.interfaces.by_name(name)
+      end
 
     end # Input
 
