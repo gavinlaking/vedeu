@@ -17,7 +17,7 @@ if ENV['SIMPLECOV'].to_i == 1 || ENV['CONSOLE_COVERAGE'].to_i == 1
     add_group  'editor',        'vedeu/editor'
     add_group  'esc',           'vedeu/esc'
     add_group  'events',        'vedeu/events'
-    add_group  'geometry',      'vedeu/geometry'
+    add_group  'geometries',    'vedeu/geometries'
     add_group  'groups',        'vedeu/groups'
     add_group  'input',         'vedeu/input'
     add_group  'interfaces',    'vedeu/interfaces'
