@@ -143,7 +143,11 @@ module Vedeu
       def optimised_output
         Vedeu.timer("Optimised clearing #{clearing}: '#{name}'".freeze) do
           height.times.map do |iy|
-            Vedeu::Geometries::Position.new(y + iy, x).to_s + colour.to_s + chars
+            [
+              Vedeu::Geometries::Position.new(y + iy, x).to_s,
+              colour.to_s,
+              chars,
+            ].join
           end.join + Vedeu::Geometries::Position.new(y, x).to_s
         end
       end

@@ -49,8 +49,8 @@ module Vedeu
   [:down, :left, :right, :up].each do |direction|
     Vedeu.bind(:"_view_#{direction}_") do |name, offset|
       Vedeu::Geometries::Move.move(direction: direction,
-                                 name:      name,
-                                 offset:    offset)
+                                   name:      name,
+                                   offset:    offset)
     end
   end
 
