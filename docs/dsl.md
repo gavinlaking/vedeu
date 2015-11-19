@@ -105,27 +105,27 @@ end
 
 ## Geometry
 
-{include:Vedeu::Geometry::DSL}
+{include:Vedeu::Geometries::DSL}
 
 ### Setting the interface dimensions
 
-{include:Vedeu::Geometry::DSL#align}
-{include:Vedeu::Geometry::DSL#align_left}
-{include:Vedeu::Geometry::DSL#align_centre}
-{include:Vedeu::Geometry::DSL#align_right}
-{include:Vedeu::Geometry::DSL#align_top}
-{include:Vedeu::Geometry::DSL#align_middle}
-{include:Vedeu::Geometry::DSL#align_bottom}
-{include:Vedeu::Geometry::DSL#horizontal_alignment}
-{include:Vedeu::Geometry::DSL#vertical_alignment}
-{include:Vedeu::Geometry::DSL#height}
-{include:Vedeu::Geometry::DSL#width}
-{include:Vedeu::Geometry::DSL#columns}
-{include:Vedeu::Geometry::DSL#rows}
-{include:Vedeu::Geometry::DSL#x}
-{include:Vedeu::Geometry::DSL#xn}
-{include:Vedeu::Geometry::DSL#y}
-{include:Vedeu::Geometry::DSL#yn}
+{include:Vedeu::Geometries::DSL#align}
+{include:Vedeu::Geometries::DSL#align_left}
+{include:Vedeu::Geometries::DSL#align_centre}
+{include:Vedeu::Geometries::DSL#align_right}
+{include:Vedeu::Geometries::DSL#align_top}
+{include:Vedeu::Geometries::DSL#align_middle}
+{include:Vedeu::Geometries::DSL#align_bottom}
+{include:Vedeu::Geometries::DSL#horizontal_alignment}
+{include:Vedeu::Geometries::DSL#vertical_alignment}
+{include:Vedeu::Geometries::DSL#height}
+{include:Vedeu::Geometries::DSL#width}
+{include:Vedeu::Geometries::DSL#columns}
+{include:Vedeu::Geometries::DSL#rows}
+{include:Vedeu::Geometries::DSL#x}
+{include:Vedeu::Geometries::DSL#xn}
+{include:Vedeu::Geometries::DSL#y}
+{include:Vedeu::Geometries::DSL#yn}
 
 ## Groups
 

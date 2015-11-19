@@ -2,15 +2,15 @@ require 'test_helper'
 
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     class ValidatorTestClass
-      include Vedeu::Geometry::Validator
+      include Vedeu::Geometries::Validator
     end
 
     describe Validator do
 
-      let(:included) { Vedeu::Geometry::ValidatorTestClass.new }
+      let(:included) { Vedeu::Geometries::ValidatorTestClass.new }
 
       describe '#validate_height!' do
         let(:_value) {}
@@ -78,6 +78,6 @@ module Vedeu
 
     end # Validator
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

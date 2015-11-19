@@ -24,7 +24,7 @@ module Vedeu
         Vedeu::Borders::Border.new({ name: _name, enabled: false })
       }
       let(:geometry) {
-        Vedeu::Geometry::Geometry.new({ name: _name, x: 1, xn: 5, y: 1, yn: 5 })
+        Vedeu::Geometries::Geometry.new({ name: _name, x: 1, xn: 5, y: 1, yn: 5 })
       }
       let(:interface) {
         Vedeu::Interfaces::Interface.new({ name: _name })

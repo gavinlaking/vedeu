@@ -1,6 +1,6 @@
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     # Crudely corrects out of range values.
     #
@@ -8,13 +8,13 @@ module Vedeu
     #
     class Coordinate
 
-      # Return a new instance of Vedeu::Geometry::Coordinate.
+      # Return a new instance of Vedeu::Geometries::Coordinate.
       #
       # @param attributes [Hash<Symbol => Fixnum|String|Symbol>]
       # @option attributes name [String|Symbol]
       # @option attributes type [Symbol]
       # @option attributes offset [Fixnum]
-      # @return [Vedeu::Geometry::Coordinate]
+      # @return [Vedeu::Geometries::Coordinate]
       def initialize(attributes = {})
         defaults.merge!(attributes).each do |key, value|
           instance_variable_set("@#{key}", value)
@@ -84,7 +84,7 @@ module Vedeu
 
       # Returns the geometry for the interface.
       #
-      # @return (see Vedeu::Geometry::Repository#by_name)
+      # @return (see Vedeu::Geometries::Repository#by_name)
       def geometry
         @geometry ||= Vedeu.geometries.by_name(name)
       end
@@ -172,6 +172,6 @@ module Vedeu
 
     end # Coordinate
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

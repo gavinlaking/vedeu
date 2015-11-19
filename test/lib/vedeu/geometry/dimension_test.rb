@@ -2,11 +2,11 @@ require 'test_helper'
 
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     describe Dimension do
 
-      let(:described)  { Vedeu::Geometry::Dimension }
+      let(:described)  { Vedeu::Geometries::Dimension }
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
@@ -31,8 +31,10 @@ module Vedeu
         it { instance.instance_variable_get('@dn').must_equal(dn) }
         it { instance.instance_variable_get('@d_dn').must_equal(d_dn) }
         it { instance.instance_variable_get('@default').must_equal(default) }
-        it { instance.instance_variable_get('@maximised').must_equal(maximised) }
-        it { instance.instance_variable_get('@alignment').must_equal(alignment) }
+        it { instance.
+          instance_variable_get('@maximised').must_equal(maximised) }
+        it { instance.
+          instance_variable_get('@alignment').must_equal(alignment) }
       end
 
       describe '.pair' do
@@ -150,6 +152,6 @@ module Vedeu
 
     end # Dimension
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

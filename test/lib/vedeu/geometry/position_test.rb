@@ -2,11 +2,11 @@ require 'test_helper'
 
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     describe Position do
 
-      let(:described) { Vedeu::Geometry::Position }
+      let(:described) { Vedeu::Geometries::Position }
       let(:instance)  { described.new(y, x) }
       let(:y)         { 12 }
       let(:x)         { 19 }
@@ -103,7 +103,7 @@ module Vedeu
       end
 
       describe '#to_a' do
-        subject { Vedeu::Geometry::Position.new.to_a }
+        subject { Vedeu::Geometries::Position.new.to_a }
 
         it { subject.must_equal([1, 1]) }
       end
@@ -111,7 +111,7 @@ module Vedeu
       describe '#to_position' do
         subject { instance.to_position }
 
-        it { subject.must_be_instance_of(Vedeu::Geometry::Position) }
+        it { subject.must_be_instance_of(Vedeu::Geometries::Position) }
         it { subject.must_equal(instance) }
       end
 
@@ -119,27 +119,28 @@ module Vedeu
         # subject { described.new.to_s }
 
         it 'returns an escape sequence when no coordinates are provided' do
-          Vedeu::Geometry::Position.new.to_s.must_equal("\e[1;1H")
+          Vedeu::Geometries::Position.new.to_s.must_equal("\e[1;1H")
         end
 
         it 'returns an escape sequence when coordinates are provided' do
-          Vedeu::Geometry::Position[12, 19].to_s.must_equal("\e[12;19H")
+          Vedeu::Geometries::Position[12, 19].to_s.must_equal("\e[12;19H")
         end
 
         it 'returns an escape sequence if a coordinate is missing' do
-          Vedeu::Geometry::Position.new(12).to_s.must_equal("\e[12;1H")
+          Vedeu::Geometries::Position.new(12).to_s.must_equal("\e[12;1H")
         end
 
         it 'returns an escape sequence if the x coordinate is negative' do
-          Vedeu::Geometry::Position[12, -5].to_s.must_equal("\e[12;1H")
+          Vedeu::Geometries::Position[12, -5].to_s.must_equal("\e[12;1H")
         end
 
         it 'returns an escape sequence if the y coordinate is negative' do
-          Vedeu::Geometry::Position[-12, 5].to_s.must_equal("\e[1;5H")
+          Vedeu::Geometries::Position[-12, 5].to_s.must_equal("\e[1;5H")
         end
 
         it 'resets to starting position when a block is given' do
-          Vedeu::Geometry::Position[4, 9].to_s { 'test' }.must_equal("\e[4;9Htest")
+          Vedeu::Geometries::Position[4, 9].to_s { 'test' }.
+            must_equal("\e[4;9Htest")
         end
       end
 
@@ -164,7 +165,7 @@ module Vedeu
       describe '#down' do
         subject { instance.down }
 
-        it { subject.must_be_instance_of(Vedeu::Geometry::Position) }
+        it { subject.must_be_instance_of(Vedeu::Geometries::Position) }
         it { subject.y.must_equal(13) }
         it { subject.x.must_equal(19) }
 
@@ -178,7 +179,7 @@ module Vedeu
       describe '#left' do
         subject { instance.left }
 
-        it { subject.must_be_instance_of(Vedeu::Geometry::Position) }
+        it { subject.must_be_instance_of(Vedeu::Geometries::Position) }
         it { subject.y.must_equal(12) }
         it { subject.x.must_equal(18) }
 
@@ -192,7 +193,7 @@ module Vedeu
       describe '#right' do
         subject { instance.right }
 
-        it { subject.must_be_instance_of(Vedeu::Geometry::Position) }
+        it { subject.must_be_instance_of(Vedeu::Geometries::Position) }
         it { subject.y.must_equal(12) }
         it { subject.x.must_equal(20) }
 
@@ -206,7 +207,7 @@ module Vedeu
       describe '#up' do
         subject { instance.up }
 
-        it { subject.must_be_instance_of(Vedeu::Geometry::Position) }
+        it { subject.must_be_instance_of(Vedeu::Geometries::Position) }
         it { subject.y.must_equal(11) }
         it { subject.x.must_equal(19) }
 
@@ -219,6 +220,6 @@ module Vedeu
 
     end # Position
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

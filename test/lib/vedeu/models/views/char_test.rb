@@ -155,7 +155,7 @@ module Vedeu
         it { subject.must_be_instance_of(String) }
 
         context 'when a position is specified' do
-          let(:position) { Vedeu::Geometry::Position[17, 2] }
+          let(:position) { Vedeu::Geometries::Position[17, 2] }
 
           it { subject.must_equal("\e[17;2Ha") }
         end
@@ -241,7 +241,7 @@ module Vedeu
       end
 
       describe '#x' do
-        let(:position) { Vedeu::Geometry::Position[17, 2] }
+        let(:position) { Vedeu::Geometries::Position[17, 2] }
 
         subject { instance.x }
 
@@ -257,7 +257,7 @@ module Vedeu
       end
 
       describe '#y' do
-        let(:position) { Vedeu::Geometry::Position[17, 2] }
+        let(:position) { Vedeu::Geometries::Position[17, 2] }
 
         subject { instance.y }
 

@@ -2,13 +2,13 @@ require 'test_helper'
 
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     describe Area do
 
-      let(:described) { Vedeu::Geometry::Area }
+      let(:described) { Vedeu::Geometries::Area }
       let(:instance)  { described.new(name: _name, y: y, yn: yn, x: x, xn: xn) }
-      let(:_name)     { 'Vedeu::Geometry::Area' }
+      let(:_name)     { 'Vedeu::Geometries::Area' }
       let(:y)         { 4 }
       let(:yn)        { 9 }
       let(:x)         { 6 }
@@ -386,6 +386,6 @@ module Vedeu
 
     end # Area
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

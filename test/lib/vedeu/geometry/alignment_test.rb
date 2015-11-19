@@ -2,11 +2,11 @@ require 'test_helper'
 
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     describe Alignment do
 
-      let(:described) { Vedeu::Geometry::Alignment }
+      let(:described) { Vedeu::Geometries::Alignment }
       let(:instance)  { described.new(_value) }
       let(:_value)    {}
 
@@ -24,8 +24,8 @@ module Vedeu
       describe '.coerce' do
         subject { described.coerce(_value) }
 
-        context 'when the value is a Vedeu::Geometry::Alignment' do
-          let(:_value) { Vedeu::Geometry::Alignment.new(:none) }
+        context 'when the value is a Vedeu::Geometries::Alignment' do
+          let(:_value) { Vedeu::Geometries::Alignment.new(:none) }
 
           it { subject.must_equal(_value) }
         end
@@ -147,6 +147,6 @@ module Vedeu
 
     end # Alignment
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

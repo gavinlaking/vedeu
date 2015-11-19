@@ -78,7 +78,7 @@ module Vedeu
 
       # Fetch the geometry by name.
       #
-      # @return (see Vedeu::Geometry::Repository#by_name)
+      # @return (see Vedeu::Geometries::Repository#by_name)
       def geometry
         @geometry ||= Vedeu.geometries.by_name(name)
       end

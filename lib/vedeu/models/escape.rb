@@ -16,7 +16,7 @@ module Vedeu
       #
       # @param attributes [String]
       # @option attributes position
-      #   [Vedeu::Geometry::Position|Array<Fixnum>]
+      #   [Vedeu::Geometries::Position|Array<Fixnum>]
       # @option attributes value [String]
       # @return [Vedeu::Models::Escape]
       def initialize(attributes = {})
@@ -50,7 +50,7 @@ module Vedeu
 
       # @return [String]
       def position
-        Vedeu::Geometry::Position.coerce(@position)
+        Vedeu::Geometries::Position.coerce(@position)
       end
 
       # Return an empty hash as most escape sequences won't make

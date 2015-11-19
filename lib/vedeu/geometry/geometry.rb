@@ -1,6 +1,6 @@
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     # @todo Consider storing the Terminal size at the time of first
     # creation, this allows us to return the interface to its original
@@ -88,22 +88,22 @@ module Vedeu
         new(attributes).store(&block)
       end
 
-      # Returns a new instance of Vedeu::Geometry::Geometry.
+      # Returns a new instance of Vedeu::Geometries::Geometry.
       #
       # @param attributes [Hash<Symbol => Boolean|Fixnum|String|
-      #   Symbol|Vedeu::Geometry::Repository]
+      #   Symbol|Vedeu::Geometries::Repository]
       # @option attributes horizontal_alignment [Symbol]
       # @option attributes vertical_alignment [Symbol]
       # @option attributes maximised [Boolean]
       # @option attributes height [Fixnum]
       # @option attributes name [String|Symbol]
-      # @option attributes repository [Vedeu::Geometry::Repository]
+      # @option attributes repository [Vedeu::Geometries::Repository]
       # @option attributes width [Fixnum]
       # @option attributes x [Fixnum]
       # @option attributes xn [Fixnum]
       # @option attributes y [Fixnum]
       # @option attributes yn [Fixnum]
-      # @return [Vedeu::Geometry::Geometry]
+      # @return [Vedeu::Geometries::Geometry]
       def initialize(attributes = {})
         defaults.merge!(attributes).each do |key, value|
           instance_variable_set("@#{key}", value)
@@ -111,7 +111,7 @@ module Vedeu
       end
 
       # @return [Hash<Symbol => Boolean|Fixnum|String|Symbol|
-      #   Vedeu::Geometry::Repository]
+      #   Vedeu::Geometries::Repository]
       def attributes
         {
           client:               @client,
@@ -136,15 +136,15 @@ module Vedeu
       #   the client application object that is currently invoking a
       #   DSL method. It is required so that we can send messages to
       #   the client application object should we need to.
-      # @return [Vedeu::Geometry::DSL] The DSL instance for this
+      # @return [Vedeu::Geometries::DSL] The DSL instance for this
       #   model.
       def deputy(client = nil)
-        Vedeu::Geometry::DSL.new(self, client)
+        Vedeu::Geometries::DSL.new(self, client)
       end
 
       # An object is equal when its values are the same.
       #
-      # @param other [Vedeu::Geometry::Geometry]
+      # @param other [Vedeu::Geometries::Geometry]
       # @return [Boolean]
       def eql?(other)
         self.class == other.class && name == other.name
@@ -157,7 +157,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_maximise_, name)
       #
-      # @return [Vedeu::Geometry::Geometry|NilClass]
+      # @return [Vedeu::Geometries::Geometry|NilClass]
       def maximise
         return self if maximised?
 
@@ -178,7 +178,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_unmaximise_, name)
       #
-      # @return [Vedeu::Geometry::Geometry|NilClass]
+      # @return [Vedeu::Geometries::Geometry|NilClass]
       def unmaximise
         return self unless maximised?
 
@@ -193,9 +193,9 @@ module Vedeu
 
       private
 
-      # @return [Vedeu::Geometry::Area]
+      # @return [Vedeu::Geometries::Area]
       def area
-        @area = Vedeu::Geometry::Area.from_attributes(area_attributes)
+        @area = Vedeu::Geometries::Area.from_attributes(area_attributes)
       end
 
       # @return [Hash<Symbol => Boolean|Fixnum>]
@@ -217,7 +217,7 @@ module Vedeu
       # Returns the default options/attributes for this class.
       #
       # @return [Hash<Symbol => Boolean|Fixnum|NilClass|String|Symbol|
-      #   Vedeu::Geometry::Repository]
+      #   Vedeu::Geometries::Repository]
       def defaults
         {
           client:               nil,
@@ -237,6 +237,6 @@ module Vedeu
 
     end # Geometry
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

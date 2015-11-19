@@ -1,22 +1,22 @@
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     # The Y Dimension provides the height of an entity.
     #
     # @api private
     #
-    class YDimension < Vedeu::Geometry::Dimension
+    class YDimension < Vedeu::Geometries::Dimension
 
       private
 
-      # @see Vedeu::Geometry::Dimension#defaults
+      # @see Vedeu::Geometries::Dimension#defaults
       def defaults
         super.merge!(default: Vedeu.height)
       end
 
     end # YDimension
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

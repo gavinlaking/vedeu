@@ -43,7 +43,7 @@ module Vedeu
 
       describe '.by_name' do
         let(:geometry) {
-          Vedeu::Geometry::Geometry.new(name: _name, x: 1, xn: 7, y: 1, yn: 4)
+          Vedeu::Geometries::Geometry.new(name: _name, x: 1, xn: 7, y: 1, yn: 4)
         }
         let(:interface) {
           Vedeu::Interfaces::Interface.new(name: _name, visible: visible)

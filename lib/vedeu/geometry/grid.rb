@@ -1,6 +1,6 @@
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     # The grid system splits the terminal height and width into 12
     # equal parts, by dividing the available height and width by 12.
@@ -23,22 +23,22 @@ module Vedeu
         new(value).rows
       end
 
-      # Returns a new instance of Vedeu::Geometry::Grid.
+      # Returns a new instance of Vedeu::Geometries::Grid.
       #
       # @param value [Fixnum]
-      # @return [Vedeu::Geometry::Grid]
+      # @return [Vedeu::Geometries::Grid]
       def initialize(value)
         @value = value
       end
 
-      # @see Vedeu::Geometry::DSL#columns
+      # @see Vedeu::Geometries::DSL#columns
       def columns
         fail Vedeu::Error::OutOfRange if out_of_range?
 
         column * value
       end
 
-      # @see Vedeu::Geometry::DSL#rows
+      # @see Vedeu::Geometries::DSL#rows
       def rows
         fail Vedeu::Error::OutOfRange if out_of_range?
 
@@ -77,6 +77,6 @@ module Vedeu
 
     end # Grid
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

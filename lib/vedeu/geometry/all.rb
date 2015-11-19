@@ -5,11 +5,11 @@ module Vedeu
   # draw content in a consistent way.
   #
   # You can define the geometry of your interfaces using the
-  # {Vedeu::Geometry::DSL}.
+  # {Vedeu::Geometries::DSL}.
   #
-  module Geometry
+  module Geometries
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu
 

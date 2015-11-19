@@ -1,13 +1,13 @@
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     # Provides the mechanism to align an interface/view horizontally
     # within the available terminal space.
     #
     # @api private
     #
-    class HorizontalAlignment < Vedeu::Geometry::Alignment
+    class HorizontalAlignment < Vedeu::Geometries::Alignment
 
       # @raise [Vedeu::Error::InvalidSyntax] When the value is not one
       #   of :bottom, :centre, :left, :middle, :right, :top.
@@ -22,6 +22,6 @@ module Vedeu
 
     end # HorizontalAlignment
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

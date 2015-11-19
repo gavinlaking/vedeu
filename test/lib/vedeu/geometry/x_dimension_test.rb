@@ -2,11 +2,11 @@ require 'test_helper'
 
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     describe XDimension do
 
-      let(:described)  { Vedeu::Geometry::XDimension }
+      let(:described)  { Vedeu::Geometries::XDimension }
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
@@ -67,6 +67,6 @@ module Vedeu
 
     end # XDimension
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

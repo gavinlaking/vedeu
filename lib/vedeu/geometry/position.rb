@@ -1,6 +1,6 @@
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     # Change coordinates into an escape sequence to set the cursor
     # position.
@@ -19,15 +19,15 @@ module Vedeu
       attr_reader :x
       alias_method :last, :x
 
-      # Convenience constructor for Vedeu::Geometry::Position.
+      # Convenience constructor for Vedeu::Geometries::Position.
       #
       # @param (see #initialize)
       def self.[](y, x)
         new(y, x)
       end
 
-      # @param value [Array<Fixnum>|Vedeu::Geometry::Position]
-      # @return [Vedeu::Geometry::Position]
+      # @param value [Array<Fixnum>|Vedeu::Geometries::Position]
+      # @return [Vedeu::Geometries::Position]
       def self.coerce(value)
         if value.is_a?(self)
           value
@@ -41,11 +41,11 @@ module Vedeu
         end
       end
 
-      # Initializes a new instance of Vedeu::Geometry::Position.
+      # Initializes a new instance of Vedeu::Geometries::Position.
       #
       # @param y [Fixnum] The row/line position.
       # @param x [Fixnum] The column/character position.
-      # @return [Vedeu::Geometry::Position]
+      # @return [Vedeu::Geometries::Position]
       def initialize(y = 1, x = 1)
         @y = (y.nil? || y < 1) ? 1 : y
         @x = (x.nil? || x < 1) ? 1 : x
@@ -64,7 +64,7 @@ module Vedeu
         [yi, xi]
       end
 
-      # @param other [Vedeu::Geometry::Position]
+      # @param other [Vedeu::Geometries::Position]
       # @return [Fixnum]
       def <=>(other)
         if y == other.y
@@ -78,7 +78,7 @@ module Vedeu
 
       # An object is equal when its values are the same.
       #
-      # @param other [Vedeu::Geometry::Position]
+      # @param other [Vedeu::Geometries::Position]
       # @return [Boolean]
       def eql?(other)
         self.class == other.class && (x == other.x && y == other.y)
@@ -92,7 +92,7 @@ module Vedeu
         [y, x]
       end
 
-      # @return [Vedeu::Geometry::Position]
+      # @return [Vedeu::Geometries::Position]
       def to_position
         self
       end
@@ -114,30 +114,30 @@ module Vedeu
 
       # Increase y coordinate; moves down.
       #
-      # @return [Vedeu::Geometry::Position]
+      # @return [Vedeu::Geometries::Position]
       def down
-        Vedeu::Geometry::Position.new(y + 1, x)
+        Vedeu::Geometries::Position.new(y + 1, x)
       end
 
       # Decrease x coordinate; moves left.
       #
-      # @return [Vedeu::Geometry::Position]
+      # @return [Vedeu::Geometries::Position]
       def left
-        Vedeu::Geometry::Position.new(y, x - 1)
+        Vedeu::Geometries::Position.new(y, x - 1)
       end
 
       # Increase x coordinate; moves right.
       #
-      # @return [Vedeu::Geometry::Position]
+      # @return [Vedeu::Geometries::Position]
       def right
-        Vedeu::Geometry::Position.new(y, x + 1)
+        Vedeu::Geometries::Position.new(y, x + 1)
       end
 
       # Decrease y coordinate; moves up.
       #
-      # @return [Vedeu::Geometry::Position]
+      # @return [Vedeu::Geometries::Position]
       def up
-        Vedeu::Geometry::Position.new(y - 1, x)
+        Vedeu::Geometries::Position.new(y - 1, x)
       end
 
       private
@@ -152,6 +152,6 @@ module Vedeu
 
     end # Position
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

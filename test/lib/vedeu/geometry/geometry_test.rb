@@ -2,11 +2,11 @@ require 'test_helper'
 
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     describe Geometry do
 
-      let(:described)  { Vedeu::Geometry::Geometry }
+      let(:described)  { Vedeu::Geometries::Geometry }
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
@@ -42,10 +42,13 @@ module Vedeu
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@client').must_equal(client) }
         it { instance.instance_variable_get('@height').must_equal(height) }
-        it { instance.instance_variable_get('@horizontal_alignment').must_equal(horizontal_alignment) }
-        it { instance.instance_variable_get('@maximised').must_equal(maximised) }
+        it { instance.instance_variable_get('@horizontal_alignment').
+          must_equal(horizontal_alignment) }
+        it { instance.instance_variable_get('@maximised').
+          must_equal(maximised) }
         it { instance.instance_variable_get('@name').must_equal(_name) }
-        it { instance.instance_variable_get('@vertical_alignment').must_equal(vertical_alignment) }
+        it { instance.instance_variable_get('@vertical_alignment').
+          must_equal(vertical_alignment) }
         it { instance.instance_variable_get('@width').must_equal(width) }
         it { instance.instance_variable_get('@x').must_equal(x) }
         it { instance.instance_variable_get('@xn').must_equal(xn) }
@@ -96,7 +99,7 @@ module Vedeu
         subject { instance.deputy }
 
         it 'returns the DSL instance' do
-          subject.must_be_instance_of(Vedeu::Geometry::DSL)
+          subject.must_be_instance_of(Vedeu::Geometries::DSL)
         end
       end
 
@@ -185,6 +188,6 @@ module Vedeu
 
     end # Geometry
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

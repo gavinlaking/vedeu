@@ -15,11 +15,11 @@ module Vedeu
     it { Vedeu.bound?(:_view_up_).must_equal(true) }
   end
 
-  module Geometry
+  module Geometries
 
     describe Repository do
 
-      let(:described) { Vedeu::Geometry::Repository }
+      let(:described) { Vedeu::Geometries::Repository }
 
       after { Vedeu.geometries.reset }
 
@@ -27,6 +27,6 @@ module Vedeu
 
     end # Repository
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

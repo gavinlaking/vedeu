@@ -2,13 +2,13 @@ require 'test_helper'
 
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     describe DSL do
 
-      let(:described) { Vedeu::Geometry::DSL }
+      let(:described) { Vedeu::Geometries::DSL }
       let(:instance)  { described.new(model) }
-      let(:model)     { Vedeu::Geometry::Geometry.new }
+      let(:model)     { Vedeu::Geometries::Geometry.new }
 
       describe '.geometry' do
         it { described.must_respond_to(:geometry) }
@@ -21,7 +21,7 @@ module Vedeu
       #   subject { instance.alignment(_value, width) }
 
       #   context 'when a value and width is given' do
-      #     it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
+      #     it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
 
       #     context 'when the value is :center' do
       #       let(:_value) { :center }
@@ -88,9 +88,11 @@ module Vedeu
           end
 
           context 'when the height is given' do
-            it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
-            it { subject.vertical_alignment.must_be_instance_of(Vedeu::Geometry::VerticalAlignment) }
-            it { subject.horizontal_alignment.must_be_instance_of(Vedeu::Geometry::HorizontalAlignment) }
+            it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
+            it { subject.vertical_alignment.
+              must_be_instance_of(Vedeu::Geometries::VerticalAlignment) }
+            it { subject.horizontal_alignment.
+              must_be_instance_of(Vedeu::Geometries::HorizontalAlignment) }
             it { subject.height.must_equal(20) }
             it { subject.width.must_equal(20) }
           end
@@ -114,9 +116,11 @@ module Vedeu
           end
 
           context 'when the width is given' do
-            it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
-            it { subject.vertical_alignment.must_be_instance_of(Vedeu::Geometry::VerticalAlignment) }
-            it { subject.horizontal_alignment.must_be_instance_of(Vedeu::Geometry::HorizontalAlignment) }
+            it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
+            it { subject.vertical_alignment.
+              must_be_instance_of(Vedeu::Geometries::VerticalAlignment) }
+            it { subject.horizontal_alignment.
+              must_be_instance_of(Vedeu::Geometries::HorizontalAlignment) }
             it { subject.height.must_equal(20) }
             it { subject.width.must_equal(20) }
           end
@@ -147,7 +151,7 @@ module Vedeu
           context 'when a width is given' do
             let(:width) { 20 }
 
-            it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
+            it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
           end
         end
       end
@@ -176,7 +180,7 @@ module Vedeu
           context 'when a height is given' do
             let(:height) { 20 }
 
-            it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
+            it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
           end
         end
       end
@@ -187,7 +191,7 @@ module Vedeu
         subject { instance.align_bottom(height) }
 
         context 'when a height is given' do
-          it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
+          it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
         end
 
         context 'when a height is not given' do
@@ -205,7 +209,7 @@ module Vedeu
         it { instance.must_respond_to(:align_center) }
 
         context 'when a width is given' do
-          it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
+          it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
         end
 
         context 'when a width is not given' do
@@ -236,7 +240,7 @@ module Vedeu
         subject { instance.align_middle(height) }
 
         context 'when a height is given' do
-          it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
+          it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
         end
 
         context 'when a height is not given' do
@@ -267,7 +271,7 @@ module Vedeu
         subject { instance.align_top(height) }
 
         context 'when a height is given' do
-          it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
+          it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
         end
 
         context 'when a height is not given' do
@@ -313,7 +317,7 @@ module Vedeu
             end
           }
 
-          it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
+          it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
 
           it 'allows the use of height within geometry' do
             subject.height.must_equal(17)
@@ -376,7 +380,7 @@ module Vedeu
             end
           }
 
-          it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
+          it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
 
           it 'allows the use of width within geometry' do
             subject.width.must_equal(29)
@@ -395,7 +399,7 @@ module Vedeu
 
         context 'when a block is given' do
           subject {
-            Vedeu::Geometry::Geometry.build({}) do
+            Vedeu::Geometries::Geometry.build({}) do
               x do
                 3 + 4
               end
@@ -412,7 +416,7 @@ module Vedeu
             end
           }
 
-          it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
+          it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
 
           it 'allows the use of x within geometry' do
             subject.x.must_equal(9)
@@ -430,7 +434,7 @@ module Vedeu
 
           context 'when a block is given' do
             subject {
-              Vedeu::Geometry::Geometry.build({}) do
+              Vedeu::Geometries::Geometry.build({}) do
                 x do
                   8 + 8
                 end
@@ -453,7 +457,7 @@ module Vedeu
 
         context 'when a block is given' do
           subject {
-            Vedeu::Geometry::Geometry.build({}) do
+            Vedeu::Geometries::Geometry.build({}) do
               y do
                 2 + 7
               end
@@ -470,7 +474,7 @@ module Vedeu
             end
           }
 
-          it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
+          it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
 
           it 'allows the use of y within geometry' do
             subject.y.must_equal(4)
@@ -488,7 +492,7 @@ module Vedeu
 
           context 'when a block is given' do
             subject {
-              Vedeu::Geometry::Geometry.build({}) do
+              Vedeu::Geometries::Geometry.build({}) do
                 y do
                   8 + 8
                 end
@@ -508,7 +512,7 @@ module Vedeu
 
         context 'when a block is given' do
           subject {
-            Vedeu::Geometry::Geometry.build({}) do
+            Vedeu::Geometries::Geometry.build({}) do
               xn do
                 8 + 8
               end
@@ -527,7 +531,7 @@ module Vedeu
 
         context 'when a block is given' do
           subject {
-            Vedeu::Geometry::Geometry.build({}) do
+            Vedeu::Geometries::Geometry.build({}) do
               yn do
                 5 + 4
               end
@@ -540,6 +544,6 @@ module Vedeu
 
     end # DSL
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

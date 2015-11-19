@@ -1,8 +1,8 @@
 module Vedeu
 
-  module Geometry
+  module Geometries
 
-    # Validate values given to {Vedeu::Geometry::DSL}.
+    # Validate values given to {Vedeu::Geometries::DSL}.
     #
     # @api private
     #
@@ -55,6 +55,6 @@ module Vedeu
 
     end # Validator
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

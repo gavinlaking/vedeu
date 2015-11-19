@@ -182,7 +182,7 @@ module Vedeu
 
       # Returns the geometry for the interface.
       #
-      # @return (see Vedeu::Geometry::Repository#by_name)
+      # @return (see Vedeu::Geometries::Repository#by_name)
       def geometry
         Vedeu.geometries.by_name(name)
       end

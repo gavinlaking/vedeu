@@ -55,7 +55,7 @@ module Vedeu
       end
 
       describe '#buffer' do
-        let(:position) { Vedeu::Geometry::Position.new(1, 1) }
+        let(:position) { Vedeu::Geometries::Position.new(1, 1) }
 
         subject { instance.buffer }
 

@@ -1,6 +1,6 @@
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     # Geometry allows the configuration of the position and size of an
     # interface. Within Vedeu, as the same for ANSI terminals, has the
@@ -76,7 +76,7 @@ module Vedeu
       include Vedeu::Common
       include Vedeu::DSL
       include Vedeu::DSL::Use
-      include Vedeu::Geometry::Validator
+      include Vedeu::Geometries::Validator
 
       # Specify the geometry of an interface or view with a simple
       # DSL.
@@ -89,11 +89,11 @@ module Vedeu
       #   to which this geometry belongs.
       # @param block [Proc]
       # @raise [Vedeu::Error::RequiresBlock]
-      # @return [Vedeu::Geometry::Geometry]
+      # @return [Vedeu::Geometries::Geometry]
       def self.geometry(name, &block)
         fail Vedeu::Error::RequiresBlock unless block_given?
 
-        Vedeu::Geometry::Geometry.build(name: name, &block).store
+        Vedeu::Geometries::Geometry.build(name: name, &block).store
       end
 
       # Instructs Vedeu to align the interface/view either left,
@@ -114,7 +114,7 @@ module Vedeu
       # @param width [Fixnum] The width of the aligned interface/view.
       # @raise [Vedeu::Error::InvalidSyntax] When the value or width
       #   is not given.
-      # @return [Vedeu::Geometry::Geometry]
+      # @return [Vedeu::Geometries::Geometry]
       # def alignment(value, width)
       #   fail Vedeu::Error::InvalidSyntax,
       #        'No alignment given. Valid values are :center, :centre, ' \
@@ -122,7 +122,7 @@ module Vedeu
       #   fail Vedeu::Error::InvalidSyntax,
       #        'No width given.'.freeze unless present?(width)
 
-      #   model.alignment = Vedeu::Geometry::Alignment.align(value)
+      #   model.alignment = Vedeu::Geometries::Alignment.align(value)
       #   model.width     = width
       #   model
       # end
@@ -146,7 +146,7 @@ module Vedeu
       #     is not given.
       #   - When the vertical is given (and not :none) and the height
       #     is not given.
-      # @return [Vedeu::Geometry::Geometry]
+      # @return [Vedeu::Geometries::Geometry]
       def align(vertical, horizontal, width, height)
         validate_vertical_alignment!(vertical)
         validate_horizontal_alignment!(horizontal)
@@ -160,12 +160,12 @@ module Vedeu
       # @param value [Symbol] One of :center, :centre, :left, :none,
       #   :right.
       # @param width [Fixnum] The number of characters/columns.
-      # @return [Vedeu::Geometry::Geometry]
+      # @return [Vedeu::Geometries::Geometry]
       def horizontal_alignment(value, width)
         validate_horizontal_alignment!(value)
         validate_width!(width)
 
-        model.horizontal_alignment = Vedeu::Geometry::HorizontalAlignment
+        model.horizontal_alignment = Vedeu::Geometries::HorizontalAlignment
           .coerce(value)
         model.width = width
         model
@@ -173,12 +173,12 @@ module Vedeu
 
       # @param value [Symbol] One of :bottom, :middle, :none, :top.
       # @param height [Fixnum] The number of lines/rows.
-      # @return [Vedeu::Geometry::Geometry]
+      # @return [Vedeu::Geometries::Geometry]
       def vertical_alignment(value, height)
         validate_vertical_alignment!(value)
         validate_height!(height)
 
-        model.vertical_alignment = Vedeu::Geometry::VerticalAlignment
+        model.vertical_alignment = Vedeu::Geometries::VerticalAlignment
           .coerce(value)
         model.height = height
         model
@@ -207,7 +207,7 @@ module Vedeu
       # @param height [Fixnum] The number of lines/rows.
       # @raise [Vedeu::Error::InvalidSyntax] When the height is not
       #   given.
-      # @return [Vedeu::Geometry::Geometry]
+      # @return [Vedeu::Geometries::Geometry]
       def align_bottom(height)
         vertical_alignment(:bottom, height)
       end
@@ -236,7 +236,7 @@ module Vedeu
       # @param width [Fixnum] The number of characters/columns.
       # @raise [Vedeu::Error::InvalidSyntax] When the width is not
       #   given.
-      # @return [Vedeu::Geometry::Geometry]
+      # @return [Vedeu::Geometries::Geometry]
       def align_centre(width)
         horizontal_alignment(:centre, width)
       end
@@ -264,7 +264,7 @@ module Vedeu
       # @param width [Fixnum] The number of characters/columns.
       # @raise [Vedeu::Error::InvalidSyntax] When the width is not
       #   given.
-      # @return [Vedeu::Geometry::Geometry]
+      # @return [Vedeu::Geometries::Geometry]
       def align_left(width)
         horizontal_alignment(:left, width)
       end
@@ -292,7 +292,7 @@ module Vedeu
       # @param height [Fixnum] The number of lines/rows.
       # @raise [Vedeu::Error::InvalidSyntax] When the height is not
       #   given.
-      # @return [Vedeu::Geometry::Geometry]
+      # @return [Vedeu::Geometries::Geometry]
       def align_middle(height)
         vertical_alignment(:middle, height)
       end
@@ -319,7 +319,7 @@ module Vedeu
       # @param width [Fixnum] The number of characters/columns.
       # @raise [Vedeu::Error::InvalidSyntax] When the width is not
       #   given.
-      # @return [Vedeu::Geometry::Geometry]
+      # @return [Vedeu::Geometries::Geometry]
       def align_right(width)
         horizontal_alignment(:right, width)
       end
@@ -347,7 +347,7 @@ module Vedeu
       # @param height [Fixnum] The number of lines/rows.
       # @raise [Vedeu::Error::InvalidSyntax] When the height is not
       #   given.
-      # @return [Vedeu::Geometry::Geometry]
+      # @return [Vedeu::Geometries::Geometry]
       def align_top(height)
         vertical_alignment(:top, height)
       end
@@ -368,7 +368,7 @@ module Vedeu
       #   not between 1 and 12 inclusive.
       # @return [Fixnum|Vedeu::Error::OutOfRange]
       def columns(value)
-        Vedeu::Geometry::Grid.columns(value)
+        Vedeu::Geometries::Grid.columns(value)
       end
 
       # Specify the number of characters/rows/lines tall the interface
@@ -402,7 +402,7 @@ module Vedeu
       #   not between 1 and 12 inclusive.
       # @return [Fixnum]
       def rows(value)
-        Vedeu::Geometry::Grid.rows(value)
+        Vedeu::Geometries::Grid.rows(value)
       end
 
       # Specify the number of characters/columns wide the interface
@@ -508,11 +508,11 @@ module Vedeu
 
     end # DSL
 
-  end # Geometry
+  end # Geometries
 
   # @!method geometry
-  #   @see Vedeu::Geometry::DSL.geometry
-  def_delegators Vedeu::Geometry::DSL,
+  #   @see Vedeu::Geometries::DSL.geometry
+  def_delegators Vedeu::Geometries::DSL,
                  :geometry
 
 end # Vedeu

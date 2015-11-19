@@ -1,22 +1,22 @@
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     # The X Dimension provides the width of an entity.
     #
     # @api private
     #
-    class XDimension < Vedeu::Geometry::Dimension
+    class XDimension < Vedeu::Geometries::Dimension
 
       private
 
-      # @see Vedeu::Geometry::Dimension#defaults
+      # @see Vedeu::Geometries::Dimension#defaults
       def defaults
         super.merge!(default: Vedeu.width)
       end
 
     end # XDimension
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

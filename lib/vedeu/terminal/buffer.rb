@@ -56,7 +56,7 @@ module Vedeu
       # @param x [Fixnum] The column/character coordinate.
       # @return [Vedeu::Views::Char]
       def read(y, x)
-        cy, cx = Vedeu::Geometry::Position[y, x].as_indices
+        cy, cx = Vedeu::Geometries::Position[y, x].as_indices
 
         row  = fetch(cells, cy)
         cell = fetch(row, cx)
@@ -125,7 +125,7 @@ module Vedeu
       # @return [Boolean]
       def position?(value)
         value.respond_to?(:position) &&
-          value.position.is_a?(Vedeu::Geometry::Position)
+          value.position.is_a?(Vedeu::Geometries::Position)
       end
 
       # @param value [Array<Array<Vedeu::Views::Char>>]

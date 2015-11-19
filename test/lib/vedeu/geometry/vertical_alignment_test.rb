@@ -2,11 +2,11 @@ require 'test_helper'
 
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     describe VerticalAlignment do
 
-      let(:described) { Vedeu::Geometry::VerticalAlignment }
+      let(:described) { Vedeu::Geometries::VerticalAlignment }
       let(:instance)  { described.new(_value) }
       let(:_value)    {}
 
@@ -56,6 +56,6 @@ module Vedeu
 
     end # VerticalAlignment
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

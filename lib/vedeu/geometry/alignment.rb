@@ -1,14 +1,14 @@
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     # The subclasses of this class, HorizontalAlignment and
     # VerticalAlignment provide the mechanism to align an interface or
     # view horizontally or vertically within the available terminal
     # space.
     #
-    # @see Vedeu::Geometry::HorizontalAlignment
-    # @see Vedeu::Geometry::VerticalAlignment
+    # @see Vedeu::Geometries::HorizontalAlignment
+    # @see Vedeu::Geometries::VerticalAlignment
     #
     # @api private
     #
@@ -20,8 +20,8 @@ module Vedeu
         new(value).align
       end
 
-      # @param value [NilClass|Symbol|Vedeu::Geometry::Alignment]
-      # @return [Vedeu::Geometry::Alignment]
+      # @param value [NilClass|Symbol|Vedeu::Geometries::Alignment]
+      # @return [Vedeu::Geometries::Alignment]
       def self.coerce(value = nil)
         if value.is_a?(self)
           value
@@ -35,10 +35,10 @@ module Vedeu
         end
       end
 
-      # Returns a new instance of Vedeu::Geometry::Alignment.
+      # Returns a new instance of Vedeu::Geometries::Alignment.
       #
       # @param value [NilClass|Symbol]
-      # @return [Vedeu::Geometry::Alignment]
+      # @return [Vedeu::Geometries::Alignment]
       def initialize(value = nil)
         @value = value
       end
@@ -139,6 +139,6 @@ module Vedeu
 
     end # Alignment
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

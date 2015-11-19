@@ -1,6 +1,6 @@
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     # Move an interface/view via changing its geometry.
     #
@@ -33,11 +33,11 @@ module Vedeu
         new(attributes).move
       end
 
-      # @return [FalseClass|Vedeu::Geometry::Geometry]
+      # @return [FalseClass|Vedeu::Geometries::Geometry]
       def move
         return false unless valid?
 
-        Vedeu::Geometry::Geometry.store(new_attributes) do
+        Vedeu::Geometries::Geometry.store(new_attributes) do
           update_cursor!
           refresh!
         end
@@ -95,7 +95,7 @@ module Vedeu
         }[direction]
       end
 
-      # @return [Vedeu::Geometry::Geometry]
+      # @return [Vedeu::Geometries::Geometry]
       def geometry
         Vedeu.geometries.by_name(name)
       end
@@ -203,6 +203,6 @@ module Vedeu
 
     end # Move
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

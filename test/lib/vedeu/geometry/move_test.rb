@@ -2,14 +2,14 @@ require 'test_helper'
 
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     describe Move do
 
-      let(:described)  { Vedeu::Geometry::Move }
+      let(:described)  { Vedeu::Geometries::Move }
       let(:instance)   { described.new(attributes) }
       let(:direction)  {}
-      let(:_name)      { 'Vedeu::Geometry::Move' }
+      let(:_name)      { 'Vedeu::Geometries::Move' }
       let(:offset)     {}
       let(:attributes) {
         {
@@ -19,7 +19,7 @@ module Vedeu
         }
       }
       let(:geometry)   {
-        Vedeu::Geometry::Geometry.new(name: _name, x: 2, xn: 8, y: 2, yn: 8)
+        Vedeu::Geometries::Geometry.new(name: _name, x: 2, xn: 8, y: 2, yn: 8)
       }
 
       describe '#initialize' do
@@ -78,7 +78,7 @@ module Vedeu
           end
 
           context 'when y + offset <= terminal height' do
-            it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
+            it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
             it { subject.x.must_equal(2) }
             it { subject.xn.must_equal(8) }
             it { subject.y.must_equal(3) }
@@ -96,7 +96,7 @@ module Vedeu
           end
 
           context 'when x - offset >= 1' do
-            it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
+            it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
             it { subject.x.must_equal(1) }
             it { subject.xn.must_equal(7) }
             it { subject.y.must_equal(2) }
@@ -114,7 +114,7 @@ module Vedeu
         context 'when the direction is :origin' do
           let(:direction) { :origin }
 
-          it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
+          it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
           it { subject.x.must_equal(1) }
           it { subject.xn.must_equal(7) }
           it { subject.y.must_equal(1) }
@@ -131,7 +131,7 @@ module Vedeu
           end
 
           context 'when xn + offset <= terminal width' do
-            it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
+            it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
             it { subject.x.must_equal(3) }
             it { subject.xn.must_equal(9) }
             it { subject.y.must_equal(2) }
@@ -149,7 +149,7 @@ module Vedeu
           end
 
           context 'when y - offset >= 1' do
-            it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
+            it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
             it { subject.x.must_equal(2) }
             it { subject.xn.must_equal(8) }
             it { subject.y.must_equal(1) }
@@ -171,6 +171,6 @@ module Vedeu
 
     end # Move
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

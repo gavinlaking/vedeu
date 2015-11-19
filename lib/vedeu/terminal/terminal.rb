@@ -175,8 +175,8 @@ module Vedeu
     #   views, leading to more consistent rendering.
     #
     #   If the client application is using the
-    #   {Vedeu::Geometry::Grid#rows} or
-    #   {Vedeu::Geometry::Grid#columns} helpers, the dimensions are
+    #   {Vedeu::Geometries::Grid#rows} or
+    #   {Vedeu::Geometries::Grid#columns} helpers, the dimensions are
     #   made more consistent using this approach.
     #
     # @return [Array]

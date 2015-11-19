@@ -1,6 +1,6 @@
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     # A Dimension is either the height or width of an entity.
     #
@@ -25,7 +25,7 @@ module Vedeu
         new(attributes).pair
       end
 
-      # Returns a new instance of Vedeu::Geometry::Dimension.
+      # Returns a new instance of Vedeu::Geometries::Dimension.
       #
       # @param attributes [Hash<Symbol => Fixnum, NilClass>]
       # @option attributes alignment [Symbol]
@@ -37,7 +37,7 @@ module Vedeu
       # @option attributes default [Fixnum|NilClass]
       #   The terminal width or height.
       # @option attributes maximised [Boolean]
-      # @return [Vedeu::Geometry::Dimension]
+      # @return [Vedeu::Geometries::Dimension]
       def initialize(attributes = {})
         defaults.merge!(attributes).each do |key, value|
           instance_variable_set("@#{key}", value)
@@ -76,9 +76,9 @@ module Vedeu
 
       private
 
-      # @return [Vedeu::Geometry::Alignment]
+      # @return [Vedeu::Geometries::Alignment]
       def alignment
-        Vedeu::Geometry::Alignment.coerce(@alignment)
+        Vedeu::Geometries::Alignment.coerce(@alignment)
       end
 
       # Return the dimension.
@@ -257,6 +257,6 @@ module Vedeu
 
     end # Dimension
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

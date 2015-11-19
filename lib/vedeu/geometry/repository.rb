@@ -1,6 +1,6 @@
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     # Allows the storing of interface/view geometry independent of the
     # interface instance.
@@ -9,12 +9,12 @@ module Vedeu
 
       singleton_class.send(:alias_method, :geometries, :repository)
 
-      null Vedeu::Geometry::Geometry, height: Vedeu.height, width: Vedeu.width
-      real Vedeu::Geometry::Geometry
+      null Vedeu::Geometries::Geometry, height: Vedeu.height, width: Vedeu.width
+      real Vedeu::Geometries::Geometry
 
     end # Repository
 
-  end # Geometry
+  end # Geometries
 
   # Manipulate the repository of geometries.
   #
@@ -22,8 +22,8 @@ module Vedeu
   #   Vedeu.geometries
   #
   # @!method geometries
-  # @return [Vedeu::Geometry::Repository]
-  def_delegators Vedeu::Geometry::Repository,
+  # @return [Vedeu::Geometries::Repository]
+  def_delegators Vedeu::Geometries::Repository,
                  :geometries
 
   # :nocov:
@@ -48,7 +48,7 @@ module Vedeu
 
   [:down, :left, :right, :up].each do |direction|
     Vedeu.bind(:"_view_#{direction}_") do |name, offset|
-      Vedeu::Geometry::Move.move(direction: direction,
+      Vedeu::Geometries::Move.move(direction: direction,
                                  name:      name,
                                  offset:    offset)
     end

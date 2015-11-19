@@ -2,11 +2,11 @@ require 'test_helper'
 
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     describe HorizontalAlignment do
 
-      let(:described) { Vedeu::Geometry::HorizontalAlignment }
+      let(:described) { Vedeu::Geometries::HorizontalAlignment }
       let(:instance)  { described.new(_value) }
       let(:_value)    {}
 
@@ -62,6 +62,6 @@ module Vedeu
 
     end # HorizontalAlignment
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

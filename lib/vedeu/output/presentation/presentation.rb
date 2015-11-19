@@ -22,7 +22,7 @@ module Vedeu
     #
     # @return [Boolean]
     def position?
-      self.respond_to?(:position) && position.is_a?(Vedeu::Geometry::Position)
+      self.respond_to?(:position) && position.is_a?(Vedeu::Geometries::Position)
     end
 
     # Renders the colour attributes of the receiver and yields (to

@@ -111,7 +111,7 @@ module Vedeu
       subject { described.cursor }
 
       #it { subject.must_be_instance_of(Array) }
-      #it { subject.must_be_instance_of(Vedeu::Geometry::Position) }
+      #it { subject.must_be_instance_of(Vedeu::Geometries::Position) }
     end
 
     describe '.centre' do

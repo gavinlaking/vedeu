@@ -19,7 +19,7 @@ module Vedeu
         Vedeu::Borders::Border.new(name: _name, enabled: false)
       }
       let(:geometry) {
-        Vedeu::Geometry::Geometry.new(name:   _name,
+        Vedeu::Geometries::Geometry.new(name:   _name,
                                         x:      1,
                                         y:      1,
                                         xn:     5,

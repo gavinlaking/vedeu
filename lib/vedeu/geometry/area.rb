@@ -1,6 +1,6 @@
 module Vedeu
 
-  module Geometry
+  module Geometries
 
     # Define an area from dimensions or points.
     #
@@ -54,7 +54,7 @@ module Vedeu
       # @option attributes yn [Fixnum]
       # @option attributes y_yn [Fixnum]
       # @option attributes y_default [Fixnum]
-      # @return [Vedeu::Geometry::Area]
+      # @return [Vedeu::Geometries::Area]
       def self.from_attributes(attributes = {})
         y_attributes = {
           alignment: attributes[:vertical_alignment],
@@ -70,8 +70,8 @@ module Vedeu
           d_dn:      attributes[:x_xn],
           maximised: attributes[:maximised],
         }
-        y_yn = Vedeu::Geometry::YDimension.pair(y_attributes)
-        x_xn = Vedeu::Geometry::XDimension.pair(x_attributes)
+        y_yn = Vedeu::Geometries::YDimension.pair(y_attributes)
+        x_xn = Vedeu::Geometries::XDimension.pair(x_attributes)
 
         new(name: attributes[:name],
             y:    y_yn[0],
@@ -87,7 +87,7 @@ module Vedeu
       # @param yn [Fixnum] The ending row/line position.
       # @param x [Fixnum] The starting column/character position.
       # @param xn [Fixnum] The ending column/character position.
-      # @return [Vedeu::Geometry::Area]
+      # @return [Vedeu::Geometries::Area]
       def initialize(name:, y:, yn:, x:, xn:)
         @name = name
         @y    = y
@@ -98,7 +98,7 @@ module Vedeu
 
       # An object is equal when its values are the same.
       #
-      # @param other [Vedeu::Geometry::Area]
+      # @param other [Vedeu::Geometries::Area]
       # @return [Boolean]
       def eql?(other)
         self.class == other.class && y == other.y && yn == other.yn &&
@@ -267,6 +267,6 @@ module Vedeu
 
     end # Area
 
-  end # Geometry
+  end # Geometries
 
 end # Vedeu

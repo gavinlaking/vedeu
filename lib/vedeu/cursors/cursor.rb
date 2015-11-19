@@ -214,9 +214,9 @@ module Vedeu
 
       # Return the position of this cursor.
       #
-      # @return [Vedeu::Geometry::Position]
+      # @return [Vedeu::Geometries::Position]
       def position
-        @position = Vedeu::Geometry::Position[y, x]
+        @position = Vedeu::Geometries::Position[y, x]
       end
 
       # Show a named cursor, or without a name, the cursor of the
@@ -255,16 +255,18 @@ module Vedeu
 
       # Returns the geometry for the interface.
       #
-      # @return (see Vedeu::Geometry::Repository#by_name)
+      # @return (see Vedeu::Geometries::Repository#by_name)
       def geometry
         @geometry ||= Vedeu.geometries.by_name(name)
       end
 
       # Determine correct x and y related coordinates.
       #
-      # @return [Vedeu::Geometry::Coordinate]
+      # @return [Vedeu::Geometries::Coordinate]
       def coordinate(offset, type)
-        Vedeu::Geometry::Coordinate.new(name: name, offset: offset, type: type)
+        Vedeu::Geometries::Coordinate.new(name:   name,
+                                          offset: offset,
+                                          type:   type)
       end
 
       # The default values for a new instance of this class.
