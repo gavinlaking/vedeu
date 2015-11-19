@@ -221,12 +221,10 @@ module Vedeu
 
   # @!method clear_by_name
   #   @see Vedeu::Interfaces::Clear.clear_by_name
-  def_delegators Vedeu::Interfaces::Clear,
-                 :clear_by_name
-
   # @!method clear_content_by_name
   #   @see Vedeu::Interfaces.Clear.clear_content_by_name
   def_delegators Vedeu::Interfaces::Clear,
+                 :clear_by_name,
                  :clear_content_by_name
 
   # :nocov:
