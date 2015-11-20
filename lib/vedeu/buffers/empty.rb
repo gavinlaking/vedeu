@@ -16,8 +16,8 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Models::Cell>>]
       def buffer
-        Array.new(width) do |y|
-          Array.new(height) do |x|
+        Array.new(height) do |y|
+          Array.new(width) do |x|
             Vedeu::Models::Cell.new(name: name, position: [y, x])
           end
         end
