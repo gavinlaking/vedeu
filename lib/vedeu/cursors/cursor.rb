@@ -162,8 +162,6 @@ module Vedeu
       #
       # @return [Array<Vedeu::Models::Escape>]
       def render
-        Vedeu.log(type: :output, message: "Refreshing cursor: '#{name}'".freeze)
-
         Vedeu.render_output(escape_sequence)
       end
 
@@ -199,6 +197,8 @@ module Vedeu
       def hide
         super
 
+        Vedeu.log(type: :output, message: "Hiding cursor: '#{name}'".freeze)
+
         render
       end
 
@@ -233,6 +233,8 @@ module Vedeu
       # @return [Vedeu::Models::Escape]
       def show
         super
+
+        Vedeu.log(type: :output, message: "Showing cursor: '#{name}'".freeze)
 
         render
       end

@@ -44,6 +44,11 @@ module Vedeu
       def by_name
         refresh_view if refresh_view?
 
+        Vedeu.log(type:    :output,
+                  message: "Refreshing cursor: '#{name}' (x:#{cursor.x}, " \
+                           "y:#{cursor.y}, ox:#{cursor.ox}, oy:#{cursor.oy}, " \
+                           "visible:#{cursor.visible})".freeze)
+
         cursor.render
       end
 
