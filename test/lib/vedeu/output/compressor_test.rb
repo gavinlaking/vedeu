@@ -43,10 +43,14 @@ module Vedeu
                                        position: [1, 3])
               ])
             }
+            let(:expected) {
+              "\e[1;1H\e[38;2;255;0;0mY\e[0m" \
+              "\e[1;2H\e[38;2;255;0;0me\e[0m" \
+              "\e[1;3H\e[38;2;255;0;0ms\e[0m"
+            }
             it 'converts the non-Vedeu::Views::Char elements into String ' \
                'elements' do
-              # subject.must_equal("\e[1;1H\e[38;2;255;0;0mYes")
-              subject.must_equal("\e[1;1H\e[38;2;255;0;0mY\e[1;2He\e[1;3Hs")
+              subject.must_equal(expected)
             end
           end
 
@@ -71,9 +75,14 @@ module Vedeu
                                        position: [1, 4]),
               ])
             }
+            let(:expected) {
+              "\e[1;1H\e[38;2;255;0;0ma\e[0m" \
+              "\e[1;2H\e[38;2;255;0;0mb\e[0m" \
+              "\e[1;3H\e[38;2;0;0;255mc\e[0m" \
+              "\e[1;4H\e[38;2;0;0;255md\e[0m"
+            }
             it 'compresses multiple colours and styles where possible' do
-              # subject.must_equal("\e[1;1H\e[38;2;255;0;0mab\e[38;2;0;0;255mcd")
-              subject.must_equal("\e[1;1H\e[38;2;255;0;0ma\e[1;2Hb\e[1;3H\e[38;2;0;0;255mc\e[1;4Hd")
+              subject.must_equal(expected)
             end
           end
 
@@ -86,10 +95,11 @@ module Vedeu
                 Vedeu::Views::Char.new(name: _name, value: 't', position: [1, 3]),
               ])
             }
+            let(:expected) { "\e[1;1HN\e[0m\e[1;1H\e[?25l\e[0m\e[1;3Ht\e[0m" }
+
             it 'converts the non-Vedeu::Views::Char elements into String ' \
                'elements' do
-              # subject.must_equal("\e[1;1HN\e[?25lt")
-              subject.must_equal("\e[1;1HN\e[1;1H\e[?25l\e[1;3Ht")
+              subject.must_equal(expected)
             end
           end
         end
@@ -111,11 +121,14 @@ module Vedeu
                                        colour: { foreground: '#ff0000' }),
               ])
             }
+            let(:expected) {
+              "\e[38;2;255;0;0mY\e[0m" \
+              "\e[38;2;255;0;0me\e[0m" \
+              "\e[38;2;255;0;0ms\e[0m"
+            }
             it 'converts the non-Vedeu::Views::Char elements into String ' \
                'elements' do
-              subject.must_equal(
-                "\e[38;2;255;0;0mY\e[38;2;255;0;0me\e[38;2;255;0;0ms"
-              )
+              subject.must_equal(expected)
             end
           end
 
@@ -136,13 +149,14 @@ module Vedeu
                                        colour: { foreground: '#0000ff' }),
               ])
             }
+            let(:expected) {
+              "\e[38;2;255;0;0ma\e[0m" \
+              "\e[38;2;255;0;0mb\e[0m" \
+              "\e[38;2;0;0;255mc\e[0m" \
+              "\e[38;2;0;0;255md\e[0m"
+            }
             it 'compresses multiple colours and styles where possible' do
-              subject.must_equal(
-                "\e[38;2;255;0;0ma" \
-                "\e[38;2;255;0;0mb" \
-                "\e[38;2;0;0;255mc" \
-                "\e[38;2;0;0;255md"
-              )
+              subject.must_equal(expected)
             end
           end
 
@@ -156,7 +170,7 @@ module Vedeu
             }
             it 'converts the non-Vedeu::Views::Char elements into String ' \
                'elements' do
-              subject.must_equal("N\e[1;1H\e[?25lt")
+              subject.must_equal("N\e[0m\e[1;1H\e[?25l\e[0mt\e[0m")
             end
           end
         end

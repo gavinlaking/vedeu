@@ -32,7 +32,7 @@ module Vedeu
 
       before {
         Vedeu.borders.stubs(:by_name).with(_name).returns(border)
-        Vedeu.geometries.stubs(:by_name).with(_name).returns(geometry)
+        Vedeu.geometries.stubs(:by_name).returns(geometry)
         Vedeu.interfaces.stubs(:by_name).with(_name).returns(interface)
 
         Vedeu.stubs(:direct_write)

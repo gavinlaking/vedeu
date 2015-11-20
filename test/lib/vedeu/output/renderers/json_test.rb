@@ -16,7 +16,7 @@ module Vedeu
         ::File.stubs(:write)
         Vedeu.stubs(:height).returns(1)
         Vedeu.stubs(:width).returns(1)
-        Vedeu::Terminal::Buffer.reset
+        Vedeu::Terminal::Buffer.reset!
       end
 
       describe '#initialize' do
@@ -58,6 +58,22 @@ module Vedeu
           "    },\n" \
           "    \"style\": \"\",\n" \
           "    \"value\": \"a\"\n" \
+          "  },\n" \
+          "  {\n" \
+          "    \"border\": \"\",\n" \
+          "    \"colour\": {\n" \
+          "      \"background\": \"\",\n" \
+          "      \"foreground\": \"\"\n" \
+          "    },\n" \
+          "    \"name\": \"\",\n" \
+          "    \"parent\": {\n" \
+          "    },\n" \
+          "    \"position\": {\n" \
+          "      \"y\": null,\n" \
+          "      \"x\": null\n" \
+          "    },\n" \
+          "    \"style\": \"\",\n" \
+          "    \"value\": \"\\u001b[0m\"\n" \
           "  }\n" \
           "]"
         }

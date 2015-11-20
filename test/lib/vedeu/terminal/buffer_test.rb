@@ -20,15 +20,7 @@ module Vedeu
         Vedeu.stubs(:ready?).returns(true)
         Vedeu.stubs(:height).returns(height)
         Vedeu.stubs(:width).returns(width)
-        Vedeu::Terminal::Buffer.reset
-      end
-
-      describe '#buffer' do
-        subject { described.buffer }
-
-        it { subject.must_be_instance_of(Array) }
-
-        # @todo Add more tests.
+        Vedeu::Terminal::Buffer.reset!
       end
 
       describe '#clear' do
@@ -59,11 +51,7 @@ module Vedeu
         # @todo Add more tests.
       end
 
-      describe '#read' do
-        # @todo Add more tests.
-      end
-
-      describe '#render' do
+      describe '#refresh' do
         let(:ready)  { false }
 
         before do
@@ -71,7 +59,7 @@ module Vedeu
           Vedeu.renderers.stubs(:render)
         end
 
-        subject { described.render }
+        subject { described.refresh }
 
         context 'when Vedeu is not ready' do
           it { subject.must_equal(nil) }
@@ -87,10 +75,10 @@ module Vedeu
         end
       end
 
-      describe '#reset' do
-        subject { described.reset }
+      describe '#reset!' do
+        subject { described.reset! }
 
-        it { subject.must_be_instance_of(Array) }
+        it { subject.must_be_instance_of(Vedeu::Buffers::View) }
       end
 
       describe '#write' do
