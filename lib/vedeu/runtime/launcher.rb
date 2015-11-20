@@ -60,14 +60,16 @@ module Vedeu
       $stdout = @stdout
       $stderr = @stderr
 
-      optionally_profile { Vedeu::Runtime::Application.start(configuration) }
+      optionally_profile do
+        Vedeu::Runtime::Application.start(Vedeu::Configuration)
+      end
 
       @exit_code = 0
 
       terminate!
 
     rescue StandardError => uncaught_exception
-      output = if configuration.debug?
+      output = if Vedeu::Configuration.debug?
                  uncaught_exception.message + "\n" +
                  uncaught_exception.backtrace.join("\n".freeze)
                else
@@ -88,7 +90,7 @@ module Vedeu
 
     # @return [void]
     def optionally_profile
-      if configuration.profile?
+      if Vedeu::Configuration.profile?
         Vedeu.profile { yield }
 
       else
@@ -112,11 +114,6 @@ module Vedeu
       @kernel.exit(exit_code)
     end
     # :nocov:
-
-    # @return [Vedeu::Configuration]
-    def configuration
-      Vedeu::Configuration
-    end
 
   end # Launcher
 
