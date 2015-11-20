@@ -252,6 +252,12 @@ module Vedeu
         end
       end
 
+      describe '#storage' do
+        context 'when the storage is empty' do
+          it { Vedeu::Models::Focus.storage.must_equal([]) }
+        end
+      end
+
     end # Focus
 
   end # Models
