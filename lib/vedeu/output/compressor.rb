@@ -51,9 +51,13 @@ module Vedeu
 
       # @return [Array]
       def content
-        return [] if absent?(output)
+        @content ||= if present?(output)
+                       output.content.reject(&:cell?)
 
-        @content ||= output.content.reject(&:cell?)
+                     else
+                       []
+
+                     end
       end
 
       # @return [String]
@@ -69,7 +73,7 @@ module Vedeu
             ].join
           end.join
 
-          Vedeu.log(type:    :output,
+          Vedeu.log(type:    :compress,
                     message: "Compression: #{content.size} objects -> " \
                              "#{out.size} characters".freeze)
 
@@ -81,7 +85,7 @@ module Vedeu
       def uncompress
         out = content.map(&:to_s).join
 
-        Vedeu.log(type:    :output,
+        Vedeu.log(type:    :compress,
                   message: "No compression: #{content.size} objects -> " \
                            "#{out.size} characters".freeze)
 

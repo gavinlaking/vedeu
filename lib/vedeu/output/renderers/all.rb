@@ -18,7 +18,7 @@ module Vedeu
     # @return [Array<void>]
     def clear
       storage.map do |renderer|
-        Vedeu.log(type:    :output,
+        Vedeu.log(type:    :render,
                   message: "Clearing via #{renderer.class.name}".freeze)
 
         Thread.new(renderer) do
@@ -51,7 +51,7 @@ module Vedeu
     # @return [Array<void>]
     def render(output)
       storage.map do |renderer|
-        Vedeu.log(type:    :output,
+        Vedeu.log(type:    :render,
                   message: "Rendering via #{renderer.class.name}".freeze)
 
         Thread.new(renderer) do

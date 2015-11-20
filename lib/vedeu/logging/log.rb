@@ -135,7 +135,7 @@ module Vedeu
         def message_type(type)
           Vedeu::EscapeSequences::Esc
             .send(message_types.fetch(type, :default)[0]) do
-            "[#{type}]".ljust(9)
+            "[#{type}]".ljust(11)
           end
         end
 
@@ -170,7 +170,10 @@ module Vedeu
             debug:  [:white, :light_grey],
 
             input:  [:light_yellow, :yellow],
-            output: [:light_green,  :green],
+
+            compress: [:white,  :light_grey],
+            output:   [:light_green,  :green],
+            render:   [:light_green,  :green],
 
             error:  [:light_red, :red],
 
