@@ -171,9 +171,9 @@ module Vedeu
 
             input:  [:light_yellow, :yellow],
 
-            compress: [:white,  :light_grey],
-            output:   [:light_green,  :green],
-            render:   [:light_green,  :green],
+            compress: [:white, :light_grey],
+            output:   [:light_green, :green],
+            render:   [:light_green, :green],
 
             error:  [:light_red, :red],
 
