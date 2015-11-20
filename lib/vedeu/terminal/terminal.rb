@@ -135,6 +135,10 @@ module Vedeu
     # @example
     #   Vedeu.width # => provides the width via the Vedeu API.
     #
+    # @note
+    #   See Vedeu::Terminal#size for more information about the
+    #   reported terminal size.
+    #
     # @return [Fixnum]
     def width
       return Vedeu::Configuration.drb_width if Vedeu::Configuration.drb?
@@ -150,6 +154,10 @@ module Vedeu
     #
     # @example
     #   Vedeu.height # => provides the height via the Vedeu API.
+    #
+    # @note
+    #   See Vedeu::Terminal#size for more information about the
+    #   reported terminal size.
     #
     # @return [Fixnum]
     def height

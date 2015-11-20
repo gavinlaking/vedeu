@@ -20,6 +20,10 @@ module Vedeu
       # @example
       #   Vedeu.clear
       #
+      #   # or...
+      #
+      #   Vedeu.trigger(:_clear_)
+      #
       # @return [String|void] Most likely to be a String.
       def clear
         reset!
@@ -27,6 +31,11 @@ module Vedeu
         Vedeu.renderers.clear
       end
 
+      # Returns the buffer content.
+      #
+      # @example
+      #   Vedeu.trigger(:_drb_retrieve_output_)
+      #
       # @return [Vedeu::Models::Page]
       def output
         Vedeu::Models::Page.coerce(buffer)
@@ -103,13 +112,13 @@ module Vedeu
 
   # :nocov:
 
-  # See {file:docs/events/visibility.md#\_clear_}
+  # @see Vedeu::Terminal::Buffer#clear
   Vedeu.bind(:_clear_) { Vedeu.clear }
 
-  # See {file:docs/events/drb.md#\_drb_retrieve_output_}
+  # @see Vedeu::Terminal::Buffer#output
   Vedeu.bind(:_drb_retrieve_output_) { Vedeu::Terminal::Buffer.output }
 
-  # See {file:docs/events/drb.md#\_drb_store_output_}
+  # @see Vedeu::Terminal::Buffer#write
   Vedeu.bind(:_drb_store_output_) { |data| Vedeu::Terminal::Buffer.write(data) }
 
   # :nocov:

@@ -5,10 +5,7 @@
 Note: 'name' is a Symbol unless mentioned otherwise.
 
 ### `:\_clear\_`
-Clears the whole terminal space.
-
-    Vedeu.trigger(:_clear_)
-    Vedeu.clear
+See {Vedeu::Terminal::Buffer#clear}
 
 ### `:\_clear_group\_`
 Clears the spaces occupied by the interfaces belonging to the named
