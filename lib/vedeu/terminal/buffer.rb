@@ -113,16 +113,8 @@ module Vedeu
 
       private
 
-      # @param from [Array] An Array of rows, or an Array of cells.
-      # @param which [Fixnum] A Fixnum representing the index; the row
-      #   number or the cell number for a row.
-      # @return [Array<Vedeu::Views::Char>|Array]
-      def fetch(from, which)
-        from[which] || []
-      end
-
-      # Returns a boolean indicating the value has a position
-      # attribute.
+      # Return a grid of {Vedeu::Models::Cell} objects defined by the
+      # height and width of this virtual terminal.
       #
       # @param value [void]
       # @return [Boolean]
