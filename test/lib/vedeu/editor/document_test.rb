@@ -24,7 +24,7 @@ module Vedeu
         Vedeu::Borders::Border.new({ name: _name, enabled: false })
       }
       let(:geometry) {
-        Vedeu::Geometry::Geometry.new({ name: _name, x: 1, xn: 5, y: 1, yn: 5 })
+        Vedeu::Geometries::Geometry.new({ name: _name, x: 1, xn: 5, y: 1, yn: 5 })
       }
       let(:interface) {
         Vedeu::Interfaces::Interface.new({ name: _name })
@@ -32,7 +32,7 @@ module Vedeu
 
       before {
         Vedeu.borders.stubs(:by_name).with(_name).returns(border)
-        Vedeu.geometries.stubs(:by_name).with(_name).returns(geometry)
+        Vedeu.geometries.stubs(:by_name).returns(geometry)
         Vedeu.interfaces.stubs(:by_name).with(_name).returns(interface)
 
         Vedeu.stubs(:direct_write)

@@ -119,7 +119,7 @@ module Vedeu
 
       # @return [String]
       def last_character_position
-        Vedeu::Geometry::Position[Vedeu.height, Vedeu.width].to_s
+        Vedeu::Geometries::Position[Vedeu.height, Vedeu.width].to_s
       end
 
     end # Esc

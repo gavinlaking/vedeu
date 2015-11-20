@@ -46,9 +46,9 @@ module Vedeu
         @interface ||= Vedeu.interfaces.by_name(name)
       end
 
-      # @return [Vedeu::Geometry::Position]
+      # @return [Vedeu::Geometries::Position]
       def position
-        Vedeu::Geometry::Position.coerce(@position)
+        Vedeu::Geometries::Position.coerce(@position)
       end
 
       # @return [Hash]

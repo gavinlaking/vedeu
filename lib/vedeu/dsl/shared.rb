@@ -57,7 +57,7 @@ module Vedeu
       # @example
       #   Vedeu.interface :my_interface do
       #     geometry do
-      #       # ... see Vedeu::Geometry::DSL for DSL methods for
+      #       # ... see Vedeu::Geometries::DSL for DSL methods for
       #       #     geometries.
       #     end
       #   end
@@ -65,17 +65,17 @@ module Vedeu
       # @param name [String|Symbol] The name of the interface; this is
       #   already provided when we define the interface or view,
       #   setting it here is just mirroring functionality of
-      #   {Vedeu::Geometry::DSL.geometry}.
+      #   {Vedeu::Geometries::DSL.geometry}.
       # @param block [Proc]
       # @raise [Vedeu::Error::RequiresBlock]
-      # @return [Vedeu::Geometry::Geometry]
-      # @see Vedeu::Geometry::DSL
+      # @return [Vedeu::Geometries::Geometry]
+      # @see Vedeu::Geometries::DSL
       def geometry(name = nil, &block)
         fail Vedeu::Error::RequiresBlock unless block_given?
 
         model_name = name ? name : model.name
 
-        Vedeu::Geometry::Geometry.build(name: model_name, &block).store
+        Vedeu::Geometries::Geometry.build(name: model_name, &block).store
       end
 
     end # Shared

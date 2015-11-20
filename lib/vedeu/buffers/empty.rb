@@ -16,11 +16,13 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Models::Cell>>]
       def buffer
-        Array.new(width) do |y|
-          Array.new(height) do |x|
-            Vedeu::Models::Cell.new(name: name, position: [y, x])
+        Array.new(height) do |y|
+          unless y == 0
+            Array.new(width) do |x|
+              Vedeu::Models::Cell.new(name: name, position: [y, x]) unless x == 0
+            end.compact
           end
-        end
+        end.compact
       end
 
       # @note

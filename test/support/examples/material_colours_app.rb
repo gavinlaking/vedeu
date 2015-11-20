@@ -25,6 +25,8 @@ class VedeuMaterialColoursApp
     log '/tmp/vedeu_material_colours_app.log'
     # height 11
     # width  20
+    # renderers(Vedeu::Renderers::File
+    #             .new(filename: '/tmp/material_colours.out'))
   end
 
   # Borders can be defined as standalone declarations.

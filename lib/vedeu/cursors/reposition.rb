@@ -57,9 +57,11 @@ module Vedeu
       #
       # @param offset []
       # @param type []
-      # @return [Vedeu::Geometry::Coordinate]
+      # @return [Vedeu::Geometries::Coordinate]
       def coordinate(offset, type)
-        Vedeu::Geometry::Coordinate.new(name: name, offset: offset, type: type)
+        Vedeu::Geometries::Coordinate.new(name:   name,
+                                          offset: offset,
+                                          type:   type)
       end
 
       # @return [Vedeu::Cursors::Cursor]
@@ -77,7 +79,7 @@ module Vedeu
         }
       end
 
-      # @return [Vedeu::Geometry::Geometry]
+      # @return [Vedeu::Geometries::Geometry]
       def geometry
         Vedeu.geometries.by_name(name)
       end

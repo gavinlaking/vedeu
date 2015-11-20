@@ -111,7 +111,7 @@ module Vedeu
 
       # Returns the geometry for the interface.
       #
-      # @return (see Vedeu::Geometry::Repository#by_name)
+      # @return (see Vedeu::Geometries::Repository#by_name)
       def geometry
         @geometry ||= Vedeu.geometries.by_name(name)
       end
@@ -143,8 +143,12 @@ module Vedeu
       def optimised_output
         Vedeu.timer("Optimised clearing #{clearing}: '#{name}'".freeze) do
           height.times.map do |iy|
-            Vedeu::Geometry::Position.new(y + iy, x).to_s + colour.to_s + chars
-          end.join + Vedeu::Geometry::Position.new(y, x).to_s
+            [
+              Vedeu::Geometries::Position.new(y + iy, x).to_s,
+              colour.to_s,
+              chars,
+            ].join
+          end.join + Vedeu::Geometries::Position.new(y, x).to_s
         end
       end
 
@@ -217,12 +221,10 @@ module Vedeu
 
   # @!method clear_by_name
   #   @see Vedeu::Interfaces::Clear.clear_by_name
-  def_delegators Vedeu::Interfaces::Clear,
-                 :clear_by_name
-
   # @!method clear_content_by_name
   #   @see Vedeu::Interfaces.Clear.clear_content_by_name
   def_delegators Vedeu::Interfaces::Clear,
+                 :clear_by_name,
                  :clear_content_by_name
 
   # :nocov:

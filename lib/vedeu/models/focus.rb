@@ -193,9 +193,10 @@ module Vedeu
       # Reset the repository.
       #
       # @return [Array|Hash|Set]
-      def reset
+      def reset!
         @storage = in_memory
       end
+      alias_method :reset, :reset!
 
       private
 

@@ -84,7 +84,7 @@ module Vedeu
     # greater than 12. Vedeu is hard-wired to a 12-column layout for
     # the time being.
     #
-    # @see Vedeu::Geometry::Grid
+    # @see Vedeu::Geometries::Grid
     #
     class OutOfRange < StandardError
 

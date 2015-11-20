@@ -76,7 +76,7 @@ module Vedeu
       describe '#position' do
         subject { instance.position }
 
-        it { subject.must_be_instance_of(Vedeu::Geometry::Position) }
+        it { subject.must_be_instance_of(Vedeu::Geometries::Position) }
       end
 
       describe '#to_hash' do

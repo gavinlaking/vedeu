@@ -59,16 +59,15 @@ module Vedeu
       # @return [String]
       def compress
         Vedeu.timer("Compression for #{content.size} objects".freeze) do
-          out = ''
-
-          content.each do |cell|
-            # out << position_for(cell)
-
-            out << cell.position.to_s
-            out << colour_for(cell)
-            out << style_for(cell)
-            out << cell.value
-          end
+          out = content.map do |cell|
+            [
+              # position_for(cell),
+              cell.position.to_s,
+              colour_for(cell),
+              style_for(cell),
+              cell.value,
+            ].join
+          end.join
 
           Vedeu.log(type:    :output,
                     message: "Compression: #{content.size} objects -> " \
@@ -80,11 +79,7 @@ module Vedeu
 
       # @return [String]
       def uncompress
-        out = ''
-
-        content.each do |cell|
-          out << cell.to_s
-        end
+        out = content.map(&:to_s).join
 
         Vedeu.log(type:    :output,
                   message: "No compression: #{content.size} objects -> " \

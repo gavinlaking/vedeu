@@ -32,11 +32,11 @@ module Vedeu
         if index.nil? || index > size
           collection[-1]
 
-        elsif index <= 0
-          collection[0]
-
         elsif index > 0 && index <= size
           collection[index]
+
+        else
+          collection[0]
 
         end
       end

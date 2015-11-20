@@ -55,7 +55,7 @@ module Vedeu
       end
 
       describe '#buffer' do
-        let(:position) { Vedeu::Geometry::Position.new(1, 1) }
+        let(:position) { Vedeu::Geometries::Position.new(1, 1) }
 
         subject { instance.buffer }
 
@@ -63,8 +63,8 @@ module Vedeu
         it { subject.first.must_be_instance_of(Array) }
         it { subject.first.first.must_be_instance_of(Vedeu::Models::Cell) }
 
-        it { subject.size.must_equal(31) }
-        it { subject.first.size.must_equal(11) }
+        it { subject.size.must_equal(10) }
+        it { subject.first.size.must_equal(30) }
         it { subject.first.first.position.must_equal(position) }
       end
 

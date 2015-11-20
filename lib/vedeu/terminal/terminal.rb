@@ -135,6 +135,10 @@ module Vedeu
     # @example
     #   Vedeu.width # => provides the width via the Vedeu API.
     #
+    # @note
+    #   See Vedeu::Terminal#size for more information about the
+    #   reported terminal size.
+    #
     # @return [Fixnum]
     def width
       return Vedeu::Configuration.drb_width if Vedeu::Configuration.drb?
@@ -150,6 +154,10 @@ module Vedeu
     #
     # @example
     #   Vedeu.height # => provides the height via the Vedeu API.
+    #
+    # @note
+    #   See Vedeu::Terminal#size for more information about the
+    #   reported terminal size.
     #
     # @return [Fixnum]
     def height
@@ -175,8 +183,8 @@ module Vedeu
     #   views, leading to more consistent rendering.
     #
     #   If the client application is using the
-    #   {Vedeu::Geometry::Grid#rows} or
-    #   {Vedeu::Geometry::Grid#columns} helpers, the dimensions are
+    #   {Vedeu::Geometries::Grid#rows} or
+    #   {Vedeu::Geometries::Grid#columns} helpers, the dimensions are
     #   made more consistent using this approach.
     #
     # @return [Array]

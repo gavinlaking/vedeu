@@ -43,7 +43,7 @@ module Vedeu
         Vedeu::Borders::Border.new(name: _name, enabled: enabled)
       }
       let(:geometry)  {
-        Vedeu::Geometry::Geometry.new(
+        Vedeu::Geometries::Geometry.new(
           name: _name,
           x:    5,
           xn:   35,
@@ -238,7 +238,7 @@ module Vedeu
       describe '#position' do
         subject { instance.position }
 
-        it { subject.must_be_instance_of(Vedeu::Geometry::Position) }
+        it { subject.must_be_instance_of(Vedeu::Geometries::Position) }
       end
 
       describe '#show' do

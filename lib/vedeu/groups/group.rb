@@ -137,11 +137,12 @@ module Vedeu
       # Remove all members from the group.
       #
       # @return [Vedeu::Groups::Group]
-      def reset
+      def reset!
         attrs = defaults.merge!(name: name)
 
         Vedeu::Groups::Group.store(attrs)
       end
+      alias_method :reset, :reset!
 
       # Show the named group of interfaces, or without a name, the
       # group of the currently focussed interface.

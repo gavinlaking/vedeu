@@ -15,146 +15,90 @@ module Vedeu
 
       extend self
 
-      # Return a grid of {Vedeu::Models::Cell} objects defined by the
-      # height and width of this virtual terminal.
-      #
-      # @return [Array<Array<Vedeu::Models::Cell>>]
-      def buffer
-        @output ||= Array.new(Vedeu.height + 1) do |y|
-          Array.new(Vedeu.width + 1) do |x|
-            Vedeu::Models::Cell.new(position: [y, x])
-          end
-        end
-      end
-      alias_method :cells, :buffer
-
-      # Clear the output.
+      # Clears the whole terminal space.
       #
       # @example
       #   Vedeu.clear
       #
+      #   # or...
+      #
+      #   Vedeu.trigger(:_clear_)
+      #
       # @return [String|void] Most likely to be a String.
       def clear
-        reset
+        reset!
 
-        Vedeu.renderers.clear if Vedeu.ready?
+        Vedeu.renderers.clear
       end
 
+      # Returns the buffer content.
+      #
+      # @example
+      #   Vedeu.trigger(:_drb_retrieve_output_)
+      #
       # @return [Vedeu::Models::Page]
       def output
         Vedeu::Models::Page.coerce(buffer)
       end
 
-      # Read a single cell from the virtual terminal.
-      #
-      # @note
-      #   Given two actual coordinates (y, x) e.g. (1, 1)
-      #   Convert to coordinate indices (cy, cx) e.g. (0, 0)
-      #   Fetch the row at cy and return the cell from cx
-      #
-      # @param y [Fixnum] The row/line coordinate.
-      # @param x [Fixnum] The column/character coordinate.
-      # @return [Vedeu::Views::Char]
-      def read(y, x)
-        cy, cx = Vedeu::Geometry::Position[y, x].as_indices
-
-        row  = fetch(cells, cy)
-        cell = fetch(row, cx)
-
-        cell
-      end
-
       # Send the cells to the renderer and return the rendered result.
       #
+      # @example
+      #   Vedeu.refresh
+      #
       # @return [String|void] Most likely to be a String.
-      def render
-        Vedeu.renderers.render(output) if Vedeu.ready?
+      def refresh
+        Vedeu.renderers.render(output)
       end
-      alias_method :refresh, :render
 
       # Removes all content from the virtual terminal; effectively
       # clearing it.
       #
-      # @return [Array<Array<Vedeu::Models::Cell>>]
-      def reset
-        @output = Array.new(Vedeu.height + 1) do |y|
-          Array.new(Vedeu.width + 1) do |x|
-            Vedeu::Models::Cell.new(position: [y, x])
-          end
-        end
-      end
-
-      # Write a collection of cells to the virtual terminal, will
-      # then send written content to be rendered by a renderer.
-      #
-      # @param value [Array<Array<Vedeu::Views::Char>>]
-      # @return [Array<Array<Vedeu::Views::Char>>]
-      def write(value)
-        update_buffer(value)
-
-        render
-
-        self
+      # @return [Vedeu::Buffers::View]
+      def reset!
+        @buffer = buffer.reset!
       end
 
       # Write a collection of cells to the virtual terminal, but do
       # not send to a renderer.
       #
+      # @param value_or_values [Array<Array<Vedeu::Views::Char>>]
+      # @return [Array<Array<Vedeu::Views::Char>>]
+      def update(value_or_values)
+        buffer.update(value_or_values)
+
+        self
+      end
+
+      # Write a collection of cells to the virtual terminal, will
+      # then send written content to be rendered by a renderer. This
+      # method is used internally by Vedeu, but can be triggered in
+      # DRb mode pushing the given data in to the virtual buffer of
+      # the running client application as per the example.
+      #
+      # @example
+      #   Vedeu.trigger(:_drb_store_output_, value_or_values)
+      #
       # @param value [Array<Array<Vedeu::Views::Char>>]
       # @return [Array<Array<Vedeu::Views::Char>>]
-      def update(value)
-        update_buffer(value)
+      def write(value_or_values)
+        buffer.update(value_or_values)
+
+        refresh
 
         self
       end
 
       private
 
-      # @param from [Array] An Array of rows, or an Array of cells.
-      # @param which [Fixnum] A Fixnum representing the index; the row
-      #   number or the cell number for a row.
-      # @return [Array<Vedeu::Views::Char>|Array]
-      def fetch(from, which)
-        from[which] || []
-      end
-
-      # Returns a boolean indicating the value has a position
-      # attribute.
+      # Return a grid of {Vedeu::Models::Cell} objects defined by the
+      # height and width of this virtual terminal.
       #
-      # @param value [void]
-      # @return [Boolean]
-      def position?(value)
-        value.respond_to?(:position) &&
-          value.position.is_a?(Vedeu::Geometry::Position)
+      # @return [Vedeu::Buffers::View]
+      def buffer
+        @buffer ||= Vedeu::Buffers::View.new(name: name)
       end
-
-      # @param value [Array<Array<Vedeu::Views::Char>>]
-      # @return [Array<Array<Vedeu::Views::Char>>]
-      def update_buffer(value)
-        values = Array(value).flatten
-
-        values.each do |v|
-          buffer[v.position.y][v.position.x] = v if valid_position?(v)
-        end
-      end
-
-      # Returns a boolean indicating the value has a position
-      # attribute and is within the terminal boundary.
-      #
-      # @param value [void]
-      # @return [Boolean]
-      def valid_position?(value)
-        position?(value) && within_terminal_boundary?(value)
-      end
-
-      # Returns a boolean indicating the position of the value object
-      # is valid for this terminal.
-      #
-      # @param value [void]
-      # @return [Boolean]
-      def within_terminal_boundary?(value)
-        buffer[value.position.y] && buffer[value.position.y][value.position.x]
-      end
+      alias_method :cells, :buffer
 
     end # Buffer
 
@@ -168,13 +112,13 @@ module Vedeu
 
   # :nocov:
 
-  # See {file:docs/events/visibility.md#\_clear_}
+  # @see Vedeu::Terminal::Buffer#clear
   Vedeu.bind(:_clear_) { Vedeu.clear }
 
-  # See {file:docs/events/drb.md#\_drb_retrieve_output_}
+  # @see Vedeu::Terminal::Buffer#output
   Vedeu.bind(:_drb_retrieve_output_) { Vedeu::Terminal::Buffer.output }
 
-  # See {file:docs/events/drb.md#\_drb_store_output_}
+  # @see Vedeu::Terminal::Buffer#write
   Vedeu.bind(:_drb_store_output_) { |data| Vedeu::Terminal::Buffer.write(data) }
 
   # :nocov:

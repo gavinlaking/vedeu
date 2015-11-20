@@ -27,7 +27,7 @@ module Vedeu
                                          visible: visible)
       }
       let(:geometry)  {
-        Vedeu::Geometry::Geometry.new(name:   'lithium',
+        Vedeu::Geometries::Geometry.new(name:   'lithium',
                                       height: 3,
                                       width:  3)
       }

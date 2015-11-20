@@ -48,7 +48,7 @@ module Vedeu
 
       # @return [Array<void>]
       def content
-        cells.flatten
+        cells.flatten << reset_character
       end
 
       # Provides iteration over the collection.
@@ -72,6 +72,15 @@ module Vedeu
         self.class == other.class && cells == other.cells
       end
       alias_method :==, :eql?
+
+      # Provides the reset escape sequence at the end of a row to
+      # reset colour and style information to prevent colour bleed on
+      # the next line.
+      #
+      # @return [Vedeu::Views::Char]
+      def reset_character
+        Vedeu::Views::Char.new(value: Vedeu::EscapeSequences::Esc.reset)
+      end
 
     end # Row
 

@@ -51,13 +51,13 @@ module Vedeu
       # Remove all currently stored data.
       #
       # @return [Array|Hash|Set]
-      def reset
+      def reset!
         Vedeu.log(type:    :reset,
                   message: "(#{self.class.name}) #{registered.inspect}".freeze)
 
         @storage = in_memory
       end
-      alias_method :reset!, :reset
+      alias_method :reset, :reset!
       alias_method :clear, :reset
 
       # Return the number of entries stored.

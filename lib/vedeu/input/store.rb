@@ -88,9 +88,10 @@ module Vedeu
       # before calling this method will be removed.
       #
       # @return [Hash<Symbol => Array<Symbol|String>>]
-      def reset
+      def reset!
         @storage = in_memory
       end
+      alias_method :reset, :reset!
 
       private
 

@@ -51,7 +51,7 @@ module Vedeu
       # @option attributes colour [Vedeu::Colours::Colour]
       # @option attributes name [String|Symbol]
       # @option attributes parent [Vedeu::Views::Line]
-      # @option attributes position [Vedeu::Geometry::Position]
+      # @option attributes position [Vedeu::Geometries::Position]
       # @option attributes style [Vedeu::Presentation::Style]
       # @option attributes value [String]
       # @return [Vedeu::Views::Char]
@@ -94,17 +94,17 @@ module Vedeu
         @interface ||= Vedeu.interfaces.by_name(name)
       end
 
-      # @return [Vedeu::Geometry::Position]
+      # @return [Vedeu::Geometries::Position]
       def position
-        @position = Vedeu::Geometry::Position.coerce(@attributes[:position])
+        @position = Vedeu::Geometries::Position.coerce(@attributes[:position])
       end
 
       # Sets the position of the Vedeu::Views::Char.
       #
-      # @param value [Vedeu::Geometry::Position]
-      # @return [Vedeu::Geometry::Position]
+      # @param value [Vedeu::Geometries::Position]
+      # @return [Vedeu::Geometries::Position]
       def position=(value)
-        @position = @attributes[:position] = Vedeu::Geometry::Position
+        @position = @attributes[:position] = Vedeu::Geometries::Position
                                              .coerce(value)
       end
 

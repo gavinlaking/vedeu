@@ -39,7 +39,7 @@ module Vedeu
         }
         let(:visible)   { true }
         let(:geometry)  {
-          Vedeu::Geometry::Geometry.new(name: _name, x: 1, y: 1, xn: 2, yn: 2)
+          Vedeu::Geometries::Geometry.new(name: _name, x: 1, y: 1, xn: 2, yn: 2)
         }
         let(:output) {
           [

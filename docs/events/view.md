@@ -9,7 +9,7 @@ Maximising an interface.
 
     Vedeu.trigger(:_maximise_, name)
 
-See {Vedeu::Geometry::Geometry#maximise}
+See {Vedeu::Geometries::Geometry#maximise}
 
 ### `:\_movement_refresh\_`
 When triggered, triggers additional events which aid the updating of
@@ -42,4 +42,4 @@ Unmaximising an interface.
 
     Vedeu.trigger(:_unmaximise_, name)
 
-See {Vedeu::Geometry::Geometry#unmaximise}
+See {Vedeu::Geometries::Geometry#unmaximise}

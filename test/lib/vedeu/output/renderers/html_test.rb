@@ -38,7 +38,7 @@ module Vedeu
         ::File.stubs(:write)
         Vedeu.stubs(:height).returns(2)
         Vedeu.stubs(:width).returns(4)
-        Vedeu::Terminal::Buffer.reset
+        Vedeu::Terminal::Buffer.reset!
       end
 
       describe '#initialize' do
