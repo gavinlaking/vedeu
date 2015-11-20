@@ -79,7 +79,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_drb_store_output_, value_or_values)
       #
-      # @param value [Array<Array<Vedeu::Views::Char>>]
+      # @param value_or_values [Array<Array<Vedeu::Views::Char>>]
       # @return [Array<Array<Vedeu::Views::Char>>]
       def write(value_or_values)
         buffer.update(value_or_values)
