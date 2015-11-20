@@ -49,6 +49,21 @@ module Vedeu
         # it { skip }
       end
 
+      describe '.store' do
+        let(:klass) {}
+
+        context 'when a block is given' do
+          subject { described.store(klass) }
+        end
+
+        context 'when a block is not given' do
+          subject { described.store(klass) { :some_proc } }
+        end
+
+        # @todo Add more tests.
+        # it { skip }
+      end
+
       describe '#store' do
         subject { instance.store }
 

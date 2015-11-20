@@ -39,12 +39,6 @@ module Vedeu
       # @return [Fixnum]
       attr_writer :y
 
-      # @param (see #initialize)
-      # @return [Vedeu::Cursors::Cursor]
-      def self.store(attributes = {})
-        new(attributes).store
-      end
-
       # Returns a new instance of Vedeu::Cursors::Cursor.
       #
       # @param attributes [Hash<Symbol => Boolean|Fixnum|String|

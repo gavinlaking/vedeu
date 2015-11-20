@@ -49,22 +49,6 @@ module Vedeu
         }
       end
 
-      describe '.store' do
-        before { Vedeu.documents.reset! }
-
-        subject { described.store(attributes) }
-
-        it { subject.must_be_instance_of(described) }
-
-        it 'registers the instance with the repository' do
-          Vedeu.documents.registered?(_name).must_equal(false)
-
-          subject
-
-          Vedeu.documents.registered?(_name).must_equal(true)
-        end
-      end
-
       describe 'accessors' do
         it {
           instance.must_respond_to(:attributes)
