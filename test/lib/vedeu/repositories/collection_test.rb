@@ -39,12 +39,22 @@ module Vedeu
 
       describe '#[]' do
         let(:collection) { [:hydrogen, :helium, :lithium, :beryllium] }
-        let(:_value) { 1..2 }
 
-        subject { instance[_value] }
+        subject { instance[index] }
 
-        it { subject.must_be_instance_of(Array) }
-        it { subject.must_equal([:helium, :lithium]) }
+        context 'when the index is a range' do
+          let(:index) { 1..2 }
+
+          it { subject.must_be_instance_of(Array) }
+          it { subject.must_equal([:helium, :lithium]) }
+        end
+
+        context 'when the index is an integer' do
+          let(:index) { 3 }
+
+          it { subject.must_be_instance_of(Symbol) }
+          it { subject.must_equal(:beryllium) }
+        end
       end
 
       describe '#add' do

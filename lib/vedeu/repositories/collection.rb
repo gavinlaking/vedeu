@@ -51,11 +51,12 @@ module Vedeu
       end
 
       # Fetch an entry from the collection via index.
+      # When the index is a Range, return a subset of the collection.
       #
-      # @param value [Fixnum]
+      # @param index [Fixnum|Range]
       # @return [void]
-      def [](value)
-        collection[value]
+      def [](index)
+        collection[index]
       end
 
       # Adds an entry to the collection.

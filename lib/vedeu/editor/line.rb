@@ -8,37 +8,31 @@ module Vedeu
     #
     class Line
 
-      # @!attribute [rw] line
+      include Vedeu::Editor::Collection
+
+      # @!attribute [rw] collection
       # @return [String]
-      attr_accessor :line
-      alias_method :to_s, :line
+      attr_accessor :collection
+      alias_method :line, :collection
+      alias_method :to_s, :collection
 
       # Coerce a line into a new instance of Vedeu::Editor::Line.
       #
-      # @param line [String|Vedeu::Editor::Line]
+      # @param collection [String|Vedeu::Editor::Line]
       # @return (see #initialize)
-      def self.coerce(line)
-        return line      if line.is_a?(self)
-        return new(line) if line.is_a?(String)
+      def self.coerce(collection)
+        return collection      if collection.is_a?(self)
+        return new(collection) if collection.is_a?(String)
 
         new
       end
 
       # Returns a new instance of Vedeu::Editor::Line.
       #
-      # @param line [String|NilClass]
+      # @param collection [String|NilClass]
       # @return [Vedeu::Editor::Line]
-      def initialize(line = nil)
-        @line = line || ''
-      end
-
-      # Return a character or collection of characters (if index is a
-      # Range).
-      #
-      # @param index [Fixnum|Range]
-      # @return [String]
-      def [](index)
-        line[index]
+      def initialize(collection = nil)
+        @collection = collection || ''
       end
 
       # Return the character at the given index.
@@ -46,10 +40,10 @@ module Vedeu
       # @param index [Fixnum|NilClass]
       # @return [String|NilClass]
       def character(index = nil)
-        return ''       if line && line.empty?
-        return line[-1] unless index
+        return ''             if collection && collection.empty?
+        return collection[-1] unless index
 
-        Vedeu::Editor::Item.by_index(line, index)
+        by_index(index)
       end
 
       # Delete the character from the line positioned at the given
@@ -62,23 +56,6 @@ module Vedeu
                                    .from(line, index, size))
       end
 
-      # Returns a boolean indicating whether there are characters on
-      # this line.
-      #
-      # @return [Boolean]
-      def empty?
-        line.empty?
-      end
-
-      # An object is equal when its values are the same.
-      #
-      # @param other [Vedeu::Editor::Line]
-      # @return [Boolean]
-      def eql?(other)
-        self.class == other.class && line == other.line
-      end
-      alias_method :==, :eql?
-
       # Insert the character on the line positioned at the given
       # index.
       #
@@ -89,14 +66,7 @@ module Vedeu
         return self unless character
 
         Vedeu::Editor::Line.coerce(Vedeu::Editor::Insert
-                                   .into(line, character, index, size))
-      end
-
-      # Return the size of the line in characters.
-      #
-      # @return [Fixnum]
-      def size
-        line.size
+                                   .into(collection, character, index, size))
       end
 
     end # Line
