@@ -2,6 +2,10 @@ module Vedeu
 
   module Repositories
 
+    # Provides collection related query/command methods.
+    #
+    # @api private
+    #
     module Assemblage
 
       include Enumerable

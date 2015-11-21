@@ -2,6 +2,11 @@ module Vedeu
 
   module Editor
 
+    # Used by {Vedeu::Editor::Lines} and {Vedeu::Editor::Line} to
+    # fetch an item from the respective collection.
+    #
+    # @api private
+    #
     module Collection
 
       include Vedeu::Repositories::Assemblage
