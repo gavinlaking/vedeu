@@ -8,6 +8,7 @@ module Vedeu
 
 end # Vedeu
 
+require 'vedeu/repositories/assemblage'
 require 'vedeu/repositories/collection'
 require 'vedeu/repositories/defaults'
 require 'vedeu/repositories/repositories'
