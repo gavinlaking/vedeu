@@ -17,76 +17,42 @@ module Vedeu
       let(:width)     { 3 }
 
       before do
-        Vedeu.stubs(:ready?).returns(true)
         Vedeu.stubs(:height).returns(height)
         Vedeu.stubs(:width).returns(width)
         Vedeu::Terminal::Buffer.reset!
       end
 
       describe '#clear' do
-        let(:ready) { false }
-
-        before do
-          Vedeu.stubs(:ready?).returns(ready)
-          Vedeu.renderers.stubs(:clear)
-        end
-
         subject { described.clear }
 
-        context 'when Vedeu is ready' do
-          let(:ready) { true }
-
-          it {
-            Vedeu.renderers.expects(:clear)
-            subject
-          }
-        end
-
-        context 'when Vedeu is not ready' do
-          # @todo Add more tests.
-        end
+        it {
+          Vedeu.renderers.expects(:clear)
+          subject
+        }
       end
 
       describe '#output' do
-        # @todo Add more tests.
+        subject { described.output }
+
+        it {
+          Vedeu::Models::Page.expects(:coerce)
+          subject
+        }
       end
 
       describe '#refresh' do
-        let(:ready)  { false }
-
-        before do
-          Vedeu.stubs(:ready?).returns(ready)
-          Vedeu.renderers.stubs(:render)
-        end
-
         subject { described.refresh }
 
-        context 'when Vedeu is not ready' do
-          it { subject.must_equal(nil) }
-        end
-
-        context 'when Vedeu is ready' do
-          let(:ready) { true }
-
-          it {
-            Vedeu.renderers.expects(:render)
-            subject
-          }
-        end
+        it {
+          Vedeu.renderers.expects(:render)
+          subject
+        }
       end
 
       describe '#reset!' do
         subject { described.reset! }
 
         it { subject.must_be_instance_of(Vedeu::Buffers::View) }
-      end
-
-      describe '#write' do
-        let(:_value) {}
-
-        subject { described.write(_value) }
-
-        # @todo Add more tests.
       end
 
       describe '#update' do
@@ -97,10 +63,18 @@ module Vedeu
         # @todo Add more tests.
       end
 
+      describe '#write' do
+        let(:_value) {}
+
+        before { Vedeu.renderers.stubs(:render) }
+
+        subject { described.write(_value) }
+
+        # @todo Add more tests.
+      end
+
     end # Buffer
 
   end # Terminal
-
-
 
 end # Vedeu

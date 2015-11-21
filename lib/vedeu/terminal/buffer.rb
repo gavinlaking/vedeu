@@ -66,8 +66,6 @@ module Vedeu
       # @return [Array<Array<Vedeu::Views::Char>>]
       def update(value_or_values)
         buffer.update(value_or_values)
-
-        self
       end
 
       # Write a collection of cells to the virtual terminal, will
@@ -85,8 +83,6 @@ module Vedeu
         buffer.update(value_or_values)
 
         refresh
-
-        self
       end
 
       private
