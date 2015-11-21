@@ -117,6 +117,18 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Models::Escape) }
       end
 
+      describe '#inspect' do
+        let(:expected) {
+          "<Vedeu::Cursors::Cursor name:'silver', x:19, y:8, ox:3, oy:2, " \
+          "visible:true>"
+        }
+
+        subject { instance.inspect }
+
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal(expected) }
+      end
+
       describe '#move_down' do
         let(:x)  { 19 }
         let(:y)  { 8 }
