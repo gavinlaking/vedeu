@@ -37,16 +37,6 @@ module Vedeu
         # it { skip }
       end
 
-      describe '#[]' do
-        let(:collection) { [:hydrogen, :helium, :lithium, :beryllium] }
-        let(:_value) { 1..2 }
-
-        subject { instance[_value] }
-
-        it { subject.must_be_instance_of(Array) }
-        it { subject.must_equal([:helium, :lithium]) }
-      end
-
       describe '#add' do
         subject { instance.add(:hydrogen) }
 
@@ -67,50 +57,6 @@ module Vedeu
           it 'returns the populated collection' do
             subject.must_equal([:hydrogen])
           end
-        end
-      end
-
-      describe '#empty?' do
-        subject { instance.empty? }
-
-        context 'when the collection is empty' do
-          it { subject.must_be_instance_of(TrueClass) }
-        end
-
-        context 'when the collection is not empty' do
-          before { instance.add(:hydrogen) }
-
-          it { subject.must_be_instance_of(FalseClass) }
-        end
-      end
-
-      describe '#eql?' do
-        let(:other) { instance }
-
-        subject { instance.eql?(other) }
-
-        it { subject.must_equal(true) }
-
-        context 'when different to other' do
-          let(:other) { described.new([:different]) }
-
-          it { subject.must_equal(false) }
-        end
-      end
-
-      describe '#size' do
-        subject { instance.size }
-
-        it { subject.must_be_instance_of(Fixnum) }
-
-        context 'when the collection is empty' do
-          it { subject.must_equal(0) }
-        end
-
-        context 'when the collection is not empty' do
-          before { instance.add(:hydrogen) }
-
-          it { subject.must_equal(1) }
         end
       end
 

@@ -31,14 +31,6 @@ module Vedeu
       # @return [String|Symbol]
       attr_accessor :name
 
-      # Store an instance of this class with its repository.
-      #
-      # @param (see #initialize)
-      # @return (see #initialize)
-      def self.store(attributes = {})
-        new(attributes).store
-      end
-
       # Returns the document as a string with line breaks if there is
       # more than one line.
       #

@@ -47,12 +47,6 @@ module Vedeu
         }
       end
 
-      describe '.store' do
-        subject { described.store(attributes) }
-
-        it { subject.must_equal(instance) }
-      end
-
       describe '#add' do
         subject { instance.add('hydrogen') }
 

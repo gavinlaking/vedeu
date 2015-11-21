@@ -5,7 +5,7 @@
 Note: 'name' is a Symbol unless mentioned otherwise.
 
 ### `:\_clear\_`
-See {Vedeu::Terminal::Buffer#clear}
+See {Vedeu::Buffers::Terminal#clear}
 
 ### `:\_clear_group\_`
 Clears the spaces occupied by the interfaces belonging to the named

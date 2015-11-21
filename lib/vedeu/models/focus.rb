@@ -169,15 +169,13 @@ module Vedeu
         Vedeu.trigger(:_refresh_cursor_, current)
       end
 
-      # Returns a collection of the names of all the registered
-      # entities.
+      # Access to the storage for this repository.
       #
       # @return [Array]
-      def registered
-        return [] if empty?
-
-        storage
+      def storage
+        @storage ||= in_memory
       end
+      alias_method :registered, :storage
 
       # Returns a boolean indicating whether the named model is
       # registered.
@@ -227,13 +225,6 @@ module Vedeu
         refresh
 
         current
-      end
-
-      # Access to the storage for this repository.
-      #
-      # @return [Array]
-      def storage
-        @storage ||= in_memory
       end
 
       # Returns an empty collection ready for the storing of interface

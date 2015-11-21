@@ -19,7 +19,7 @@ module Vedeu
         subject { described.log(message: _message, force: force, type: type) }
 
         it { subject.must_equal(
-          "\e[97m[info]   \e[39m\e[37mSome message...\e[39m"
+          "\e[97m[info]     \e[39m\e[37mSome message...\e[39m"
         ) }
       end
 
@@ -31,7 +31,7 @@ module Vedeu
 
         it {
           capture_io { subject }.must_equal(
-            ["\e[96m[create] \e[39m\e[36mLogging to stdout...\e[39m\n", ""]
+            ["\e[96m[create]   \e[39m\e[36mLogging to stdout...\e[39m\n", ""]
           )
         }
       end
@@ -44,7 +44,7 @@ module Vedeu
 
         it {
           capture_io { subject }.must_equal(
-            ["", "\e[97m[debug]  \e[39m\e[37mLogging to stderr...\e[39m\n"]
+            ["", "\e[97m[debug]    \e[39m\e[37mLogging to stderr...\e[39m\n"]
           )
         }
       end

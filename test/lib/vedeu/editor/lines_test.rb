@@ -6,9 +6,9 @@ module Vedeu
 
     describe Lines do
 
-      let(:described) { Vedeu::Editor::Lines }
-      let(:instance)  { described.new(lines) }
-      let(:lines)     {
+      let(:described)  { Vedeu::Editor::Lines }
+      let(:instance)   { described.new(collection) }
+      let(:collection) {
         [
           Vedeu::Editor::Line.new('Some text...'),
           Vedeu::Editor::Line.new('More text...'),
@@ -18,18 +18,19 @@ module Vedeu
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
-        it { instance.instance_variable_get('@lines').must_equal(lines) }
+        it { instance.instance_variable_get('@collection').must_equal(collection) }
 
         context 'when lines were not given' do
-          let(:lines) {}
+          let(:collection) {}
 
-          it { instance.instance_variable_get('@lines').must_equal([]) }
+          it { instance.instance_variable_get('@collection').must_equal([]) }
         end
       end
 
       describe 'accessors' do
+        it { instance.must_respond_to(:collection) }
+        it { instance.must_respond_to(:collection=) }
         it { instance.must_respond_to(:lines) }
-        it { instance.must_respond_to(:lines=) }
       end
 
       describe '.coerce' do
@@ -40,16 +41,16 @@ module Vedeu
         it { subject.must_be_instance_of(described) }
 
         context 'when the document is already a Vedeu::Editor::Lines object' do
-          let(:document) { Vedeu::Editor::Lines.new(lines) }
+          let(:document) { Vedeu::Editor::Lines.new(collection) }
 
           it { subject.must_equal(document) }
-          it { subject.lines.must_equal(lines) }
+          it { subject.collection.must_equal(collection) }
         end
 
         context 'when the document is an empty Array' do
           let(:document) { [] }
 
-          it { subject.lines.must_equal([]) }
+          it { subject.collection.must_equal([]) }
         end
 
         context 'when the document is an Array' do
@@ -68,7 +69,7 @@ module Vedeu
             ]
           }
 
-          it { subject.lines.must_equal(expected) }
+          it { subject.collection.must_equal(expected) }
         end
 
         context 'when the document is a String' do
@@ -86,31 +87,6 @@ module Vedeu
         end
       end
 
-      describe '#[]' do
-        subject { instance.[](index) }
-
-        context 'when index is a Fixnum' do
-          let(:index)    { 2 }
-          let(:expected) {
-            Vedeu::Editor::Line.new('Other text...')
-          }
-
-          it { subject.must_equal(expected) }
-        end
-
-        context 'when index is a Range' do
-          let(:index)    { (1..2) }
-          let(:expected) {
-            [
-              Vedeu::Editor::Line.new('More text...'),
-              Vedeu::Editor::Line.new('Other text...')
-            ]
-          }
-
-          it { subject.must_equal(expected) }
-        end
-      end
-
       describe '#delete_character' do
         let(:x)         { 0 }
         let(:y)         { 0 }
@@ -118,7 +94,7 @@ module Vedeu
         subject { instance.delete_character(y, x) }
 
         context 'when there are no lines' do
-          let(:lines) {
+          let(:collection) {
             [
               Vedeu::Editor::Line.new('')
             ]
@@ -131,7 +107,7 @@ module Vedeu
         end
 
         context 'when there is one line' do
-          let(:lines) {
+          let(:collection) {
             [
               Vedeu::Editor::Line.new('Hydrogen')
             ]
@@ -167,7 +143,7 @@ module Vedeu
 
         context 'when there are multiple lines' do
           let(:y)     { 1 }
-          let(:lines) {
+          let(:collection) {
             [
               Vedeu::Editor::Line.new('Hydrogen'),
               Vedeu::Editor::Line.new('Helium'),
@@ -224,7 +200,7 @@ module Vedeu
         it { subject.must_be_instance_of(described) }
 
         context 'when the lines are empty' do
-          let(:lines) { [] }
+          let(:collection) { [] }
 
           it { subject.must_equal(Vedeu::Editor::Lines.new) }
         end
@@ -276,34 +252,6 @@ module Vedeu
         end
       end
 
-      describe '#empty?' do
-        subject { instance.empty? }
-
-        context 'when the line is empty' do
-          let(:lines) {}
-
-          it { subject.must_equal(true) }
-        end
-
-        context 'when the line is not empty' do
-          it { subject.must_equal(false) }
-        end
-      end
-
-      describe '#eql?' do
-        let(:other) { instance }
-
-        subject { instance.eql?(other) }
-
-        it { subject.must_equal(true) }
-
-        context 'when different to other' do
-          let(:other) { described.new('Other text...') }
-
-          it { subject.must_equal(false) }
-        end
-      end
-
       describe '#insert_character' do
         let(:x)         { 0 }
         let(:y)         { 0 }
@@ -312,7 +260,7 @@ module Vedeu
         subject { instance.insert_character(character, y, x) }
 
         context 'when there are no lines' do
-          let(:lines) {
+          let(:collection) {
             [
               Vedeu::Editor::Line.new('')
             ]
@@ -325,7 +273,7 @@ module Vedeu
         end
 
         context 'when there is one line' do
-          let(:lines) {
+          let(:collection) {
             [
               Vedeu::Editor::Line.new('Hydrogen')
             ]
@@ -361,7 +309,7 @@ module Vedeu
 
         context 'when there are multiple lines' do
           let(:y)     { 1 }
-          let(:lines) {
+          let(:collection) {
             [
               Vedeu::Editor::Line.new('Hydrogen'),
               Vedeu::Editor::Line.new('Helium'),
@@ -460,7 +408,6 @@ module Vedeu
 
           it { subject.must_equal(expected) }
         end
-
       end
 
       describe '#line' do
@@ -471,7 +418,7 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Editor::Line) }
 
         context 'when there are no lines' do
-          let(:lines) {}
+          let(:collection) {}
 
           it { subject.must_equal(Vedeu::Editor::Line.new) }
         end
@@ -513,25 +460,11 @@ module Vedeu
         end
       end
 
-      describe '#size' do
-        subject { instance.size }
-
-        context 'when there are no lines' do
-          let(:lines) {}
-
-          it { subject.must_equal(0) }
-        end
-
-        context 'when there are lines' do
-          it { subject.must_equal(3) }
-        end
-      end
-
       describe '#to_s' do
         subject { instance.to_s }
 
         context 'when there are no lines' do
-          let(:lines) {}
+          let(:collection) {}
 
           it { subject.must_equal("") }
         end

@@ -9,10 +9,12 @@ module Vedeu
     class Lines
 
       include Enumerable
+      include Vedeu::Editor::Collection
 
-      # @!attribute [rw] lines
+      # @!attribute [rw] collection
       # @return [String]
-      attr_accessor :lines
+      attr_accessor :collection
+      alias_method :lines, :collection
 
       # Coerce a document into a new instance of Vedeu::Editor::Lines.
       #
@@ -23,16 +25,16 @@ module Vedeu
           new(document.lines)
 
         elsif document.is_a?(Array)
-          lines = document.map { |line| Vedeu::Editor::Line.coerce(line) }
+          collection = document.map { |line| Vedeu::Editor::Line.coerce(line) }
 
-          new(lines)
+          new(collection)
 
         elsif document.is_a?(String)
-          lines = document.lines.map(&:chomp).map do |line|
+          collection = document.lines.map(&:chomp).map do |line|
             Vedeu::Editor::Line.coerce(line)
           end
 
-          new(lines)
+          new(collection)
 
         else
           new
@@ -42,18 +44,10 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Editor::Lines.
       #
-      # @param lines [Array<String>|NilClass]
+      # @param collection [Array<String>|NilClass]
       # @return [Vedeu::Editor::Lines]
-      def initialize(lines = nil)
-        @lines = lines || []
-      end
-
-      # Return a line or collection of lines (if index is a Range).
-      #
-      # @param index [Fixnum|Range]
-      # @return [Vedeu::Editor::Line]
-      def [](index)
-        lines[index]
+      def initialize(collection = nil)
+        @collection = collection || []
       end
 
       # Deletes the character from the line where the cursor is
@@ -63,9 +57,9 @@ module Vedeu
       # @param x [Fixnum]
       # @return [Vedeu::Editor::Lines]
       def delete_character(y, x)
-        lines[y] = line(y).delete_character(x) unless line(y).empty?
+        collection[y] = line(y).delete_character(x) unless line(y).empty?
 
-        Vedeu::Editor::Lines.coerce(lines)
+        Vedeu::Editor::Lines.coerce(collection)
       end
 
       # Delete the line from the lines positioned at the given index.
@@ -82,24 +76,8 @@ module Vedeu
       # @param block [Proc]
       # @return [Enumerator]
       def each(&block)
-        lines.each(&block)
+        collection.each(&block)
       end
-
-      # Returns a boolean indicating whether there are lines.
-      #
-      # @return [Boolean]
-      def empty?
-        lines.empty?
-      end
-
-      # An object is equal when its values are the same.
-      #
-      # @param other [Vedeu::Editor::Lines]
-      # @return [Boolean]
-      def eql?(other)
-        self.class == other.class && lines == other.lines
-      end
-      alias_method :==, :eql?
 
       # Insert a character in to a line.
       #
@@ -108,9 +86,9 @@ module Vedeu
       # @param x [Fixnum]
       # @return [Vedeu::Editor::Lines]
       def insert_character(character, y, x)
-        lines[y] = line(y).insert_character(character, x)
+        collection[y] = line(y).insert_character(character, x)
 
-        Vedeu::Editor::Lines.coerce(lines)
+        Vedeu::Editor::Lines.coerce(collection)
       end
 
       # Insert the line on the line below the given index.
@@ -119,7 +97,7 @@ module Vedeu
       # @return [Vedeu::Editor::Lines]
       def insert_line(index = nil)
         Vedeu::Editor::Lines.coerce(
-          Vedeu::Editor::Insert.into(lines,
+          Vedeu::Editor::Insert.into(collection,
                                      Vedeu::Editor::Line.new,
                                      index,
                                      size))
@@ -130,27 +108,20 @@ module Vedeu
       # @param index [Fixnum|NilClass]
       # @return [Vedeu::Editor::Line]
       def line(index = nil)
-        return Vedeu::Editor::Line.new unless lines
-        return Vedeu::Editor::Line.coerce(lines[-1]) unless index
+        return Vedeu::Editor::Line.new unless collection
+        return Vedeu::Editor::Line.coerce(collection[-1]) unless index
 
-        Vedeu::Editor::Line.coerce(Vedeu::Editor::Item.by_index(lines, index))
-      end
-
-      # Return the number of lines.
-      #
-      # @return [Fixnum]
-      def size
-        lines.size
+        Vedeu::Editor::Line.coerce(by_index(index))
       end
 
       # Return the lines as a string.
       #
       # @return [String]
       def to_s
-        lines.map(&:to_s).join
+        collection.map(&:to_s).join
       end
 
-    end # Line
+    end # Lines
 
   end # Editor
 

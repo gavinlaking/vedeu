@@ -17,9 +17,9 @@ module Vedeu
       # @return [Array<Array<Vedeu::Models::Cell>>]
       def buffer
         Array.new(height) do |y|
-          unless y == 0
+          if y > 0
             Array.new(width) do |x|
-              Vedeu::Models::Cell.new(name: name, position: [y, x]) unless x == 0
+              Vedeu::Models::Cell.new(name: name, position: [y, x]) if x > 0
             end.compact
           end
         end.compact

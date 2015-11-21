@@ -107,7 +107,7 @@ module Vedeu
       # Returns a boolean indicating whether a mouse click was
       # received.
       #
-      # @param key [NilClass|String|Symbol|Vedeu::Cursors::Cursor]
+      # @param input [NilClass|String|Symbol|Vedeu::Cursors::Cursor]
       # @return [Boolean]
       def click?(input)
         return false if input.nil? || input.is_a?(Symbol)

@@ -1,6 +1,6 @@
 module Vedeu
 
-  module Terminal
+  module Buffers
 
     # All output will be written to this singleton, and #render will
     # be called at the end of each run of {Vedeu::MainLoop};
@@ -11,7 +11,7 @@ module Vedeu
     # points and only at the end of each run of {Vedeu::MainLoop} will
     # it be actually output 'somewhere'.
     #
-    module Buffer
+    module Terminal
 
       extend self
 
@@ -66,8 +66,6 @@ module Vedeu
       # @return [Array<Array<Vedeu::Views::Char>>]
       def update(value_or_values)
         buffer.update(value_or_values)
-
-        self
       end
 
       # Write a collection of cells to the virtual terminal, will
@@ -79,14 +77,12 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_drb_store_output_, value_or_values)
       #
-      # @param value [Array<Array<Vedeu::Views::Char>>]
+      # @param value_or_values [Array<Array<Vedeu::Views::Char>>]
       # @return [Array<Array<Vedeu::Views::Char>>]
       def write(value_or_values)
         buffer.update(value_or_values)
 
         refresh
-
-        self
       end
 
       private
@@ -100,26 +96,26 @@ module Vedeu
       end
       alias_method :cells, :buffer
 
-    end # Buffer
+    end # Terminal
 
-  end # Terminal
+  end # Buffers
 
   # @!method clear
-  #   @see Vedeu::Terminal::Buffer#clear
-  def_delegators Vedeu::Terminal::Buffer,
+  #   @see Vedeu::Buffers::Terminal#clear
+  def_delegators Vedeu::Buffers::Terminal,
                  :clear,
                  :refresh
 
   # :nocov:
 
-  # @see Vedeu::Terminal::Buffer#clear
+  # @see Vedeu::Buffers::Terminal#clear
   Vedeu.bind(:_clear_) { Vedeu.clear }
 
-  # @see Vedeu::Terminal::Buffer#output
-  Vedeu.bind(:_drb_retrieve_output_) { Vedeu::Terminal::Buffer.output }
+  # @see Vedeu::Buffers::Terminal#output
+  Vedeu.bind(:_drb_retrieve_output_) { Vedeu::Buffers::Terminal.output }
 
-  # @see Vedeu::Terminal::Buffer#write
-  Vedeu.bind(:_drb_store_output_) { |data| Vedeu::Terminal::Buffer.write(data) }
+  # @see Vedeu::Buffers::Terminal#write
+  Vedeu.bind(:_drb_store_output_) { |data| Vedeu::Buffers::Terminal.write(data) }
 
   # :nocov:
 

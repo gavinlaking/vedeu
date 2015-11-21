@@ -11,4 +11,3 @@ end # Vedeu
 
 require 'vedeu/terminal/mode'
 require 'vedeu/terminal/terminal'
-require 'vedeu/terminal/buffer'

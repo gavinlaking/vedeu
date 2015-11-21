@@ -14,12 +14,6 @@ module Vedeu
       # @return [String]
       attr_accessor :name
 
-      # @param (see #initialize)
-      # @return (see #initialize)
-      def self.store(attributes = {})
-        new(attributes).store
-      end
-
       # Return a new instance of Vedeu::Groups::Group.
       #
       # @note

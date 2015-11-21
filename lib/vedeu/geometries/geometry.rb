@@ -82,12 +82,6 @@ module Vedeu
       # @return [Object]
       attr_accessor :client
 
-      # @param (see #initialize)
-      # @return (see #initialize)
-      def self.store(attributes, &block)
-        new(attributes).store(&block)
-      end
-
       # Returns a new instance of Vedeu::Geometries::Geometry.
       #
       # @param attributes [Hash<Symbol => Boolean|Fixnum|String|

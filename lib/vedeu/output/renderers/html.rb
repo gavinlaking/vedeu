@@ -2,7 +2,7 @@ module Vedeu
 
   module Renderers
 
-    # Renders a {Vedeu::Terminal::Buffer} as a HTML snippet; a table
+    # Renders a {Vedeu::Buffers::Terminal} as a HTML snippet; a table
     # by default.
     #
     class HTML < Vedeu::Renderers::File

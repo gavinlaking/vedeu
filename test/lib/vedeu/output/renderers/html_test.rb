@@ -32,13 +32,13 @@ module Vedeu
       }
       let(:timestamp)     { false }
       let(:write_file)    { false }
-      let(:buffer)        { Vedeu::Terminal::Buffer }
+      let(:buffer)        { Vedeu::Buffers::Terminal }
 
       before do
         ::File.stubs(:write)
         Vedeu.stubs(:height).returns(2)
         Vedeu.stubs(:width).returns(4)
-        Vedeu::Terminal::Buffer.reset!
+        Vedeu::Buffers::Terminal.reset!
       end
 
       describe '#initialize' do

@@ -9,7 +9,7 @@ module Vedeu
     #
     class Collection
 
-      include Enumerable
+      include Vedeu::Repositories::Assemblage
 
       # @!attribute [r] collection
       # @return [Array|Vedeu::Repositories::Collection]
@@ -50,14 +50,6 @@ module Vedeu
         @name       = name
       end
 
-      # Fetch an entry from the collection via index.
-      #
-      # @param value [Fixnum]
-      # @return [void]
-      def [](value)
-        collection[value]
-      end
-
       # Adds an entry to the collection.
       #
       # @param other [Vedeu::Repositories::Collection]
@@ -72,37 +64,6 @@ module Vedeu
         end
       end
       alias_method :<<, :add
-
-      # Provides iteration over the collection.
-      #
-      # @param block [Proc]
-      # @return [Enumerator]
-      def each(&block)
-        collection.each(&block)
-      end
-
-      # Returns a boolean indicating whether the collection is empty.
-      #
-      # @return [Boolean]
-      def empty?
-        collection.empty?
-      end
-
-      # An object is equal when its values are the same.
-      #
-      # @param other [Vedeu::Repositories::Collection]
-      # @return [Boolean]
-      def eql?(other)
-        self.class == other.class && collection == other.collection
-      end
-      alias_method :==, :eql?
-
-      # Returns the size of the collection.
-      #
-      # @return [Fixnum]
-      def size
-        collection.size
-      end
 
       # Returns the collection as a String.
       #

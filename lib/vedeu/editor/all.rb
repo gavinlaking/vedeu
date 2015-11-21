@@ -8,6 +8,7 @@ module Vedeu
 
 end # Vedeu
 
+require 'vedeu/editor/collection'
 require 'vedeu/editor/cropper'
 require 'vedeu/editor/delete'
 require 'vedeu/editor/editor'

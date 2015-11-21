@@ -64,6 +64,23 @@ module Vedeu
           @repository = klass
         end
 
+        # Create and store a model with the given attributes.
+        #
+        # @param attributes [Hash] A collection of attributes specific
+        #   to the model.
+        # @param block [Proc] A block of code to be executing whilst
+        #   storing.
+        # @return [Object] An instance of the model.
+        def store(attributes = {}, &block)
+          if block_given?
+            new(attributes).store(&block)
+
+          else
+            new(attributes).store
+
+          end
+        end
+
         private
 
         # The default values for a new instance of this class.
