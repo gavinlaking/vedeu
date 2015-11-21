@@ -60,7 +60,7 @@ module Vedeu
           elsif Vedeu::Input::Mapper.registered?(@key, name)
             Vedeu.trigger(:_keypress_, @key, name)
 
-          elsif interface.editable?
+          elsif Vedeu.interfaces.by_name(name).editable?
             Vedeu.trigger(:_editor_, @key)
 
           elsif @key.nil?
@@ -131,11 +131,6 @@ module Vedeu
       # @return [String|Symbol]
       def name
         Vedeu.focus
-      end
-
-      # @return [Vedeu::Interfaces::Interface]
-      def interface
-        Vedeu.interfaces.by_name(name)
       end
 
     end # Input

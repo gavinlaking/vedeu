@@ -121,7 +121,7 @@ module Vedeu
 
         loop do
           storage.rotate!
-          break if Vedeu.interfaces.by_name(current).visible?
+          break if interface.visible?
         end
 
         update
@@ -153,7 +153,7 @@ module Vedeu
 
         loop do
           storage.rotate!(-1)
-          break if Vedeu.interfaces.by_name(current).visible?
+          break if interface.visible?
         end
 
         update
@@ -197,6 +197,11 @@ module Vedeu
       alias_method :reset, :reset!
 
       private
+
+      # @return [Vedeu::Interfaces::Interface]
+      def interface
+        Vedeu.interfaces.by_name(current)
+      end
 
       # @raise [Vedeu::Error::Fatal]
       def no_interfaces_registered!
