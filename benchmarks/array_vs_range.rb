@@ -2,7 +2,7 @@
 
 # To test the suitability of using a range to determine a valid
 # coordinate instead of the current array method as used in
-# Vedeu::Terminal::Buffer#within_terminal_boundary?
+# Vedeu::Buffers::Terminal#within_terminal_boundary?
 #
 # vedeu/benchmarks:spike/benchmarking$ ./array_vs_range.rb
 # Calculating -------------------------------------

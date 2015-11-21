@@ -27,7 +27,7 @@ module Vedeu
           let(:output) { Vedeu::Models::Page.new }
 
           it {
-            Vedeu::Terminal::Buffer.expects(:write).with(output)
+            Vedeu::Buffers::Terminal.expects(:write).with(output)
             subject
           }
         end
@@ -75,7 +75,7 @@ module Vedeu
             let(:output) { Vedeu::Models::Page.new }
 
             it {
-              Vedeu::Terminal::Buffer.expects(:write).with(output)
+              Vedeu::Buffers::Terminal.expects(:write).with(output)
               subject
             }
           end

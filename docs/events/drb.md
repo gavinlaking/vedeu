@@ -11,10 +11,10 @@ Note: See {Vedeu::Distributed::Server#input} for parameter details.
     Vedeu.trigger(:_drb_input_, data, type)
 
 ### `:\_drb_retrieve_output\_`
-See {Vedeu::Terminal::Buffer#output}
+See {Vedeu::Buffers::Terminal#output}
 
 ### `:\_drb_store_output\_`
-See {Vedeu::Terminal::Buffer#write}
+See {Vedeu::Buffers::Terminal#write}
 
 ### `:\_drb_restart\_`
 Use the DRb server to request the client application to restart.

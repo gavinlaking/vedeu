@@ -74,7 +74,7 @@ module Vedeu
       # Send the view to the renderers. If the output is a
       # {Vedeu::Models::Escape} object (typical when showing or
       # hiding the cursor) then we bypass the
-      # {Vedeu::Terminal::Buffer} and write directly to the terminal
+      # {Vedeu::Buffers::Terminal} and write directly to the terminal
       # because escape sequences only make sense to the terminal and
       # not other renderers.
       #
@@ -100,12 +100,12 @@ module Vedeu
 
       # @return [Array]
       def buffer_update!
-        Vedeu::Terminal::Buffer.update(output)
+        Vedeu::Buffers::Terminal.update(output)
       end
 
       # @return [Array]
       def buffer_write!
-        Vedeu::Terminal::Buffer.write(output)
+        Vedeu::Buffers::Terminal.write(output)
       end
 
       # @return [Array<String>]

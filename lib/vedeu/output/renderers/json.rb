@@ -2,7 +2,7 @@ module Vedeu
 
   module Renderers
 
-    # Renders a {Vedeu::Terminal::Buffer} as JSON.
+    # Renders a {Vedeu::Buffers::Terminal} as JSON.
     #
     class JSON < Vedeu::Renderers::File
 

@@ -8,18 +8,18 @@ module Vedeu
     it { Vedeu.bound?(:_drb_store_output_).must_equal(true) }
   end
 
-  module Terminal
+  module Buffers
 
-    describe Buffer do
+    describe Terminal do
 
-      let(:described) { Vedeu::Terminal::Buffer }
+      let(:described) { Vedeu::Buffers::Terminal }
       let(:height)    { 2 }
       let(:width)     { 3 }
 
       before do
         Vedeu.stubs(:height).returns(height)
         Vedeu.stubs(:width).returns(width)
-        Vedeu::Terminal::Buffer.reset!
+        Vedeu::Buffers::Terminal.reset!
       end
 
       describe '#clear' do
