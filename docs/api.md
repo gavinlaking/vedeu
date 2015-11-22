@@ -506,3 +506,7 @@ Repository method. Access registered renderers.
 ### Vedeu.width
 
 @todo Add more documentation.
+
+### Vedeu.write
+
+@todo Add more documentation.
