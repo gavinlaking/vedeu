@@ -97,7 +97,7 @@ module Vedeu
 
       # @return [Vedeu::Geometries::Geometry]
       def geometry
-        Vedeu.geometries.by_name(name)
+        @geometry ||= Vedeu.geometries.by_name(name)
       end
 
       # Moves the geometry left by the offset.
