@@ -41,10 +41,10 @@ module Vedeu
       end
       alias_method :==, :eql?
 
-      # Overwrite the border from {#build_horizontal} on the top
-      # border to include the title if given.
+      # Overwrite the border from
+      # {Vedeu::Borders::Border#build_horizontal} on the top border to
+      # include the title if given.
       #
-      # @param [Array<Vedeu::Views::Char>]
       # @return [Array<Vedeu::Views::Char>]
       def render
         return chars if empty?
