@@ -14,40 +14,22 @@ module Vedeu
       #   Vedeu::Borders::Caption]
       # @param width [Fixnum]
       # @return [Vedeu::Borders::Title|Vedeu::Borders::Caption]
-      def self.coerce(value = '', width = Vedeu.width)
-        if value.is_a?(self)
-          value
-
-        else
-          new(value, width)
-
-        end
+      def self.render(value = '', width = Vedeu.width, chars = [])
+        new(value, width, chars).render
       end
 
       # Returns a new instance of Vedeu::Borders::Title or
       # Vedeu::Borders::Caption.
       #
+      # @param chars [Array<Vedeu::Views::Char>]
       # @param value [String|Vedeu::Borders::Title|
       #   Vedeu::Borders::Caption]
       # @param width [Fixnum]
       # @return [Vedeu::Borders::Title|Vedeu::Borders::Caption]
-      def initialize(value = '', width = Vedeu.width)
+      def initialize(value = '', width = Vedeu.width, chars = [])
         @value = value
         @width = width
-      end
-
-      # Return the padded, truncated value as an Array of String.
-      #
-      # @return [Array<String>]
-      def characters
-        pad.chars
-      end
-
-      # Return boolean indicating whether the value is empty.
-      #
-      # @return [Boolean]
-      def empty?
-        value.empty?
+        @chars = chars
       end
 
       # An object is equal when its values are the same.
@@ -59,11 +41,20 @@ module Vedeu
       end
       alias_method :==, :eql?
 
-      # Return the size of the padded, truncated value.
+      # Overwrite the border from {#build_horizontal} on the top
+      # border to include the title if given.
       #
-      # @return [Fixnum]
-      def size
-        pad.size
+      # @param [Array<Vedeu::Views::Char>]
+      # @return [Array<Vedeu::Views::Char>]
+      def render
+        return chars if empty?
+
+        chars.each_with_index do |char, index|
+          next if index == start_index || index > size
+
+          char.border = nil
+          char.value  = characters[index - 1]
+        end
       end
 
       # Convert the value to a string.
@@ -82,7 +73,27 @@ module Vedeu
       alias_method :title, :value
       alias_method :caption, :value
 
+      protected
+
+      # @!attribute [r] chars
+      # @return [Array<Vedeu::Views::Char>]
+      attr_reader :chars
+
       private
+
+      # Return the padded, truncated value as an Array of String.
+      #
+      # @return [Array<String>]
+      def characters
+        pad.chars
+      end
+
+      # Return boolean indicating whether the value is empty.
+      #
+      # @return [Boolean]
+      def empty?
+        value.empty?
+      end
 
       # Pads the value with a single whitespace either side.
       #
@@ -98,6 +109,18 @@ module Vedeu
       # @see #truncate
       def pad
         truncate.center(truncate.size + 2)
+      end
+
+      # Return the size of the padded, truncated value.
+      #
+      # @return [Fixnum]
+      def size
+        pad.size
+      end
+
+      # @return [Fixnum]
+      def start_index
+        0
       end
 
       # Truncates the value to the width of the interface, minus

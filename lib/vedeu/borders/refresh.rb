@@ -97,18 +97,6 @@ module Vedeu
         end
       end
 
-      # @return [Vedeu::Borders::Caption] An optional caption for when
-      #   the bottom border is to be shown.
-      def render_caption
-        @_caption ||= Vedeu::Borders::Caption.coerce(caption, width)
-      end
-
-      # @return [Vedeu::Borders::Title] An optional title for when the
-      #   top border is to be shown.
-      def render_title
-        @_title ||= Vedeu::Borders::Title.coerce(title, width)
-      end
-
       # @param value [String]
       # @param type [Symbol|NilClass]
       # @param iy [Fixnum]
@@ -242,38 +230,25 @@ module Vedeu
         [build_top_left, titlebar, build_top_right].compact
       end
 
-      # Overwrite the border from {#build_horizontal} on the bottom
-      # border to include the caption if given.
+      # An optional caption for when the bottom border is to be shown.
       #
       # @return [Array<Vedeu::Views::Char>]
+      # @see [Vedeu::Borders::Caption#render]
       def captionbar
-        return build_bottom if render_caption.empty?
+        return nil unless caption
 
-        caption_starts_at = (width - render_caption.size) - 2
-
-        caption_index = 0
-        build_bottom.each_with_index do |char, index|
-          next if index <= caption_starts_at || index > (width - 2)
-
-          char.border   = nil
-          char.value    = render_caption.characters[caption_index]
-          caption_index += 1
-        end
+        @_caption ||= Vedeu::Borders::Caption
+                        .render(caption, width, build_bottom)
       end
 
-      # Overwrite the border from {#build_horizontal} on the top
-      # border to include the title if given.
+      # An optional title for when the top border is to be shown.
       #
       # @return [Array<Vedeu::Views::Char>]
+      # @see [Vedeu::Borders::Title#render]
       def titlebar
-        return build_top if render_title.empty?
+        return nil unless title
 
-        build_top.each_with_index do |char, index|
-          next if index == 0 || index > render_title.size
-
-          char.border = nil
-          char.value  = render_title.characters[index - 1]
-        end
+        @_title ||= Vedeu::Borders::Title.render(title, width, build_top)
       end
 
     end # Refresh
