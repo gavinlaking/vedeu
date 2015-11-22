@@ -71,7 +71,7 @@ module Vedeu
       #
       # @return [String]
       def current
-        return storage[0] unless empty?
+        return storage[0] unless storage.empty?
 
         no_interfaces_registered!
       end
@@ -89,13 +89,6 @@ module Vedeu
         current == name
       end
       alias_method :focussed?, :current?
-
-      # Return a boolean indicating whether the storage is empty.
-      #
-      # @return [Boolean]
-      def empty?
-        storage.empty?
-      end
 
       # Put the next interface relative to the current interfaces in
       # focus.
@@ -183,7 +176,7 @@ module Vedeu
       # @param name [String|Symbol]
       # @return [Boolean]
       def registered?(name)
-        return false if empty?
+        return false if storage.empty?
 
         storage.include?(name)
       end
@@ -223,7 +216,7 @@ module Vedeu
       #
       # @return [String|FalseClass]
       def update
-        return false if empty?
+        return false if storage.empty?
 
         Vedeu.log(message: "Interface in focus: '#{current}'".freeze)
 
