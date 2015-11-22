@@ -10,6 +10,7 @@ module Vedeu
       # @!attribute [r] storage
       # @return [Hash<String => String>]
       attr_reader :storage
+      alias_method :all, :storage
 
       # Returns a new instance of Vedeu::Colours::Repository.
       #
