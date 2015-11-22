@@ -19,7 +19,7 @@ module Vedeu
   describe Common do
 
     let(:described) { Vedeu::VedeuCommonClass }
-    let(:instance) { described.new }
+    let(:instance)  { described.new }
 
     describe '#absent?' do
       subject { instance.undefined_value_test(_value) }
@@ -56,6 +56,22 @@ module Vedeu
       subject { instance.demodulize(klass) }
 
       it { subject.must_equal('VedeuCommonClass') }
+    end
+
+    describe '#numeric?' do
+      let(:_value) {}
+
+      subject { instance.numeric?(_value) }
+
+      context 'when the value is numeric' do
+        let(:_value) { 16 }
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when the value is not numeric' do
+        it { subject.must_equal(false) }
+      end
     end
 
     describe '#present?' do

@@ -28,6 +28,14 @@ module Vedeu
       klass[(klass.rindex('::') + 2)..-1]
     end
 
+    # Returns a boolean indicating whether the value is a Fixnum.
+    #
+    # @param value [Fixnum|void]
+    # @return [Boolean]
+    def numeric?(value)
+      value.is_a?(Fixnum)
+    end
+
     # Returns a boolean indicating whether a variable has a useful
     # value.
     #
