@@ -90,13 +90,6 @@ module Vedeu
         @lines[oy...(oy + bordered_height)] || []
       end
 
-      # Returns the interface by name.
-      #
-      # @return (see Vedeu::Interfaces::Repository#by_name)
-      def interface
-        @interface ||= Vedeu.interfaces.by_name(name)
-      end
-
       # Return a range of visible characters from each line.
       #
       # @return [String]

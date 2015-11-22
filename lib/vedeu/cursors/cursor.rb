@@ -85,6 +85,12 @@ module Vedeu
       end
       alias_method :==, :eql?
 
+      # @return [String]
+      def inspect
+        "<#{self.class.name} name:'#{name}', x:#{x}, y:#{y}, ox:#{ox}, " \
+        "oy:#{oy}, visible:#{visible}>"
+      end
+
       # Moves the cursor down by one row.
       #
       #   Vedeu.trigger(:_cursor_down_, name)

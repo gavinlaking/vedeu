@@ -13,6 +13,15 @@ module Vedeu
       extend Forwardable
       include Vedeu::Common
 
+      def_delegators :cursor,
+                     :ox,
+                     :oy,
+                     :render,
+                     :visible,
+                     :visible?,
+                     :x,
+                     :y
+
       def_delegators :geometry,
                      :bordered_height,
                      :bordered_width
@@ -45,11 +54,10 @@ module Vedeu
         refresh_view if refresh_view?
 
         Vedeu.log(type:    :output,
-                  message: "Refreshing cursor: '#{name}' (x:#{cursor.x}, " \
-                           "y:#{cursor.y}, ox:#{cursor.ox}, oy:#{cursor.oy}, " \
-                           "visible:#{cursor.visible})".freeze)
+                  message: "Refreshing cursor: '#{name}' (x:#{x}, y:#{y}, " \
+                           "ox:#{ox}, oy:#{oy}, visible:#{visible})".freeze)
 
-        cursor.render
+        render
       end
 
       private
@@ -71,8 +79,7 @@ module Vedeu
       #
       # @return [Boolean]
       def refresh_view?
-        cursor.visible? && (cursor.ox >= bordered_width ||
-                            cursor.oy >= bordered_height)
+        visible? && (ox >= bordered_width || oy >= bordered_height)
       end
 
       # @return [Vedeu::Cursors::Cursor]

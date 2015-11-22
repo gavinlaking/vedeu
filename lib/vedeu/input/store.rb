@@ -33,13 +33,6 @@ module Vedeu
         all_keypresses << keypress
       end
 
-      # Access all commands and keypresses stored.
-      #
-      # @return [Hash<Symbol => Array<Symbol|String>>]
-      def all
-        storage
-      end
-
       # Access all commands stored.
       #
       # @example
@@ -93,12 +86,15 @@ module Vedeu
       end
       alias_method :reset, :reset!
 
-      private
-
+      # Access all commands and keypresses stored.
+      #
       # @return [Hash<Symbol => Array<Symbol|String>>]
       def storage
         @storage ||= in_memory
       end
+      alias_method :all, :storage
+
+      private
 
       # @return [Hash<Symbol => Array<Symbol|String>>]
       def in_memory

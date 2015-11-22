@@ -6,7 +6,21 @@ module Vedeu
 
     describe Caption do
 
-      # @todo Add more tests.
+      let(:instance) {}
+
+      describe '#render' do
+        let(:top_border) {}
+
+        subject { instance.render(top_border) }
+
+        context 'when the title is empty' do
+          # @todo Add more tests.
+        end
+
+        context 'when the title is not empty' do
+          # @todo Add more tests.
+        end
+      end
 
     end # Caption
 

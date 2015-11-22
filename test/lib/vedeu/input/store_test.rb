@@ -26,32 +26,6 @@ module Vedeu
         it { subject.must_equal(['a']) }
       end
 
-      describe '#all' do
-        subject { described.all }
-
-        context 'when empty' do
-          it { subject.must_equal({ commands: [], keypresses: [] }) }
-        end
-
-        context 'when not empty' do
-          let(:expected) {
-            {
-              commands:   ['command_1', 'command_2'],
-              keypresses: ['a', 'b'],
-            }
-          }
-
-          before do
-            described.add_command('command_1')
-            described.add_command('command_2')
-            described.add_keypress('a')
-            described.add_keypress('b')
-          end
-
-          it { subject.must_equal(expected) }
-        end
-      end
-
       describe '#all_commands' do
         subject { described.all_commands }
 
@@ -128,6 +102,34 @@ module Vedeu
         subject { described.reset }
 
         it { subject.must_equal({ commands: [], keypresses: [] }) }
+      end
+
+      describe '#storage' do
+        subject { described.storage }
+
+        it { described.must_respond_to(:all) }
+
+        context 'when empty' do
+          it { subject.must_equal({ commands: [], keypresses: [] }) }
+        end
+
+        context 'when not empty' do
+          let(:expected) {
+            {
+              commands:   ['command_1', 'command_2'],
+              keypresses: ['a', 'b'],
+            }
+          }
+
+          before do
+            described.add_command('command_1')
+            described.add_command('command_2')
+            described.add_keypress('a')
+            described.add_keypress('b')
+          end
+
+          it { subject.must_equal(expected) }
+        end
       end
 
     end # Store

@@ -115,7 +115,9 @@ module Vedeu
   Vedeu.bind(:_drb_retrieve_output_) { Vedeu::Buffers::Terminal.output }
 
   # @see Vedeu::Buffers::Terminal#write
-  Vedeu.bind(:_drb_store_output_) { |data| Vedeu::Buffers::Terminal.write(data) }
+  Vedeu.bind(:_drb_store_output_) do |data|
+    Vedeu::Buffers::Terminal.write(data)
+  end
 
   # :nocov:
 

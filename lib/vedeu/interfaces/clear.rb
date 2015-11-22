@@ -88,7 +88,7 @@ module Vedeu
 
       # @return [Vedeu::Colours::Colour]
       def colour
-        @colour ||= interface.colour
+        @colour ||= Vedeu.interfaces.by_name(name).colour
       end
 
       # @return [Boolean]
@@ -125,13 +125,6 @@ module Vedeu
                       geometry.height
 
                     end
-      end
-
-      # Returns the interface by name.
-      #
-      # @return (see Vedeu::Interfaces::Repository#by_name)
-      def interface
-        @interface ||= Vedeu.interfaces.by_name(name)
       end
 
       # @return [Hash<Symbol => Boolean>]

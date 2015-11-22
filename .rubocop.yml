@@ -124,7 +124,7 @@ Style/TrailingComma:
 Metrics/AbcSize:
   # The ABC size is a calculated magnitude, so this number can be a Fixnum or
   # a Float.
-  Max: 20
+  Max: 25
 
 Metrics/BlockNesting:
   Max: 3
