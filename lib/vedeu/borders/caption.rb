@@ -10,10 +10,10 @@ module Vedeu
     #
     class Caption < Title
 
-      # Overwrite the border from {#build_horizontal} on the bottom
-      # border to include the caption if given.
+      # Overwrite the border from
+      # {Vedeu::Borders::Border#build_horizontal} on the bottom border
+      # to include the caption if given.
       #
-      # @param [Array<Vedeu::Views::Char>]
       # @return [Array<Vedeu::Views::Char>]
       def render
         return chars if empty?

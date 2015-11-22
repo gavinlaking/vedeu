@@ -11,5 +11,4 @@ end # Vedeu
 
 require 'vedeu/menus/dsl'
 require 'vedeu/menus/menu'
-require 'vedeu/menus/null'
 require 'vedeu/menus/repository'

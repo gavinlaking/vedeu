@@ -22,6 +22,15 @@ module Vedeu
         Vedeu::Geometries::Geometry.new(name: _name, x: 2, xn: 8, y: 2, yn: 8)
       }
 
+      before do
+        Vedeu.stubs(:trigger).with(:_movement_refresh_, _name)
+        Vedeu.stubs(:trigger).with(:_cursor_down_, _name)
+        Vedeu.stubs(:trigger).with(:_cursor_left_, _name)
+        Vedeu.stubs(:trigger).with(:_cursor_origin_, _name)
+        Vedeu.stubs(:trigger).with(:_cursor_right_, _name)
+        Vedeu.stubs(:trigger).with(:_cursor_up_, _name)
+      end
+
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
 
@@ -61,7 +70,6 @@ module Vedeu
       describe '.move' do
         before do
           Vedeu.geometries.stubs(:by_name).with(_name).returns(geometry)
-          Vedeu.stubs(:trigger)
           Vedeu.stubs(:height).returns(10)
           Vedeu.stubs(:width).returns(10)
         end

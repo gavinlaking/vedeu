@@ -41,6 +41,12 @@ module Vedeu
       end
 
       describe '#refresh' do
+        let(:output) {
+          Vedeu::Buffers::View.new(name: 'Vedeu::Buffers::Terminal')
+        }
+
+        before { Vedeu::Models::Page.stubs(:coerce).returns(output) }
+
         subject { described.refresh }
 
         it {

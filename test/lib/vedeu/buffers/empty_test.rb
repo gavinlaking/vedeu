@@ -15,38 +15,38 @@ module Vedeu
           width:  width,
         }
       }
-      let(:height) { 10 }
+      let(:height) { 3 }
       let(:_name)  {}
-      let(:width)  { 30 }
+      let(:width)  { 9 }
 
       before do
-        Vedeu.stubs(:height).returns(12)
-        Vedeu.stubs(:width).returns(36)
+        Vedeu.stubs(:height).returns(4)
+        Vedeu.stubs(:width).returns(12)
       end
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
 
         context 'when the height is given' do
-          it { instance.instance_variable_get('@height').must_equal(10) }
+          it { instance.instance_variable_get('@height').must_equal(3) }
         end
 
         context 'when the height not is given' do
           let(:height) {}
 
-          it { instance.instance_variable_get('@height').must_equal(12) }
+          it { instance.instance_variable_get('@height').must_equal(4) }
         end
 
         it { instance.instance_variable_get('@name').must_equal(_name) }
 
         context 'when the width is given' do
-          it { instance.instance_variable_get('@width').must_equal(30) }
+          it { instance.instance_variable_get('@width').must_equal(9) }
         end
 
         context 'when the width not is given' do
           let(:width) {}
 
-          it { instance.instance_variable_get('@width').must_equal(36) }
+          it { instance.instance_variable_get('@width').must_equal(12) }
         end
       end
 
@@ -63,8 +63,8 @@ module Vedeu
         it { subject.first.must_be_instance_of(Array) }
         it { subject.first.first.must_be_instance_of(Vedeu::Models::Cell) }
 
-        it { subject.size.must_equal(10) }
-        it { subject.first.size.must_equal(30) }
+        it { subject.size.must_equal(3) }
+        it { subject.first.size.must_equal(9) }
         it { subject.first.first.position.must_equal(position) }
       end
 
