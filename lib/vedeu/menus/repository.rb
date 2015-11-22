@@ -9,7 +9,7 @@ module Vedeu
       singleton_class.send(:alias_method, :menus, :repository)
 
       real Vedeu::Menus::Menu
-      null Vedeu::Menus::Null
+      null Vedeu::Menus::Menu
 
     end # Repository
 
