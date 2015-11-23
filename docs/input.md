@@ -124,3 +124,26 @@ Accessing the input can be achieved in the following ways:
         Vedeu.bind(:command) do
           # ... do something with the command
         end
+
+## Providing Input
+
+Input can be provided in a couple of ways, automatic and manually.
+
+### Automatically
+
+Dependent on the terminal mode as mentioned previously.
+
+- In `:raw` mode, a keypress (a single character e.g. `b`, or
+  modifier+character e.g. Shift+F12), can be bound via the keymaps
+  functionality.
+- In `:cooked` mode, a group of keypresses, terminated with the
+  `return` key will trigger the `:command` event which you can bind to
+  and perform actions dependent on the input provided.
+- In `:fake` mode, Vedeu emulates the terminal allowing you all the
+  benefits of `:cooked` mode but with Vedeu's in-built editor. The
+  input can be accessed using the API calls as mentioned in
+  {file:docs/input.md#accessing_input}.
+
+### Manually (semi-automatic)
+
+See {file:docs/api.md#vedeuread}
