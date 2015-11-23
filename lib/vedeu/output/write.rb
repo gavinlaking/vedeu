@@ -12,10 +12,15 @@ module Vedeu
         new(output, options).write
       end
 
+      # Returns a new instance of Vedeu::Output::Write.
+      #
+      # @param output [String]
+      # @param options [Hash<Symbol => Fixnum>]
       # @option x [Fixnum]
       # @option y [Fixnum]
       # @option colour [Hash<Symbol => String>]
       # @option style [Array<Symbol>|Symbol]
+      # @return [Vedeu::Output::Write]
       def initialize(output = nil, options = {})
         @output  = output
         @options = options
@@ -47,7 +52,7 @@ module Vedeu
 
       private
 
-      # @return [Hash<Symbol => Fixnum|Hash<Symbol => String|Symbol>]
+      # @return [Hash<Symbol => Fixnum>]
       def defaults
         {
           x: 1,
@@ -55,7 +60,7 @@ module Vedeu
         }
       end
 
-      # @return [Hash<Symbol => Fixnum|Hash<Symbol => String|Symbol>]
+      # @return [Hash<Symbol => Fixnum>]
       def options
         defaults.merge!(@options)
       end
