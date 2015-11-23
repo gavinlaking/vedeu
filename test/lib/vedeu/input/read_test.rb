@@ -31,7 +31,7 @@ module Vedeu
 
             it {
               Vedeu.expects(:trigger).with(:_command_, input)
-              subject
+              subject.must_equal(input)
             }
           end
 
@@ -42,7 +42,7 @@ module Vedeu
             it {
               Vedeu::Terminal.console.expects(:gets).returns(some_input)
               Vedeu.expects(:trigger).with(:_command_, chomped)
-              subject
+              subject.must_equal(chomped)
             }
           end
         end
@@ -55,7 +55,7 @@ module Vedeu
 
             it {
               Vedeu.expects(:trigger).with(:_keypress_, input)
-              subject
+              subject.must_equal(input)
             }
           end
 
@@ -67,7 +67,7 @@ module Vedeu
               Vedeu::Terminal.console.expects(:getch).returns(some_input)
               Vedeu::Input::Translator.expects(:translate).returns(translated)
               Vedeu.expects(:trigger).with(:_keypress_, translated)
-              subject
+              subject.must_equal(translated)
             }
 
             context 'but a special key is pressed' do
@@ -78,7 +78,7 @@ module Vedeu
                 Vedeu::Terminal.console.expects(:getch).returns(some_input)
                 Vedeu::Input::Translator.expects(:translate).returns(translated)
                 Vedeu.expects(:trigger).with(:_keypress_, translated)
-                subject
+                subject.must_equal(translated)
               }
             end
           end

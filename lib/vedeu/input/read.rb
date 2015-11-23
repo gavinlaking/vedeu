@@ -2,10 +2,18 @@ module Vedeu
 
   module Input
 
+    # Directly read from the terminal.
+    #
+    # @example
+    #   Vedeu.read(input, options)
+    #
+    # @api private
+    #
     class Read
 
       include Vedeu::Common
 
+      # @api public
       # @see Vedeu::Input::Read#initialize
       def self.read(input = nil, options = {})
         new(input, options).read
@@ -22,7 +30,7 @@ module Vedeu
         @options = options
       end
 
-      # @return [void]
+      # @return [String]
       def read
         if cooked?
           Vedeu.trigger(:_command_, input)
@@ -31,6 +39,8 @@ module Vedeu
           Vedeu.trigger(:_keypress_, input)
 
         end
+
+        input
       end
 
       protected
@@ -60,24 +70,24 @@ module Vedeu
 
       # @return [String]
       def input
-        if input?
-          @input
+        @_input ||= if input?
+                      @input
 
-        elsif cooked?
-          console.gets.chomp
+                    elsif cooked?
+                      console.gets.chomp
 
-        else
-          keys = console.getch
+                    else
+                      keys = console.getch
 
-          if keys.ord == Vedeu::ESCAPE_KEY_CODE
-            keys << console.read_nonblock(4) rescue nil
-            keys << console.read_nonblock(3) rescue nil
-            keys << console.read_nonblock(2) rescue nil
-          end
+                      if keys.ord == Vedeu::ESCAPE_KEY_CODE
+                        keys << console.read_nonblock(4) rescue nil
+                        keys << console.read_nonblock(3) rescue nil
+                        keys << console.read_nonblock(2) rescue nil
+                      end
 
-          Vedeu::Input::Translator.translate(keys)
+                      Vedeu::Input::Translator.translate(keys)
 
-        end
+                    end
       end
 
       # @return [Boolean]
@@ -115,12 +125,8 @@ module Vedeu
 
   end # Input
 
-  # Directly read from the terminal.
-  #
-  # @example
-  #   Vedeu.read(input, options)
-  #
-  # @return [Array|NilClass]
+  # @!method read
+  #   @see Vedeu::Input::Read#read
   def_delegators Vedeu::Input::Read,
                  :read
 
