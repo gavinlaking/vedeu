@@ -2,11 +2,19 @@ module Vedeu
 
   module Output
 
+    # Directly write to the terminal.
+    #
+    # @example
+    #   Vedeu.write(output, options)
+    #
+    # @api private
+    #
     class Write
 
       include Vedeu::Common
       include Vedeu::Presentation
 
+      # @api public
       # @see Vedeu::Output::Write#initialize
       def self.write(output = nil, options = {})
         new(output, options).write
@@ -98,12 +106,8 @@ module Vedeu
 
   end # Output
 
-  # Directly write to the terminal.
-  #
-  # @example
-  #   Vedeu.write(output, options)
-  #
-  # @return [Array|NilClass]
+  # @!method write
+  #   @see Vedeu::Output::Write#write
   def_delegators Vedeu::Output::Write,
                  :write
 
