@@ -30,7 +30,7 @@ module Vedeu
         end
       end
 
-      # Returns an instance of Vedeu::Models::Row.
+      # Returns a new instance of Vedeu::Models::Row.
       #
       # @param cells [Array<NilClass|void>]
       # @return [Vedeu::Models::Row]

@@ -38,7 +38,7 @@ module Vedeu
         end
       end
 
-      # Returns an instance of Vedeu::Models::Page.
+      # Returns a new instance of Vedeu::Models::Page.
       #
       # @param rows [Array<NilClass|Vedeu::Models::Row>]
       # @return [Vedeu::Models::Page]

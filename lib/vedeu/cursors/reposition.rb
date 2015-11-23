@@ -48,6 +48,16 @@ module Vedeu
 
       private
 
+      # @return [Hash<Symbol => Fixnum>]
+      def absolute
+        {
+          x:  coordinate((x - geometry.x), :x).x,
+          y:  coordinate((y - geometry.y), :y).y,
+          ox: 0,
+          oy: 0,
+        }
+      end
+
       # @return [Boolean]
       def absolute?
         mode == :absolute
@@ -116,21 +126,25 @@ module Vedeu
       # @return [Hash<Symbol => Fixnum>]
       def new_attributes
         if absolute? && inside_geometry?
-          cursor.attributes.merge!(x:  coordinate((x - geometry.x), :x).x,
-                                   y:  coordinate((y - geometry.y), :y).y,
-                                   ox: 0,
-                                   oy: 0)
+          cursor.attributes.merge!(absolute)
 
         elsif relative?
-          cursor.attributes.merge!(x:  coordinate(x, :x).x,
-                                   y:  coordinate(y, :y).y,
-                                   ox: x,
-                                   oy: y)
+          cursor.attributes.merge!(relative)
 
         else
           cursor.attributes
 
         end
+      end
+
+      # @return [Hash<Symbol => Fixnum>]
+      def relative
+        {
+          x:  coordinate(x, :x).x,
+          y:  coordinate(y, :y).y,
+          ox: x,
+          oy: y,
+        }
       end
 
       # @return [Boolean]

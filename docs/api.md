@@ -417,6 +417,10 @@ Repository method. Access registered menus.
 
 @todo Add more documentation.
 
+### Vedeu.read
+
+@todo Add more documentation.
+
 ### Vedeu.ready!
 
 @todo Add more documentation.
@@ -504,5 +508,9 @@ Repository method. Access registered renderers.
 @todo Add more documentation.
 
 ### Vedeu.width
+
+@todo Add more documentation.
+
+### Vedeu.write
 
 @todo Add more documentation.

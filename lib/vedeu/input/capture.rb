@@ -1,13 +1,13 @@
 module Vedeu
 
+  ESCAPE_KEY_CODE = 27 # \e
+
   module Input
 
     # Captures input from the user terminal via 'getch' and
     # translates special characters into symbols.
     #
     class Capture
-
-      ESCAPE_KEY_CODE = 27 # \e
 
       extend Forwardable
 
@@ -93,7 +93,7 @@ module Vedeu
       def input
         keys = console.getch
 
-        if keys.ord == ESCAPE_KEY_CODE
+        if keys.ord == Vedeu::ESCAPE_KEY_CODE
           keys << console.read_nonblock(4) rescue nil
           keys << console.read_nonblock(3) rescue nil
           keys << console.read_nonblock(2) rescue nil

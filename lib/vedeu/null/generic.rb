@@ -14,7 +14,7 @@ module Vedeu
       # @return [String|Symbol]
       attr_reader :name
 
-      # Returns an instance of the Vedeu::Null::Generic class.
+      # Returns a new instance of the Vedeu::Null::Generic class.
       #
       # @param attributes [Hash<Symbol => void>]
       # @option attributes name [String|Symbol|NilClass]
