@@ -18,14 +18,9 @@ module Vedeu
     # @return [Array<void>]
     def clear
       storage.map do |renderer|
-        Vedeu.log(type:    :render,
-                  message: "Clearing via #{renderer.class.name}".freeze)
+        log('Clearing', renderer)
 
-        Thread.new(renderer) do
-          mutex.synchronize do
-            toggle_cursor { renderer.clear }
-          end
-        end
+        threaded(renderer) { renderer.clear }
       end.each(&:join) if Vedeu.ready?
 
       ''
@@ -51,14 +46,9 @@ module Vedeu
     # @return [Array<void>]
     def render(output)
       storage.map do |renderer|
-        Vedeu.log(type:    :render,
-                  message: "Rendering via #{renderer.class.name}".freeze)
+        log('Rendering', renderer)
 
-        Thread.new(renderer) do
-          mutex.synchronize do
-            toggle_cursor { renderer.render(output) }
-          end
-        end
+        threaded(renderer) { renderer.render(output) }
       end.each(&:join) if Vedeu.ready?
 
       output
@@ -96,6 +86,14 @@ module Vedeu
       Set.new
     end
 
+    # @param message [String]
+    # @param renderer [Class]
+    # @return [void]
+    def log(message, renderer)
+      Vedeu.log(type:    :render,
+                message: "#{message} via #{renderer.class.name}".freeze)
+    end
+
     # @return [Mutex]
     def mutex
       @mutex ||= Mutex.new
@@ -104,6 +102,17 @@ module Vedeu
     # @return [Set]
     def storage
       @storage ||= in_memory
+    end
+
+    # @return [void]
+    def threaded(renderer)
+      Thread.new(renderer) do
+        mutex.synchronize do
+          toggle_cursor do
+            yield
+          end
+        end
+      end
     end
 
     # @return [void]
