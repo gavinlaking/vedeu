@@ -91,13 +91,7 @@ module Vedeu
       #
       # @return [String]
       def input
-        keys = console.getch
-
-        if keys.ord == Vedeu::ESCAPE_KEY_CODE
-          keys << console.read_nonblock(4) rescue nil
-          keys << console.read_nonblock(3) rescue nil
-          keys << console.read_nonblock(2) rescue nil
-        end
+        keys = Vedeu::Input::Raw.read
 
         return Vedeu::Input::Mouse.click(keys) if click?(keys)
 

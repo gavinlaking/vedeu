@@ -77,13 +77,7 @@ module Vedeu
                       console.gets.chomp
 
                     else
-                      keys = console.getch
-
-                      if keys.ord == Vedeu::ESCAPE_KEY_CODE
-                        keys << console.read_nonblock(4) rescue nil
-                        keys << console.read_nonblock(3) rescue nil
-                        keys << console.read_nonblock(2) rescue nil
-                      end
+                      keys = Vedeu::Input::Raw.read
 
                       Vedeu::Input::Translator.translate(keys)
 

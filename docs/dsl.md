@@ -78,6 +78,10 @@ end
 
 {include:Vedeu::Borders::DSL}
 
+### Creating a new named border
+
+{include:Vedeu::Borders::DSL#border}
+
 ### Setting a title for the border
 
 {include:Vedeu::Borders::DSL#title}
@@ -107,6 +111,10 @@ end
 
 {include:Vedeu::Geometries::DSL}
 
+### Creating a new named geometry
+
+{include:Vedeu::Geometries::DSL#geometry}
+
 ### Setting the interface dimensions
 
 {include:Vedeu::Geometries::DSL#align}
@@ -131,15 +139,22 @@ end
 
 {include:Vedeu::Groups::DSL}
 
-### Add interfaces to groups
+### Creating a new named group
 
 {include:Vedeu::Groups::DSL.group}
+
+### Add interfaces to groups
+
+{include:Vedeu::Groups::DSL#add}
 
 ## Keymaps
 
 {include:Vedeu::Input::DSL}
-{include:Vedeu::Input::DSL.keymap}
 {include:Vedeu::Input::DSL#name}
+
+### Creating a new named group
+
+{include:Vedeu::Input::DSL.keymap}
 
 ## Menus
 
@@ -147,6 +162,10 @@ end
 {include:Vedeu::Menus::DSL#item}
 {include:Vedeu::Menus::DSL#items}
 {include:Vedeu::Menus::DSL#name}
+
+### Creating a new named menu
+
+{include:Vedeu::Menus::DSL.menu}
 
 ## Views
 
