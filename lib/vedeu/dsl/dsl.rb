@@ -4,7 +4,7 @@ module Vedeu
   #
   module DSL
 
-    # Returns an instance of the DSL class including {Vedeu::DSL}.
+    # Returns a new instance of the DSL class including {Vedeu::DSL}.
     #
     # @param model [void] The model class which the DSL class is
     #   wrapping.

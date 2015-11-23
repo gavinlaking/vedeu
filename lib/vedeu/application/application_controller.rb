@@ -8,7 +8,7 @@ module Vedeu
 
     include Vedeu::Controller
 
-    # Returns an instance of Vedeu::ApplicationController.
+    # Returns a new instance of Vedeu::ApplicationController.
     #
     # @param params [Hash] The named parameters provided to the
     #   controller which will be used by the actions within the

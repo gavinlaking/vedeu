@@ -14,7 +14,7 @@ module Vedeu
         new(input).click
       end
 
-      # Return an instance of Vedeu::Input::Mouse.
+      # Returns a new instance of Vedeu::Input::Mouse.
       #
       # @param input [String]
       # @return [Vedeu::Input::Mouse]

@@ -34,7 +34,7 @@ module Vedeu
         new(view).render
       end
 
-      # Returns an instance of Vedeu::Output::Viewport.
+      # Returns a new instance of Vedeu::Output::Viewport.
       #
       # @param view [Vedeu::Views::View]
       # @return [Vedeu::Output::Viewport]
