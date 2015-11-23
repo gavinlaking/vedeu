@@ -48,8 +48,9 @@ module Vedeu
           let(:registered)   { false }
 
           before do
-            Vedeu::Terminal.console.stubs(:getch).returns(keypress)
-            Vedeu::Input::Mapper.stubs(:registered?).with(translated, _name).returns(registered)
+            Vedeu::Input::Raw.stubs(:read).returns(keypress)
+            Vedeu::Input::Mapper.stubs(:registered?).with(translated, _name)
+              .returns(registered)
             Vedeu.interfaces.stubs(:by_name).returns(interface)
           end
 
@@ -157,9 +158,7 @@ module Vedeu
         context 'when the terminal mode is :raw' do
           let(:is_raw_mode) { true }
 
-          before do
-            Vedeu::Terminal.console.stubs(:getch).returns(keypress)
-          end
+          before { Vedeu::Input::Raw.stubs(:read).returns(keypress) }
 
           context 'when the keypress is an escape sequence' do
             context 'when the key is :shift_f5 (read_nonblock(7))' do

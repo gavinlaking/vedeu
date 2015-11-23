@@ -9,6 +9,7 @@ module Vedeu
 
 end # Vedeu
 
+require 'vedeu/input/raw'
 require 'vedeu/input/capture'
 require 'vedeu/input/dsl'
 require 'vedeu/input/key'
