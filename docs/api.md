@@ -417,6 +417,10 @@ Repository method. Access registered menus.
 
 @todo Add more documentation.
 
+### Vedeu.read
+
+@todo Add more documentation.
+
 ### Vedeu.ready!
 
 @todo Add more documentation.
