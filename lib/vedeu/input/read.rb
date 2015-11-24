@@ -35,8 +35,11 @@ module Vedeu
         if cooked?
           Vedeu.trigger(:_command_, input)
 
-        else
+        elsif raw?
           Vedeu.trigger(:_keypress_, input)
+
+        elsif fake?
+          input
 
         end
 
@@ -68,6 +71,21 @@ module Vedeu
         }
       end
 
+      # @return [Boolean]
+      def fake?
+        mode == :fake
+      end
+
+      # @return [String]
+      def mouse_off
+        Vedeu::EscapeSequences::Esc.string('mouse_x10_off')
+      end
+
+      # @return [String]
+      def show_cursor
+        Vedeu::EscapeSequences::Esc.string('show_cursor')
+      end
+
       # @return [String]
       def input
         @_input ||= if input?
@@ -76,10 +94,17 @@ module Vedeu
                     elsif cooked?
                       console.gets.chomp
 
-                    else
+                    elsif raw?
                       keys = Vedeu::Input::Raw.read
 
                       Vedeu::Input::Translator.translate(keys)
+
+                    elsif fake?
+                      console.cooked do
+                        Vedeu::Terminal.output(mouse_off + show_cursor)
+
+                        console.gets.chomp
+                      end
 
                     end
       end
@@ -92,7 +117,7 @@ module Vedeu
       # @return [Symbol]
       def mode
         fail Vedeu::Error::InvalidSyntax,
-             'mode option must be `:raw` or `:cooked`.' unless valid_mode?
+             ':mode must be `:raw`, `:fake` or `:cooked`.' unless valid_mode?
 
         options[:mode]
       end
@@ -101,6 +126,7 @@ module Vedeu
       def modes
         [
           :cooked,
+          :fake,
           :raw,
         ]
       end
@@ -108,6 +134,11 @@ module Vedeu
       # @return [Hash<Symbol => Symbol>]
       def options
         defaults.merge!(@options)
+      end
+
+      # @return [Boolean]
+      def raw?
+        mode == :raw
       end
 
       # @return [Boolean]
