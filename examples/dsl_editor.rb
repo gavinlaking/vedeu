@@ -26,7 +26,7 @@ class EditorApp
 
   Vedeu.interface :help_view do
     geometry do
-      height use(:editor_view).height
+      height 4
       width  use(:editor_view).width
       x      use(:editor_view).left
       y      use(:editor_view).south
