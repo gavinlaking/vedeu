@@ -196,6 +196,8 @@ module Vedeu
   #   @see Vedeu::Logging::Log.log_stdout
   # @!method log_stderr
   #   @see Vedeu::Logging::Log.log_stderr
+  # @!method log_timestamp
+  #   @see Vedeu::Logging::Log.log_timestamp
   def_delegators Vedeu::Logging::Log,
                  :log,
                  :log_stdout,
