@@ -37,7 +37,7 @@ module Vedeu
       #   - Takes approximately ~25ms for 2100 chars. (2015-07-25)
       # @return [String]
       def render
-        return compress if Vedeu::Configuration.compression?
+        return cached if Vedeu::Configuration.compression?
 
         uncompress
       end
@@ -61,9 +61,26 @@ module Vedeu
                      end
       end
 
+      def cached
+        cached_original   = Vedeu::Output::CompressorCache.read(:original)
+        cached_compressed = Vedeu::Output::CompressorCache.read(:compressed)
+
+        if content.size == cached_original.size && content == cached_original
+          cached_compressed
+
+        else
+          Vedeu::Output::CompressorCache.write(:original, content)
+          Vedeu::Output::CompressorCache.write(:compressed, compress)
+          compress
+
+        end
+      end
+
       # @return [String]
       def compress
-        Vedeu.timer("Compression for #{content.size} objects".freeze) do
+        message = "Compression for #{content.size} objects".freeze
+
+        @compress ||= Vedeu.timer(message) do
           out = content.map do |cell|
             [
               # position_for(cell),
@@ -74,9 +91,9 @@ module Vedeu
             ].join
           end.join
 
+
           Vedeu.log(type:    :compress,
-                    message: "Compression: #{content.size} objects -> " \
-                             "#{out.size} characters".freeze)
+                    message: "#{message} -> #{out.size} characters".freeze)
 
           out
         end
