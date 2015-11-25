@@ -4,7 +4,47 @@ module Vedeu
 
   module Repositories
 
+    class DefaultsTestClass
+
+      include Vedeu::Repositories::Defaults
+
+      private
+
+      def defaults
+        {
+          some_attribute: :some_value
+        }
+      end
+
+    end # DefaultsTestClass
+
     describe Defaults do
+
+      let(:described)  { Vedeu::Repositories::Defaults }
+      let(:includer)   { Vedeu::Repositories::DefaultsTestClass }
+      let(:instance)   { includer.new(attributes) }
+      let(:attributes) {
+        {
+          invalid_attribute: :invalid_value
+        }
+      }
+
+      describe '#initialize' do
+        it { instance.must_be_instance_of(includer) }
+        it { instance.instance_variable_get('@attributes').must_equal({}) }
+        it {
+          instance.instance_variable_get('@some_attribute').
+            must_equal(:some_value)
+        }
+        it {
+          instance.instance_variables.
+            must_equal([:@attributes, :@some_attribute])
+        }
+      end
+
+      describe 'accessors' do
+        it { instance.must_respond_to(:attributes) }
+      end
 
       # @todo Add more tests.
 
