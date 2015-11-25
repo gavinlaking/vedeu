@@ -409,6 +409,10 @@ Returns the last keypress entered into Vedeu.
 
 @todo Add more documentation.
 
+### Vedeu.log_timestamp
+
+@todo Add more documentation.
+
 ### Vedeu.menu
 
 @todo Add more documentation.

@@ -8,7 +8,13 @@ module Vedeu
 
       let(:described) { Vedeu::Models::Row }
       let(:instance)  { described.new(cells) }
-      let(:cells)     { [:hydrogen, :helium, :lithium] }
+      let(:cells)     {
+        [
+          Vedeu::Views::Char.new(value: 'A'),
+          Vedeu::Models::Cell.new(value: 'B'),
+          Vedeu::Views::Char.new(value: 'C'),
+        ]
+      }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -69,9 +75,11 @@ module Vedeu
 
         context 'when the index is not nil' do
           context 'and the index is in range' do
-            let(:index) { 1 }
+            let(:expected) { Vedeu::Views::Char.new(value: 'C') }
 
-            it { subject.must_equal(:helium) }
+            let(:index) { 2 }
+
+            it { subject.must_equal(expected) }
           end
 
           context 'and the index is out of range' do
@@ -88,11 +96,19 @@ module Vedeu
         end
       end
 
-      # describe '#content' do
-      #   subject { instance.content }
+      describe '#content' do
+        let(:expected) {
+          [
+            Vedeu::Views::Char.new(value: 'A'),
+            Vedeu::Views::Char.new(value: 'C'),
+            Vedeu::Views::Char.new(value: "\e[0m"),
+          ]
+        }
 
-      #   it { subject.must_equal() }
-      # end
+        subject { instance.content }
+
+        it { subject.must_equal(expected) }
+      end
 
       describe '#each' do
         subject { instance.each }
