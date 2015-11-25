@@ -96,7 +96,7 @@ module Vedeu
 
       # @return [Vedeu::Geometries::Position]
       def position
-        @position = Vedeu::Geometries::Position.coerce(@attributes[:position])
+        @position ||= Vedeu::Geometries::Position.coerce(@attributes[:position])
       end
 
       # Sets the position of the Vedeu::Views::Char.

@@ -33,7 +33,8 @@ module Vedeu
       end
 
       # @note
-      #   Takes approximately ~25ms for 2100 chars. (2015-07-25)
+      #   - Takes approximately ~6ms for 2100 chars. (2015-11-25)
+      #   - Takes approximately ~25ms for 2100 chars. (2015-07-25)
       # @return [String]
       def render
         return compress if Vedeu::Configuration.compression?
