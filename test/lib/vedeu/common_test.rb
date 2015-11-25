@@ -50,6 +50,16 @@ module Vedeu
       end
     end
 
+    describe '#become' do
+      let(:instance)   { Vedeu::Cells::Border.new }
+      let(:klass)      { Vedeu::Cells::Char }
+      let(:attributes) { instance.attributes }
+
+      subject { instance.become(klass, attributes) }
+
+      it { subject.must_be_instance_of(Vedeu::Cells::Char) }
+    end
+
     describe '#demodulize' do
       let(:klass) { described }
 
