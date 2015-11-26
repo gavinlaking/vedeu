@@ -1,7 +1,3 @@
-require 'vedeu/esc/actions'
-require 'vedeu/esc/borders'
-require 'vedeu/esc/colours'
-
 module Vedeu
 
   module EscapeSequences
