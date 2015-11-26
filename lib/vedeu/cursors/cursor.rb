@@ -264,11 +264,11 @@ module Vedeu
 
       # Determine correct x and y related coordinates.
       #
-      # @return [Vedeu::Geometries::Coordinate]
+      # @return [Vedeu::Cursors::Coordinate]
       def coordinate(offset, type)
-        Vedeu::Geometries::Coordinate.new(name:   name,
-                                          offset: offset,
-                                          type:   type)
+        Vedeu::Cursors::Coordinate.new(name:   name,
+                                       offset: offset,
+                                       type:   type)
       end
 
       # The default values for a new instance of this class.
@@ -335,15 +335,15 @@ module Vedeu
 
   # :nocov:
 
-  # See {file:docs/events/visibility.md#\_hide_cursor_}
+  # See {file:docs/cursors.md#vedeuhide_cursor__}
   Vedeu.bind(:_hide_cursor_) { |name| Vedeu.hide_cursor(name) }
-  # Vedeu.bind_alias(:_cursor_hide_, :_hide_cursor_)
+  Vedeu.bind_alias(:_cursor_hide_, :_hide_cursor_)
 
-  # See {file:docs/events/visibility.md#\_show_cursor_}
+  # See {file:docs/cursors.md#vedeushow_cursor__}
   Vedeu.bind(:_show_cursor_) { |name| Vedeu.show_cursor(name) }
-  # Vedeu.bind_alias(:_cursor_show_, :_show_cursor_)
+  Vedeu.bind_alias(:_cursor_show_, :_show_cursor_)
 
-  # See {file:docs/events/visibility.md#\_toggle_cursor_}
+  # See {file:docs/cursors.md#vedeutoggle_cursor__}
   Vedeu.bind(:_toggle_cursor_) { |name| Vedeu.toggle_cursor(name) }
 
   # See {file:docs/cursors.md}
@@ -380,7 +380,7 @@ module Vedeu
 
     Vedeu.trigger(:_refresh_cursor_, name)
   end
-  # Vedeu.bind_alias(:_cursor_reset_, :_cursor_origin_)
+  Vedeu.bind_alias(:_cursor_reset_, :_cursor_origin_)
 
   # See {file:docs/cursors.md}
   Vedeu.bind(:_cursor_position_) do |name|

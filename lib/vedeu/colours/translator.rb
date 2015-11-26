@@ -168,7 +168,7 @@ module Vedeu
       #
       # @return [String]
       def numbered
-        "#{numbered_prefix}#{css_to_numbered}m".freeze
+        "#{prefix}5;#{css_to_numbered}m".freeze
       end
 
       # Returns a boolean indicated whether the colour is a valid
@@ -198,6 +198,13 @@ module Vedeu
           end
 
         end
+      end
+
+      # Returns part of an escape sequence.
+      #
+      # @return [String]
+      def rgb_prefix
+        "#{prefix}2;%s;%s;%sm".freeze
       end
 
       # Returns a boolean indicating whether the numbered colour is
@@ -266,9 +273,7 @@ module Vedeu
         fail Vedeu::Error::NotImplemented, 'Subclasses implement this.'.freeze
       end
       alias_method :named_codes,     :not_implemented
-      alias_method :numbered_prefix, :not_implemented
       alias_method :repository,      :not_implemented
-      alias_method :rgb_prefix,      :not_implemented
 
     end # Translator
 

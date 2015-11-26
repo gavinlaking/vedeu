@@ -2,6 +2,11 @@ module Vedeu
 
   module Input
 
+    # Handle input when terminal is in :raw (character at a time)
+    # mode.
+    #
+    # @api private
+    #
     class Raw
 
       # @see Vedeu::Input::Raw#initialize

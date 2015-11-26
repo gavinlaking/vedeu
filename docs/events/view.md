@@ -4,14 +4,14 @@
 
 Note: 'name' is a Symbol unless mentioned otherwise.
 
-### `:\_maximise\_`
+### `:_maximise_`
 Maximising an interface.
 
     Vedeu.trigger(:_maximise_, name)
 
 See {Vedeu::Geometries::Geometry#maximise}
 
-### `:\_movement_refresh\_`
+### `:_movement_refresh_`
 When triggered, triggers additional events which aid the updating of
 the output. Used when moving an interface/view.
 
@@ -31,13 +31,13 @@ At this time, triggering this event will:
 - Refreshes the named view. This action adds the named view to the
   terminal (or output); in the new position.
 
-### `:\_resize\_`
+### `:_resize_`
 When triggered will cause Vedeu to trigger the `:_clear_` and
 `:_refresh_` events. Please see those events for their behaviour.
 
     Vedeu.trigger(:_resize_)
 
-### `:\_unmaximise\_`
+### `:_unmaximise_`
 Unmaximising an interface.
 
     Vedeu.trigger(:_unmaximise_, name)

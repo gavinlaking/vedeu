@@ -90,7 +90,7 @@ immediately.
 
 During the lifecycle of a Vedeu client application it may be necessary
 to switch between the different modes offered. This is handled by
-triggering the `:\_mode_switch\_` event. By default, this cycles
+triggering the `:_mode_switch_` event. By default, this cycles
 through the available modes. When an optional but valid target mode is
 given, that mode will be activated instead.
 

@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'guard-minitest',     '2.4.4'
   spec.add_development_dependency 'guard-rubocop',      '1.2.0'
   spec.add_development_dependency 'minitest',           '5.8.3'
-  spec.add_development_dependency 'minitest-reporters', '1.1.6'
+  spec.add_development_dependency 'minitest-reporters', '1.1.7'
   spec.add_development_dependency 'mocha',              '1.1.0'
   spec.add_development_dependency 'pry',                '0.10.3'
   spec.add_development_dependency 'rubocop',            '0.35.1'
@@ -37,5 +37,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rake',          '~> 10.4'
   spec.add_dependency 'ruby-prof',     '0.15.8'
   spec.add_dependency 'thor',          '0.19.1'
-  spec.add_dependency 'vedeu_cli',     '0.0.7'
+  spec.add_dependency 'vedeu_cli',     '0.0.8'
 end

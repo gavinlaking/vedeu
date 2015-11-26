@@ -60,7 +60,7 @@ module Vedeu
     def initialize_screen(mode)
       Vedeu.log(message: "Terminal entering '#{mode}' mode".freeze)
 
-      output(Vedeu::EscapeSequences::Esc.string('screen_init'))
+      output(Vedeu::EscapeSequences::Esc.screen_init)
 
       yield if block_given?
     end
@@ -72,7 +72,7 @@ module Vedeu
     #
     # @return [String]
     def clear
-      output(Vedeu::EscapeSequences::Esc.string('clear'))
+      output(Vedeu::EscapeSequences::Esc.clear)
     end
 
     # Attempts to tidy up the screen just before the application
@@ -82,7 +82,7 @@ module Vedeu
     #
     # @return [String]
     def restore_screen
-      output(Vedeu::EscapeSequences::Esc.string('screen_exit'))
+      output(Vedeu::EscapeSequences::Esc.screen_exit)
     end
 
     # Sets the cursor to be visible unless in raw mode, whereby it
@@ -90,7 +90,7 @@ module Vedeu
     #
     # @return [String]
     def set_cursor_mode
-      output(Vedeu::EscapeSequences::Esc.string('show_cursor')) unless raw_mode?
+      output(Vedeu::EscapeSequences::Esc.show_cursor) unless raw_mode?
     end
 
     # Returns a coordinate tuple of the format [y, x], where `y` is

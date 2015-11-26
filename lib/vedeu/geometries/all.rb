@@ -13,19 +13,11 @@ module Vedeu
 
 end # Vedeu
 
-require 'vedeu/geometries/alignment'
-require 'vedeu/geometries/horizontal_alignment'
-require 'vedeu/geometries/vertical_alignment'
-require 'vedeu/geometries/area'
-require 'vedeu/geometries/coordinate'
-require 'vedeu/geometries/dimension'
-require 'vedeu/geometries/x_dimension'
-require 'vedeu/geometries/y_dimension'
-require 'vedeu/geometries/validator'
-require 'vedeu/geometries/dsl'
-require 'vedeu/geometries/coordinate'
+require 'vedeu/geometries/alignment/all'
+require 'vedeu/geometries/area/all'
+require 'vedeu/geometries/dsl/all'
+
 require 'vedeu/geometries/geometry'
-require 'vedeu/geometries/grid'
 require 'vedeu/geometries/move'
 require 'vedeu/geometries/position'
 require 'vedeu/geometries/repository'

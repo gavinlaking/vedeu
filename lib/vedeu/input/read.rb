@@ -78,12 +78,12 @@ module Vedeu
 
       # @return [String]
       def mouse_off
-        Vedeu::EscapeSequences::Esc.string('mouse_x10_off')
+        Vedeu::EscapeSequences::Esc.mouse_x10_off
       end
 
       # @return [String]
       def show_cursor
-        Vedeu::EscapeSequences::Esc.string('show_cursor')
+        Vedeu::EscapeSequences::Esc.show_cursor
       end
 
       # @return [String]

@@ -2,7 +2,7 @@
 
 ## Application Events
 
-### `:\_goto\_`
+### `:_goto_`
 Call a client application controller's action with parameters.
 
     Vedeu.trigger(:_goto_,

@@ -13,23 +13,18 @@ module Vedeu
       private
 
       # @return [String]
-      def named_codes
-        Vedeu::EscapeSequences::Esc.foreground_codes[colour]
+      def prefix
+        "\e[38;".freeze
       end
 
       # @return [String]
-      def numbered_prefix
-        "\e[38;5;".freeze
+      def named_codes
+        Vedeu::EscapeSequences::Esc.foreground_codes[colour]
       end
 
       # @return [Vedeu::Colours::Foregrounds]
       def repository
         Vedeu.foreground_colours
-      end
-
-      # @return [String]
-      def rgb_prefix
-        "\e[38;2;%s;%s;%sm".freeze
       end
 
     end # Foreground

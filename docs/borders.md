@@ -27,13 +27,13 @@ The interfaces of Vedeu can each have their own border.
 Note: 'name' is a Symbol unless mentioned otherwise, and can be
 substituted for `Vedeu.focus` to use the interface currently in focus.
 
-### `:\_refresh_border\_`
+### `:_refresh_border_`
 This event refreshes the border of the named view, unless the view
 does not have a border, or the border is not enabled.
 
     Vedeu.trigger(:_refresh_border_, name)
 
-### `:\_set_border_title\_`
+### `:_set_border_title_`
 This event changes the title of the border of the named view to the
 value given.
 
@@ -47,7 +47,7 @@ value given.
   refreshed, unless the view does not have a border, or the border is
   not enabled, or the top border is set not to be shown.
 
-### `:\_set_border_caption\_`
+### `:_set_border_caption_`
 This event changes the caption of the border of the named view to the
 value given.
 

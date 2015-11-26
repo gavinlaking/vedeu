@@ -61,6 +61,7 @@ module Vedeu
                      end
       end
 
+      # @return [Array<void>|String]
       def cached
         cached_original   = Vedeu::Output::CompressorCache.read(:original)
         cached_compressed = Vedeu::Output::CompressorCache.read(:compressed)
@@ -90,7 +91,6 @@ module Vedeu
               cell.value,
             ].join
           end.join
-
 
           Vedeu.log(type:    :compress,
                     message: "#{message} -> #{out.size} characters".freeze)

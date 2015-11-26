@@ -36,6 +36,24 @@ module Vedeu
         end
       end
 
+      describe '.clear' do
+        it { described.clear.must_equal("\e[39m\e[49m\e[2J") }
+      end
+
+      describe '.screen_init' do
+        let(:expected) { "\e[0m\e[39m\e[49m\e[2J\e[?25l\e[?9h" }
+
+        it { described.screen_init.must_equal(expected) }
+      end
+
+      describe '.screen_exit' do
+        before { Vedeu::Terminal.stubs(:size).returns([80, 25]) }
+
+        let(:expected) { "\e[?9l\e[?25h\e[39m\e[49m\e[0m\e[80;25H\n" }
+
+        it { described.screen_exit.must_equal(expected) }
+      end
+
       describe '.string' do
         context 'when the style is not provided' do
           it { described.string.must_equal('') }
