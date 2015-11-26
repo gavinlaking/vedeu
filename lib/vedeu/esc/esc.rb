@@ -57,12 +57,23 @@ module Vedeu
         "#{border_on}#{yield}#{border_off}".freeze
       end
 
-      private
-
       # @return [String]
       def clear
         "#{colour_reset}\e[2J".freeze
       end
+
+      # @return [String]
+      def screen_init
+        "#{reset}#{clear}#{hide_cursor}#{enable_mouse}".freeze
+      end
+
+      # @return [String]
+      def screen_exit
+        "#{disable_mouse}#{show_cursor}#{screen_colour_reset}#{reset}" \
+        "#{last_character_position}\n".freeze
+      end
+
+      private
 
       # @return [String]
       def clear_line
@@ -102,19 +113,8 @@ module Vedeu
       end
 
       # @return [String]
-      def screen_init
-        "#{reset}#{clear}#{hide_cursor}#{enable_mouse}".freeze
-      end
-
-      # @return [String]
       def screen_colour_reset
         "#{fg_reset}#{bg_reset}".freeze
-      end
-
-      # @return [String]
-      def screen_exit
-        "#{disable_mouse}#{show_cursor}#{screen_colour_reset}#{reset}" \
-        "#{last_character_position}\n".freeze
       end
 
       # @return [String]
