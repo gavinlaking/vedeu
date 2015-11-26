@@ -22,10 +22,70 @@ conveniently after the interface itself.
   the content of the interface can change position if needed.
 
 
-## Cursor Events
+## Cursor API, DSL & Events
 
 Note: 'name' is a Symbol unless mentioned otherwise, and can be
 substituted for 'Vedeu.focus' to use the interface currently in focus.
+
+Cursors are automatically created for each interface defined. You can
+specify at the interface, or view level whether a cursor is shown or
+hidden.
+
+### Interface Cursors
+The initial state of visible (true) or invisible (false) for a cursor
+can be specified when defining the interface.
+
+Each example within each interface definition is equivalent.
+
+#### Showing the cursor
+
+    Vedeu.interface :my_interface do
+      cursor true
+
+      # or...
+
+      cursor!
+
+      # ...
+    end
+
+#### Hiding the cursor
+
+    Vedeu.interface :my_interface do
+      cursor false
+
+      # or...
+
+      no_cursor!
+
+      # ...
+    end
+
+### View Cursors
+The view cursor is the same as the interface cursor with the same
+name. However, view cursors can be made visible or invisible when the
+view is rendered, overriding the initial or current state.
+
+    Vedeu.views do
+      view :my_interface do
+        cursor true # => Specify the visibility of the cursor when
+                    #    the view is rendered.
+
+        # see other examples for other settings for cursor
+      end
+    end
+
+    Vedeu.renders do
+      view :my_interface do
+        cursor false # => Specify the visibility of the cursor when
+                     #    the view is rendered.
+
+        # see other examples for other settings for cursor
+      end
+    end
+
+
+## Cursor Positioning Events
 
 ### `:_cursor_origin_`
 This event moves the cursor to the interface origin; the top left
@@ -95,3 +155,42 @@ to the last line of the content.
 
     Vedeu.trigger(:_cursor_bottom_, name)
     Vedeu.trigger(:_cursor_bottom_, Vedeu.focus)
+
+## Cursor Visibility API & Events
+
+Change the visibility of the cursor via an event or API call. These
+can be called at any time and affect the cursor of the named
+interface, or when a name is not given, the interface currently in
+focus.
+
+### Vedeu.hide_cursor / `:_cursor_hide_`
+Hide the cursor.
+
+    Vedeu.trigger(:_hide_cursor_, name)
+    Vedeu.trigger(:_hide_cursor_, Vedeu.focus)
+    Vedeu.trigger(:_cursor_hide_, name)
+    Vedeu.trigger(:_cursor_hide_, Vedeu.focus)
+
+    Vedeu.hide_cursor(name)
+    Vedeu.hide_cursor(Vedeu.focus)
+
+### Vedeu.show_cursor / `:_show_cursor_`
+Show the cursor.
+
+    Vedeu.trigger(:_show_cursor_, name)
+    Vedeu.trigger(:_show_cursor_, Vedeu.focus)
+    Vedeu.trigger(:_cursor_show_, name)
+    Vedeu.trigger(:_cursor_show_, Vedeu.focus)
+
+    Vedeu.show_cursor(name)
+    Vedeu.show_cursor(Vedeu.focus)
+
+### Vedeu.toggle_cursor / `:_toggle_cursor_`
+Toggle the visibility of the cursor. If hidden, then show. If shown,
+then hide.
+
+    Vedeu.trigger(:_toggle_cursor_, name)
+    Vedeu.trigger(:_toggle_cursor_, Vedeu.focus)
+
+    Vedeu.toggle_cursor(name)
+    Vedeu.toggle_cursor(Vedeu.focus)

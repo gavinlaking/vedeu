@@ -4,48 +4,14 @@ module Vedeu
 
     # Control the visibility of the cursor for each interface/view.
     #
+    # See {file:docs/cursors.md#interface_cursors}
+    # See {file:docs/cursors.md#view_cursors}
     module DSL
 
       # Set the cursor visibility on an interface.
       #
       # @param value [Boolean] Any value other than nil or false will
-      #   evaluate
-      #   to true.
-      #
-      # @example
-      #   # Showing the cursor, each example is equivalent.
-      #   #
-      #   Vedeu.interface :my_interface do
-      #     cursor true
-      #
-      #     # or...
-      #
-      #     cursor!
-      #
-      #     # ...
-      #   end
-      #
-      #   # Hiding the cursor, each example is equivalent.
-      #   #
-      #   Vedeu.interface :my_interface do
-      #     cursor false
-      #
-      #     # or...
-      #
-      #     no_cursor!
-      #
-      #     # ...
-      #   end
-      #
-      #   # Can be set on a per-view basis also:
-      #   #
-      #   Vedeu.view :my_interface do
-      #     cursor true # => Specify the visibility of the cursor when
-      #                 #    the view is rendered.
-      #
-      #     # see other examples for other settings
-      #   end
-      #
+      #   evaluate to true.
       # @return [Vedeu::Cursors::Cursor]
       def cursor(value = true)
         boolean = value ? true : false

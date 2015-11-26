@@ -343,7 +343,7 @@ Repository method. Access registered groups.
 
 ### Vedeu.hide_cursor
 
-@todo Add more documentation.
+See {file:docs/cursors.md#vedeuhide_cursor__}
 
 ### Vedeu.hide_group
 
@@ -506,7 +506,7 @@ Repository method. Access registered renderers.
 
 ### Vedeu.show_cursor
 
-@todo Add more documentation.
+See {file:docs/cursors.md#vedeushow_cursor__}
 
 ### Vedeu.show_group
 
@@ -522,7 +522,7 @@ Repository method. Access registered renderers.
 
 ### Vedeu.toggle_cursor
 
-@todo Add more documentation.
+See {file:docs/cursors.md#vedeutoggle_cursor__}
 
 ### Vedeu.toggle_group
 

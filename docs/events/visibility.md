@@ -26,14 +26,6 @@ Clears only the content of the named view/interface area.
     Vedeu.trigger(:_clear_view_content_, name)
     Vedeu.clear_content_by_name(name)
 
-### `:_hide_cursor_`
-Hide the cursor of the named interface or when a name is not given,
-the interface currently in focus.
-
-    Vedeu.trigger(:_hide_cursor_, name)
-    Vedeu.trigger(:_cursor_hide_, name)
-    Vedeu.hide_cursor(name)
-
 ### `:_hide_group_`
 Hiding a group of interfaces.
 
@@ -46,14 +38,6 @@ Hide an interface by name.
     Vedeu.trigger(:_hide_interface_, name)
     Vedeu.hide_interface(name)
 
-### `:_show_cursor_`
-Show the cursor of the named interface or when a name is not given,
-the interface currently in focus.
-
-    Vedeu.trigger(:_show_cursor_, name)
-    Vedeu.trigger(:_cursor_show_, name)
-    Vedeu.show_cursor(name)
-
 ### `:_show_group_`
 Showing a group of interfaces.
 
@@ -65,12 +49,6 @@ Show an interface by name.
 
     Vedeu.trigger(:_show_interface_, name)
     Vedeu.show_interface(name)
-
-### `:_toggle_cursor_`
-Toggling a cursor.
-
-    Vedeu.trigger(:_toggle_cursor_, name)
-    Vedeu.toggle_cursor(name)
 
 ### `:_toggle_group_`
 Toggling a group of interfaces.
