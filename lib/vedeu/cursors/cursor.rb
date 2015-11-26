@@ -264,11 +264,11 @@ module Vedeu
 
       # Determine correct x and y related coordinates.
       #
-      # @return [Vedeu::Geometries::Coordinate]
+      # @return [Vedeu::Cursors::Coordinate]
       def coordinate(offset, type)
-        Vedeu::Geometries::Coordinate.new(name:   name,
-                                          offset: offset,
-                                          type:   type)
+        Vedeu::Cursors::Coordinate.new(name:   name,
+                                       offset: offset,
+                                       type:   type)
       end
 
       # The default values for a new instance of this class.

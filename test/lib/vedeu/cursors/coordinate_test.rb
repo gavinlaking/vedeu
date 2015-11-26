@@ -2,11 +2,11 @@ require 'test_helper'
 
 module Vedeu
 
-  module Geometries
+  module Cursors
 
     describe Coordinate do
 
-      let(:described)  { Vedeu::Geometries::Coordinate }
+      let(:described)  { Vedeu::Cursors::Coordinate }
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
@@ -38,7 +38,7 @@ module Vedeu
         # it { skip }
       end
 
-      # let(:described) { Vedeu::Geometries::Coordinate }
+      # let(:described) { Vedeu::Cursors::Coordinate }
       # let(:instance)  { described.new(_name, oy, ox) }
       # let(:_name)     { 'coordinate' }
       # let(:oy)        { 0 }
@@ -162,6 +162,6 @@ module Vedeu
 
     end # Coordinate
 
-  end # Geometries
+  end # Cursors
 
 end # Vedeu

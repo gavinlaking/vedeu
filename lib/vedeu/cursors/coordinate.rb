@@ -1,6 +1,6 @@
 module Vedeu
 
-  module Geometries
+  module Cursors
 
     # Crudely corrects out of range values.
     #
@@ -8,13 +8,13 @@ module Vedeu
     #
     class Coordinate
 
-      # Return a new instance of Vedeu::Geometries::Coordinate.
+      # Return a new instance of Vedeu::Cursors::Coordinate.
       #
       # @param attributes [Hash<Symbol => Fixnum|String|Symbol>]
       # @option attributes name [String|Symbol]
       # @option attributes type [Symbol]
       # @option attributes offset [Fixnum]
-      # @return [Vedeu::Geometries::Coordinate]
+      # @return [Vedeu::Cursors::Coordinate]
       def initialize(attributes = {})
         defaults.merge!(attributes).each do |key, value|
           instance_variable_set("@#{key}", value)
@@ -172,6 +172,6 @@ module Vedeu
 
     end # Coordinate
 
-  end # Geometries
+  end # Cursors
 
 end # Vedeu
