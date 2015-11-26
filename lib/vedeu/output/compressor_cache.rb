@@ -2,6 +2,13 @@ module Vedeu
 
   module Output
 
+    # Store a copy of the data last processed by
+    # {Vedeu::Output::Compressor}. Both the original content and the
+    # compressed versions are kept (unless modified) to speed up the
+    # rendering of the display.
+    #
+    # @api private
+    #
     module CompressorCache
 
       extend self

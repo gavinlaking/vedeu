@@ -80,7 +80,7 @@ end
 
 ### Creating a new named border
 
-{include:Vedeu::Borders::DSL#border}
+{include:Vedeu::Borders::DSL.border}
 
 ### Setting a title for the border
 
@@ -113,7 +113,7 @@ end
 
 ### Creating a new named geometry
 
-{include:Vedeu::Geometries::DSL#geometry}
+{include:Vedeu::Geometries::DSL.geometry}
 
 ### Setting the interface dimensions
 

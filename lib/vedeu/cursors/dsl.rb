@@ -13,27 +13,37 @@ module Vedeu
       #   to true.
       #
       # @example
+      #   # Showing the cursor, each example is equivalent.
+      #   #
       #   Vedeu.interface :my_interface do
-      #     cursor  true  # => show the cursor for this interface
+      #     cursor true
+      #
       #     # or...
-      #     cursor  :show # => both of these are equivalent to line
-      #                   #    above
-      #     # or...
-      #     cursor!       #
+      #
+      #     cursor!
+      #
       #     # ...
       #   end
       #
+      #   # Hiding the cursor, each example is equivalent.
+      #   #
       #   Vedeu.interface :my_interface do
-      #     cursor false # => hide the cursor for this interface
+      #     cursor false
+      #
       #     # or...
-      #     cursor nil   # => as above
+      #
+      #     no_cursor!
+      #
       #     # ...
       #   end
       #
+      #   # Can be set on a per-view basis also:
+      #   #
       #   Vedeu.view :my_interface do
       #     cursor true # => Specify the visibility of the cursor when
       #                 #    the view is rendered.
-      #     # ...
+      #
+      #     # see other examples for other settings
       #   end
       #
       # @return [Vedeu::Cursors::Cursor]

@@ -27,14 +27,14 @@ conveniently after the interface itself.
 Note: 'name' is a Symbol unless mentioned otherwise, and can be
 substituted for 'Vedeu.focus' to use the interface currently in focus.
 
-### `:\_cursor_origin\_`
+### `:_cursor_origin_`
 This event moves the cursor to the interface origin; the top left
 corner of the named interface.
 
     Vedeu.trigger(:_cursor_origin_, name)
     Vedeu.trigger(:_cursor_reset_, name)
 
-### `:\_cursor_position\_`
+### `:_cursor_position_`
 To ascertain the position of a cursor in a named interface, use the
 following event (substituting 'name' for the interface name):
 
@@ -45,7 +45,7 @@ name, you can check which interface is in focus:
 
     Vedeu.trigger(:_cursor_position_, Vedeu.focus)
 
-### `:\_cursor_reposition\_`
+### `:_cursor_reposition_`
 Moves the cursor to a relative position inside the interface.
 
     Vedeu.trigger(:_cursor_reposition_, name, y, x)
@@ -56,31 +56,31 @@ Adjusts the position of the named cursor or view in the direction
 specified. If 'name' is unknown, using 'Vedeu.focus' will use the
 interface currently in focus.
 
-### `:\_cursor_left\_`
+### `:_cursor_left_`
 Moves the cursor one character left, unless the left-most position
 for the view or terminal is reached.
 
     Vedeu.trigger(:_cursor_left_, name)
     Vedeu.trigger(:_cursor_left_, Vedeu.focus)
 
-### `:\_cursor_down\_`
+### `:_cursor_down_`
 
     Vedeu.trigger(:_cursor_down_, name)
     Vedeu.trigger(:_cursor_down_, Vedeu.focus)
 
-### `:\_cursor_up\_`
+### `:_cursor_up_`
 Moves the cursor one line up, unless the top-most position for the
 view or terminal is reached.
 
     Vedeu.trigger(:_cursor_up_, name)
     Vedeu.trigger(:_cursor_up_, Vedeu.focus)
 
-### `:\_cursor_right\_`
+### `:_cursor_right_`
 
     Vedeu.trigger(:_cursor_right_, name)
     Vedeu.trigger(:_cursor_right_, Vedeu.focus)
 
-### `:\_cursor_top\_`
+### `:_cursor_top_`
 Moves the cursor to the top-most position for the view or terminal.
 If the view contains content, then this event will effectively scroll
 to the first line of the content.
@@ -88,7 +88,7 @@ to the first line of the content.
     Vedeu.trigger(:_cursor_top_, name)
     Vedeu.trigger(:_cursor_top_, Vedeu.focus)
 
-### `:\_cursor_bottom\_`
+### `:_cursor_bottom_`
 Moves the cursor to the bottom-most position for the view or terminal.
 If the view contains content, then this event will effectively scroll
 to the last line of the content.
