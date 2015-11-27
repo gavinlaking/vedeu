@@ -44,7 +44,8 @@ module Vedeu
     # @return [Boolean]
     def present?(variable)
       return true if variable.is_a?(Fixnum)
-      return true unless variable.nil? || variable.empty?
+      return true unless variable.nil? ||
+                         (variable.respond_to?(:empty?) && variable.empty?)
 
       false
     end
