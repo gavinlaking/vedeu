@@ -35,12 +35,12 @@ module Vedeu
 
   # See {file:docs/borders.md#label-3A_set_border_caption_}
   Vedeu.bind(:_set_border_caption_) do |name, caption|
-    Vedeu::Borders::SetCaption.update(name, caption)
+    Vedeu::Borders::SetAttribute.update(name, :title, caption)
   end
 
   # See {file:docs/borders.md#label-3A_set_border_title_}
   Vedeu.bind(:_set_border_title_) do |name, title|
-    Vedeu::Borders::SetTitle.update(name, title)
+    Vedeu::Borders::SetAttribute.update(name, :caption, title)
   end
 
   # :nocov:
