@@ -69,13 +69,14 @@ module Vedeu
       # @example
       #   Vedeu.focus
       #
-      # @return [String]
+      # @return [NilClass|String|Symbol]
       def current
-        return storage[0] unless storage.empty?
+        return nil if storage.empty?
 
-        no_interfaces_registered!
+        storage[0]
       end
       alias_method :focus, :current
+      alias_method :name, :current
 
       # Returns a boolean indicating whether the named interface is
       # focussed.
@@ -202,13 +203,6 @@ module Vedeu
       # @return [Vedeu::Interfaces::Interface]
       def interface
         Vedeu.interfaces.by_name(current)
-      end
-
-      # @raise [Vedeu::Error::Fatal]
-      def no_interfaces_registered!
-        fail Vedeu::Error::Fatal,
-             'No interfaces or views have been registered, therefore the ' \
-             'focus table is empty.'.freeze
       end
 
       # @raise [Vedeu::Error::ModelNotFound]

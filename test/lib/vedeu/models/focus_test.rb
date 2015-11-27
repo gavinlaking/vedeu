@@ -113,7 +113,7 @@ module Vedeu
         end
 
         context 'when no interfaces are defined' do
-          it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
+          it { subject.must_equal(nil) }
         end
 
         context 'API methods' do

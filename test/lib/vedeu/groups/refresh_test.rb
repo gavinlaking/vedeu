@@ -45,12 +45,6 @@ module Vedeu
 
             it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
           end
-
-          context 'when no interfaces/views have been registered' do
-            before { Vedeu::Models::Focus.reset }
-
-            it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
-          end
         end
 
         context 'when the name is present' do
