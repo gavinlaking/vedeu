@@ -45,9 +45,14 @@ module Vedeu
 
       private
 
+      # @return [Vedeu::Groups::Group]
+      def group
+        Vedeu.groups.by_name(name)
+      end
+
       # @return [Array<String>]
       def members
-        Vedeu.groups.by_name(name).members
+        group.members
       end
 
     end # Clear

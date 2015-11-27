@@ -60,7 +60,7 @@ module Vedeu
           elsif Vedeu::Input::Mapper.registered?(@key, name)
             Vedeu.trigger(:_keypress_, @key, name)
 
-          elsif Vedeu.interfaces.by_name(name).editable?
+          elsif interface.editable?
             Vedeu.trigger(:_editor_, @key)
 
           elsif @key.nil?
@@ -96,6 +96,11 @@ module Vedeu
         return Vedeu::Input::Mouse.click(keys) if click?(keys)
 
         keys
+      end
+
+      # @return [Vedeu::Interfaces::Interface]
+      def interface
+        Vedeu.interfaces.by_name(name)
       end
 
       # Returns a boolean indicating whether a mouse click was

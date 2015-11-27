@@ -46,7 +46,7 @@ module Vedeu
       def by_name
         Vedeu.trigger(:_clear_view_content_, name)
 
-        Vedeu.buffers.by_name(name).render
+        buffer.render
 
         Vedeu.trigger(:_refresh_border_, name) unless content_only?
       end
@@ -56,6 +56,11 @@ module Vedeu
       # @!attribute [r] name
       # @return [String|Symbol]
       attr_reader :name
+
+      # @return [Vedeu::Buffers::Buffer]
+      def buffer
+        Vedeu.buffers.by_name(name)
+      end
 
       # @return [Boolean]
       def content_only?

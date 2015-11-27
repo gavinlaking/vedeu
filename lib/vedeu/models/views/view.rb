@@ -118,7 +118,7 @@ module Vedeu
              'Cannot store an interface ' \
              'without a name.'.freeze unless present?(name)
 
-        Vedeu.buffers.by_name(name).add(self)
+        buffer.add(self)
 
         self
       end
@@ -127,10 +127,15 @@ module Vedeu
       #
       # @return [Boolean]
       def visible?
-        Vedeu.interfaces.by_name(name).visible?
+        interface.visible?
       end
 
       private
+
+      # @return [Vedeu::Buffers::Buffer]
+      def buffer
+        Vedeu.buffers.by_name(name)
+      end
 
       # The default values for a new instance of this class.
       #
@@ -146,6 +151,11 @@ module Vedeu
           value:          [],
           zindex:         0,
         }
+      end
+
+      # @return [Vedeu::Interfaces::Interface]
+      def interface
+        Vedeu.interfaces.by_name(name)
       end
 
     end # View

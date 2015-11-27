@@ -97,7 +97,7 @@ module Vedeu
           previous.cursor_visible?
 
         else
-          Vedeu.interfaces.by_name(name).cursor_visible?
+          interface.cursor_visible?
 
         end
       end
@@ -184,6 +184,11 @@ module Vedeu
           previous:   nil,
           repository: Vedeu.buffers,
         }
+      end
+
+      # @return [Vedeu::Interfaces::Interface]
+      def interface
+        Vedeu.interfaces.by_name(name)
       end
 
       # Return a boolean indicating content was swapped between

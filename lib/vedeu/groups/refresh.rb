@@ -63,7 +63,12 @@ module Vedeu
 
       # @return [String|Symbol]
       def group_from_interface
-        @_group_name ||= Vedeu.interfaces.by_name(name).group
+        @_group_name ||= interface.group
+      end
+
+      # @return [Vedeu::Interfaces::Interface]
+      def interface
+        Vedeu.interfaces.by_name(name)
       end
 
     end # Refresh

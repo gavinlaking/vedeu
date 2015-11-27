@@ -76,9 +76,14 @@ module Vedeu
       #
       # @return (see Vedeu::Interfaces::Repository#by_name)
       def interface
-        Vedeu.interfaces.by_name(options[:name])
+        Vedeu.interfaces.by_name(name)
       end
       alias_method :interface?, :interface
+
+      # @return [String|Symbol]
+      def name
+        options[:name]
+      end
 
       # Returns the stream directives for the line.
       #
