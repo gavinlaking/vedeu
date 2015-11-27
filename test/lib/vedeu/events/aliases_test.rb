@@ -8,7 +8,7 @@ module Vedeu
 
       let(:described) { Vedeu::Events::Aliases }
 
-      before { described.reset }
+      before { described.reset! }
 
       describe '.add' do
         let(:alias_name) { :alias_test }
@@ -88,10 +88,10 @@ module Vedeu
         end
       end
 
-      describe '.reset' do
-        subject { described.reset }
+      describe '.reset!' do
+        subject { described.reset! }
 
-        it { described.must_respond_to(:reset!) }
+        it { described.must_respond_to(:reset) }
 
         it { subject.must_equal({}) }
       end

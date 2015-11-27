@@ -44,6 +44,7 @@ module Vedeu
 
       true
     end
+    alias_method :reset, :reset!
 
     private
 

@@ -17,14 +17,14 @@ module Vedeu
       before do
         Vedeu.stubs(:log)
 
-        described.reset
-        Vedeu.interfaces.reset
+        described.reset!
+        Vedeu.interfaces.reset!
 
         Vedeu.stubs(:trigger)
       end
       after do
-        described.reset
-        Vedeu.interfaces.reset
+        described.reset!
+        Vedeu.interfaces.reset!
       end
 
       describe '#add' do
@@ -101,7 +101,7 @@ module Vedeu
       end
 
       describe '#current' do
-        before { described.reset }
+        before { described.reset! }
 
         subject { described.current }
 
@@ -172,7 +172,7 @@ module Vedeu
         end
 
         context 'returns false if storage is empty' do
-          before { described.reset }
+          before { described.reset! }
 
           it { described.next_item.must_equal(false) }
         end
@@ -203,7 +203,7 @@ module Vedeu
         end
 
         context 'when there are no interfaces' do
-          before { described.reset }
+          before { described.reset! }
 
           it { described.next_visible_item.must_equal(false) }
         end
@@ -218,7 +218,7 @@ module Vedeu
         end
 
         context 'returns false if storage is empty' do
-          before { described.reset }
+          before { described.reset! }
 
           it { described.prev_item.must_equal(false) }
         end
@@ -250,7 +250,7 @@ module Vedeu
         end
 
         context 'when there are no interfaces' do
-          before { described.reset }
+          before { described.reset! }
 
           it { described.prev_visible_item.must_equal(false) }
         end
