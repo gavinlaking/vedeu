@@ -34,6 +34,7 @@ module Vedeu
 end # Vedeu
 
 require 'vedeu/borders/title'
+require 'vedeu/borders/set_title'
 require 'vedeu/borders/caption'
 require 'vedeu/borders/border'
 require 'vedeu/borders/dsl'
