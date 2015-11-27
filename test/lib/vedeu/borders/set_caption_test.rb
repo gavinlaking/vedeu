@@ -4,26 +4,26 @@ module Vedeu
 
   module Borders
 
-    describe SetTitle do
+    describe SetCaption do
 
-      let(:described) { Vedeu::Borders::SetTitle }
-      let(:instance)  { described.new(_name, title) }
+      let(:described) { Vedeu::Borders::SetCaption }
+      let(:instance)  { described.new(_name, caption) }
       let(:_name)     {}
-      let(:title)     {}
+      let(:caption)   {}
       let(:border)    {
-        Vedeu::Borders::Border.new(name: _name, title: 'Some title')
+        Vedeu::Borders::Border.new(name: _name, caption: 'Some caption')
       }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@name').must_equal(_name) }
-        it { instance.instance_variable_get('@title').must_equal(title) }
+        it { instance.instance_variable_get('@caption').must_equal(caption) }
       end
 
       describe '.update' do
-        let(:_name) { 'Vedeu::Borders::SetTitle' }
+        let(:_name) { 'Vedeu::Borders::SetCaption' }
 
-        subject { described.update(_name, title) }
+        subject { described.update(_name, caption) }
 
         it { subject.must_be_instance_of(Vedeu::Borders::Border) }
 
@@ -33,14 +33,14 @@ module Vedeu
               Vedeu.borders.stubs(:by_name).with(_name).returns(border)
             end
 
-            context 'when a title is given' do
-              let(:title) { 'Other title' }
+            context 'when a caption is given' do
+              let(:caption) { 'Other caption' }
 
-              it { subject.title.must_equal(title) }
+              it { subject.caption.must_equal(caption) }
             end
 
-            context 'when a title is not given' do
-              it { subject.title.must_equal('') }
+            context 'when a caption is not given' do
+              it { subject.caption.must_equal('') }
             end
           end
 
@@ -52,19 +52,19 @@ module Vedeu
               Vedeu.borders.registered?(_name).must_equal(true)
             end
 
-            context 'when a title is given' do
-              let(:title) { 'Other title' }
+            context 'when a caption is given' do
+              let(:caption) { 'Other caption' }
 
-              it 'sets the title of the new border' do
+              it 'sets the caption of the new border' do
                 subject
-                Vedeu.borders.by_name(_name).title.must_equal(title)
+                Vedeu.borders.by_name(_name).caption.must_equal(caption)
               end
             end
 
-            context 'when a title is not given' do
+            context 'when a caption is not given' do
               it {
                 subject
-                Vedeu.borders.by_name(_name).title.must_equal('')
+                Vedeu.borders.by_name(_name).caption.must_equal('')
               }
             end
           end
@@ -75,7 +75,7 @@ module Vedeu
         it { instance.must_respond_to(:update) }
       end
 
-    end # SetTitle
+    end # SetCaption
 
   end # Borders
 

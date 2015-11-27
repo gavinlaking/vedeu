@@ -36,6 +36,7 @@ end # Vedeu
 require 'vedeu/borders/title'
 require 'vedeu/borders/set_title'
 require 'vedeu/borders/caption'
+require 'vedeu/borders/set_caption'
 require 'vedeu/borders/border'
 require 'vedeu/borders/dsl'
 require 'vedeu/borders/refresh'
