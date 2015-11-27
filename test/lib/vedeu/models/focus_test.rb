@@ -148,6 +148,21 @@ module Vedeu
         end
       end
 
+      describe '#focus?' do
+        context 'when there are no interfaces defined' do
+          before { described.reset! }
+
+          it { described.focus?.must_equal(false) }
+        end
+
+        context 'when there are interfaces defined' do
+          before { described.add('thallium') }
+          after  { described.reset! }
+
+          it { described.focus?.must_equal(true) }
+        end
+      end
+
       describe '#next_item' do
         it 'the next interface is focussed when the method is called' do
           described.add('thallium')

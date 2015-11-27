@@ -90,6 +90,14 @@ module Vedeu
       end
       alias_method :focussed?, :current?
 
+      # Returns a boolean indicating whether there are interfaces
+      # registered.
+      #
+      # @return [Boolean]
+      def focus?
+        !storage.empty?
+      end
+
       # Put the next interface relative to the current interfaces in
       # focus.
       #
@@ -244,6 +252,8 @@ module Vedeu
 
   # @!method focus
   #   @see Vedeu::Models::Focus#focus
+  # @!method focus?
+  #   @see Vedeu::Models::Focus#focus?
   # @!method focus_by_name
   #   @see Vedeu::Models::Focus#focus_by_name
   # @!method focussed?
@@ -254,6 +264,7 @@ module Vedeu
   #   @see Vedeu::Models::Focus#focus_previous
   def_delegators Vedeu::Models::Focus,
                  :focus,
+                 :focus?,
                  :focus_by_name,
                  :focussed?,
                  :focus_next,
