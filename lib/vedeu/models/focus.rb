@@ -106,7 +106,7 @@ module Vedeu
       #   Vedeu.trigger(:_focus_next_)
       #   Vedeu.focus_next
       #
-      # @return [String]
+      # @return [String|Symbol]
       def next_item
         storage.rotate!
 
@@ -117,7 +117,7 @@ module Vedeu
       # Put the next visible interface relative to the current
       # interfaces in focus.
       #
-      # @return [String]
+      # @return [String|Symbol]
       def next_visible_item
         return update unless visible_items?
 
@@ -137,7 +137,7 @@ module Vedeu
       #   Vedeu.trigger(:_focus_prev_)
       #   Vedeu.focus_previous
       #
-      # @return [String]
+      # @return [String|Symbol]
       def prev_item
         storage.rotate!(-1)
 
@@ -149,7 +149,7 @@ module Vedeu
       # Put the previous visible interface relative to the current
       # interfaces in focus.
       #
-      # @return [String]
+      # @return [String|Symbol]
       def prev_visible_item
         return update unless visible_items?
 

@@ -15,7 +15,7 @@ module Vedeu
         # @example
         #   Vedeu.cursor
         #
-        # @return [Vedeu::Cursors::Cursor]
+        # @return [NilClass|Vedeu::Cursors::Cursor]
         def cursor
           cursors.by_name
         end
