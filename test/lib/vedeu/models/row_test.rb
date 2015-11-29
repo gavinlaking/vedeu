@@ -144,6 +144,18 @@ module Vedeu
         end
       end
 
+      describe '#reset_character' do
+        subject { instance.reset_character }
+
+        it { subject.must_be_instance_of(Vedeu::Views::Char) }
+      end
+
+      describe '#size' do
+        subject { instance.size }
+
+        it { subject.must_be_instance_of(Fixnum) }
+      end
+
     end # Row
 
   end # Models

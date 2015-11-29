@@ -91,6 +91,11 @@ module Vedeu
         rows[index]
       end
 
+      # @return [Fixnum]
+      def size
+        rows.size
+      end
+
     end # Page
 
   end # Models

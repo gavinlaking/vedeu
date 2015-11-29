@@ -82,6 +82,11 @@ module Vedeu
         Vedeu::Views::Char.new(value: Vedeu::EscapeSequences::Esc.reset)
       end
 
+      # @return [Fixnum]
+      def size
+        cells.size
+      end
+
     end # Row
 
   end # Models
