@@ -6,19 +6,21 @@ module Vedeu
 
       module Foreground
 
+        include Vedeu::Repositories::Parent
+
         # When the foreground colour for the model exists, return it,
         # otherwise returns the parent foreground colour, or an empty
         # Vedeu::Colours::Foreground.
         #
         # @return [Vedeu::Colours::Foreground]
         def foreground
-          @foreground ||= if colour
+          @foreground ||= if colour && present?(colour.foreground)
                             colour.foreground
 
                           elsif self.is_a?(Vedeu::Views::Char) && name
-                            interface.colour.background
+                            interface.colour.foreground
 
-                          elsif parent
+                          elsif parent && present?(parent.foreground)
                             parent.foreground
 
                           else
@@ -32,9 +34,8 @@ module Vedeu
         #
         # @return [Vedeu::Colours::Foreground]
         def foreground=(value)
-          @colour = attributes[:colour] = Vedeu::Colours::Colour.coerce(
-            background: colour.background,
-            foreground: Vedeu::Colours::Foreground.coerce(value))
+          @foreground = colour.foreground = value
+          @_colour = @colour = colour
         end
 
       end # Foreground

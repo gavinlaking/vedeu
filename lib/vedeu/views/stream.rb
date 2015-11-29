@@ -8,15 +8,13 @@ module Vedeu
     #
     class Stream
 
+      include Vedeu::Common
       include Vedeu::Repositories::Model
+      include Vedeu::Repositories::Parent
       include Vedeu::Presentation
 
       collection Vedeu::Views::Chars
       member     Vedeu::Views::Char
-
-      # @!attribute [r] attributes
-      # @return [Hash]
-      attr_reader :attributes
 
       # @!attribute [rw] parent
       # @return [Vedeu::Views::Line]
@@ -38,9 +36,7 @@ module Vedeu
       # @option attributes value [String]
       # @return [Vedeu::Views::Stream]
       def initialize(attributes = {})
-        @attributes = defaults.merge!(attributes)
-
-        @attributes.each do |key, value|
+        defaults.merge!(attributes).each do |key, value|
           instance_variable_set("@#{key}", value)
         end
       end
@@ -51,6 +47,18 @@ module Vedeu
         parent.add(child)
       end
       alias_method :<<, :add
+
+      # @return [Hash<Symbol => void>]
+      def attributes
+        {
+          client: @client,
+          colour: colour,
+          name:   name,
+          parent: parent,
+          style:  style,
+          value:  value,
+        }
+      end
 
       # Returns an array of characters, each element is the escape
       # sequences of colours and styles for this stream, the character
@@ -94,11 +102,6 @@ module Vedeu
       end
       alias_method :==, :eql?
 
-      # @return [NilClass|String|Symbol]
-      def name
-        parent.name if parent
-      end
-
       # Returns the size of the content in characters without
       # formatting.
       #
@@ -116,6 +119,7 @@ module Vedeu
         {
           client: nil,
           colour: nil,
+          name:   nil,
           parent: nil,
           style:  nil,
           value:  '',

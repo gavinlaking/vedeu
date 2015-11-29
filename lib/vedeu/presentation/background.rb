@@ -6,19 +6,21 @@ module Vedeu
 
       module Background
 
+        include Vedeu::Repositories::Parent
+
         # When the background colour for the model exists, return it,
         # otherwise returns the parent background colour, or an empty
         # Vedeu::Colours::Background.
         #
         # @return [Vedeu::Colours::Background]
         def background
-          @background ||= if colour
+          @background ||= if colour && present?(colour.background)
                             colour.background
 
                           elsif self.is_a?(Vedeu::Views::Char) && name
                             interface.colour.background
 
-                          elsif parent
+                          elsif parent && present?(parent.background)
                             parent.background
 
                           else
@@ -32,9 +34,8 @@ module Vedeu
         #
         # @return [Vedeu::Colours::Background]
         def background=(value)
-          @colour = Vedeu::Colours::Colour.coerce(
-            background: Vedeu::Colours::Background.coerce(value),
-            foreground: colour.foreground)
+          @background = colour.background = value
+          @_colour = @colour = colour
         end
 
       end # Background

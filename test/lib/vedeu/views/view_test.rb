@@ -30,7 +30,6 @@ module Vedeu
 
       describe 'accessors' do
         it {
-          instance.must_respond_to(:attributes)
           instance.must_respond_to(:client)
           instance.must_respond_to(:client=)
           instance.must_respond_to(:cursor_visible)
@@ -52,6 +51,12 @@ module Vedeu
 
         # @todo Add more tests.
         # it { skip }
+      end
+
+      describe '#attributes' do
+        subject { instance.attributes }
+
+        it { subject.must_be_instance_of(Hash) }
       end
 
       describe '#deputy' do

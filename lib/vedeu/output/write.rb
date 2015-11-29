@@ -32,6 +32,8 @@ module Vedeu
       def initialize(output = nil, options = {})
         @output  = output
         @options = options
+        @colour  = options[:colour]
+        @style   = options[:style]
       end
 
       # @return [NilClass]

@@ -59,7 +59,6 @@ module Vedeu
           instance.must_respond_to(:content)
           instance.must_respond_to(:text)
           instance.must_respond_to(:value=)
-          instance.must_respond_to(:attributes)
         }
       end
 
@@ -71,6 +70,12 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Views::Streams) }
 
         it { instance.must_respond_to(:<<) }
+      end
+
+      describe '#attributes' do
+        subject { instance.attributes }
+
+        it { subject.must_be_instance_of(Hash) }
       end
 
       describe '#chars' do

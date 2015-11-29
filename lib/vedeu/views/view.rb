@@ -8,14 +8,11 @@ module Vedeu
     class View
 
       include Vedeu::Repositories::Model
+      include Vedeu::Repositories::Parent
       include Vedeu::Presentation
 
       collection Vedeu::Views::Lines
       member     Vedeu::Views::Line
-
-      # @!attribute [r] attributes
-      # @return [Hash]
-      attr_reader :attributes
 
       # @!attribute [rw] client
       # @return [Fixnum|Float]
@@ -55,9 +52,7 @@ module Vedeu
       # @option attributes zindex [Fixnum]
       # @return [Vedeu::Views::View]
       def initialize(attributes = {})
-        @attributes = defaults.merge!(attributes)
-
-        @attributes.each do |key, value|
+        defaults.merge!(attributes).each do |key, value|
           instance_variable_set("@#{key}", value)
         end
       end
@@ -68,6 +63,20 @@ module Vedeu
         @value = value.add(child)
       end
       alias_method :<<, :add
+
+      # @return [Hash]
+      def attributes
+        {
+          client:         @client,
+          colour:         colour,
+          cursor_visible: cursor_visible,
+          name:           name,
+          parent:         parent,
+          style:          style,
+          value:          value,
+          zindex:         zindex,
+        }
+      end
 
       # Returns a DSL instance responsible for defining the DSL
       # methods of this model.

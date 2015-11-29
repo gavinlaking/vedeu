@@ -71,7 +71,6 @@ module Vedeu
 
       describe 'accessors' do
         it {
-          instance.must_respond_to(:attributes)
           instance.must_respond_to(:parent)
           instance.must_respond_to(:parent=)
         }
@@ -82,6 +81,12 @@ module Vedeu
 
         it { instance.must_respond_to(:add) }
         it { instance.must_respond_to(:<<) }
+      end
+
+      describe '#attributes' do
+        subject { instance.attributes }
+
+        it { subject.must_be_instance_of(Hash) }
       end
 
       describe '#chars' do

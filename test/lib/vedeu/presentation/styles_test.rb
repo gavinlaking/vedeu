@@ -6,26 +6,24 @@ module Vedeu
 
     include Vedeu::Presentation
 
-    attr_reader :parent
+    attr_reader :style
 
-    def attributes
-      {
-        style: ['underline']
-      }
+    def initialize
+      @style  = ['underline']
+      @parent = nil
     end
 
-  end
+  end # ParentPresentationStyleTestClass
 
   class PresentationStyleTestClass
 
     include Vedeu::Presentation
 
-    attr_reader :attributes
     attr_reader :parent
 
     def initialize(attributes = {})
-      @attributes = attributes
-      @parent     = @attributes[:parent]
+      @style  = attributes[:style]
+      @parent = attributes[:parent]
     end
 
   end # PresentationTestClass

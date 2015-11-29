@@ -12,11 +12,8 @@ module Vedeu
     class Char
 
       include Comparable
+      include Vedeu::Repositories::Parent
       include Vedeu::Presentation
-
-      # @!attribute [r] attributes
-      # @return [Hash]
-      attr_reader :attributes
 
       # @!attribute [rw] border
       # @return [NilClass|Symbol]
@@ -48,11 +45,22 @@ module Vedeu
       # @option attributes value [String]
       # @return [Vedeu::Views::Char]
       def initialize(attributes = {})
-        @attributes = attributes
-        @border     = @attributes[:border]
-        @name       = @attributes[:name]
-        @parent     = @attributes[:parent]
-        @value      = @attributes[:value]
+        defaults.merge!(attributes).each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
+      end
+
+      # @return [Hash<Symbol => void>]
+      def attributes
+        {
+          border:   @border,
+          # colour:   colour,
+          name:     @name,
+          parent:   @parent,
+          position: position,
+          style:    @style,
+          value:    value,
+        }
       end
 
       # @return [Boolean]
@@ -88,16 +96,15 @@ module Vedeu
 
       # @return [Vedeu::Geometries::Position]
       def position
-        @position ||= Vedeu::Geometries::Position.coerce(@attributes[:position])
+        @_position ||= Vedeu::Geometries::Position.coerce(@position)
       end
 
       # Sets the position of the Vedeu::Views::Char.
       #
-      # @param value [Vedeu::Geometries::Position]
+      # @param value [Array<void>|Hash<void>|Vedeu::Geometries::Position]
       # @return [Vedeu::Geometries::Position]
       def position=(value)
-        @position = @attributes[:position] = Vedeu::Geometries::Position
-                                             .coerce(value)
+        @_position = @position = Vedeu::Geometries::Position.coerce(value)
       end
 
       # @return [String]
@@ -155,6 +162,19 @@ module Vedeu
         {
           background: background.to_s,
           foreground: foreground.to_s,
+        }
+      end
+
+      # @return [Hash<Symbol => void>]
+      def defaults
+        {
+          border:   nil,
+          colour:   nil,
+          name:     nil,
+          parent:   nil,
+          position: nil,
+          style:    nil,
+          value:    '',
         }
       end
 

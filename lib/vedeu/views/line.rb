@@ -9,14 +9,11 @@ module Vedeu
     class Line
 
       include Vedeu::Repositories::Model
+      include Vedeu::Repositories::Parent
       include Vedeu::Presentation
 
       collection Vedeu::Views::Streams
       member     Vedeu::Views::Stream
-
-      # @!attribute [r] attributes
-      # @return [Hash]
-      attr_reader :attributes
 
       # @!attribute [rw] parent
       # @return [Vedeu::Views::View]
@@ -27,14 +24,13 @@ module Vedeu
       # @param attributes [Hash]
       # @option attributes client [void]
       # @option attributes colour [Vedeu::Colours::Colour]
+      # @option attributes name [String|Symbol]
       # @option attributes parent [Vedeu::Views::View]
       # @option attributes style [Vedeu::Presentation::Style]
       # @option attributes value [Vedeu::Views::Streams]
       # @return [Vedeu::Views::Line]
       def initialize(attributes = {})
-        @attributes = defaults.merge!(attributes)
-
-        @attributes.each do |key, value|
+        defaults.merge!(attributes).each do |key, value|
           instance_variable_set("@#{key}", value)
         end
       end
@@ -45,6 +41,18 @@ module Vedeu
         @value = value.add(child)
       end
       alias_method :<<, :add
+
+      # @return [Hash<Symbol => void>]
+      def attributes
+        {
+          client: @client,
+          colour: @colour,
+          name:   name,
+          parent: parent,
+          style:  @style,
+          value:  value,
+        }
+      end
 
       # Returns an array of all the characters with formatting for
       # this line.
@@ -78,11 +86,6 @@ module Vedeu
       end
       alias_method :==, :eql?
 
-      # @return [NilClass|String|Symbol]
-      def name
-        parent.name if parent
-      end
-
       # Returns the size of the content in characters without
       # formatting.
       #
@@ -106,6 +109,7 @@ module Vedeu
         {
           client: nil,
           colour: nil,
+          name:   nil,
           parent: nil,
           style:  nil,
           value:  [],

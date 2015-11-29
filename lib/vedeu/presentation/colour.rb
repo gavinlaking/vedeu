@@ -6,24 +6,25 @@ module Vedeu
     #
     module Colour
 
+      include Vedeu::Repositories::Parent
       include Vedeu::Presentation::Colour::Background
       include Vedeu::Presentation::Colour::Foreground
 
       # @return [Vedeu::Colours::Colour]
       def colour
-        @colour ||= if attributes[:colour]
-                      Vedeu::Colours::Colour.coerce(attributes[:colour])
+        @_colour ||= if @colour
+                       Vedeu::Colours::Colour.coerce(@colour)
 
-                    elsif self.is_a?(Vedeu::Views::Char) && name
-                      Vedeu::Colours::Colour.coerce(interface.colour)
+                     elsif self.is_a?(Vedeu::Views::Char) && name
+                       Vedeu::Colours::Colour.coerce(interface.colour)
 
-                    elsif parent
-                      Vedeu::Colours::Colour.coerce(parent.colour)
+                     elsif parent && present?(parent.colour)
+                       Vedeu::Colours::Colour.coerce(parent.colour)
 
-                    else
-                      Vedeu::Colours::Colour.new
+                     else
+                       Vedeu::Colours::Colour.new
 
-                    end
+                     end
       end
 
       # Allows the setting of the model's colour by coercing the given
@@ -31,7 +32,7 @@ module Vedeu
       #
       # @return [Vedeu::Colours::Colour]
       def colour=(value)
-        @colour = attributes[:colour] = Vedeu::Colours::Colour.coerce(value)
+        @_colour = @colour = Vedeu::Colours::Colour.coerce(value)
       end
 
     end # Colour
