@@ -140,8 +140,8 @@ module Vedeu
 
 end # Vedeu
 
-require 'vedeu/output/renderers/options'
-require 'vedeu/output/renderers/file'
-require 'vedeu/output/renderers/html'
-require 'vedeu/output/renderers/json'
-require 'vedeu/output/renderers/terminal'
+require 'vedeu/renderers/options'
+require 'vedeu/renderers/file'
+require 'vedeu/renderers/html'
+require 'vedeu/renderers/json'
+require 'vedeu/renderers/terminal'

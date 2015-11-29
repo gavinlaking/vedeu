@@ -358,7 +358,7 @@ module Vedeu
 
   end # Configuration
 
-  require 'vedeu/output/renderers/all'
+  require 'vedeu/renderers/all'
 
   Vedeu::Configuration.configure({})
 

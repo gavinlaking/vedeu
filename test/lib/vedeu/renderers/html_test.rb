@@ -28,7 +28,7 @@ module Vedeu
       let(:start_tag)     { '<td' }
       let(:start_row_tag) { '<tr>' }
       let(:template)      {
-        ::File.dirname(__FILE__) + '/../../../../support/templates/html_renderer.vedeu'
+        ::File.dirname(__FILE__) + '/../../../support/templates/html_renderer.vedeu'
       }
       let(:timestamp)     { false }
       let(:write_file)    { false }
