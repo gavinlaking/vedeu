@@ -101,7 +101,7 @@ module Vedeu
 
       # The default values for a new instance of this class.
       #
-      # @return [Hash<Symbol => void>]
+      # @return [Hash<Symbol => Array<void>|NilClass>]
       def defaults
         {
           client: nil,
