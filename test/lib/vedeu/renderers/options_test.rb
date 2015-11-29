@@ -30,16 +30,20 @@ module Vedeu
       describe '#compress?' do
         subject { instance.compress? }
 
-        context 'when the option is not set' do
+        context 'when the option is not set or is set to false' do
           before { options.tap { |o| o.delete(:compression) } }
 
-          it { subject.must_equal(false) }
-        end
+          context 'when Vedeu::Configuration.compression? is set to false' do
+            before { Vedeu::Configuration.stubs(:compression?).returns(false) }
 
-        context 'when the option is set and is false' do
-          let(:compression) { false }
+            it { subject.must_equal(false) }
+          end
 
-          it { subject.must_equal(false) }
+          context 'when Vedeu::Configuration.compression? is set to true' do
+            before { Vedeu::Configuration.stubs(:compression?).returns(true) }
+
+            it { subject.must_equal(true) }
+          end
         end
 
         context 'when the option is set and is true' do

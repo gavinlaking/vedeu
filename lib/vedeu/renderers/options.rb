@@ -12,8 +12,12 @@ module Vedeu
       # @return [Hash<Symbol => void>]
       attr_writer :options
 
+      # Returns a boolean indicating whether the content should be
+      # compressed if compression is available.
+      #
+      # @return [Boolean]
       def compress?
-        options[:compression] || false
+        options[:compression] || Vedeu::Configuration.compression? || false
       end
 
       private

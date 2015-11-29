@@ -12,6 +12,7 @@ module Vedeu
     class Compressor
 
       include Vedeu::Common
+      include Vedeu::Renderers::Options
 
       # @param (see #initialize)
       # @return [String]
@@ -37,7 +38,7 @@ module Vedeu
       #   - Takes approximately ~25ms for 2100 chars. (2015-07-25)
       # @return [String]
       def render
-        return cached if Vedeu::Configuration.compression?
+        return cached if compress?
 
         uncompress
       end

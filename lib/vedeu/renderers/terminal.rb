@@ -35,7 +35,7 @@ module Vedeu
       # @param output [Vedeu::Models::Page]
       # @return [Array<Array<Vedeu::Views::Char>>]
       def parse(output)
-        Vedeu::Output::Compressor.render(output)
+        Vedeu::Output::Compressor.render(output, options)
       end
 
     end # Terminal
