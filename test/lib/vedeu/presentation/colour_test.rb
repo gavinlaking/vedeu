@@ -2,34 +2,6 @@ require 'test_helper'
 
 module Vedeu
 
-  class ParentPresentationColourTestClass
-    include Vedeu::Presentation
-
-    def parent
-      nil
-    end
-
-    def attributes
-      {
-        colour: { background: '#330000', foreground: '#00aadd' },
-      }
-    end
-  end
-
-  class PresentationColourTestClass
-
-    include Vedeu::Presentation
-
-    attr_reader :attributes
-    attr_reader :parent
-
-    def initialize(attributes = {})
-      @attributes = attributes
-      @parent     = @attributes[:parent]
-    end
-
-  end # PresentationTestClass
-
   module Presentation
 
     describe Colour do
