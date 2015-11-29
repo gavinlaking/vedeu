@@ -1,3 +1,5 @@
+require 'vedeu/output/presentation/background'
+require 'vedeu/output/presentation/foreground'
 require 'vedeu/output/presentation/colour'
 require 'vedeu/output/presentation/styles'
 require 'vedeu/output/presentation/style'

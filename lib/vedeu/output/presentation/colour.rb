@@ -6,36 +6,8 @@ module Vedeu
     #
     module Colour
 
-      # When the background colour for the model exists, return it,
-      # otherwise returns the parent background colour, or an empty
-      # Vedeu::Colours::Background.
-      #
-      # @return [Vedeu::Colours::Background]
-      def background
-        @background ||= if colour
-                          colour.background
-
-                        elsif self.is_a?(Vedeu::Views::Char) && name
-                          interface.colour.background
-
-                        elsif parent
-                          parent.background
-
-                        else
-                          Vedeu::Colours::Background.new
-
-                        end
-      end
-
-      # Allows the setting of the background colour by coercing the
-      # given value into a Vedeu::Colours::Background colour.
-      #
-      # @return [Vedeu::Colours::Background]
-      def background=(value)
-        @colour = Vedeu::Colours::Colour.coerce(
-          background: Vedeu::Colours::Background.coerce(value),
-          foreground: colour.foreground)
-      end
+      include Vedeu::Presentation::Colour::Background
+      include Vedeu::Presentation::Colour::Foreground
 
       # @return [Vedeu::Colours::Colour]
       def colour
@@ -60,37 +32,6 @@ module Vedeu
       # @return [Vedeu::Colours::Colour]
       def colour=(value)
         @colour = attributes[:colour] = Vedeu::Colours::Colour.coerce(value)
-      end
-
-      # When the foreground colour for the model exists, return it,
-      # otherwise returns the parent foreground colour, or an empty
-      # Vedeu::Colours::Foreground.
-      #
-      # @return [Vedeu::Colours::Foreground]
-      def foreground
-        @foreground ||= if colour
-                          colour.foreground
-
-                        elsif self.is_a?(Vedeu::Views::Char) && name
-                          interface.colour.background
-
-                        elsif parent
-                          parent.foreground
-
-                        else
-                          Vedeu::Colours::Foreground.new
-
-                        end
-      end
-
-      # Allows the setting of the foreground colour by coercing the
-      # given value into a Vedeu::Colours::Foreground colour.
-      #
-      # @return [Vedeu::Colours::Foreground]
-      def foreground=(value)
-        @colour = attributes[:colour] = Vedeu::Colours::Colour.coerce(
-          background: colour.background,
-          foreground: Vedeu::Colours::Foreground.coerce(value))
       end
 
     end # Colour

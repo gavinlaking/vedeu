@@ -2,14 +2,6 @@ module Vedeu
 
   module Views
 
-    # A collection of {Vedeu::Views::Char} instances.
-    #
-    # @api private
-    #
-    class Chars < Vedeu::Repositories::Collection
-
-    end # Chars
-
     # A Char represents a single character of the terminal. It is a
     # container for the a single character in a
     # {Vedeu::Views::Stream}.
