@@ -67,6 +67,7 @@ module Vedeu
       def to_s
         value.to_s
       end
+      alias_method :to_str, :to_s
 
       private
 

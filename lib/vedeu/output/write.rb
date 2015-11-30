@@ -103,6 +103,7 @@ module Vedeu
                    Vedeu::EscapeSequences::Esc.reset +
                    position(position_end)
       end
+      alias_method :to_str, :to_s
 
     end # Write
 

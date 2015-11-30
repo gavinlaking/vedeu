@@ -131,6 +131,7 @@ module Vedeu
       def to_s
         "\e[#{real_y};#{real_x}H\e[?25h".freeze
       end
+      alias_method :to_str, :to_s
 
       # Move the virtual cursor up by one line.
       #

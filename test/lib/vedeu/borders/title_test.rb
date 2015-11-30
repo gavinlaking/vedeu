@@ -81,6 +81,8 @@ module Vedeu
       describe '#to_s' do
         subject { instance.to_s }
 
+        it { instance.must_respond_to(:to_str) }
+
         it { subject.must_equal('Aluminium') }
       end
 

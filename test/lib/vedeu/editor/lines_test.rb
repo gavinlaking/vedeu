@@ -463,6 +463,8 @@ module Vedeu
       describe '#to_s' do
         subject { instance.to_s }
 
+        it { instance.must_respond_to(:to_str) }
+
         context 'when there are no lines' do
           let(:collection) {}
 
