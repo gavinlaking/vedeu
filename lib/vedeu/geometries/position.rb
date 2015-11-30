@@ -26,7 +26,8 @@ module Vedeu
         new(y, x)
       end
 
-      # @param value [Array<Fixnum>|Vedeu::Geometries::Position]
+      # @param value [Array<Fixnum>|Fixnum|Hash|
+      #   Vedeu::Geometries::Position]
       # @return [Vedeu::Geometries::Position]
       def self.coerce(value)
         if value.is_a?(self)
@@ -34,6 +35,9 @@ module Vedeu
 
         elsif value.is_a?(Array)
           new(*value)
+
+        elsif value.is_a?(Fixnum)
+          new(value, 1)
 
         elsif value.is_a?(Hash)
           new(value.fetch(:y, 1), value.fetch(:x, 1))
