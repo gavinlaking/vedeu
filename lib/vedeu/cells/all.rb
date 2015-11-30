@@ -13,10 +13,10 @@ module Vedeu
 
 end # Vedeu
 
-require 'vedeu/models/cells/empty'
-require 'vedeu/models/cells/border'
-require 'vedeu/models/cells/char'
-require 'vedeu/models/cells/clear'
-require 'vedeu/models/cells/escape'
-require 'vedeu/models/cells/html'
-require 'vedeu/models/cells/json'
+require 'vedeu/cells/empty'
+require 'vedeu/cells/border'
+require 'vedeu/cells/char'
+require 'vedeu/cells/clear'
+require 'vedeu/cells/escape'
+require 'vedeu/cells/html'
+require 'vedeu/cells/json'
