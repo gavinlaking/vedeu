@@ -8,6 +8,7 @@ module Vedeu
 
 end # Vedeu
 
+require 'vedeu/models/toggleable'
 require 'vedeu/models/cell'
 require 'vedeu/models/escape'
 require 'vedeu/models/focus'

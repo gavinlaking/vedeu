@@ -137,6 +137,11 @@ module Vedeu
         options[:ellipsis]
       end
 
+      # @return [Vedeu::Geometries::Geometry]
+      def geometry
+        Vedeu.geometry.by_name(name)
+      end
+
       # Returns the word wrapping mode. One of :default, :prune or
       #   :wrap;
       #
@@ -174,7 +179,7 @@ module Vedeu
       # @return [Fixnum]
       def width
         return options[:width] if present?(options[:width])
-        return Vedeu.geometries.by_name(name).width if registered?
+        return geometry.width if registered?
 
         fail Vedeu::Error::MissingRequired,
              'The text provided cannot be wrapped or pruned because a :width ' \

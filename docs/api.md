@@ -285,6 +285,10 @@ Repository method. Access registered events.
 
 @todo Add more documentation.
 
+### Vedeu.focus?
+
+@todo Add more documentation.
+
 ### Vedeu.focus_by_name
 
 @todo Add more documentation.

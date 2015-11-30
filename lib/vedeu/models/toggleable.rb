@@ -134,7 +134,12 @@ module Vedeu
       # @param name [String|Symbol]
       # @return [Boolean]
       def cursor_visible?(name)
-        Vedeu.buffers.by_name(name).cursor_visible?
+        buffer(name).cursor_visible?
+      end
+
+      # @return [Vedeu::Buffers::Buffer]
+      def buffer(name)
+        Vedeu.buffers.by_name(name)
       end
 
     end # ClassMethods

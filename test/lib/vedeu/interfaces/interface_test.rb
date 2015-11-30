@@ -76,8 +76,13 @@ module Vedeu
           instance.must_respond_to(:visible)
           instance.must_respond_to(:visible=)
           instance.must_respond_to(:visible?)
-          instance.must_respond_to(:attributes)
         }
+      end
+
+      describe '#attributes' do
+        subject { instance.attributes }
+
+        it { subject.must_be_instance_of(Hash) }
       end
 
       describe '#deputy' do

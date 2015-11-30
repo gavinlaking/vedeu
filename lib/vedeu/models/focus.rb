@@ -69,13 +69,14 @@ module Vedeu
       # @example
       #   Vedeu.focus
       #
-      # @return [String]
+      # @return [NilClass|String|Symbol]
       def current
-        return storage[0] unless storage.empty?
+        return nil if storage.empty?
 
-        no_interfaces_registered!
+        storage[0]
       end
       alias_method :focus, :current
+      alias_method :name, :current
 
       # Returns a boolean indicating whether the named interface is
       # focussed.
@@ -90,6 +91,14 @@ module Vedeu
       end
       alias_method :focussed?, :current?
 
+      # Returns a boolean indicating whether there are interfaces
+      # registered.
+      #
+      # @return [Boolean]
+      def focus?
+        !storage.empty?
+      end
+
       # Put the next interface relative to the current interfaces in
       # focus.
       #
@@ -97,7 +106,7 @@ module Vedeu
       #   Vedeu.trigger(:_focus_next_)
       #   Vedeu.focus_next
       #
-      # @return [String]
+      # @return [String|Symbol]
       def next_item
         storage.rotate!
 
@@ -108,7 +117,7 @@ module Vedeu
       # Put the next visible interface relative to the current
       # interfaces in focus.
       #
-      # @return [String]
+      # @return [String|Symbol]
       def next_visible_item
         return update unless visible_items?
 
@@ -128,7 +137,7 @@ module Vedeu
       #   Vedeu.trigger(:_focus_prev_)
       #   Vedeu.focus_previous
       #
-      # @return [String]
+      # @return [String|Symbol]
       def prev_item
         storage.rotate!(-1)
 
@@ -140,7 +149,7 @@ module Vedeu
       # Put the previous visible interface relative to the current
       # interfaces in focus.
       #
-      # @return [String]
+      # @return [String|Symbol]
       def prev_visible_item
         return update unless visible_items?
 
@@ -196,13 +205,6 @@ module Vedeu
         Vedeu.interfaces.by_name(current)
       end
 
-      # @raise [Vedeu::Error::Fatal]
-      def no_interfaces_registered!
-        fail Vedeu::Error::Fatal,
-             'No interfaces or views have been registered, therefore the ' \
-             'focus table is empty.'.freeze
-      end
-
       # @raise [Vedeu::Error::ModelNotFound]
       def not_registered!
         fail Vedeu::Error::ModelNotFound,
@@ -244,6 +246,8 @@ module Vedeu
 
   # @!method focus
   #   @see Vedeu::Models::Focus#focus
+  # @!method focus?
+  #   @see Vedeu::Models::Focus#focus?
   # @!method focus_by_name
   #   @see Vedeu::Models::Focus#focus_by_name
   # @!method focussed?
@@ -254,6 +258,7 @@ module Vedeu
   #   @see Vedeu::Models::Focus#focus_previous
   def_delegators Vedeu::Models::Focus,
                  :focus,
+                 :focus?,
                  :focus_by_name,
                  :focussed?,
                  :focus_next,

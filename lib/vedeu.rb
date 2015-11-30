@@ -1,3 +1,4 @@
+# Ruby standard libraries
 require 'base64'
 require 'date'
 require 'drb'
@@ -13,6 +14,7 @@ require 'thread'
 require 'time'
 require 'zlib'
 
+# Gem dependencies
 require 'thor'
 
 # Vedeu is a GUI framework for terminal/console applications written

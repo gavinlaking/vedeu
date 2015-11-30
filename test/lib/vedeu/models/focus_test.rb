@@ -17,14 +17,14 @@ module Vedeu
       before do
         Vedeu.stubs(:log)
 
-        described.reset
-        Vedeu.interfaces.reset
+        described.reset!
+        Vedeu.interfaces.reset!
 
         Vedeu.stubs(:trigger)
       end
       after do
-        described.reset
-        Vedeu.interfaces.reset
+        described.reset!
+        Vedeu.interfaces.reset!
       end
 
       describe '#add' do
@@ -101,7 +101,7 @@ module Vedeu
       end
 
       describe '#current' do
-        before { described.reset }
+        before { described.reset! }
 
         subject { described.current }
 
@@ -113,7 +113,7 @@ module Vedeu
         end
 
         context 'when no interfaces are defined' do
-          it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
+          it { subject.must_equal(nil) }
         end
 
         context 'API methods' do
@@ -148,6 +148,21 @@ module Vedeu
         end
       end
 
+      describe '#focus?' do
+        context 'when there are no interfaces defined' do
+          before { described.reset! }
+
+          it { described.focus?.must_equal(false) }
+        end
+
+        context 'when there are interfaces defined' do
+          before { described.add('thallium') }
+          after  { described.reset! }
+
+          it { described.focus?.must_equal(true) }
+        end
+      end
+
       describe '#next_item' do
         it 'the next interface is focussed when the method is called' do
           described.add('thallium')
@@ -157,7 +172,7 @@ module Vedeu
         end
 
         context 'returns false if storage is empty' do
-          before { described.reset }
+          before { described.reset! }
 
           it { described.next_item.must_equal(false) }
         end
@@ -188,7 +203,7 @@ module Vedeu
         end
 
         context 'when there are no interfaces' do
-          before { described.reset }
+          before { described.reset! }
 
           it { described.next_visible_item.must_equal(false) }
         end
@@ -203,7 +218,7 @@ module Vedeu
         end
 
         context 'returns false if storage is empty' do
-          before { described.reset }
+          before { described.reset! }
 
           it { described.prev_item.must_equal(false) }
         end
@@ -235,7 +250,7 @@ module Vedeu
         end
 
         context 'when there are no interfaces' do
-          before { described.reset }
+          before { described.reset! }
 
           it { described.prev_visible_item.must_equal(false) }
         end

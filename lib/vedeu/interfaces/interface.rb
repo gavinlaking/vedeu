@@ -11,10 +11,6 @@ module Vedeu
       include Vedeu::Presentation
       include Vedeu::Toggleable
 
-      # @!attribute [r] attributes
-      # @return [Hash]
-      attr_reader :attributes
-
       # @!attribute [rw] client
       # @return [Fixnum|Float]
       attr_accessor :client
@@ -65,11 +61,27 @@ module Vedeu
       # @option attributes zindex [Fixnum]
       # @return [Vedeu::Interfaces::Interface]
       def initialize(attributes = {})
-        @attributes = defaults.merge!(attributes)
-
-        @attributes.each do |key, value|
+        defaults.merge!(attributes).each do |key, value|
           instance_variable_set("@#{key}", value)
         end
+      end
+
+      # @return [Hash<Symbol => void>]
+      def attributes
+        {
+          client:         client,
+          colour:         colour,
+          cursor_visible: cursor_visible,
+          delay:          delay,
+          editable:       editable,
+          group:          group,
+          name:           name,
+          parent:         parent,
+          repository:     repository,
+          style:          style,
+          visible:        visible,
+          zindex:         zindex,
+        }
       end
 
       # Returns a DSL instance responsible for defining the DSL
@@ -128,7 +140,7 @@ module Vedeu
 
       # The default values for a new instance of this class.
       #
-      # @return [Hash]
+      # @return [Hash<Symbol => void>]
       def defaults
         {
           client:         nil,

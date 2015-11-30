@@ -39,7 +39,9 @@ module Vedeu
         end
 
         context 'when there are no interfaces or views defined' do
-          it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
+          it 'returns an unnamed cursor' do
+            subject.must_be_instance_of(Vedeu::Cursors::Cursor)
+          end
         end
       end
 

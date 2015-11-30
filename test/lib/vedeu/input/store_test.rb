@@ -8,7 +8,7 @@ module Vedeu
 
       let(:described) { Vedeu::Input::Store }
 
-      before { described.reset }
+      before { described.reset! }
 
       describe '#add_command' do
         let(:command) { 'command_1' }
@@ -99,7 +99,7 @@ module Vedeu
       end
 
       describe '#reset' do
-        subject { described.reset }
+        subject { described.reset! }
 
         it { subject.must_equal({ commands: [], keypresses: [] }) }
       end

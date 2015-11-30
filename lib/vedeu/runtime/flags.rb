@@ -26,6 +26,7 @@ module Vedeu
         def reset!
           instance.reset!
         end
+        alias_method :reset, :reset!
 
       end # Eigenclass
 
@@ -44,6 +45,7 @@ module Vedeu
       def reset!
         self.options = defaults
       end
+      alias_method :reset, :reset!
 
       private
 

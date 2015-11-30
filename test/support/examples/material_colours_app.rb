@@ -287,7 +287,7 @@ class VedeuMaterialColoursApp
                 message: "Keypresses: #{Vedeu.all_keypresses.inspect}")
     end
 
-    key('q')        { Vedeu.trigger(:_exit_) }
+    key('q', :ctrl_c) { Vedeu.trigger(:_exit_) }
     # key(:escape)    { Vedeu.trigger(:_mode_switch_, :fake) }
     key(:f1)    { Vedeu.trigger(:_mode_switch_, :fake) }
     key(:f2)    { Vedeu.trigger(:_mode_switch_, :raw) }

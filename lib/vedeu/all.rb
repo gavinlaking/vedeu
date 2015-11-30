@@ -1,23 +1,21 @@
+require 'vedeu/common'
+require 'vedeu/error'
 require 'vedeu/version'
 
-require 'vedeu/common'
 require 'vedeu/colours/all'
 require 'vedeu/configuration/all'
 require 'vedeu/repositories/all'
 require 'vedeu/events/all'
 require 'vedeu/esc/all'
 require 'vedeu/logging/all'
-require 'vedeu/error'
 require 'vedeu/runtime/all'
 require 'vedeu/terminal/all'
-
-require 'vedeu/models/toggleable'
-
+require 'vedeu/presentation/all'
 require 'vedeu/output/all'
-
+require 'vedeu/renderers/all'
 require 'vedeu/esc/all'
 require 'vedeu/null/all'
-require 'vedeu/models/views/all'
+require 'vedeu/views/all'
 require 'vedeu/models/all'
 require 'vedeu/application/all'
 require 'vedeu/cursors/all'

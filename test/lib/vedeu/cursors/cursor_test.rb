@@ -135,8 +135,6 @@ module Vedeu
         let(:ox) { 3 }
         let(:oy) { 2 }
 
-        before { Vedeu.stubs(:trigger).with(:_refresh_cursor_, _name) }
-
         subject { instance.move_down }
 
         it { subject.must_be_instance_of(described) }
@@ -152,8 +150,6 @@ module Vedeu
         let(:y)  { 8 }
         let(:ox) { 3 }
         let(:oy) { 2 }
-
-        before { Vedeu.stubs(:trigger).with(:_refresh_cursor_, _name) }
 
         subject { instance.move_left }
 
@@ -187,8 +183,6 @@ module Vedeu
         let(:ox) { 3 }
         let(:oy) { 2 }
 
-        before { Vedeu.stubs(:trigger).with(:_refresh_cursor_, _name) }
-
         subject { instance.move_right }
 
         it { subject.must_be_instance_of(described) }
@@ -204,8 +198,6 @@ module Vedeu
         let(:y)  { 8 }
         let(:ox) { 3 }
         let(:oy) { 2 }
-
-        before { Vedeu.stubs(:trigger).with(:_refresh_cursor_, _name) }
 
         subject { instance.move_up }
 

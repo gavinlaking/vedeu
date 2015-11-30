@@ -135,7 +135,12 @@ module Vedeu
       # @param name [String|Symbol] The name of the interface.
       # @return [Hash<Symbol => void>]
       def existing_attributes(name)
-        Vedeu.interfaces.by_name(name).attributes
+        interface(name).attributes
+      end
+
+      # @return [Vedeu::Interfaces::Interface]
+      def interface(name)
+        Vedeu.interfaces.by_name(name)
       end
 
     end # Composition
