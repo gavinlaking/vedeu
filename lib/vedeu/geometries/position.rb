@@ -96,6 +96,16 @@ module Vedeu
         [y, x]
       end
 
+      # Return the position as a Hash.
+      #
+      # @return [Hash<Symbol => Fixnum|NilClass>]
+      def to_h
+        {
+          y: y,
+          x: x,
+        }
+      end
+
       # @return [Vedeu::Geometries::Position]
       def to_position
         self

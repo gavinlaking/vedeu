@@ -109,38 +109,35 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Interfaces::Interface) }
       end
 
-      describe '#position' do
-        subject { instance.position }
-      end
-
-      describe '#position=' do
-        subject { instance.position=(value) }
-      end
-
       describe '#to_hash' do
+        let(:position) { Vedeu::Geometries::Position.coerce([17, 2]) }
+        let(:expected) {
+          {
+            border: '',
+            colour: {
+              background: '',
+              foreground: '',
+            },
+            name: 'Vedeu::Views::Char',
+            parent: {
+              background: '',
+              foreground: '',
+              style: '',
+            },
+            position: {
+              y: 17,
+              x: 2,
+            },
+            style: '',
+            value: 'a',
+          }
+        }
+
         subject { instance.to_hash }
 
         it { subject.must_be_instance_of(Hash) }
 
-        it { subject.must_equal(
-              border: '',
-              colour: {
-                background: '',
-                foreground: '',
-              },
-              name: 'Vedeu::Views::Char',
-              parent: {
-                background: '',
-                foreground: '',
-                style: '',
-              },
-              position: {
-                y: nil,
-                x: nil
-              },
-              style: '',
-              value: 'a')
-        }
+        it { subject.must_equal(expected) }
       end
 
       describe '#to_html' do

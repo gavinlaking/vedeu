@@ -142,7 +142,7 @@ module Vedeu
           colour:   colour_to_hash,
           name:     name.to_s,
           parent:   parent_to_hash,
-          position: position_to_hash,
+          position: position.to_h,
           style:    style.to_s,
           value:    value,
         }
@@ -186,14 +186,6 @@ module Vedeu
           background: parent.background.to_s,
           foreground: parent.foreground.to_s,
           style:      parent.style.to_s,
-        }
-      end
-
-      # @return [Hash<Symbol => Fixnum>]
-      def position_to_hash
-        {
-          y: y,
-          x: x,
         }
       end
 

@@ -145,6 +145,12 @@ module Vedeu
         it { subject.must_equal([12, 19]) }
       end
 
+      describe '#to_h' do
+        subject { instance.to_h }
+
+        it { subject.must_equal({ y: 12, x: 19 }) }
+      end
+
       describe '#to_position' do
         subject { instance.to_position }
 
