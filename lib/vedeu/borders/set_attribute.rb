@@ -2,6 +2,10 @@ module Vedeu
 
   module Borders
 
+    # Provides the mechanism to set attributes on a
+    # {Vedeu::Borders::Border} object. At the moment, it is used for
+    # setting the title and caption for a named border.
+    #
     # @api private
     #
     class SetAttribute

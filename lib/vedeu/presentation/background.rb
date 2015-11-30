@@ -4,6 +4,11 @@ module Vedeu
 
     module Colour
 
+      # Provides the background colour when included in a class with
+      # a colour attribute.
+      #
+      # @api private
+      #
       module Background
 
         include Vedeu::Repositories::Parent

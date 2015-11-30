@@ -4,6 +4,11 @@ module Vedeu
 
     module Colour
 
+      # Provides the foreground colour when included in a class with
+      # a colour attribute.
+      #
+      # @api private
+      #
       module Foreground
 
         include Vedeu::Repositories::Parent

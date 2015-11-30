@@ -10,10 +10,11 @@ module Vedeu
     #
     class Title
 
+      # @param chars [Array<Vedeu::Views::Char>]
       # @param value [String|Vedeu::Borders::Title|
       #   Vedeu::Borders::Caption]
       # @param width [Fixnum]
-      # @return [Vedeu::Borders::Title|Vedeu::Borders::Caption]
+      # @return [Array<Vedeu::Views::Char>]
       def self.render(value = '', width = Vedeu.width, chars = [])
         new(value, width, chars).render
       end
@@ -64,7 +65,7 @@ module Vedeu
         value.to_s
       end
 
-      # Return the value or an empty string.
+      # Return the value (a title or a caption) or an empty string.
       #
       # @return [String]
       def value
@@ -76,7 +77,8 @@ module Vedeu
       protected
 
       # @!attribute [r] chars
-      # @return [Array<Vedeu::Views::Char>]
+      # @return [Array<Vedeu::Views::Char>] An array of border
+      #   characters.
       attr_reader :chars
 
       private
