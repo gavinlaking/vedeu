@@ -140,44 +140,68 @@ module Vedeu
       end
 
       describe '#to_a' do
-        subject { Vedeu::Geometries::Position.new.to_a }
+        subject { instance.to_a }
 
-        it { subject.must_equal([1, 1]) }
+        it { subject.must_equal([12, 19]) }
       end
 
       describe '#to_position' do
         subject { instance.to_position }
 
-        it { subject.must_be_instance_of(Vedeu::Geometries::Position) }
+        it { subject.must_be_instance_of(described) }
         it { subject.must_equal(instance) }
       end
 
       describe '#to_s' do
-        # subject { described.new.to_s }
+        let(:_value) {}
 
-        it 'returns an escape sequence when no coordinates are provided' do
-          Vedeu::Geometries::Position.new.to_s.must_equal("\e[1;1H")
+        subject { described.coerce(_value).to_s }
+
+        context 'when no coordinates are provided' do
+          it { subject.must_equal('') }
         end
 
-        it 'returns an escape sequence when coordinates are provided' do
-          Vedeu::Geometries::Position[12, 19].to_s.must_equal("\e[12;19H")
+        context 'when coordinates are provided' do
+          let(:_value) { [12, 19] }
+
+          it 'returns an escape sequence' do
+            subject.must_equal("\e[12;19H")
+          end
         end
 
-        it 'returns an escape sequence if a coordinate is missing' do
-          Vedeu::Geometries::Position.new(12).to_s.must_equal("\e[12;1H")
+        context 'when a coordinate is missing' do
+          let(:_value) { 12 }
+
+          it 'returns an escape sequence' do
+            subject.must_equal("\e[12;1H")
+          end
         end
 
-        it 'returns an escape sequence if the x coordinate is negative' do
-          Vedeu::Geometries::Position[12, -5].to_s.must_equal("\e[12;1H")
+        context 'when the x coordinate is negative' do
+          let(:_value) { [12, -5] }
+
+          it 'returns an escape sequence' do
+            subject.must_equal("\e[12;1H")
+          end
         end
 
-        it 'returns an escape sequence if the y coordinate is negative' do
-          Vedeu::Geometries::Position[-12, 5].to_s.must_equal("\e[1;5H")
+        context 'when the y coordinate is negative' do
+          let(:_value) { [-12, 5] }
+
+          it 'returns an escape sequence' do
+            subject.must_equal("\e[1;5H")
+          end
         end
 
-        it 'resets to starting position when a block is given' do
-          Vedeu::Geometries::Position[4, 9].to_s { 'test' }.
-            must_equal("\e[4;9Htest")
+        context 'when a block is given' do
+          let(:instance) { described.coerce(_value) }
+          let(:_value)   { [4, 9] }
+
+          subject { instance.to_s { 'test' } }
+
+          it 'returns an escape sequence and the result of the block' do
+            subject.must_equal("\e[4;9Htest")
+          end
         end
       end
 
@@ -202,7 +226,7 @@ module Vedeu
       describe '#down' do
         subject { instance.down }
 
-        it { subject.must_be_instance_of(Vedeu::Geometries::Position) }
+        it { subject.must_be_instance_of(described) }
         it { subject.y.must_equal(13) }
         it { subject.x.must_equal(19) }
 
@@ -216,7 +240,7 @@ module Vedeu
       describe '#left' do
         subject { instance.left }
 
-        it { subject.must_be_instance_of(Vedeu::Geometries::Position) }
+        it { subject.must_be_instance_of(described) }
         it { subject.y.must_equal(12) }
         it { subject.x.must_equal(18) }
 
@@ -230,7 +254,7 @@ module Vedeu
       describe '#right' do
         subject { instance.right }
 
-        it { subject.must_be_instance_of(Vedeu::Geometries::Position) }
+        it { subject.must_be_instance_of(described) }
         it { subject.y.must_equal(12) }
         it { subject.x.must_equal(20) }
 
@@ -244,7 +268,7 @@ module Vedeu
       describe '#up' do
         subject { instance.up }
 
-        it { subject.must_be_instance_of(Vedeu::Geometries::Position) }
+        it { subject.must_be_instance_of(described) }
         it { subject.y.must_equal(11) }
         it { subject.x.must_equal(19) }
 
