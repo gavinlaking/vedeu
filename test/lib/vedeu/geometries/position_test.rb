@@ -151,13 +151,6 @@ module Vedeu
         it { subject.must_equal({ y: 12, x: 19 }) }
       end
 
-      describe '#to_position' do
-        subject { instance.to_position }
-
-        it { subject.must_be_instance_of(described) }
-        it { subject.must_equal(instance) }
-      end
-
       describe '#to_s' do
         let(:_value) {}
 
