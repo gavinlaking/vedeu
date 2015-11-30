@@ -1,6 +1,6 @@
 module Vedeu
 
   # The current version of Vedeu.
-  VERSION = '0.6.70'.freeze
+  VERSION = '0.6.71'.freeze
 
 end
