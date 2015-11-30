@@ -130,7 +130,7 @@ module Vedeu
       #
       # @return [Array<Vedeu::Views::Char>]
       def build_top
-        build_horizontal(:bottom_horizontal, y)
+        build_horizontal(:top_horizontal, y)
       end
 
       # Creates a bottom border character.
