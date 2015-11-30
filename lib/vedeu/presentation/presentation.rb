@@ -1,7 +1,10 @@
+require 'vedeu/geometries/positionable'
+
 module Vedeu
 
   module Presentation
 
+    include Vedeu::Geometries::Positionable
     include Vedeu::Presentation::Colour
     include Vedeu::Presentation::Styles
 
@@ -17,14 +20,6 @@ module Vedeu
 
     private
 
-    # Returns a boolean indicating the model has a position
-    # attribute.
-    #
-    # @return [Boolean]
-    def position?
-      self.respond_to?(:position) && position.is_a?(Vedeu::Geometries::Position)
-    end
-
     # Renders the colour attributes of the receiver and yields (to
     # then render the styles).
     #
@@ -35,9 +30,9 @@ module Vedeu
 
     # @return [String]
     def render_position
-      return yield unless position?
+      return position.to_s { yield } if position?
 
-      position.to_s { yield }
+      yield
     end
 
     # Renders the style attributes of the receiver and yields (to

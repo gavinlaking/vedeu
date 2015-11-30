@@ -130,7 +130,7 @@ module Vedeu
       #
       # @return [Array<Vedeu::Views::Char>]
       def build_top
-        build_horizontal(:bottom_horizontal, y)
+        build_horizontal(:top_horizontal, y)
       end
 
       # Creates a bottom border character.
@@ -237,8 +237,7 @@ module Vedeu
       def captionbar
         return nil unless caption
 
-        @_caption ||= Vedeu::Borders::Caption
-                        .render(caption, width, build_bottom)
+        @_caption ||= Vedeu::Borders::Caption.render(caption, build_bottom)
       end
 
       # An optional title for when the top border is to be shown.
@@ -248,7 +247,7 @@ module Vedeu
       def titlebar
         return nil unless title
 
-        @_title ||= Vedeu::Borders::Title.render(title, width, build_top)
+        @_title ||= Vedeu::Borders::Title.render(title, build_top)
       end
 
     end # Refresh

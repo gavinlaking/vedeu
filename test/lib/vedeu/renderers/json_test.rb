@@ -54,8 +54,6 @@ module Vedeu
           "    \"parent\": {\n" \
           "    },\n" \
           "    \"position\": {\n" \
-          "      \"y\": null,\n" \
-          "      \"x\": null\n" \
           "    },\n" \
           "    \"style\": \"\",\n" \
           "    \"value\": \"a\"\n" \
@@ -70,8 +68,6 @@ module Vedeu
           "    \"parent\": {\n" \
           "    },\n" \
           "    \"position\": {\n" \
-          "      \"y\": null,\n" \
-          "      \"x\": null\n" \
           "    },\n" \
           "    \"style\": \"\",\n" \
           "    \"value\": \"\\u001b[0m\"\n" \

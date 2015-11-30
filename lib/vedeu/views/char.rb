@@ -1,3 +1,5 @@
+require 'vedeu/geometries/positionable'
+
 module Vedeu
 
   module Views
@@ -12,6 +14,7 @@ module Vedeu
     class Char
 
       include Comparable
+      include Vedeu::Geometries::Positionable
       include Vedeu::Repositories::Parent
       include Vedeu::Presentation
 
@@ -94,38 +97,11 @@ module Vedeu
         @interface ||= Vedeu.interfaces.by_name(name)
       end
 
-      # @return [Vedeu::Geometries::Position]
-      def position
-        @_position ||= Vedeu::Geometries::Position.coerce(@position)
-      end
-
-      # Sets the position of the Vedeu::Views::Char.
-      #
-      # @param value [Array<void>|Hash<void>|Vedeu::Geometries::Position]
-      # @return [Vedeu::Geometries::Position]
-      def position=(value)
-        @_position = @position = Vedeu::Geometries::Position.coerce(value)
-      end
-
       # @return [String]
       def value
         return @value unless border
 
         Vedeu::EscapeSequences::Esc.border { @value }
-      end
-
-      # Returns the x position for the Vedeu::Views::Char when set.
-      #
-      # @return [Fixnum|NilClass]
-      def x
-        position.x if position
-      end
-
-      # Returns the y position for the Vedeu::Views::Char when set.
-      #
-      # @return [Fixnum|NilClass]
-      def y
-        position.y if position
       end
 
       # Returns a Hash of all the values before coercion.
@@ -142,7 +118,7 @@ module Vedeu
           colour:   colour_to_hash,
           name:     name.to_s,
           parent:   parent_to_hash,
-          position: position_to_hash,
+          position: position.to_h,
           style:    style.to_s,
           value:    value,
         }
@@ -186,14 +162,6 @@ module Vedeu
           background: parent.background.to_s,
           foreground: parent.foreground.to_s,
           style:      parent.style.to_s,
-        }
-      end
-
-      # @return [Hash<Symbol => Fixnum>]
-      def position_to_hash
-        {
-          y: y,
-          x: x,
         }
       end
 

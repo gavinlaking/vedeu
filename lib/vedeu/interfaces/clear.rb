@@ -142,11 +142,11 @@ module Vedeu
         Vedeu.timer("Optimised clearing #{clearing}: '#{name}'".freeze) do
           height.times.map do |iy|
             [
-              position(y + iy, x),
+              build_position(y + iy, x),
               colour.to_s,
               chars,
             ].join
-          end.join + position(y, x)
+          end.join + build_position(y, x)
         end
       end
 
@@ -180,8 +180,11 @@ module Vedeu
                       end
       end
 
+      # @param pos_y [Fixnum]
+      # @param pos_x [Fixnum]
       # @return [Vedeu::Geometries::Position]
-      def position(pos_y, pos_x)
+      # @todo Not sure if #to_s is required here. (GL: 2015-11-30)
+      def build_position(pos_y, pos_x)
         Vedeu::Geometries::Position.new(pos_y, pos_x).to_s
       end
 

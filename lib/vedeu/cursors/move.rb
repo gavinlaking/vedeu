@@ -2,6 +2,9 @@ module Vedeu
 
   module Cursors
 
+    # Provides the mechanism to move a named cursor in a given
+    # direction.
+    #
     # @api private
     #
     class Move

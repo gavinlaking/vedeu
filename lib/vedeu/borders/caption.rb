@@ -20,7 +20,7 @@ module Vedeu
 
         caption_index = 0
         chars.each_with_index do |char, index|
-          next if index <= start_index || index > (width - 4)
+          next if index <= start_index || index > (width - 2)
 
           char.border   = nil
           char.value    = characters[caption_index]
@@ -32,7 +32,7 @@ module Vedeu
 
       # @return [Fixnum]
       def start_index
-        (width - size) - 4
+        (width - size) - 2
       end
 
     end # Caption

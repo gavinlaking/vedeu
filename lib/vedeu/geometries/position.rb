@@ -22,11 +22,12 @@ module Vedeu
       # Convenience constructor for Vedeu::Geometries::Position.
       #
       # @param (see #initialize)
-      def self.[](y, x)
+      def self.[](y = 1, x = 1)
         new(y, x)
       end
 
-      # @param value [Array<Fixnum>|Vedeu::Geometries::Position]
+      # @param value [Array<Fixnum>|Fixnum|Hash|
+      #   Vedeu::Geometries::Position]
       # @return [Vedeu::Geometries::Position]
       def self.coerce(value)
         if value.is_a?(self)
@@ -34,6 +35,9 @@ module Vedeu
 
         elsif value.is_a?(Array)
           new(*value)
+
+        elsif value.is_a?(Fixnum)
+          new(value, 1)
 
         elsif value.is_a?(Hash)
           new(value.fetch(:y, 1), value.fetch(:x, 1))
@@ -92,9 +96,14 @@ module Vedeu
         [y, x]
       end
 
-      # @return [Vedeu::Geometries::Position]
-      def to_position
-        self
+      # Return the position as a Hash.
+      #
+      # @return [Hash<Symbol => Fixnum|NilClass>]
+      def to_h
+        {
+          y: y,
+          x: x,
+        }
       end
 
       # Return the escape sequence required to position the cursor at

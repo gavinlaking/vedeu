@@ -147,6 +147,8 @@ module Vedeu
 
         subject { instance.to_s }
 
+        it { instance.must_respond_to(:to_str) }
+
         it { subject.must_be_instance_of(String) }
 
         it { subject.must_equal("\e[6;12H\e[?25h") }

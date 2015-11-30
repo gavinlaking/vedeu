@@ -10,12 +10,12 @@ module Vedeu
     #
     class Title
 
+      # @param chars [Array<Vedeu::Views::Char>]
       # @param value [String|Vedeu::Borders::Title|
       #   Vedeu::Borders::Caption]
-      # @param width [Fixnum]
-      # @return [Vedeu::Borders::Title|Vedeu::Borders::Caption]
-      def self.render(value = '', width = Vedeu.width, chars = [])
-        new(value, width, chars).render
+      # @return [Array<Vedeu::Views::Char>]
+      def self.render(value = '', chars = [])
+        new(value, chars).render
       end
 
       # Returns a new instance of Vedeu::Borders::Title or
@@ -24,11 +24,9 @@ module Vedeu
       # @param chars [Array<Vedeu::Views::Char>]
       # @param value [String|Vedeu::Borders::Title|
       #   Vedeu::Borders::Caption]
-      # @param width [Fixnum]
       # @return [Vedeu::Borders::Title|Vedeu::Borders::Caption]
-      def initialize(value = '', width = Vedeu.width, chars = [])
+      def initialize(value = '', chars = [])
         @value = value
-        @width = width
         @chars = chars
       end
 
@@ -63,8 +61,9 @@ module Vedeu
       def to_s
         value.to_s
       end
+      alias_method :to_str, :to_s
 
-      # Return the value or an empty string.
+      # Return the value (a title or a caption) or an empty string.
       #
       # @return [String]
       def value
@@ -76,7 +75,8 @@ module Vedeu
       protected
 
       # @!attribute [r] chars
-      # @return [Array<Vedeu::Views::Char>]
+      # @return [Array<Vedeu::Views::Char>] An array of border
+      #   characters.
       attr_reader :chars
 
       private
@@ -141,11 +141,11 @@ module Vedeu
         title.chomp.slice(0...(width - 4))
       end
 
-      # Return the given width or the width of the terminal.
+      # Return the size of the horizontal border given via #chars.
       #
       # @return [Fixnum]
       def width
-        @width || Vedeu.width
+        chars.size
       end
 
     end # Title

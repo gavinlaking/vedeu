@@ -216,7 +216,7 @@ module Vedeu
       #
       # @return [Vedeu::Geometries::Position]
       def position
-        @position = Vedeu::Geometries::Position[y, x]
+        @position = Vedeu::Geometries::Position.coerce([y, x])
       end
 
       # Show a named cursor, or without a name, the cursor of the

@@ -2,6 +2,8 @@ module Vedeu
 
   module DSL
 
+    # Provides the mechanism to add lines to a view via the DSL.
+    #
     class Lines
 
       # @raise [Vedeu::Error::RequiresBlock]
