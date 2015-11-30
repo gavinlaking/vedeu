@@ -30,6 +30,33 @@ module Vedeu
         subject { described.[](y, x) }
 
         it { instance.must_be_instance_of(described) }
+
+        context 'when the x and y coordinates are given' do
+          it { instance.y.must_equal(12) }
+          it { instance.x.must_equal(19) }
+        end
+
+        context 'when the x coordinate is not given' do
+          let(:x) {}
+
+          it { instance.y.must_equal(12) }
+          it { instance.x.must_equal(1) }
+        end
+
+        context 'when the y coordinate is not given' do
+          let(:y) {}
+
+          it { instance.y.must_equal(1) }
+          it { instance.x.must_equal(19) }
+        end
+
+        context 'when the x and y coordinates are not given' do
+          let(:x) {}
+          let(:y) {}
+
+          it { instance.y.must_equal(1) }
+          it { instance.x.must_equal(1) }
+        end
       end
 
       describe '#<=>' do

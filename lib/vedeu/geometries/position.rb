@@ -22,7 +22,7 @@ module Vedeu
       # Convenience constructor for Vedeu::Geometries::Position.
       #
       # @param (see #initialize)
-      def self.[](y, x)
+      def self.[](y = 1, x = 1)
         new(y, x)
       end
 
