@@ -2,7 +2,7 @@ module Vedeu
 
   module Cells
 
-    class Char
+    class Char < Empty
 
     end # Char
 

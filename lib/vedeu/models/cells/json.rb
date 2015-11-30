@@ -2,7 +2,7 @@ module Vedeu
 
   module Cells
 
-    class JSON
+    class JSON < Empty
 
     end # JSON
 

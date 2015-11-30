@@ -2,7 +2,7 @@ module Vedeu
 
   module Cells
 
-    class HTML
+    class HTML < Empty
 
     end # HTML
 

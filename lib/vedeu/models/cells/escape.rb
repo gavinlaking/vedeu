@@ -2,7 +2,7 @@ module Vedeu
 
   module Cells
 
-    class Escape
+    class Escape < Empty
 
     end # Escape
 
