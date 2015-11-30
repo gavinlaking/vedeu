@@ -183,6 +183,7 @@ module Vedeu
       # @param pos_y [Fixnum]
       # @param pos_x [Fixnum]
       # @return [Vedeu::Geometries::Position]
+      # @todo Not sure if #to_s is required here. (GL: 2015-11-30)
       def build_position(pos_y, pos_x)
         Vedeu::Geometries::Position.new(pos_y, pos_x).to_s
       end

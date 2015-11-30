@@ -9,6 +9,7 @@ module Vedeu
     class Cell
 
       include Vedeu::Repositories::Defaults
+      include Vedeu::Geometries::Positionable
 
       # @!attribute [r] colour
       # @return [NilClass|String]
@@ -44,11 +45,6 @@ module Vedeu
       # @return [Vedeu::Interfaces::Interface]
       def interface
         @interface ||= Vedeu.interfaces.by_name(name)
-      end
-
-      # @return [Vedeu::Geometries::Position]
-      def position
-        Vedeu::Geometries::Position.coerce(@position)
       end
 
       # @return [Hash]

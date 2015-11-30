@@ -51,16 +51,6 @@ module Vedeu
         it { instance.must_respond_to(:==) }
       end
 
-      describe '#position' do
-        it { instance.position.must_be_instance_of(Vedeu::Geometries::Position) }
-      end
-
-      describe '#position' do
-        subject { instance.position }
-
-        it { subject.must_be_instance_of(Vedeu::Geometries::Position) }
-      end
-
       describe '#value' do
         subject { instance.value }
 

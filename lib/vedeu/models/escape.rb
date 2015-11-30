@@ -8,6 +8,8 @@ module Vedeu
     #
     class Escape
 
+      include Vedeu::Geometries::Positionable
+
       # @!attribute [r] value
       # @return [String]
       attr_reader :value
@@ -47,11 +49,6 @@ module Vedeu
         self.class == other.class && value == other.value
       end
       alias_method :==, :eql?
-
-      # @return [String]
-      def position
-        Vedeu::Geometries::Position.coerce(@position)
-      end
 
       # Return an empty hash as most escape sequences won't make
       # sense as JSON.
