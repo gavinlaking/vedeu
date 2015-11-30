@@ -20,9 +20,9 @@ module Vedeu
     # @param klass [Class] The class to become an instance of.
     # @param attributes [Hash] The attributes of klass.
     # @return [Class] Returns a new instance of klass.
-    # def become(klass, attributes)
-    #   klass.new(attributes)
-    # end
+    def become(klass, attributes)
+      klass.new(attributes)
+    end
 
     # Removes the module part from the expression in the string.
     #
