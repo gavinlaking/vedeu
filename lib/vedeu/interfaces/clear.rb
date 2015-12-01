@@ -160,8 +160,7 @@ module Vedeu
         Vedeu.timer("Clearing #{clearing}: '#{name}'".freeze) do
           @clear ||= Array.new(height) do |iy|
             Array.new(width) do |ix|
-              Vedeu::Views::Char.new(value:    ' '.freeze,
-                                     colour:   colour,
+              Vedeu::Cells::Clear.new(colour:   colour,
                                      name:     name,
                                      position: [y + iy, x + ix])
             end
