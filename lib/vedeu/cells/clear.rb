@@ -4,6 +4,11 @@ module Vedeu
 
     class Clear < Empty
 
+      # @return [String]
+      def value
+        ' '.freeze
+      end
+
     end # Clear
 
   end # Cells
