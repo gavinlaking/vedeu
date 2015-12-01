@@ -9,9 +9,19 @@ module Vedeu
       include Vedeu::Presentation
       include Vedeu::Repositories::Defaults
 
+      # @!attribute [r] name
+      # @return [String|Symbol] The name of the interface/view this
+      #   cell belongs to.
+      attr_reader :name
+
       # @!attribute [r] value
       # @return [String]
       attr_reader :value
+
+      # @return [Boolean]
+      def cell?
+        true
+      end
 
       # An object is equal when its values are the same.
       #

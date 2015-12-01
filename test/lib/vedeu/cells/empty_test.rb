@@ -24,7 +24,14 @@ module Vedeu
       let(:_value)   { '' }
 
       describe 'accessors' do
+        it { instance.must_respond_to(:name) }
         it { instance.must_respond_to(:value) }
+      end
+
+      describe '#cell?' do
+        subject { instance.cell? }
+
+        it { subject.must_equal(true) }
       end
 
       describe '#eql?' do
