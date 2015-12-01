@@ -25,10 +25,10 @@ module Vedeu
         context 'when the block is given' do
           subject { described.profile(filename) { some_code } }
 
-          it {
+          it do
             ::File.expects(:open).with('/tmp/profile.html', 'w')
             subject
-          }
+          end
         end
       end
 

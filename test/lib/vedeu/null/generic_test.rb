@@ -23,9 +23,9 @@ module Vedeu
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
-        it {
+        it do
           instance.instance_variable_get('@attributes').must_equal(attributes)
-        }
+        end
 
         context 'when a name is given' do
           it { instance.instance_variable_get('@name').must_equal(_name) }

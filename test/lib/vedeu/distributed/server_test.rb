@@ -113,7 +113,7 @@ module Vedeu
           context 'and the server is running' do
             let(:running) { true }
 
-            it {
+            it do
               Vedeu.expects(:log).
                 with(type:    :drb,
                      message: "Attempting to start: 'druby://localhost:21420'")
@@ -121,11 +121,11 @@ module Vedeu
                 with(type:    :drb,
                      message: "Already started: 'druby://localhost:21420'")
               subject
-            }
+            end
           end
 
           context 'and the server is not running' do
-            it {
+            it do
               Vedeu.expects(:log).
                 with(type:    :drb,
                      message: "Attempting to start: 'druby://localhost:21420'")
@@ -133,7 +133,7 @@ module Vedeu
                 with(type:    :drb,
                      message: "Starting: 'druby://localhost:21420'")
               subject
-            }
+            end
           end
 
         end
@@ -174,7 +174,7 @@ module Vedeu
           context 'and the server is running' do
             let(:running) { true }
 
-            it {
+            it do
               Vedeu.expects(:log).
                 with(type:    :drb,
                      message: "Attempting to stop: 'druby://localhost:21420'")
@@ -185,11 +185,11 @@ module Vedeu
                 with(type:    :drb,
                      message: "Attempted to #join on DRb.thread.")
               subject
-            }
+            end
           end
 
           context 'and the server is not running' do
-            it {
+            it do
               Vedeu.expects(:log).
                 with(type:    :drb,
                      message: "Attempting to stop: 'druby://localhost:21420'")
@@ -197,7 +197,7 @@ module Vedeu
                 with(type:    :drb,
                      message: "Already stopped: 'druby://localhost:21420'")
               subject
-            }
+            end
           end
 
         end

@@ -41,21 +41,24 @@ module Vedeu
 
         it { subject.must_be_instance_of(described) }
         it { subject.instance_variable_get('@client').must_equal(client) }
-        it { subject.instance_variable_get('@cursor_visible').must_equal(cursor_visible) }
+        it do
+          subject.instance_variable_get('@cursor_visible').
+            must_equal(cursor_visible)
+        end
         it { subject.instance_variable_get('@delay').must_equal(delay) }
         it { subject.instance_variable_get('@editable').must_equal(editable) }
         it { subject.instance_variable_get('@group').must_equal(group) }
         it { subject.instance_variable_get('@name').must_equal(_name) }
         it { subject.instance_variable_get('@parent').must_equal(parent) }
-        it {
+        it do
           subject.instance_variable_get('@repository').must_equal(repository)
-        }
+        end
         it { subject.instance_variable_get('@visible').must_equal(visible) }
         it { subject.instance_variable_get('@zindex').must_equal(zindex) }
       end
 
       describe 'accessors' do
-        it {
+        it do
           instance.must_respond_to(:client)
           instance.must_respond_to(:client=)
           instance.must_respond_to(:cursor_visible)
@@ -76,7 +79,7 @@ module Vedeu
           instance.must_respond_to(:visible)
           instance.must_respond_to(:visible=)
           instance.must_respond_to(:visible?)
-        }
+        end
       end
 
       describe '#attributes' do
@@ -98,10 +101,10 @@ module Vedeu
 
         subject { instance.hide }
 
-        it {
+        it do
           Vedeu.expects(:trigger).with(:_clear_view_, _name)
           subject
-        }
+        end
       end
 
       describe '#show' do
@@ -109,10 +112,10 @@ module Vedeu
 
         subject { instance.show }
 
-        it {
+        it do
           Vedeu.expects(:trigger).with(:_refresh_view_, _name)
           subject
-        }
+        end
       end
 
     end # Interface

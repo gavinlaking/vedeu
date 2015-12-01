@@ -43,20 +43,20 @@ module Vedeu
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@data').must_equal(data) }
         it { instance.instance_variable_get('@name').must_equal(_name) }
-        it {
+        it do
           instance.instance_variable_get('@repository').
             must_equal(Vedeu.documents)
-        }
+        end
       end
 
       describe 'accessors' do
-        it {
+        it do
           instance.must_respond_to(:attributes)
           instance.must_respond_to(:data)
           instance.must_respond_to(:data=)
           instance.must_respond_to(:name)
           instance.must_respond_to(:name=)
-        }
+        end
       end
 
       describe '#execute' do

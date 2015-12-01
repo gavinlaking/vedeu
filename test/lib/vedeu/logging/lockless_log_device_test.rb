@@ -12,10 +12,10 @@ module Vedeu
 
       describe '#initialize' do
         # it { instance.must_be_instance_of(described) }
-        # it {
+        # it do
         #   instance.instance_variable_get('@file_or_filename').
         #     must_equal(file_or_filename)
-        # }
+        # end
 
         # @todo Add more tests.
         # it { skip }

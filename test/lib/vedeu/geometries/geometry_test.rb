@@ -61,7 +61,7 @@ module Vedeu
       end
 
       describe 'accessors' do
-        it {
+        it do
           instance.must_respond_to(:name)
           instance.must_respond_to(:name=)
           instance.must_respond_to(:height=)
@@ -77,7 +77,7 @@ module Vedeu
           instance.must_respond_to(:xn=)
           instance.must_respond_to(:y=)
           instance.must_respond_to(:yn=)
-        }
+        end
       end
 
       describe '#attributes' do

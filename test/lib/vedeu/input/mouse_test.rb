@@ -24,41 +24,43 @@ module Vedeu
         context 'when the left mouse button was pressed' do
           let(:input) { "\e[M ,%" }
 
-          it {
+          it do
             Vedeu.expects(:trigger).with(:_mouse_event_, input)
-            Vedeu.expects(:trigger).with(:_cursor_reposition_, Vedeu.focus, 5, 12)
+            Vedeu.expects(:trigger).
+              with(:_cursor_reposition_, Vedeu.focus, 5, 12)
             subject
-          }
+          end
         end
 
         context 'when the mouse scroll wheel was moved upwards' do
           let(:input) { "\e[M`6E" }
 
-          it {
+          it do
             Vedeu.expects(:trigger).with(:_mouse_event_, input)
             Vedeu.expects(:trigger).with(:_cursor_up_, Vedeu.focus)
             subject
-          }
+          end
         end
 
         context 'when the mouse scroll wheel was moved downwards' do
           let(:input) { "\e[MaN5" }
 
-          it {
+          it do
             Vedeu.expects(:trigger).with(:_mouse_event_, input)
             Vedeu.expects(:trigger).with(:_cursor_down_, Vedeu.focus)
             subject
-          }
+          end
         end
 
         context 'when the mouse input was not recognised' do
           let(:input) { "\e[Mb0(" }
 
-          it {
+          it do
             Vedeu.expects(:trigger).with(:_mouse_event_, input)
-            subject.must_equal("\e[93m[input]    \e[39m\e[33mVedeu does not " \
-                               "support mouse button '66' yet.\e[39m")
-          }
+            subject.
+              must_equal("\e[93m[input]    \e[39m\e[33mVedeu does not " \
+                         "support mouse button '66' yet.\e[39m")
+          end
         end
       end
 

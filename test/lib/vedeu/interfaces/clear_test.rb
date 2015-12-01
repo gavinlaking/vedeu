@@ -62,10 +62,10 @@ module Vedeu
         subject { instance.render }
 
         it { subject.must_be_instance_of(Array) }
-        it {
+        it do
           Vedeu.expects(:render_output).with(output)
           subject
-        }
+        end
         it { subject.must_equal(output) }
       end
 

@@ -37,9 +37,9 @@ module Vedeu
         context 'when a direction is given' do
           let(:direction) { :left }
 
-          it {
+          it do
             instance.instance_variable_get('@direction').must_equal(direction)
-          }
+          end
         end
 
         context 'when a direction is not given' do

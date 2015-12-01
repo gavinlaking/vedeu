@@ -34,11 +34,11 @@ module Vedeu
 
           before { Vedeu.interfaces.stubs(:zindexed).returns(interfaces) }
 
-          it {
+          it do
             Vedeu.expects(:trigger).with(:_refresh_view_,
                                          'Vedeu::Output::Refresh')
             subject
-          }
+          end
 
           it { subject.must_equal([interface]) }
         end

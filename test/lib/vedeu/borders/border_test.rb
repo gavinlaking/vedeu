@@ -49,7 +49,7 @@ module Vedeu
       end
 
       describe 'accessors' do
-        it {
+        it do
           instance.must_respond_to(:attributes)
           instance.must_respond_to(:bottom_left)
           instance.must_respond_to(:bottom_left=)
@@ -83,7 +83,7 @@ module Vedeu
           instance.must_respond_to(:enabled)
           instance.must_respond_to(:enabled=)
           instance.must_respond_to(:enabled?)
-        }
+        end
       end
 
       describe '#deputy' do

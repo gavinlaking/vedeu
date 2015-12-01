@@ -28,15 +28,15 @@ module Vedeu
         context 'when the value is nil' do
           it { subject.must_be_instance_of(described) }
 
-          it {
+          it do
             Vedeu::Colours::Background.coerce(_value).
               must_be_instance_of(Vedeu::Colours::Background)
-          }
+          end
           it { Vedeu::Colours::Background.coerce(_value).colour.must_equal('') }
-          it {
+          it do
             Vedeu::Colours::Foreground.coerce(_value).
               must_be_instance_of(Vedeu::Colours::Foreground)
-          }
+          end
           it { Vedeu::Colours::Foreground.coerce(_value).colour.must_equal('') }
         end
 

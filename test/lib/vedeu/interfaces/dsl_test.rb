@@ -45,10 +45,10 @@ module Vedeu
       describe '#delay' do
         subject { instance.delay(0.25) }
 
-        it {
+        it do
           subject
           model.delay.must_equal(0.25)
-        }
+        end
       end
 
       describe '#editable' do
@@ -118,26 +118,26 @@ module Vedeu
                                      members: ['lanthanum']).store
           end
 
-          it {
+          it do
             subject
             Vedeu.groups.find('elements').members.must_equal(members)
-          }
+          end
         end
 
         context 'when the named group does not exist' do
-          it {
+          it do
             subject
             Vedeu.groups.find('elements').members.must_equal(Set['actinium'])
-          }
+          end
         end
       end
 
       describe '#keymap' do
-        subject {
+        subject do
           instance.keys do
             # ...
           end
-        }
+        end
 
         it { subject.must_be_instance_of(Vedeu::Input::Keymap) }
         it { instance.must_respond_to(:keys) }
@@ -146,28 +146,28 @@ module Vedeu
       describe '#name' do
         subject { instance.name('nickel') }
 
-        it {
+        it do
           subject
           model.name.must_equal('nickel')
-        }
+        end
       end
 
       describe '#show!' do
-        subject {
+        subject do
           Vedeu.interface 'xenon' do
             show!
           end
-        }
+        end
 
         it { subject.visible.must_equal(true) }
       end
 
       describe '#hide!' do
-        subject {
+        subject do
           Vedeu.interface 'xenon' do
             hide!
           end
-        }
+        end
 
         it { subject.visible.must_equal(false) }
       end

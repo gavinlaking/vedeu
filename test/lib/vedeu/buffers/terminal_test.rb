@@ -25,19 +25,19 @@ module Vedeu
       describe '#clear' do
         subject { described.clear }
 
-        it {
+        it do
           Vedeu.renderers.expects(:clear)
           subject
-        }
+        end
       end
 
       describe '#output' do
         subject { described.output }
 
-        it {
+        it do
           Vedeu::Models::Page.expects(:coerce)
           subject
-        }
+        end
       end
 
       describe '#refresh' do
@@ -49,10 +49,10 @@ module Vedeu
 
         subject { described.refresh }
 
-        it {
+        it do
           Vedeu.renderers.expects(:render)
           subject
-        }
+        end
       end
 
       describe '#reset!' do

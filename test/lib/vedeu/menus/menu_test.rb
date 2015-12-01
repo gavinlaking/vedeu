@@ -23,9 +23,9 @@ module Vedeu
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
-        it {
+        it do
           instance.instance_variable_get('@collection').must_equal(collection)
-        }
+        end
         it { instance.instance_variable_get('@name').must_equal('elements') }
         it { instance.instance_variable_get('@current').must_equal(0) }
         it { instance.instance_variable_get('@selected').must_equal(nil) }
@@ -35,13 +35,13 @@ module Vedeu
       end
 
       describe 'accessors' do
-        it {
+        it do
           instance.must_respond_to(:collection)
           instance.must_respond_to(:collection=)
           instance.must_respond_to(:current=)
           instance.must_respond_to(:name)
           instance.must_respond_to(:name=)
-        }
+        end
       end
 
       describe '#current' do

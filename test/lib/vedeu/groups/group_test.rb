@@ -31,20 +31,20 @@ module Vedeu
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@members').must_equal(members) }
         it { instance.instance_variable_get('@name').must_equal(_name) }
-        it {
+        it do
           instance.instance_variable_get('@repository').must_equal(repository)
-        }
+        end
         it { instance.instance_variable_get('@visible').must_equal(visible) }
       end
 
       describe 'accessors' do
-        it {
+        it do
           instance.must_respond_to(:name)
           instance.must_respond_to(:name=)
           instance.must_respond_to(:visible)
           instance.must_respond_to(:visible=)
           instance.must_respond_to(:visible?)
-        }
+        end
       end
 
       describe '#add' do

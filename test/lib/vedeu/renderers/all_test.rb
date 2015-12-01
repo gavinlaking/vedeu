@@ -71,10 +71,10 @@ module Vedeu
       subject { described.render(output) }
 
       context 'when an interface/view has been defined' do
-        it {
+        it do
           DummyRenderer.expects(:render).with(output)
           subject
-        }
+        end
 
         context 'when there is content' do
           let(:output) {

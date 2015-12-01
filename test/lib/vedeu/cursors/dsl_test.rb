@@ -15,73 +15,73 @@ module Vedeu
 
       #   subject { instance.cursor(_value) }
 
-      #   it {
+      #   it do
       #     subject
       #     Vedeu.cursors.find('actinium').visible?.must_equal(false)
-      #   }
+      #   end
 
       #   context 'when the value is false' do
       #     let(:_value) { false }
 
-      #     it {
+      #     it do
       #       subject
       #       Vedeu.cursors.find('actinium').visible?.must_equal(false)
-      #     }
+      #     end
       #   end
 
       #   context 'when the value is nil' do
       #     let(:_value) {}
 
-      #     it {
+      #     it do
       #       subject
       #       Vedeu.cursors.find('actinium').visible?.must_equal(false)
-      #     }
+      #     end
       #   end
 
       #   context 'when the value is :show' do
       #     let(:_value) { :show }
 
-      #     it {
+      #     it do
       #       subject
       #       Vedeu.cursors.find('actinium').visible?.must_equal(true)
-      #     }
+      #     end
       #   end
 
       #   context 'when the value is true' do
       #     let(:_value) { true }
 
-      #     it {
+      #     it do
       #       subject
       #       Vedeu.cursors.find('actinium').visible?.must_equal(true)
-      #     }
+      #     end
       #   end
 
       #   context 'when the value is :yes' do
       #     let(:_value) { :yes }
 
-      #     it {
+      #     it do
       #       subject
       #       Vedeu.cursors.find('actinium').visible?.must_equal(true)
-      #     }
+      #     end
       #   end
       # end
 
       # describe '#cursor!' do
       #   subject { instance.cursor! }
 
-      #   it {
+      #   it do
       #     subject
       #     Vedeu.cursors.find('actinium').visible?.must_equal(true)
-      #   }
+      #   end
       # end
 
       # describe '#no_cursor!' do
       #   subject { instance.no_cursor! }
 
-      #   it {
+      #   it do
       #     subject
       #     Vedeu.cursors.find('actinium').visible?.must_equal(false)
-      #   }
+      #   end
       # end
 
     end # DSL

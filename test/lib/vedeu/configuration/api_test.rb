@@ -327,102 +327,102 @@ module Vedeu
 
       describe '#terminal_mode' do
         context 'when setting to :fake mode' do
-          it {
+          it do
             configuration = Vedeu.configure { terminal_mode(:fake) }
             configuration.terminal_mode.must_equal(:fake)
-          }
+          end
         end
 
         context 'when setting to :cooked mode' do
-          it {
+          it do
             configuration = Vedeu.configure { terminal_mode(:raw) }
             configuration.terminal_mode.must_equal(:raw)
-          }
+          end
         end
 
         context 'when setting to :raw mode' do
-          it {
+          it do
             configuration = Vedeu.configure { terminal_mode(:raw) }
             configuration.terminal_mode.must_equal(:raw)
-          }
+          end
         end
 
         context 'when setting to an invalid mode' do
-          it {
+          it do
             proc {
               Vedeu.configure { terminal_mode(:invalid) }
             }.must_raise(Vedeu::Error::InvalidSyntax)
-          }
+          end
         end
       end
 
       describe '#background' do
         context 'when a value is given' do
-          it {
+          it do
             configuration = Vedeu.configure { background '#ff0000' }
             configuration.background.must_be_instance_of(Vedeu::Colours::Background)
             configuration.background.to_s.must_equal("\e[48;2;255;0;0m")
-          }
+          end
         end
 
         context 'when a value is not given' do
-          it {
+          it do
             configuration = Vedeu.configure { background nil }
             configuration.background.must_be_instance_of(Vedeu::Colours::Background)
             configuration.background.to_s.must_equal("\e[49m")
-          }
+          end
         end
       end
 
       describe '#colour' do
         context 'when a background and foreground is given' do
-          it {
+          it do
             configuration = Vedeu.configure { colour background: '#ff0000', foreground: '#ffff00' }
             configuration.colour.must_be_instance_of(Vedeu::Colours::Colour)
             configuration.colour.to_s.must_equal("\e[38;2;255;255;0m\e[48;2;255;0;0m")
-          }
+          end
         end
 
         context 'when only a background is given' do
-          it {
+          it do
             configuration = Vedeu.configure { colour background: '#ff0000' }
             configuration.colour.must_be_instance_of(Vedeu::Colours::Colour)
             configuration.colour.to_s.must_equal("\e[48;2;255;0;0m")
-          }
+          end
         end
 
         context 'when only a foreground is given' do
-          it {
+          it do
             configuration = Vedeu.configure { colour foreground: '#ffff00' }
             configuration.colour.must_be_instance_of(Vedeu::Colours::Colour)
             configuration.colour.to_s.must_equal("\e[38;2;255;255;0m")
-          }
+          end
         end
 
         context 'when neither a background nor foreground is given' do
-          it {
+          it do
             configuration = Vedeu.configure { colour background: nil, foreground: nil }
             configuration.colour.must_be_instance_of(Vedeu::Colours::Colour)
             configuration.colour.to_s.must_equal('')
-          }
+          end
         end
       end
 
       describe '#foreground' do
         context 'when a value is given' do
-          it {
+          it do
             configuration = Vedeu.configure { foreground '#ffff00' }
             configuration.foreground.must_be_instance_of(Vedeu::Colours::Foreground)
             configuration.foreground.to_s.must_equal("\e[38;2;255;255;0m")
-          }
+          end
         end
 
         context 'when a value is not given' do
-          it {
+          it do
             configuration = Vedeu.configure { background nil }
             configuration.foreground.must_be_instance_of(Vedeu::Colours::Foreground)
             configuration.foreground.to_s.must_equal("\e[39m")
-          }
+          end
         end
       end
 

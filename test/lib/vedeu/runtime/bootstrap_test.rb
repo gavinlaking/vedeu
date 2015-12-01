@@ -33,10 +33,10 @@ module Vedeu
 
         subject { described.start(argv) }
 
-        it {
+        it do
           Vedeu::Launcher.expects(:execute!)
           subject
-        }
+        end
       end
 
       describe '#start' do

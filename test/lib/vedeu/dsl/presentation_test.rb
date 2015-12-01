@@ -40,9 +40,9 @@ module Vedeu
         it { instance.must_respond_to(:bg=) }
         it { instance.must_respond_to(:bgcolor=) }
         it { instance.must_respond_to(:background=) }
-        it {
+        it do
           dsl.colour.background.must_be_instance_of(Vedeu::Colours::Background)
-        }
+        end
         it { dsl.colour.background.colour.must_equal(background) }
       end
 
@@ -61,9 +61,9 @@ module Vedeu
         it { instance.must_respond_to(:fg=) }
         it { instance.must_respond_to(:fgcolor=) }
         it { instance.must_respond_to(:foreground=) }
-        it {
+        it do
           dsl.colour.foreground.must_be_instance_of(Vedeu::Colours::Foreground)
-        }
+        end
         it { dsl.colour.foreground.colour.must_equal(foreground) }
       end
 

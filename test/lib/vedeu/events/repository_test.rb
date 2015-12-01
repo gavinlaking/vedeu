@@ -15,10 +15,10 @@ module Vedeu
 
         it { described.must_respond_to(:reset) }
 
-        it {
+        it do
           described.expects(:new).with(Vedeu::Events::Collection)
           subject
-        }
+        end
       end
 
     end # Repository

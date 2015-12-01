@@ -61,20 +61,20 @@ module Vedeu
         context 'but debugging is disabled' do
           let(:debug) { false }
 
-          it {
+          it do
             Vedeu.expects(:log_stdout).with(type: :error, message: 'Oops!')
             subject
-          }
+          end
         end
 
         context 'and debugging is enabled' do
           let(:debug) { true }
 
           # Need to stub a backtrace.
-          # it {
+          # it do
           #   Vedeu.expects(:log_stdout).with(type: :error, message: 'Oops!')
           #   subject
-          # }
+          # end
         end
       end
     end

@@ -32,11 +32,11 @@ module Vedeu
           context 'when debugging is enabled' do
             before { Vedeu::Configuration.stubs(:debug?).returns(true) }
 
-            it {
+            it do
               Vedeu.expects(:log).with(type:    :timer,
                                        message: "Testing took 0.0ms.")
               subject
-            }
+            end
           end
 
           context 'when debugging is disabled' do

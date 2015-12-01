@@ -34,7 +34,7 @@ module Vedeu
       end
 
       describe 'accessors' do
-        it {
+        it do
           instance.must_respond_to(:back)
           instance.must_respond_to(:back=)
           instance.must_respond_to(:front)
@@ -42,7 +42,7 @@ module Vedeu
           instance.must_respond_to(:previous)
           instance.must_respond_to(:previous=)
           instance.must_respond_to(:name)
-        }
+        end
       end
 
       describe '#add' do
@@ -187,10 +187,10 @@ module Vedeu
             Vedeu::Views::View.new(value: [Vedeu::Views::Line.new])
           }
 
-          it {
+          it do
             Vedeu::Output::Viewport.expects(:render)
             subject
-          }
+          end
         end
 
         context 'when there is existing content on the front buffer' do
@@ -198,10 +198,10 @@ module Vedeu
             Vedeu::Views::View.new(value: [Vedeu::Views::Line.new])
           }
 
-          it {
+          it do
             Vedeu::Output::Viewport.expects(:render)
             subject
-          }
+          end
         end
 
         context 'when there is content on the previous buffer' do
@@ -209,10 +209,10 @@ module Vedeu
             Vedeu::Views::View.new(value: [Vedeu::Views::Line.new])
           }
 
-          it {
+          it do
             Vedeu::Output::Viewport.expects(:render)
             subject
-          }
+          end
         end
 
         context 'when there is no content on any buffer' do

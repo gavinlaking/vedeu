@@ -18,9 +18,9 @@ module Vedeu
 
     describe '.open' do
       context 'when a block was not given' do
-        it {
+        it do
           proc { Vedeu::Terminal.open }.must_raise(Vedeu::Error::RequiresBlock)
-        }
+        end
       end
 
       it 'opens a new terminal console in raw mode' do
@@ -60,9 +60,11 @@ module Vedeu
       context 'when there are multiple values' do
         let(:_value) { ['Some output...', 'more output...', 'even more...'] }
 
-        it { subject.must_equal(['Some output...',
-                                 'more output...',
-                                 'even more...']) }
+        it do
+          subject.must_equal(['Some output...',
+                              'more output...',
+                              'even more...'])
+        end
       end
     end
 
@@ -71,15 +73,15 @@ module Vedeu
 
       subject { described.resize }
 
-      it {
+      it do
         Vedeu.expects(:trigger).with(:_clear_)
         subject
-      }
+      end
 
-      it {
+      it do
         Vedeu.expects(:trigger).with(:_refresh_)
         subject
-      }
+      end
 
       it { subject.must_be_instance_of(TrueClass) }
     end

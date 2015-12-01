@@ -48,10 +48,10 @@ module Vedeu
         it { RegisterableTestClass.must_respond_to(:reset!) }
         it { RegisterableTestClass.must_respond_to(:reset) }
 
-        it {
+        it do
           RegisterableTestClass.expects(:register)
           subject
-        }
+        end
       end
 
     end # Registerable

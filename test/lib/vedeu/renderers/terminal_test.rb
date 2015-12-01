@@ -42,10 +42,10 @@ module Vedeu
 
         subject { instance.clear }
 
-        it {
+        it do
           Vedeu::Terminal.expects(:clear)
           subject
-        }
+        end
       end
 
       describe '#render' do

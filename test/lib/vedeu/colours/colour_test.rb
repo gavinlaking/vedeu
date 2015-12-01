@@ -81,9 +81,7 @@ module Vedeu
 
                 it { subject.foreground.colour.must_equal('') }
                 it { subject.background.colour.must_equal('#7700ff') }
-                it {
-                  subject.to_s.must_equal("\e[48;2;119;0;255m")
-                }
+                it { subject.to_s.must_equal("\e[48;2;119;0;255m") }
               end
 
               context 'and a :foreground is defined' do
@@ -97,9 +95,7 @@ module Vedeu
 
                 it { subject.foreground.colour.must_equal('#220077') }
                 it { subject.background.colour.must_equal('') }
-                it {
-                  subject.to_s.must_equal("\e[38;2;34;0;119m")
-                }
+                it { subject.to_s.must_equal("\e[38;2;34;0;119m") }
               end
 
               context 'and neither a :background or :foreground is defined' do

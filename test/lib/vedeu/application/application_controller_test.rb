@@ -24,10 +24,10 @@ module Vedeu
 
       subject { instance.redirect_to(controller, action, params) }
 
-      it {
+      it do
         Vedeu.expects(:trigger).with(:_goto_, controller, action, params)
         subject
-      }
+      end
 
       it { instance.must_respond_to(:redirect) }
       it { instance.must_respond_to(:goto) }

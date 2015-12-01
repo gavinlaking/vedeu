@@ -51,10 +51,10 @@ module Vedeu
           # @todo Add more tests.
           # it { skip }
 
-          # it {
+          # it do
           #   Vedeu.expects(:trigger).with(:_refresh_view_)
           #   subject
-          # }
+          # end
         end
       end
 

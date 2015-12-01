@@ -70,10 +70,10 @@ module Vedeu
       end
 
       describe 'accessors' do
-        it {
+        it do
           instance.must_respond_to(:parent)
           instance.must_respond_to(:parent=)
-        }
+        end
       end
 
       describe '#add' do

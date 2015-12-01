@@ -54,11 +54,11 @@ module Vedeu
         describe '#background=' do
           subject { includer.background = '#987654' }
 
-          it {
+          it do
             includer.colour.background.colour.must_equal('#000033')
             subject
             includer.colour.background.colour.must_equal('#987654')
-          }
+          end
 
           it { subject.must_equal('#987654') }
         end

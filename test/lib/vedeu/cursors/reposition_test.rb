@@ -57,11 +57,11 @@ module Vedeu
 
         subject { instance.reposition }
 
-        # it {
+        # it do
         #   subject
         #   Vedeu::Cursors::Cursor.expects(:store).with(new_attributes)
         #   Vedeu.expects(:trigger).with(:_refresh_cursor_, _name)
-        # }
+        # end
 
         it { subject.must_be_instance_of(Vedeu::Cursors::Cursor) }
 

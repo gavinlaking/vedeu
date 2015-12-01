@@ -68,9 +68,9 @@ module Vedeu
         end
 
         context 'when the block is not given' do
-          it {
+          it do
             proc { instance.streams }.must_raise(Vedeu::Error::RequiresBlock)
-          }
+          end
         end
 
         it { instance.must_respond_to(:stream) }

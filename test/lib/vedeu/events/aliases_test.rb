@@ -117,11 +117,11 @@ module Vedeu
             described.add(:some_alias, :other_event)
           end
 
-          it {
+          it do
             Vedeu::Events::Trigger.expects(:trigger).with(:some_event, nil)
             Vedeu::Events::Trigger.expects(:trigger).with(:other_event, nil)
             subject
-          }
+          end
         end
 
         context 'when the alias name is not registered' do

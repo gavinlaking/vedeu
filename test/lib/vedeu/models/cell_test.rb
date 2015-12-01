@@ -33,12 +33,12 @@ module Vedeu
       end
 
       describe 'accessors' do
-        it {
+        it do
           instance.must_respond_to(:colour)
           instance.must_respond_to(:name)
           instance.must_respond_to(:style)
           instance.must_respond_to(:value)
-        }
+        end
       end
 
       describe '#cell?' do

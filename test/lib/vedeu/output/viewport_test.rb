@@ -54,10 +54,10 @@ module Vedeu
 
         context 'when the interface is visible' do
           context 'and Vedeu is ready' do
-            it {
+            it do
               Vedeu.expects(:render_output)
               subject
-            }
+            end
           end
 
           context 'but Vedeu is not ready' do
