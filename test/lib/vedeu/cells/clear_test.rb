@@ -15,6 +15,12 @@ module Vedeu
       }
       let(:_value) { ' ' }
 
+      describe '#cell?' do
+        subject { instance.cell? }
+
+        it { subject.must_equal(false) }
+      end
+
       describe '#value' do
         subject { instance.value }
 
