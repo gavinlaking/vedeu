@@ -12,6 +12,11 @@ module Vedeu
     #
     class Char < Vedeu::Cells::Empty
 
+      # @return [Boolean]
+      def cell?
+        false
+      end
+
     end # Char
 
   end # Cells
