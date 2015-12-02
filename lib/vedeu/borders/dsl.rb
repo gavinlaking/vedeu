@@ -19,9 +19,11 @@ module Vedeu
       # @param name [String|Symbol] The name of the interface or view
       #   to which this border belongs.
       # @param block [Proc]
-      # @raise [Vedeu::Error::RequiresBlock]
+      # @raise [Vedeu::Error::MissingRequired|
+      #   Vedeu::Error::RequiresBlock]
       # @return [Vedeu::Borders::Border]
       def self.border(name, &block)
+        fail Vedeu::Error::MissingRequired unless name
         fail Vedeu::Error::RequiresBlock unless block_given?
 
         Vedeu::Borders::Border.build(enabled: true, name: name, &block).store

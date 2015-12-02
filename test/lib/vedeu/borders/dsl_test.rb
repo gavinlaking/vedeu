@@ -14,7 +14,26 @@ module Vedeu
       let(:boolean)    { true }
 
       describe '.border' do
-        it { described.must_respond_to(:border) }
+        let(:_name) { 'Vedeu::Borders::DSL' }
+
+        after { Vedeu.borders.reset! }
+
+        subject { described.border(_name) { } }
+
+        it { subject.must_be_instance_of(Vedeu::Borders::Border) }
+
+        context 'when the name is not given' do
+          let(:_name) {}
+
+          it { proc { subject}.must_raise(Vedeu::Error::MissingRequired) }
+        end
+
+        context 'when the block is not given' do
+          subject { described.border(name) }
+
+          it { proc { subject}.must_raise(Vedeu::Error::RequiresBlock) }
+        end
+
       end
 
       describe '#bottom_left' do
