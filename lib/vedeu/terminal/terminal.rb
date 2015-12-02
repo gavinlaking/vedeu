@@ -65,6 +65,15 @@ module Vedeu
       yield if block_given?
     end
 
+    # Disables the mouse and shows the cursor. Used by the debugging
+    # snippet in {file:docs/debugging.md}.
+    #
+    # @return [String]
+    def debugging!
+      output(Vedeu::EscapeSequences::Esc.mouse_x10_off +
+             Vedeu::EscapeSequences::Esc.show_cursor)
+    end
+
     # Clears the entire terminal space.
     #
     # @example

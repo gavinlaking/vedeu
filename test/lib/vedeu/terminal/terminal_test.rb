@@ -86,6 +86,14 @@ module Vedeu
       it { subject.must_be_instance_of(TrueClass) }
     end
 
+    describe '.debugging!' do
+      subject { described.debugging! }
+
+      it 'disables the mouse and shows the cursor' do
+        subject.must_equal(["\e[?9l\e[?25h"])
+      end
+    end
+
     describe '.clear' do
       subject { described.clear }
 
