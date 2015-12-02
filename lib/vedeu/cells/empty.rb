@@ -2,6 +2,14 @@ module Vedeu
 
   module Cells
 
+    # Provides the character/escape sequence to draw one cell of a
+    # with a custom value, colour and style.
+    #
+    # The Vedeu::Cells::Empty object represents an empty cell with no
+    # content and is the basis of all the Vedeu::Cells objects.
+    #
+    # @api private
+    #
     class Empty
 
       include Comparable

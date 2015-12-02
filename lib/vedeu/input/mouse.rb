@@ -8,7 +8,7 @@ module Vedeu
 
       # Trigger an event depending on which button was pressed.
       #
-      # @param input [String]
+      # @param (see #initialize)
       # @return [void]
       def self.click(input)
         new(input).click

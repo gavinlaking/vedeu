@@ -2,7 +2,12 @@ module Vedeu
 
   module Cells
 
-    class Border < Empty
+    # Provides the character/escape sequence to draw one cell of a
+    # border with a custom value, colour and style.
+    #
+    # @api private
+    #
+    class Border < Vedeu::Cells::Empty
 
       include Vedeu::Common
 

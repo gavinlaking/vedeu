@@ -6,14 +6,17 @@ module Vedeu
     # title is longer than the interface is wide, and pad with a space
     # either side.
     #
+    # The title is displayed within the top border of the interface/
+    # view.
+    #
     # @api private
     #
     class Title
 
-      # @param chars [Array<Vedeu::Views::Char>]
-      # @param value [String|Vedeu::Borders::Title|
-      #   Vedeu::Borders::Caption]
-      # @return [Array<Vedeu::Views::Char>]
+      include Vedeu::Common
+
+      # @param (see #initialize)
+      # @return (see #render)
       def self.render(value = '', chars = [])
         new(value, chars).render
       end
@@ -21,8 +24,8 @@ module Vedeu
       # Returns a new instance of Vedeu::Borders::Title or
       # Vedeu::Borders::Caption.
       #
-      # @param chars [Array<Vedeu::Views::Char>]
       # @param value [String|Vedeu::Borders::Title|
+      # @param chars [Array<Vedeu::Views::Char>]
       #   Vedeu::Borders::Caption]
       # @return [Vedeu::Borders::Title|Vedeu::Borders::Caption]
       def initialize(value = '', chars = [])

@@ -5,7 +5,7 @@ module Vedeu
     # Extend Template to provide client application view specific
     # parsing.
     #
-    class ViewTemplate < Template
+    class ViewTemplate < Vedeu::Templating::Template
 
       include Vedeu::Common
       include Vedeu::Templating::Helpers

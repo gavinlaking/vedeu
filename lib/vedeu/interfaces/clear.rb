@@ -161,8 +161,8 @@ module Vedeu
           @clear ||= Array.new(height) do |iy|
             Array.new(width) do |ix|
               Vedeu::Cells::Clear.new(colour:   colour,
-                                     name:     name,
-                                     position: [y + iy, x + ix])
+                                      name:     name,
+                                      position: [y + iy, x + ix])
             end
           end
         end

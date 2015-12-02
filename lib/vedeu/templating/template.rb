@@ -6,8 +6,8 @@ module Vedeu
     #
     class Template
 
-      # @param (see Vedeu::Templating::Template#new)
-      # @return [void]
+      # @param (see #initialize)
+      # @return (see #parse)
       def self.parse(object, path, options = {})
         new(object, path, options).parse
       end

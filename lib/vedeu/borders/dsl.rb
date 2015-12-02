@@ -20,7 +20,8 @@ module Vedeu
       #   to which this border belongs.
       # @param block [Proc]
       # @raise [Vedeu::Error::MissingRequired|
-      #   Vedeu::Error::RequiresBlock]
+      #   Vedeu::Error::RequiresBlock] When a name or block
+      #   respectively are not given.
       # @return [Vedeu::Borders::Border]
       def self.border(name, &block)
         fail Vedeu::Error::MissingRequired unless name
