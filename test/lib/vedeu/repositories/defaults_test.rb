@@ -31,19 +31,14 @@ module Vedeu
 
       describe '#initialize' do
         it { instance.must_be_instance_of(includer) }
-        it { instance.instance_variable_get('@attributes').must_equal({}) }
-        it {
+        it do
           instance.instance_variable_get('@some_attribute').
             must_equal(:some_value)
-        }
-        it {
+        end
+        it do
           instance.instance_variables.
-            must_equal([:@attributes, :@some_attribute])
-        }
-      end
-
-      describe 'accessors' do
-        it { instance.must_respond_to(:attributes) }
+            must_equal([:@some_attribute])
+        end
       end
 
       # @todo Add more tests.
