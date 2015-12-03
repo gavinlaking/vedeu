@@ -15,6 +15,7 @@ end # Vedeu
 
 require 'vedeu/cells/empty'
 require 'vedeu/cells/border'
+require 'vedeu/cells/borders/all'
 require 'vedeu/cells/char'
 require 'vedeu/cells/clear'
 require 'vedeu/cells/escape'
