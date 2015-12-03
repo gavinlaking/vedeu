@@ -41,6 +41,11 @@ module Vedeu
       #   border if enabled.
       attr_accessor :bottom_right
 
+      # @!attribute [rw] bottom_horizontal
+      # @return [String] The character to be used for the bottom
+      #   horizontal border if enabled.
+      attr_accessor :bottom_horizontal
+
       # @!attribute [rw] caption
       # @return [String] An optional caption for when the bottom
       #   border is to be shown.
@@ -90,10 +95,25 @@ module Vedeu
       #   border if enabled.
       attr_accessor :top_right
 
+      # @!attribute [rw] top_horizontal
+      # @return [String] The character to be used for the top
+      #   horizontal border if enabled.
+      attr_accessor :top_horizontal
+
       # @!attribute [rw] vertical
       # @return [String] The character to be used for the vertical
       #   side border.
       attr_accessor :vertical
+
+      # @!attribute [rw] left_vertical
+      # @return [String] The character to be used for the left
+      #   vertical side border.
+      attr_accessor :left_vertical
+
+      # @!attribute [rw] right_vertical
+      # @return [String] The character to be used for the right
+      #   vertical side border.
+      attr_accessor :right_vertical
 
       # @!attribute [r] name
       # @return [String|Symbol] Associates the border with the
@@ -157,25 +177,29 @@ module Vedeu
       #   Vedeu::Borders::Repository|Vedeu::Presentation::Style>]
       def attributes
         {
-          bottom_left:  @bottom_left,
-          bottom_right: @bottom_right,
-          caption:      @caption,
-          client:       @client,
-          colour:       @colour,
-          enabled:      @enabled,
-          horizontal:   @horizontal,
-          name:         @name,
-          parent:       @parent,
-          repository:   @repository,
-          show_bottom:  @show_bottom,
-          show_left:    @show_left,
-          show_right:   @show_right,
-          show_top:     @show_top,
-          style:        @style,
-          title:        @title,
-          top_left:     @top_left,
-          top_right:    @top_right,
-          vertical:     @vertical,
+          bottom_horizontal: @bottom_horizontal,
+          bottom_left:       @bottom_left,
+          bottom_right:      @bottom_right,
+          caption:           @caption,
+          client:            @client,
+          colour:            @colour,
+          enabled:           @enabled,
+          horizontal:        @horizontal,
+          left_vertical:     @left_vertical,
+          name:              @name,
+          parent:            @parent,
+          repository:        @repository,
+          right_vertical:    @right_vertical,
+          show_bottom:       @show_bottom,
+          show_left:         @show_left,
+          show_right:        @show_right,
+          show_top:          @show_top,
+          style:             @style,
+          title:             @title,
+          top_horizontal:    @top_horizontal,
+          top_left:          @top_left,
+          top_right:         @top_right,
+          vertical:          @vertical,
         }
       end
 
@@ -207,25 +231,29 @@ module Vedeu
       # @see Vedeu::EscapeSequences::Borders
       def defaults
         {
-          bottom_left:  Vedeu::EscapeSequences::Borders.bottom_left,
-          bottom_right: Vedeu::EscapeSequences::Borders.bottom_right,
-          caption:      '',
-          client:       nil,
-          colour:       nil,
-          enabled:      false,
-          horizontal:   Vedeu::EscapeSequences::Borders.horizontal,
-          name:         '',
-          parent:       nil,
-          repository:   Vedeu.borders,
-          show_bottom:  true,
-          show_left:    true,
-          show_right:   true,
-          show_top:     true,
-          style:        nil,
-          title:        '',
-          top_left:     Vedeu::EscapeSequences::Borders.top_left,
-          top_right:    Vedeu::EscapeSequences::Borders.top_right,
-          vertical:     Vedeu::EscapeSequences::Borders.vertical,
+          bottom_horizontal: nil,
+          bottom_left:       Vedeu::EscapeSequences::Borders.bottom_left,
+          bottom_right:      Vedeu::EscapeSequences::Borders.bottom_right,
+          caption:           '',
+          client:            nil,
+          colour:            nil,
+          enabled:           false,
+          horizontal:        Vedeu::EscapeSequences::Borders.horizontal,
+          left_vertical:     nil,
+          name:              '',
+          parent:            nil,
+          repository:        Vedeu.borders,
+          right_vertical:    nil,
+          show_bottom:       true,
+          show_left:         true,
+          show_right:        true,
+          show_top:          true,
+          style:             nil,
+          title:             '',
+          top_horizontal:    nil,
+          top_left:          Vedeu::EscapeSequences::Borders.top_left,
+          top_right:         Vedeu::EscapeSequences::Borders.top_right,
+          vertical:          Vedeu::EscapeSequences::Borders.vertical,
         }
       end
 
