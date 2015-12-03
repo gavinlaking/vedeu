@@ -102,19 +102,22 @@ module Vedeu
       end
 
       describe '#hide' do
-        let(:visible)     { true }
-        let(:hide_cursor) {
-          Vedeu::Models::Escape
-            .new(value: Vedeu::EscapeSequences::Esc.hide_cursor)
+        let(:visible) { true }
+        let(:escape)  {
+          Vedeu::Cells::Escape.
+            new(value: Vedeu::EscapeSequences::Esc.hide_cursor)
         }
 
         before do
-          Vedeu.stubs(:render_output).with(hide_cursor).returns(hide_cursor)
+          Vedeu::Cells::Escape.stubs(:new).returns(escape)
         end
 
         subject { instance.hide }
 
-        it { subject.must_be_instance_of(Vedeu::Models::Escape) }
+        it {
+          Vedeu.expects(:render_output).with(escape)
+          subject
+        }
       end
 
       describe '#inspect' do
@@ -241,18 +244,21 @@ module Vedeu
 
       describe '#show' do
         let(:visible) { false }
-        let(:show_cursor) {
-          Vedeu::Models::Escape
-            .new(value: Vedeu::EscapeSequences::Esc.show_cursor)
+        let(:escape)  {
+          Vedeu::Cells::Escape.
+            new(value: Vedeu::EscapeSequences::Esc.show_cursor)
         }
 
         before do
-          Vedeu.stubs(:render_output).with(show_cursor).returns(show_cursor)
+          Vedeu::Cells::Escape.stubs(:new).returns(escape)
         end
 
         subject { instance.show }
 
-        it { subject.must_be_instance_of(Vedeu::Models::Escape) }
+        it {
+          Vedeu.expects(:render_output).with(escape)
+          subject
+        }
       end
 
       describe '#to_a' do

@@ -91,7 +91,7 @@ module Vedeu
             let(:output) {
               Vedeu::Models::Page.coerce([
                 Vedeu::Views::Char.new(name: _name, value: 'N', position: [1, 1]),
-                Vedeu::Models::Escape.new(value: "\e[?25l"),
+                Vedeu::Cells::Escape.new(value: "\e[?25l"),
                 Vedeu::Views::Char.new(name: _name, value: 't', position: [1, 3]),
               ])
             }
@@ -164,7 +164,7 @@ module Vedeu
             let(:output) {
               Vedeu::Models::Page.coerce([
                 Vedeu::Views::Char.new(name: _name, value: 'N'),
-                Vedeu::Models::Escape.new(value: "\e[?25l"),
+                Vedeu::Cells::Escape.new(value: "\e[?25l"),
                 Vedeu::Views::Char.new(name: _name, value: 't'),
               ])
             }
