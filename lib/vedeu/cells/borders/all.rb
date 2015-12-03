@@ -6,6 +6,7 @@ module Vedeu
 
 end # Vedeu
 
+require 'vedeu/cells/borders/corner'
 require 'vedeu/cells/borders/horizontal'
 require 'vedeu/cells/borders/bottom_horizontal'
 require 'vedeu/cells/borders/bottom_left'
