@@ -516,10 +516,10 @@ class VedeuMaterialColoursApp
     view('custom_corners') do
       border do
         foreground   '#000000'
-        top_right    'B'
-        top_left     'A'
-        bottom_right 'D'
-        bottom_left  'C'
+        top_left     'A', colour: { background: '#ff5722' }
+        top_right    'B', colour: { background: '#0000ff', foreground: '#ffffff' }
+        bottom_left  'C', colour: { background: '#ffff00', foreground: '#000000' }
+        bottom_right 'D', colour: { background: '#ffffff' }
       end
       lines do
         line 'custom'
@@ -529,8 +529,11 @@ class VedeuMaterialColoursApp
     view('custom_sides') do
       border do
         background '#ff5722'
-        horizontal '*'
-        vertical   '$'
+
+        top_horizontal    '*', colour: { background: '#000000', foreground: '#ffffff' }
+        left_vertical     '$', colour: { background: '#0000ff', foreground: '#ffffff' }
+        right_vertical    '%', colour: { background: '#ffff00', foreground: '#000000' }
+        bottom_horizontal '&', colour: { background: '#ffffff' }
       end
       lines do
         line 'custom'

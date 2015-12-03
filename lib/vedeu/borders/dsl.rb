@@ -110,6 +110,48 @@ module Vedeu
         model.enabled
       end
 
+      # Set the character to be used to draw the top horizontal part
+      # of the border.
+      #
+      #   Vedeu.border :border_demo do
+      #     top_horizontal '-'
+      #     # ... some code
+      #   end
+      #
+      # @param char [String] Character to be used as the top
+      #   horizontal border character.
+      # @param options [Hash<Symbol => Hash<Symbol => String>|String|
+      #   Symbol]
+      # @option options colour [Hash<Symbol => String>]
+      # @option options style [String|Symbol]
+      # @return [String]
+      def top_horizontal(char, options = {})
+        model.top_horizontal = Vedeu::Cells::TopHorizontal
+          .new(attrs(char, options))
+      end
+      alias_method :top_horizontal=, :top_horizontal
+
+      # Set the character to be used to draw the bottom horizontal
+      # part of the border.
+      #
+      #   Vedeu.border :border_demo do
+      #     bottom_horizontal '-'
+      #     # ... some code
+      #   end
+      #
+      # @param char [String] Character to be used as the bottom
+      #   horizontal border character.
+      # @param options [Hash<Symbol => Hash<Symbol => String>|String|
+      #   Symbol]
+      # @option options colour [Hash<Symbol => String>]
+      # @option options style [String|Symbol]
+      # @return [String]
+      def bottom_horizontal(char, options = {})
+        model.bottom_horizontal = Vedeu::Cells::BottomHorizontal
+          .new(attrs(char, options))
+      end
+      alias_method :bottom_horizontal=, :bottom_horizontal
+
       # Set the character to be used to draw a horizontal part of the
       # border.
       #
@@ -349,6 +391,48 @@ module Vedeu
         model.top_right = Vedeu::Cells::TopRight.new(attrs(char, options))
       end
       alias_method :top_right=, :top_right
+
+      # Set the character to be used to draw the left vertical part of
+      # the border.
+      #
+      #   Vedeu.border :border_demo do
+      #     left_vertical '|'
+      #     # ... some code
+      #   end
+      #
+      # @param char [String] Character to be used as the left vertical
+      #   border character.
+      # @param options [Hash<Symbol => Hash<Symbol => String>|String|
+      #   Symbol]
+      # @option options colour [Hash<Symbol => String>]
+      # @option options style [String|Symbol]
+      # @return [String]
+      def left_vertical(char, options = {})
+        model.left_vertical = Vedeu::Cells::LeftVertical
+          .new(attrs(char, options))
+      end
+      alias_method :left_vertical=, :left_vertical
+
+      # Set the character to be used to draw the right vertical part
+      # of the border.
+      #
+      #   Vedeu.border :border_demo do
+      #     right_vertical '|'
+      #     # ... some code
+      #   end
+      #
+      # @param char [String] Character to be used as the right
+      #   vertical border character.
+      # @param options [Hash<Symbol => Hash<Symbol => String>|String|
+      #   Symbol]
+      # @option options colour [Hash<Symbol => String>]
+      # @option options style [String|Symbol]
+      # @return [String]
+      def right_vertical(char, options = {})
+        model.right_vertical = Vedeu::Cells::RightVertical
+          .new(attrs(char, options))
+      end
+      alias_method :right_vertical=, :right_vertical
 
       # Set the character to be used to draw a vertical part of the
       # border.
