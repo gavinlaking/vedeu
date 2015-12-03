@@ -35,10 +35,10 @@ module Vedeu
         context 'does not add it again if already exists' do
           before { Vedeu.interface('thallium') {} }
 
-          it {
+          it do
             described.add('thallium')
             described.registered.must_equal(['thallium'])
-          }
+          end
         end
 
         it 'does not add it again if already exists' do
@@ -54,21 +54,21 @@ module Vedeu
         context 'adds the interface to storage focussed' do
           before { Vedeu.interface('thallium') {} }
 
-          it {
+          it do
             described.add('thallium')
             described.add('lead', true)
             described.registered.must_equal(['lead', 'thallium'])
-          }
+          end
         end
 
         context 'adds the interface to storage unfocussed' do
           before { Vedeu.interface('thallium') {} }
 
-          it {
+          it do
             described.add('thallium')
             described.add('lead')
             described.registered.must_equal(['thallium', 'lead'])
-          }
+          end
         end
       end
 

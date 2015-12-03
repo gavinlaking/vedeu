@@ -41,20 +41,20 @@ module Vedeu
 
         subject { described.by_name(_name) }
 
-        it {
+        it do
           Vedeu.expects(:trigger).with(:_clear_view_content_, _name)
           subject
-        }
+        end
 
-        it {
+        it do
           Vedeu.buffers.expects(:by_name).with(_name).returns(buffer)
           subject
-        }
+        end
 
-        it {
+        it do
           Vedeu.expects(:trigger).with(:_refresh_border_, _name)
           subject
-        }
+        end
       end
 
       describe '.refresh_content_by_name' do
@@ -66,15 +66,15 @@ module Vedeu
 
         subject { described.refresh_content_by_name(_name) }
 
-        it {
+        it do
           Vedeu.expects(:trigger).with(:_clear_view_content_, _name)
           subject
-        }
+        end
 
-        it {
+        it do
           Vedeu.buffers.expects(:by_name).with(_name).returns(buffer)
           subject
-        }
+        end
       end
 
       describe '#by_name' do

@@ -10,7 +10,7 @@ module Vedeu
       include Vedeu::Common
 
       # @param (see #initialize)
-      # @return [String]
+      # @return (see #render)
       def self.render(char, options = {})
         new(char, options).render
       end

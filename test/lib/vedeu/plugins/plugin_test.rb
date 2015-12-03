@@ -13,22 +13,22 @@ module Vedeu
       it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@name').must_equal(_name) }
       it { instance.instance_variable_get('@gem').must_equal(_gem) }
-      it {
+      it do
         instance.instance_variable_get('@gem_name').
           must_equal("vedeu_#{_name}")
-      }
+      end
       it { instance.instance_variable_get('@enabled').must_equal(false) }
     end
 
     describe 'accessors' do
-      it {
+      it do
         instance.must_respond_to(:name)
         instance.must_respond_to(:gem)
         instance.must_respond_to(:gem_name)
         instance.must_respond_to(:enabled)
         instance.must_respond_to(:enabled=)
         instance.must_respond_to(:enabled?)
-      }
+      end
     end
 
     describe '#load!' do

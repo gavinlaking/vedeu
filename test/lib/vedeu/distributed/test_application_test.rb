@@ -13,7 +13,7 @@ module Vedeu
     end
 
     describe 'accessors' do
-      it {
+      it do
         instance.must_respond_to(:borders)
         instance.must_respond_to(:borders=)
         instance.must_respond_to(:configuration)
@@ -30,7 +30,7 @@ module Vedeu
         instance.must_respond_to(:menus=)
         instance.must_respond_to(:views)
         instance.must_respond_to(:views=)
-      }
+      end
     end
 
     describe '.build' do

@@ -6,10 +6,11 @@ module Vedeu
 
     describe Caption do
 
-      let(:described) { Vedeu::Borders::Caption }
-      let(:instance)  { described.new(_value, chars) }
-      let(:_value)    { 'Bismuth' }
-      let(:chars)     {
+      let(:described)  { Vedeu::Borders::Caption }
+      let(:instance)   { described.new(_name, _value, horizontal) }
+      let(:_name)      { 'Vedeu::Borders::Caption' }
+      let(:_value)     { 'Bismuth' }
+      let(:horizontal) {
         [
           Vedeu::Views::Char.new(value: '-', position: [4, 1], border: type),
           Vedeu::Views::Char.new(value: '-', position: [4, 2], border: type),
@@ -31,24 +32,39 @@ module Vedeu
         context 'when the caption is empty' do
           let(:_value) {}
 
-          it { subject.must_equal(chars) }
+          it { subject.must_equal(horizontal) }
         end
 
         context 'when the caption is not empty' do
+          let(:border)   {
+            Vedeu::Borders::Border.new(name: _name)
+          }
+          let(:geometry) {
+            Vedeu::Geometries::Geometry.new(name: _name,
+                                            x:    1,
+                                            xn:   10,
+                                            y:    1,
+                                            yn:   4)
+          }
           let(:expected) {
             [
               Vedeu::Views::Char.new(value: '-', position: [4, 1], border: type),
-              Vedeu::Views::Char.new(value: ' ', position: [4, 2], border: nil),
-              Vedeu::Views::Char.new(value: 'B', position: [4, 3], border: nil),
-              Vedeu::Views::Char.new(value: 'i', position: [4, 4], border: nil),
-              Vedeu::Views::Char.new(value: 's', position: [4, 5], border: nil),
-              Vedeu::Views::Char.new(value: 'm', position: [4, 6], border: nil),
-              Vedeu::Views::Char.new(value: 'u', position: [4, 7], border: nil),
-              Vedeu::Views::Char.new(value: 't', position: [4, 8], border: nil),
-              Vedeu::Views::Char.new(value: ' ', position: [4, 9], border: nil),
+              Vedeu::Cells::Char.new(value: ' ', position: [4, 2]),
+              Vedeu::Cells::Char.new(value: 'B', position: [4, 3]),
+              Vedeu::Cells::Char.new(value: 'i', position: [4, 4]),
+              Vedeu::Cells::Char.new(value: 's', position: [4, 5]),
+              Vedeu::Cells::Char.new(value: 'm', position: [4, 6]),
+              Vedeu::Cells::Char.new(value: 'u', position: [4, 7]),
+              Vedeu::Cells::Char.new(value: 't', position: [4, 8]),
+              Vedeu::Cells::Char.new(value: ' ', position: [4, 9]),
               Vedeu::Views::Char.new(value: '-', position: [4, 10], border: type),
             ]
           }
+
+          before do
+            Vedeu.borders.stubs(:by_name).returns(border)
+            Vedeu.geometries.stubs(:by_name).returns(geometry)
+          end
 
           it { subject.must_equal(expected) }
         end

@@ -6,33 +6,23 @@ module Vedeu
     # the caption is longer than the interface is wide, and pad with a
     # space either side.
     #
+    # The caption is displayed within the bottom border of the
+    # interface/view.
+    #
     # @api private
     #
-    class Caption < Title
-
-      # Overwrite the border from
-      # {Vedeu::Borders::Border#build_horizontal} on the bottom border
-      # to include the caption if given.
-      #
-      # @return [Array<Vedeu::Views::Char>]
-      def render
-        return chars if empty?
-
-        caption_index = 0
-        chars.each_with_index do |char, index|
-          next if index <= start_index || index > (width - 2)
-
-          char.border   = nil
-          char.value    = characters[caption_index]
-          caption_index += 1
-        end
-      end
+    class Caption < Vedeu::Borders::Title
 
       private
 
       # @return [Fixnum]
       def start_index
-        (width - size) - 2
+        (width - size) - 1
+      end
+
+      # @return [Fixnum]
+      def y
+        @_y ||= geometry.yn
       end
 
     end # Caption

@@ -8,9 +8,8 @@ module Vedeu
     #
     class Item
 
-      # @param collection [Vedeu::Editor::Line|Vedeu::Editor::Lines]
-      # @param index [Fixnum]
-      # @return [String|Vedeu::Editor::Line]
+      # @param (see #initialize)
+      # @return (see #by_index)
       def self.by_index(collection, index = nil)
         new(collection, index).by_index
       end

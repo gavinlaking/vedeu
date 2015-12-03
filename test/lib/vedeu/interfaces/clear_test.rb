@@ -37,6 +37,7 @@ module Vedeu
         let(:interface) {
           Vedeu::Interfaces::Interface.new(name: _name, visible: visible)
         }
+        let(:colour)    { interface.colour }
         let(:visible)   { true }
         let(:geometry)  {
           Vedeu::Geometries::Geometry.new(name: _name, x: 1, y: 1, xn: 2, yn: 2)
@@ -44,11 +45,19 @@ module Vedeu
         let(:output) {
           [
             [
-              Vedeu::Views::Char.new(name: _name, value: ' ', position: [1, 1]),
-              Vedeu::Views::Char.new(name: _name, value: ' ', position: [1, 2]),
+              Vedeu::Cells::Clear.new(colour:   colour,
+                                      name:     _name,
+                                      position: [1, 1]),
+              Vedeu::Cells::Clear.new(colour:   colour,
+                                      name:     _name,
+                                      position: [1, 2]),
             ], [
-              Vedeu::Views::Char.new(name: _name, value: ' ', position: [2, 1]),
-              Vedeu::Views::Char.new(name: _name, value: ' ', position: [2, 2]),
+              Vedeu::Cells::Clear.new(colour:   colour,
+                                      name:     _name,
+                                      position: [2, 1]),
+              Vedeu::Cells::Clear.new(colour:   colour,
+                                      name:     _name,
+                                      position: [2, 2]),
             ]
           ]
         }
@@ -62,10 +71,10 @@ module Vedeu
         subject { instance.render }
 
         it { subject.must_be_instance_of(Array) }
-        it {
+        it do
           Vedeu.expects(:render_output).with(output)
           subject
-        }
+        end
         it { subject.must_equal(output) }
       end
 

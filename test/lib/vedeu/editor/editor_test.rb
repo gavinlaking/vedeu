@@ -62,86 +62,86 @@ module Vedeu
           context 'when the input is :backspace' do
             let(:input) { :backspace }
 
-            it {
+            it do
               document.expects(:delete_character)
               subject
-            }
+            end
           end
 
           context 'when the input is :ctrl_c' do
             let(:input) { :ctrl_c }
 
-            it {
+            it do
               Vedeu.expects(:trigger).with(:_exit_)
               subject
-            }
+            end
           end
 
           context 'when the input is :down' do
             let(:input) { :down }
 
-            it {
+            it do
               document.expects(:down)
               subject
-            }
+            end
           end
 
           context 'when the input is :enter' do
             let(:input) { :enter }
 
-            it {
+            it do
               document.expects(:insert_line)
               subject
-            }
+            end
           end
 
           context 'when the input is :escape' do
             let(:input) { :escape }
 
-            it {
+            it do
               Vedeu.expects(:trigger).with(:_mode_switch_)
               subject
-            }
+            end
           end
 
           context 'when the input is :left' do
             let(:input) { :left }
 
-            it {
+            it do
               document.expects(:left)
               subject
-            }
+            end
           end
 
           context 'when the input is :right' do
             let(:input) { :right }
 
-            it {
+            it do
               document.expects(:right)
               subject
-            }
+            end
           end
 
           context 'when the input is :tab' do
             let(:input) { :tab }
             let(:data)  { mock(:empty? => false) }
 
-            # it {
+            # it do
             #   document.expects(:execute).returns(data)
             #   document.expects(:reset!)
             #   document.expects(:clear)
             #   Vedeu.expects(:trigger).with(:_command_, data)
             #   subject
-            # }
+            # end
           end
 
           context 'when the input is :up' do
             let(:input) { :up }
 
-            it {
+            it do
               document.expects(:up)
               subject
-            }
+            end
           end
 
           context 'when the input is something else' do
@@ -154,10 +154,10 @@ module Vedeu
             context 'when the input is not a symbol' do
               let(:input) { 'a' }
 
-              it {
+              it do
                 document.expects(:insert_character).with(input)
                 subject
-              }
+              end
             end
           end
         end

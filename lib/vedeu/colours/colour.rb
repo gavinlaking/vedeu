@@ -87,15 +87,15 @@ module Vedeu
 
       # @return [Vedeu::Colours::Background]
       def background
-        @background = Vedeu::Colours::Background.coerce(@background)
+        @_background ||= Vedeu::Colours::Background.coerce(@background)
       end
 
       # Converts the value into a Vedeu::Colours::Background.
       #
       # @param value [String]
-      # @return [String]
+      # @return [Vedeu::Colours::Foreground]
       def background=(value)
-        @background = Vedeu::Colours::Background.coerce(value)
+        @_background = @background = Vedeu::Colours::Background.coerce(value)
       end
 
       # An object is equal when its values are the same.
@@ -110,15 +110,15 @@ module Vedeu
 
       # @return [Vedeu::Colours::Foreground]
       def foreground
-        @foreground = Vedeu::Colours::Foreground.coerce(@foreground)
+        @_foreground ||= Vedeu::Colours::Foreground.coerce(@foreground)
       end
 
       # Converts the value into a Vedeu::Colours::Foreground.
       #
       # @param value [String]
-      # @return [String]
+      # @return [Vedeu::Colours::Foreground]
       def foreground=(value)
-        @foreground = Vedeu::Colours::Foreground.coerce(value)
+        @_foreground = @foreground = Vedeu::Colours::Foreground.coerce(value)
       end
 
       # Returns both or either of the converted attributes into a

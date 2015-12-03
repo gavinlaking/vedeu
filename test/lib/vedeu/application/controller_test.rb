@@ -29,11 +29,11 @@ module Vedeu
       describe '.controller' do
         subject { described_model.controller(:some_controller) }
 
-        it {
+        it do
           Vedeu::Runtime::Router.expects(:add_controller).
             with(:some_controller, 'Vedeu::ControllerTestKlass')
           subject
-        }
+        end
 
         it { subject.must_be_instance_of(Hash) }
       end
@@ -41,13 +41,13 @@ module Vedeu
       describe '.action' do
         subject { described_model.action(:some_action, :other_action) }
 
-        it {
+        it do
           Vedeu::Runtime::Router.expects(:add_action).
             with(:some_controller, :some_action)
           Vedeu::Runtime::Router.expects(:add_action).
             with(:some_controller, :other_action)
           subject
-        }
+        end
 
         it { subject.must_be_instance_of(Array) }
       end

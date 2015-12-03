@@ -59,10 +59,10 @@ module Vedeu
         context 'when the border is enabled' do
           let(:enabled) { true }
 
-          it {
+          it do
             Vedeu.expects(:render_output)
             subject
-          }
+          end
 
           context 'but the interface/view is not visible' do
             let(:visible) { false }

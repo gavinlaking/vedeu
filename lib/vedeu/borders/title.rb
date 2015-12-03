@@ -6,33 +6,38 @@ module Vedeu
     # title is longer than the interface is wide, and pad with a space
     # either side.
     #
+    # The title is displayed within the top border of the interface/
+    # view.
+    #
     # @api private
     #
     class Title
 
-      # @param chars [Array<Vedeu::Views::Char>]
-      # @param value [String|Vedeu::Borders::Title|
-      #   Vedeu::Borders::Caption]
-      # @return [Array<Vedeu::Views::Char>]
-      def self.render(value = '', chars = [])
-        new(value, chars).render
+      include Vedeu::Common
+
+      # @param (see #initialize)
+      # @return (see #render)
+      def self.render(name, value = '', horizontal = [])
+        new(name, value, horizontal).render
       end
 
       # Returns a new instance of Vedeu::Borders::Title or
       # Vedeu::Borders::Caption.
       #
-      # @param chars [Array<Vedeu::Views::Char>]
+      # @param name [String|Symbol]
       # @param value [String|Vedeu::Borders::Title|
+      # @param horizontal [Array<Vedeu::Cells::Horizontal>]
       #   Vedeu::Borders::Caption]
       # @return [Vedeu::Borders::Title|Vedeu::Borders::Caption]
-      def initialize(value = '', chars = [])
-        @value = value
-        @chars = chars
+      def initialize(name, value = '', horizontal = [])
+        @name       = name
+        @value      = value
+        @horizontal = horizontal
       end
 
       # An object is equal when its values are the same.
       #
-      # @param other [Vedeu::Borders::Title]
+      # @param other [Vedeu::Borders::Title|Vedeu::Borders::Caption]
       # @return [Boolean]
       def eql?(other)
         self.class == other.class && value == other.value
@@ -43,16 +48,13 @@ module Vedeu
       # {Vedeu::Borders::Border#build_horizontal} on the top border to
       # include the title if given.
       #
-      # @return [Array<Vedeu::Views::Char>]
+      # @return [Array<Vedeu::Cells::Horizontal|Vedeu::Cells::Char>]
       def render
-        return chars if empty?
+        return horizontal if empty?
 
-        chars.each_with_index do |char, index|
-          next if index == start_index || index > size
+        horizontal[start_index..(start_index + (size - 1))] = chars
 
-          char.border = nil
-          char.value  = characters[index - 1]
-        end
+        horizontal
       end
 
       # Convert the value to a string.
@@ -74,12 +76,38 @@ module Vedeu
 
       protected
 
-      # @!attribute [r] chars
-      # @return [Array<Vedeu::Views::Char>] An array of border
+      # @!attribute [r] horizontal
+      # @return [Array<Vedeu::Cells::Horizontal>] An array of border
       #   characters.
-      attr_reader :chars
+      attr_reader :horizontal
+
+      # @!attribute [r] name
+      # @return [String|Symbol]
+      attr_reader :name
 
       private
+
+      # @param char [String]
+      # @param x [Fixnum]
+      # @return [Hash<Symbol => void>]
+      def attributes(char, x)
+        @_attributes ||= border.attributes
+
+        @_attributes.merge!(position: Vedeu::Geometries::Position.new(y, x),
+                            value:    char)
+      end
+
+      # @return [Vedeu::Borders::Border]
+      def border
+        @_border ||= Vedeu.borders.by_name(name)
+      end
+
+      # @return [Array<Vedeu::Cells::Horizontal|Vedeu::Cells::Char>]
+      def chars
+        characters.each_with_index.map do |char, index|
+          Vedeu::Cells::Char.new(attributes(char, x + index))
+        end
+      end
 
       # Return the padded, truncated value as an Array of String.
       #
@@ -93,6 +121,11 @@ module Vedeu
       # @return [Boolean]
       def empty?
         value.empty?
+      end
+
+      # @return [Vedeu::Geometries::Geometry]
+      def geometry
+        @_geometry ||= Vedeu.geometries.by_name(name)
       end
 
       # Pads the value with a single whitespace either side.
@@ -120,7 +153,7 @@ module Vedeu
 
       # @return [Fixnum]
       def start_index
-        0
+        1
       end
 
       # Truncates the value to the width of the interface, minus
@@ -138,14 +171,24 @@ module Vedeu
       #
       # @return [String]
       def truncate
-        title.chomp.slice(0...(width - 4))
+        @_truncate ||= value.chomp.slice(0...(width - 4))
       end
 
-      # Return the size of the horizontal border given via #chars.
+      # Return the size of the horizontal border given.
       #
       # @return [Fixnum]
       def width
-        chars.size
+        horizontal.size
+      end
+
+      # @return [Fixnum]
+      def x
+        @_x ||= geometry.bx + start_index
+      end
+
+      # @return [Fixnum]
+      def y
+        @_y ||= geometry.y
       end
 
     end # Title

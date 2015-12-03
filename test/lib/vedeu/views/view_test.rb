@@ -29,7 +29,7 @@ module Vedeu
       let(:_name)      { 'Vedeu::Views::View' }
 
       describe 'accessors' do
-        it {
+        it do
           instance.must_respond_to(:client)
           instance.must_respond_to(:client=)
           instance.must_respond_to(:cursor_visible)
@@ -41,7 +41,7 @@ module Vedeu
           instance.must_respond_to(:lines=)
           instance.must_respond_to(:zindex)
           instance.must_respond_to(:zindex=)
-        }
+        end
       end
 
       describe '#add' do
@@ -81,10 +81,10 @@ module Vedeu
 
         it { subject.must_be_instance_of(described) }
 
-        it {
+        it do
           Vedeu.expects(:trigger).with(:_refresh_view_, _name)
           subject
-        }
+        end
       end
 
       describe '#store_deferred' do

@@ -48,7 +48,7 @@ module Vedeu
       end
 
       describe 'accessors' do
-        it {
+        it do
           instance.must_respond_to(:y)
           instance.must_respond_to(:yn)
           instance.must_respond_to(:x)
@@ -57,7 +57,7 @@ module Vedeu
           instance.must_respond_to(:bottom)
           instance.must_respond_to(:left)
           instance.must_respond_to(:right)
-        }
+        end
       end
 
       describe '#initialize' do

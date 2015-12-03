@@ -33,9 +33,9 @@ module Vedeu
             Vedeu.cursors.reset
           }
 
-          it {
+          it do
             subject.must_be_instance_of(Vedeu::Cursors::Cursor)
-          }
+          end
         end
 
         context 'when there are no interfaces or views defined' do

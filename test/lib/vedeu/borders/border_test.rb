@@ -49,8 +49,10 @@ module Vedeu
       end
 
       describe 'accessors' do
-        it {
+        it do
           instance.must_respond_to(:attributes)
+          instance.must_respond_to(:bottom_horizontal)
+          instance.must_respond_to(:bottom_horizontal=)
           instance.must_respond_to(:bottom_left)
           instance.must_respond_to(:bottom_left=)
           instance.must_respond_to(:bottom_right)
@@ -73,17 +75,23 @@ module Vedeu
           instance.must_respond_to(:show_top=)
           instance.must_respond_to(:title)
           instance.must_respond_to(:title=)
+          instance.must_respond_to(:top_horizontal)
+          instance.must_respond_to(:top_horizontal=)
           instance.must_respond_to(:top_left)
           instance.must_respond_to(:top_left=)
           instance.must_respond_to(:top_right)
           instance.must_respond_to(:top_right=)
+          instance.must_respond_to(:left_vertical)
+          instance.must_respond_to(:left_vertical=)
+          instance.must_respond_to(:right_vertical)
+          instance.must_respond_to(:right_vertical=)
           instance.must_respond_to(:vertical)
           instance.must_respond_to(:vertical=)
           instance.must_respond_to(:name)
           instance.must_respond_to(:enabled)
           instance.must_respond_to(:enabled=)
           instance.must_respond_to(:enabled?)
-        }
+        end
       end
 
       describe '#deputy' do

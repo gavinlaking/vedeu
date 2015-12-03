@@ -78,20 +78,20 @@ module Vedeu
         context 'when the mode is given' do
           let(:mode) { :cooked }
 
-          it {
+          it do
             subject
             Vedeu::Configuration.terminal_mode.must_equal(:cooked)
-          }
+          end
 
           context 'when the mode given is not valid' do
             let(:mode) { :invalid }
 
             before { described.cooked_mode! }
 
-            it {
+            it do
               subject
               Vedeu::Configuration.terminal_mode.must_equal(:raw)
-            }
+            end
           end
         end
       end

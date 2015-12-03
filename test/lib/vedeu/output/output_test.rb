@@ -26,10 +26,10 @@ module Vedeu
         context 'when the output is not empty' do
           let(:output) { Vedeu::Models::Page.new }
 
-          it {
+          it do
             Vedeu::Buffers::Terminal.expects(:write).with(output)
             subject
-          }
+          end
         end
       end
 
@@ -45,10 +45,10 @@ module Vedeu
             Vedeu::Models::Escape.new(value: "\e[?25h", position: [1, 1])
           }
 
-          it {
+          it do
             Vedeu::Terminal.expects(:output).with(output.to_s)
             subject
-          }
+          end
         end
       end
 
@@ -65,19 +65,19 @@ module Vedeu
               Vedeu::Models::Escape.new(value: "\e[?25h", position: [1, 1])
             }
 
-            it {
+            it do
               Vedeu::Terminal.expects(:output).with(output.to_s)
               subject
-            }
+            end
           end
 
           context 'and the output is not an escape sequence' do
             let(:output) { Vedeu::Models::Page.new }
 
-            it {
+            it do
               Vedeu::Buffers::Terminal.expects(:write).with(output)
               subject
-            }
+            end
           end
         end
       end

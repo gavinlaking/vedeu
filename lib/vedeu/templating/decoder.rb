@@ -10,7 +10,7 @@ module Vedeu
     class Decoder
 
       # @param (see #initialize)
-      # @return [Object]
+      # @return (see #process)
       def self.process(data)
         new(data).process
       end

@@ -20,10 +20,10 @@ module Vedeu
       end
 
       describe 'accessors' do
-        it {
+        it do
           instance.must_respond_to(:value)
           instance.must_respond_to(:value=)
-        }
+        end
       end
 
       describe '.coerce' do

@@ -21,9 +21,18 @@ module Vedeu
       # @return [void] A new instance of the class including this
       #   module.
       def initialize(attributes = {})
-        defaults.merge!(attributes).each do |key, value|
+        attrs = attributes.to_h.keep_if { |key, _| defaults.key?(key) }
+
+        defaults.merge!(attrs).each do |key, value|
           instance_variable_set("@#{key}", value || defaults.fetch(key))
         end
+      end
+
+      private
+
+      # @return [Hash<void>]
+      def defaults
+        {}
       end
 
     end # Defaults

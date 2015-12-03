@@ -65,16 +65,16 @@ module Vedeu
         it { subject.instance_variable_get('@name').must_equal('silver') }
         it { subject.instance_variable_get('@ox').must_equal(ox) }
         it { subject.instance_variable_get('@oy').must_equal(oy) }
-        it {
+        it do
           subject.instance_variable_get('@repository').must_equal(repository)
-        }
+        end
         it { subject.instance_variable_get('@visible').must_equal(true) }
         it { subject.instance_variable_get('@x').must_equal(x) }
         it { subject.instance_variable_get('@y').must_equal(y) }
       end
 
       describe 'accessors' do
-        it {
+        it do
           instance.must_respond_to(:attributes)
           instance.must_respond_to(:name)
           instance.must_respond_to(:ox)
@@ -84,7 +84,7 @@ module Vedeu
           instance.must_respond_to(:visible)
           instance.must_respond_to(:x=)
           instance.must_respond_to(:y=)
-        }
+        end
       end
 
       describe '#eql?' do

@@ -12,9 +12,7 @@ module Vedeu
 
       include Vedeu::Common
 
-      # @param name [String|Symbol]
-      # @param attribute [Symbol]
-      # @param value [String]
+      # @param (see #initialize)
       # @return [Vedeu::Borders::Border]
       def self.update(name, attribute, value)
         new(name, attribute, value).update

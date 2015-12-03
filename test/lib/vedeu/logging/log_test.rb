@@ -29,11 +29,11 @@ module Vedeu
 
         subject { described.log_stdout(type: type, message: _message) }
 
-        it {
+        it do
           capture_io { subject }.must_equal(
             ["\e[96m[create]   \e[39m\e[36mLogging to stdout...\e[39m\n", ""]
           )
-        }
+        end
       end
 
       describe '.log_stdout' do
@@ -42,11 +42,11 @@ module Vedeu
 
         subject { described.log_stderr(type: type, message: _message) }
 
-        it {
+        it do
           capture_io { subject }.must_equal(
             ["", "\e[97m[debug]    \e[39m\e[37mLogging to stderr...\e[39m\n"]
           )
-        }
+        end
       end
 
     end # Log

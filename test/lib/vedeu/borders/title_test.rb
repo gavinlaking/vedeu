@@ -6,10 +6,11 @@ module Vedeu
 
     describe Title do
 
-      let(:described) { Vedeu::Borders::Title }
-      let(:instance)  { described.new(_value, chars) }
-      let(:_value)    { 'Aluminium' }
-      let(:chars)     {
+      let(:described)  { Vedeu::Borders::Title }
+      let(:instance)   { described.new(_name, _value, horizontal) }
+      let(:_name)      { 'Vedeu::Borders::Title' }
+      let(:_value)     { 'Aluminium' }
+      let(:horizontal) {
         [
           Vedeu::Views::Char.new(value: '-', position: [1, 1], border: type),
           Vedeu::Views::Char.new(value: '-', position: [1, 2], border: type),
@@ -27,31 +28,32 @@ module Vedeu
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
+        it { instance.instance_variable_get('@name').must_equal(_name) }
         it { instance.instance_variable_get('@value').must_equal(_value) }
-        it { instance.instance_variable_get('@chars').must_equal(chars) }
+        it { instance.instance_variable_get('@horizontal').must_equal(horizontal) }
       end
 
       describe '.render' do
-        subject { described.render(_value, chars) }
+        subject { described.render(_name, _value, horizontal) }
 
         context 'when the title is empty' do
           let(:_value) {}
 
-          it { subject.must_equal(chars) }
+          it { subject.must_equal(horizontal) }
         end
 
         context 'when the title is not empty' do
           let(:expected) {
             [
               Vedeu::Views::Char.new(value: '-', position: [1, 1], border: type),
-              Vedeu::Views::Char.new(value: ' ', position: [1, 2], border: nil),
-              Vedeu::Views::Char.new(value: 'A', position: [1, 3], border: nil),
-              Vedeu::Views::Char.new(value: 'l', position: [1, 4], border: nil),
-              Vedeu::Views::Char.new(value: 'u', position: [1, 5], border: nil),
-              Vedeu::Views::Char.new(value: 'm', position: [1, 6], border: nil),
-              Vedeu::Views::Char.new(value: 'i', position: [1, 7], border: nil),
-              Vedeu::Views::Char.new(value: 'n', position: [1, 8], border: nil),
-              Vedeu::Views::Char.new(value: ' ', position: [1, 9], border: nil),
+              Vedeu::Cells::Char.new(value: ' ', position: [1, 2]),
+              Vedeu::Cells::Char.new(value: 'A', position: [1, 3]),
+              Vedeu::Cells::Char.new(value: 'l', position: [1, 4]),
+              Vedeu::Cells::Char.new(value: 'u', position: [1, 5]),
+              Vedeu::Cells::Char.new(value: 'm', position: [1, 6]),
+              Vedeu::Cells::Char.new(value: 'i', position: [1, 7]),
+              Vedeu::Cells::Char.new(value: 'n', position: [1, 8]),
+              Vedeu::Cells::Char.new(value: ' ', position: [1, 9]),
               Vedeu::Views::Char.new(value: '-', position: [1, 10], border: type),
             ]
           }

@@ -26,10 +26,10 @@ module Vedeu
 
         subject { described.render(_name) }
 
-        it {
+        it do
           Vedeu.expects(:trigger).with(:_clear_view_, _name)
           subject
-        }
+        end
 
         it { described.must_respond_to(:by_group) }
         it { described.must_respond_to(:clear_by_group) }

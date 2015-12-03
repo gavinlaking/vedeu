@@ -96,11 +96,11 @@ module Vedeu
             Process.stubs(:kill)
           end
 
-          it {
+          it do
             server.expects(:shutdown)
             Process.expects(:kill)
             subject
-          }
+          end
 
           # @todo Add more tests.
           # it { skip }

@@ -22,20 +22,20 @@ module Vedeu
     let(:visible)            { false }
 
     describe 'accessors' do
-      it {
+      it do
         instance.must_respond_to(:visible)
         instance.must_respond_to(:visible=)
         instance.must_respond_to(:visible?)
-      }
+      end
     end
 
     describe '#hide' do
       subject { instance.hide }
 
-      it {
+      it do
         subject
         instance.instance_variable_get('@visible').must_equal(false)
-      }
+      end
 
       it { Vedeu::ToggleableTestClass.must_respond_to(:hide_cursor) }
       it { Vedeu::ToggleableTestClass.must_respond_to(:hide_group) }
@@ -45,10 +45,10 @@ module Vedeu
     describe '#show' do
       subject { instance.show }
 
-      it {
+      it do
         subject
         instance.instance_variable_get('@visible').must_equal(true)
-      }
+      end
 
       it { Vedeu::ToggleableTestClass.must_respond_to(:show_cursor) }
       it { Vedeu::ToggleableTestClass.must_respond_to(:show_group) }
@@ -65,17 +65,17 @@ module Vedeu
       context 'when the model is visible' do
         let(:visible) { true }
 
-        it {
+        it do
           subject
           instance.instance_variable_get('@visible').must_equal(false)
-        }
+        end
       end
 
       context 'when the model is not visible' do
-        it {
+        it do
           subject
           instance.instance_variable_get('@visible').must_equal(true)
-        }
+        end
       end
     end
 

@@ -48,25 +48,25 @@ module Vedeu
             end
             after  { described.reset! }
 
-            it {
+            it do
               subject.must_equal({
                 some_controller: {
                   klass:   'SomeController',
                   actions: [:show_basket]
                 }
               })
-            }
+            end
           end
 
           context 'when the controller is not registered' do
-            it {
+            it do
               subject.must_equal({
                 some_controller: {
                   klass:   'SomeController',
                   actions: []
                 }
               })
-            }
+            end
           end
         end
       end
@@ -99,27 +99,27 @@ module Vedeu
             before { described.add_controller(controller, 'SomeController') }
             after  { described.reset! }
 
-            it {
+            it do
               subject.must_equal({
                 some_controller: {
                   klass:   'SomeController',
                   actions: [:some_action]
                 }
               })
-            }
+            end
           end
 
           context 'when the controller is not registered' do
             before { described.reset! }
 
-            it {
+            it do
               subject.must_equal({
                 some_controller: {
                   klass:   '',
                   actions: [:some_action]
                 }
               })
-            }
+            end
           end
         end
       end
@@ -138,11 +138,11 @@ module Vedeu
 
       #   subject { Vedeu.trigger(:_goto_, controller, action, **args) }
 
-      #   it {
+      #   it do
       #     Vedeu::Runtime::Router.expects(:goto)
       #       .with(:some_controller, :show_basket, args)
       #     subject
-      #   }
+      #   end
       # end
 
       describe '.goto' do
@@ -169,7 +169,7 @@ module Vedeu
             end
             after { described.reset! }
 
-            it {
+            it do
               subject.must_equal({
                 customer: {
                   name: 'Gavin Laking',
@@ -179,7 +179,7 @@ module Vedeu
                   product_ids: [88]
                 }
               })
-            }
+            end
           end
 
           context 'when the action is not defined for this controller' do

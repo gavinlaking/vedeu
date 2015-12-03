@@ -34,11 +34,11 @@ module Vedeu
 
         subject { instance.kill }
 
-        it {
+        it do
           Process.expects(:kill)
           File.expects(:unlink)
           subject
-        }
+        end
       end
 
     end # Subprocess

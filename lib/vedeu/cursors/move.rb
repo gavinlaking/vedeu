@@ -14,9 +14,8 @@ module Vedeu
       def_delegators :cursor,
                      :visible?
 
-      # @param name [String|Symbol]
-      # @param direction [Symbol]
-      # @return [Vedeu::Cursors::Cursor]
+      # @param (see #initialize)
+      # @return (see #move)
       def self.move(name, direction)
         new(name, direction).move
       end

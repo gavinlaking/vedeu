@@ -29,21 +29,21 @@ module Vedeu
           context 'when input was given' do
             let(:input) { 'Some text...' }
 
-            it {
+            it do
               Vedeu.expects(:trigger).with(:_command_, input)
               subject.must_equal(input)
-            }
+            end
           end
 
           context 'when input was not given' do
             let(:some_input) { "Some text...\n" }
             let(:chomped)    { 'Some text...' }
 
-            it {
+            it do
               Vedeu::Terminal.console.expects(:gets).returns(some_input)
               Vedeu.expects(:trigger).with(:_command_, chomped)
               subject.must_equal(chomped)
-            }
+            end
           end
         end
 
@@ -53,33 +53,33 @@ module Vedeu
           context 'when input was given' do
             let(:input) { 'S' }
 
-            it {
+            it do
               Vedeu.expects(:trigger).with(:_keypress_, input)
               subject.must_equal(input)
-            }
+            end
           end
 
           context 'when input was not given' do
             let(:some_input) { 'T' }
             let(:translated) { 'T' }
 
-            it {
+            it do
               Vedeu::Terminal.console.expects(:getch).returns(some_input)
               Vedeu::Input::Translator.expects(:translate).returns(translated)
               Vedeu.expects(:trigger).with(:_keypress_, translated)
               subject.must_equal(translated)
-            }
+            end
 
             context 'but a special key is pressed' do
               let(:some_input) { "\e[23;2~" }
               let(:translated) { :shift_f11 }
 
-              it {
+              it do
                 Vedeu::Terminal.console.expects(:getch).returns(some_input)
                 Vedeu::Input::Translator.expects(:translate).returns(translated)
                 Vedeu.expects(:trigger).with(:_keypress_, translated)
                 subject.must_equal(translated)
-              }
+              end
             end
           end
         end

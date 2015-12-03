@@ -61,7 +61,7 @@ module Vedeu
       end
 
       describe 'accessors' do
-        it {
+        it do
           instance.must_respond_to(:border)
           instance.must_respond_to(:border=)
           instance.must_respond_to(:name)
@@ -70,7 +70,7 @@ module Vedeu
           instance.must_respond_to(:parent=)
           instance.must_respond_to(:attributes)
           instance.must_respond_to(:value=)
-        }
+        end
       end
 
       describe '#cell?' do

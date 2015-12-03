@@ -19,9 +19,12 @@ module Vedeu
       # @param name [String|Symbol] The name of the interface or view
       #   to which this border belongs.
       # @param block [Proc]
-      # @raise [Vedeu::Error::RequiresBlock]
+      # @raise [Vedeu::Error::MissingRequired|
+      #   Vedeu::Error::RequiresBlock] When a name or block
+      #   respectively are not given.
       # @return [Vedeu::Borders::Border]
       def self.border(name, &block)
+        fail Vedeu::Error::MissingRequired unless name
         fail Vedeu::Error::RequiresBlock unless block_given?
 
         Vedeu::Borders::Border.build(enabled: true, name: name, &block).store
@@ -37,9 +40,13 @@ module Vedeu
       #
       # @param char [String] Character to be used as the bottom left
       #   border character.
+      # @param options [Hash<Symbol => Hash<Symbol => String>|String|
+      #   Symbol]
+      # @option options colour [Hash<Symbol => String>]
+      # @option options style [String|Symbol]
       # @return [String]
-      def bottom_left(char)
-        model.bottom_left = char
+      def bottom_left(char, options = {})
+        model.bottom_left = Vedeu::Cells::BottomLeft.new(attrs(char, options))
       end
       alias_method :bottom_left=, :bottom_left
 
@@ -53,9 +60,13 @@ module Vedeu
       #
       # @param char [String] Character to be used as the bottom right
       #   border character.
+      # @param options [Hash<Symbol => Hash<Symbol => String>|String|
+      #   Symbol]
+      # @option options colour [Hash<Symbol => String>]
+      # @option options style [String|Symbol]
       # @return [String]
-      def bottom_right(char)
-        model.bottom_right = char
+      def bottom_right(char, options = {})
+        model.bottom_right = Vedeu::Cells::BottomRight.new(attrs(char, options))
       end
       alias_method :bottom_right=, :bottom_right
 
@@ -109,9 +120,13 @@ module Vedeu
       #
       # @param char [String] Character to be used as the horizontal
       #   border character.
+      # @param options [Hash<Symbol => Hash<Symbol => String>|String|
+      #   Symbol]
+      # @option options colour [Hash<Symbol => String>]
+      # @option options style [String|Symbol]
       # @return [String]
-      def horizontal(char)
-        model.horizontal = char
+      def horizontal(char, options = {})
+        model.horizontal = Vedeu::Cells::Horizontal.new(attrs(char, options))
       end
       alias_method :horizontal=, :horizontal
 
@@ -305,9 +320,13 @@ module Vedeu
       #
       # @param char [String] Character to be used as the top left
       #   border character.
+      # @param options [Hash<Symbol => Hash<Symbol => String>|String|
+      #   Symbol]
+      # @option options colour [Hash<Symbol => String>]
+      # @option options style [String|Symbol]
       # @return [String]
-      def top_left(char)
-        model.top_left = char
+      def top_left(char, options = {})
+        model.top_left = Vedeu::Cells::TopLeft.new(attrs(char, options))
       end
       alias_method :top_left=, :top_left
 
@@ -321,9 +340,13 @@ module Vedeu
       #
       # @param char [String] Character to be used as the top right
       #   border character.
+      # @param options [Hash<Symbol => Hash<Symbol => String>|String|
+      #   Symbol]
+      # @option options colour [Hash<Symbol => String>]
+      # @option options style [String|Symbol]
       # @return [String]
-      def top_right(char)
-        model.top_right = char
+      def top_right(char, options = {})
+        model.top_right = Vedeu::Cells::TopRight.new(attrs(char, options))
       end
       alias_method :top_right=, :top_right
 
@@ -337,11 +360,32 @@ module Vedeu
       #
       # @param char [String] Character to be used as the vertical
       #   border character.
+      # @param options [Hash<Symbol => Hash<Symbol => String>|String|
+      #   Symbol]
+      # @option options colour [Hash<Symbol => String>]
+      # @option options style [String|Symbol]
       # @return [String]
-      def vertical(char)
-        model.vertical = char
+      def vertical(char, options = {})
+        model.vertical = Vedeu::Cells::Vertical.new(attrs(char, options))
       end
       alias_method :vertical=, :vertical
+
+      private
+
+      # @return [Hash<Symbol => void>]
+      def attrs(value, options)
+        default_options.merge!(value: value).merge!(options)
+      end
+
+      # @return [Hash<Symbol => NilClass|String|Symbol>]
+      def default_options
+        {
+          colour: model.colour,
+          name:   model.name,
+          style:  model.style,
+          value:  nil,
+        }
+      end
 
     end # Border
 
