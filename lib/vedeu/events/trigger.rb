@@ -38,8 +38,10 @@ module Vedeu
       #
       # @return [Array]
       def trigger
-        Vedeu.log(type:    :event,
-                  message: "No action for: '#{name.inspect}'") if results.empty?
+        if results.empty?
+          Vedeu.log(type:    :event,
+                    message: "No action for: '#{name.inspect}'".freeze)
+        end
 
         return results[0] if results.one?
 

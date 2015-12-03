@@ -111,7 +111,7 @@ module Vedeu
       def click?(input)
         return false if input.nil? || input.is_a?(Symbol)
 
-        input.is_a?(Vedeu::Cursors::Cursor) || input.start_with?("\e[M")
+        input.is_a?(Vedeu::Cursors::Cursor) || input.start_with?("\e[M".freeze)
       end
 
       # @return [IO]
