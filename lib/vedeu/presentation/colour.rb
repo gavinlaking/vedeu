@@ -18,6 +18,9 @@ module Vedeu
                      elsif self.is_a?(Vedeu::Views::Char) && name
                        Vedeu::Colours::Colour.coerce(interface.colour)
 
+                     elsif self.respond_to?(:named_parent) && name
+                       Vedeu::Colours::Colour.coerce(named_parent.colour)
+
                      elsif parent && present?(parent.colour)
                        Vedeu::Colours::Colour.coerce(parent.colour)
 

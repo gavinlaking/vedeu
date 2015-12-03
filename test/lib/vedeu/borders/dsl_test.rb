@@ -37,22 +37,22 @@ module Vedeu
       end
 
       describe '#bottom_left' do
-        let(:char) { 'C' }
+        let(:char)    { 'C' }
+        let(:options) { {} }
 
-        subject { instance.bottom_left(char) }
+        subject { instance.bottom_left(char, options) }
 
-        it { subject.must_be_instance_of(String) }
-        it { subject.must_equal('C') }
+        it { subject.must_be_instance_of(Vedeu::Cells::BottomLeft) }
         it { instance.must_respond_to(:bottom_left=) }
       end
 
       describe '#bottom_right' do
-        let(:char) { 'D' }
+        let(:char)    { 'D' }
+        let(:options) { {} }
 
-        subject { instance.bottom_right(char) }
+        subject { instance.bottom_right(char, options) }
 
-        it { subject.must_be_instance_of(String) }
-        it { subject.must_equal('D') }
+        it { subject.must_be_instance_of(Vedeu::Cells::BottomRight) }
         it { instance.must_respond_to(:bottom_right=) }
       end
 
@@ -69,12 +69,12 @@ module Vedeu
       end
 
       describe '#horizontal' do
-        let(:char) { 'H' }
+        let(:char)    { 'H' }
+        let(:options) { {} }
 
-        subject { instance.horizontal(char) }
+        subject { instance.horizontal(char, options) }
 
-        it { subject.must_be_instance_of(String) }
-        it { subject.must_equal('H') }
+        it { subject.must_be_instance_of(Vedeu::Cells::Horizontal) }
         it { instance.must_respond_to(:horizontal=) }
       end
 
@@ -208,22 +208,22 @@ module Vedeu
       end
 
       describe '#top_left' do
-        let(:char) { 'A' }
+        let(:char)    { 'A' }
+        let(:options) { {} }
 
-        subject { instance.top_left(char) }
+        subject { instance.top_left(char, options) }
 
-        it { subject.must_be_instance_of(String) }
-        it { subject.must_equal('A') }
+        it { subject.must_be_instance_of(Vedeu::Cells::TopLeft) }
         it { instance.must_respond_to(:top_left=) }
       end
 
       describe '#top_right' do
-        let(:char) { 'B' }
+        let(:char)    { 'B' }
+        let(:options) { {} }
 
-        subject { instance.top_right(char) }
+        subject { instance.top_right(char, options) }
 
-        it { subject.must_be_instance_of(String) }
-        it { subject.must_equal('B') }
+        it { subject.must_be_instance_of(Vedeu::Cells::TopRight) }
         it { instance.must_respond_to(:top_right=) }
       end
 
@@ -247,12 +247,12 @@ module Vedeu
       end
 
       describe '#vertical' do
-        let(:char) { 'V' }
+        let(:char)    { 'V' }
+        let(:options) { {} }
 
-        subject { instance.vertical(char) }
+        subject { instance.vertical(char, options) }
 
-        it { subject.must_be_instance_of(String) }
-        it { subject.must_equal('V') }
+        it { subject.must_be_instance_of(Vedeu::Cells::Vertical) }
         it { instance.must_respond_to(:vertical=) }
       end
 

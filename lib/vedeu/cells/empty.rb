@@ -56,9 +56,19 @@ module Vedeu
         }
       end
 
+      # @return [Vedeu::Borders::Border]
+      def border
+        Vedeu.borders.by_name(name)
+      end
+
+      # @return [Vedeu::Geometries::Geometry]
+      def geometry
+        Vedeu.geometries.by_name(name)
+      end
+
       # @return [Vedeu::Interfaces::Interface]
       def interface
-        @interface ||= Vedeu.interfaces.by_name(name)
+        Vedeu.interfaces.by_name(name)
       end
 
     end # Empty

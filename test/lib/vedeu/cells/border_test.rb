@@ -15,6 +15,30 @@ module Vedeu
       }
       let(:_value) {}
 
+      describe '#attributes' do
+        subject { instance.attributes }
+
+        it { subject.must_be_instance_of(Hash) }
+      end
+
+      describe '#cell?' do
+        subject { instance.cell? }
+
+        it { subject.must_equal(false) }
+      end
+
+      describe '#name=' do
+        subject { instance.name=(_value) }
+
+        # @todo Add more tests.
+      end
+
+      describe '#named_parent' do
+        subject { instance.named_parent }
+
+        # @todo Add more tests.
+      end
+
       describe '#value' do
         subject { instance.value }
 

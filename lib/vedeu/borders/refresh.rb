@@ -15,6 +15,7 @@ module Vedeu
                      :bottom?,
                      :bottom_left,
                      :bottom_right,
+                     :bottom_horizontal,
                      :caption,
                      :colour,
                      :enabled?,
@@ -26,7 +27,10 @@ module Vedeu
                      :top?,
                      :top_left,
                      :top_right,
-                     :vertical
+                     :top_horizontal,
+                     :vertical,
+                     :left_vertical,
+                     :right_vertical
 
       def_delegators :geometry,
                      :bordered_height,
@@ -79,6 +83,15 @@ module Vedeu
 
       private
 
+      # @return [Hash<Symbol => void>]
+      def attributes
+        {
+          colour: colour,
+          name:   name,
+          style:  style,
+        }
+      end
+
       # Returns the border for the interface.
       #
       # @return (see Vedeu::Borders::Repository#by_name)
@@ -89,69 +102,48 @@ module Vedeu
       # @return [Array<Array<Vedeu::Views::Char>>]
       def output
         Vedeu.timer("Drawing border: '#{name}'".freeze) do
-          out = [top, bottom]
-
-          bordered_height.times { |y| out << [left(y), right(y)] }
-
-          out.flatten
+          [top, left, right, bottom].flatten
         end
-      end
-
-      # @param value [String]
-      # @param type [Symbol|NilClass]
-      # @param iy [Fixnum]
-      # @param ix [Fixnum]
-      # @return [Vedeu::Views::Char]
-      def build(value, type = :border, iy = 0, ix = 0)
-        Vedeu::Views::Char.new(value:    value,
-                               parent:   interface,
-                               colour:   colour,
-                               name:     name,
-                               style:    style,
-                               position: [iy, ix],
-                               border:   type)
       end
 
       # Creates the bottom left border character.
       #
-      # @return [Vedeu::Views::Char]
+      # @return [NilClass|Vedeu::Cells::Border|Vedeu::Views::Char]
       def build_bottom_left
-        build(bottom_left, :bottom_left, yn, x) if left?
+        return nil unless left?
+        return bottom_left if bottom_left
+
+        Vedeu::Cells::BottomLeft.new(attributes)
       end
 
       # Creates the bottom right border character.
       #
-      # @return [Vedeu::Views::Char]
+      # @return [NilClass|Vedeu::Cells::Border|Vedeu::Views::Char]
       def build_bottom_right
-        build(bottom_right, :bottom_right, yn, xn) if right?
-      end
+        return nil unless right?
+        return bottom_right if bottom_right
 
-      # Creates a top border character.
-      #
-      # @return [Array<Vedeu::Views::Char>]
-      def build_top
-        build_horizontal(:top_horizontal, y)
-      end
-
-      # Creates a bottom border character.
-      #
-      # @return [Array<Vedeu::Views::Char>]
-      def build_bottom
-        build_horizontal(:bottom_horizontal, yn)
+        Vedeu::Cells::BottomRight.new(attributes)
       end
 
       # Creates the top left border character.
       #
-      # @return [Vedeu::Views::Char]
+      # @return [NilClass|Vedeu::Cells::Border|Vedeu::Views::Char]
       def build_top_left
-        build(top_left, :top_left, y, x) if left?
+        return nil unless left?
+        return top_left if top_left
+
+        Vedeu::Cells::TopLeft.new(attributes)
       end
 
       # Creates the top right border character.
       #
-      # @return [Vedeu::Views::Char]
+      # @return [NilClass|Vedeu::Cells::Border|Vedeu::Views::Char]
       def build_top_right
-        build(top_right, :top_right, y, xn) if right?
+        return nil unless right?
+        return top_right if top_right
+
+        Vedeu::Cells::TopRight.new(attributes)
       end
 
       # Renders the bottom border for the interface.
@@ -175,16 +167,6 @@ module Vedeu
         Vedeu.geometries.by_name(name)
       end
 
-      # @param position [Symbol] Either :top_horizontal, or
-      #   :bottom_horizontal.
-      # @param y_coordinate [Fixnum] The value of either y or yn.
-      # @return [Array<Vedeu::Views::Char>]
-      def build_horizontal(position, y_coordinate)
-        Array.new(bordered_width) do |ix|
-          build(horizontal, position, y_coordinate, (bx + ix))
-        end
-      end
-
       # Returns the interface by name.
       #
       # @note
@@ -198,22 +180,28 @@ module Vedeu
 
       # Renders the left border for the interface.
       #
-      # @param iy [Fixnum]
-      # @return [String]
-      def left(iy = 0)
+      # @return [Array<void>]
+      def left
         return [] unless left?
 
-        build(vertical, :left_vertical, (by + iy), x)
+        build_collection(bordered_height) do |iy|
+          cell = left_vertical_cell.dup
+          cell.position = [by + iy, x]
+          cell
+        end
       end
 
       # Renders the right border for the interface.
       #
-      # @param iy [Fixnum]
-      # @return [String]
-      def right(iy = 0)
+      # @return [Array<void>]
+      def right
         return [] unless right?
 
-        build(vertical, :right_vertical, (by + iy), xn)
+        build_collection(bordered_height) do |iy|
+          cell = right_vertical_cell.dup
+          cell.position = [by + iy, xn]
+          cell
+        end
       end
 
       # Renders the top border for the interface.
@@ -235,9 +223,20 @@ module Vedeu
       # @return [Array<Vedeu::Views::Char>]
       # @see [Vedeu::Borders::Caption#render]
       def captionbar
-        return nil unless caption
+        return build_bottom unless present?(caption)
 
-        @_caption ||= Vedeu::Borders::Caption.render(caption, build_bottom)
+        Vedeu::Borders::Caption.render(name, caption, build_bottom)
+      end
+
+      # Creates a bottom border character.
+      #
+      # @return [Array<Vedeu::Views::Char>]
+      def build_bottom
+        build_collection(bordered_width) do |ix|
+          cell = bottom_horizontal_cell.dup
+          cell.position = [yn, bx + ix]
+          cell
+        end
       end
 
       # An optional title for when the top border is to be shown.
@@ -245,9 +244,69 @@ module Vedeu
       # @return [Array<Vedeu::Views::Char>]
       # @see [Vedeu::Borders::Title#render]
       def titlebar
-        return nil unless title
+        return build_top unless present?(title)
 
-        @_title ||= Vedeu::Borders::Title.render(title, build_top)
+        Vedeu::Borders::Title.render(name, title, build_top)
+      end
+
+      # Creates a top border character.
+      #
+      # @return [Array<Vedeu::Views::Char>]
+      def build_top
+        build_collection(bordered_width) do |ix|
+          cell = top_horizontal_cell.dup
+          cell.position = [y, bx + ix]
+          cell
+        end
+      end
+
+      # Return the client application configured left vertical cell
+      # character, or the default if not set.
+      #
+      # @return [Vedeu::Cells::LeftVertical]
+      def left_vertical_cell
+        return left_vertical if left_vertical
+
+        Vedeu::Cells::LeftVertical.new(attributes)
+      end
+
+      # Return the client application configured right vertical cell
+      # character, or the default if not set.
+      #
+      # @return [Vedeu::Cells::RightVertical]
+      def right_vertical_cell
+        return right_vertical if right_vertical
+
+        Vedeu::Cells::RightVertical.new(attributes)
+      end
+
+      # Return the client application configured top horizontal cell
+      # character, or the default if not set.
+      #
+      # @return [Vedeu::Cells::TopHorizontal]
+      def top_horizontal_cell
+        return top_horizontal if top_horizontal
+
+        Vedeu::Cells::TopHorizontal.new(attributes)
+      end
+
+      # Return the client application configured bottom horizontal
+      # cell character, or the default if not set.
+      #
+      # @return [Vedeu::Cells::BottomHorizontal]
+      def bottom_horizontal_cell
+        return bottom_horizontal if bottom_horizontal
+
+        Vedeu::Cells::BottomHorizontal.new(attributes)
+      end
+
+      # Build a collection with the given size of objects given within
+      # the block.
+      #
+      # @param size [Fixnum]
+      # @return [Array<void>]
+      def build_collection(size)
+        Array.new(size) { |e| yield(e) }
       end
 
     end # Refresh

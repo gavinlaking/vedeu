@@ -9,7 +9,47 @@ module Vedeu
     #
     class Border < Vedeu::Cells::Empty
 
-      include Vedeu::Common
+      extend Forwardable
+      include Vedeu::Presentation
+
+      def_delegators :geometry,
+                     :x,
+                     :xn,
+                     :y,
+                     :yn
+
+      # @return [Hash<Symbol => void>]
+      def attributes
+        {
+          colour: colour,
+          name:   @name,
+          style:  style,
+        }
+      end
+
+      # @return [Boolean]
+      def cell?
+        false
+      end
+
+      # @param value [String|Symbol]
+      # @return [Vedeu::Cells::Border]
+      def name=(value)
+        @name = value
+
+        self
+      end
+
+      # @return [Vedeu::Borders::Border|Vedeu::Interfaces::Interface]
+      def named_parent
+        if border
+          border
+
+        elsif interface
+          interface
+
+        end
+      end
 
       # @return [String]
       def value
@@ -22,7 +62,7 @@ module Vedeu
 
       # @return [Hash<Symbol => Hash<void>>]
       def defaults
-        super.merge!(border: {})
+        super
       end
 
     end # Border

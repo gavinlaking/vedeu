@@ -21,16 +21,6 @@ module Vedeu
       include Vedeu::Repositories::Model
       include Vedeu::Presentation
 
-      def_delegators :geometry,
-                     :bx,
-                     :bxn,
-                     :by,
-                     :byn,
-                     :x,
-                     :xn,
-                     :y,
-                     :yn
-
       # @!attribute [rw] bottom_left
       # @return [String] The character to be used for the bottom left
       #   border if enabled.
@@ -217,13 +207,6 @@ module Vedeu
 
       private
 
-      # Returns the geometry for the interface.
-      #
-      # @return (see Vedeu::Geometries::Repository#by_name)
-      def geometry
-        Vedeu.geometries.by_name(name)
-      end
-
       # The default values for a new instance of this class.
       #
       # @return [Hash<Symbol => Boolean|Hash|NilClass|String|Symbol|
@@ -232,8 +215,8 @@ module Vedeu
       def defaults
         {
           bottom_horizontal: nil,
-          bottom_left:       Vedeu::EscapeSequences::Borders.bottom_left,
-          bottom_right:      Vedeu::EscapeSequences::Borders.bottom_right,
+          bottom_left:       nil,
+          bottom_right:      nil,
           caption:           '',
           client:            nil,
           colour:            nil,
@@ -251,8 +234,8 @@ module Vedeu
           style:             nil,
           title:             '',
           top_horizontal:    nil,
-          top_left:          Vedeu::EscapeSequences::Borders.top_left,
-          top_right:         Vedeu::EscapeSequences::Borders.top_right,
+          top_left:          nil,
+          top_right:         nil,
           vertical:          Vedeu::EscapeSequences::Borders.vertical,
         }
       end
