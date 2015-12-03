@@ -118,6 +118,7 @@ module Vedeu
       # @param char [Vedeu::Views::Char]
       # @return [String]
       def position_for(char)
+        return ''.freeze unless char.position
         return ''.freeze if char.position.y == @y
 
         @y = char.position.y
