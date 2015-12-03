@@ -2,7 +2,7 @@ module Vedeu
 
   module Buffers
 
-    # Provides a grid of Vedeu::Models::Cell objects at the given
+    # Provides a grid of Vedeu::Cells::Empty objects at the given
     # height and width.
     #
     # @api private
@@ -14,12 +14,12 @@ module Vedeu
       # @return [NilClass|String|Symbol]
       attr_reader :name
 
-      # @return [Array<Array<Vedeu::Models::Cell>>]
+      # @return [Array<Array<Vedeu::Cells::Empty>>]
       def buffer
         Array.new(height) do |y|
           if y > 0
             Array.new(width) do |x|
-              Vedeu::Models::Cell.new(name: name, position: [y, x]) if x > 0
+              Vedeu::Cells::Empty.new(name: name, position: [y, x]) if x > 0
             end.compact
           end
         end.compact

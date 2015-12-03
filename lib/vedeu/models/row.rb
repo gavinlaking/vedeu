@@ -2,7 +2,7 @@ module Vedeu
 
   module Models
 
-    # A Row represents an array of Vedeu::Models::Cell objects.
+    # A Row represents an array of Vedeu::Cells::Empty objects.
     #
     class Row
 

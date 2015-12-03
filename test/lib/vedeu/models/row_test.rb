@@ -11,7 +11,7 @@ module Vedeu
       let(:cells)     {
         [
           Vedeu::Views::Char.new(value: 'A'),
-          Vedeu::Models::Cell.new(value: 'B'),
+          Vedeu::Cells::Empty.new(value: 'B'),
           Vedeu::Views::Char.new(value: 'C'),
         ]
       }

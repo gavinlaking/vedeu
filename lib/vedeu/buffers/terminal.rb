@@ -87,7 +87,7 @@ module Vedeu
 
       private
 
-      # Return a grid of {Vedeu::Models::Cell} objects defined by the
+      # Return a grid of {Vedeu::Cells::Empty} objects defined by the
       # height and width of this virtual terminal.
       #
       # @return [Vedeu::Buffers::View]

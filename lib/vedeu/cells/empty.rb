@@ -43,6 +43,28 @@ module Vedeu
       end
       alias_method :==, :eql?
 
+      # @return [Hash]
+      def to_hash
+        {
+          colour:   colour.to_s,
+          style:    style.to_s,
+          value:    value.to_s,
+          position: position.to_s,
+        }
+      end
+
+      # @param _options [Hash] Ignored.
+      # @return [String]
+      def to_html(_options = {})
+        ''
+      end
+
+      # @return [String]
+      def to_s
+        value.to_s
+      end
+      alias_method :to_str, :to_s
+
       private
 
       # @return [Hash<Symbol => Hash<void>|NilClass|String>]
