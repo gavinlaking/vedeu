@@ -35,34 +35,34 @@ class ColoursApp
       # line "test" - does not work, (wrong number of args for lines dsl/view.rb:240)
 
       lines do
-        line "A line using interface colours."
+        line "A line using interface colours.".freeze
         line ""
         line do
           stream do
-            text "Stream { "
-            text "background", background: '#001177'
-            text " }"
+            text "Stream { ".freeze
+            text "background".freeze, background: '#001177'
+            text " }".freeze
           end
         end
         line do
           stream do
-            text "Stream { "
-            text "foreground", foreground: '#aa00ff'
-            text " }"
+            text "Stream { ".freeze
+            text "foreground".freeze, foreground: '#aa00ff'
+            text " }".freeze
           end
         end
         line do
           stream do
-            text "Stream { "
-            text "background", background: '#117700'
-            text " }"
+            text "Stream { ".freeze
+            text "background".freeze, background: '#117700'
+            text " }".freeze
           end
         end
         line do
           stream do
-            text "Stream { "
-            text "foreground", foreground: '#00aaff'
-            text " }"
+            text "Stream { ".freeze
+            text "foreground".freeze, foreground: '#00aaff'
+            text " }".freeze
           end
         end
       end

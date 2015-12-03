@@ -58,9 +58,9 @@ class EditorApp
     key(:enter) { Vedeu.trigger(:_editor_execute_, :editor_view) }
     key(:insert) do
       Vedeu.log(type:    :debug,
-                message: "Commands: #{Vedeu.all_commands.inspect}")
+                message: "Commands: #{Vedeu.all_commands.inspect}".freeze)
       Vedeu.log(type:    :debug,
-                message: "Keypresses: #{Vedeu.all_keypresses.inspect}")
+                message: "Keypresses: #{Vedeu.all_keypresses.inspect}".freeze)
     end
   end
 

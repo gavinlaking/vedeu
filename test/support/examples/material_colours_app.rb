@@ -329,10 +329,10 @@ class VedeuMaterialColoursApp
 
   Vedeu.renders do
     view 'main_interface' do
-      line { centre 'Red',         width: 20, background: '#f44336' }
-      line { centre 'Pink',        width: 20, background: '#e91e63' }
-      line { centre 'Purple',      width: 20, background: '#9c27b0' }
-      line { centre 'Deep Purple', width: 20, background: '#673ab7' }
+      line { left   'Left',        background: '#f44336' }
+      line { centre 'Centre',      background: '#e91e63' }
+      line { center 'Center',      background: '#9c27b0' }
+      line { right  'Right',       background: '#673ab7' }
       line { centre 'Indigo',      width: 20, background: '#3f51b5' }
       line { centre 'Blue',        width: 20, background: '#2196f3' }
       line { centre 'Light Blue',  width: 20, background: '#03a9f4' }
@@ -516,10 +516,10 @@ class VedeuMaterialColoursApp
     view('custom_corners') do
       border do
         foreground   '#000000'
-        top_right    'B'
-        top_left     'A'
-        bottom_right 'D'
-        bottom_left  'C'
+        top_left     'A', colour: { background: '#ff5722' }
+        top_right    'B', colour: { background: '#0000ff', foreground: '#ffffff' }
+        bottom_left  'C', colour: { background: '#ffff00', foreground: '#000000' }
+        bottom_right 'D', colour: { background: '#ffffff' }
       end
       lines do
         line 'custom'
@@ -529,8 +529,11 @@ class VedeuMaterialColoursApp
     view('custom_sides') do
       border do
         background '#ff5722'
-        horizontal '*'
-        vertical   '$'
+
+        top_horizontal    '*', colour: { background: '#000000', foreground: '#ffffff' }
+        left_vertical     '$', colour: { background: '#0000ff', foreground: '#ffffff' }
+        right_vertical    '%', colour: { background: '#ffff00', foreground: '#000000' }
+        bottom_horizontal '&', colour: { background: '#ffffff' }
       end
       lines do
         line 'custom'

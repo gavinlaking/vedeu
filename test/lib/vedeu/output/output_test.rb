@@ -42,7 +42,7 @@ module Vedeu
 
         context 'when the output is not empty' do
           let(:output) {
-            Vedeu::Models::Escape.new(value: "\e[?25h", position: [1, 1])
+            Vedeu::Cells::Escape.new(value: "\e[?25h", position: [1, 1])
           }
 
           it do
@@ -62,7 +62,7 @@ module Vedeu
         context 'when the output is not empty' do
           context 'and the output is an escape sequence' do
             let(:output) {
-              Vedeu::Models::Escape.new(value: "\e[?25h", position: [1, 1])
+              Vedeu::Cells::Escape.new(value: "\e[?25h", position: [1, 1])
             }
 
             it do

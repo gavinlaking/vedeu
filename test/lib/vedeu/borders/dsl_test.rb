@@ -68,6 +68,26 @@ module Vedeu
         it { subject.must_be_instance_of(TrueClass) }
       end
 
+      describe '#top_horizontal' do
+        let(:char)    { 'T' }
+        let(:options) { {} }
+
+        subject { instance.top_horizontal(char, options) }
+
+        it { subject.must_be_instance_of(Vedeu::Cells::TopHorizontal) }
+        it { instance.must_respond_to(:top_horizontal=) }
+      end
+
+      describe '#bottom_horizontal' do
+        let(:char)    { 'B' }
+        let(:options) { {} }
+
+        subject { instance.bottom_horizontal(char, options) }
+
+        it { subject.must_be_instance_of(Vedeu::Cells::BottomHorizontal) }
+        it { instance.must_respond_to(:bottom_horizontal=) }
+      end
+
       describe '#horizontal' do
         let(:char)    { 'H' }
         let(:options) { {} }
@@ -244,6 +264,26 @@ module Vedeu
           subject
           Vedeu.borders.by_name('other_border').title.to_s.must_equal('Some border')
         end
+      end
+
+      describe '#left_vertical' do
+        let(:char)    { 'V' }
+        let(:options) { {} }
+
+        subject { instance.left_vertical(char, options) }
+
+        it { subject.must_be_instance_of(Vedeu::Cells::LeftVertical) }
+        it { instance.must_respond_to(:left_vertical=) }
+      end
+
+      describe '#right_vertical' do
+        let(:char)    { 'V' }
+        let(:options) { {} }
+
+        subject { instance.right_vertical(char, options) }
+
+        it { subject.must_be_instance_of(Vedeu::Cells::RightVertical) }
+        it { instance.must_respond_to(:right_vertical=) }
       end
 
       describe '#vertical' do

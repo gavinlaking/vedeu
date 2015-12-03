@@ -63,7 +63,7 @@ module Vedeu
                             width:  geometry.bordered_width).buffer
       end
 
-      # @return [Array<Vedeu::Models::Cell>]
+      # @return [Array<Vedeu::Cells::Empty>]
       def current
         @current ||= buffer
       end

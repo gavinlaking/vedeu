@@ -78,7 +78,7 @@ module Vedeu
 
         context 'when there is content' do
           let(:output) {
-            Vedeu::Models::Escape
+            Vedeu::Cells::Escape
               .new(value: Vedeu::EscapeSequences::Esc.hide_cursor)
           }
 
@@ -93,7 +93,7 @@ module Vedeu
             subject
           end
 
-          it { subject.must_be_instance_of(Vedeu::Models::Escape) }
+          it { subject.must_be_instance_of(Vedeu::Cells::Escape) }
         end
 
         context 'when there is no content' do

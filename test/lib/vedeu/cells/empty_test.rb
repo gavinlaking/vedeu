@@ -48,6 +48,39 @@ module Vedeu
         end
       end
 
+      describe '#to_hash' do
+        let(:position) { [1, 1] }
+        let(:colour)   { Vedeu::Colours::Colour.new(background: '#000000') }
+        let(:expected) {
+          {
+            colour:   "\e[48;2;0;0;0m",
+            style:    '',
+            value:    '',
+            position: "\e[1;1H",
+          }
+        }
+
+        subject { instance.to_hash }
+
+        it { subject.must_be_instance_of(Hash) }
+        it { subject.must_equal(expected) }
+      end
+
+      describe '#to_html' do
+        subject { instance.to_html }
+
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal('') }
+      end
+
+      describe '#to_s' do
+        subject { instance.to_s }
+
+        it { instance.must_respond_to(:to_str) }
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal('') }
+      end
+
     end # Empty
 
   end # Cells

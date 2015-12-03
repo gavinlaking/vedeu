@@ -7,12 +7,7 @@ module Vedeu
     #
     # @api private
     #
-    class TopRight < Vedeu::Cells::Border
-
-      # @return [Vedeu::Geometries::Position]
-      def position
-        @position = defaults[:position]
-      end
+    class TopRight < Vedeu::Cells::Corner
 
       # @return [Symbol]
       def type

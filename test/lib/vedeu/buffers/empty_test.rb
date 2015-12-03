@@ -61,7 +61,7 @@ module Vedeu
 
         it { subject.must_be_instance_of(Array) }
         it { subject.first.must_be_instance_of(Array) }
-        it { subject.first.first.must_be_instance_of(Vedeu::Models::Cell) }
+        it { subject.first.first.must_be_instance_of(Vedeu::Cells::Empty) }
 
         it { subject.size.must_equal(3) }
         it { subject.first.size.must_equal(9) }

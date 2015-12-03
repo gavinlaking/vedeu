@@ -34,7 +34,7 @@ module Vedeu
       #
       # @return [String]
       def clear
-        @output = Vedeu::Models::Escape.new
+        @output = Vedeu::Cells::Escape.new
 
         ''
       end
@@ -49,7 +49,7 @@ module Vedeu
 
       # @return [String]
       def html_body
-        return '' if output.is_a?(Vedeu::Models::Escape)
+        return '' if output.is_a?(Vedeu::Cells::Escape)
 
         out = ''
 
@@ -65,12 +65,12 @@ module Vedeu
       private
 
       # Returns a boolean indicating whether the output is a
-      # {Vedeu::Models::Escape}. If it is, it won't be rendered in
+      # {Vedeu::Cells::Escape}. If it is, it won't be rendered in
       # HTML.
       #
       # @return [Boolean]
       def escape?
-        output.is_a?(Vedeu::Models::Escape)
+        output.is_a?(Vedeu::Cells::Escape)
       end
 
       # @return [Array<Array<Vedeu::Views::Char>>]

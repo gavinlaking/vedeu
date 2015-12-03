@@ -64,7 +64,7 @@ module Vedeu
       #   string is shorter than the specified width.
       # @return [String]
       def text(value = '', options = {})
-        options.merge!(anchor: __callee__, model: model, client: client)
+        options.merge!(text_options).merge!(anchor: __callee__)
 
         Vedeu::Output::Text.add(value, options)
       end
@@ -79,6 +79,17 @@ module Vedeu
       alias_method :centre=, :text
       alias_method :left=,   :text
       alias_method :right=,  :text
+
+      private
+
+      # @return [Hash<Symbol => void>]
+      def text_options
+        {
+          client: client,
+          model:  model,
+          name:   model.name,
+        }
+      end
 
     end # Text
 

@@ -10,7 +10,7 @@ module Vedeu
     class Output
 
       # @param output [Array<Array<Vedeu::Views::Char>>|
-      #   NilClass|Vedeu::Models::Escape]
+      #   NilClass|Vedeu::Cells::Escape]
       # @return [Array]
       def self.buffer_update(output)
         return nil if output.nil?
@@ -19,7 +19,7 @@ module Vedeu
       end
 
       # @param output [Array<Array<Vedeu::Views::Char>>|
-      #   NilClass|Vedeu::Models::Escape]
+      #   NilClass|Vedeu::Cells::Escape]
       # @return [Array]
       def self.buffer_write(output)
         return nil if output.nil?
@@ -28,7 +28,7 @@ module Vedeu
       end
 
       # @param output [Array<Array<Vedeu::Views::Char>>|
-      #   NilClass|Vedeu::Models::Escape]
+      #   NilClass|Vedeu::Cells::Escape]
       # @return [Array<String>]
       def self.direct_write(output)
         return nil if output.nil?
@@ -39,7 +39,7 @@ module Vedeu
       # Writes output to the defined renderers.
       #
       # @param output [Array<Array<Vedeu::Views::Char>>|
-      #   NilClass|Vedeu::Models::Escape]
+      #   NilClass|Vedeu::Cells::Escape]
       # @return [Array|NilClass|String]
       def self.render_output(output)
         return nil if output.nil?
@@ -50,7 +50,7 @@ module Vedeu
       # Return a new instance of Vedeu::Output::Output.
       #
       # @param output [Array<Array<Vedeu::Views::Char>>|
-      #   NilClass|Vedeu::Models::Escape]
+      #   NilClass|Vedeu::Cells::Escape]
       # @return [Vedeu::Output::Output]
       def initialize(output)
         @output = output
@@ -72,7 +72,7 @@ module Vedeu
       end
 
       # Send the view to the renderers. If the output is a
-      # {Vedeu::Models::Escape} object (typical when showing or
+      # {Vedeu::Cells::Escape} object (typical when showing or
       # hiding the cursor) then we bypass the
       # {Vedeu::Buffers::Terminal} and write directly to the terminal
       # because escape sequences only make sense to the terminal and
@@ -93,7 +93,7 @@ module Vedeu
 
       # @!attribute [r] output
       # @return [Array<Array<Vedeu::Views::Char>>|
-      #   NilClass|Vedeu::Models::Escape]
+      #   NilClass|Vedeu::Cells::Escape]
       attr_reader :output
 
       private
@@ -115,7 +115,7 @@ module Vedeu
 
       # @return [Boolean]
       def escape_sequence?
-        output.is_a?(Vedeu::Models::Escape)
+        output.is_a?(Vedeu::Cells::Escape)
       end
 
     end # Output
