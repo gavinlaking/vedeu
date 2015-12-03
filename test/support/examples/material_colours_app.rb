@@ -329,10 +329,10 @@ class VedeuMaterialColoursApp
 
   Vedeu.renders do
     view 'main_interface' do
-      line { centre 'Red',         width: 20, background: '#f44336' }
-      line { centre 'Pink',        width: 20, background: '#e91e63' }
-      line { centre 'Purple',      width: 20, background: '#9c27b0' }
-      line { centre 'Deep Purple', width: 20, background: '#673ab7' }
+      line { left   'Left',        background: '#f44336' }
+      line { centre 'Centre',      background: '#e91e63' }
+      line { center 'Center',      background: '#9c27b0' }
+      line { right  'Right',       background: '#673ab7' }
       line { centre 'Indigo',      width: 20, background: '#3f51b5' }
       line { centre 'Blue',        width: 20, background: '#2196f3' }
       line { centre 'Light Blue',  width: 20, background: '#03a9f4' }

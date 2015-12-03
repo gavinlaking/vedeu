@@ -13,6 +13,7 @@ module Vedeu
           {
             anchor: anchor,
             model:  model,
+            name:   model.name,
             client: nil,
           }
         }

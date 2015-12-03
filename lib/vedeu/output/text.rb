@@ -6,6 +6,8 @@ module Vedeu
     #
     class Text
 
+      include Vedeu::Common
+
       # @see Vedeu::DSL::Text#text
       def self.add(value = '', options = {})
         new(value, options).add
@@ -27,6 +29,7 @@ module Vedeu
       # @option options model
       #   [Vedeu::Views::View|Vedeu::Views::Line|Vedeu::Views::Stream]
       # @option options mode (see Vedeu::Output::Wordwrap#mode)
+      # @option options name [String|Symbol]
       # @option options pad [String]
       # @option options width [Integer]
       # @return [Vedeu::Output::Text]
@@ -131,9 +134,15 @@ module Vedeu
           colour: nil,
           model:  nil,
           mode:   :default,
+          name:   '',
           pad:    ' ',
           width:  nil,
         }
+      end
+
+      # @return [NilClass|Vedeu::Geometries::Geometry]
+      def geometry
+        Vedeu.geometries.by_name(name)
       end
 
       # The string padded to width, left justified.
@@ -162,6 +171,11 @@ module Vedeu
       # @return [Symbol]
       def mode
         options[:mode]
+      end
+
+      # @return [String|Symbol]
+      def name
+        options[:name]
       end
 
       # The character to use for padding the string.
@@ -225,11 +239,18 @@ module Vedeu
         string.slice(0, width)
       end
 
-      # Return the width.
+      # Return the width of the interface when a name is given,
+      # otherwise use the given width.
       #
       # @return [Fixnum]
       def width
-        options[:width]
+        if present?(options[:name])
+          geometry.bordered_width
+
+        elsif present?(options[:width])
+          options[:width]
+
+        end
       end
 
       # Return a boolean indicating whether the string should be
