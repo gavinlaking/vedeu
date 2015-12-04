@@ -113,6 +113,12 @@ module Vedeu
         subject { instance.text }
 
         it { subject.must_equal('a') }
+
+        context 'when there is a border defined' do
+          let(:border) { :horizontal }
+
+          it { subject.must_equal(' ') }
+        end
       end
 
       describe '#to_hash' do
