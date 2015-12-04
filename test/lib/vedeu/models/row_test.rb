@@ -100,6 +100,7 @@ module Vedeu
         let(:expected) {
           [
             Vedeu::Views::Char.new(value: 'A'),
+            Vedeu::Cells::Empty.new(value: 'B'),
             Vedeu::Views::Char.new(value: 'C'),
             Vedeu::Views::Char.new(value: "\e[0m"),
           ]

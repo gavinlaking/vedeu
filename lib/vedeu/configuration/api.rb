@@ -303,6 +303,26 @@ module Vedeu
         options[:log] = filename
       end
 
+      # Log specific message types except those given. A complete list
+      # of message types can be found at
+      # {Vedeu::Logging::Log.message_types}.
+      #
+      #   Vedeu.configure do
+      #     log_except :debug, :event
+      #
+      #     # or
+      #     log_except [:debug, :info]
+      #
+      #     # ...
+      #   end
+      #
+      # @param types [Array<Symbol>] The message types which should
+      #   not be logged.
+      # @return [Array<Symbol>]
+      def log_except(*types)
+        options[:log_except] = types.flatten
+      end
+
       # Only log specific message types. A complete list of message
       # types can be found at {Vedeu::Logging::Log.message_types}.
       #

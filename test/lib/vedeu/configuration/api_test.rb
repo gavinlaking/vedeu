@@ -241,6 +241,18 @@ module Vedeu
         end
       end
 
+      describe '#log_except' do
+        it 'sets the options to the desired value' do
+          configuration = Vedeu.configure { log_except :debug, :store }
+          configuration.log_except.must_equal([:debug, :store])
+        end
+
+        it 'sets the options to the desired value' do
+          configuration = Vedeu.configure { log_except [:debug, :info] }
+          configuration.log_except.must_equal([:debug, :info])
+        end
+      end
+
       describe '#log_only' do
         it 'sets the options to the desired value' do
           configuration = Vedeu.configure { log_only :debug, :store }

@@ -48,7 +48,7 @@ module Vedeu
 
       # @return [Array<void>]
       def content
-        (cells.flatten << reset_character).reject(&:cell?)
+        (cells.flatten << reset_character)
       end
 
       # Provides iteration over the collection.

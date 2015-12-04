@@ -104,6 +104,15 @@ module Vedeu
         Vedeu::EscapeSequences::Esc.border { @value }
       end
 
+      # @return [String]
+      def text
+        if border
+          ' '
+        else
+          @value
+        end
+      end
+
       # Returns a Hash of all the values before coercion.
       #
       # @note

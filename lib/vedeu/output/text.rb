@@ -244,11 +244,11 @@ module Vedeu
       #
       # @return [Fixnum]
       def width
-        if present?(options[:name])
-          geometry.bordered_width
-
-        elsif present?(options[:width])
+        if present?(options[:width])
           options[:width]
+
+        elsif present?(options[:name])
+          geometry.bordered_width
 
         end
       end

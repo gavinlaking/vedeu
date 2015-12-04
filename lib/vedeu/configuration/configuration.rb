@@ -171,8 +171,24 @@ module Vedeu
       end
 
       # @return [Array<Symbol>]
+      def log_except
+        instance.options[:log_except] || []
+      end
+
+      # @return [Array<Symbol>]
       def log_only
         instance.options[:log_only] || []
+      end
+
+      # Returns true if the given type was included in the :log_only
+      # configuration option or not included in the :log_except
+      # option.
+      #
+      # @param type [Symbol]
+      # @return [Boolean]
+      def loggable?(type)
+        Vedeu::Configuration.log_only.include?(type) ||
+        !Vedeu::Configuration.log_except.include?(type)
       end
 
       # Returns whether mouse support was enabled or disabled.
@@ -323,6 +339,7 @@ module Vedeu
         height:        nil,
         interactive:   true,
         log:           nil,
+        log_except:    [],
         log_only:      [],
         mouse:         true,
         once:          false,

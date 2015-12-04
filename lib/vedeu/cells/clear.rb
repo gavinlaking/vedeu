@@ -21,6 +21,7 @@ module Vedeu
       def value
         ' '.freeze
       end
+      alias_method :text, :value
 
     end # Clear
 

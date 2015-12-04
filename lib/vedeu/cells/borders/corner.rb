@@ -13,6 +13,11 @@ module Vedeu
         @position = defaults[:position]
       end
 
+      # @return [String]
+      def text
+        '+'
+      end
+
     end # Corner
 
   end # Cells

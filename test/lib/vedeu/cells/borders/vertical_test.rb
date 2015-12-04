@@ -9,6 +9,12 @@ module Vedeu
       let(:described) { Vedeu::Cells::Vertical }
       let(:instance)  { described.new }
 
+      describe '#text' do
+        subject { instance.text }
+
+        it { subject.must_equal('|') }
+      end
+
       describe '#type' do
         subject { instance.type }
 

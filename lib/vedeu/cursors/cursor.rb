@@ -197,7 +197,7 @@ module Vedeu
       def hide
         super
 
-        Vedeu.log(type: :output, message: "Hiding cursor: '#{name}'".freeze)
+        Vedeu.log(type: :cursor, message: "Hiding cursor: '#{name}'".freeze)
 
         render
       end
@@ -234,7 +234,7 @@ module Vedeu
       def show
         super
 
-        Vedeu.log(type: :output, message: "Showing cursor: '#{name}'".freeze)
+        Vedeu.log(type: :cursor, message: "Showing cursor: '#{name}'".freeze)
 
         render
       end

@@ -8,9 +8,7 @@ and hopefully be dropped into a Pry debuggging session:
 
     Vedeu::Terminal.cooked_mode!
     Vedeu::Terminal.open do
-      mouse_off   = Vedeu::EscapeSequences::Esc.mouse_x10_off
-      show_cursor = Vedeu::EscapeSequences::Esc.show_cursor
-      Vedeu::Terminal.output(mouse_off + show_cursor)
+      Vedeu::Terminal.debugging!
 
       require 'pry'
       binding.pry
