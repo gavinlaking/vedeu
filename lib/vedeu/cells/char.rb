@@ -17,6 +17,7 @@ module Vedeu
         false
       end
 
+      # @return [String]
       def text
         @value || ' '
       end

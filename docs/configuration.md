@@ -70,7 +70,7 @@ reason, simply ask for it:
 {include:Vedeu::Config::API#log_except}
 
 ### loggable?
-{include:Vedeu::Config::API#loggable?}
+{include:Vedeu::Configuration.loggable?}
 
 ### profile / profile!
 {include:Vedeu::Config::API#profile}
