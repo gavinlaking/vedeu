@@ -171,6 +171,7 @@ module Vedeu
             input:  [:light_yellow, :yellow],
 
             compress: [:white, :light_grey],
+            cursor:   [:light_green, :green],
             output:   [:light_green, :green],
             render:   [:light_green, :green],
 

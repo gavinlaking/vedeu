@@ -23,6 +23,7 @@ class VedeuMaterialColoursApp
     # foreground '#ffff00'
     # profile!
     log '/tmp/vedeu_material_colours_app.log'
+    log_except [:cursor, :update, :render]
     # height 11
     # width  20
     # renderers(Vedeu::Renderers::File
