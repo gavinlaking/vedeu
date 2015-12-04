@@ -26,8 +26,7 @@ module Vedeu
         def log(message:, force: false, type: :info)
           output = log_entry(type, message)
 
-          if (enabled? || force) && (Vedeu::Configuration.log_only.empty? ||
-                     Vedeu::Configuration.log_only.include?(type))
+          if (enabled? || force) && Vedeu::Configuration.loggable?(type)
             logger.debug(output)
           end
 

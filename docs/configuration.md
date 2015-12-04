@@ -66,6 +66,12 @@ reason, simply ask for it:
 ### log_only
 {include:Vedeu::Config::API#log_only}
 
+### log_except
+{include:Vedeu::Config::API#log_except}
+
+### loggable?
+{include:Vedeu::Config::API#loggable?}
+
 ### profile / profile!
 {include:Vedeu::Config::API#profile}
 

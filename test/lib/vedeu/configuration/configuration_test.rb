@@ -93,6 +93,22 @@ module Vedeu
       end
     end
 
+    describe '.log_except' do
+      context 'when log_except is not configured' do
+        it { described.log_except.must_equal([]) }
+      end
+
+      context 'when log_except is configured' do
+        before do
+          Vedeu.configure do
+            log_except :timer, :event
+          end
+        end
+
+        it { described.log_except.must_equal([:timer, :event]) }
+      end
+    end
+
     describe '.log_only' do
       context 'when log_only is not configured' do
         it { described.log_only.must_equal([]) }
@@ -106,6 +122,48 @@ module Vedeu
         end
 
         it { described.log_only.must_equal([:timer, :event]) }
+      end
+    end
+
+    describe '.loggable?' do
+      let(:type) { :hydrogen }
+
+      subject { described.loggable?(type) }
+
+      context 'when the type exists in log_only and log_except' do
+        before do
+          described.stubs(:log_only).returns([:hydrogen])
+          described.stubs(:log_except).returns([:hydrogen])
+        end
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when the type exists in log_only' do
+        before do
+          described.stubs(:log_only).returns([:hydrogen])
+          described.stubs(:log_except).returns([])
+        end
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when the type exists in log_except' do
+        before do
+          described.stubs(:log_only).returns([])
+          described.stubs(:log_except).returns([:hydrogen])
+        end
+
+        it { subject.must_equal(false) }
+      end
+
+      context 'when the type does not exist in either' do
+        before do
+          described.stubs(:log_only).returns([])
+          described.stubs(:log_except).returns([])
+        end
+
+        it { subject.must_equal(true) }
       end
     end
 
