@@ -50,6 +50,14 @@ module Vedeu
         end
       end
 
+      describe '#text' do
+        let(:instance) { Vedeu::Cells::TopRight.new }
+
+        subject { instance.text }
+
+        it { subject.must_equal('+') }
+      end
+
     end # Corner
 
   end # Cells

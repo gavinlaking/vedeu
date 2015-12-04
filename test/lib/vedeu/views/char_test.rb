@@ -109,6 +109,12 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Interfaces::Interface) }
       end
 
+      describe '#text' do
+        subject { instance.text }
+
+        it { subject.must_equal('a') }
+      end
+
       describe '#to_hash' do
         let(:position) { Vedeu::Geometries::Position.coerce([17, 2]) }
         let(:expected) {

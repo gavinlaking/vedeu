@@ -9,6 +9,11 @@ module Vedeu
     #
     class Horizontal < Vedeu::Cells::Border
 
+      # @return [String]
+      def text
+        '-'
+      end
+
       # @return [Symbol]
       def type
         :horizontal

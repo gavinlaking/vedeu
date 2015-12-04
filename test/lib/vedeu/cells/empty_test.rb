@@ -48,6 +48,12 @@ module Vedeu
         end
       end
 
+      describe '#text' do
+        subject { instance.text }
+
+        it { subject.must_equal(' ') }
+      end
+
       describe '#to_hash' do
         let(:position) { [1, 1] }
         let(:colour)   { Vedeu::Colours::Colour.new(background: '#000000') }

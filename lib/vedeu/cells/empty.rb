@@ -43,6 +43,11 @@ module Vedeu
       end
       alias_method :==, :eql?
 
+      # @return [String]
+      def text
+        ' '
+      end
+
       # @return [Hash]
       def to_hash
         {

@@ -17,6 +17,10 @@ module Vedeu
         false
       end
 
+      def text
+        @value || ' '
+      end
+
     end # Char
 
   end # Cells

@@ -15,6 +15,12 @@ module Vedeu
         it { subject.must_equal(false) }
       end
 
+      describe '#text' do
+        subject { instance.text }
+
+        it { subject.must_equal('') }
+      end
+
     end # Char
 
   end # Cells
