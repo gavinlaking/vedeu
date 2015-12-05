@@ -235,11 +235,11 @@ module Vedeu
   # :nocov:
 
   # See {file:docs/events/visibility.md#\_clear_view_}
-  Vedeu.bind(:_clear_view_) { |name| Vedeu.clear_by_name(name) }
+  Vedeu.bind(:_clear_view_) { |name| Vedeu.clear_by_name(name) if Vedeu.ready? }
 
   # See {file:docs/events/visibility.md#\_clear_view_content_}
   Vedeu.bind(:_clear_view_content_) do |name|
-    Vedeu.clear_content_by_name(name)
+    Vedeu.clear_content_by_name(name) if Vedeu.ready?
   end
 
   # :nocov:

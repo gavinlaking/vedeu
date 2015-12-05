@@ -30,7 +30,7 @@ module Vedeu
 
   # See {file:docs/borders.md#label-3A_refresh_border_}
   Vedeu.bind(:_refresh_border_) do |name|
-    Vedeu::Borders::Refresh.by_name(name)
+    Vedeu::Borders::Refresh.by_name(name) if Vedeu.ready?
   end
 
   # See {file:docs/borders.md#label-3A_set_border_caption_}

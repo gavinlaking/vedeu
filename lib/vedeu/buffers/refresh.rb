@@ -87,12 +87,12 @@ module Vedeu
 
   # See {file:docs/events/refresh.md}
   Vedeu.bind(:_refresh_view_) do |name|
-    Vedeu::Buffers::Refresh.by_name(name)
+    Vedeu::Buffers::Refresh.by_name(name) if Vedeu.ready?
   end
 
   # See {file:docs/events/refresh.md}
   Vedeu.bind(:_refresh_view_content_) do |name|
-    Vedeu::Buffers::Refresh.refresh_content_by_name(name)
+    Vedeu::Buffers::Refresh.refresh_content_by_name(name) if Vedeu.ready?
   end
 
   # :nocov:
