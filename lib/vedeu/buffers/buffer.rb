@@ -137,18 +137,20 @@ module Vedeu
       #
       # @return [Array<Array<Array<Vedeu::Views::Char>>>]
       def render
-        if back?
-          swap
+        current = if back?
+                    swap
 
-          Vedeu::Output::Viewport.render(front)
+                    front
 
-        elsif front?
-          Vedeu::Output::Viewport.render(front)
+                  elsif front?
+                    front
 
-        elsif previous?
-          Vedeu::Output::Viewport.render(previous)
+                  elsif previous?
+                    previous
 
-        end
+                  end
+
+        Vedeu::Output::Viewport.render(current) unless current.nil?
       end
 
       # Returns the number of lines of content for the buffer or 0 if
