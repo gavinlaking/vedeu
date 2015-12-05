@@ -18,23 +18,25 @@ module Vedeu
 
       # @param (see #initialize)
       # @return (see #move)
-      def self.move(name, direction)
-        new(name, direction).move
+      def self.move(name, direction, offset)
+        new(name, direction, offset).move
       end
 
       # @param name [String|Symbol]
       # @param direction [Symbol]
+      # @param offset [Fixnum]
       # @return [Vedeu::Cursors::Move]
-      def initialize(name, direction)
+      def initialize(name, direction, offset)
         @name      = name
         @direction = direction
+        @offset    = offset
       end
 
       # @return [NilClass|Vedeu::Cursors::Cursor]
       def move
         return nil unless visible? && valid_direction?
 
-        cursor.public_send(direction)
+        cursor.public_send(direction, offset)
         cursor.store { Vedeu.trigger(:_refresh_cursor_, name) }
         cursor
       end
@@ -48,6 +50,11 @@ module Vedeu
       # @!attribute [r] direction
       # @return [Symbol] The direction to move the cursor.
       attr_reader :direction
+
+      # @!attribute [r] offset
+      # @return [Symbol] The number of characters to move the cursor
+      #   in the given direction.
+      attr_reader :offset
 
       private
 

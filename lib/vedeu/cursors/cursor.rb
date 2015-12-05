@@ -95,8 +95,8 @@ module Vedeu
 
       # {include:file:docs/events/by_name/cursor_down.md}
       # @return [Vedeu::Cursors::Cursor]
-      def move_down
-        @oy += 1
+      def move_down(offset = 1)
+        @oy += offset
         @y = coordinate(oy, :y).y
 
         self
@@ -104,8 +104,8 @@ module Vedeu
 
       # {include:file:docs/events/by_name/cursor_left.md}
       # @return [Vedeu::Cursors::Cursor]
-      def move_left
-        @ox -= 1
+      def move_left(offset = 1)
+        @ox -= offset
         @x = coordinate(ox, :x).x
 
         self
@@ -124,8 +124,8 @@ module Vedeu
 
       # {include:file:docs/events/by_name/cursor_right.md}
       # @return [Vedeu::Cursors::Cursor]
-      def move_right
-        @ox += 1
+      def move_right(offset = 1)
+        @ox += offset
         @x = coordinate(ox, :x).x
 
         self
@@ -133,8 +133,8 @@ module Vedeu
 
       # {include:file:docs/events/by_name/cursor_up.md}
       # @return [Vedeu::Cursors::Cursor]
-      def move_up
-        @oy -= 1
+      def move_up(offset = 1)
+        @oy -= offset
         @y = coordinate(oy, :y).y
 
         self

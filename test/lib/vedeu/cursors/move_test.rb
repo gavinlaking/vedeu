@@ -9,15 +9,19 @@ module Vedeu
     describe Move do
 
       let(:described) { Vedeu::Cursors::Move }
-      let(:instance)  { described.new(_name, direction) }
+      let(:instance)  { described.new(_name, direction, offset) }
       let(:_name)     {}
       let(:direction) {}
+      let(:offset)    { 1 }
       let(:visible)   { true }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@name').must_equal(_name) }
-        it { instance.instance_variable_get('@direction').must_equal(direction) }
+        it do
+          instance.instance_variable_get('@direction').must_equal(direction)
+        end
+        it { instance.instance_variable_get('@offset').must_equal(offset) }
       end
 
       describe '.move' do
@@ -29,7 +33,7 @@ module Vedeu
           Vedeu.stubs(:trigger).with(:_refresh_cursor_, _name)
         end
 
-        subject { described.move(_name, direction) }
+        subject { described.move(_name, direction, offset) }
 
         context 'when a name is given' do
           let(:_name) { :vedeu_cursors_move }
