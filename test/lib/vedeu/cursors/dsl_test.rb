@@ -4,9 +4,22 @@ module Vedeu
 
   module Cursors
 
+    class DSLTestClass
+
+      include Vedeu::Cursors::DSL
+
+    end # DSLTestClass
+
     describe DSL do
 
       let(:described) { Vedeu::Cursors::DSL }
+      let(:instance)  { Vedeu::Cursors::DSLTestClass.new }
+
+      it { instance.must_respond_to(:cursor) }
+      it { instance.must_respond_to(:cursor!) }
+      it { instance.must_respond_to(:show_cursor!) }
+      it { instance.must_respond_to(:no_cursor!) }
+      it { instance.must_respond_to(:hide_cursor!) }
 
       # describe '#cursor' do
       #   let(:_value) {}

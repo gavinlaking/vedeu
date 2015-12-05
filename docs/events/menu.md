@@ -4,56 +4,22 @@
 
 Note: 'name' is a Symbol unless mentioned otherwise.
 
-### `:_menu_bottom_`
-Makes the last menu item the current menu item.
+{include:file:docs/events/by_name/menu_bottom.md}
 
-    Vedeu.trigger(:_menu_bottom_, name)
+{include:file:docs/events/by_name/menu_current.md}
 
-### `:_menu_current_`
-Returns the current menu item.
+{include:file:docs/events/by_name/menu_deselect.md}
 
-    Vedeu.trigger(:_menu_current_, name)
+{include:file:docs/events/by_name/menu_items.md}
 
-### `:_menu_deselect_`
-Deselects all menu items.
+{include:file:docs/events/by_name/menu_next.md}
 
-    Vedeu.trigger(:_menu_deselect_, name)
+{include:file:docs/events/by_name/menu_prev.md}
 
-### `:_menu_items_`
-Returns all the menu items with respective `current` or `selected`
-boolean indicators.
+{include:file:docs/events/by_name/menu_selected.md}
 
-    Vedeu.trigger(:_menu_items_, name)
+{include:file:docs/events/by_name/menu_select.md}
 
-### `:_menu_next_`
-Makes the next menu item the current menu item, until it reaches the
-last item.
+{include:file:docs/events/by_name/menu_top.md}
 
-    Vedeu.trigger(:_menu_next_, name)
-
-### `:_menu_prev_`
-Makes the previous menu item the current menu item, until it reaches
-the first item.
-
-    Vedeu.trigger(:_menu_prev_, name)
-
-### `:_menu_selected_`
-Returns the selected menu item.
-
-    Vedeu.trigger(:_menu_selected_, name)
-
-### `:_menu_select_`
-Makes the current menu item also the selected menu item.
-
-    Vedeu.trigger(:_menu_select_, name)
-
-### `:_menu_top_`
-Makes the first menu item the current menu item.
-
-    Vedeu.trigger(:_menu_top_, name)
-
-### `:_menu_view_`
-Returns a subset of the menu items; starting at the current item to
-the last item.
-
-    Vedeu.trigger(:_menu_view_, name)
+{include:file:docs/events/by_name/menu_view.md}

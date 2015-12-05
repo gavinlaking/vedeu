@@ -4,60 +4,22 @@
 
 Note: 'name' is a Symbol unless mentioned otherwise.
 
-### `:_clear_`
-See {Vedeu::Buffers::Terminal#clear}
+{include:file:docs/events/by_name/clear.md}
 
-### `:_clear_group_`
-Clears the spaces occupied by the interfaces belonging to the named
-group.
+{include:file:docs/events/by_name/clear_group.md}
 
-    Vedeu.trigger(:_clear_group_, name)
-    Vedeu.clear_by_group(name)
+{include:file:docs/events/by_name/clear_view.md}
 
-### `:_clear_view_`
-Clears the named view/interface area.
+{include:file:docs/events/by_name/clear_view_content.md}
 
-    Vedeu.trigger(:_clear_view_, name)
-    Vedeu.clear_by_name(name)
+{include:file:docs/events/by_name/hide_group.md}
 
-### `:_clear_view_content_`
-Clears only the content of the named view/interface area.
+{include:file:docs/events/by_name/hide_interface.md}
 
-    Vedeu.trigger(:_clear_view_content_, name)
-    Vedeu.clear_content_by_name(name)
+{include:file:docs/events/by_name/show_group.md}
 
-### `:_hide_group_`
-Hiding a group of interfaces.
+{include:file:docs/events/by_name/show_interface.md}
 
-    Vedeu.trigger(:_hide_group_, name)
-    Vedeu.hide_group(name)
+{include:file:docs/events/by_name/toggle_group.md}
 
-### `:_hide_interface_`
-Hide an interface by name.
-
-    Vedeu.trigger(:_hide_interface_, name)
-    Vedeu.hide_interface(name)
-
-### `:_show_group_`
-Showing a group of interfaces.
-
-    Vedeu.trigger(:_show_group_, name)
-    Vedeu.show_group(name)
-
-### `:_show_interface_`
-Show an interface by name.
-
-    Vedeu.trigger(:_show_interface_, name)
-    Vedeu.show_interface(name)
-
-### `:_toggle_group_`
-Toggling a group of interfaces.
-
-    Vedeu.trigger(:_toggle_group_, name)
-    Vedeu.toggle_group(name)
-
-### `:_toggle_interface_`
-Toggling an interface.
-
-    Vedeu.trigger(:_toggle_interface_, name)
-    Vedeu.toggle_interface(name)
+{include:file:docs/events/by_name/toggle_interface.md}

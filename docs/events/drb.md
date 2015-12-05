@@ -2,40 +2,16 @@
 
 ## DRB Events
 
-### `:_drb_input_`
-Triggering this event will send input to the running application as
-long as it has the DRb server running.
+{include:file:docs/events/by_name/drb_input.md}
 
-Note: See {Vedeu::Distributed::Server#input} for parameter details.
+{include:file:docs/events/by_name/drb_retrieve_output.md}
 
-    Vedeu.trigger(:_drb_input_, data, type)
+{include:file:docs/events/by_name/drb_store_output.md}
 
-### `:_drb_retrieve_output_`
-See {Vedeu::Buffers::Terminal#output}
+{include:file:docs/events/by_name/drb_restart.md}
 
-### `:_drb_store_output_`
-See {Vedeu::Buffers::Terminal#write}
+{include:file:docs/events/by_name/drb_start.md}
 
-### `:_drb_restart_`
-Use the DRb server to request the client application to restart.
+{include:file:docs/events/by_name/drb_status.md}
 
-    Vedeu.trigger(:_drb_restart_)
-    Vedeu.drb_restart
-
-### `:_drb_start_`
-Use the DRb server to request the client application to start.
-
-    Vedeu.trigger(:_drb_start_)
-    Vedeu.drb_start
-
-### `:_drb_status_`
-Use the DRb server to request the status of the client application.
-
-    Vedeu.trigger(:_drb_status_)
-    Vedeu.drb_status
-
-### `:_drb_stop_`
-Use the DRb server to request the client application to stop.
-
-    Vedeu.trigger(:_drb_stop_)
-    Vedeu.drb_stop
+{include:file:docs/events/by_name/drb_stop.md}
