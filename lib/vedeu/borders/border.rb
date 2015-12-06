@@ -21,20 +21,20 @@ module Vedeu
       include Vedeu::Repositories::Model
       include Vedeu::Presentation
 
-      # @!attribute [rw] bottom_left
+      # @!attribute [w] bottom_left
       # @return [String] The character to be used for the bottom left
       #   border if enabled.
-      attr_accessor :bottom_left
+      attr_writer :bottom_left
 
-      # @!attribute [rw] bottom_right
+      # @!attribute [w] bottom_right
       # @return [String] The character to be used for the bottom right
       #   border if enabled.
-      attr_accessor :bottom_right
+      attr_writer :bottom_right
 
-      # @!attribute [rw] bottom_horizontal
+      # @!attribute [w] bottom_horizontal
       # @return [String] The character to be used for the bottom
       #   horizontal border if enabled.
-      attr_accessor :bottom_horizontal
+      attr_writer :bottom_horizontal
 
       # @!attribute [rw] caption
       # @return [String] An optional caption for when the bottom
@@ -75,35 +75,35 @@ module Vedeu
       #   to be shown.
       attr_accessor :title
 
-      # @!attribute [rw] top_left
+      # @!attribute [w] top_left
       # @return [String] The character to be used for the top left
       #   border if enabled.
-      attr_accessor :top_left
+      attr_writer :top_left
 
-      # @!attribute [rw] top_right
+      # @!attribute [w] top_right
       # @return [String] The character to be used for the top right
       #   border if enabled.
-      attr_accessor :top_right
+      attr_writer :top_right
 
-      # @!attribute [rw] top_horizontal
+      # @!attribute [w] top_horizontal
       # @return [String] The character to be used for the top
       #   horizontal border if enabled.
-      attr_accessor :top_horizontal
+      attr_writer :top_horizontal
 
       # @!attribute [rw] vertical
       # @return [String] The character to be used for the vertical
       #   side border.
       attr_accessor :vertical
 
-      # @!attribute [rw] left_vertical
+      # @!attribute [w] left_vertical
       # @return [String] The character to be used for the left
       #   vertical side border.
-      attr_accessor :left_vertical
+      attr_writer :left_vertical
 
-      # @!attribute [rw] right_vertical
+      # @!attribute [w] right_vertical
       # @return [String] The character to be used for the right
       #   vertical side border.
-      attr_accessor :right_vertical
+      attr_writer :right_vertical
 
       # @!attribute [r] name
       # @return [String|Symbol] Associates the border with the
@@ -115,7 +115,7 @@ module Vedeu
       #   view associated with this border.
       attr_reader :parent
 
-      # @!attribute [r] enabled
+      # @!attribute [rw] enabled
       # @return [Boolean] Determines whether this border should be
       #   rendered.
       attr_accessor :enabled
@@ -126,17 +126,21 @@ module Vedeu
       # @param attributes [Hash<Symbol => Boolean|Hash|NilClass|
       #   String|Symbol|Vedeu::Borders::Repository|
       #   Vedeu::Presentation::Style>]
-      # @option attributes bottom_left [String] The bottom left border
-      #   character.
-      # @option attributes bottom_right [String] The bottom right
-      #   border character.
+      # @option attributes bottom_left [String]
+      #   The bottom left border character.
+      # @option attributes bottom_right [String]
+      #   The bottom right border character.
       # @option attributes colour [Hash]
       # @option attributes enabled [Boolean] Indicate whether the
       #   border is to be shown for this interface.
-      # @option attributes horizontal [String] The horizontal border
-      #   character.
+      # @option attributes horizontal [String]
+      #   The horizontal border character.
+      # @option attributes left_vertical [String]
+      #   The left vertical border character.
       # @option attributes name [String|Symbol] The name of the
       #   interface to which this border relates.
+      # @option attributes right_vertical [String]
+      #   The right vertical border character.
       # @option attributes style [Vedeu::Presentation::Style]
       # @option attributes show_bottom [Boolean] Indicate whether the
       #   bottom border is to be shown.
@@ -150,12 +154,14 @@ module Vedeu
       #   the top border is to be shown.
       # @option attributes caption [String] An optional caption for
       #   when the bottom border is to be shown.
-      # @option attributes top_left [String] The top left border
-      #   character.
-      # @option attributes top_right [String] The top right border
-      #   character.
-      # @option attributes vertical [String] The vertical border
-      #   character.
+      # @option attributes top_horizontal [String]
+      #   The top horizontal border character.
+      # @option attributes top_left [String]
+      #   The top left border character.
+      # @option attributes top_right [String]
+      #   The top right border character.
+      # @option attributes vertical [String]
+      #   The vertical border character.
       # @return [Vedeu::Borders::Border]
       def initialize(attributes = {})
         defaults.merge!(attributes).each do |key, value|
@@ -167,28 +173,28 @@ module Vedeu
       #   Vedeu::Borders::Repository|Vedeu::Presentation::Style>]
       def attributes
         {
-          bottom_horizontal: @bottom_horizontal,
-          bottom_left:       @bottom_left,
-          bottom_right:      @bottom_right,
+          bottom_horizontal: bottom_horizontal,
+          bottom_left:       bottom_left,
+          bottom_right:      bottom_right,
           caption:           @caption,
           client:            @client,
           colour:            @colour,
           enabled:           @enabled,
           horizontal:        @horizontal,
-          left_vertical:     @left_vertical,
+          left_vertical:     left_vertical,
           name:              @name,
           parent:            @parent,
           repository:        @repository,
-          right_vertical:    @right_vertical,
+          right_vertical:    right_vertical,
           show_bottom:       @show_bottom,
           show_left:         @show_left,
           show_right:        @show_right,
           show_top:          @show_top,
           style:             @style,
           title:             @title,
-          top_horizontal:    @top_horizontal,
-          top_left:          @top_left,
-          top_right:         @top_right,
+          top_horizontal:    top_horizontal,
+          top_left:          top_left,
+          top_right:         top_right,
           vertical:          @vertical,
         }
       end
@@ -205,7 +211,81 @@ module Vedeu
         Vedeu::Borders::DSL.new(self, client)
       end
 
+      # Return the client application configured left vertical cell
+      # character, or the default if not set.
+      #
+      # @return [Vedeu::Cells::LeftVertical]
+      def left_vertical
+        @left_vertical ||= Vedeu::Cells::LeftVertical.new(cell_attributes)
+      end
+
+      # Return the client application configured right vertical cell
+      # character, or the default if not set.
+      #
+      # @return [Vedeu::Cells::RightVertical]
+      def right_vertical
+        @right_vertical ||= Vedeu::Cells::RightVertical.new(cell_attributes)
+      end
+
+      # Return the client application configured top horizontal cell
+      # character, or the default if not set.
+      #
+      # @return [Vedeu::Cells::TopHorizontal]
+      def top_horizontal
+        @top_horizontal ||= Vedeu::Cells::TopHorizontal.new(cell_attributes)
+      end
+
+      # Return the client application configured top left cell
+      # character, or the default if not set.
+      #
+      # @return [Vedeu::Cells::TopLeft]
+      def top_left
+        @top_left ||= Vedeu::Cells::TopLeft.new(cell_attributes)
+      end
+
+      # Return the client application configured top right cell
+      # character, or the default if not set.
+      #
+      # @return [Vedeu::Cells::TopRight]
+      def top_right
+        @top_right ||= Vedeu::Cells::TopRight.new(cell_attributes)
+      end
+
+      # Return the client application configured bottom horizontal
+      # cell character, or the default if not set.
+      #
+      # @return [Vedeu::Cells::BottomHorizontal]
+      def bottom_horizontal
+        @bottom_horizontal ||= Vedeu::Cells::BottomHorizontal
+                                 .new(cell_attributes)
+      end
+
+      # Return the client application configured bottom left cell
+      # character, or the default if not set.
+      #
+      # @return [Vedeu::Cells::BottomLeft]
+      def bottom_left
+        @bottom_left ||= Vedeu::Cells::BottomLeft.new(cell_attributes)
+      end
+
+      # Return the client application configured bottom right cell
+      # character, or the default if not set.
+      #
+      # @return [Vedeu::Cells::BottomRight]
+      def bottom_right
+        @bottom_right ||= Vedeu::Cells::BottomRight.new(cell_attributes)
+      end
+
       private
+
+      # @return [Hash<Symbol => void>]
+      def cell_attributes
+        {
+          colour: @colour,
+          name:   @name,
+          style:  @style,
+        }
+      end
 
       # The default values for a new instance of this class.
       #

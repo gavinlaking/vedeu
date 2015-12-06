@@ -10,27 +10,39 @@ module Vedeu
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
-          bottom_left:  'm',
-          bottom_right: 'j',
+          bottom_horizontal: bottom_horizontal,
+          bottom_left:       bottom_left,
+          bottom_right:      bottom_right,
           caption:      '',
           client:       nil,
           colour:       nil,
           enabled:      false,
           horizontal:   'q',
+          left_vertical: left_vertical,
           name:         _name,
           parent:       nil,
           repository:   Vedeu.borders,
+          right_vertical: right_vertical,
           show_bottom:  true,
           show_left:    true,
           show_right:   true,
           show_top:     true,
           style:        nil,
           title:        '',
-          top_left:     'l',
-          top_right:    'k',
+          top_horizontal: top_horizontal,
+          top_left:       top_left,
+          top_right:      top_right,
           vertical:     'x',
         }
       }
+      let(:bottom_horizontal) { 'B' }
+      let(:bottom_left)       { 'm' }
+      let(:bottom_right)      { 'j' }
+      let(:left_vertical)     { 'L' }
+      let(:right_vertical)    { 'R' }
+      let(:top_horizontal)    { 'T' }
+      let(:top_left)          { 'l' }
+      let(:top_right)         { 'k' }
       let(:geometry) {}
       let(:_name)    { 'borders' }
 
@@ -51,11 +63,8 @@ module Vedeu
       describe 'accessors' do
         it do
           instance.must_respond_to(:attributes)
-          instance.must_respond_to(:bottom_horizontal)
           instance.must_respond_to(:bottom_horizontal=)
-          instance.must_respond_to(:bottom_left)
           instance.must_respond_to(:bottom_left=)
-          instance.must_respond_to(:bottom_right)
           instance.must_respond_to(:bottom_right=)
           instance.must_respond_to(:caption)
           instance.must_respond_to(:caption=)
@@ -75,15 +84,10 @@ module Vedeu
           instance.must_respond_to(:show_top=)
           instance.must_respond_to(:title)
           instance.must_respond_to(:title=)
-          instance.must_respond_to(:top_horizontal)
           instance.must_respond_to(:top_horizontal=)
-          instance.must_respond_to(:top_left)
           instance.must_respond_to(:top_left=)
-          instance.must_respond_to(:top_right)
           instance.must_respond_to(:top_right=)
-          instance.must_respond_to(:left_vertical)
           instance.must_respond_to(:left_vertical=)
-          instance.must_respond_to(:right_vertical)
           instance.must_respond_to(:right_vertical=)
           instance.must_respond_to(:vertical)
           instance.must_respond_to(:vertical=)
@@ -99,6 +103,118 @@ module Vedeu
 
         it 'returns the DSL instance' do
           subject.must_be_instance_of(Vedeu::Borders::DSL)
+        end
+      end
+
+      describe '#bottom_horizontal' do
+        subject { instance.bottom_horizontal }
+
+        context 'when a custom border is specified' do
+          it { subject.must_equal(bottom_horizontal) }
+        end
+
+        context 'when a custom border is not specified' do
+          let(:bottom_horizontal) {}
+
+          it { subject.must_be_instance_of(Vedeu::Cells::BottomHorizontal) }
+        end
+      end
+
+      describe '#bottom_left' do
+        subject { instance.bottom_left }
+
+        context 'when a custom border is specified' do
+          it { subject.must_equal(bottom_left) }
+        end
+
+        context 'when a custom border is not specified' do
+          let(:bottom_left) {}
+
+          it { subject.must_be_instance_of(Vedeu::Cells::BottomLeft) }
+        end
+      end
+
+      describe '#bottom_right' do
+        subject { instance.bottom_right }
+
+        context 'when a custom border is specified' do
+          it { subject.must_equal(bottom_right) }
+        end
+
+        context 'when a custom border is not specified' do
+          let(:bottom_right) {}
+
+          it { subject.must_be_instance_of(Vedeu::Cells::BottomRight) }
+        end
+      end
+
+      describe '#left_vertical' do
+        subject { instance.left_vertical }
+
+        context 'when a custom border is specified' do
+          it { subject.must_equal(left_vertical) }
+        end
+
+        context 'when a custom border is not specified' do
+          let(:left_vertical) {}
+
+          it { subject.must_be_instance_of(Vedeu::Cells::LeftVertical) }
+        end
+      end
+
+      describe '#right_vertical' do
+        subject { instance.right_vertical }
+
+        context 'when a custom border is specified' do
+          it { subject.must_equal(right_vertical) }
+        end
+
+        context 'when a custom border is not specified' do
+          let(:right_vertical) {}
+
+          it { subject.must_be_instance_of(Vedeu::Cells::RightVertical) }
+        end
+      end
+
+      describe '#top_horizontal' do
+        subject { instance.top_horizontal }
+
+        context 'when a custom border is specified' do
+          it { subject.must_equal(top_horizontal) }
+        end
+
+        context 'when a custom border is not specified' do
+          let(:top_horizontal) {}
+
+          it { subject.must_be_instance_of(Vedeu::Cells::TopHorizontal) }
+        end
+      end
+
+      describe '#top_left' do
+        subject { instance.top_left }
+
+        context 'when a custom border is specified' do
+          it { subject.must_equal(top_left) }
+        end
+
+        context 'when a custom border is not specified' do
+          let(:top_left) {}
+
+          it { subject.must_be_instance_of(Vedeu::Cells::TopLeft) }
+        end
+      end
+
+      describe '#top_right' do
+        subject { instance.top_right }
+
+        context 'when a custom border is specified' do
+          it { subject.must_equal(top_right) }
+        end
+
+        context 'when a custom border is not specified' do
+          let(:top_right) {}
+
+          it { subject.must_be_instance_of(Vedeu::Cells::TopRight) }
         end
       end
 

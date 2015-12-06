@@ -69,9 +69,7 @@ module Vedeu
       #
       # @return [Boolean] Whether the buffer targetted has content.
       def back?
-        return false if back.nil? || back.lines.empty?
-
-        true
+        (back.nil? || back.lines.empty?) ? false : true
       end
 
       # Return a boolean indicating whether the cursor should be
@@ -107,9 +105,7 @@ module Vedeu
       #
       # @return [Boolean] Whether the buffer targetted has content.
       def front?
-        return false if front.nil? || front.lines.empty?
-
-        true
+        (front.nil? || front.lines.empty?) ? false : true
       end
 
       # Return a boolean indicating content presence on the buffer
@@ -117,9 +113,7 @@ module Vedeu
       #
       # @return [Boolean] Whether the buffer targetted has content.
       def previous?
-        return false if previous.nil? || previous.lines.empty?
-
-        true
+        (previous.nil? || previous.lines.empty?) ? false : true
       end
 
       # Retrieve the latest content from the buffer.
@@ -137,18 +131,20 @@ module Vedeu
       #
       # @return [Array<Array<Array<Vedeu::Views::Char>>>]
       def render
-        if back?
-          swap
+        current = if back?
+                    swap
 
-          Vedeu::Output::Viewport.render(front)
+                    front
 
-        elsif front?
-          Vedeu::Output::Viewport.render(front)
+                  elsif front?
+                    front
 
-        elsif previous?
-          Vedeu::Output::Viewport.render(previous)
+                  elsif previous?
+                    previous
 
-        end
+                  end
+
+        Vedeu::Output::Viewport.render(current) unless current.nil?
       end
 
       # Returns the number of lines of content for the buffer or 0 if

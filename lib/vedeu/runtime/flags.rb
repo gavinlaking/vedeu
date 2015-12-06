@@ -12,6 +12,8 @@ module Vedeu
 
         # @return [Boolean]
         def ready!
+          Vedeu.log(type: :info, message: 'Vedeu ready!')
+
           instance.options[:ready] = true
         end
 

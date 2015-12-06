@@ -102,48 +102,13 @@ module Vedeu
       # @return [Array<Array<Vedeu::Views::Char>>]
       def output
         Vedeu.timer("Drawing border: '#{name}'".freeze) do
-          [top, left, right, bottom].flatten
+          [
+            (top if top?),
+            (left if left?),
+            (right if right?),
+            (bottom if bottom?),
+          ].flatten
         end
-      end
-
-      # Creates the bottom left border character.
-      #
-      # @return [NilClass|Vedeu::Cells::Border|Vedeu::Views::Char]
-      def build_bottom_left
-        return nil unless left?
-        return bottom_left if bottom_left
-
-        Vedeu::Cells::BottomLeft.new(attributes)
-      end
-
-      # Creates the bottom right border character.
-      #
-      # @return [NilClass|Vedeu::Cells::Border|Vedeu::Views::Char]
-      def build_bottom_right
-        return nil unless right?
-        return bottom_right if bottom_right
-
-        Vedeu::Cells::BottomRight.new(attributes)
-      end
-
-      # Creates the top left border character.
-      #
-      # @return [NilClass|Vedeu::Cells::Border|Vedeu::Views::Char]
-      def build_top_left
-        return nil unless left?
-        return top_left if top_left
-
-        Vedeu::Cells::TopLeft.new(attributes)
-      end
-
-      # Creates the top right border character.
-      #
-      # @return [NilClass|Vedeu::Cells::Border|Vedeu::Views::Char]
-      def build_top_right
-        return nil unless right?
-        return top_right if top_right
-
-        Vedeu::Cells::TopRight.new(attributes)
       end
 
       # Renders the bottom border for the interface.
@@ -155,9 +120,7 @@ module Vedeu
       #
       # @return [String]
       def bottom
-        return [] unless bottom?
-
-        [build_bottom_left, captionbar, build_bottom_right].compact
+        [(bottom_left if left?), captionbar, (bottom_right if right?)].compact
       end
 
       # Returns the geometry for the interface.
@@ -182,10 +145,8 @@ module Vedeu
       #
       # @return [Array<void>]
       def left
-        return [] unless left?
-
         build_collection(bordered_height) do |iy|
-          cell = left_vertical_cell.dup
+          cell = left_vertical.dup
           cell.position = [by + iy, x]
           cell
         end
@@ -195,10 +156,8 @@ module Vedeu
       #
       # @return [Array<void>]
       def right
-        return [] unless right?
-
         build_collection(bordered_height) do |iy|
-          cell = right_vertical_cell.dup
+          cell = right_vertical.dup
           cell.position = [by + iy, xn]
           cell
         end
@@ -213,9 +172,7 @@ module Vedeu
       #
       # @return [String]
       def top
-        return [] unless top?
-
-        [build_top_left, titlebar, build_top_right].compact
+        [(top_left if left?), titlebar, (top_right if right?)].compact
       end
 
       # An optional caption for when the bottom border is to be shown.
@@ -223,20 +180,15 @@ module Vedeu
       # @return [Array<Vedeu::Views::Char>]
       # @see [Vedeu::Borders::Caption#render]
       def captionbar
-        return build_bottom unless present?(caption)
-
-        Vedeu::Borders::Caption.render(name, caption, build_bottom)
-      end
-
-      # Creates a bottom border character.
-      #
-      # @return [Array<Vedeu::Views::Char>]
-      def build_bottom
-        build_collection(bordered_width) do |ix|
-          cell = bottom_horizontal_cell.dup
+        characters = build_collection(bordered_width) do |ix|
+          cell = bottom_horizontal.dup
           cell.position = [yn, bx + ix]
           cell
         end
+
+        return characters unless present?(caption)
+
+        Vedeu::Borders::Caption.render(name, caption, characters)
       end
 
       # An optional title for when the top border is to be shown.
@@ -244,60 +196,15 @@ module Vedeu
       # @return [Array<Vedeu::Views::Char>]
       # @see [Vedeu::Borders::Title#render]
       def titlebar
-        return build_top unless present?(title)
-
-        Vedeu::Borders::Title.render(name, title, build_top)
-      end
-
-      # Creates a top border character.
-      #
-      # @return [Array<Vedeu::Views::Char>]
-      def build_top
-        build_collection(bordered_width) do |ix|
-          cell = top_horizontal_cell.dup
+        characters = build_collection(bordered_width) do |ix|
+          cell = top_horizontal.dup
           cell.position = [y, bx + ix]
           cell
         end
-      end
 
-      # Return the client application configured left vertical cell
-      # character, or the default if not set.
-      #
-      # @return [Vedeu::Cells::LeftVertical]
-      def left_vertical_cell
-        return left_vertical if left_vertical
+        return characters unless present?(title)
 
-        Vedeu::Cells::LeftVertical.new(attributes)
-      end
-
-      # Return the client application configured right vertical cell
-      # character, or the default if not set.
-      #
-      # @return [Vedeu::Cells::RightVertical]
-      def right_vertical_cell
-        return right_vertical if right_vertical
-
-        Vedeu::Cells::RightVertical.new(attributes)
-      end
-
-      # Return the client application configured top horizontal cell
-      # character, or the default if not set.
-      #
-      # @return [Vedeu::Cells::TopHorizontal]
-      def top_horizontal_cell
-        return top_horizontal if top_horizontal
-
-        Vedeu::Cells::TopHorizontal.new(attributes)
-      end
-
-      # Return the client application configured bottom horizontal
-      # cell character, or the default if not set.
-      #
-      # @return [Vedeu::Cells::BottomHorizontal]
-      def bottom_horizontal_cell
-        return bottom_horizontal if bottom_horizontal
-
-        Vedeu::Cells::BottomHorizontal.new(attributes)
+        Vedeu::Borders::Title.render(name, title, characters)
       end
 
       # Build a collection with the given size of objects given within
@@ -312,5 +219,14 @@ module Vedeu
     end # Refresh
 
   end # Borders
+
+  # :nocov:
+
+  # See {file:docs/borders.md#label-3A_refresh_border_}
+  Vedeu.bind(:_refresh_border_) do |name|
+    Vedeu::Borders::Refresh.by_name(name) if Vedeu.ready?
+  end
+
+  # :nocov:
 
 end # Vedeu

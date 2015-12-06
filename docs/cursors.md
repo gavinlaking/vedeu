@@ -38,28 +38,26 @@ can be specified when defining the interface.
 Each example within each interface definition is equivalent.
 
 #### Showing the cursor
+The following `cursor` statements are equivalent:
 
-    Vedeu.interface :my_interface do
+    # Vedeu.interface :my_interface do
       cursor true
-
-      # or...
-
       cursor!
+      show_cursor!
 
       # ...
-    end
+    # end
 
 #### Hiding the cursor
+The following `cursor` statements are equivalent:
 
-    Vedeu.interface :my_interface do
+    # Vedeu.interface :my_interface do
       cursor false
-
-      # or...
-
       no_cursor!
+      hide_cirsor!
 
       # ...
-    end
+    # end
 
 ### View Cursors
 The view cursor is the same as the interface cursor with the same
@@ -85,30 +83,17 @@ view is rendered, overriding the initial or current state.
     end
 
 
+## Cursor Events
+
+{include:file:docs/events/by_name/refresh_cursor.md}
+
 ## Cursor Positioning Events
 
-### `:_cursor_origin_`
-This event moves the cursor to the interface origin; the top left
-corner of the named interface.
+{include:file:docs/events/by_name/cursor_origin.md}
 
-    Vedeu.trigger(:_cursor_origin_, name)
-    Vedeu.trigger(:_cursor_reset_, name)
+{include:file:docs/events/by_name/cursor_position.md}
 
-### `:_cursor_position_`
-To ascertain the position of a cursor in a named interface, use the
-following event (substituting 'name' for the interface name):
-
-    Vedeu.trigger(:_cursor_position_, name)
-
-If you want to know where the cursor is without knowing the interface
-name, you can check which interface is in focus:
-
-    Vedeu.trigger(:_cursor_position_, Vedeu.focus)
-
-### `:_cursor_reposition_`
-Moves the cursor to a relative position inside the interface.
-
-    Vedeu.trigger(:_cursor_reposition_, name, y, x)
+{include:file:docs/events/by_name/cursor_reposition.md}
 
 ## Cursor Movement Events
 
@@ -116,45 +101,17 @@ Adjusts the position of the named cursor or view in the direction
 specified. If 'name' is unknown, using 'Vedeu.focus' will use the
 interface currently in focus.
 
-### `:_cursor_left_`
-Moves the cursor one character left, unless the left-most position
-for the view or terminal is reached.
+{include:file:docs/events/by_name/cursor_left.md}
 
-    Vedeu.trigger(:_cursor_left_, name)
-    Vedeu.trigger(:_cursor_left_, Vedeu.focus)
+{include:file:docs/events/by_name/cursor_down.md}
 
-### `:_cursor_down_`
+{include:file:docs/events/by_name/cursor_up.md}
 
-    Vedeu.trigger(:_cursor_down_, name)
-    Vedeu.trigger(:_cursor_down_, Vedeu.focus)
+{include:file:docs/events/by_name/cursor_right.md}
 
-### `:_cursor_up_`
-Moves the cursor one line up, unless the top-most position for the
-view or terminal is reached.
+{include:file:docs/events/by_name/cursor_top.md}
 
-    Vedeu.trigger(:_cursor_up_, name)
-    Vedeu.trigger(:_cursor_up_, Vedeu.focus)
-
-### `:_cursor_right_`
-
-    Vedeu.trigger(:_cursor_right_, name)
-    Vedeu.trigger(:_cursor_right_, Vedeu.focus)
-
-### `:_cursor_top_`
-Moves the cursor to the top-most position for the view or terminal.
-If the view contains content, then this event will effectively scroll
-to the first line of the content.
-
-    Vedeu.trigger(:_cursor_top_, name)
-    Vedeu.trigger(:_cursor_top_, Vedeu.focus)
-
-### `:_cursor_bottom_`
-Moves the cursor to the bottom-most position for the view or terminal.
-If the view contains content, then this event will effectively scroll
-to the last line of the content.
-
-    Vedeu.trigger(:_cursor_bottom_, name)
-    Vedeu.trigger(:_cursor_bottom_, Vedeu.focus)
+{include:file:docs/events/by_name/cursor_bottom.md}
 
 ## Cursor Visibility API & Events
 
@@ -163,34 +120,8 @@ can be called at any time and affect the cursor of the named
 interface, or when a name is not given, the interface currently in
 focus.
 
-### Vedeu.hide_cursor / `:_cursor_hide_`
-Hide the cursor.
+{include:file:docs/events/by_name/hide_cursor.md}
 
-    Vedeu.trigger(:_hide_cursor_, name)
-    Vedeu.trigger(:_hide_cursor_, Vedeu.focus)
-    Vedeu.trigger(:_cursor_hide_, name)
-    Vedeu.trigger(:_cursor_hide_, Vedeu.focus)
+{include:file:docs/events/by_name/show_cursor.md}
 
-    Vedeu.hide_cursor(name)
-    Vedeu.hide_cursor(Vedeu.focus)
-
-### Vedeu.show_cursor / `:_show_cursor_`
-Show the cursor.
-
-    Vedeu.trigger(:_show_cursor_, name)
-    Vedeu.trigger(:_show_cursor_, Vedeu.focus)
-    Vedeu.trigger(:_cursor_show_, name)
-    Vedeu.trigger(:_cursor_show_, Vedeu.focus)
-
-    Vedeu.show_cursor(name)
-    Vedeu.show_cursor(Vedeu.focus)
-
-### Vedeu.toggle_cursor / `:_toggle_cursor_`
-Toggle the visibility of the cursor. If hidden, then show. If shown,
-then hide.
-
-    Vedeu.trigger(:_toggle_cursor_, name)
-    Vedeu.trigger(:_toggle_cursor_, Vedeu.focus)
-
-    Vedeu.toggle_cursor(name)
-    Vedeu.toggle_cursor(Vedeu.focus)
+{include:file:docs/events/by_name/toggle_cursor.md}
