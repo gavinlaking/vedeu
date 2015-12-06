@@ -156,20 +156,22 @@ module Vedeu
       # Stores the model instance by name in the repository of the
       # model.
       #
+      # @note If a block is given, store the model, return the model
+      #   after yielding.
       # @param model [void] A model instance.
       # @raise [Vedeu::Error::MissingRequired] When the name attribute
       #   is not defined.
       # @return [void] The model instance which was stored.
-      def store(model)
-        unless present?(model.name)
-          fail Vedeu::Error::MissingRequired,
-               "Cannot store model '#{model.class}' " \
-               'without a name attribute.'.freeze
-        end
+      def store(model, &block)
+        valid_model?(model)
 
         log_store(model)
 
         storage[model.name] = model
+
+        yield if block_given?
+
+        model
       end
       alias_method :register, :store
       alias_method :add, :store
@@ -183,6 +185,15 @@ module Vedeu
 
         Vedeu.log(type: type,
                   message: "#{model.class.name}: '#{model.name}'".freeze)
+      end
+
+      #
+      # @param model [void] A model instance.
+      # @return [Boolean]
+      def valid_model?(model)
+        fail Vedeu::Error::MissingRequired,
+             "Cannot store model '#{model.class}' without a name " \
+             'attribute.'.freeze unless present?(model.name)
       end
 
     end # Repository

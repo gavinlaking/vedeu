@@ -108,12 +108,8 @@ module Vedeu
       #   after yielding.
       # @todo Perhaps some validation could be added here?
       # @return [void] The model instance stored in the repository.
-      def store
-        new_model = repository.store(self)
-
-        yield if block_given?
-
-        new_model
+      def store(&block)
+        repository.store(self, &block)
       end
 
     end # Model
