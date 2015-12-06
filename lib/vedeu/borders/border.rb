@@ -216,9 +216,7 @@ module Vedeu
       #
       # @return [Vedeu::Cells::LeftVertical]
       def left_vertical
-        return @left_vertical if @left_vertical
-
-        Vedeu::Cells::LeftVertical.new(cell_attributes)
+        @left_vertical ||= Vedeu::Cells::LeftVertical.new(cell_attributes)
       end
 
       # Return the client application configured right vertical cell
@@ -226,9 +224,7 @@ module Vedeu
       #
       # @return [Vedeu::Cells::RightVertical]
       def right_vertical
-        return @right_vertical if @right_vertical
-
-        Vedeu::Cells::RightVertical.new(cell_attributes)
+        @right_vertical ||= Vedeu::Cells::RightVertical.new(cell_attributes)
       end
 
       # Return the client application configured top horizontal cell
@@ -236,9 +232,7 @@ module Vedeu
       #
       # @return [Vedeu::Cells::TopHorizontal]
       def top_horizontal
-        return @top_horizontal if @top_horizontal
-
-        Vedeu::Cells::TopHorizontal.new(cell_attributes)
+        @top_horizontal ||= Vedeu::Cells::TopHorizontal.new(cell_attributes)
       end
 
       # Return the client application configured top left cell
@@ -246,9 +240,7 @@ module Vedeu
       #
       # @return [Vedeu::Cells::TopLeft]
       def top_left
-        return @top_left if @top_left
-
-        Vedeu::Cells::TopLeft.new(cell_attributes)
+        @top_left ||= Vedeu::Cells::TopLeft.new(cell_attributes)
       end
 
       # Return the client application configured top right cell
@@ -256,9 +248,7 @@ module Vedeu
       #
       # @return [Vedeu::Cells::TopRight]
       def top_right
-        return @top_right if @top_right
-
-        Vedeu::Cells::TopRight.new(cell_attributes)
+        @top_right ||= Vedeu::Cells::TopRight.new(cell_attributes)
       end
 
       # Return the client application configured bottom horizontal
@@ -266,9 +256,8 @@ module Vedeu
       #
       # @return [Vedeu::Cells::BottomHorizontal]
       def bottom_horizontal
-        return @bottom_horizontal if @bottom_horizontal
-
-        Vedeu::Cells::BottomHorizontal.new(cell_attributes)
+        @bottom_horizontal ||= Vedeu::Cells::BottomHorizontal
+                                 .new(cell_attributes)
       end
 
       # Return the client application configured bottom left cell
@@ -276,9 +265,7 @@ module Vedeu
       #
       # @return [Vedeu::Cells::BottomLeft]
       def bottom_left
-        return @bottom_left if @bottom_left
-
-        Vedeu::Cells::BottomLeft.new(cell_attributes)
+        @bottom_left ||= Vedeu::Cells::BottomLeft.new(cell_attributes)
       end
 
       # Return the client application configured bottom right cell
@@ -286,9 +273,7 @@ module Vedeu
       #
       # @return [Vedeu::Cells::BottomRight]
       def bottom_right
-        return @bottom_right if @bottom_right
-
-        Vedeu::Cells::BottomRight.new(cell_attributes)
+        @bottom_right ||= Vedeu::Cells::BottomRight.new(cell_attributes)
       end
 
       private
