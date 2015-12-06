@@ -220,4 +220,13 @@ module Vedeu
 
   end # Borders
 
+  # :nocov:
+
+  # See {file:docs/borders.md#label-3A_refresh_border_}
+  Vedeu.bind(:_refresh_border_) do |name|
+    Vedeu::Borders::Refresh.by_name(name) if Vedeu.ready?
+  end
+
+  # :nocov:
+
 end # Vedeu

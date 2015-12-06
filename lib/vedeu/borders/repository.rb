@@ -28,11 +28,6 @@ module Vedeu
 
   # :nocov:
 
-  # See {file:docs/borders.md#label-3A_refresh_border_}
-  Vedeu.bind(:_refresh_border_) do |name|
-    Vedeu::Borders::Refresh.by_name(name) if Vedeu.ready?
-  end
-
   # See {file:docs/borders.md#label-3A_set_border_caption_}
   Vedeu.bind(:_set_border_caption_) do |name, caption|
     Vedeu::Borders::SetAttribute.update(name, :title, caption)
