@@ -51,7 +51,7 @@ module Vedeu
       #
       # @return [Array]
       def by_name
-        refresh_view if refresh_view?
+        Vedeu.trigger(:_refresh_view_content_, name) if refresh_view?
 
         Vedeu.log(type:    :cursor,
                   message: "Refreshing cursor: '#{name}' (x:#{x}, y:#{y}, " \
@@ -65,11 +65,6 @@ module Vedeu
       # @return [String|Symbol]
       def name
         present?(@name) ? @name : Vedeu.focus
-      end
-
-      # @return [void]
-      def refresh_view
-        Vedeu.trigger(:_refresh_view_content_, name)
       end
 
       # Returns true when the view should be refreshed. This is
