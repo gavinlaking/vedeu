@@ -41,9 +41,10 @@ module Vedeu
       # Write an entry to the log file stating how long a section of
       # code took in milliseconds. Useful for debugging performance.
       #
+      # @param block [Proc]
       # @raise [Vedeu::Error::RequiresBlock]
       # @return [void] The return value of the executed block.
-      def measure
+      def measure(&block)
         fail Vedeu::Error::RequiresBlock unless block_given?
 
         if Vedeu::Configuration.debug?

@@ -23,13 +23,15 @@ module Vedeu
     # Renders the colour attributes of the receiver and yields (to
     # then render the styles).
     #
+    # @param block [Proc]
     # @return [String]
-    def render_colour
+    def render_colour(&block)
       "#{colour}#{yield}".freeze
     end
 
+    # @param block [Proc]
     # @return [String]
-    def render_position
+    def render_position(&block)
       return position.to_s { yield } if position?
 
       yield
@@ -38,8 +40,9 @@ module Vedeu
     # Renders the style attributes of the receiver and yields (to
     # then render the next model, or finally, the content).
     #
+    # @param block [Proc]
     # @return [String]
-    def render_style
+    def render_style(&block)
       "#{style}#{yield}".freeze
     end
 

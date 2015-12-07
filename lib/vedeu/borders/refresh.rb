@@ -211,8 +211,9 @@ module Vedeu
       # the block.
       #
       # @param size [Fixnum]
+      # @param block [Proc]
       # @return [Array<void>]
-      def build_collection(size)
+      def build_collection(size, &block)
         Array.new(size) { |e| yield(e) }
       end
 

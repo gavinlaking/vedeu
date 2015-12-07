@@ -60,14 +60,6 @@ module Vedeu
       it { subject.must_be_instance_of(Vedeu::Cells::Char) }
     end
 
-    describe '#demodulize' do
-      let(:klass) { described }
-
-      subject { instance.demodulize(klass) }
-
-      it { subject.must_equal('VedeuCommonClass') }
-    end
-
     describe '#numeric?' do
       let(:_value) {}
 

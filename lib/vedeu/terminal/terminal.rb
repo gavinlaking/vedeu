@@ -12,10 +12,11 @@ module Vedeu
     # exit, attempts to restore the screen. See
     # {Vedeu::Terminal#restore_screen}.
     #
+    # @param block [Proc]
     # @raise [Vedeu::Error::RequiresBlock] The required block was not
     #   given.
     # @return [Array]
-    def open
+    def open(&block)
       fail Vedeu::Error::RequiresBlock unless block_given?
 
       if raw_mode? || fake_mode?
@@ -55,9 +56,10 @@ module Vedeu
       true
     end
 
+    # @param block [Proc]
     # @param mode [Symbol]
     # @return [void]
-    def initialize_screen(mode)
+    def initialize_screen(mode, &block)
       Vedeu.log(message: "Terminal entering '#{mode}' mode".freeze)
 
       output(Vedeu::EscapeSequences::Esc.screen_init)

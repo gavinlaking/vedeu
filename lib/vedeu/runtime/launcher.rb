@@ -88,8 +88,9 @@ module Vedeu
 
     private
 
+    # @param block [Proc]
     # @return [void]
-    def optionally_profile
+    def optionally_profile(&block)
       if Vedeu::Configuration.profile?
         Vedeu.profile { yield }
 

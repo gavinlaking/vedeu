@@ -7,6 +7,7 @@ module Vedeu
     #
     module Model
 
+      # This is used by including classes.
       include Vedeu::Common
 
       # @!attribute [rw] repository

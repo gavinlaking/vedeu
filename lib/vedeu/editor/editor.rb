@@ -7,7 +7,6 @@ module Vedeu
     #
     class Editor
 
-      include Vedeu::Common
       extend Forwardable
 
       def_delegators :document,

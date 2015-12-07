@@ -28,6 +28,9 @@ AllCops:
   DisplayStyleGuide: true
   StyleGuideCopsOnly: false
 
+Lint/UnusedMethodArgument:
+  Enabled: false
+
 Style/EmptyLinesAroundBlockBody:
   EnforcedStyle: no_empty_lines
 

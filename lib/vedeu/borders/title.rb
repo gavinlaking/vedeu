@@ -13,8 +13,6 @@ module Vedeu
     #
     class Title
 
-      include Vedeu::Common
-
       # @param (see #initialize)
       # @return (see #render)
       def self.render(name, value = '', horizontal = [])

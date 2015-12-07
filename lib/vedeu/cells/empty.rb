@@ -13,7 +13,6 @@ module Vedeu
     class Empty
 
       include Comparable
-      include Vedeu::Common
       include Vedeu::Presentation
       include Vedeu::Repositories::Defaults
 

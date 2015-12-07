@@ -104,8 +104,9 @@ module Vedeu
       @storage ||= in_memory
     end
 
+    # @param block [Proc]
     # @return [void]
-    def threaded(renderer)
+    def threaded(renderer, &block)
       Thread.new(renderer) do
         mutex.synchronize do
           toggle_cursor do
@@ -115,8 +116,9 @@ module Vedeu
       end
     end
 
+    # @param block [Proc]
     # @return [void]
-    def toggle_cursor
+    def toggle_cursor(&block)
       Vedeu.trigger(:_hide_cursor_)
 
       yield

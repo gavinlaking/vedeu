@@ -82,7 +82,6 @@ module Vedeu
     #
     class View
 
-      include Vedeu::Common
       include Vedeu::DSL
       include Vedeu::Cursors::DSL
       include Vedeu::DSL::Presentation
