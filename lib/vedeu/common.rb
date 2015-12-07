@@ -24,19 +24,6 @@ module Vedeu
       klass.new(attributes)
     end
 
-    # Removes the module part from the expression in the string.
-    #
-    # @example
-    #   demodulize('Vedeu::SomeModule::SomeClass') # => "SomeClass"
-    #
-    # @param klass [Class|String]
-    # @return [String]
-    def demodulize(klass)
-      klass = klass.to_s
-
-      klass[(klass.rindex('::') + 2)..-1]
-    end
-
     # Returns a boolean indicating whether the value is a Fixnum.
     #
     # @param value [Fixnum|void]
