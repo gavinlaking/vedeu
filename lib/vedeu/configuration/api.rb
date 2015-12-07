@@ -8,8 +8,6 @@ module Vedeu
     #
     class API
 
-      include Vedeu::Common
-
       # @param (see #initialize)
       def self.configure(&block)
         new(&block).configuration

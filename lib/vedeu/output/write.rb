@@ -11,7 +11,6 @@ module Vedeu
     #
     class Write
 
-      include Vedeu::Common
       include Vedeu::Presentation
 
       # @api public

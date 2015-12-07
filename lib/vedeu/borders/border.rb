@@ -17,7 +17,6 @@ module Vedeu
     class Border
 
       extend Forwardable
-      include Vedeu::Common
       include Vedeu::Repositories::Model
       include Vedeu::Presentation
 

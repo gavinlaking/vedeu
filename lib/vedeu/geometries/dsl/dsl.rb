@@ -73,7 +73,6 @@ module Vedeu
     #
     class DSL
 
-      include Vedeu::Common
       include Vedeu::DSL
       include Vedeu::DSL::Use
       include Vedeu::Geometries::Validator
