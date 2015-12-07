@@ -44,10 +44,11 @@ module Vedeu
 
       # Return the escape sequence to render a border character.
       #
+      # @param block [Proc]
       # @return [String]
       # @yieldreturn [void] The border character to wrap with border
       #   on and off escape sequences.
-      def border
+      def border(&block)
         return '' unless block_given?
 
         "#{border_on}#{yield}#{border_off}".freeze

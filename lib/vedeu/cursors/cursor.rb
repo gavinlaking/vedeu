@@ -174,8 +174,9 @@ module Vedeu
       # visibility. When passed a block, will position the cursor,
       # yield and return the original position.
       #
+      # @param block [Proc]
       # @return [String]
-      def to_s
+      def to_s(&block)
         return escape_sequence.to_s unless block_given?
 
         "#{position}#{yield}#{escape_sequence}".freeze

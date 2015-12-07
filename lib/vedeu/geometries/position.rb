@@ -111,10 +111,11 @@ module Vedeu
       # the aforementioned, call the block and then reposition to this
       # location.
       #
+      # @param block [Proc]
       # @return [String]
       # @yieldreturn [String] Returns the block wrapped in position
       #   escape sequences.
-      def to_s
+      def to_s(&block)
         return "#{sequence}#{yield}".freeze if block_given?
 
         sequence

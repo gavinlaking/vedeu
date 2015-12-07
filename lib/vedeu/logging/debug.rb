@@ -20,9 +20,10 @@ module Vedeu
       #
       # @param filename [String] Optional, and defaults to being
       #   written to the /tmp directory.
+      # @param block [Proc]
       # @return [void]
       # @yieldreturn [void] The section of the application to profile.
-      def self.profile(filename = 'profile.html')
+      def self.profile(filename = 'profile.html', &block)
         return nil unless block_given?
 
         require 'ruby-prof'
