@@ -133,11 +133,11 @@ module Vedeu
       end
 
       describe '#keymap' do
-        subject do
+        subject {
           instance.keys do
             # ...
           end
-        end
+        }
 
         it { subject.must_be_instance_of(Vedeu::Input::Keymap) }
         it { instance.must_respond_to(:keys) }
@@ -153,21 +153,21 @@ module Vedeu
       end
 
       describe '#show!' do
-        subject do
+        subject {
           Vedeu.interface 'xenon' do
             show!
           end
-        end
+        }
 
         it { subject.visible.must_equal(true) }
       end
 
       describe '#hide!' do
-        subject do
+        subject {
           Vedeu.interface 'xenon' do
             hide!
           end
-        end
+        }
 
         it { subject.visible.must_equal(false) }
       end

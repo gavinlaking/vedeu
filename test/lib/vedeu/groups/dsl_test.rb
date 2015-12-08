@@ -20,6 +20,7 @@ module Vedeu
             end
           }
 
+          # @todo Add more tests.
         end
 
         context 'when the block is not given' do
@@ -98,9 +99,9 @@ module Vedeu
 
         it { subject.members.size.must_equal(2) }
 
-        it { subject.members.must_equal(
-          Set['main_interface', 'status_interface']
-        ) }
+        it do
+          subject.members.must_equal(Set['main_interface', 'status_interface'])
+        end
       end
 
     end # DSL

@@ -114,10 +114,10 @@ module Vedeu
 
         subject { instance.hide }
 
-        it {
+        it do
           Vedeu.expects(:render_output).with(escape)
           subject
-        }
+        end
       end
 
       describe '#inspect' do
@@ -255,10 +255,10 @@ module Vedeu
 
         subject { instance.show }
 
-        it {
+        it do
           Vedeu.expects(:render_output).with(escape)
           subject
-        }
+        end
       end
 
       describe '#to_a' do
