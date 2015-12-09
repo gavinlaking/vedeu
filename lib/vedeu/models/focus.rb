@@ -206,7 +206,7 @@ module Vedeu
       end
 
       # @raise [Vedeu::Error::ModelNotFound]
-      def not_registered!(name)(name)
+      def not_registered!(name)
         fail Vedeu::Error::ModelNotFound,
              "Cannot focus '#{name}' as this interface has not been " \
              'registered.'.freeze
