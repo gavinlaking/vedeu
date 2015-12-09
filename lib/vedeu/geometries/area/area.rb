@@ -111,7 +111,18 @@ module Vedeu
       #
       # @return [Fixnum]
       def bordered_width
-        (bxn - bx) + 1
+        return width unless border && enabled?
+
+        if left? && right?
+          width - 2
+
+        elsif left? || right?
+          width - 1
+
+        else
+          width
+
+        end
       end
 
       # Returns the height of the interface determined by whether a
@@ -119,7 +130,18 @@ module Vedeu
       #
       # @return [Fixnum]
       def bordered_height
-        (byn - by) + 1
+        return height unless border && enabled?
+
+        if top? && bottom?
+          height - 2
+
+        elsif top? || bottom?
+          height - 1
+
+        else
+          height
+
+        end
       end
 
       # Return the column position for 1 character right of the left
