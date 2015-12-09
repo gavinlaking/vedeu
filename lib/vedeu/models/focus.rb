@@ -56,7 +56,7 @@ module Vedeu
       # @return [String|Symbol] The name of the interface now in
       #   focus.
       def by_name(name)
-        not_registered! unless registered?(name)
+        not_registered!(name) unless registered?(name)
 
         storage.rotate!(storage.index(name))
 
@@ -206,7 +206,7 @@ module Vedeu
       end
 
       # @raise [Vedeu::Error::ModelNotFound]
-      def not_registered!
+      def not_registered!(name)(name)
         fail Vedeu::Error::ModelNotFound,
              "Cannot focus '#{name}' as this interface has not been " \
              'registered.'.freeze
