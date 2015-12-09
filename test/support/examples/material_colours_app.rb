@@ -264,7 +264,7 @@ class VedeuMaterialColoursApp
 
   Vedeu.interface 'keys_interface' do
     colour(foreground: '#ffffff', background: :default)
-    geometry 'keys_interface' do
+    geometry do
       x(3)
       xn(45)
       y(15)
