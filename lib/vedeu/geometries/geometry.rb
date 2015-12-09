@@ -201,10 +201,10 @@ module Vedeu
           vertical_alignment:   vertical_alignment,
           x:                    @x.is_a?(Proc)      ? @x.call      : @x,
           xn:                   @xn.is_a?(Proc)     ? @xn.call     : @xn,
-          x_xn:                 @width.is_a?(Proc)  ? @width.call  : @width,
+          width:                @width.is_a?(Proc)  ? @width.call  : @width,
           y:                    @y.is_a?(Proc)      ? @y.call      : @y,
           yn:                   @yn.is_a?(Proc)     ? @yn.call     : @yn,
-          y_yn:                 @height.is_a?(Proc) ? @height.call : @height,
+          height:               @height.is_a?(Proc) ? @height.call : @height,
         }
       end
 

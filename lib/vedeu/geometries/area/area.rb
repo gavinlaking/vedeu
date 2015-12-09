@@ -46,38 +46,36 @@ module Vedeu
       # @option attributes maximised [Boolean]
       # @option attributes name [String|Symbol]
       # @option attributes vertical_alignment [Symbol]
-      # @option attributes x [Fixnum]
-      # @option attributes xn [Fixnum]
-      # @option attributes x_xn [Fixnum]
-      # @option attributes x_default [Fixnum]
-      # @option attributes y [Fixnum]
-      # @option attributes yn [Fixnum]
-      # @option attributes y_yn [Fixnum]
-      # @option attributes y_default [Fixnum]
+      # @option attributes x [Fixnum] The starting x coordinate.
+      # @option attributes xn [Fixnum] The ending x coordinate.
+      # @option attributes width [Fixnum]
+      # @option attributes y [Fixnum] The starting y coordinate.
+      # @option attributes yn [Fixnum] The ending y coordinate.
+      # @option attributes height [Fixnum]
       # @return [Vedeu::Geometries::Area]
       def self.from_attributes(attributes = {})
         y_attributes = {
           alignment: attributes[:vertical_alignment],
           d:         attributes[:y],
           dn:        attributes[:yn],
-          d_dn:      attributes[:y_yn],
+          d_dn:      attributes[:height],
           maximised: attributes[:maximised],
         }
         x_attributes = {
           alignment: attributes[:horizontal_alignment],
           d:         attributes[:x],
           dn:        attributes[:xn],
-          d_dn:      attributes[:x_xn],
+          d_dn:      attributes[:width],
           maximised: attributes[:maximised],
         }
-        y_yn = Vedeu::Geometries::YDimension.pair(y_attributes)
-        x_xn = Vedeu::Geometries::XDimension.pair(x_attributes)
+        height = Vedeu::Geometries::YDimension.pair(y_attributes)
+        width  = Vedeu::Geometries::XDimension.pair(x_attributes)
 
         new(name: attributes[:name],
-            y:    y_yn[0],
-            yn:   y_yn[-1],
-            x:    x_xn[0],
-            xn:   x_xn[-1])
+            y:    height[0],
+            yn:   height[-1],
+            x:    width[0],
+            xn:   width[-1])
       end
 
       # Returns a new instance of Vedeu::Area.

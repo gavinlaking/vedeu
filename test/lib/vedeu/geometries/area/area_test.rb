@@ -93,12 +93,10 @@ module Vedeu
           {
             y:                    y,
             yn:                   yn,
-            y_yn:                 y_yn,
-            y_default:            y_default,
+            height:               height,
             x:                    x,
             xn:                   xn,
-            x_xn:                 x_xn,
-            x_default:            x_default,
+            width:                width,
             maximised:            maximised,
             name:                 _name,
             horizontal_alignment: horizontal_alignment,
@@ -107,12 +105,10 @@ module Vedeu
         }
         let(:y)                    {}
         let(:yn)                   {}
-        let(:y_yn)                 {}
-        let(:y_default)            {}
+        let(:height)               {}
         let(:x)                    {}
         let(:xn)                   {}
-        let(:x_xn)                 {}
-        let(:x_default)            {}
+        let(:width)                {}
         let(:maximised)            {}
         let(:horizontal_alignment) {}
         let(:vertical_alignment)   {}
@@ -120,6 +116,24 @@ module Vedeu
         subject { described.from_attributes(attributes) }
 
         it { subject.must_be_instance_of(described) }
+      end
+
+      describe '#eql?' do
+        let(:other) { described.new(name: _name, y: 4, yn: 9, x: 6, xn: 21) }
+
+        subject { instance.eql?(other) }
+
+        it { subject.must_equal(true) }
+
+        context 'when different to other' do
+          let(:other) { described.new(name: _name, y: 1, yn: 25, x: 1, xn: 40) }
+
+          it { subject.must_equal(false) }
+        end
+      end
+
+      describe '#==' do
+        it { instance.must_respond_to(:==) }
       end
 
       describe '#bordered_width' do
@@ -278,24 +292,6 @@ module Vedeu
         context 'when not enabled or without bottom' do
           it { subject.must_equal(9) }
         end
-      end
-
-      describe '#eql?' do
-        let(:other) { described.new(name: _name, y: 4, yn: 9, x: 6, xn: 21) }
-
-        subject { instance.eql?(other) }
-
-        it { subject.must_equal(true) }
-
-        context 'when different to other' do
-          let(:other) { described.new(name: _name, y: 1, yn: 25, x: 1, xn: 40) }
-
-          it { subject.must_equal(false) }
-        end
-      end
-
-      describe '#==' do
-        it { instance.must_respond_to(:==) }
       end
 
       describe '#centre' do
