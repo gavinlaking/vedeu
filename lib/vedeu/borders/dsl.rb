@@ -58,6 +58,11 @@ module Vedeu
       #     # ... some other code (will be ignored)
       #   end
       #
+      #   Vedeu.border :border_demo do
+      #     disabled!
+      #     # ... some other code (will be ignored)
+      #   end
+      #
       # @return [Boolean]
       def disable!
         model.enabled = false
@@ -69,6 +74,7 @@ module Vedeu
 
         model.enabled
       end
+      alias_method :disabled!, :disable!
 
       # Enable the border:
       # (Borders are enabled by default when defined for an
@@ -76,6 +82,11 @@ module Vedeu
       #
       #   Vedeu.border :border_demo do
       #     enable!
+      #     # ... some code
+      #   end
+      #
+      #   Vedeu.border :border_demo do
+      #     enabled!
       #     # ... some code
       #   end
       #
@@ -90,6 +101,7 @@ module Vedeu
 
         model.enabled
       end
+      alias_method :enabled!, :enable!
 
       # Set the character to be used to draw the top horizontal part
       # of the border.

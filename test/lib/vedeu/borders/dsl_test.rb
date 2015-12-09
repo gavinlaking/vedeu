@@ -63,11 +63,15 @@ module Vedeu
       describe '#disable!' do
         subject { instance.disable! }
 
+        it { instance.must_respond_to(:disabled!) }
+
         it { subject.must_be_instance_of(FalseClass) }
       end
 
       describe '#enable!' do
         subject { instance.enable! }
+
+        it { instance.must_respond_to(:enabled!) }
 
         it { subject.must_be_instance_of(TrueClass) }
       end
