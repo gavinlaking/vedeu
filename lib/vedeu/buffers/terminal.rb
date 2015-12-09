@@ -15,15 +15,7 @@ module Vedeu
 
       extend self
 
-      # Clears the whole terminal space.
-      #
-      # @example
-      #   Vedeu.clear
-      #
-      #   # or...
-      #
-      #   Vedeu.trigger(:_clear_)
-      #
+      # {include:file:docs/dsl/by_method/clear.md}
       # @return [String|void] Most likely to be a String.
       def clear
         reset!
@@ -41,11 +33,7 @@ module Vedeu
         Vedeu::Models::Page.coerce(buffer)
       end
 
-      # Send the cells to the renderer and return the rendered result.
-      #
-      # @example
-      #   Vedeu.refresh
-      #
+      # {include:file:docs/dsl/by_method/refresh.md}
       # @return [String|void] Most likely to be a String.
       def refresh
         Vedeu.renderers.render(output)
@@ -102,6 +90,8 @@ module Vedeu
 
   # @!method clear
   #   @see Vedeu::Buffers::Terminal#clear
+  # @!method refresh
+  #   @see Vedeu::Buffers::Terminal#refresh
   def_delegators Vedeu::Buffers::Terminal,
                  :clear,
                  :refresh

@@ -203,6 +203,9 @@ module Vedeu
       # @return [Fixnum]
       def height
         (yn - y) + 1
+
+        # (yn - y) + 2
+        # (y..yn).size# + 1
       end
 
       # Returns the width of the interface.
@@ -210,6 +213,9 @@ module Vedeu
       # @return [Fixnum]
       def width
         (xn - x) + 1
+
+        # (xn - x) + 2
+        # (x..xn).size# + 1
       end
 
       # Returns the row above the top by default.

@@ -18,7 +18,7 @@ module Vedeu
       end
     end
 
-  end
+  end # Config
 
 end # Vedeu
 

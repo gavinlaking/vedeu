@@ -72,12 +72,7 @@ module Vedeu
         end
       end
 
-      # Instruct Vedeu to load the client application controller
-      # action with parameters.
-      #
-      # @example
-      #   Vedeu.goto(controller, action, args)
-      #
+      # {include:file:docs/dsl/by_method/goto.md}
       # @param controller [Symbol]
       # @param action [Symbol]
       # @param args [void]

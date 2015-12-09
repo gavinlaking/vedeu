@@ -37,14 +37,7 @@ module Vedeu
       end
       alias_method :compression?, :compression
 
-      # Provides the mechanism to configure Vedeu. If the client
-      # application sets options, override the defaults with those.
-      #
-      # @example
-      #   Vedeu.configure do
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/configure.md}
       # @param opts [Hash<Symbol => void>]
       # @option opts stdin [File|IO]
       # @option opts stdout [File|IO]
@@ -57,13 +50,7 @@ module Vedeu
         instance.configure(opts, &block)
       end
 
-      # Returns the configuration singleton.
-      # Append configuration methods to access the configuration
-      # variable.
-      #
-      # @example
-      #   Vedeu.configuration
-      #
+      # {include:file:docs/dsl/by_method/configuration.md}
       # @return [Vedeu::Configuration]
       def configuration
         instance

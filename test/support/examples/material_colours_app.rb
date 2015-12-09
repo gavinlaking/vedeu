@@ -18,7 +18,7 @@ class VedeuMaterialColoursApp
   # performance.
   Vedeu.configure do
     # background '#607d8b'
-    # colour background: '#607d8b', foreground: '#ffff00'
+    colour background: '#607d8b', foreground: '#ffff00'
     debug!
     # foreground '#ffff00'
     # profile!
@@ -51,6 +51,12 @@ class VedeuMaterialColoursApp
     foreground  '#ffffff'
     show_top false
   end
+
+  # 0      1         2
+  # ----------------------
+  # 3456789012345678901234
+  # ----------------------
+  # 0         1         2
 
   Vedeu.interface 'main_interface' do
     border 'main_interface' do

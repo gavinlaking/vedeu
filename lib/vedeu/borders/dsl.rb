@@ -11,14 +11,22 @@ module Vedeu
       include Vedeu::DSL::Presentation
       include Vedeu::DSL::Use
 
-      # Set the character to be used to draw the bottom left corner of
-      # the border.
-      #
-      #   Vedeu.border :border_demo do
-      #     bottom_left '+'
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/border.md}
+      # @param name [String|Symbol] The name of the interface or view
+      #   to which this border belongs.
+      # @param block [Proc]
+      # @raise [Vedeu::Error::MissingRequired|
+      #   Vedeu::Error::RequiresBlock] When a name or block
+      #   respectively are not given.
+      # @return [Vedeu::Borders::Border]
+      def self.border(name, &block)
+        fail Vedeu::Error::MissingRequired unless name
+        fail Vedeu::Error::RequiresBlock unless block_given?
+
+        Vedeu::Borders::Border.build(enabled: true, name: name, &block).store
+      end
+
+      # {include:file:docs/dsl/by_method/bottom_left.md}
       # @param char [String] Character to be used as the bottom left
       #   border character.
       # @param options [Hash<Symbol => Hash<Symbol => String>|String|
@@ -31,14 +39,7 @@ module Vedeu
       end
       alias_method :bottom_left=, :bottom_left
 
-      # Set the character to be used to draw the bottom right corner
-      # of the border.
-      #
-      #   Vedeu.border :border_demo do
-      #     bottom_right '+'
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/bottom_right.md}
       # @param char [String] Character to be used as the bottom right
       #   border character.
       # @param options [Hash<Symbol => Hash<Symbol => String>|String|
@@ -51,18 +52,7 @@ module Vedeu
       end
       alias_method :bottom_right=, :bottom_right
 
-      # Disable the border:
-      #
-      #   Vedeu.border :border_demo do
-      #     disable!
-      #     # ... some other code (will be ignored)
-      #   end
-      #
-      #   Vedeu.border :border_demo do
-      #     disabled!
-      #     # ... some other code (will be ignored)
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/disable.md}
       # @return [Boolean]
       def disable!
         model.enabled = false
@@ -76,20 +66,7 @@ module Vedeu
       end
       alias_method :disabled!, :disable!
 
-      # Enable the border:
-      # (Borders are enabled by default when defined for an
-      # interface).
-      #
-      #   Vedeu.border :border_demo do
-      #     enable!
-      #     # ... some code
-      #   end
-      #
-      #   Vedeu.border :border_demo do
-      #     enabled!
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/enable.md}
       # @return [Boolean]
       def enable!
         model.enabled = true
@@ -103,14 +80,7 @@ module Vedeu
       end
       alias_method :enabled!, :enable!
 
-      # Set the character to be used to draw the top horizontal part
-      # of the border.
-      #
-      #   Vedeu.border :border_demo do
-      #     top_horizontal '-'
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/top_horizontal.md}
       # @param char [String] Character to be used as the top
       #   horizontal border character.
       # @param options [Hash<Symbol => Hash<Symbol => String>|String|
@@ -124,14 +94,7 @@ module Vedeu
       end
       alias_method :top_horizontal=, :top_horizontal
 
-      # Set the character to be used to draw the bottom horizontal
-      # part of the border.
-      #
-      #   Vedeu.border :border_demo do
-      #     bottom_horizontal '-'
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/bottom_horizontal.md}
       # @param char [String] Character to be used as the bottom
       #   horizontal border character.
       # @param options [Hash<Symbol => Hash<Symbol => String>|String|
@@ -145,14 +108,7 @@ module Vedeu
       end
       alias_method :bottom_horizontal=, :bottom_horizontal
 
-      # Set the character to be used to draw a horizontal part of the
-      # border.
-      #
-      #   Vedeu.border :border_demo do
-      #     horizontal '-'
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/horizontal.md}
       # @param char [String] Character to be used as the horizontal
       #   border character.
       # @param options [Hash<Symbol => Hash<Symbol => String>|String|
@@ -165,16 +121,7 @@ module Vedeu
       end
       alias_method :horizontal=, :horizontal
 
-      # Enable/disable the bottom border.
-      #
-      #   Vedeu.border :border_demo do
-      #     bottom true  # or...
-      #     bottom false # or...
-      #     hide_bottom! # or...
-      #     show_bottom!
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/bottom.md}
       # @param value [Boolean] All values evaluate as true except nil
       # and false.
       # @return [Boolean]
@@ -200,16 +147,7 @@ module Vedeu
         bottom(true)
       end
 
-      # Enable/disable the left border.
-      #
-      #   Vedeu.border :border_demo do
-      #     left true  # or...
-      #     left false # or...
-      #     hide_left! # or...
-      #     show_left!
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/left.md}
       # @param value [Boolean] All values evaluate as true except nil
       #   and false.
       # @return [Boolean]
@@ -235,16 +173,7 @@ module Vedeu
         left(true)
       end
 
-      # Enable/disable the right border.
-      #
-      #   Vedeu.border :border_demo do
-      #     right true  # or...
-      #     right false # or...
-      #     hide_right! # or...
-      #     show_right!
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/right.md}
       # @param value [Boolean] All values evaluate as true except nil
       #   and false.
       # @return [Boolean]
@@ -270,18 +199,7 @@ module Vedeu
         right(true)
       end
 
-      # If you have you are showing a top border, you could add a
-      # title.
-      #
-      #   Vedeu.border :border_demo do
-      #     title 'My Cool Title'
-      #     # ... some code
-      #   end
-      #
-      # produces, depending on other customisations:
-      #
-      #   +- My Cool Title --------------------------------+
-      #
+      # {include:file:docs/dsl/by_method/title.md}
       # @param value [String] The title.
       # @return [String]
       def title(value)
@@ -290,18 +208,7 @@ module Vedeu
       end
       alias_method :title=, :title
 
-      # If you have you are showing a bottom border, you could add a
-      # caption.
-      #
-      #   Vedeu.border :border_demo do
-      #     caption 'My Cool Caption'
-      #     # ... some code
-      #   end
-      #
-      # produces, depending on other customisations:
-      #
-      #   +------------------------------ My Cool Caption -+
-      #
+      # {include:file:docs/dsl/by_method/caption.md}
       # @param value [String] The caption.
       # @return [String]
       def caption(value)
@@ -310,16 +217,7 @@ module Vedeu
       end
       alias_method :caption=, :caption
 
-      # Enable/disable the top border.
-      #
-      #   Vedeu.border :border_demo do
-      #     top true  # or...
-      #     top false # or...
-      #     hide_top! # or...
-      #     show_top!
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/top.md}
       # @param value [Boolean] All values evaluate as true except nil
       #   and false.
       # @return [Boolean]
@@ -345,14 +243,7 @@ module Vedeu
         top(true)
       end
 
-      # Set the character to be used to draw the top left corner of
-      # the border.
-      #
-      #   Vedeu.border :border_demo do
-      #     top_left '+'
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/top_left.md}
       # @param char [String] Character to be used as the top left
       #   border character.
       # @param options [Hash<Symbol => Hash<Symbol => String>|String|
@@ -365,14 +256,7 @@ module Vedeu
       end
       alias_method :top_left=, :top_left
 
-      # Set the character to be used to draw the top right corner of
-      # the border.
-      #
-      #   Vedeu.border :border_demo do
-      #     top_right '+'
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/top_right.md}
       # @param char [String] Character to be used as the top right
       #   border character.
       # @param options [Hash<Symbol => Hash<Symbol => String>|String|
@@ -385,14 +269,7 @@ module Vedeu
       end
       alias_method :top_right=, :top_right
 
-      # Set the character to be used to draw the left vertical part of
-      # the border.
-      #
-      #   Vedeu.border :border_demo do
-      #     left_vertical '|'
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/left_vertical.md}
       # @param char [String] Character to be used as the left vertical
       #   border character.
       # @param options [Hash<Symbol => Hash<Symbol => String>|String|
@@ -406,14 +283,7 @@ module Vedeu
       end
       alias_method :left_vertical=, :left_vertical
 
-      # Set the character to be used to draw the right vertical part
-      # of the border.
-      #
-      #   Vedeu.border :border_demo do
-      #     right_vertical '|'
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/right_vertical.md}
       # @param char [String] Character to be used as the right
       #   vertical border character.
       # @param options [Hash<Symbol => Hash<Symbol => String>|String|
@@ -427,14 +297,7 @@ module Vedeu
       end
       alias_method :right_vertical=, :right_vertical
 
-      # Set the character to be used to draw a vertical part of the
-      # border.
-      #
-      #   Vedeu.border :border_demo do
-      #     vertical '|'
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/vertical.md}
       # @param char [String] Character to be used as the vertical
       #   border character.
       # @param options [Hash<Symbol => Hash<Symbol => String>|String|

@@ -315,6 +315,36 @@ module Vedeu
         it { subject.must_equal(14) }
       end
 
+      describe '#height' do
+        subject { instance.height }
+
+        it { subject.must_be_instance_of(Fixnum) }
+
+        context 'when a starting coordinate and height is given' do
+          let(:y)       { 3 }
+          let(:height)  { 10 }
+          let(:subject) { described.from_attributes(y: y, height: height).height }
+
+          it { subject.must_equal(10) }
+        end
+
+        context 'when a starting and ending coordinate is given' do
+          let(:y)  { 3 }
+          let(:yn) { 13 }
+          let(:subject) { described.from_attributes(y: y, yn: yn).height }
+
+          it { subject.must_equal(10) }
+        end
+      end
+
+      describe '#width' do
+        subject { instance.width }
+
+        it { subject.must_be_instance_of(Fixnum) }
+
+        # it { subject.must_equal(16) }
+      end
+
       describe '#north' do
         subject { instance.north(offset) }
 

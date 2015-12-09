@@ -22,6 +22,10 @@ The interfaces of Vedeu can each have their own border.
   - The last character (right) of the geometry.
 - The border can be refreshed independently of the interface.
 
+## Border DSL
+
+{include:file:docs/dsl/borders.md}
+
 ## Border Events
 
 Note: 'name' is a Symbol unless mentioned otherwise, and can be

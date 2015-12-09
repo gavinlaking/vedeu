@@ -6,11 +6,7 @@ module Vedeu
     #
     class Foregrounds < Vedeu::Colours::Repository
 
-      # Manipulate the repository of foreground colours.
-      #
-      # @example
-      #   Vedeu.foreground_colours
-      #
+      # {include:file:docs/dsl/by_method/foreground_colours.md}
       # @return [Vedeu::Colours::Foregrounds]
       # @see Vedeu::Repositories::Repository
       def self.foreground_colours
