@@ -24,6 +24,18 @@ class DSLApp
     end
   end
 
+  Vedeu.interface :test2_interface do
+    border do
+      title 'Test 2'
+    end
+    geometry do
+      x  36
+      y  3
+      xn 66
+      yn 8
+    end
+  end
+
   Vedeu.keymap '_global_' do
     key('q') { Vedeu.exit }
   end
@@ -31,6 +43,17 @@ class DSLApp
   Vedeu.render do
     view(:test1_interface) do
       lines do
+        text 'view->lines->text'
+      end
+    end
+
+    view(:test2_interface) do
+      lines do
+        left 'view->lines->left'
+        # rest do not render
+        centre 'view->lines->centre'
+        center 'view->lines->center'
+        right 'view->lines->right'
       end
     end
   end

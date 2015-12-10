@@ -31,6 +31,10 @@ class DSLApp
   Vedeu.render do
     view(:test1_interface) do
       lines do
+        streams do
+          text 'view->lines->streams->text 1'
+          text 'view->lines->streams->text 2'
+        end
       end
     end
   end

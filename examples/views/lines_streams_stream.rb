@@ -28,9 +28,14 @@ class DSLApp
     key('q') { Vedeu.exit }
   end
 
+  # vedeu/dsl/stream.rb:16:in `stream': wrong number of arguments (1 for 0)
   Vedeu.render do
     view(:test1_interface) do
       lines do
+        streams do
+          stream 'view->lines->streams->stream 1'
+          stream 'view->lines->streams->stream 2'
+        end
       end
     end
   end

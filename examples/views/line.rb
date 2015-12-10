@@ -28,10 +28,10 @@ class DSLApp
     key('q') { Vedeu.exit }
   end
 
+  # vedeu/dsl/view.rb:249:in `lines': wrong number of arguments (1 for 0)
   Vedeu.render do
     view(:test1_interface) do
-      lines do
-      end
+      line 'view->line'
     end
   end
 

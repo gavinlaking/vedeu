@@ -12,7 +12,7 @@ class DSLApp
     log '/tmp/vedeu_views_dsl.log'
   end
 
-  Vedeu.interface :test1_interface do
+  Vedeu.interface :main_interface do
     border do
       title 'Test 1'
     end
@@ -28,9 +28,16 @@ class DSLApp
     key('q') { Vedeu.exit }
   end
 
+  # vedeu/dsl/stream.rb:16:in `stream': wrong number of arguments (1 for 0)
   Vedeu.render do
-    view(:test1_interface) do
+    view(:main_interface) do
       lines do
+        line do
+          streams do
+            stream 'v->ls->l->streams->stream 1'
+            stream 'v->ls->l->streams->stream 2'
+          end
+        end
       end
     end
   end
