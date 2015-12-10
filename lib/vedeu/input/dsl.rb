@@ -48,11 +48,16 @@ module Vedeu
       # @param name [String|Symbol] The name of the interface which
       #   this keymap relates to.
       # @param block [Proc]
-      # @raise [Vedeu::Error::RequiresBlock]
+      # @raise [Vedeu::Error::MissingRequired|
+      #   Vedeu::Error::RequiresBlock] When a name or block
+      #   respectively are not given.
       # @return [Vedeu::Input::Keymap]
       # @todo Try to remember why we need to pre-create the keymap in
       #   the repository.
       def self.keymap(name, &block)
+        fail Vedeu::Error::MissingRequired unless name
+        fail Vedeu::Error::RequiresBlock unless block_given?
+
         Vedeu::Input::Keymap.new(name: name).store
 
         Vedeu::Input::Keymap.build(name: name, &block).store
@@ -88,27 +93,6 @@ module Vedeu
         end
       end
       alias_method :key=, :key
-
-      # Define the name of the keymap.
-      #
-      # To only allow certain keys to work with specific interfaces,
-      # use the same name as the interface.
-      #
-      # When the name :_global_ is used, all keys in the keymap block
-      # will be available to all interfaces. Once a key has been
-      # defined in the :_global_ keymap, it cannot be used for a
-      # specific interface.
-      #
-      #   Vedeu.keymap do
-      #     name :some_interface
-      #   end
-      #
-      # @param value [String|Symbol]
-      # @return [String]
-      def name(value)
-        model.name = value
-      end
-      alias_method :name=, :name
 
     end # DSL
 

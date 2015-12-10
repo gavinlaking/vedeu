@@ -8,7 +8,34 @@ module Vedeu
 
       let(:described) { Vedeu::Input::DSL }
       let(:instance)  { described.new(model) }
-      let(:model)     { Vedeu::Input::Keymap.new(name: '_test_') }
+      let(:model)     { Vedeu::Input::Keymap.new(name: _name) }
+      let(:_name)     { :vedeu_input_dsl }
+
+      describe '.keymap' do
+        subject {
+          described.keymap(_name) do
+            # ...
+          end
+        }
+
+        context 'when a name is not given' do
+          let(:_name) {}
+
+          it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
+        end
+
+        context 'when a name is given' do
+          context 'when a block is not given' do
+            subject { described.keymap(_name) }
+
+            it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
+          end
+
+          context 'when a block is given' do
+            it { subject.must_be_instance_of(Vedeu::Input::Keymap) }
+          end
+        end
+      end
 
       describe '#key' do
         let(:value_or_values) { ['j', :down] }
@@ -48,19 +75,7 @@ module Vedeu
         end
 
         context 'when the key is not valid (already defined)' do
-        end
-      end
-
-      describe '#name' do
-        let(:_value) { 'gold' }
-
-        subject { instance.name(_value) }
-
-        it { instance.must_respond_to(:name=) }
-
-        it 'defines the name of the keymap' do
-          subject
-          model.name.must_equal(_value)
+          # @todo Add more tests.
         end
       end
 

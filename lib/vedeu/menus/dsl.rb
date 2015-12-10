@@ -15,7 +15,8 @@ module Vedeu
         # items for your users to select; and provide interactivity
         # within your application.
         #
-        # @param name [String|Symbol]
+        # @param name [String|Symbol] The name of the interface or
+        #   view to which this menu belongs.
         # @param block [Proc] A set of attributes which define the
         #   features of the menu. See {Vedeu::Menus::DSL#items} and
         #   {Vedeu::Menus::DSL#name}.
@@ -32,9 +33,12 @@ module Vedeu
         #     # ...
         #   end
         #
-        # @raise [Vedeu::Error::RequiresBlock]
+        # @raise [Vedeu::Error::MissingRequired|
+        #   Vedeu::Error::RequiresBlock] When a name or block
+        #   respectively are not given.
         # @return [API::Menu]
-        def menu(name = '', &block)
+        def menu(name, &block)
+          fail Vedeu::Error::MissingRequired unless name
           fail Vedeu::Error::RequiresBlock unless block_given?
 
           attributes = { client: client(&block), name: name }
@@ -91,21 +95,6 @@ module Vedeu
         model.collection = collection
       end
       alias_method :items=, :items
-
-      # The name of the menu. Used to reference the menu throughout
-      # your application's execution lifetime.
-      #
-      #   Vedeu.menu do
-      #     name :my_menu
-      #     # ...
-      #   end
-      #
-      # @param name [String|Symbol]
-      # @return [String]
-      def name(name)
-        model.name = name
-      end
-      alias_method :name=, :name
 
     end # DSL
 

@@ -15,30 +15,28 @@ module Vedeu
       let(:client) {}
 
       describe '.interface' do
-        after { Vedeu.interfaces.reset }
-
         subject {
-          described.interface('fluorine') do
+          described.interface(_name) do
             # ...
           end
         }
 
-        it { subject.must_be_instance_of(Vedeu::Interfaces::Interface) }
-
-        context 'when the block is not given' do
-          subject { described.interface('fluorine') }
-
-          it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
-        end
-
         context 'when the name is not given' do
-          subject {
-            described.interface('') do
-              # ...
-            end
-          }
+          let(:_name) {}
 
           it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
+        end
+
+        context 'when the name is given' do
+          context 'when the block is not given' do
+            subject { described.interface('fluorine') }
+
+            it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
+          end
+
+          context 'when the block is given' do
+            it { subject.must_be_instance_of(Vedeu::Interfaces::Interface) }
+          end
         end
       end
 
@@ -141,15 +139,6 @@ module Vedeu
 
         it { subject.must_be_instance_of(Vedeu::Input::Keymap) }
         it { instance.must_respond_to(:keys) }
-      end
-
-      describe '#name' do
-        subject { instance.name('nickel') }
-
-        it do
-          subject
-          model.name.must_equal('nickel')
-        end
       end
 
       describe '#show!' do

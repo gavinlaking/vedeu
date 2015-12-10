@@ -9,28 +9,38 @@ module Vedeu
       let(:described)  { Vedeu::Menus::DSL }
       let(:instance)   { described.new(model) }
       let(:model)      { Vedeu::Menus::Menu.new(attributes) }
+      let(:_name)      { 'elements' }
+      let(:collection) { [:sodium, :magnesium, :aluminium, :silicon] }
       let(:attributes) {
         {
           collection: collection,
-          name:       menu_name,
+          name:       _name,
         }
       }
-      let(:collection) { [:sodium, :magnesium, :aluminium, :silicon] }
-      let(:menu_name)  { 'elements' }
 
       describe '.menu' do
         subject {
-          described.menu('elements') do
+          described.menu(_name) do
             # ...
           end
         }
 
-        it { subject.must_be_instance_of(Vedeu::Menus::Menu) }
+        context 'when the name is not given' do
+          let(:_name) {}
 
-        context 'when the block is not given' do
-          subject { described.menu }
+          it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
+        end
 
-          it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
+        context 'when the name is given' do
+          context 'when the block is not given' do
+            subject { described.menu(_name) }
+
+            it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
+          end
+
+          context 'when the block is given' do
+            it { subject.must_be_instance_of(Vedeu::Menus::Menu) }
+          end
         end
       end
 
@@ -65,19 +75,6 @@ module Vedeu
           let(:_value) { [:gold, :silver, :tin] }
 
           it { subject.must_equal(_value)}
-        end
-      end
-
-      describe '#name' do
-        let(:_value) { 'metals' }
-
-        subject { instance.name(_value) }
-
-        it { instance.must_respond_to(:name=) }
-
-        it 'returns the name of the menu' do
-          subject
-          model.name.must_equal('metals')
         end
       end
 

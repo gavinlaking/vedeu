@@ -213,22 +213,6 @@ module Vedeu
       end
       alias_method :keys, :keymap
 
-      # The name of the interface. Used to reference the interface
-      # throughout your application's execution lifetime.
-      #
-      # @param value [String|Symbol]
-      #
-      # @example
-      #   Vedeu.interface do
-      #     name :my_interface
-      #     # ...
-      #   end
-      #
-      # @return [String|Symbol]
-      def name(value)
-        model.name = value
-      end
-
       # Set the interface to visible.
       #
       # @example
