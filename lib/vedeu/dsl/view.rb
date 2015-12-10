@@ -136,9 +136,7 @@ module Vedeu
         def renders(&block)
           fail Vedeu::Error::RequiresBlock unless block_given?
 
-          client = eval('self', block.binding)
-
-          store(:store_immediate, client, &block)
+          store(:store_immediate, client(&block), &block)
         end
         alias_method :render, :renders
 
@@ -183,9 +181,7 @@ module Vedeu
         def views(&block)
           fail Vedeu::Error::RequiresBlock unless block_given?
 
-          client = eval('self', block.binding)
-
-          store(:store_deferred, client, &block)
+          store(:store_deferred, client(&block), &block)
         end
 
         private

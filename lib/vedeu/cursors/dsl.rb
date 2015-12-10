@@ -18,7 +18,7 @@ module Vedeu
 
         model.cursor_visible = boolean
 
-        Vedeu::Cursors::Cursor.store(name: model.name, visible: boolean)
+        Vedeu::Cursors::Cursor.store(name: name, visible: boolean)
       end
 
       # Set the cursor to visible for the interface or view.
