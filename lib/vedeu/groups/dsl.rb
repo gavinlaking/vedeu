@@ -57,6 +57,7 @@ module Vedeu
       # @raise [Vedeu::Error::RequiresBlock]
       # @return [Vedeu::Groups::Group]
       def self.group(name, &block)
+        fail Vedeu::Error::MissingRequired unless name
         fail Vedeu::Error::RequiresBlock unless block_given?
 
         Vedeu::Groups::Group.build(name: name, &block).store

@@ -10,29 +10,37 @@ module Vedeu
       let(:instance)   { described.new(model, client) }
       let(:model)      { Vedeu::Groups::Group.new }
       let(:client)     {}
-      let(:group_name) { 'main_screen' }
+      let(:_name)      { :main_screen }
 
       describe '.group' do
-        context 'when the block is given' do
-          subject {
-            described.group(group_name) do
-              # ...
-            end
-          }
+        subject {
+          described.group(_name) do
+            # ...
+          end
+        }
 
-          # @todo Add more tests.
+        context 'when the name is not given' do
+          let(:_name) {}
+
+          it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
         end
 
-        context 'when the block is not given' do
-          subject { described.group(group_name) }
+        context 'when the name is given' do
+          context 'when the block is not given' do
+            subject { described.group(_name) }
 
-          it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
+            it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
+          end
+
+          context 'when the block is given' do
+            it { subject.must_be_instance_of(Vedeu::Groups::Group) }
+          end
         end
       end
 
       describe '#add' do
         subject {
-          described.group(group_name) do
+          described.group(_name) do
             add('editor_interface')
           end
         }
@@ -48,7 +56,7 @@ module Vedeu
         }
 
         subject {
-          described.group(group_name) do
+          described.group(_name) do
             members('editor_interface', 'some_interface', 'other_interface')
           end
         }
