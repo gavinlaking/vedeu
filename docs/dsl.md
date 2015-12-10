@@ -113,7 +113,7 @@ end
 
 ### Creating a new named geometry
 
-{include:Vedeu::Geometries::DSL.geometry}
+{include:Vedeu::DSL::Geometry::ClassMethods.geometry}
 
 ### Setting the interface dimensions
 

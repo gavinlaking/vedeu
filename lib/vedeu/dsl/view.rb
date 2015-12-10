@@ -84,8 +84,9 @@ module Vedeu
 
       include Vedeu::DSL
       include Vedeu::Cursors::DSL
+      include Vedeu::DSL::Border
+      include Vedeu::DSL::Geometry
       include Vedeu::DSL::Presentation
-      include Vedeu::DSL::Shared
       include Vedeu::DSL::Text
       include Vedeu::DSL::Use
 

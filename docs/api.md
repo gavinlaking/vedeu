@@ -175,7 +175,7 @@ Repository method. Access registered background colours.
 
 ### Vedeu.border
 
-See {Vedeu::Borders::DSL.border}
+See {Vedeu::DSL::Border::ClassMethods.border}
 
 ### Vedeu.borders
 

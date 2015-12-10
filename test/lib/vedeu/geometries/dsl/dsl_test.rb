@@ -9,9 +9,32 @@ module Vedeu
       let(:described) { Vedeu::Geometries::DSL }
       let(:instance)  { described.new(model) }
       let(:model)     { Vedeu::Geometries::Geometry.new }
+      let(:_name)     { :vedeu_geometries_dsl }
 
       describe '.geometry' do
-        it { described.must_respond_to(:geometry) }
+        subject {
+          described.geometry(_name) do
+            # ...
+          end
+        }
+
+        context 'when the name is not given' do
+          let(:_name) {}
+
+          it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
+        end
+
+        context 'when the name is given' do
+          context 'when the block is not given' do
+            subject { described.geometry(_name) }
+
+            it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
+          end
+
+          context 'when the block is given' do
+            it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
+          end
+        end
       end
 
       # describe '#alignment' do

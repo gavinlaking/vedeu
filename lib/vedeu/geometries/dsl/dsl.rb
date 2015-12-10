@@ -74,26 +74,9 @@ module Vedeu
     class DSL
 
       include Vedeu::DSL
+      include Vedeu::DSL::Geometry
       include Vedeu::DSL::Use
       include Vedeu::Geometries::Validator
-
-      # Specify the geometry of an interface or view with a simple
-      # DSL.
-      #
-      #   Vedeu.geometry :some_interface do
-      #     # ...
-      #   end
-      #
-      # @param name [String|Symbol] The name of the interface or view
-      #   to which this geometry belongs.
-      # @param block [Proc]
-      # @raise [Vedeu::Error::RequiresBlock]
-      # @return [Vedeu::Geometries::Geometry]
-      def self.geometry(name, &block)
-        fail Vedeu::Error::RequiresBlock unless block_given?
-
-        Vedeu::Geometries::Geometry.build(name: name, &block).store
-      end
 
       # Instructs Vedeu to align the interface/view either left,
       # centre or right. A width is also required so that required

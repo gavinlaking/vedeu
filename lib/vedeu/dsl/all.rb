@@ -8,8 +8,9 @@ module Vedeu
 
 end # Vedeu
 
+require 'vedeu/dsl/border'
 require 'vedeu/dsl/dsl'
-require 'vedeu/dsl/shared'
+require 'vedeu/dsl/geometry'
 require 'vedeu/dsl/use'
 require 'vedeu/dsl/presentation'
 require 'vedeu/dsl/composition'
