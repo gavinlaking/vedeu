@@ -1,3 +1,4 @@
+require 'vedeu/boolean'
 require 'vedeu/common'
 require 'vedeu/error'
 require 'vedeu/version'
