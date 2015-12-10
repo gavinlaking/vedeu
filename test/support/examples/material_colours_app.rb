@@ -87,7 +87,7 @@ class VedeuMaterialColoursApp
     end
     colour(foreground: '#ffffff', background: :default)
     cursor!
-    geometry 'other_interface' do
+    geometry do
       x(27)
       xn(47)
       y(3)
