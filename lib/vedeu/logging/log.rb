@@ -120,9 +120,17 @@ module Vedeu
         # @param body [String] The log message itself.
         # @return [String]
         def message_body(type, body)
-          Vedeu::EscapeSequences::Esc
-            .send(message_types.fetch(type, :default)[-1]) do
-            body
+          message_colour(type, -1) { body }
+        end
+
+        # @param type [Symbol] The type of log message.
+        # @param index [Fixnum] Either 0 or -1.
+        # @param block [Proc]
+        # @return [String]
+        def message_colour(type, index, &block)
+          Vedeu::EscapeSequences::Esc.send(
+            message_types.fetch(type, :default)[index]) do
+            yield if block_given?
           end
         end
 
@@ -132,10 +140,7 @@ module Vedeu
         # @param type [Symbol] The type of log message.
         # @return [String]
         def message_type(type)
-          Vedeu::EscapeSequences::Esc
-            .send(message_types.fetch(type, :default)[0]) do
-            "[#{type}]".ljust(11)
-          end
+          message_colour(type, 0) { "[#{type}]".ljust(11) }
         end
 
         # The defined message types for Vedeu with their respective
