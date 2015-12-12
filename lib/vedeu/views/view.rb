@@ -31,10 +31,6 @@ module Vedeu
       # @return [Vedeu::Views::Composition]
       attr_accessor :parent
 
-      # @!attribute [w] lines
-      # @return [Array<Vedeu::Views::Line>]
-      attr_writer :lines
-
       # @!attribute [rw] zindex
       # @return [Fixnum]
       attr_accessor :zindex
@@ -60,7 +56,7 @@ module Vedeu
       # @param child [Vedeu::Views::Line]
       # @return [Vedeu::Views::Lines]
       def add(child)
-        @value = value.add(child)
+        @_value = value.add(child)
       end
       alias_method :<<, :add
 
@@ -90,12 +86,6 @@ module Vedeu
         Vedeu::DSL::View.new(self, client)
       end
 
-      # @return [Vedeu::Views::Lines]
-      def value
-        collection.coerce(@value, self)
-      end
-      alias_method :lines, :value
-
       # Store the view and immediately refresh it; causing to be
       # pushed to the Terminal. Called by {Vedeu::DSL::View.renders}.
       #
@@ -123,6 +113,25 @@ module Vedeu
 
         self
       end
+
+      # @return [Vedeu::Views::Lines]
+      def value
+        @_value ||= if present?(@value)
+                      collection.coerce(@value, self)
+
+                    else
+                      collection.coerce([], self)
+
+                    end
+      end
+      alias_method :lines, :value
+
+      # @param value [Vedeu::Views::Line]
+      # @return [Vedeu::Views::Line]
+      def value=(value)
+        @_value = @value = collection.coerce(value, self)
+      end
+      alias_method :lines=, :value=
 
       # Returns a boolean indicating whether the view is visible.
       #
