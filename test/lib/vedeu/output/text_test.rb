@@ -129,7 +129,7 @@ module Vedeu
         context 'when the model is not given' do
           let(:model) {}
 
-          it { subject.must_be_instance_of(NilClass) }
+          it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
         end
 
         context 'when the colour option is given' do

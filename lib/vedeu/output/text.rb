@@ -2,11 +2,37 @@ module Vedeu
 
   module Output
 
+    class TextOptions
+
+      extend Vedeu::Options
+
+      option :anchor,     :left
+      option :background, nil
+      option :client,     nil
+      option :colour,     nil
+      option :foreground, nil
+      option :model,      nil
+      option :mode,       :default
+      option :name,       ''
+      option :pad,        ' '
+      option :width,      nil
+
+    end # TextOptions
+
     # Present a string (or object responding to `to_s`).
     #
     class Text
 
+      extend Forwardable
       include Vedeu::Common
+
+      def_delegators :options,
+                     :anchor,
+                     :client,
+                     :mode,
+                     :model,
+                     :name,
+                     :pad
 
       # @see Vedeu::DSL::Text#text
       def self.add(value = '', options = {})
@@ -35,7 +61,7 @@ module Vedeu
       # @return [Vedeu::Output::Text]
       def initialize(value = '', options = {})
         @value   = value
-        @options = defaults.merge!(options)
+        @options = options
       end
 
       # Aligns the value.
@@ -59,6 +85,9 @@ module Vedeu
       #
       # @return [void]
       def add
+        fail Vedeu::Error::MissingRequired,
+             'Cannot determine model.' unless model
+
         if wrap?
           model.add(wrapped)
 
@@ -74,17 +103,7 @@ module Vedeu
       # @return [String]
       attr_reader :value
 
-      # @!attribute [r] options
-      # @return [Hash]
-      attr_reader :options
-
       private
-
-      # @return [Symbol] One of :align, :centre, :center, :left,
-      #   :right, :text
-      def anchor
-        options[:anchor]
-      end
 
       # The string padded to width, centralized.
       #
@@ -93,20 +112,15 @@ module Vedeu
         string.center(width, pad)
       end
 
-      # @return [Object]
-      def client
-        options[:client]
-      end
-
       # If a colour, background or foreground option is set, use them
       # as the colour settings for the new Vedeu::Views::Stream.
       #
       # @return [void]
       def colour
-        if options[:colour] || options[:background] || options[:foreground]
+        if options.colour || options.background || options.foreground
           Vedeu::Colours::Colour.coerce(options)
 
-        else
+        elsif model
           model.colour
 
         end
@@ -122,22 +136,6 @@ module Vedeu
         stream.parent = line
         line.add(stream)
         line
-      end
-
-      # The default values for a new instance of this class.
-      #
-      # @return [Hash<Symbol => NilClass, String, Symbol>]
-      def defaults
-        {
-          client: nil,
-          anchor: :left,
-          colour: nil,
-          model:  nil,
-          mode:   :default,
-          name:   '',
-          pad:    ' ',
-          width:  nil,
-        }
       end
 
       # @return [NilClass|Vedeu::Geometries::Geometry]
@@ -157,32 +155,9 @@ module Vedeu
         @line ||= Vedeu::Views::Line.build(parent: parent, client: client)
       end
 
-      # Returns the model option when set.
-      #
-      # @return [Vedeu::Views::View|
-      #          Vedeu::Views::Line|
-      #          Vedeu::Null::Generic|
-      #          Vedeu::Views::Stream]
-      def model
-        @model ||= options[:model] || Vedeu::Null::Generic.new
-      end
-
-      # @see Vedeu::Output::Wordwrap#mode
-      # @return [Symbol]
-      def mode
-        options[:mode]
-      end
-
-      # @return [String|Symbol]
-      def name
-        options[:name]
-      end
-
-      # The character to use for padding the string.
-      #
-      # @return [String]
-      def pad
-        options[:pad]
+      # @return [Vedeu::Options]
+      def options
+        @_options ||= Vedeu::Output::TextOptions.new(@options)
       end
 
       # Returns the parent for the new Vedeu::Views::Stream.
@@ -221,7 +196,7 @@ module Vedeu
       #
       # @return [void]
       def style
-        model.style
+        model.style if model
       end
 
       # Return a boolean indicating that the string is greater than
@@ -244,10 +219,10 @@ module Vedeu
       #
       # @return [Fixnum]
       def width
-        if present?(options[:width])
-          options[:width]
+        if present?(options.width)
+          options.width
 
-        elsif present?(options[:name])
+        elsif present?(name)
           geometry.bordered_width
 
         end
@@ -258,7 +233,7 @@ module Vedeu
       #
       # @return [Boolean]
       def wrap?
-        options[:mode] == :wrap
+        options.mode == :wrap
       end
 
       # Return the content as wrapped lines.

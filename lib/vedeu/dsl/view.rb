@@ -227,6 +227,16 @@ module Vedeu
 
       end # Eigenclass
 
+      def line(value = '', options = {}, &block)
+        if block_given?
+
+
+        else
+
+
+        end
+      end
+
       # Specify multiple lines in a view.
       #
       # @param block [Proc]
@@ -249,9 +259,14 @@ module Vedeu
       def lines(&block)
         fail Vedeu::Error::RequiresBlock unless block_given?
 
-        model.add(model.member.build(attributes, &block))
+        build_lines({}, &block)
       end
-      alias_method :line, :lines
+
+      private
+
+      def build_lines(attrs = {}, &block)
+        model.add(model.member.build(attributes.merge!(attrs), &block))
+      end
 
     end # View
 

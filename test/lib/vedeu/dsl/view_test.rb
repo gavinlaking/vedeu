@@ -68,8 +68,6 @@ module Vedeu
 
           it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
         end
-
-        it { instance.must_respond_to(:line) }
       end
 
     end # View
