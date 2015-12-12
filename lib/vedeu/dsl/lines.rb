@@ -4,7 +4,9 @@ module Vedeu
 
     # Provides the mechanism to add lines to a view via the DSL.
     #
-    class Lines
+    module Lines
+
+      include Vedeu::DSL::Text
 
       # @raise [Vedeu::Error::RequiresBlock]
       # @return [Vedeu::Views::Lines]

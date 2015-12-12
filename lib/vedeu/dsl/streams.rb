@@ -4,7 +4,9 @@ module Vedeu
 
     # Provides the mechanism to add streams to a line via the DSL.
     #
-    class Streams
+    module Streams
+
+      include Vedeu::DSL::Text
 
       # @raise [Vedeu::Error::RequiresBlock]
       # @return [Vedeu::Views::Streams]
