@@ -10,6 +10,8 @@ class DSLApp
   Vedeu.configure do
     debug!
     log '/tmp/vedeu_views_dsl.log'
+    run_once!
+    standalone!
   end
 
   Vedeu.interface :main_interface do
