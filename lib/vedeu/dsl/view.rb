@@ -261,11 +261,12 @@ module Vedeu
 
         build_lines({}, &block)
       end
+      alias_method :line, :lines
 
       private
 
       def build_lines(attrs = {}, &block)
-        model.add(model.member.build(attributes.merge!(attrs), &block))
+        model.add(Vedeu::Views::Line.build(attributes.merge!(attrs), &block))
       end
 
     end # View

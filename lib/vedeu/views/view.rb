@@ -11,9 +11,6 @@ module Vedeu
       include Vedeu::Repositories::Parent
       include Vedeu::Presentation
 
-      collection Vedeu::Views::Lines
-      member     Vedeu::Views::Line
-
       # @!attribute [rw] client
       # @return [Fixnum|Float]
       attr_accessor :client
@@ -117,10 +114,10 @@ module Vedeu
       # @return [Vedeu::Views::Lines]
       def value
         @_value ||= if present?(@value)
-                      collection.coerce(@value, self)
+                      Vedeu::Views::Lines.coerce(@value, self)
 
                     else
-                      collection.coerce([], self)
+                      Vedeu::Views::Lines.coerce([], self)
 
                     end
       end
@@ -129,7 +126,7 @@ module Vedeu
       # @param value [Vedeu::Views::Line]
       # @return [Vedeu::Views::Line]
       def value=(value)
-        @_value = @value = collection.coerce(value, self)
+        @_value = @value = Vedeu::Views::Lines.coerce(value, self)
       end
       alias_method :lines=, :value=
 

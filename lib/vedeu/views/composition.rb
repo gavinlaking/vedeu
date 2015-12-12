@@ -9,9 +9,6 @@ module Vedeu
       include Vedeu::Repositories::Model
       include Vedeu::Presentation
 
-      collection Vedeu::Views::ViewCollection
-      member     Vedeu::Views::View
-
       # @!attribute [r] parent
       # @return [NilClass] Composition objects do not have a parent.
       attr_reader :parent
@@ -63,7 +60,7 @@ module Vedeu
 
       # @return [Vedeu::Views::ViewCollection]
       def value
-        collection.coerce(@value, self)
+        Vedeu::Views::ViewCollection.coerce(@value, self)
       end
       alias_method :views, :value
 

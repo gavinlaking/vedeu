@@ -12,9 +12,6 @@ module Vedeu
       include Vedeu::Repositories::Parent
       include Vedeu::Presentation
 
-      collection Vedeu::Views::Chars
-      member     Vedeu::Views::Char
-
       # @!attribute [rw] parent
       # @return [Vedeu::Views::Line]
       attr_accessor :parent
@@ -69,12 +66,12 @@ module Vedeu
         return [] if value.empty?
 
         @chars ||= value.chars.map do |char|
-          member.new(value:    char,
-                     name:     name,
-                     parent:   parent,
-                     colour:   colour,
-                     style:    style,
-                     position: nil)
+          Vedeu::Views::Char.new(value:    char,
+                                 name:     name,
+                                 parent:   parent,
+                                 colour:   colour,
+                                 style:    style,
+                                 position: nil)
         end
       end
 

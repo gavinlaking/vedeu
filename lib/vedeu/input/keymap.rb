@@ -9,9 +9,6 @@ module Vedeu
 
       include Vedeu::Repositories::Model
 
-      collection Vedeu::Input::Keys
-      member     Vedeu::Input::Key
-
       # @!attribute [rw] name
       # @return [String]
       attr_accessor :name
@@ -59,7 +56,7 @@ module Vedeu
       #
       # @return [Vedeu::Input::Keys]
       def keys
-        collection.coerce(@keys, self)
+        Vedeu::Input::Keys.coerce(@keys, self)
       end
 
       # Check whether the key is already defined for this keymap.
@@ -95,7 +92,7 @@ module Vedeu
         {
           name:       '',
           keys:       [],
-          repository: Vedeu::Input::Repository.keymaps,
+          repository: Vedeu.keymaps,
         }
       end
 

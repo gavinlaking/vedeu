@@ -12,9 +12,6 @@ module Vedeu
       include Vedeu::Repositories::Parent
       include Vedeu::Presentation
 
-      collection Vedeu::Views::Streams
-      member     Vedeu::Views::Stream
-
       # @!attribute [rw] parent
       # @return [Vedeu::Views::View]
       attr_accessor :parent
@@ -96,7 +93,7 @@ module Vedeu
 
       # @return [Vedeu::Views::Streams]
       def value
-        collection.coerce(@value, self)
+        Vedeu::Views::Streams.coerce(@value, self)
       end
       alias_method :streams, :value
 

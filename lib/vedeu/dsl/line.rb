@@ -98,7 +98,7 @@ module Vedeu
       def streams(&block)
         fail Vedeu::Error::RequiresBlock unless block_given?
 
-        model.add(model.member.build(attributes, &block))
+        model.add(Vedeu::Views::Stream.build(attributes, &block))
       end
       alias_method :stream, :streams
       alias_method :stream=, :streams

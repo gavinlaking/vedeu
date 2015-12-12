@@ -118,7 +118,7 @@ module Vedeu
       # @return [void]
       def colour
         if options.colour || options.background || options.foreground
-          Vedeu::Colours::Colour.coerce(options)
+          Vedeu::Colours::Colour.coerce(options.__data__)
 
         elsif model
           model.colour

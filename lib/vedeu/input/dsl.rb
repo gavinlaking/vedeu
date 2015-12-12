@@ -89,7 +89,7 @@ module Vedeu
                  'An invalid value for `key` was encountered.'.freeze
           end
 
-          model.add(model.member.new(value, &block))
+          model.add(Vedeu::Input::Key.new(value, &block))
         end
       end
       alias_method :key=, :key

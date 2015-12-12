@@ -66,7 +66,7 @@ module Vedeu
       def view(name = '', &block)
         fail Vedeu::Error::RequiresBlock unless block_given?
 
-        new_model = model.member.build(new_attributes(name), &block)
+        new_model = Vedeu::Views::View.build(new_attributes(name), &block)
 
         model.add(new_model)
       end
@@ -107,7 +107,7 @@ module Vedeu
 
         # lines     = Vedeu::Output::Wordwrap.for(content, options)
 
-        new_model = model.member.build(template_attributes(name, content))
+        new_model = Vedeu::Views::View.build(template_attributes(name, content))
 
         model.add(new_model)
       end
