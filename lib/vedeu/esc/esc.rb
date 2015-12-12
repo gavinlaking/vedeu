@@ -9,8 +9,10 @@ module Vedeu
 
       include Vedeu::Common
       include Vedeu::EscapeSequences::Actions
+      include Vedeu::EscapeSequences::Background
       include Vedeu::EscapeSequences::Borders
       include Vedeu::EscapeSequences::Colours
+      include Vedeu::EscapeSequences::Foreground
       include Vedeu::EscapeSequences::Mouse
       extend self
 
@@ -69,8 +71,6 @@ module Vedeu
         "#{disable_mouse}#{show_cursor}#{screen_colour_reset}#{reset}" \
         "#{last_character_position}\n".freeze
       end
-
-      private
 
       # @return [String]
       def clear_line

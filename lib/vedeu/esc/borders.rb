@@ -2,7 +2,12 @@ module Vedeu
 
   module EscapeSequences
 
-    # Provides border/box related escape sequences.
+    # Provides border/box related escape sequences for semigraphic
+    # characters.
+    #
+    # # 0 1 2 3 4 5 6 7 8 9 A B C D E F
+    # 6                     ┘ ┐ ┌ └ ┼
+    # 7   ─     ├ ┤ ┴ ┬ │
     #
     # @note
     #   Refer to UTF-8 U+2500 to U+257F for border characters. More
@@ -18,46 +23,87 @@ module Vedeu
       extend self
 
       # @return [String]
-      def border_on
-        "\e(0".freeze
-      end
-
-      # @return [String]
       def border_off
         "\e(B".freeze
       end
 
-      # Provides all the semigraphic characters.
-      #
-      # # 0 1 2 3 4 5 6 7 8 9 A B C D E F
-      # 6                     ┘ ┐ ┌ └ ┼
-      # 7   ─     ├ ┤ ┴ ┬ │
-      #
-      # @return [Hash<Symbol => String>]
-      def characters
-        {
-          bottom_right:      "\x6A".freeze, # ┘ # \u2518
-          top_right:         "\x6B".freeze, # ┐ # \u2510
-          top_left:          "\x6C".freeze, # ┌ # \u250C
-          bottom_left:       "\x6D".freeze, # └ # \u2514
-          horizontal:        "\x71".freeze, # ─ # \u2500
-          vertical_left:     "\x74".freeze, # ├ # \u251C
-          vertical_right:    "\x75".freeze, # ┤ # \u2524
-          horizontal_bottom: "\x76".freeze, # ┴ # \u2534
-          horizontal_top:    "\x77".freeze, # ┬ # \u252C
-          vertical:          "\x78".freeze, # │ # \u2502
-        }
+      # @return [String]
+      def border_on
+        "\e(0".freeze
       end
 
-      # @return [void]
-      def setup!
-        characters.each { |key, code| define_method(key) { code } }
+      # └ # \u2514
+      #
+      # @return [String]
+      def bottom_left
+        "\x6D".freeze
+      end
+
+      # ┘ # \u2518
+      #
+      # @return [String]
+      def bottom_right
+        "\x6A".freeze
+      end
+
+      # ─ # \u2500
+      #
+      # @return [String]
+      def horizontal
+        "\x71".freeze
+      end
+
+      # ┴ # \u2534
+      #
+      # @return [String]
+      def horizontal_bottom
+        "\x76".freeze
+      end
+
+      # ┬ # \u252C
+      #
+      # @return [String]
+      def horizontal_top
+        "\x77".freeze
+      end
+
+      # ┌ # \u250C
+      #
+      # @return [String]
+      def top_left
+        "\x6C".freeze
+      end
+
+      # ┐ # \u2510
+      #
+      # @return [String]
+      def top_right
+        "\x6B".freeze
+      end
+
+      # │ # \u2502
+      #
+      # @return [String]
+      def vertical
+        "\x78".freeze
+      end
+
+      # ├ # \u251C
+      #
+      # @return [String]
+      def vertical_left
+        "\x74".freeze
+      end
+
+      # ┤ # \u2524
+      #
+      # @return [String]
+      def vertical_right
+        "\x75".freeze
       end
 
     end # Borders
 
   end # EscapeSequences
-
-  Vedeu::EscapeSequences::Borders.setup!
 
 end # Vedeu

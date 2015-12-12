@@ -30,25 +30,28 @@ module Vedeu
 
       extend self
 
-      # @return [Hash<Symbol => String>]
-      def mouse_codes
-        {
-          mouse_x10_on:  "\e[?9h".freeze,
-          mouse_x10_off: "\e[?9l".freeze,
-          mouse_on:      "\e[?1000h".freeze,
-          mouse_off:     "\e[?1000l".freeze,
-        }
+      # @return [String]
+      def mouse_x10_on
+        "\e[?9h".freeze
       end
 
-      # @return [void]
-      def setup!
-        mouse_codes.each { |key, code| define_method(key) { code } }
+      # @return [String]
+      def mouse_x10_off
+        "\e[?9l".freeze
+      end
+
+      # @return [String]
+      def mouse_on
+        "\e[?1000h".freeze
+      end
+
+      # @return [String]
+      def mouse_off
+        "\e[?1000l".freeze
       end
 
     end # Mouse
 
   end # EscapeSequences
-
-  Vedeu::EscapeSequences::Mouse.setup!
 
 end # Vedeu

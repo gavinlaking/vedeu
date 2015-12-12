@@ -68,40 +68,8 @@ module Vedeu
       end
       alias_method :codes, :foreground_codes
 
-      # @return [void]
-      def setup!
-        define_backgrounds!
-        define_foregrounds!
-      end
-
-      # @return [void]
-      def define_backgrounds!
-        background_codes.each do |key, code|
-          define_method(:"on_#{key}") do |&blk|
-            "\e[#{code}m".freeze +
-              (blk ? blk.call + "\e[49m".freeze : ''.freeze)
-          end
-        end
-      end
-
-      # Dynamically creates methods for each terminal named colour.
-      # When a block is given, then the colour is reset to 'default'
-      # once the block is called.
-      #
-      # @return [void]
-      def define_foregrounds!
-        foreground_codes.each do |key, code|
-          define_method(key) do |&blk|
-            "\e[#{code}m".freeze +
-              (blk ? blk.call + "\e[39m".freeze : ''.freeze)
-          end
-        end
-      end
-
     end # Colours
 
   end # EscapeSequences
-
-  Vedeu::EscapeSequences::Colours.setup!
 
 end # Vedeu
