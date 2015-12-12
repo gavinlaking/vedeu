@@ -35,7 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'benchmark-ips', '2.3.0'
   spec.add_dependency 'bundler',       '~> 1.10'
   spec.add_dependency 'rake',          '~> 10.4'
-  spec.add_dependency 'ruby-prof',     '0.15.8'
+  spec.add_dependency 'ruby-prof',     '0.15.9'
   spec.add_dependency 'thor',          '0.19.1'
   spec.add_dependency 'vedeu_cli',     '0.0.8'
 end
