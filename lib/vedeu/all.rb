@@ -1,7 +1,6 @@
 require 'vedeu/boolean'
 require 'vedeu/common'
 require 'vedeu/error'
-require 'vedeu/options'
 require 'vedeu/version'
 
 require 'vedeu/colours/all'

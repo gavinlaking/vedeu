@@ -2,23 +2,6 @@ module Vedeu
 
   module Output
 
-    class TextOptions
-
-      extend Vedeu::Options
-
-      option :anchor,     :left
-      option :background, nil
-      option :client,     nil
-      option :colour,     nil
-      option :foreground, nil
-      option :model,      nil
-      option :mode,       :default
-      option :name,       ''
-      option :pad,        ' '
-      option :width,      nil
-
-    end # TextOptions
-
     # Present a string (or object responding to `to_s`).
     #
     class Text
@@ -155,9 +138,8 @@ module Vedeu
         @line ||= Vedeu::Views::Line.build(parent: parent, client: client)
       end
 
-      # @return [Vedeu::Options]
       def options
-        @_options ||= Vedeu::Output::TextOptions.new(@options)
+        @_options ||= @options
       end
 
       # Returns the parent for the new Vedeu::Views::Stream.
