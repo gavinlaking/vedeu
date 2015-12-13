@@ -3,6 +3,7 @@ require 'vedeu/common'
 require 'vedeu/error'
 require 'vedeu/version'
 
+require 'vedeu/alignment/all'
 require 'vedeu/colours/all'
 require 'vedeu/configuration/all'
 require 'vedeu/repositories/all'
