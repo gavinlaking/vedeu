@@ -227,16 +227,6 @@ module Vedeu
 
       end # Eigenclass
 
-      def line(value = '', options = {}, &block)
-        if block_given?
-
-
-        else
-
-
-        end
-      end
-
       # Specify multiple lines in a view.
       #
       # @param block [Proc]
