@@ -52,6 +52,16 @@ module Vedeu
 
           it { subject.value.must_equal([:bold, :blink]) }
         end
+
+        context 'when the value is a Hash' do
+          let(:_value) {
+            {
+              style: [:bold, :blink]
+            }
+          }
+
+          it { subject.value.must_equal([:bold, :blink]) }
+        end
       end
 
       describe '#attributes' do
