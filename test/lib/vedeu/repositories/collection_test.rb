@@ -23,6 +23,7 @@ module Vedeu
         it do
           instance.must_respond_to(:collection)
           instance.must_respond_to(:all)
+          instance.must_respond_to(:value)
           instance.must_respond_to(:parent)
           instance.must_respond_to(:parent=)
           instance.must_respond_to(:name)

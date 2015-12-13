@@ -15,6 +15,7 @@ module Vedeu
       # @return [Array|Vedeu::Repositories::Collection]
       attr_reader :collection
       alias_method :all, :collection
+      alias_method :value, :collection
 
       # @!attribute [rw] parent
       # @return [Fixnum]

@@ -19,6 +19,14 @@ module Vedeu
         collection[index]
       end
 
+      # Returns a boolean indicating whether the collection is not
+      # empty.
+      #
+      # @return [Boolean]
+      def any?
+        collection.any?
+      end
+
       # Provides iteration over the collection.
       #
       # @param block [Proc]

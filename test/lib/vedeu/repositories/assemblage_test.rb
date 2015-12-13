@@ -42,6 +42,20 @@ module Vedeu
         end
       end
 
+      describe '#any?' do
+        subject { instance.any? }
+
+        context 'when the collection is empty' do
+          let(:collection) { [] }
+
+          it { subject.must_equal(false) }
+        end
+
+        context 'when the collection is not empty' do
+          it { subject.must_equal(true) }
+        end
+      end
+
       describe '#empty?' do
         subject { instance.empty? }
 
