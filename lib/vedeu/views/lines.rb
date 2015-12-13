@@ -8,13 +8,6 @@ module Vedeu
     #
     class Lines < Vedeu::Repositories::Collection
 
-      # @param attributes [Hash]
-      # @param block [Proc]
-      # @return [Vedeu::Views::Lines]
-      # def self.build(attributes = {}, &block)
-      #   model = Vedeu::Views::Lines.new(collection, parent, name)
-      # end
-
     end # Lines
 
   end # Views

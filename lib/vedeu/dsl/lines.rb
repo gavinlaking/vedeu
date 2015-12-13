@@ -6,17 +6,7 @@ module Vedeu
     #
     module Lines
 
-      include Vedeu::DSL::Text
-
-      # @raise [Vedeu::Error::RequiresBlock]
-      # @return [Vedeu::Views::Lines]
-      # def lines(&block)
-      #   fail Vedeu::Error::RequiresBlock unless block_given?
-
-      #   client = eval('self', block.binding)
-
-      #   # Vedeu::Models::Lines.new
-      # end
+      # include Vedeu::DSL::Elements
 
     end # Lines
 
