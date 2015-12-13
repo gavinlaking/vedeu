@@ -60,9 +60,22 @@ module Vedeu
 
       # @return [Vedeu::Views::ViewCollection]
       def value
-        Vedeu::Views::ViewCollection.coerce(@value, self)
+        @_value ||= if present?(@value)
+                      Vedeu::Views::ViewCollection.coerce(@value, self)
+
+                    else
+                      Vedeu::Views::ViewCollection.coerce([], self)
+
+                    end
       end
       alias_method :views, :value
+
+      # @param value [Vedeu::Views::ViewCollection]
+      # @return [Vedeu::Views::ViewCollection]
+      def value=(value)
+        @_value = @value = Vedeu::Views::ViewCollection.coerce(value, self)
+      end
+      alias_method :views=, :value=
 
       private
 

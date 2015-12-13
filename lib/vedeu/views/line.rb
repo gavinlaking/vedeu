@@ -93,9 +93,22 @@ module Vedeu
 
       # @return [Vedeu::Views::Streams]
       def value
-        Vedeu::Views::Streams.coerce(@value, self)
+        @_value ||= if present?(@value)
+                      Vedeu::Views::Streams.coerce(@value, self)
+
+                    else
+                      Vedeu::Views::Streams.coerce([], self)
+
+                    end
       end
       alias_method :streams, :value
+
+      # @param value [Vedeu::Views::Stream]
+      # @return [Vedeu::Views::Stream]
+      def value=(value)
+        @_value = @value = Vedeu::Views::Streams.coerce(value, self)
+      end
+      alias_method :streams=, :value=
 
       private
 
