@@ -61,13 +61,7 @@ module Vedeu
         #   storing.
         # @return [Object] An instance of the model.
         def store(attributes = {}, &block)
-          if block_given?
-            new(attributes).store(&block)
-
-          else
-            new(attributes).store
-
-          end
+          new(attributes).store(&block)
         end
 
         private
