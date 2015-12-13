@@ -23,13 +23,15 @@ module Vedeu
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
-          value:  _value,
-          parent: parent,
           colour: colour,
-          style:  style
+          name:   _name,
+          parent: parent,
+          style:  style,
+          value:  _value,
         }
       }
-      let(:_value)  { 'Some text' }
+      let(:_name)  {}
+      let(:_value) { 'Some text' }
       let(:parent) {
         Vedeu::Views::Line.new(value:  [],
                                parent: line_parent,
@@ -47,8 +49,11 @@ module Vedeu
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
-        it { instance.instance_variable_get('@value').must_equal(_value) }
+        it { instance.instance_variable_get('@colour').must_equal(colour) }
+        it { instance.instance_variable_get('@name').must_equal(_name) }
         it { instance.instance_variable_get('@parent').must_equal(parent) }
+        it { instance.instance_variable_get('@style').must_equal(style) }
+        it { instance.instance_variable_get('@value').must_equal(_value) }
       end
 
       describe 'accessors' do
