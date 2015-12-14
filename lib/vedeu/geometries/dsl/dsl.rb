@@ -78,37 +78,6 @@ module Vedeu
       include Vedeu::DSL::Use
       include Vedeu::Geometries::Validator
 
-      # Instructs Vedeu to align the interface/view either left,
-      # centre or right. A width is also required so that required
-      # coordinates are calculated correctly.
-      #
-      #   Vedeu.geometry :some_interface do
-      #     # :some_value must be one of: :left, :none, :center,
-      #     #   :centre, or :right
-      #     # `width` is a positive integer, e.g. 30
-      #     alignment(:some_value, width)
-      #
-      #     # ... some code
-      #   end
-      #
-      # @param value [Symbol] One of :center, :centre, :left, :none,
-      #   :right.
-      # @param width [Fixnum] The width of the aligned interface/view.
-      # @raise [Vedeu::Error::InvalidSyntax] When the value or width
-      #   is not given.
-      # @return [Vedeu::Geometries::Geometry]
-      # def alignment(value, width)
-      #   fail Vedeu::Error::InvalidSyntax,
-      #        'No alignment given. Valid values are :center, :centre, ' \
-      #        ':left, :none, :right.'.freeze unless present?(value)
-      #   fail Vedeu::Error::InvalidSyntax,
-      #        'No width given.'.freeze unless present?(width)
-
-      #   model.alignment = Vedeu::Geometries::Alignment.align(value)
-      #   model.width     = width
-      #   model
-      # end
-
       # Align the interface/view horizontally or vertically within
       # the terminal.
       #
