@@ -12,12 +12,6 @@ module Vedeu
   #
   class Alignment
 
-    # @param (see #initialize)
-    # @return (see #align)
-    def self.align(value = nil)
-      new(value).align
-    end
-
     # @param value [NilClass|Symbol|Vedeu::Alignment]
     # @return [Vedeu::Alignment]
     def self.coerce(value = nil)
@@ -39,12 +33,6 @@ module Vedeu
     # @return [Vedeu::Alignment]
     def initialize(value = nil)
       @value = value
-    end
-
-    # @raise [Vedeu::Error::NotImplemented] Subclasses of this class
-    #   must implement this method.
-    def align
-      fail Vedeu::Error::NotImplemented, 'Subclasses implement this.'.freeze
     end
 
     # Return a boolean indicating alignment was set to :bottom.

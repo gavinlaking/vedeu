@@ -14,12 +14,6 @@ module Vedeu
     #
     class Alignment
 
-      # @param (see #initialize)
-      # @return (see #align)
-      def self.align(value = nil)
-        new(value).align
-      end
-
       # @param value [NilClass|Symbol|Vedeu::Geometries::Alignment]
       # @return [Vedeu::Geometries::Alignment]
       def self.coerce(value = nil)

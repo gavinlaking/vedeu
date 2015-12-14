@@ -13,12 +13,6 @@ module Vedeu
       it { instance.instance_variable_get('@value').must_equal(_value) }
     end
 
-    describe '.align' do
-      subject { described.align(_value) }
-
-      it { proc { subject }.must_raise(Vedeu::Error::NotImplemented) }
-    end
-
     describe '.coerce' do
       subject { described.coerce(_value) }
 
