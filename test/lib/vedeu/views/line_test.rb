@@ -71,6 +71,8 @@ module Vedeu
 
       describe 'accessors' do
         it do
+          instance.must_respond_to(:client)
+          instance.must_respond_to(:client=)
           instance.must_respond_to(:parent)
           instance.must_respond_to(:parent=)
         end

@@ -94,8 +94,7 @@ module Vedeu
       # @return [Boolean]
       def eql?(other)
         self.class == other.class && value == other.value &&
-          colour == other.colour && style == other.style &&
-          parent == other.parent
+          colour == other.colour && style == other.style
       end
       alias_method :==, :eql?
 
@@ -106,6 +105,25 @@ module Vedeu
       def size
         value.size
       end
+
+      # # @return [Vedeu::Views::Chars]
+      # def value
+      #   @_value ||= if present?(@value)
+      #                 Vedeu::Views::Chars.coerce(@value, self)
+
+      #               else
+      #                 Vedeu::Views::Chars.coerce([], self)
+
+      #               end
+      # end
+      # alias_method :chars, :value
+
+      # # @param value [Vedeu::Views::Char]
+      # # @return [Vedeu::Views::Char]
+      # def value=(value)
+      #   @_value = @value = Vedeu::Views::Chars.coerce(value, self)
+      # end
+      # alias_method :chars=, :value=
 
       private
 

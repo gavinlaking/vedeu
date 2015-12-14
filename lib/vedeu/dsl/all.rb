@@ -11,6 +11,7 @@ end # Vedeu
 require 'vedeu/dsl/options'
 require 'vedeu/dsl/border'
 require 'vedeu/dsl/dsl'
+require 'vedeu/dsl/elements'
 require 'vedeu/dsl/geometry'
 require 'vedeu/dsl/use'
 require 'vedeu/dsl/presentation'

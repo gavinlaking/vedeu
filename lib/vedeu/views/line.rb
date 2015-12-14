@@ -12,6 +12,10 @@ module Vedeu
       include Vedeu::Repositories::Parent
       include Vedeu::Presentation
 
+      # @!attribute [rw] client
+      # @return [void]
+      attr_accessor :client
+
       # @!attribute [rw] parent
       # @return [Vedeu::Views::View]
       attr_accessor :parent
@@ -42,7 +46,7 @@ module Vedeu
       # @return [Hash<Symbol => void>]
       def attributes
         {
-          client: @client,
+          client: client,
           colour: @colour,
           name:   name,
           parent: parent,

@@ -12,7 +12,6 @@ module Vedeu
       include Vedeu::DSL::Border
       include Vedeu::DSL::Geometry
       include Vedeu::DSL::Presentation
-      include Vedeu::DSL::Text
       include Vedeu::DSL::Use
 
       class << self

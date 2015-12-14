@@ -87,8 +87,8 @@ module Vedeu
       include Vedeu::DSL::Border
       include Vedeu::DSL::Geometry
       include Vedeu::DSL::Presentation
-      include Vedeu::DSL::Text
       include Vedeu::DSL::Use
+      include Vedeu::DSL::Elements
 
       class << self
 
@@ -246,18 +246,18 @@ module Vedeu
       #
       # @raise [Vedeu::Error::RequiresBlock]
       # @return [Vedeu::Views::Line]
-      def lines(&block)
-        fail Vedeu::Error::RequiresBlock unless block_given?
+      # def lines(&block)
+      #   fail Vedeu::Error::RequiresBlock unless block_given?
 
-        build_lines({}, &block)
-      end
-      alias_method :line, :lines
+      #   build_lines({}, &block)
+      # end
+      # alias_method :line, :lines
 
       private
 
-      def build_lines(attrs = {}, &block)
-        model.add(Vedeu::Views::Line.build(attributes.merge!(attrs), &block))
-      end
+      # def build_lines(attrs = {}, &block)
+      #   model.add(Vedeu::Views::Line.build(attributes.merge!(attrs), &block))
+      # end
 
     end # View
 

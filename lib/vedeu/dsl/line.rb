@@ -34,7 +34,7 @@ module Vedeu
 
       include Vedeu::DSL
       include Vedeu::DSL::Presentation
-      include Vedeu::DSL::Text
+      include Vedeu::DSL::Elements
 
       # Specify a single line in a view.
       #
@@ -52,24 +52,24 @@ module Vedeu
       #
       # @raise [Vedeu::Error::RequiresBlock]
       # @return [Vedeu::Views::Lines]
-      def line(value = '', &block)
-        if block_given?
-          content = Vedeu::Views::Line.build(client: client,
-                                             parent: model.parent, &block)
+      # def line(value = '', &block)
+      #   if block_given?
+      #     content = Vedeu::Views::Line.build(client: client,
+      #                                        parent: model.parent, &block)
 
-        elsif value
-          content = Vedeu::Views::Line.build(client: client,
-                                             parent: model.parent,
-                                             value:  [build_stream(value)])
+      #   elsif value
+      #     content = Vedeu::Views::Line.build(client: client,
+      #                                        parent: model.parent,
+      #                                        value:  [build_stream(value)])
 
-        else
-          fail Vedeu::Error::RequiresBlock unless block_given?
+      #   else
+      #     fail Vedeu::Error::RequiresBlock unless block_given?
 
-        end
+      #   end
 
-        model.parent.add(content)
-      end
-      alias_method :line=, :line
+      #   model.parent.add(content)
+      # end
+      # alias_method :line=, :line
 
       # Define multiple streams (a stream is a subset of a line).
       # Uses {Vedeu::DSL::Stream} for all directives within the
@@ -95,22 +95,22 @@ module Vedeu
       # @raise [Vedeu::Error::RequiresBlock]
       # @return [Vedeu::Views::Streams<Vedeu::Views::Stream>]
       # @see Vedeu::DSL::Stream for subdirectives.
-      def streams(&block)
-        fail Vedeu::Error::RequiresBlock unless block_given?
+      # def streams(&block)
+      #   fail Vedeu::Error::RequiresBlock unless block_given?
 
-        model.add(Vedeu::Views::Stream.build(attributes, &block))
-      end
-      alias_method :stream, :streams
-      alias_method :stream=, :streams
-      alias_method :streams=, :streams
+      #   model.add(Vedeu::Views::Stream.build(attributes, &block))
+      # end
+      # alias_method :stream, :streams
+      # alias_method :stream=, :streams
+      # alias_method :streams=, :streams
 
-      private
+      # private
 
       # @param value [String]
       # @return [Vedeu::Views::Stream]
-      def build_stream(value)
-        Vedeu::Views::Stream.build(client: client, parent: model, value: value)
-      end
+      # def build_stream(value)
+      #   Vedeu::Views::Stream.build(client: client, parent: model, value: value)
+      # end
 
     end # Line
 
