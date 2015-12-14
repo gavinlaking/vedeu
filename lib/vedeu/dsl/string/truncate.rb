@@ -2,15 +2,26 @@ module Vedeu
 
   module DSL
 
+    # Truncates a string to an optional width, or uses the named
+    # geometry width.
+    #
+    # @api private
+    #
     class Truncate
 
       include Vedeu::Common
 
+      # Returns a new instance of Vedeu::DSL::Truncate.
+      #
       # @param value [String]
-      # @param options [Hash]
-      # @option options name [String|Symbol]
-      # @option options truncate [Boolean]
-      # @option options width [Fixnum]
+      # @param options [Hash<Symbol => Boolean|Fixnum|NilClass|String|
+      #   Symbol]
+      # @option options name [String|Symbol] The name of the geometry
+      #   to use to determine the width if the width option is not
+      #   given.
+      # @option options truncate [Boolean] Whether to truncate the
+      #   value.
+      # @option options width [Fixnum] The width of the new value.
       # @return [Vedeu::DSL::Truncate]
       def initialize(value = '', options = {})
         @value   = value || ''
@@ -31,7 +42,8 @@ module Vedeu
       protected
 
       # @!attribute [r] options
-      # @return [Hash]
+      # @return [Hash<Symbol => Boolean|Fixnum|NilClass|String|
+      #   Symbol]
       attr_reader :options
 
       # @!attribute [r] value
@@ -40,13 +52,19 @@ module Vedeu
 
       private
 
-      # @return [Hash]
+      # @return [Hash<Symbol => Boolean|Fixnum|NilClass|String|
+      #   Symbol]
       def defaults
         {
           name:     nil,
           truncate: false,
           width:    nil,
         }
+      end
+
+      # @return [Vedeu::Geometries::Geometry]
+      def geometry
+        @_geometry ||= Vedeu.geometries.by_name(options[:name])
       end
 
       # @return [Boolean]
@@ -69,6 +87,9 @@ module Vedeu
 
         elsif present?(options[:name])
           geometry.bordered_width
+
+        else
+          value.size
 
         end
       end
