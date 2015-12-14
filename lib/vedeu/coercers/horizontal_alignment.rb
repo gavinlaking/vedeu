@@ -1,16 +1,15 @@
 module Vedeu
 
-  module Geometries
+  module Coercers
 
-    # Provides the mechanism to align an interface/view horizontally
-    # within the available terminal space.
+    # Provides the mechanism to validate a horizontal alignment value.
     #
     # @api private
     #
-    class HorizontalAlignment < Vedeu::Geometries::Alignment
+    class HorizontalAlignment < Vedeu::Coercers::Alignment
 
       # @raise [Vedeu::Error::InvalidSyntax] When the value is not one
-      #   of :bottom, :centre, :left, :middle, :right, :top.
+      #   of :center, :centre, :left, :none, or :right.
       # @return [Symbol]
       def align
         return value if valid?
@@ -20,8 +19,21 @@ module Vedeu
              ':centre, :left, :none, :right.'.freeze
       end
 
+      private
+
+      # @return [Array<Symbol>]
+      def values
+        [
+          :centre,
+          :center,
+          :left,
+          :none,
+          :right,
+        ]
+      end
+
     end # HorizontalAlignment
 
-  end # Geometries
+  end # Coercers
 
 end # Vedeu

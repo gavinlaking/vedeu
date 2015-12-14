@@ -1,21 +1,20 @@
 module Vedeu
 
-  module Geometries
+  module Coercers
 
     # The subclasses of this class, HorizontalAlignment and
-    # VerticalAlignment provide the mechanism to align an interface or
-    # view horizontally or vertically within the available terminal
-    # space.
+    # VerticalAlignment provide the mechanism to validate a horizontal
+    # or vertical alignment value.
     #
-    # @see Vedeu::Geometries::HorizontalAlignment
-    # @see Vedeu::Geometries::VerticalAlignment
+    # @see Vedeu::Coercers::HorizontalAlignment
+    # @see Vedeu::Coercers::VerticalAlignment
     #
     # @api private
     #
     class Alignment
 
-      # @param value [NilClass|Symbol|Vedeu::Geometries::Alignment]
-      # @return [Vedeu::Geometries::Alignment]
+      # @param value [NilClass|Symbol|Vedeu::Coercers::Alignment]
+      # @return [Vedeu::Coercers::Alignment]
       def self.coerce(value = nil)
         if value.is_a?(self)
           value
@@ -29,18 +28,24 @@ module Vedeu
         end
       end
 
-      # Returns a new instance of Vedeu::Geometries::Alignment.
+      # Returns a new instance of Vedeu::Coercers::Alignment.
       #
       # @param value [NilClass|Symbol]
-      # @return [Vedeu::Geometries::Alignment]
+      # @return [Vedeu::Coercers::Alignment]
       def initialize(value = nil)
         @value = value
       end
 
-      # @raise [Vedeu::Error::NotImplemented] Subclasses of this class
-      #   must implement this method.
+      # @raise [Vedeu::Error::InvalidSyntax] When the value is not a
+      #   valid alignment value.
+      # @return [Symbol]
       def align
-        fail Vedeu::Error::NotImplemented, 'Subclasses implement this.'.freeze
+        return value if valid?
+
+        fail Vedeu::Error::InvalidSyntax,
+             'No alignment value given. Valid values are :bottom, ' \
+             ':centre, :center, :left, :middle, :none, :right, ' \
+             ':top.'.freeze
       end
 
       # Return a boolean indicating alignment was set to :bottom.
@@ -123,6 +128,7 @@ module Vedeu
         [
           :bottom,
           :centre,
+          :center,
           :left,
           :middle,
           :none,
@@ -133,6 +139,6 @@ module Vedeu
 
     end # Alignment
 
-  end # Geometries
+  end # Coercers
 
 end # Vedeu

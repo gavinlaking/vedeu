@@ -7,7 +7,7 @@ module Vedeu
       extend Forwardable
       include Vedeu::Common
 
-      def_delegators :align,
+      def_delegators :alignment,
                      :centre_aligned?,
                      :left_aligned?,
                      :right_aligned?,
@@ -57,9 +57,9 @@ module Vedeu
 
       private
 
-      # @return [Vedeu::Alignment]
-      def align
-        Vedeu::Alignment.coerce(options[:align])
+      # @return [Vedeu::Coercers::Alignment]
+      def alignment
+        @_alignment ||= Vedeu::Coercers::Alignment.coerce(options[:align])
       end
 
       # The value padded to width, centralized.

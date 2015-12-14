@@ -37,54 +37,6 @@ module Vedeu
         end
       end
 
-      # describe '#alignment' do
-      #   let(:_value) { :none }
-      #   let(:width)  { 20 }
-
-      #   subject { instance.alignment(_value, width) }
-
-      #   context 'when a value and width is given' do
-      #     it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
-
-      #     context 'when the value is :center' do
-      #       let(:_value) { :center }
-
-      #       it { subject.alignment.must_equal(:centre) }
-      #     end
-
-      #     context 'when the value is :centre' do
-      #       let(:_value) { :centre }
-
-      #       it { subject.alignment.must_equal(:centre) }
-      #     end
-
-      #     context 'when the value is :left' do
-      #       let(:_value) { :left }
-
-      #       it { subject.alignment.must_equal(:left) }
-      #     end
-
-      #     context 'when the value is :right' do
-      #       let(:_value) { :right }
-
-      #       it { subject.alignment.must_equal(:right) }
-      #     end
-      #   end
-
-      #   context 'when a value is not given' do
-      #     let(:_value) {}
-
-      #     it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
-      #   end
-
-      #   context 'when a width is not given' do
-      #     let(:_value) { :none }
-      #     let(:width)  {}
-
-      #     it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
-      #   end
-      # end
-
       describe '#align' do
         let(:vertical)   { :top }
         let(:horizontal) { :left }
@@ -113,9 +65,9 @@ module Vedeu
           context 'when the height is given' do
             it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
             it { subject.vertical_alignment.
-              must_be_instance_of(Vedeu::Geometries::VerticalAlignment) }
+              must_be_instance_of(Vedeu::Coercers::VerticalAlignment) }
             it { subject.horizontal_alignment.
-              must_be_instance_of(Vedeu::Geometries::HorizontalAlignment) }
+              must_be_instance_of(Vedeu::Coercers::HorizontalAlignment) }
             it { subject.height.must_equal(20) }
             it { subject.width.must_equal(20) }
           end
@@ -141,9 +93,9 @@ module Vedeu
           context 'when the width is given' do
             it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
             it { subject.vertical_alignment.
-              must_be_instance_of(Vedeu::Geometries::VerticalAlignment) }
+              must_be_instance_of(Vedeu::Coercers::VerticalAlignment) }
             it { subject.horizontal_alignment.
-              must_be_instance_of(Vedeu::Geometries::HorizontalAlignment) }
+              must_be_instance_of(Vedeu::Coercers::HorizontalAlignment) }
             it { subject.height.must_equal(20) }
             it { subject.width.must_equal(20) }
           end

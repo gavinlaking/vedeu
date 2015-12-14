@@ -116,7 +116,7 @@ module Vedeu
         validate_horizontal_alignment!(value)
         validate_width!(width)
 
-        model.horizontal_alignment = Vedeu::Geometries::HorizontalAlignment
+        model.horizontal_alignment = Vedeu::Coercers::HorizontalAlignment
           .coerce(value)
         model.width = width
         model
@@ -129,7 +129,7 @@ module Vedeu
         validate_vertical_alignment!(value)
         validate_height!(height)
 
-        model.vertical_alignment = Vedeu::Geometries::VerticalAlignment
+        model.vertical_alignment = Vedeu::Coercers::VerticalAlignment
           .coerce(value)
         model.height = height
         model

@@ -2,16 +2,16 @@ require 'test_helper'
 
 module Vedeu
 
-  module Geometries
+  module Coercers
 
     describe HorizontalAlignment do
 
-      let(:described) { Vedeu::Geometries::HorizontalAlignment }
+      let(:described) { Vedeu::Coercers::HorizontalAlignment }
       let(:instance)  { described.new(_value) }
       let(:_value)    {}
 
-      describe '.align' do
-        subject { described.align(_value) }
+      describe '#align' do
+        subject { described.coerce(_value).align }
 
         context 'when the value is :none' do
           let(:_value) { :none }
@@ -62,6 +62,6 @@ module Vedeu
 
     end # HorizontalAlignment
 
-  end # Geometries
+  end # Coercers
 
 end # Vedeu

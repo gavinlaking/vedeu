@@ -13,7 +13,6 @@ module Vedeu
 
 end # Vedeu
 
-require 'vedeu/geometries/alignment/all'
 require 'vedeu/geometries/area/all'
 require 'vedeu/geometries/dsl/all'
 

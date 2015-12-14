@@ -2,11 +2,11 @@ require 'test_helper'
 
 module Vedeu
 
-  module Geometries
+  module Coercers
 
     describe Alignment do
 
-      let(:described) { Vedeu::Geometries::Alignment }
+      let(:described) { Vedeu::Coercers::Alignment }
       let(:instance)  { described.new(_value) }
       let(:_value)    {}
 
@@ -15,17 +15,11 @@ module Vedeu
         it { instance.instance_variable_get('@value').must_equal(_value) }
       end
 
-      describe '.align' do
-        subject { described.align(_value) }
-
-        it { proc { subject }.must_raise(Vedeu::Error::NotImplemented) }
-      end
-
       describe '.coerce' do
         subject { described.coerce(_value) }
 
-        context 'when the value is a Vedeu::Geometries::Alignment' do
-          let(:_value) { Vedeu::Geometries::Alignment.new(:none) }
+        context 'when the value is a Vedeu::Coercers::Alignment' do
+          let(:_value) { described.new(:none) }
 
           it { subject.must_equal(_value) }
         end
@@ -41,11 +35,11 @@ module Vedeu
         end
       end
 
-      describe '#align' do
-        subject { instance.align }
+      # describe '#align' do
+      #   subject { instance.align }
 
-        it { proc { subject }.must_raise(Vedeu::Error::NotImplemented) }
-      end
+      #   it { proc { subject }.must_raise(Vedeu::Error::NotImplemented) }
+      # end
 
       describe '#bottom_aligned?' do
         subject { instance.bottom_aligned? }
@@ -147,6 +141,6 @@ module Vedeu
 
     end # Alignment
 
-  end # Geometries
+  end # Coercers
 
 end # Vedeu
