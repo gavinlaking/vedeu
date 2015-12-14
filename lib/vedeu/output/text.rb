@@ -68,14 +68,16 @@ module Vedeu
       #
       # @return [void]
       def add
-        fail Vedeu::Error::MissingRequired,
-             'Cannot determine model.' unless model
+        # fail Vedeu::Error::MissingRequired,
+        #      'Cannot determine model.' unless model
 
         if wrap?
-          model.add(wrapped)
+        #   model.add(wrapped)
+          wrapped
 
         else
-          model.add(content)
+        #   model.add(content)
+          aligned
 
         end
       end
@@ -92,7 +94,7 @@ module Vedeu
       #
       # @return [String]
       def centre
-        string.center(width, pad)
+        value.center(width, pad)
       end
 
       # If a colour, background or foreground option is set, use them

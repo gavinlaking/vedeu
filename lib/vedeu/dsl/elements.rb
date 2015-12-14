@@ -51,53 +51,38 @@ module Vedeu
 
       # @param block [Proc]
       # @return [void]
-      # def streams(&block)
-      #   requires_block!(&block)
-      #   requires_model!
+      def streams(&block)
+        requires_block!(&block)
+        requires_model!
 
-      #   if view_model?
-      #     Vedeu.log(type:    :yellow,
-      #               message: "(#{@@no_foo}) #{self.class.name}##{__callee__} view model (#{model.name})")
+        if view_model?
+          l = Vedeu::Views::Line.build(default_attributes(&block), &block)
+          model.add(l)
 
-      #     l = Vedeu::Views::Line.build(default_attributes(&block), &block)
-      #     model.add(l)
+        elsif line_model?
+          fail "#{self.class.name}##{__callee__} line model"
 
-      #   elsif line_model?
-      #     Vedeu.log(type:    :red,
-      #               message: "(#{@@no_foo}) #{self.class.name}##{__callee__} line model (#{model.name})")
-
-      #     fail "#{self.class.name}##{__callee__} line model"
-
-      #   end
-      # end
+        end
+      end
 
       # @param value [String]
       # @param options [Hash]
       # @param block [Proc]
       # @return [void]
-      # def stream(value = '', options = {}, &block)
-      #   requires_model!
+      def stream(value = '', options = {}, &block)
+        requires_model!
 
-      #   if view_model?
-      #     Vedeu.log(type:    :red,
-      #               message: "(#{@@no_foo}) #{self.class.name}##{__callee__} view model (#{model.name})")
+        if view_model?
+          fail "#{self.class.name}##{__callee__} view model"
 
-      #     fail "#{self.class.name}##{__callee__} view model"
+        elsif line_model?
+          fail "#{self.class.name}##{__callee__} line model"
 
-      #   elsif line_model?
-      #     Vedeu.log(type:    :red,
-      #               message: "(#{@@no_foo}) #{self.class.name}##{__callee__} line model (#{model.name})")
+        elsif stream_model?
+          fail "#{self.class.name}##{__callee__} stream model"
 
-      #     fail "#{self.class.name}##{__callee__} line model"
-
-      #   elsif stream_model?
-      #     Vedeu.log(type:    :red,
-      #               message: "(#{@@no_foo}) #{self.class.name}##{__callee__} stream model (#{model.name})")
-
-      #     fail "#{self.class.name}##{__callee__} stream model"
-
-      #   end
-      # end
+        end
+      end
 
       # @param value [String]
       # @param options [Hash]
@@ -118,7 +103,7 @@ module Vedeu
           model.add(l)
 
         elsif stream_model?
-          fail "#{self.class.name}##{__callee__} line model"
+          fail "#{self.class.name}##{__callee__} stream model"
 
         end
       end

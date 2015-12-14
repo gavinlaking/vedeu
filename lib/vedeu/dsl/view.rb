@@ -90,6 +90,8 @@ module Vedeu
       include Vedeu::DSL::Use
       include Vedeu::DSL::Elements
 
+      include Vedeu::DSL::Elements
+
       class << self
 
         include Vedeu::Common
@@ -253,7 +255,7 @@ module Vedeu
       # end
       # alias_method :line, :lines
 
-      private
+      # private
 
       # def build_lines(attrs = {}, &block)
       #   model.add(Vedeu::Views::Line.build(attributes.merge!(attrs), &block))

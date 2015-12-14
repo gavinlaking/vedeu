@@ -16,6 +16,10 @@ class DSLApp
 
   Vedeu.interface :test1_interface do
     border do
+      # background '#ff0000'
+      # foreground '#ff0000'
+      # colour foreground: '#ff0000'
+      # colour background: '#ff0000'
       title 'Test 1'
     end
     geometry do

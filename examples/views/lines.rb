@@ -49,15 +49,15 @@ class DSLApp
       end
     end
 
-    view(:test2_interface) do
-      lines do
-        left 'view->lines->left'
-        # rest do not render
-        centre 'view->lines->centre'
-        center 'view->lines->center'
-        right 'view->lines->right'
-      end
-    end
+    # view(:test2_interface) do
+    #   lines do
+    #     left 'view->lines->left'
+    #     # rest do not render
+    #     centre 'view->lines->centre'
+    #     center 'view->lines->center'
+    #     right 'view->lines->right'
+    #   end
+    # end
   end
 
   def self.start(argv = ARGV)
