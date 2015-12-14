@@ -98,6 +98,27 @@ class DSLApp
     end
   end
 
+  Vedeu.interface :test5_interface do
+    border do
+      title 'Test 5'
+    end
+    geometry do
+      x  use(:help1_interface).x
+      y  use(:help3_interface).south
+      xn use(:help1_interface).xn
+      yn use(:help3_interface).south(5)
+    end
+  end
+
+  Vedeu.interface :help5_interface do
+    geometry do
+      x  use(:test5_interface).x
+      y  use(:test5_interface).south
+      xn use(:test5_interface).xn
+      yn use(:test5_interface).south(5)
+    end
+  end
+
   Vedeu.render do
     view(:test1_interface) do
       line 'view->line', { foreground: '#ff0000' }
@@ -114,6 +135,7 @@ class DSLApp
 
     view(:help2_interface) do
       line 'Multiple lines within a view.'
+      line '(No block)'
     end
 
     view(:test3_interface) do
@@ -143,6 +165,22 @@ class DSLApp
       line 'stream within a line, whilst'
       line 'multiple `text`s are treated'
       line 'as separate streams.'
+    end
+
+    view(:test5_interface) do
+      lines do
+        line 'view->lines->line 1', { foreground: '#00ff00' }
+        line 'view->lines->line 2', { foreground: '#007fff' }
+        line 'view->lines->line 3', { foreground: '#55aa00' }
+      end
+    end
+
+    view(:help5_interface) do
+      lines do
+        text 'Multiple `line` keywords within'
+        text 'a `lines` block view are'
+        text 'treated as separate lines.'
+      end
     end
   end
 
