@@ -8,6 +8,7 @@ module Vedeu
 
 end # Vedeu
 
+require 'vedeu/dsl/options'
 require 'vedeu/dsl/border'
 require 'vedeu/dsl/dsl'
 require 'vedeu/dsl/geometry'
