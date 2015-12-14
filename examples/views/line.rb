@@ -26,32 +26,123 @@ class DSLApp
     end
   end
 
+  Vedeu.interface :help1_interface do
+    geometry do
+      x  use(:test1_interface).x
+      y  use(:test1_interface).south
+      xn use(:test1_interface).xn
+      yn use(:test1_interface).south(3)
+    end
+  end
+
   Vedeu.interface :test2_interface do
     border do
       title 'Test 2'
     end
     geometry do
-      x  36
-      y  3
-      xn 66
-      yn 8
+      x      use(:test1_interface).east(6)
+      y      use(:test1_interface).y
+      width  use(:test1_interface).width
+      height use(:test1_interface).height
     end
   end
 
-  Vedeu.keymap '_global_' do
-    key('q') { Vedeu.exit }
+  Vedeu.interface :help2_interface do
+    geometry do
+      x  use(:test2_interface).x
+      y  use(:test2_interface).south
+      xn use(:test2_interface).xn
+      yn use(:test2_interface).south(3)
+    end
   end
 
-  # vedeu/dsl/view.rb:249:in `lines': wrong number of arguments (1 for 0)
+  Vedeu.interface :test3_interface do
+    border do
+      title 'Test 3'
+    end
+    geometry do
+      x  use(:help1_interface).x
+      y  use(:help1_interface).south
+      xn use(:help1_interface).xn
+      yn use(:help1_interface).south(5)
+    end
+  end
+
+  Vedeu.interface :help3_interface do
+    geometry do
+      x  use(:test3_interface).x
+      y  use(:test3_interface).south
+      xn use(:test3_interface).xn
+      yn use(:test3_interface).south(5)
+    end
+  end
+
+  Vedeu.interface :test4_interface do
+    border do
+      title 'Test 4'
+    end
+    geometry do
+      x  use(:help2_interface).x
+      y  use(:help2_interface).south
+      xn use(:help2_interface).xn
+      yn use(:help2_interface).south(5)
+    end
+  end
+
+  Vedeu.interface :help4_interface do
+    geometry do
+      x  use(:test4_interface).x
+      y  use(:test4_interface).south
+      xn use(:test4_interface).xn
+      yn use(:test4_interface).south(5)
+    end
+  end
+
   Vedeu.render do
     view(:test1_interface) do
-      line 'view->line'
+      line 'view->line', { foreground: '#ff0000' }
+    end
+
+    view(:help1_interface) do
+      line 'A single line within a view.'
     end
 
     view(:test2_interface) do
+      line 'view->line 1', { foreground: '#ff7f00' }
+      line 'view->line 2', { foreground: '#ffff00' }
+    end
+
+    view(:help2_interface) do
+      line 'Multiple lines within a view.'
+    end
+
+    view(:test3_interface) do
+      text 'view->text 1', { foreground: '#00ff00' }
+      text 'view->text 2', { foreground: '#007fff' }
+    end
+
+    view(:help3_interface) do
+      line 'Multiple `text` keywords within'
+      line 'a view are treated as separate'
+      line 'lines.'
+    end
+
+    view(:test4_interface) do
       line do
-        text 'view->line->text'
+        text 'view->line 1->text', { foreground: '#5500cc' }
       end
+      line do
+        text 'view->line 2->text 1', { foreground: '#ff00ff' }
+        text 'view->line 2->text 2', { foreground: '#ffffff' }
+      end
+    end
+
+    view(:help4_interface) do
+      line 'Line `block` syntax.'
+      line 'A single `text` is just a'
+      line 'stream within a line, whilst'
+      line 'multiple `text`s are treated'
+      line 'as separate streams.'
     end
   end
 
