@@ -2,7 +2,7 @@ module Vedeu
 
   module DSL
 
-    class Options
+    class ViewOptions
 
       include Vedeu::Common
 
@@ -16,7 +16,7 @@ module Vedeu
       # @option opts foreground [String]
       # @option opts style [Array<Symbol>|
       #   Hash<Symbol => Array<Symbol>|Symbol>|Symbol]
-      # @return [Vedeu::DSL::Options]
+      # @return [Vedeu::DSL::ViewOptions]
       def initialize(opts = {})
         @opts = defaults.merge!(opts || {})
       end
@@ -90,7 +90,7 @@ module Vedeu
         opts.include?(:style) && present?(opts[:style])
       end
 
-    end # Options
+    end # ViewOptions
 
   end # DSL
 

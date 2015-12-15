@@ -24,7 +24,7 @@ module Vedeu
         requires_model!
 
         value      = present?(value) ? value : ''
-        options    = Vedeu::DSL::Options.new(options).options
+        options    = Vedeu::DSL::ViewOptions.new(options).options
         attributes = options.merge!(default_attributes(&block))
         attrs      = { value: value }
 
@@ -74,7 +74,7 @@ module Vedeu
         requires_model!
 
         value      = present?(value) ? value : ''
-        options    = Vedeu::DSL::Options.new(options).options
+        options    = Vedeu::DSL::ViewOptions.new(options).options
         attributes = options.merge!(default_attributes(&block))
         attrs      = { value: value }
 

@@ -4,9 +4,9 @@ module Vedeu
 
   module DSL
 
-    describe Options do
+    describe ViewOptions do
 
-      let(:described) { Vedeu::DSL::Options }
+      let(:described) { Vedeu::DSL::ViewOptions }
       let(:instance)  { described.new(opts) }
       let(:opts)      {
         {
@@ -55,7 +55,7 @@ module Vedeu
           context 'when the align option is invalid' do
             let(:align) { :invalid }
 
-            it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+            it { subject.must_equal(:none) }
           end
         end
       end
@@ -121,7 +121,7 @@ module Vedeu
         end
       end
 
-    end # Options
+    end # ViewOptions
 
   end # DSL
 
