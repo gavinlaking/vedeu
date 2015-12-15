@@ -16,31 +16,40 @@ module Vedeu
       attr_accessor :collection
       alias_method :lines, :collection
 
-      # Coerce a document into a new instance of Vedeu::Editor::Lines.
-      #
-      # @param document [Array<String>|Vedeu::Editor::Lines]
-      # @return (see #initialize)
-      def self.coerce(document)
-        if document.is_a?(self)
-          new(document.lines)
+      class << self
 
-        elsif document.is_a?(Array)
-          collection = document.map { |line| Vedeu::Editor::Line.coerce(line) }
+        include Vedeu::Common
 
-          new(collection)
+        # Coerce a document into a new instance of
+        # Vedeu::Editor::Lines.
+        #
+        # @param document [Array<String>|Vedeu::Editor::Lines]
+        # @return (see #initialize)
+        def coerce(document)
+          if document.is_a?(self)
+            new(document.lines)
 
-        elsif document.is_a?(String)
-          collection = document.lines.map(&:chomp).map do |line|
-            Vedeu::Editor::Line.coerce(line)
+          elsif document.is_a?(Array)
+            collection = document.map do |line|
+              Vedeu::Editor::Line.coerce(line)
+            end
+
+            new(collection)
+
+          elsif string?(document)
+            collection = document.lines.map(&:chomp).map do |line|
+              Vedeu::Editor::Line.coerce(line)
+            end
+
+            new(collection)
+
+          else
+            new
+
           end
-
-          new(collection)
-
-        else
-          new
-
         end
-      end
+
+      end # Eigenclass
 
       # Returns a new instance of Vedeu::Editor::Lines.
       #

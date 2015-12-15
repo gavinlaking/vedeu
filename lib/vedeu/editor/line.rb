@@ -16,16 +16,22 @@ module Vedeu
       alias_method :line, :collection
       alias_method :to_s, :collection
 
-      # Coerce a line into a new instance of Vedeu::Editor::Line.
-      #
-      # @param collection [String|Vedeu::Editor::Line]
-      # @return (see #initialize)
-      def self.coerce(collection)
-        return collection      if collection.is_a?(self)
-        return new(collection) if collection.is_a?(String)
+      class << self
 
-        new
-      end
+        include Vedeu::Common
+
+        # Coerce a line into a new instance of Vedeu::Editor::Line.
+        #
+        # @param collection [String|Vedeu::Editor::Line]
+        # @return (see #initialize)
+        def coerce(collection)
+          return collection      if collection.is_a?(self)
+          return new(collection) if string?(collection)
+
+          new
+        end
+
+      end # Eigenclass
 
       # Returns a new instance of Vedeu::Editor::Line.
       #

@@ -8,6 +8,8 @@ module Vedeu
     #
     class Delete
 
+      include Vedeu::Common
+
       # @param (see #initialize)
       # @return [Vedeu::Editor::Line|Vedeu::Editor::Lines]
       def self.from(collection, index = nil, size = 0)
@@ -58,7 +60,7 @@ module Vedeu
       #
       # @return [Boolean]
       def line?
-        collection.is_a?(String)
+        string?(collection)
       end
 
       # If true, we are dealing with a {Vedeu::Editor::Lines}

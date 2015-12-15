@@ -64,6 +64,14 @@ module Vedeu
       name
     end
 
+    # Returns a boolean indicating whether the value is a Fixnum.
+    #
+    # @param value [String|void]
+    # @return [Boolean]
+    def string?(value)
+      value.is_a?(String)
+    end
+
   end # Common
 
 end # Vedeu

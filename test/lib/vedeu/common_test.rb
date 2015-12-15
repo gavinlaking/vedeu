@@ -125,6 +125,22 @@ module Vedeu
       end
     end
 
+    describe '#string?' do
+      let(:_value) {}
+
+      subject { instance.string?(_value) }
+
+      context 'when the value is string' do
+        let(:_value) { 'test' }
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when the value is not string' do
+        it { subject.must_equal(false) }
+      end
+    end
+
   end # Common
 
 end # Vedeu
