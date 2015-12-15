@@ -12,11 +12,13 @@ module Vedeu
         {
           align:  align,
           colour: colour,
+          pad:    pad,
           style:  style,
         }
       }
       let(:align)  {}
       let(:colour) {}
+      let(:pad)    {}
       let(:style)  {}
 
       describe '#initialize' do
@@ -32,6 +34,7 @@ module Vedeu
             {
               align:  :none,
               colour: nil,
+              pad:    ' ',
               style:  nil,
             }
           }
@@ -92,6 +95,7 @@ module Vedeu
           {
             align:  :none,
             colour: nil,
+            pad:    ' ',
             style:  nil,
           }
         }
@@ -100,6 +104,28 @@ module Vedeu
 
         it { subject.must_be_instance_of(Hash) }
         it { subject.must_equal(expected) }
+      end
+
+      describe '#pad' do
+        subject { instance.pad }
+
+        context 'when the pad option is nil' do
+          let(:pad) {}
+
+          it { subject.must_equal(' ') }
+        end
+
+        context 'when the pad option is not a string' do
+          let(:pad) { 44 }
+
+          it { subject.must_equal(' ') }
+        end
+
+        context 'when the pad is a multi-character string' do
+          let(:pad) { 'multi' }
+
+          it { subject.must_equal('m') }
+        end
       end
 
       describe '#style' do

@@ -14,6 +14,7 @@ module Vedeu
       # @option colour background [String]
       # @option colour foreground [String]
       # @option opts foreground [String]
+      # @option opts pad [String]
       # @option opts style [Array<Symbol>|
       #   Hash<Symbol => Array<Symbol>|Symbol>|Symbol]
       # @return [Vedeu::DSL::ViewOptions]
@@ -38,8 +39,16 @@ module Vedeu
         {
           align:  align,
           colour: colour,
+          pad:    pad,
           style:  style,
         }
+      end
+
+      # @return [String]
+      def pad
+        return defaults[:pad] unless valid_pad?
+
+        opts[:pad][0]
       end
 
       # @return [NilClass|Vedeu::Presentation::Style]
@@ -74,6 +83,7 @@ module Vedeu
         {
           align:  :none,
           colour: nil,
+          pad:    ' ',
           style:  nil,
         }
       end
@@ -88,6 +98,11 @@ module Vedeu
         return false unless options?
 
         opts.include?(:style) && present?(opts[:style])
+      end
+
+      # @return [Boolean]
+      def valid_pad?
+        present?(opts[:pad]) && string?(opts[:pad])
       end
 
     end # ViewOptions
