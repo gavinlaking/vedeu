@@ -64,7 +64,7 @@ module Vedeu
 
       # @return [Boolean]
       def content_only?
-        options[:content_only] == true
+        truthy?(options[:content_only])
       end
 
       # @return [Hash<Symbol => Boolean>]

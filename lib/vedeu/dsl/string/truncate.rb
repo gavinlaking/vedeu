@@ -69,7 +69,7 @@ module Vedeu
 
       # @return [Boolean]
       def truncate?
-        options[:truncate] == true && value.size > width
+        truthy?(options[:truncate]) && value.size > width
       end
 
       # @return [String]
