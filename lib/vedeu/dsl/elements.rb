@@ -60,7 +60,8 @@ module Vedeu
           model.add(l)
 
         elsif line_model?
-          fail "#{self.class.name}##{__callee__} line model"
+          l = Vedeu::Views::Line.build(default_attributes(&block), &block)
+          model.value = l.value
 
         end
       end
@@ -72,14 +73,28 @@ module Vedeu
       def stream(value = '', options = {}, &block)
         requires_model!
 
-        if view_model?
-          fail "#{self.class.name}##{__callee__} view model"
+        value      = present?(value) ? value : ''
+        options    = Vedeu::DSL::Options.new(options).options
+        attributes = options.merge!(default_attributes(&block))
+        attrs      = { value: value }
 
-        elsif line_model?
-          fail "#{self.class.name}##{__callee__} line model"
+        l = if block_given?
+              Vedeu::Views::Line.build(attributes.merge!(attrs), &block)
 
-        elsif stream_model?
-          fail "#{self.class.name}##{__callee__} stream model"
+            else
+              s  = Vedeu::Views::Stream.new(attributes.merge!(attrs))
+              ss = Vedeu::Views::Streams.coerce([s])
+
+              Vedeu::Views::Line.new(attributes.merge!(value: ss))
+
+            end
+
+        if view_model? || line_model?
+          model.add(l)
+
+        else
+          fail Vedeu::Error::Fatal,
+               "Cannot add line to '#{model.class.name}' model."
 
         end
       end
@@ -102,8 +117,9 @@ module Vedeu
 
           model.add(l)
 
-        elsif stream_model?
-          fail "#{self.class.name}##{__callee__} stream model"
+        else
+          fail Vedeu::Error::Fatal,
+               "Cannot add text to '#{model.class.name}' model."
 
         end
       end

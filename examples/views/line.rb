@@ -148,9 +148,9 @@ class DSLApp
     end
 
     view(:help3_interface) do
-      line 'Multiple `text` keywords within'
-      line 'a view are treated as separate'
-      line 'lines.'
+      text 'Multiple `text` keywords within'
+      text 'a view are treated as separate'
+      text 'lines.'
     end
 
     view(:test4_interface) do
@@ -164,11 +164,22 @@ class DSLApp
     end
 
     view(:help4_interface) do
-      line 'Line `block` syntax.'
-      line 'A single `text` is just a'
-      line 'stream within a line, whilst'
-      line 'multiple `text`s are treated'
-      line 'as separate streams.'
+      line do
+        text 'Line `block` syntax.'
+      end
+      line do
+        text 'A single `text` is just a'
+      end
+      line do
+        text 'stream within a line, whilst'
+      end
+      line do
+        text 'multiple `text`s '
+        text 'are treated'
+      end
+      line do
+        text 'as separate streams.'
+      end
     end
 
     view(:test5_interface) do
@@ -181,9 +192,9 @@ class DSLApp
 
     view(:help5_interface) do
       lines do
-        text 'Multiple `line` keywords within'
-        text 'a `lines` block view are'
-        text 'treated as separate lines.'
+        line 'Multiple `line` keywords within'
+        line 'a `lines` block view are'
+        line 'treated as separate lines.'
       end
     end
   end
