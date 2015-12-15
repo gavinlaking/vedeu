@@ -50,7 +50,7 @@ module Vedeu
         context 'when the value is :align_invalid' do
           let(:_value) { :align_invalid }
 
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+          it { subject.must_equal(:none) }
         end
       end
 

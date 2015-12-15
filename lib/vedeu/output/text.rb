@@ -72,11 +72,11 @@ module Vedeu
         #      'Cannot determine model.' unless model
 
         if wrap?
-        #   model.add(wrapped)
+          # model.add(wrapped)
           wrapped
 
         else
-        #   model.add(content)
+          # model.add(content)
           aligned
 
         end

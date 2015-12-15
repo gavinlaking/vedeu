@@ -36,16 +36,9 @@ module Vedeu
         @value = value
       end
 
-      # @raise [Vedeu::Error::InvalidSyntax] When the value is not a
-      #   valid alignment value.
       # @return [Symbol]
       def align
-        return value if valid?
-
-        fail Vedeu::Error::InvalidSyntax,
-             'No alignment value given. Valid values are :bottom, ' \
-             ':centre, :center, :left, :middle, :none, :right, ' \
-             ':top.'.freeze
+        value
       end
 
       # Return a boolean indicating alignment was set to :bottom.
@@ -100,25 +93,20 @@ module Vedeu
       private
 
       # @return [Boolean]
-      def none?
-        @value == :none || @value.nil? || !(@value.is_a?(Symbol))
-      end
-
-      # @return [Boolean]
-      def valid?
-        values.include?(value)
+      def invalid?
+        @value.nil? || !(@value.is_a?(Symbol)) || !values.include?(@value)
       end
 
       # @return [Symbol]
       def value
-        @_value ||= if none?
-                      :none
-
-                    elsif @value == :center
+        @_value ||= if @value == :center
                       :centre
 
+                    elsif invalid?
+                      :none
+
                     else
-                      @value.to_sym
+                      @value
 
                     end
       end

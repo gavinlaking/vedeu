@@ -109,7 +109,9 @@ module Vedeu
       # @param value [String]
       # @return [Vedeu::Views::Stream]
       # def build_stream(value)
-      #   Vedeu::Views::Stream.build(client: client, parent: model, value: value)
+      #   Vedeu::Views::Stream.build(client: client,
+      #                              parent: model,
+      #                              value: value)
       # end
 
     end # Line

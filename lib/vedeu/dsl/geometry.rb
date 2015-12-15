@@ -27,7 +27,6 @@ module Vedeu
         # @return [Vedeu::Geometries::Geometry]
         # @see Vedeu::Geometries::DSL
         def geometry(name = nil, &block)
-
           # Alternative implementation which treats `Vedeu.geometry`
           # as `Vedeu.geometries` if no name or block is given.
           #
