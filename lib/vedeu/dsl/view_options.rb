@@ -18,7 +18,9 @@ module Vedeu
       # @option opts pad [String]
       # @option opts style [Array<Symbol>|
       #   Hash<Symbol => Array<Symbol>|Symbol>|Symbol]
+      # @option opts truncate [Boolean]
       # @option opts width [Fixnum]
+      # @option opts wordwrap [Boolean]
       # @return [Vedeu::DSL::ViewOptions]
       def initialize(opts = {})
         @opts = defaults.merge!(opts || {})
@@ -44,12 +46,14 @@ module Vedeu
       # @return [Hash]
       def options
         {
-          align:  align,
-          colour: colour,
-          name:   name,
-          pad:    pad,
-          style:  style,
-          width:  width,
+          align:    align,
+          colour:   colour,
+          name:     name,
+          pad:      pad,
+          style:    style,
+          truncate: truncate,
+          width:    width,
+          wordwrap: wordwrap,
         }
       end
 
@@ -67,6 +71,11 @@ module Vedeu
         Vedeu::Presentation::Style.coerce(opts)
       end
 
+      # @return [Boolean]
+      def truncate
+        truthy?(opts[:truncate])
+      end
+
       # @return [Fixnum|NilClass]
       def width
         if present?(opts[:width]) && numeric?(opts[:width])
@@ -76,6 +85,11 @@ module Vedeu
           geometry.bordered_width
 
         end
+      end
+
+      # @return [Boolean]
+      def wordwrap
+        truthy?(opts[:wordwrap])
       end
 
       protected
@@ -101,12 +115,14 @@ module Vedeu
       # @return [Hash]
       def defaults
         {
-          align:  :none,
-          colour: nil,
-          name:   nil,
-          pad:    ' ',
-          style:  nil,
-          width:  nil,
+          align:    :none,
+          colour:   nil,
+          name:     nil,
+          pad:      ' ',
+          style:    nil,
+          truncate: false,
+          width:    nil,
+          wordwrap: false,
         }
       end
 

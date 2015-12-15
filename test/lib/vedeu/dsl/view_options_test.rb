@@ -10,20 +10,24 @@ module Vedeu
       let(:instance)  { described.new(opts) }
       let(:opts)      {
         {
-          align:  align,
-          colour: colour,
-          name:   _name,
-          pad:    pad,
-          style:  style,
-          width:  width,
+          align:    align,
+          colour:   colour,
+          name:     _name,
+          pad:      pad,
+          style:    style,
+          truncate: truncate,
+          width:    width,
+          wordwrap: wordwrap,
         }
       }
-      let(:align)  {}
-      let(:colour) {}
-      let(:_name)  {}
-      let(:pad)    {}
-      let(:style)  {}
-      let(:width)  {}
+      let(:align)    {}
+      let(:colour)   {}
+      let(:_name)    {}
+      let(:pad)      {}
+      let(:style)    {}
+      let(:truncate) {}
+      let(:width)    {}
+      let(:wordwrap) {}
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -36,12 +40,14 @@ module Vedeu
           let(:opts) {}
           let(:expected) {
             {
-              align:  :none,
-              colour: nil,
-              name:   nil,
-              pad:    ' ',
-              style:  nil,
-              width:  nil,
+              align:    :none,
+              colour:   nil,
+              name:     nil,
+              pad:      ' ',
+              style:    nil,
+              truncate: false,
+              width:    nil,
+              wordwrap: false,
             }
           }
 
@@ -113,12 +119,14 @@ module Vedeu
       describe '#options' do
         let(:expected) {
           {
-            align:  :none,
-            colour: nil,
-            name:   nil,
-            pad:    ' ',
-            style:  nil,
-            width:  nil,
+            align:    :none,
+            colour:   nil,
+            name:     nil,
+            pad:      ' ',
+            style:    nil,
+            truncate: false,
+            width:    nil,
+            wordwrap: false,
           }
         }
 
@@ -169,6 +177,20 @@ module Vedeu
         end
       end
 
+      describe '#truncate' do
+        subject { instance.truncate }
+
+        context 'when the truncate option is true' do
+          let(:truncate) { true }
+
+          it { subject.must_equal(true) }
+        end
+
+        context 'when the truncate option is not given or false' do
+          it { subject.must_equal(false) }
+        end
+      end
+
       describe '#width' do
         subject { instance.width }
 
@@ -195,6 +217,20 @@ module Vedeu
 
             it { subject.must_equal(nil) }
           end
+        end
+      end
+
+      describe '#wordwrap' do
+        subject { instance.wordwrap }
+
+        context 'when the wordwrap option is true' do
+          let(:wordwrap) { true }
+
+          it { subject.must_equal(true) }
+        end
+
+        context 'when the wordwrap option is not given or false' do
+          it { subject.must_equal(false) }
         end
       end
 
