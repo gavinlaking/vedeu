@@ -10,10 +10,12 @@ module Vedeu
       let(:instance)  { described.new(opts) }
       let(:opts)      {
         {
+          align:  align,
           colour: colour,
           style:  style,
         }
       }
+      let(:align)  {}
       let(:colour) {}
       let(:style)  {}
 
@@ -26,8 +28,35 @@ module Vedeu
 
         context 'when the opts are not given' do
           let(:opts) {}
+          let(:expected) {
+            {
+              align:  :none,
+              colour: nil,
+              style:  nil,
+            }
+          }
 
-          it { instance.instance_variable_get('@opts').must_equal({}) }
+          it { instance.instance_variable_get('@opts').must_equal(expected) }
+        end
+      end
+
+      describe '#align' do
+        subject { instance.align }
+
+        context 'when there is no align option' do
+          it { subject.must_equal(:none) }
+        end
+
+        context 'when there is an align option' do
+          let(:align) { :center }
+
+          it { subject.must_equal(:centre) }
+
+          context 'when the align option is invalid' do
+            let(:align) { :invalid }
+
+            it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+          end
         end
       end
 
@@ -61,6 +90,7 @@ module Vedeu
       describe '#options' do
         let(:expected) {
           {
+            align:  :none,
             colour: nil,
             style:  nil,
           }

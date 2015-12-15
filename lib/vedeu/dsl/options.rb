@@ -7,9 +7,23 @@ module Vedeu
       include Vedeu::Common
 
       # @param opts [Hash]
+      # @option opts align [Symbol] One of :center, :centre, :left,
+      #   :none (default) or :right.
+      # @option opts background [String]
+      # @option opts colour [Hash]
+      # @option colour background [String]
+      # @option colour foreground [String]
+      # @option opts foreground [String]
+      # @option opts style [Array<Symbol>|
+      #   Hash<Symbol => Array<Symbol>|Symbol>|Symbol]
       # @return [Vedeu::DSL::Options]
       def initialize(opts = {})
-        @opts = opts || {}
+        @opts = defaults.merge!(opts || {})
+      end
+
+      # @return [Symbol]
+      def align
+        Vedeu::Coercers::Alignment.coerce(opts[:align]).align
       end
 
       # @return [NilClass|Vedeu::Colours::Colour]
@@ -22,6 +36,7 @@ module Vedeu
       # @return [Hash]
       def options
         {
+          align:  align,
           colour: colour,
           style:  style,
         }
@@ -43,7 +58,7 @@ module Vedeu
       private
 
       # @return [Array<Symbol>]
-      def colour_options
+      def colour_keys
         [:colour, :background, :foreground]
       end
 
@@ -51,7 +66,16 @@ module Vedeu
       def colour_options?
         return false unless options?
 
-        (opts.keys & colour_options).any? { |opt| present?(opts[opt]) }
+        (opts.keys & colour_keys).any? { |opt| present?(opts[opt]) }
+      end
+
+      # @return [Hash]
+      def defaults
+        {
+          align:  :none,
+          colour: nil,
+          style:  nil,
+        }
       end
 
       # @return [Boolean]
