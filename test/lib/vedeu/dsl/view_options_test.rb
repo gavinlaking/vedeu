@@ -12,14 +12,18 @@ module Vedeu
         {
           align:  align,
           colour: colour,
+          name:   _name,
           pad:    pad,
           style:  style,
+          width:  width,
         }
       }
       let(:align)  {}
       let(:colour) {}
+      let(:_name)  {}
       let(:pad)    {}
       let(:style)  {}
+      let(:width)  {}
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -34,8 +38,10 @@ module Vedeu
             {
               align:  :none,
               colour: nil,
+              name:   nil,
               pad:    ' ',
               style:  nil,
+              width:  nil,
             }
           }
 
@@ -90,13 +96,29 @@ module Vedeu
         end
       end
 
+      describe '#name' do
+        subject { instance.name }
+
+        context 'when a name is given' do
+          let(:_name) { :vedeu_dsl_view_options }
+
+          it { subject.must_equal(_name) }
+        end
+
+        context 'when a name is not given' do
+          it { subject.must_equal(nil) }
+        end
+      end
+
       describe '#options' do
         let(:expected) {
           {
             align:  :none,
             colour: nil,
+            name:   nil,
             pad:    ' ',
             style:  nil,
+            width:  nil,
           }
         }
 
@@ -144,6 +166,35 @@ module Vedeu
           }
           it { subject.must_be_instance_of(Vedeu::Presentation::Style) }
           it { subject.value.must_equal(style) }
+        end
+      end
+
+      describe '#width' do
+        subject { instance.width }
+
+        context 'when the width option is given' do
+          let(:width) { 15 }
+
+          it { subject.must_equal(width) }
+        end
+
+        context 'when the width option is not given' do
+          context 'when the name option is given' do
+            let(:_name)    { :vedeu_dsl_view_options }
+            let(:geometry) {
+              Vedeu::Geometries::Geometry.new(name: _name, width: 20)
+            }
+
+            before { Vedeu.geometries.stubs(:by_name).returns(geometry) }
+
+            it { subject.must_equal(20) }
+          end
+
+          context 'when the name option is not given' do
+            let(:_name) {}
+
+            it { subject.must_equal(nil) }
+          end
         end
       end
 
