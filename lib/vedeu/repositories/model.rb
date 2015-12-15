@@ -37,6 +37,10 @@ module Vedeu
 
           model = new(attributes)
 
+          Vedeu.log(type:    :debug,
+                    message: "DSL building: '#{model.class.name}' for " \
+                             "'#{model.name}'")
+
           if block_given?
             model.deputy(attributes[:client]).instance_eval(&block)
           end
