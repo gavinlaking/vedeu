@@ -14,7 +14,9 @@ module Vedeu
         requires_block!(&block)
         requires_model!
 
-        l = Vedeu::Views::View.build(default_attributes(&block), &block)
+        attrs = Vedeu::DSL::Attributes.build(self, model, nil, {}, &block)
+
+        l = Vedeu::Views::View.build(attrs, &block)
         model.value = l.value
       end
 
@@ -24,22 +26,19 @@ module Vedeu
       # @option opts ... [void]
       # @param block [Proc]
       # @return [void]
-      def line(value = '', options = {}, &block)
+      def line(value = '', opts = {}, &block)
         requires_model!
 
-        value      = present?(value) ? value : ''
-        options    = Vedeu::DSL::ViewOptions.new(options).options
-        attributes = options.merge!(default_attributes(&block))
-        attrs      = { value: value }
+        attrs = Vedeu::DSL::Attributes.build(self, model, value, opts, &block)
 
         l = if block_given?
-              Vedeu::Views::Line.build(attributes.merge!(attrs), &block)
+              Vedeu::Views::Line.build(attrs, &block)
 
             else
-              s  = Vedeu::Views::Stream.new(attributes.merge!(attrs))
+              s  = Vedeu::Views::Stream.new(attrs)
               ss = Vedeu::Views::Streams.coerce([s])
 
-              Vedeu::Views::Line.new(attributes.merge!(value: ss))
+              Vedeu::Views::Line.new(attrs.merge!(value: ss))
 
             end
 
@@ -59,7 +58,9 @@ module Vedeu
         requires_block!(&block)
         requires_model!
 
-        l = Vedeu::Views::Line.build(default_attributes(&block), &block)
+        attrs = Vedeu::DSL::Attributes.build(self, model, nil, {}, &block)
+
+        l = Vedeu::Views::Line.build(attrs, &block)
 
         if view_model?
           model.add(l)
@@ -75,22 +76,19 @@ module Vedeu
       # @option opts ... [void]
       # @param block [Proc]
       # @return [void]
-      def stream(value = '', options = {}, &block)
+      def stream(value = '', opts = {}, &block)
         requires_model!
 
-        value      = present?(value) ? value : ''
-        options    = Vedeu::DSL::ViewOptions.new(options).options
-        attributes = options.merge!(default_attributes(&block))
-        attrs      = { value: value }
+        attrs = Vedeu::DSL::Attributes.build(self, model, value, opts, &block)
 
         l = if block_given?
-              Vedeu::Views::Line.build(attributes.merge!(attrs), &block)
+              Vedeu::Views::Line.build(attrs, &block)
 
             else
-              s  = Vedeu::Views::Stream.new(attributes.merge!(attrs))
+              s  = Vedeu::Views::Stream.new(attrs)
               ss = Vedeu::Views::Streams.coerce([s])
 
-              Vedeu::Views::Line.new(attributes.merge!(value: ss))
+              Vedeu::Views::Line.new(attrs.merge!(value: ss))
 
             end
 
@@ -108,18 +106,16 @@ module Vedeu
       # @param opts [Hash]
       # @option opts ... [void]
       # @return [void]
-      def text(value = '', options = {})
+      def text(value = '', opts = {})
         requires_model!
 
-        value      = present?(value) ? value : ''
-        options    = Vedeu::DSL::Options.new(options).options
-        attributes = options.merge!(default_attributes)
-        attrs      = { value: value }
+        options = text_align(__callee__, opts)
 
         if view_model? || line_model?
-          s  = Vedeu::Views::Stream.new(attributes.merge!(attrs))
+          attrs = Vedeu::DSL::Attributes.build(self, model, value, options)
+          s  = Vedeu::Views::Stream.new(attrs)
           ss = Vedeu::Views::Streams.coerce([s])
-          l  = Vedeu::Views::Line.new(attributes.merge!(value: ss))
+          l  = Vedeu::Views::Line.new(attrs.merge!(value: ss))
 
           model.add(l)
 
@@ -129,33 +125,12 @@ module Vedeu
 
         end
       end
+      alias_method :center, :text
+      alias_method :centre, :text
+      alias_method :left,   :text
+      alias_method :right,  :text
 
       private
-
-      # Returns the client object which called the DSL method.
-      #
-      # @param model [NilClass|void]
-      # @param block [Proc]
-      # @return [Object]
-      def client(model = nil, &block)
-        if block_given?
-          eval('self', block.binding)
-
-        elsif model
-          model.client
-
-        end
-      end
-
-      # @param block [Proc]
-      # @return [Hash]
-      def default_attributes(&block)
-        {
-          client: client(model, &block),
-          name:   model.name,
-          # parent: model.parent,
-        }
-      end
 
       # @return [Boolean]
       def line_model?
@@ -181,6 +156,20 @@ module Vedeu
       # @return [Boolean]
       def stream_model?
         model.is_a?(Vedeu::Views::Stream)
+      end
+
+      # @param callee [Symbol]
+      # @param opts [Hash]
+      # @return [Hash]
+      def text_align(callee, opts)
+        return opts if valid_alignment?(opts)
+
+        opts.merge!(align: callee)
+      end
+
+      # @return [Boolean]
+      def valid_alignment?(opts)
+        [:center, :centre, :left, :right].include?(opts[:align])
       end
 
       # @return [Boolean]
