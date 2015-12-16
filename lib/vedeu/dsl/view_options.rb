@@ -2,9 +2,17 @@ module Vedeu
 
   module DSL
 
+    # @api private
+    #
     class ViewOptions
 
       include Vedeu::Common
+
+      # @param opts See #initialize
+      # @return See #coerce
+      def self.coerce(opts = {})
+        new(opts).coerce
+      end
 
       # @param opts [Hash]
       # @option opts align [Symbol] One of :center, :centre, :left,
@@ -35,6 +43,7 @@ module Vedeu
         Vedeu::Coercers::Alignment.coerce(_opts[:align])
       end
 
+      # @return [Vedeu::DSL::ViewOptions]
       def coerce
         @opts ||= options
 
