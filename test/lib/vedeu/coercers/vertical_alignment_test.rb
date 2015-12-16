@@ -10,8 +10,8 @@ module Vedeu
       let(:instance)  { described.new(_value) }
       let(:_value)    {}
 
-      describe '#align' do
-        subject { described.coerce(_value).align }
+      describe '#value' do
+        subject { described.coerce(_value).value }
 
         context 'when the value is :none' do
           let(:_value) { :none }

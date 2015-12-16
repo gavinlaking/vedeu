@@ -33,82 +33,91 @@ module Vedeu
       # @param value [NilClass|Symbol]
       # @return [Vedeu::Coercers::Alignment]
       def initialize(value = nil)
-        @value = value
-      end
-
-      # @return [Symbol]
-      def align
-        value
+        @_value = value
       end
 
       # Return a boolean indicating alignment was set to :bottom.
       #
       # @return [Boolean]
       def bottom_aligned?
-        value == :bottom
+        _value == :bottom
       end
 
       # Return a boolean indicating alignment was set to :centre.
       #
       # @return [Boolean]
       def centre_aligned?
-        value == :centre
+        _value == :centre
       end
+
+      # An object is equal when its values are the same.
+      #
+      # @param other [void]
+      # @return [Boolean]
+      def eql?(other)
+        self.class == other.class && value == other.value
+      end
+      alias_method :==, :eql?
 
       # Return a boolean indicating alignment was set to :left.
       #
       # @return [Boolean]
       def left_aligned?
-        value == :left
+        _value == :left
       end
 
       # Return a boolean indicating alignment was set to :middle.
       #
       # @return [Boolean]
       def middle_aligned?
-        value == :middle
+        _value == :middle
       end
 
       # Return a boolean indicating alignment was set to :right.
       #
       # @return [Boolean]
       def right_aligned?
-        value == :right
+        _value == :right
       end
 
       # Return a boolean indicating alignment was set to :top.
       #
       # @return [Boolean]
       def top_aligned?
-        value == :top
+        _value == :top
       end
 
       # Return a boolean indicating alignment was set to, or is :none.
       #
       # @return [Boolean]
       def unaligned?
-        value == :none
+        _value == :none
+      end
+
+      # @return [Symbol]
+      def value
+        _value
       end
 
       private
 
       # @return [Boolean]
       def invalid?
-        @value.nil? || !(@value.is_a?(Symbol)) || !values.include?(@value)
+        @_value.nil? || !(@_value.is_a?(Symbol)) || !values.include?(@_value)
       end
 
       # @return [Symbol]
-      def value
-        @_value ||= if @value == :center
-                      :centre
+      def _value
+        @value ||= if @_value == :center
+                     :centre
 
-                    elsif invalid?
-                      :none
+                   elsif invalid?
+                     :none
 
-                    else
-                      @value
+                   else
+                     @_value
 
-                    end
+                   end
       end
 
       # @return [Array<Symbol>]

@@ -35,12 +35,6 @@ module Vedeu
         end
       end
 
-      # describe '#align' do
-      #   subject { instance.align }
-
-      #   it { proc { subject }.must_raise(Vedeu::Error::NotImplemented) }
-      # end
-
       describe '#bottom_aligned?' do
         subject { instance.bottom_aligned? }
 
@@ -65,6 +59,22 @@ module Vedeu
         end
 
         context 'when the value is not :centre' do
+          it { subject.must_equal(false) }
+        end
+      end
+
+      describe '#eql?' do
+        let(:other) { instance }
+
+        subject { instance.eql?(other) }
+
+        it { instance.must_respond_to(:==) }
+
+        it { subject.must_equal(true) }
+
+        context 'when different to other' do
+          let(:other) { described.new(:center) }
+
           it { subject.must_equal(false) }
         end
       end
@@ -137,6 +147,12 @@ module Vedeu
 
           it { subject.must_equal(false) }
         end
+      end
+
+      describe '#value' do
+        subject { instance.value }
+
+        it { subject.must_equal(:none) }
       end
 
     end # Alignment
