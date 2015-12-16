@@ -33,7 +33,7 @@ module Vedeu
         it { instance.must_be_instance_of(described) }
 
         context 'when the opts are given' do
-          it { instance.instance_variable_get('@opts').must_equal(opts) }
+          it { instance.instance_variable_get('@_opts').must_equal(opts) }
         end
 
         context 'when the opts are not given' do
@@ -51,8 +51,10 @@ module Vedeu
             }
           }
 
-          it { instance.instance_variable_get('@opts').must_equal(expected) }
+          it { instance.instance_variable_get('@_opts').must_equal(expected) }
         end
+
+        it { instance.instance_variable_get('@opts').must_equal(nil) }
       end
 
       describe '#align' do

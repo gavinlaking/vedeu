@@ -26,24 +26,31 @@ module Vedeu
       #   wordwrapped.
       # @return [Vedeu::DSL::ViewOptions]
       def initialize(opts = {})
-        @opts = defaults.merge!(opts || {})
+        @_opts = defaults.merge!(opts || {})
+        @opts  = nil
       end
 
       # @return [Vedeu::Coercers::Alignment]
       def align
-        Vedeu::Coercers::Alignment.coerce(opts[:align])
+        Vedeu::Coercers::Alignment.coerce(_opts[:align])
+      end
+
+      def coerce
+        @opts ||= options
+
+        self
       end
 
       # @return [NilClass|Vedeu::Colours::Colour]
       def colour
         return nil unless colour_options?
 
-        Vedeu::Colours::Colour.coerce(opts)
+        Vedeu::Colours::Colour.coerce(_opts)
       end
 
       # @return [NilClass|String|Symbol]
       def name
-        opts[:name]
+        _opts[:name]
       end
 
       # @return [Hash]
@@ -64,27 +71,27 @@ module Vedeu
       def pad
         return defaults[:pad] unless valid_pad?
 
-        opts[:pad][0]
+        _opts[:pad][0]
       end
 
       # @return [NilClass|Vedeu::Presentation::Style]
       def style
         return nil unless style_options?
 
-        Vedeu::Presentation::Style.coerce(opts)
+        Vedeu::Presentation::Style.coerce(_opts)
       end
 
       # @return [Boolean]
       def truncate
-        truthy?(opts[:truncate])
+        truthy?(_opts[:truncate])
       end
 
       # @return [Fixnum|NilClass]
       def width
-        if present?(opts[:width]) && numeric?(opts[:width])
-          opts[:width]
+        if present?(_opts[:width]) && numeric?(_opts[:width])
+          _opts[:width]
 
-        elsif present?(opts[:name])
+        elsif present?(name)
           geometry.bordered_width
 
         end
@@ -92,14 +99,14 @@ module Vedeu
 
       # @return [Boolean]
       def wordwrap
-        truthy?(opts[:wordwrap])
+        truthy?(_opts[:wordwrap])
       end
 
       protected
 
       # @!attribute [r] opts
       # @return [Hash]
-      attr_reader :opts
+      attr_reader :_opts
 
       private
 
@@ -112,7 +119,7 @@ module Vedeu
       def colour_options?
         return false unless options?
 
-        (opts.keys & colour_keys).any? { |opt| present?(opts[opt]) }
+        (_opts.keys & colour_keys).any? { |opt| present?(_opts[opt]) }
       end
 
       # @return [Hash]
@@ -136,19 +143,19 @@ module Vedeu
 
       # @return [Boolean]
       def options?
-        present?(opts)
+        present?(_opts)
       end
 
       # @return [Boolean]
       def style_options?
         return false unless options?
 
-        opts.include?(:style) && present?(opts[:style])
+        _opts.include?(:style) && present?(_opts[:style])
       end
 
       # @return [Boolean]
       def valid_pad?
-        present?(opts[:pad]) && string?(opts[:pad])
+        present?(_opts[:pad]) && string?(_opts[:pad])
       end
 
     end # ViewOptions
