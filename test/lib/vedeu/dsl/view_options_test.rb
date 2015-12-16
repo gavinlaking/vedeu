@@ -58,19 +58,21 @@ module Vedeu
       describe '#align' do
         subject { instance.align }
 
+        it { subject.must_be_instance_of(Vedeu::Coercers::Alignment) }
+
         context 'when there is no align option' do
-          it { subject.must_equal(:none) }
+          it { subject.value.must_equal(:none) }
         end
 
         context 'when there is an align option' do
           let(:align) { :center }
 
-          it { subject.must_equal(:centre) }
+          it { subject.value.must_equal(:centre) }
 
           context 'when the align option is invalid' do
             let(:align) { :invalid }
 
-            it { subject.must_equal(:none) }
+            it { subject.value.must_equal(:none) }
           end
         end
       end
@@ -95,9 +97,13 @@ module Vedeu
             subject
           }
           it { subject.must_be_instance_of(Vedeu::Colours::Colour) }
-          it { subject.background.must_be_instance_of(Vedeu::Colours::Background) }
+          it do
+            subject.background.must_be_instance_of(Vedeu::Colours::Background)
+          end
           it { subject.background.value.must_equal('#000088') }
-          it { subject.foreground.must_be_instance_of(Vedeu::Colours::Foreground) }
+          it do
+            subject.foreground.must_be_instance_of(Vedeu::Colours::Foreground)
+          end
           it { subject.foreground.value.must_equal('#ffff00') }
         end
       end
@@ -119,7 +125,7 @@ module Vedeu
       describe '#options' do
         let(:expected) {
           {
-            align:    :none,
+            align:    Vedeu::Coercers::Alignment.new(:none),
             colour:   nil,
             name:     nil,
             pad:      ' ',
@@ -168,10 +174,10 @@ module Vedeu
         context 'when there are style options' do
           let(:style) { [:bold, :underline] }
 
-          it {
+          it do
             Vedeu::Presentation::Style.expects(:coerce).with(opts)
             subject
-          }
+          end
           it { subject.must_be_instance_of(Vedeu::Presentation::Style) }
           it { subject.value.must_equal(style) }
         end

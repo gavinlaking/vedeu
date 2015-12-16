@@ -9,26 +9,29 @@ module Vedeu
       # @param opts [Hash]
       # @option opts align [Symbol] One of :center, :centre, :left,
       #   :none (default) or :right.
-      # @option opts background [String]
-      # @option opts colour [Hash]
-      # @option colour background [String]
-      # @option colour foreground [String]
-      # @option opts foreground [String]
+      # @option opts background [String] The background colour.
+      # @option opts colour [Hash] The colour.
+      # @option colour background [String] The background colour.
+      # @option colour foreground [String] The foreground colour.
+      # @option opts foreground [String] The foreground colour.
       # @option opts name [NilClass|String|Symbol]
-      # @option opts pad [String]
+      # @option opts pad [String] The character to use to pad the
+      #   value.
       # @option opts style [Array<Symbol>|
-      #   Hash<Symbol => Array<Symbol>|Symbol>|Symbol]
-      # @option opts truncate [Boolean]
-      # @option opts width [Fixnum]
-      # @option opts wordwrap [Boolean]
+      #   Hash<Symbol => Array<Symbol>|Symbol>|Symbol] The style.
+      # @option opts truncate [Boolean] Whether the value should be
+      #   truncated.
+      # @option opts width [Fixnum] The desired width for the value.
+      # @option opts wordwrap [Boolean] Whether the value should be
+      #   wordwrapped.
       # @return [Vedeu::DSL::ViewOptions]
       def initialize(opts = {})
         @opts = defaults.merge!(opts || {})
       end
 
-      # @return [Symbol]
+      # @return [Vedeu::Coercers::Alignment]
       def align
-        Vedeu::Coercers::Alignment.coerce(opts[:align]).align
+        Vedeu::Coercers::Alignment.coerce(opts[:align])
       end
 
       # @return [NilClass|Vedeu::Colours::Colour]
@@ -128,7 +131,7 @@ module Vedeu
 
       # @return [NilClass|Vedeu::Geometries::Geometry]
       def geometry
-        Vedeu.geometries.by_name(name)
+        @_geometry ||= Vedeu.geometries.by_name(name)
       end
 
       # @return [Boolean]
