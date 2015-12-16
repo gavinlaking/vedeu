@@ -35,7 +35,7 @@ class DSLApp
       x  use(:test1_interface).x
       y  use(:test1_interface).south
       xn use(:test1_interface).xn
-      yn use(:test1_interface).south(3)
+      yn use(:test1_interface).south(5)
     end
   end
 
@@ -56,7 +56,7 @@ class DSLApp
       x  use(:test2_interface).x
       y  use(:test2_interface).south
       xn use(:test2_interface).xn
-      yn use(:test2_interface).south(3)
+      yn use(:test2_interface).south(5)
     end
   end
 
@@ -104,15 +104,15 @@ class DSLApp
 
   Vedeu.render do
     view(:test1_interface) do
-      lines do
-        centre 'view->lines->centre'
-      end
+      line 'view->line (align: :left)',   { align: :left }
+      line 'view->line (align: :center)', { align: :center }
+      line 'view->line (align: :centre)', { align: :centre }
+      line 'view->line (align: :right)',  { align: :right }
     end
 
     view(:help1_interface) do
-      lines do
-        centre 'view->lines->centre'
-      end
+      line '`:align` option on the `line`'
+      line 'DSL method.'
     end
 
     view(:test2_interface) do
