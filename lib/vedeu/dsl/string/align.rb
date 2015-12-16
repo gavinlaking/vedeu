@@ -82,7 +82,7 @@ module Vedeu
 
       # @return [NilClass|Vedeu::Geometries::Geometry]
       def geometry
-        Vedeu.geometries.by_name(options[:name])
+        @_geometry ||= Vedeu.geometries.by_name(options[:name])
       end
 
       # The value padded to width, left justified.
