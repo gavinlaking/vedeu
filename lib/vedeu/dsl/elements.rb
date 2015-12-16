@@ -55,12 +55,12 @@ module Vedeu
         requires_block!(&block)
         requires_model!
 
+        l = Vedeu::Views::Line.build(default_attributes(&block), &block)
+
         if view_model?
-          l = Vedeu::Views::Line.build(default_attributes(&block), &block)
           model.add(l)
 
         elsif line_model?
-          l = Vedeu::Views::Line.build(default_attributes(&block), &block)
           model.value = l.value
 
         end

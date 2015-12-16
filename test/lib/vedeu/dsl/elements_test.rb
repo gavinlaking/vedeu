@@ -46,10 +46,22 @@ module Vedeu
       end
 
       describe '#line' do
-        subject { including_instance.line }
+        subject { including_instance.line { } }
 
-        context '' do
-          it {  }
+        context 'when a model exists' do
+          let(:model) { Vedeu::Views::View.new }
+
+          context 'when the block is given' do
+          end
+
+          context 'when the block is not given' do
+            subject { including_instance.line }
+
+          end
+        end
+
+        context 'when a model does not exist' do
+          it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
         end
       end
 
@@ -74,10 +86,22 @@ module Vedeu
       end
 
       describe '#stream' do
-        subject { including_instance.stream }
+        subject { including_instance.stream { } }
 
-        context '' do
-          it {  }
+        context 'when a model exists' do
+          let(:model) { Vedeu::Views::View.new }
+
+          context 'when the block is given' do
+          end
+
+          context 'when the block is not given' do
+            subject { including_instance.stream }
+
+          end
+        end
+
+        context 'when a model does not exist' do
+          it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
         end
       end
 
