@@ -16,54 +16,90 @@ class DSLApp
 
   Vedeu.interface :test1_interface do
     border do
-      title ':centre'
+      # background '#ff0000'
+      # foreground '#ff0000'
+      # colour foreground: '#ff0000'
+      # colour background: '#ff0000'
+      title 'Test 1'
     end
     geometry do
       x  4
       y  3
       xn 34
       yn 8
+    end
+  end
+
+  Vedeu.interface :help1_interface do
+    geometry do
+      x  use(:test1_interface).x
+      y  use(:test1_interface).south
+      xn use(:test1_interface).xn
+      yn use(:test1_interface).south(3)
     end
   end
 
   Vedeu.interface :test2_interface do
     border do
-      title ':center'
+      title 'Test 2'
     end
     geometry do
-      x  36
-      y  3
-      xn 66
-      yn 8
+      x      use(:test1_interface).east(6)
+      y      use(:test1_interface).y
+      width  use(:test1_interface).width
+      height use(:test1_interface).height
+    end
+  end
+
+  Vedeu.interface :help2_interface do
+    geometry do
+      x  use(:test2_interface).x
+      y  use(:test2_interface).south
+      xn use(:test2_interface).xn
+      yn use(:test2_interface).south(3)
     end
   end
 
   Vedeu.interface :test3_interface do
     border do
-      title ':left'
+      title 'Test 3'
     end
     geometry do
-      x  4
-      y  10
-      xn 34
-      yn 15
+      x  use(:help1_interface).x
+      y  use(:help1_interface).south
+      xn use(:help1_interface).xn
+      yn use(:help1_interface).south(5)
+    end
+  end
+
+  Vedeu.interface :help3_interface do
+    geometry do
+      x  use(:test3_interface).x
+      y  use(:test3_interface).south
+      xn use(:test3_interface).xn
+      yn use(:test3_interface).south(5)
     end
   end
 
   Vedeu.interface :test4_interface do
     border do
-      title ':right'
+      title 'Test 4'
     end
     geometry do
-      x  36
-      y  10
-      xn 66
-      yn 15
+      x  use(:help2_interface).x
+      y  use(:help2_interface).south
+      xn use(:help2_interface).xn
+      yn use(:help2_interface).south(5)
     end
   end
 
-  Vedeu.keymap '_global_' do
-    key('q') { Vedeu.exit }
+  Vedeu.interface :help4_interface do
+    geometry do
+      x  use(:test4_interface).x
+      y  use(:test4_interface).south
+      xn use(:test4_interface).xn
+      yn use(:test4_interface).south(5)
+    end
   end
 
   Vedeu.render do
@@ -72,17 +108,44 @@ class DSLApp
         centre 'view->lines->centre'
       end
     end
+
+    view(:help1_interface) do
+      lines do
+        centre 'view->lines->centre'
+      end
+    end
+
     view(:test2_interface) do
       lines do
         center 'view->lines->center'
       end
     end
+
+    view(:help2_interface) do
+      lines do
+        center 'view->lines->center'
+      end
+    end
+
     view(:test3_interface) do
       lines do
         left 'view->lines->left'
       end
     end
+
+    view(:help3_interface) do
+      lines do
+        left 'view->lines->left'
+      end
+    end
+
     view(:test4_interface) do
+      lines do
+        right 'view->lines->right'
+      end
+    end
+
+    view(:help4_interface) do
       lines do
         right 'view->lines->right'
       end
