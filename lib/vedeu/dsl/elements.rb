@@ -2,6 +2,8 @@ module Vedeu
 
   module DSL
 
+    # @api public
+    #
     module Elements
 
       include Vedeu::Common
@@ -16,8 +18,10 @@ module Vedeu
         model.value = l.value
       end
 
-      # @param value [String]
-      # @param options [Hash]
+      # @param value [String] The value for the line. Ignored when a
+      #   block is given.
+      # @param opts [Hash]
+      # @option opts ... [void]
       # @param block [Proc]
       # @return [void]
       def line(value = '', options = {}, &block)
@@ -67,7 +71,8 @@ module Vedeu
       end
 
       # @param value [String]
-      # @param options [Hash]
+      # @param opts [Hash]
+      # @option opts ... [void]
       # @param block [Proc]
       # @return [void]
       def stream(value = '', options = {}, &block)
@@ -100,7 +105,8 @@ module Vedeu
       end
 
       # @param value [String]
-      # @param options [Hash]
+      # @param opts [Hash]
+      # @option opts ... [void]
       # @return [void]
       def text(value = '', options = {})
         requires_model!
