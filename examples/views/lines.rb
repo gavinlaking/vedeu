@@ -123,6 +123,27 @@ class DSLApp
     end
   end
 
+  Vedeu.interface :test6_interface do
+    border do
+      title 'Test 6'
+    end
+    geometry do
+      x  use(:help4_interface).x
+      y  use(:help4_interface).south
+      xn use(:help4_interface).xn
+      yn use(:help4_interface).south(5)
+    end
+  end
+
+  Vedeu.interface :help6_interface do
+    geometry do
+      x  use(:test6_interface).x
+      y  use(:test6_interface).south
+      xn use(:test6_interface).xn
+      yn use(:test6_interface).south(5)
+    end
+  end
+
   Vedeu.render do
     view(:test1_interface) do
       stream 'view->stream', { foreground: '#ff0000' }
@@ -223,6 +244,33 @@ class DSLApp
       stream do
         text 'treated as ',       { foreground: '#00ff00' }
         text 'separate streams.', { foreground: '#007fff' }
+      end
+    end
+
+    view(:test6_interface) do
+      line do
+        streams do
+          stream 'v->l->ss->stream 1', { foreground: '#00ff00' }
+          stream 'v->l->ss->stream 2', { foreground: '#007fff' }
+        end
+      end
+    end
+
+    view(:help6_interface) do
+      line do
+        streams do
+          stream 'Multiple ', { foreground: '#00ff00' }
+          stream '`stream` ', { foreground: '#007fff' }
+          stream 'within a ', { foreground: '#00ff00' }
+        end
+      end
+      line do
+        streams do
+          stream '`streams` ', { foreground: '#007fff' }
+          stream 'within a ',  { foreground: '#00ff00' }
+          stream '`line`',     { foreground: '#007fff' }
+          stream '.',          { foreground: '#00ff00' }
+        end
       end
     end
   end
