@@ -83,6 +83,13 @@ module Vedeu
         Vedeu::DSL::View.new(self, client)
       end
 
+      # Returns a boolean indicating whether this view is empty.
+      #
+      # @return [Boolean]
+      def empty?
+        value.empty?
+      end
+
       # Store the view and immediately refresh it; causing to be
       # pushed to the Terminal. Called by {Vedeu::DSL::View.renders}.
       #

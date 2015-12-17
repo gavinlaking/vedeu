@@ -92,6 +92,22 @@ module Vedeu
         end
       end
 
+      describe '#empty?' do
+        subject { instance.empty? }
+
+        context 'when the view has no lines' do
+          let(:_value) { [] }
+
+          it { subject.must_equal(true) }
+        end
+
+        context 'when the view has lines' do
+          before { instance.add(Vedeu::Views::Line.new) }
+
+          it { subject.must_equal(false) }
+        end
+      end
+
       describe '#store_immediate' do
         before { Vedeu.stubs(:trigger) }
 

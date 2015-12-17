@@ -9,16 +9,17 @@ module Vedeu
       let(:described)  { Vedeu::Output::Viewport }
       let(:instance)   { described.new(view) }
       let(:view)       {
-        Vedeu::Views::View.build(name: 'lithium', style: nil) do
-          lines do
-            line 'barium'
-            line 'carbon'
-            line 'helium'
-            line 'iodine'
-            line 'nickel'
-            line 'osmium'
-          end
-        end
+        values = [
+          'barium',
+          'carbon',
+          'helium',
+          'iodine',
+          'nickel',
+          'osmium',
+        ].map { |value| Vedeu::Views::Stream.new(value: value) }
+        streams = values.map { |value| Vedeu::Views::Streams.new([value]) }
+        lines   = streams.map { |stream| Vedeu::Views::Line.new(value: stream) }
+        Vedeu::Views::View.new(value: Vedeu::Views::Lines.new(lines))
       }
       let(:visible)   { true }
       let(:interface) {
