@@ -8,6 +8,7 @@ module Vedeu
     #
     class Stream
 
+      include Vedeu::Views::DefaultAttributes
       include Vedeu::Repositories::Model
       include Vedeu::Repositories::Parent
       include Vedeu::Presentation
@@ -44,18 +45,6 @@ module Vedeu
         parent.add(child)
       end
       alias_method :<<, :add
-
-      # @return [Hash<Symbol => void>]
-      def attributes
-        {
-          client: @client,
-          colour: colour,
-          name:   name,
-          parent: parent,
-          style:  style,
-          value:  value,
-        }
-      end
 
       # Returns an array of characters, each element is the escape
       # sequences of colours and styles for this stream, the character
@@ -124,22 +113,6 @@ module Vedeu
       #   @_value = @value = Vedeu::Views::Chars.coerce(value, self)
       # end
       # alias_method :chars=, :value=
-
-      private
-
-      # The default values for a new instance of this class.
-      #
-      # @return [Hash]
-      def defaults
-        {
-          client: nil,
-          colour: nil,
-          name:   nil,
-          parent: nil,
-          style:  nil,
-          value:  '',
-        }
-      end
 
     end # Stream
 

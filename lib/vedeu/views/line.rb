@@ -8,6 +8,7 @@ module Vedeu
     #
     class Line
 
+      include Vedeu::Views::DefaultAttributes
       include Vedeu::Repositories::Model
       include Vedeu::Repositories::Parent
       include Vedeu::Presentation
@@ -42,18 +43,6 @@ module Vedeu
         @value = value.add(child)
       end
       alias_method :<<, :add
-
-      # @return [Hash<Symbol => void>]
-      def attributes
-        {
-          client: client,
-          colour: @colour,
-          name:   name,
-          parent: parent,
-          style:  @style,
-          value:  value,
-        }
-      end
 
       # Returns an array of all the characters with formatting for
       # this line.
@@ -113,22 +102,6 @@ module Vedeu
         @_value = @value = Vedeu::Views::Streams.coerce(value, self)
       end
       alias_method :streams=, :value=
-
-      private
-
-      # The default values for a new instance of this class.
-      #
-      # @return [Hash<Symbol => Array<void>|NilClass>]
-      def defaults
-        {
-          client: nil,
-          colour: nil,
-          name:   nil,
-          parent: nil,
-          style:  nil,
-          value:  [],
-        }
-      end
 
     end # Line
 
