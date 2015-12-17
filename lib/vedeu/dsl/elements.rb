@@ -2,6 +2,34 @@ module Vedeu
 
   module DSL
 
+    # Provides methods to be used to define views.
+    #
+    #   Vedeu.renders do
+    #     view :my_interface do
+    #       lines do
+    #         background '#000000'
+    #         foreground '#ffffff'
+    #         line 'This is white text on a black background.'
+    #         line 'Next is a blank line:'
+    #         line ''
+    #
+    #         streams { stream 'We can define ' }
+    #
+    #         streams do
+    #           foreground '#ff0000'
+    #           stream 'parts of a line '
+    #         end
+    #
+    #         streams { stream 'independently using ' }
+    #
+    #         streams do
+    #           foreground '#00ff00'
+    #           stream 'streams.'
+    #         end
+    #       end
+    #     end
+    #   end
+    #
     # @api public
     #
     module Elements
@@ -9,6 +37,7 @@ module Vedeu
       include Vedeu::Common
 
       # @param block [Proc]
+      # @raise [Vedeu::Error::RequiresBlock|Vedeu::Error::Fatal]
       # @return [void]
       def lines(&block)
         requires_block!(&block)
@@ -20,11 +49,26 @@ module Vedeu
         model.value = l.value
       end
 
+      # Specify a single line in a view.
+      #
+      #   Vedeu.renders do
+      #     view :my_interface do
+      #       lines do
+      #         line 'some text...'
+      #         # ... some code
+      #
+      #         line 'some more text...'
+      #         # ... some code
+      #       end
+      #     end
+      #   end
+      #
       # @param value [String] The value for the line. Ignored when a
       #   block is given.
       # @param opts [Hash]
       # @option opts ... [void]
       # @param block [Proc]
+      # @raise [Vedeu::Error::Fatal]
       # @return [void]
       def line(value = '', opts = {}, &block)
         requires_model!
@@ -52,7 +96,28 @@ module Vedeu
         end
       end
 
+      # Define multiple streams (a stream is a subset of a line).
+      # Uses {Vedeu::DSL::Stream} for all directives within the
+      # required block.
+      #
+      #   Vedeu.renders do
+      #     view :my_interface do
+      #       lines do
+      #         line do
+      #           streams do
+      #             # ... some code
+      #           end
+      #
+      #           stream do
+      #             # ... some code
+      #           end
+      #         end
+      #       end
+      #     end
+      #   end
+      #
       # @param block [Proc]
+      # @raise [Vedeu::Error::RequiresBlock|Vedeu::Error::Fatal]
       # @return [void]
       def streams(&block)
         requires_block!(&block)
@@ -75,6 +140,7 @@ module Vedeu
       # @param opts [Hash]
       # @option opts ... [void]
       # @param block [Proc]
+      # @raise [Vedeu::Error::Fatal]
       # @return [void]
       def stream(value = '', opts = {}, &block)
         requires_model!
@@ -105,6 +171,7 @@ module Vedeu
       # @param value [String]
       # @param opts [Hash]
       # @option opts ... [void]
+      # @raise [Vedeu::Error::Fatal]
       # @return [void]
       def text(value = '', opts = {})
         requires_model!
