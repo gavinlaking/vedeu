@@ -38,6 +38,21 @@ module Vedeu
 
       # @todo This documentation needs editing. (GL: 2015-12-17)
       #
+      # Specify multiple lines in a view.
+      #
+      # @example
+      #   Vedeu.view :my_interface do
+      #     lines do
+      #       # ... see {Vedeu::DSL::Line} and {Vedeu::DSL::Stream}
+      #     end
+      #   end
+      #
+      #   Vedeu.view :my_interface do
+      #     line do
+      #       # ... see {Vedeu::DSL::Line} and {Vedeu::DSL::Stream}
+      #     end
+      #   end
+      #
       # @param block [Proc]
       # @raise [Vedeu::Error::RequiresBlock|Vedeu::Error::Fatal]
       # @return [void]

@@ -31,7 +31,7 @@ module Vedeu
 
         else
           fail Vedeu::Error::InvalidSyntax,
-               'Cannot coerce for Vedeu::View::Lines as collection ' \
+               'Cannot coerce for Vedeu::View::Lines, as collection ' \
                'unrecognised.'.freeze
 
         end
