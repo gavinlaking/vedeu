@@ -32,8 +32,8 @@ module Vedeu
       #
       # @param value [NilClass|Symbol]
       # @return [Vedeu::Coercers::Alignment]
-      def initialize(value = nil)
-        @_value = value
+      def initialize(value = :none)
+        @_value = value || :none
       end
 
       # Return a boolean indicating alignment was set to :bottom.
