@@ -36,7 +36,6 @@ module Vedeu
 
       #   if truncate?
 
-
       #   end
       # end
 

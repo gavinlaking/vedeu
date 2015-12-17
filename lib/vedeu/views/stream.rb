@@ -17,11 +17,9 @@ module Vedeu
       # @return [Vedeu::Views::Line]
       attr_accessor :parent
 
-      # @!attribute [rw] value
+      # @!attribute [w] value
       # @return [String]
-      attr_accessor :value
-      alias_method :content, :value
-      alias_method :text,    :value
+      attr_writer :value
 
       # Returns a new instance of Vedeu::Views::Stream.
       #
@@ -95,17 +93,23 @@ module Vedeu
         value.size
       end
 
-      # # @return [Vedeu::Views::Chars]
-      # def value
-      #   @_value ||= if present?(@value)
-      #                 Vedeu::Views::Chars.coerce(@value, self)
+      # @return [Vedeu::Views::Chars]
+      def value
+        @_value ||= if present?(@value)
+                      @value
 
-      #               else
-      #                 Vedeu::Views::Chars.coerce([], self)
+                      # Vedeu::Views::Chars.coerce(@value, self)
 
-      #               end
-      # end
+                    else
+                      []
+
+                      # Vedeu::Views::Chars.coerce([], self)
+
+                    end
+      end
       # alias_method :chars, :value
+      alias_method :content, :value
+      alias_method :text,    :value
 
       # # @param value [Vedeu::Views::Char]
       # # @return [Vedeu::Views::Char]
