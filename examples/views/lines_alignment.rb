@@ -112,18 +112,20 @@ class DSLApp
 
     view(:help1_interface) do
       line '`:align` option on the `line`'
-      line 'DSL method.'
+      line 'DSL method. (no width or name'
+      line 'set)'
     end
 
     view(:test2_interface) do
-      lines do
-        center 'view->lines->center'
-      end
+      left 'view->left'
+      center 'view->center'
+      centre 'view->centre'
+      right 'view->right'
     end
 
     view(:help2_interface) do
       lines do
-        center 'view->lines->center'
+        ''
       end
     end
 
