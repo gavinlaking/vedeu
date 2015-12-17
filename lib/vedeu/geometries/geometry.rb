@@ -108,13 +108,13 @@ module Vedeu
       #   Vedeu::Geometries::Repository]
       def attributes
         {
-          client:               @client,
+          client:               client,
           height:               height,
-          horizontal_alignment: @horizontal_alignment,
-          maximised:            @maximised,
-          name:                 @name,
-          repository:           @repository,
-          vertical_alignment:   @vertical_alignment,
+          horizontal_alignment: horizontal_alignment,
+          maximised:            maximised,
+          name:                 name,
+          repository:           repository,
+          vertical_alignment:   vertical_alignment,
           width:                width,
           x:                    x,
           xn:                   xn,
@@ -195,10 +195,10 @@ module Vedeu
       # @return [Hash<Symbol => Boolean|Fixnum>]
       def area_attributes
         {
-          horizontal_alignment: @horizontal_alignment,
-          maximised:            @maximised,
+          horizontal_alignment: horizontal_alignment,
+          maximised:            maximised,
           name:                 name,
-          vertical_alignment:   @vertical_alignment,
+          vertical_alignment:   vertical_alignment,
           x:                    @x.is_a?(Proc)      ? @x.call      : @x,
           xn:                   @xn.is_a?(Proc)     ? @xn.call     : @xn,
           x_xn:                 @width.is_a?(Proc)  ? @width.call  : @width,

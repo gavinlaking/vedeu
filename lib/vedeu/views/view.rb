@@ -60,7 +60,7 @@ module Vedeu
       # @return [Hash]
       def attributes
         {
-          client:         @client,
+          client:         client,
           colour:         colour,
           cursor_visible: cursor_visible,
           name:           name,

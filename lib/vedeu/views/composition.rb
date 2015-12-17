@@ -37,10 +37,10 @@ module Vedeu
       # @return [Hash]
       def attributes
         {
-          client: @client,
-          colour: @colour,
-          parent: @parent,
-          style:  @style,
+          client: client,
+          colour: colour,
+          parent: parent,
+          style:  style,
           value:  value,
         }
       end
