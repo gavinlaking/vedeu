@@ -52,11 +52,13 @@ module Vedeu
           let(:model) { Vedeu::Views::View.new }
 
           context 'when the block is given' do
+            # @todo Add more tests.
           end
 
           context 'when the block is not given' do
             subject { including_instance.line }
 
+            # @todo Add more tests.
           end
         end
 
@@ -71,6 +73,8 @@ module Vedeu
         context 'when the block is given' do
           context 'when a model exists' do
             let(:model) {}
+
+            # @todo Add more tests.
           end
 
           context 'when a model does not exist' do
@@ -92,11 +96,13 @@ module Vedeu
           let(:model) { Vedeu::Views::View.new }
 
           context 'when the block is given' do
+            # @todo Add more tests.
           end
 
           context 'when the block is not given' do
             subject { including_instance.stream }
 
+            # @todo Add more tests.
           end
         end
 
