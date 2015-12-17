@@ -229,38 +229,6 @@ module Vedeu
 
       end # Eigenclass
 
-      # Specify multiple lines in a view.
-      #
-      # @param block [Proc]
-      #
-      # @example
-      #   Vedeu.view :my_interface do
-      #     lines do
-      #       # ... see {Vedeu::DSL::Line} and {Vedeu::DSL::Stream}
-      #     end
-      #   end
-      #
-      #   Vedeu.view :my_interface do
-      #     line do
-      #       # ... see {Vedeu::DSL::Line} and {Vedeu::DSL::Stream}
-      #     end
-      #   end
-      #
-      # @raise [Vedeu::Error::RequiresBlock]
-      # @return [Vedeu::Views::Line]
-      # def lines(&block)
-      #   fail Vedeu::Error::RequiresBlock unless block_given?
-
-      #   build_lines({}, &block)
-      # end
-      # alias_method :line, :lines
-
-      # private
-
-      # def build_lines(attrs = {}, &block)
-      #   model.add(Vedeu::Views::Line.build(attributes.merge!(attrs), &block))
-      # end
-
     end # View
 
   end # DSL

@@ -54,22 +54,6 @@ module Vedeu
         end
       end
 
-      describe '#lines' do
-        subject {
-          instance.lines do
-            # ...
-          end
-        }
-
-        it { subject.must_be_instance_of(Vedeu::Views::Lines) }
-
-        context 'when the required block is not given' do
-          subject { instance.lines }
-
-          it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
-        end
-      end
-
     end # View
 
   end # DSL
