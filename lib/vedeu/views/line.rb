@@ -67,6 +67,13 @@ module Vedeu
         Vedeu::DSL::Line.new(self, client)
       end
 
+      # Returns a boolean indicating whether this line is empty.
+      #
+      # @return [Boolean]
+      def empty?
+        value.empty?
+      end
+
       # An object is equal when its values are the same./
       #
       # @param other [Vedeu::Repositories::Collection]

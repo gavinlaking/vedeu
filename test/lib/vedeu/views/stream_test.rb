@@ -109,6 +109,24 @@ module Vedeu
         end
       end
 
+      describe '#empty?' do
+        subject { instance.empty? }
+
+        context 'when the stream has no chars' do
+          let(:_value) { [] }
+
+          it { subject.must_equal(true) }
+        end
+
+        context 'when the stream has chars' do
+          let(:chars) { Vedeu::Views::Chars.new([Vedeu::Views::Char.new]) }
+
+          before { instance.value = chars }
+
+          it { subject.must_equal(false) }
+        end
+      end
+
       describe '#eql?' do
         let(:other) { described.new(attributes) }
 

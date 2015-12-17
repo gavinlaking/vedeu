@@ -107,6 +107,22 @@ module Vedeu
         end
       end
 
+      describe '#empty?' do
+        subject { instance.empty? }
+
+        context 'when the line has no streams' do
+          let(:_value) { [] }
+
+          it { subject.must_equal(true) }
+        end
+
+        context 'when the line has streams' do
+          before { instance.add(Vedeu::Views::Stream.new) }
+
+          it { subject.must_equal(false) }
+        end
+      end
+
       describe '#deputy' do
         subject { instance.deputy }
 
