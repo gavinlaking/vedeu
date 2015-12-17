@@ -1,6 +1,6 @@
 module Vedeu
 
-  module Output
+  module DSL
 
     # Wrap or prune text.
     #
@@ -8,12 +8,12 @@ module Vedeu
 
       include Vedeu::Common
 
-      # @see Vedeu::Output::Wordwrap#initialize
+      # @see Vedeu::DSL::Wordwrap#initialize
       def self.for(text, options = {})
         new(text, options).content
       end
 
-      # Returns a new instance of Vedeu::Output::Wordwrap.
+      # Returns a new instance of Vedeu::DSL::Wordwrap.
       #
       # @param text [String]
       # @param options [Hash]
@@ -21,7 +21,7 @@ module Vedeu
       # @option options mode [Symbol] See {#mode}.
       # @option options name [String|Symbol] See {#name}.
       # @option options width [Fixnum] See {#width}.
-      # @return [Vedeu::Output::Wordwrap]
+      # @return [Vedeu::DSL::Wordwrap]
       def initialize(text, options = {})
         @text    = text
         @options = defaults.merge!(options)
@@ -201,6 +201,6 @@ module Vedeu
 
     end # Wordwrap
 
-  end # Output
+  end # DSL
 
 end # Vedeu

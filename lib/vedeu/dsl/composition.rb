@@ -89,7 +89,7 @@ module Vedeu
       #   use relative paths.
       # @param object [Object] The object for which the values of
       #   template's variables can be obtained.
-      # @param options [Hash<Symbol => void>] See {Vedeu::Output::Wordwrap}
+      # @param options [Hash<Symbol => void>] See {Vedeu::DSL::Wordwrap}
       # @raise [Vedeu::Error::MissingRequired]
       # @return [Vedeu::Views::Views<Vedeu::Views::View>]
       def template_for(name, filename, object = nil, options = {})
@@ -105,7 +105,7 @@ module Vedeu
                                                         filename,
                                                         options)
 
-        # lines     = Vedeu::Output::Wordwrap.for(content, options)
+        # lines     = Vedeu::DSL::Wordwrap.for(content, options)
 
         new_model = Vedeu::Views::View.build(template_attributes(name, content))
 

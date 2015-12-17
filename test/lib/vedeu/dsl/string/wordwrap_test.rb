@@ -2,11 +2,11 @@ require 'test_helper'
 
 module Vedeu
 
-  module Output
+  module DSL
 
     describe Wordwrap do
 
-      let(:described) { Vedeu::Output::Wordwrap }
+      let(:described) { Vedeu::DSL::Wordwrap }
       let(:instance)  { described.new(text, options) }
       let(:text)      { '' }
       let(:mode)      { :default }
@@ -280,6 +280,6 @@ module Vedeu
 
     end # Wordwrap
 
-  end # Output
+  end # DSL
 
 end # Vedeu

@@ -37,7 +37,7 @@ module Vedeu
       # @option options foreground [String]
       # @option options model
       #   [Vedeu::Views::View|Vedeu::Views::Line|Vedeu::Views::Stream]
-      # @option options mode (see Vedeu::Output::Wordwrap#mode)
+      # @option options mode (see Vedeu::DSL::Wordwrap#mode)
       # @option options name [String|Symbol]
       # @option options pad [String]
       # @option options width [Integer]
@@ -224,7 +224,7 @@ module Vedeu
       #
       # @return [Vedeu::Views::Lines]
       def wrapped
-        Vedeu::Output::Wordwrap.for(string, options)
+        Vedeu::DSL::Wordwrap.for(string, options)
       end
 
     end # Text

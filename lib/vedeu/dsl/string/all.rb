@@ -10,3 +10,4 @@ end # Vedeu
 
 require 'vedeu/dsl/string/align'
 require 'vedeu/dsl/string/truncate'
+require 'vedeu/dsl/string/wordwrap'
