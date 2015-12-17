@@ -151,6 +151,26 @@ module Vedeu
         end
       end
 
+      describe '#value?' do
+        subject { instance.value? }
+
+        it { instance.must_respond_to(:chars?) }
+
+        context 'when the stream has no chars' do
+          let(:_value) {}
+
+          it { subject.must_equal(false) }
+        end
+
+        context 'when the stream has chars' do
+          let(:chars) { Vedeu::Views::Chars.new([Vedeu::Views::Char.new]) }
+
+          before { instance.value = chars }
+
+          it { subject.must_equal(true) }
+        end
+      end
+
     end # Stream
 
   end # Views

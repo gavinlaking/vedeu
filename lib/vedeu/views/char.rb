@@ -57,7 +57,7 @@ module Vedeu
       def attributes
         {
           border:   @border,
-          # colour:   colour,
+          colour:   colour,
           name:     @name,
           parent:   @parent,
           position: position,

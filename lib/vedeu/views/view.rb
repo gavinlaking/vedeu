@@ -130,6 +130,14 @@ module Vedeu
       end
       alias_method :lines=, :value=
 
+      # Returns a boolean indicating whether this view has any lines.
+      #
+      # @return [Boolean]
+      def value?
+        value.any?
+      end
+      alias_method :lines?, :value?
+
       # Returns a boolean indicating whether the view is visible.
       #
       # @return [Boolean]

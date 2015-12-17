@@ -103,6 +103,15 @@ module Vedeu
       end
       alias_method :streams=, :value=
 
+      # Returns a boolean indicating whether this line has any
+      # streams.
+      #
+      # @return [Boolean]
+      def value?
+        value.any?
+      end
+      alias_method :streams?, :value?
+
     end # Line
 
   end # Views

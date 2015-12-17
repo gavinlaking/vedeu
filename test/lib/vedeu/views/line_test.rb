@@ -163,6 +163,24 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Views::Streams) }
       end
 
+      describe '#value?' do
+        subject { instance.value? }
+
+        it { instance.must_respond_to(:streams?) }
+
+        context 'when the line has no streams' do
+          let(:_value) {}
+
+          it { subject.must_equal(false) }
+        end
+
+        context 'when the line has streams' do
+          before { instance.add(Vedeu::Views::Stream.new) }
+
+          it { subject.must_equal(true) }
+        end
+      end
+
       describe '#to_s' do
         subject { instance.to_s }
 

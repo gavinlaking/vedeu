@@ -159,6 +159,22 @@ module Vedeu
         end
       end
 
+      describe '#value?' do
+        subject { instance.value? }
+
+        it { instance.must_respond_to(:lines?) }
+
+        context 'when the view has no lines' do
+          it { subject.must_equal(false) }
+        end
+
+        context 'when the view has lines' do
+          before { instance.add(Vedeu::Views::Line.new) }
+
+          it { subject.must_equal(true) }
+        end
+      end
+
       describe '#visible?' do
         subject { instance.visible? }
 

@@ -114,6 +114,15 @@ module Vedeu
       # end
       # alias_method :chars=, :value=
 
+      # Returns a boolean indicating whether this stream has any
+      # chars.
+      #
+      # @return [Boolean]
+      def value?
+        value.any?
+      end
+      alias_method :chars?, :value?
+
     end # Stream
 
   end # Views
