@@ -77,13 +77,6 @@ module Vedeu
         Vedeu::DSL::Stream.new(self, client)
       end
 
-      # Returns a boolean indicating whether this stream is empty.
-      #
-      # @return [Boolean]
-      def empty?
-        value.empty?
-      end
-
       # An object is equal when its values are the same.
       #
       # @param other [Vedeu::Views::Char]
