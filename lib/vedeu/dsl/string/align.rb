@@ -110,6 +110,9 @@ module Vedeu
         elsif present?(options[:name])
           geometry.bordered_width
 
+        else
+          value.size
+
         end
       end
 
