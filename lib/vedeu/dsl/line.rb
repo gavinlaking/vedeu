@@ -2,6 +2,8 @@ module Vedeu
 
   module DSL
 
+    # Provides methods to be used to define views.
+    #
     class Line
 
       include Vedeu::DSL

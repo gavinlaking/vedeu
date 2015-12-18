@@ -198,7 +198,7 @@ module Vedeu
       # or to the Stream.
       #
       # @note If using the convenience methods; left, centre, center
-      #   or right, then a specified anchor will be ignored.
+      #   or right, then a specified align option will be ignored.
       #
       # @example
       #   lines do
@@ -226,18 +226,18 @@ module Vedeu
       #   # => '        This will be right aligned.'
       #
       #   right 'This will be right aligned.', width: 35,
-      #     anchor: centre
+      #     align: centre
       #
       #   text 'This will be truncated here. More text here.',
       #     width: 28 # => 'This will be truncated here.'
       #
       #   text 'Padded with hyphens.', width: 25, pad: '-',
-      #     anchor: :right # => '-----Padded with hyphens.'
+      #     align: :right # => '-----Padded with hyphens.'
       #
       # @param value [String|Object] A string or object that responds
       #   to `to_s`.
       # @param options [Hash<Symbol => void>] Text options.
-      # @option options :anchor [Symbol] One of `:left`,
+      # @option options :align [Symbol] One of `:left`,
       #   `:centre`/`:center`, or `:right`.
       # @option options :width [Integer|NilClass] The width of the
       #   text stream to add. If the `string` provided is longer than
