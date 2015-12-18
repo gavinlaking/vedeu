@@ -90,8 +90,6 @@ module Vedeu
       include Vedeu::DSL::Use
       include Vedeu::DSL::Elements
 
-      include Vedeu::DSL::Elements
-
       class << self
 
         include Vedeu::Common
