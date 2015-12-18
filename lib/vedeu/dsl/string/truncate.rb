@@ -46,10 +46,6 @@ module Vedeu
       #   Symbol]
       attr_reader :options
 
-      # @!attribute [r] value
-      # @return [String]
-      attr_reader :value
-
       private
 
       # @return [Hash<Symbol => Boolean|Fixnum|NilClass|String|
@@ -75,6 +71,20 @@ module Vedeu
       # @return [String]
       def truncate
         value.slice(0, width)
+      end
+
+      # @return [String]
+      def value
+        if present?(@value) && string?(@value)
+          @value
+
+        elsif present?(@value)
+          @value.to_s
+
+        else
+          ''
+
+        end
       end
 
       # Return the width of the interface when a name is given,
