@@ -24,14 +24,14 @@ module Vedeu
         context 'when the collection is an Array' do
           context 'when the collection is not empty' do
             let(:collection) { [line, nil, line] }
-            let(:expected)   { Vedeu::Views::Lines.new([line, line]) }
+            let(:expected)   { described.new([line, line]) }
 
             it { subject.must_equal(expected) }
           end
 
           context 'when the collection is empty' do
             let(:collection) { [] }
-            let(:expected)   { Vedeu::Views::Lines.new }
+            let(:expected)   { described.new }
 
             it { subject.must_equal(expected) }
           end
@@ -39,7 +39,7 @@ module Vedeu
 
         context 'when the collection is a Vedeu::Views::Line' do
           let(:collection) { line }
-          let(:expected)   { Vedeu::Views::Lines.new([line]) }
+          let(:expected)   { described.new([line]) }
 
           it { subject.must_equal(expected) }
         end
