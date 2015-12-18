@@ -188,6 +188,8 @@ module Vedeu
       describe '#truncate' do
         subject { instance.truncate }
 
+        it { instance.must_respond_to(:truncate?) }
+
         context 'when the truncate option is true' do
           let(:truncate) { true }
 
@@ -230,6 +232,8 @@ module Vedeu
 
       describe '#wordwrap' do
         subject { instance.wordwrap }
+
+        it { instance.must_respond_to(:wordwrap?) }
 
         context 'when the wordwrap option is true' do
           let(:wordwrap) { true }

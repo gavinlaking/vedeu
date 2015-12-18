@@ -94,6 +94,7 @@ module Vedeu
       def truncate
         truthy?(_opts[:truncate])
       end
+      alias_method :truncate?, :truncate
 
       # @return [Fixnum|NilClass]
       def width
@@ -110,6 +111,7 @@ module Vedeu
       def wordwrap
         truthy?(_opts[:wordwrap])
       end
+      alias_method :wordwrap?, :wordwrap
 
       protected
 
