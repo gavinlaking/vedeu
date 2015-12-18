@@ -21,8 +21,14 @@ module Vedeu
 
       describe 'accessors' do
         it { including_instance.must_respond_to(:align) }
+        # it { including_instance.must_respond_to(:client) }
+        # it { including_instance.must_respond_to(:colour) }
+        # it { including_instance.must_respond_to(:name) }
         it { including_instance.must_respond_to(:pad) }
+        # it { including_instance.must_respond_to(:parent) }
+        # it { including_instance.must_respond_to(:style) }
         it { including_instance.must_respond_to(:truncate) }
+        # it { including_instance.must_respond_to(:value) }
         it { including_instance.must_respond_to(:width) }
         it { including_instance.must_respond_to(:wordwrap) }
       end
@@ -31,8 +37,14 @@ module Vedeu
         let(:expected) {
           {
             align:    Vedeu::Coercers::Alignment.new,
+            # client:   nil,
+            # colour:   nil,
+            # name:     nil,
             pad:      ' ',
+            # parent:   nil,
+            # style:    nil,
             truncate: false,
+            # value:    '',
             width:    nil,
             wordwrap: false,
           }
