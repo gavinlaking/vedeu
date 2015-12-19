@@ -35,6 +35,7 @@ module Vedeu
     module Elements
 
       include Vedeu::Common
+      include Vedeu::DSL::Presentation
 
       # @todo This documentation needs editing. (GL: 2015-12-17)
       #

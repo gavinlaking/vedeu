@@ -14,7 +14,6 @@ module Vedeu
     class Char
 
       include Comparable
-      include Vedeu::Geometries::Positionable
       include Vedeu::Repositories::Parent
       include Vedeu::Presentation
 
