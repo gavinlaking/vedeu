@@ -71,14 +71,6 @@ module Vedeu
         it { subject.must_be_instance_of(Hash) }
       end
 
-      describe '#deputy' do
-        subject { instance.deputy }
-
-        it 'returns the DSL instance' do
-          subject.must_be_instance_of(Vedeu::DSL::View)
-        end
-      end
-
       describe '#store_immediate' do
         before { Vedeu.stubs(:trigger) }
 
@@ -101,64 +93,6 @@ module Vedeu
           let(:_name) {}
 
           it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
-        end
-      end
-
-      describe '#value' do
-        subject { instance.value }
-
-        it { instance.must_respond_to(:lines) }
-
-        it { subject.must_be_instance_of(Vedeu::Views::Lines) }
-
-        context 'when the value is not set' do
-          # it { subject.must_equal('') }
-        end
-
-        context 'when the value is set' do
-          let(:_value) { Vedeu::Views::Line.new }
-
-          # it { subject.must_equal('') }
-        end
-
-        # @todo Add more tests.
-        # it { skip }
-      end
-
-      describe '#value=' do
-        let(:_value) { Vedeu::Views::Line.new }
-
-        subject { instance.value=(_value) }
-
-        it { instance.must_respond_to(:lines=) }
-
-        context 'when the value is nil' do
-          let(:_value) {}
-
-          it { instance.value.must_be_instance_of(Vedeu::Views::Lines) }
-        end
-
-        context 'when the value is not nil' do
-          let(:_value) { Vedeu::Views::Line.new }
-
-          it { subject.must_be_instance_of(Vedeu::Views::Line) }
-          it { instance.value.must_be_instance_of(Vedeu::Views::Lines) }
-        end
-      end
-
-      describe '#value?' do
-        subject { instance.value? }
-
-        it { instance.must_respond_to(:lines?) }
-
-        context 'when the view has no lines' do
-          it { subject.must_equal(false) }
-        end
-
-        context 'when the view has lines' do
-          before { instance.add(Vedeu::Views::Line.new) }
-
-          it { subject.must_equal(true) }
         end
       end
 

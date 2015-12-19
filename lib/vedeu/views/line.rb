@@ -22,6 +22,15 @@ module Vedeu
       include Vedeu::Repositories::Parent
       include Vedeu::Presentation
 
+      include Vedeu::Views::Value
+      collection Vedeu::Views::Streams
+      deputy     Vedeu::Views::Line::DSL
+      entity     Vedeu::Views::Stream
+      parent     Vedeu::Views::Lines
+
+      alias_method :streams=, :value=
+      alias_method :streams?, :value?
+
       # @!attribute [rw] client
       # @return [void]
       attr_accessor :client
@@ -59,9 +68,9 @@ module Vedeu
       # @return [Array]
       # @see Vedeu::Views::Stream
       def chars
-        return [] if value.empty?
+        return [] unless value?
 
-        @chars ||= value.flat_map(&:chars)
+        @chars ||= value.value.flat_map(&:chars)
       end
 
       # Returns a DSL instance responsible for defining the DSL
@@ -93,33 +102,10 @@ module Vedeu
         value.map(&:size).inject(0, :+)
       end
 
-      # @return [Vedeu::Views::Streams]
-      def value
-        @_value ||= if present?(@value)
-                      Vedeu::Views::Streams.coerce(@value, self)
-
-                    else
-                      Vedeu::Views::Streams.coerce([], self)
-
-                    end
+      # @return [Array<Vedeu::Views::Stream>]
+      def streams
+        value.value
       end
-      alias_method :streams, :value
-
-      # @param value [Vedeu::Views::Stream]
-      # @return [Vedeu::Views::Stream]
-      def value=(value)
-        @_value = @value = Vedeu::Views::Streams.coerce(value, self)
-      end
-      alias_method :streams=, :value=
-
-      # Returns a boolean indicating whether this line has any
-      # streams.
-      #
-      # @return [Boolean]
-      def value?
-        value.any?
-      end
-      alias_method :streams?, :value?
 
     end # Line
 

@@ -47,7 +47,7 @@ module Vedeu
         context 'when the collection is a String' do
           context 'when the collection is empty' do
             let(:collection) { '' }
-            let(:expected)   { described.new(collection, parent) }
+            let(:expected)   { described.new([], parent) }
 
             it { subject.must_equal(expected) }
           end

@@ -4,19 +4,6 @@ module Vedeu
 
   module Views
 
-    describe Streams do
-
-      let(:described) { Vedeu::Views::Streams }
-      let(:instance)  { described.new }
-
-      it { described.superclass.must_equal(Vedeu::Repositories::Collection) }
-
-      describe '#initialize' do
-        it { instance.must_be_instance_of(described) }
-      end
-
-    end # Streams
-
     describe Stream do
 
       let(:described)  { Vedeu::Views::Stream }
@@ -93,19 +80,12 @@ module Vedeu
         end
 
         context 'when there is no content' do
-          let(:_value) { '' }
+          let(:_value)   { '' }
+          let(:expected) { Vedeu::Views::Chars.new(parent: instance) }
 
           it 'returns an empty collection' do
-            subject.must_equal([])
+            # subject.must_equal(expected)
           end
-        end
-      end
-
-      describe '#deputy' do
-        subject { instance.deputy }
-
-        it 'returns the DSL instance' do
-          subject.must_be_instance_of(Vedeu::Views::Stream::DSL)
         end
       end
 
@@ -148,26 +128,6 @@ module Vedeu
 
         it 'returns the size of the stream' do
           subject.must_equal(9)
-        end
-      end
-
-      describe '#value?' do
-        subject { instance.value? }
-
-        it { instance.must_respond_to(:chars?) }
-
-        context 'when the stream has no chars' do
-          let(:_value) {}
-
-          it { subject.must_equal(false) }
-        end
-
-        context 'when the stream has chars' do
-          let(:chars) { Vedeu::Views::Chars.new([Vedeu::Views::Char.new]) }
-
-          before { instance.value = chars }
-
-          it { subject.must_equal(true) }
         end
       end
 

@@ -1,3 +1,5 @@
+require 'vedeu/dsl/all'
+
 module Vedeu
 
   module Views
@@ -7,9 +9,24 @@ module Vedeu
     #
     class View
 
+      class DSL
+
+        include Vedeu::DSL
+        include Vedeu::DSL::Elements
+
+      end # DSL
+
       include Vedeu::Repositories::Model
       include Vedeu::Repositories::Parent
       include Vedeu::Presentation
+
+      include Vedeu::Views::Value
+      collection Vedeu::Views::Lines
+      deputy     Vedeu::Views::View::DSL
+      entity     Vedeu::Views::Line
+
+      alias_method :lines=, :value=
+      alias_method :lines?, :value?
 
       # @!attribute [rw] client
       # @return [Fixnum|Float]
@@ -71,16 +88,9 @@ module Vedeu
         }
       end
 
-      # Returns a DSL instance responsible for defining the DSL
-      # methods of this model.
-      #
-      # @param client [Object|NilClass] The client binding represents
-      #   the client application object that is currently invoking a
-      #   DSL method. It is required so that we can send messages to
-      #   the client application object should we need to.
-      # @return [Vedeu::DSL::View] The DSL instance for this model.
-      def deputy(client = nil)
-        Vedeu::DSL::View.new(self, client)
+      # @return [Array<Vedeu::Views::Line>]
+      def lines
+        value.value
       end
 
       # Store the view and immediately refresh it; causing to be
@@ -110,33 +120,6 @@ module Vedeu
 
         self
       end
-
-      # @return [Vedeu::Views::Lines]
-      def value
-        @_value ||= if present?(@value)
-                      Vedeu::Views::Lines.coerce(@value, self)
-
-                    else
-                      Vedeu::Views::Lines.coerce([], self)
-
-                    end
-      end
-      alias_method :lines, :value
-
-      # @param value [Vedeu::Views::Line]
-      # @return [Vedeu::Views::Line]
-      def value=(value)
-        @_value = @value = Vedeu::Views::Lines.coerce(value, self)
-      end
-      alias_method :lines=, :value=
-
-      # Returns a boolean indicating whether this view has any lines.
-      #
-      # @return [Boolean]
-      def value?
-        value.any?
-      end
-      alias_method :lines?, :value?
 
       # Returns a boolean indicating whether the view is visible.
       #

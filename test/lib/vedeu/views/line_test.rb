@@ -4,19 +4,6 @@ module Vedeu
 
   module Views
 
-    describe Lines do
-
-      let(:described) { Vedeu::Views::Lines }
-      let(:instance)  { described.new }
-
-      it { described.superclass.must_equal(Vedeu::Repositories::Collection) }
-
-      describe '#initialize' do
-        it { instance.must_be_instance_of(described) }
-      end
-
-    end # Lines
-
     describe Line do
 
       let(:described)  { Vedeu::Views::Line }
@@ -107,14 +94,6 @@ module Vedeu
         end
       end
 
-      describe '#deputy' do
-        subject { instance.deputy }
-
-        it 'returns the DSL instance' do
-          subject.must_be_instance_of(Vedeu::Views::Line::DSL)
-        end
-      end
-
       describe '#eql?' do
         let(:other) { instance }
 
@@ -152,72 +131,6 @@ module Vedeu
 
         it 'returns the size of the line' do
           subject.must_equal(53)
-        end
-      end
-
-      describe '#value' do
-        subject { instance.value }
-
-        it { instance.must_respond_to(:streams) }
-
-        it { subject.must_be_instance_of(Vedeu::Views::Streams) }
-      end
-
-      describe '#value?' do
-        subject { instance.value? }
-
-        it { instance.must_respond_to(:streams?) }
-
-        context 'when the line has no streams' do
-          let(:_value) {}
-
-          it { subject.must_equal(false) }
-        end
-
-        context 'when the line has streams' do
-          before { instance.add(Vedeu::Views::Stream.new) }
-
-          it { subject.must_equal(true) }
-        end
-      end
-
-      describe '#to_s' do
-        subject { instance.to_s }
-
-        it { subject.must_be_instance_of(String) }
-
-        it 'returns the line complete with formatting' do
-          # (starts in Line colour)
-          # (starts in Line style)
-          # Stream 1 colour
-          # Stream 1 style
-          # Stream 1 value
-          # (resets style to Line style)
-          # (resets colour to Line colour)
-          # Stream 2 colour
-          # Stream 2 style
-          # Stream 2 value
-          # (resets style to Line style)
-          # (resets colour to Line colour)
-          # Stream 3 colour
-          # Stream 3 style
-          # Stream 3 value
-          # (resets style to Line style)
-          # (resets colour to Line colour)
-
-          subject.must_equal(
-            "\e[38;2;255;0;0m\e[48;2;0;0;0m"  \
-            "\e[24m\e[22m\e[27m"              \
-            "\e[38;2;255;255;0m"              \
-            "\e[24m\e[22m\e[27m"              \
-            'Something interesting '          \
-            "\e[38;2;0;255;0m"                \
-            "\e[24m\e[22m\e[27m"              \
-            'on this line '                   \
-            "\e[38;2;0;0;255m"                \
-            "\e[24m\e[22m\e[27m"              \
-            'would be cool, eh?'
-          )
         end
       end
 

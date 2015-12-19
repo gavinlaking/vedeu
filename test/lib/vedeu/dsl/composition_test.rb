@@ -18,7 +18,7 @@ module Vedeu
           end
         }
 
-        it { subject.must_be_instance_of(Vedeu::Views::ViewCollection) }
+        it { subject.must_be_instance_of(Vedeu::Views::Views) }
         it { subject[0].must_be_instance_of(Vedeu::Views::View) }
 
         context 'when the block is not given' do
@@ -56,7 +56,7 @@ module Vedeu
               with(object, filename, options).returns(content)
           end
 
-          it { subject.must_be_instance_of(Vedeu::Views::ViewCollection) }
+          it { subject.must_be_instance_of(Vedeu::Views::Views) }
         end
       end
 

@@ -10,11 +10,6 @@ module Vedeu
     #
     class Stream
 
-      include Vedeu::Views::DefaultAttributes
-      include Vedeu::Repositories::Model
-      include Vedeu::Repositories::Parent
-      include Vedeu::Presentation
-
       class DSL
 
         include Vedeu::DSL
@@ -22,9 +17,25 @@ module Vedeu
 
       end # DSL
 
-      # @!attribute [rw] parent
+      include Vedeu::Views::DefaultAttributes
+      include Vedeu::Repositories::Model
+      include Vedeu::Repositories::Parent
+      include Vedeu::Presentation
+
+      include Vedeu::Views::Value
+      collection Vedeu::Views::Chars
+      deputy     Vedeu::Views::Stream::DSL
+      entity     Vedeu::Views::Char
+      parent     Vedeu::Views::Streams
+
+      alias_method :content, :value
+      alias_method :text,    :value
+      alias_method :chars=, :value=
+      alias_method :chars?, :value?
+
+      # @!attribute [w] parent
       # @return [Vedeu::Views::Line]
-      attr_accessor :parent
+      attr_writer :parent
 
       # @!attribute [w] value
       # @return [String]
@@ -60,28 +71,18 @@ module Vedeu
       #
       # @return [Array]
       def chars
-        return [] if value.empty?
+        return [] unless value?
 
-        @chars ||= value.chars.map do |char|
-          Vedeu::Views::Char.new(value:    char,
-                                 name:     name,
-                                 parent:   parent,
-                                 colour:   colour,
-                                 style:    style,
-                                 position: nil)
-        end
-      end
+        value.value
 
-      # Returns a DSL instance responsible for defining the DSL
-      # methods of this model.
-      #
-      # @param client [Object|NilClass] The client binding represents
-      #   the client application object that is currently invoking a
-      #   DSL method. It is required so that we can send messages to
-      #   the client application object should we need to.
-      # @return [Vedeu::DSL::Stream] The DSL instance for this model.
-      def deputy(client = nil)
-        Vedeu::Views::Stream::DSL.new(self, client)
+        # @chars ||= value.chars.map do |char|
+        #   Vedeu::Views::Char.new(value:    char,
+        #                          name:     name,
+        #                          parent:   parent,
+        #                          colour:   colour,
+        #                          style:    style,
+        #                          position: nil)
+        # end
       end
 
       # An object is equal when its values are the same.
@@ -101,39 +102,6 @@ module Vedeu
       def size
         value.size
       end
-
-      # @return [Vedeu::Views::Chars]
-      def value
-        @_value ||= if present?(@value)
-                      @value
-
-                      # Vedeu::Views::Chars.coerce(@value, self)
-
-                    else
-                      []
-
-                      # Vedeu::Views::Chars.coerce([], self)
-
-                    end
-      end
-      alias_method :content, :value
-      alias_method :text,    :value
-
-      # # @param value [Vedeu::Views::Char]
-      # # @return [Vedeu::Views::Char]
-      # def value=(value)
-      #   @_value = @value = Vedeu::Views::Chars.coerce(value, self)
-      # end
-      # alias_method :chars=, :value=
-
-      # Returns a boolean indicating whether this stream has any
-      # chars.
-      #
-      # @return [Boolean]
-      def value?
-        value.any?
-      end
-      alias_method :chars?, :value?
 
     end # Stream
 

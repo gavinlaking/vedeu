@@ -12,6 +12,8 @@ module Vedeu
       let(:parent)     {}
       let(:_name)      {}
 
+      it { described.superclass.must_equal(Vedeu::Repositories::Collection) }
+
       describe '.coerce' do
         let(:line) { Vedeu::Views::Line.new }
 
