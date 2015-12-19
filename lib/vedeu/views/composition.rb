@@ -1,3 +1,5 @@
+require 'vedeu/dsl/all'
+
 module Vedeu
 
   module Views
@@ -8,6 +10,15 @@ module Vedeu
 
       include Vedeu::Repositories::Model
       include Vedeu::Presentation
+
+      include Vedeu::Views::Value
+      collection Vedeu::Views::Views
+      deputy     Vedeu::DSL::View
+      entity     Vedeu::Views::View
+
+      alias_method :views,  :value
+      alias_method :views=, :value=
+      alias_method :views?, :value?
 
       # @!attribute [r] parent
       # @return [NilClass] Composition objects do not have a parent.
@@ -44,38 +55,6 @@ module Vedeu
           value:  value,
         }
       end
-
-      # Returns a DSL instance responsible for defining the DSL
-      # methods of this model.
-      #
-      # @param client [Object|NilClass] The client binding represents
-      #   the client application object that is currently invoking a
-      #   DSL method. It is required so that we can send messages to
-      #   the client application object should we need to.
-      # @return [Vedeu::DSL::View] The DSL instance for this
-      #   model.
-      def deputy(client = nil)
-        Vedeu::DSL::View.new(self, client)
-      end
-
-      # @return [Vedeu::Views::Views]
-      def value
-        @_value ||= if present?(@value)
-                      Vedeu::Views::Views.coerce(@value, self)
-
-                    else
-                      Vedeu::Views::Views.coerce([], self)
-
-                    end
-      end
-      alias_method :views, :value
-
-      # @param value [Vedeu::Views::Views]
-      # @return [Vedeu::Views::Views]
-      def value=(value)
-        @_value = @value = Vedeu::Views::Views.coerce(value, self)
-      end
-      alias_method :views=, :value=
 
       private
 

@@ -61,14 +61,6 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Views::Views) }
       end
 
-      describe '#deputy' do
-        subject { instance.deputy }
-
-        it 'returns the DSL instance' do
-          subject.must_be_instance_of(Vedeu::DSL::View)
-        end
-      end
-
     end # Composition
 
   end # Views
