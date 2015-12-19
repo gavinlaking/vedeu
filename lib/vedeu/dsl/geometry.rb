@@ -92,7 +92,8 @@ module Vedeu
       end # InstanceMethods
 
       # When this module is included in a class, provide ClassMethods
-      # as class methods for the class.
+      # as class methods and InstanceMethods as instance methods for
+      # the given class.
       #
       # @param klass [Class]
       # @return [void]

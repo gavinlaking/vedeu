@@ -88,7 +88,7 @@ module Vedeu
       # @param klass [Class]
       # @return [void]
       def self.included(klass)
-        klass.send(:extend, ClassMethods)
+        klass.extend(Vedeu::Repositories::Model::ClassMethods)
       end
 
       # @note If a block is given, store the model, return the model
