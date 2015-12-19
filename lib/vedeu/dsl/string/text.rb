@@ -85,7 +85,7 @@ module Vedeu
           align
 
         else
-          ''
+          value
 
         end
       end

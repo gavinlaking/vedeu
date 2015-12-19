@@ -126,7 +126,15 @@ module Vedeu
           end
 
           context 'when the truncate option is not set' do
-            let(:expected) { [] }
+            let(:expected) {
+              [
+                Vedeu::Views::Char.new(name: _name, value: 'a'),
+                Vedeu::Views::Char.new(name: _name, value: 'b'),
+                Vedeu::Views::Char.new(name: _name, value: 'c'),
+                Vedeu::Views::Char.new(name: _name, value: 'd'),
+                Vedeu::Views::Char.new(name: _name, value: 'e'),
+              ]
+            }
 
             it { subject.must_equal(expected) }
           end
@@ -183,7 +191,15 @@ module Vedeu
           end
 
           context 'when the align option is not set' do
-            let(:expected) { [] }
+            let(:expected) {
+              [
+                Vedeu::Views::Char.new(name: _name, value: 'a'),
+                Vedeu::Views::Char.new(name: _name, value: 'b'),
+                Vedeu::Views::Char.new(name: _name, value: 'c'),
+                Vedeu::Views::Char.new(name: _name, value: 'd'),
+                Vedeu::Views::Char.new(name: _name, value: 'e'),
+              ]
+            }
 
             it { subject.must_equal(expected) }
           end
