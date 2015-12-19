@@ -41,9 +41,7 @@ module Vedeu
                     message: "DSL building: '#{model.class.name}' for " \
                              "'#{model.name}'")
 
-          if block_given?
-            model.deputy(attributes[:client]).instance_eval(&block)
-          end
+          model.deputy.instance_eval(&block) if block_given?
 
           model
         end
