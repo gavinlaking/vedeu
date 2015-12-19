@@ -39,6 +39,12 @@ module Vedeu
           instance.instance_variables.
             must_equal([:@some_attribute])
         end
+
+        context 'when the attributes is not a Hash' do
+          let(:attributes) { :invalid }
+
+          it { proc { instance }.must_raise(Vedeu::Error::InvalidSyntax) }
+        end
       end
 
       # @todo Add more tests.
