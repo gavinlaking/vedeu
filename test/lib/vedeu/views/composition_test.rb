@@ -65,7 +65,7 @@ module Vedeu
         subject { instance.deputy }
 
         it 'returns the DSL instance' do
-          subject.must_be_instance_of(Vedeu::DSL::Composition)
+          subject.must_be_instance_of(Vedeu::DSL::View)
         end
       end
 

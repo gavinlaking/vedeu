@@ -52,10 +52,10 @@ module Vedeu
       #   the client application object that is currently invoking a
       #   DSL method. It is required so that we can send messages to
       #   the client application object should we need to.
-      # @return [Vedeu::DSL::Composition] The DSL instance for this
+      # @return [Vedeu::DSL::View] The DSL instance for this
       #   model.
       def deputy(client = nil)
-        Vedeu::DSL::Composition.new(self, client)
+        Vedeu::DSL::View.new(self, client)
       end
 
       # @return [Vedeu::Views::Views]

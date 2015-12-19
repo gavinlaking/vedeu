@@ -4,9 +4,9 @@ module Vedeu
 
   module DSL
 
-    describe Composition do
+    describe View do
 
-      let(:described) { Vedeu::DSL::Composition }
+      let(:described) { Vedeu::DSL::View }
       let(:instance)  { described.new(model) }
       let(:model)     { Vedeu::Views::Composition.new }
       let(:client)    {}
@@ -60,7 +60,7 @@ module Vedeu
         end
       end
 
-    end # Composition
+    end # View
 
   end # DSL
 

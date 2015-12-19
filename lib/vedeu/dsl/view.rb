@@ -8,7 +8,7 @@ module Vedeu
     # blocks can be arranged in a multitude of ways which I hope is
     # more than sufficient for your design needs.
 
-    # - A view (`Composition`) is made up of one or more interfaces.
+    # - A view (`View`) is made up of one or more interfaces.
     # - An interface is an area on the screen where you can take input
     #   or direct output. You will define it's colour and style, its
     #   dimensions, including position and give it a name. You can
@@ -38,7 +38,7 @@ module Vedeu
     #   be red.
     # - Styles are named. See the table below for supported styles.
     #
-    class Composition
+    class View
 
       include Vedeu::DSL
 
@@ -143,7 +143,7 @@ module Vedeu
         Vedeu.interfaces.by_name(name)
       end
 
-    end # Composition
+    end # View
 
   end # DSL
 
