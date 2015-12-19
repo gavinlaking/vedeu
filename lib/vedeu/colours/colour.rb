@@ -37,6 +37,8 @@ module Vedeu
     #
     class Colour
 
+      include Vedeu::Repositories::Defaults
+
       # @param value [Vedeu::Colours::Colour|Hash<Symbol => void>]
       # @return [Vedeu::Colours::Colour]
       def self.coerce(value)
@@ -61,19 +63,6 @@ module Vedeu
       # @return [Vedeu::Colours::Colour]
       def self.default
         new(background: :default, foreground: :default)
-      end
-
-      # Returns a new instance of Vedeu::Colours::Colour.
-      #
-      # @param attributes [Hash<Symbol => String|
-      #   Vedeu::Colours::Background|Vedeu::Colours:Foreground>]
-      # @option attributes background [String]
-      # @option attributes foreground [String]
-      # @return [Vedeu::Colours::Colour]
-      def initialize(attributes = {})
-        defaults.merge!(attributes).each do |key, value|
-          instance_variable_set("@#{key}", value)
-        end
       end
 
       # @return [Hash<Symbol => Vedeu::Colours::Background,

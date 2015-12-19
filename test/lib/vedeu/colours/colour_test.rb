@@ -19,8 +19,40 @@ module Vedeu
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
-        it { instance.instance_variable_get('@background').must_equal(background)}
-        it { instance.instance_variable_get('@foreground').must_equal(foreground)}
+
+        context 'when a background is given' do
+          let(:background) { '#ff0000' }
+
+          it do
+            instance.instance_variable_get('@background').must_equal(background)
+          end
+        end
+
+        context 'when a background is not given' do
+          let(:background) {}
+          let(:expected)   { Vedeu::Colours::Background.new }
+
+          it do
+            instance.instance_variable_get('@background').must_equal(expected)
+          end
+        end
+
+        context 'when a foreground is given' do
+          let(:foreground) { '#ff00ff' }
+
+          it do
+            instance.instance_variable_get('@foreground').must_equal(foreground)
+          end
+        end
+
+        context 'when a foreground is not given' do
+          let(:foreground) {}
+          let(:expected)   { Vedeu::Colours::Foreground.new }
+
+          it do
+            instance.instance_variable_get('@foreground').must_equal(expected)
+          end
+        end
       end
 
       describe '.coerce' do
