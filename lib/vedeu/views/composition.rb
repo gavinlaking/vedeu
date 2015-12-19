@@ -19,7 +19,7 @@ module Vedeu
       # @option attributes client [void]
       # @option attributes colour [Vedeu::Colours::Colour]
       # @option attributes style [Vedeu::Presentation::Style]
-      # @option attributes value [Vedeu::Views::ViewCollection]
+      # @option attributes value [Vedeu::Views::Views]
       # @return [Vedeu::Views::Composition]
       def initialize(attributes = {})
         defaults.merge!(attributes).each do |key, value|
@@ -28,7 +28,7 @@ module Vedeu
       end
 
       # @param child [Vedeu::Views::View]
-      # @return [Vedeu::Views::ViewCollection]
+      # @return [Vedeu::Views::Views]
       def add(child)
         @value = value.add(child)
       end
@@ -58,22 +58,22 @@ module Vedeu
         Vedeu::DSL::Composition.new(self, client)
       end
 
-      # @return [Vedeu::Views::ViewCollection]
+      # @return [Vedeu::Views::Views]
       def value
         @_value ||= if present?(@value)
-                      Vedeu::Views::ViewCollection.coerce(@value, self)
+                      Vedeu::Views::Views.coerce(@value, self)
 
                     else
-                      Vedeu::Views::ViewCollection.coerce([], self)
+                      Vedeu::Views::Views.coerce([], self)
 
                     end
       end
       alias_method :views, :value
 
-      # @param value [Vedeu::Views::ViewCollection]
-      # @return [Vedeu::Views::ViewCollection]
+      # @param value [Vedeu::Views::Views]
+      # @return [Vedeu::Views::Views]
       def value=(value)
-        @_value = @value = Vedeu::Views::ViewCollection.coerce(value, self)
+        @_value = @value = Vedeu::Views::Views.coerce(value, self)
       end
       alias_method :views=, :value=
 

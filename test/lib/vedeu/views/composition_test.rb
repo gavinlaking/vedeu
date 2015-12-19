@@ -58,7 +58,7 @@ module Vedeu
 
         it { instance.must_respond_to(:<<) }
 
-        it { subject.must_be_instance_of(Vedeu::Views::ViewCollection) }
+        it { subject.must_be_instance_of(Vedeu::Views::Views) }
       end
 
       describe '#deputy' do

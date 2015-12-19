@@ -6,9 +6,9 @@ module Vedeu
     #
     # @api private
     #
-    class ViewCollection < Vedeu::Repositories::Collection
+    class Views < Vedeu::Repositories::Collection
 
-    end # ViewCollection
+    end # Views
 
   end # Views
 
