@@ -105,7 +105,7 @@ module Vedeu
         subject { instance.deputy }
 
         it 'returns the DSL instance' do
-          subject.must_be_instance_of(Vedeu::DSL::Stream)
+          subject.must_be_instance_of(Vedeu::Views::Stream::DSL)
         end
       end
 

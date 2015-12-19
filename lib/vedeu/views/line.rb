@@ -1,3 +1,5 @@
+require 'vedeu/dsl/all'
+
 module Vedeu
 
   module Views
@@ -7,6 +9,13 @@ module Vedeu
     # the {Vedeu::Geometries::Geometry} it belongs to.
     #
     class Line
+
+      class DSL
+
+        include Vedeu::DSL
+        include Vedeu::DSL::Elements
+
+      end # DSL
 
       include Vedeu::Views::DefaultAttributes
       include Vedeu::Repositories::Model
@@ -64,7 +73,7 @@ module Vedeu
       #   the client application object should we need to.
       # @return [Vedeu::DSL::Line] The DSL instance for this model.
       def deputy(client = nil)
-        Vedeu::DSL::Line.new(self, client)
+        Vedeu::Views::Line::DSL.new(self, client)
       end
 
       # An object is equal when its values are the same./

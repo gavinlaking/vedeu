@@ -1,3 +1,5 @@
+require 'vedeu/dsl/all'
+
 module Vedeu
 
   module Views
@@ -12,6 +14,13 @@ module Vedeu
       include Vedeu::Repositories::Model
       include Vedeu::Repositories::Parent
       include Vedeu::Presentation
+
+      class DSL
+
+        include Vedeu::DSL
+        include Vedeu::DSL::Elements
+
+      end # DSL
 
       # @!attribute [rw] parent
       # @return [Vedeu::Views::Line]
@@ -72,7 +81,7 @@ module Vedeu
       #   the client application object should we need to.
       # @return [Vedeu::DSL::Stream] The DSL instance for this model.
       def deputy(client = nil)
-        Vedeu::DSL::Stream.new(self, client)
+        Vedeu::Views::Stream::DSL.new(self, client)
       end
 
       # An object is equal when its values are the same.
