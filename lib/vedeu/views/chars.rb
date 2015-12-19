@@ -32,7 +32,7 @@ module Vedeu
 
 
         elsif collection.is_a?(String)
-          return new(collection, parent, name) if collection.empty?
+          return new([], parent, name) if collection.empty?
 
           if parent && parent.attributes
             new_collection = Vedeu::DSL::Text.new(collection,
