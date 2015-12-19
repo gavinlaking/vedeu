@@ -4,10 +4,10 @@ require 'vedeu/error'
 require 'vedeu/version'
 
 require 'vedeu/coercers/all'
+require 'vedeu/repositories/all'
 
 require 'vedeu/colours/all'
 require 'vedeu/configuration/all'
-require 'vedeu/repositories/all'
 require 'vedeu/events/all'
 require 'vedeu/esc/all'
 require 'vedeu/logging/all'
