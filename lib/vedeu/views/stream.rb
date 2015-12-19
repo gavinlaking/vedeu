@@ -116,7 +116,6 @@ module Vedeu
 
                     end
       end
-      # alias_method :chars, :value
       alias_method :content, :value
       alias_method :text,    :value
 
