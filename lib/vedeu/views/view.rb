@@ -94,7 +94,7 @@ module Vedeu
       end
 
       # Store the view and immediately refresh it; causing to be
-      # pushed to the Terminal. Called by {Vedeu::DSL::View.renders}.
+      # pushed to the Terminal. Called by {Vedeu::DSL::Views.renders}.
       #
       # @return [Vedeu::Views::View]
       def store_immediate
@@ -107,7 +107,7 @@ module Vedeu
 
       # When a name is given, the view is stored with this name. This
       # view will be shown next time a refresh event is triggered with
-      # this name. Called by {Vedeu::DSL::View.views}.
+      # this name. Called by {Vedeu::DSL::Views.views}.
       #
       # @raise [Vedeu::Error::InvalidSyntax] The name is not defined.
       # @return [Vedeu::Views::View]
