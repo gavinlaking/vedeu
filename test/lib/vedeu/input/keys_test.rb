@@ -6,6 +6,9 @@ module Vedeu
 
     describe Keys do
 
+      let(:described) { Vedeu::Input::Keys }
+      let(:instance)  { described.new }
+
     end # Keys
 
   end # Input
