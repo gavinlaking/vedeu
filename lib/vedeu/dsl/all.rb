@@ -11,6 +11,7 @@ end # Vedeu
 require 'vedeu/dsl/view_options'
 require 'vedeu/dsl/string/all'
 require 'vedeu/dsl/border'
+require 'vedeu/dsl/cursors'
 require 'vedeu/dsl/dsl'
 require 'vedeu/dsl/attributes'
 require 'vedeu/dsl/elements'
