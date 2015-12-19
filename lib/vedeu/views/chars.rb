@@ -30,7 +30,6 @@ module Vedeu
 
         elsif collection.is_a?(Vedeu::Views::Stream)
 
-
         elsif collection.is_a?(String)
           return new([], parent, name) if collection.empty?
 
