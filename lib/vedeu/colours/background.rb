@@ -10,6 +10,11 @@ module Vedeu
     #
     class Background < Vedeu::Colours::Translator
 
+      # @return [Boolean]
+      def background?
+        present?(to_s)
+      end
+
       private
 
       # @return [String]

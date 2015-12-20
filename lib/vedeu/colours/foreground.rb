@@ -10,6 +10,11 @@ module Vedeu
     #
     class Foreground < Vedeu::Colours::Translator
 
+      # @return [Boolean]
+      def foreground?
+        present?(to_s)
+      end
+
       private
 
       # @return [String]

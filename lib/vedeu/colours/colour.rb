@@ -37,6 +37,14 @@ module Vedeu
     #
     class Colour
 
+      extend Forwardable
+
+      def_delegators :background,
+                     :background?
+
+      def_delegators :foreground,
+                     :foreground?
+
       include Vedeu::Repositories::Defaults
 
       # @param value [Vedeu::Colours::Colour|Hash<Symbol => void>]

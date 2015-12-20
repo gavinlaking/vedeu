@@ -12,6 +12,22 @@ module Vedeu
 
       before { Vedeu.background_colours.reset! }
 
+      describe '#background?' do
+        subject { instance.background? }
+
+        context 'when the colour is empty' do
+          let(:colour) {}
+
+          it { subject.must_equal(false) }
+        end
+
+        context 'when the colour is not empty' do
+          let(:colour) { '#afd700' }
+
+          it { subject.must_equal(true) }
+        end
+      end
+
       describe '#escape_sequence' do
         subject { instance.escape_sequence }
 
@@ -74,7 +90,7 @@ module Vedeu
         end
       end
 
-      describe '.to_html' do
+      describe '#to_html' do
         subject { instance.to_html }
 
         context 'when the colour is empty' do

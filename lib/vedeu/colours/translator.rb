@@ -30,6 +30,8 @@ module Vedeu
     #
     class Translator
 
+      include Vedeu::Common
+
       # @!attribute [r] colour
       # @return [String]
       attr_reader :colour
@@ -56,7 +58,7 @@ module Vedeu
 
       # @return [Boolean]
       def empty?
-        colour.nil? || colour.to_s.empty?
+        absent?(colour)
       end
 
       # An object is equal when its values are the same.
@@ -71,10 +73,9 @@ module Vedeu
       # @return [String]
       # @see Vedeu::Colours::Translator
       def escape_sequence
-        if empty?
-          ''
+        return '' if empty?
 
-        elsif registered?(colour)
+        if registered?(colour)
           retrieve(colour)
 
         elsif rgb?
