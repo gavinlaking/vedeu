@@ -64,17 +64,112 @@ module Vedeu
       # @return [Object]
       def client
         if _block
-          eval(_context.class.name, _block.binding)
+          if eval('client', _block.binding).nil?
+            eval(_context.class.name, _block.binding)
 
-        elsif _model
+          else
+            eval('client', _block.binding)
+
+          end
+        elsif model?
           _model.client
 
         end
       end
 
+      # @return [Hash]
+      def model_colour
+        return {} unless model?
+
+        if _model.colour
+          _model.colour.attributes
+
+        else
+          {}
+
+        end
+      end
+
+      # @return [Hash]
+      def client_option
+        {
+          client: client
+        }
+      end
+
+      # @return [Hash]
+      def background_option
+        if _options.key?(:background) &&
+           valid_colour_option?(_options[:background])
+          {
+            background: _options[:background]
+          }
+
+        elsif _options.key?(:colour) &&
+              hash?(_options[:colour]) &&
+              _options[:colour].key?(:background) &&
+              valid_colour_option?(_options[:colour][:background])
+          {
+            background: _options[:colour][:background]
+          }
+
+        else
+          {}
+
+        end
+      end
+
+      # @return [Hash]
+      def colour_options
+        {}.merge!(model_colour)
+          .merge!(background_option)
+          .merge!(foreground_option)
+      end
+
+      # @return [Hash]
+      def foreground_option
+        if _options.key?(:foreground) &&
+           valid_colour_option?(_options[:foreground])
+          {
+            foreground: _options[:foreground]
+          }
+
+        elsif _options.key?(:colour) &&
+              hash?(_options[:colour]) &&
+              _options[:colour].key?(:foreground) &&
+              valid_colour_option?(_options[:colour][:foreground])
+          {
+            foreground: _options[:colour][:foreground]
+          }
+
+        else
+          {}
+
+        end
+      end
+
+      # @return [Boolean]
+      def model?
+        present?(_model)
+      end
+
+      # @return [Hash]
+      def name_option
+        return {} unless model?
+
+        {
+          name: _model.name
+        }
+      end
+
       # @return [Hash<Symbol => void|String|Symbol]
       def options
-        _options.merge!(client: client, name: _model.name)
+        _options.merge!(client_option).merge!(name_option).merge!(colour_options)
+      end
+
+      # @return [Boolean]
+      def valid_colour_option?(colour)
+        Vedeu::Colours::Validator.valid?(colour)
       end
 
       # @return [Hash<Symbol => String>]
