@@ -51,6 +51,14 @@ module Vedeu
       value.nil? || value.is_a?(FalseClass)
     end
 
+    # Returns a boolean indicating whether the value is a Hash.
+    #
+    # @param value [Hash|void]
+    # @return [Boolean]
+    def hash?(value)
+      value.is_a?(Hash)
+    end
+
     # Returns a boolean indicating whether the value is a Fixnum.
     #
     # @param value [Fixnum|void]

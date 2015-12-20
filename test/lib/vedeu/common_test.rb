@@ -138,6 +138,22 @@ module Vedeu
       end
     end
 
+    describe '#hash?' do
+      let(:_value) {}
+
+      subject { instance.hash?(_value) }
+
+      context 'when the value is a Hash' do
+        let(:_value) { { element: :hydrogen } }
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when the value is not a Hash' do
+        it { subject.must_equal(false) }
+      end
+    end
+
     describe '#numeric?' do
       let(:_value) {}
 
