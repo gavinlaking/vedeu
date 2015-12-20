@@ -13,3 +13,4 @@ require 'vedeu/coercers/horizontal_alignment'
 require 'vedeu/coercers/vertical_alignment'
 
 require 'vedeu/coercers/colour'
+require 'vedeu/coercers/colour_attributes'

@@ -66,60 +66,6 @@ module Vedeu
         value.is_a?(Hash)
       end
 
-      class ColourAttributes
-
-        include Vedeu::Common
-
-        # @param value [Hash]
-        def self.coerce(value)
-          new(value).coerce
-        end
-
-        def initialize(value)
-          @value = value
-        end
-
-        # @return [Hash]
-        def coerce
-          fail Vedeu::Error::InvalidSyntax unless hash?(value)
-
-
-        end
-
-        protected
-
-        # @!attribute [r] value
-        # @return [Hash]
-        attr_reader :value
-
-        private
-
-        def background
-          valid.key?(:background)
-        end
-
-        def colour
-          valid.key?(:colour)
-        end
-
-        def foreground
-          valid.key?(:foreground)
-        end
-
-        def valid
-          value.keep_if { |k, v| valid_keys.include?(k) && present?(v) }
-        end
-
-        def valid_attributes
-          [:background, :colour, :foreground]
-        end
-
-        def valid_colour_attributes
-          [:background, :foreground]
-        end
-
-      end # ColourAttributes
-
     end # Colour
 
   end # Coercers
