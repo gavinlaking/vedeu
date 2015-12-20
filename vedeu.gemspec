@@ -26,7 +26,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'minitest',           '5.8.3'
   spec.add_development_dependency 'minitest-reporters', '1.1.7'
   spec.add_development_dependency 'mocha',              '1.1.0'
-  spec.add_development_dependency 'pry',                '0.10.3'
   spec.add_development_dependency 'rubocop',            '0.35.1'
   spec.add_development_dependency 'simplecov',          '0.11.1'
   spec.add_development_dependency 'simplecov-console',  '0.2.0'
@@ -34,6 +33,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'benchmark-ips', '2.3.0'
   spec.add_dependency 'bundler',       '~> 1.10'
+  spec.add_dependency 'pry',           '0.10.3'
   spec.add_dependency 'rake',          '~> 10.4'
   spec.add_dependency 'ruby-prof',     '0.15.9'
   spec.add_dependency 'thor',          '0.19.1'

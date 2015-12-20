@@ -245,6 +245,10 @@ Repository method. Access registered cursors.
 
     Vedeu.cursors.all # [Array<Vedeu::Cursors::Cursor>]
 
+### Vedeu.debug
+
+@todo Add more documentation.
+
 ### Vedeu.direct_write
 
 @todo Add more documentation.
