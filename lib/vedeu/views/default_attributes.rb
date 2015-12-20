@@ -30,14 +30,13 @@ module Vedeu
       def attributes
         {
           align:    align,
-          # client:   client,
-          # colour:   colour,
-          # name:     name,
+          client:   client,
+          colour:   colour,
+          name:     name,
           pad:      pad,
-          # parent:   parent,
-          # style:    style,
+          parent:   parent,
+          style:    style,
           truncate: truncate,
-          # value:    value,
           width:    width,
           wordwrap: wordwrap,
         }

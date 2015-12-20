@@ -8,6 +8,15 @@ module Vedeu
 
       include Vedeu::Views::DefaultAttributes
 
+      def nil_for_testing_purposes
+        nil
+      end
+      alias_method :client, :nil_for_testing_purposes
+      alias_method :colour, :nil_for_testing_purposes
+      alias_method :name, :nil_for_testing_purposes
+      alias_method :parent, :nil_for_testing_purposes
+      alias_method :style, :nil_for_testing_purposes
+
     end # DefaultAttributesTest
 
     describe DefaultAttributes do
@@ -28,7 +37,6 @@ module Vedeu
         # it { including_instance.must_respond_to(:parent) }
         # it { including_instance.must_respond_to(:style) }
         it { including_instance.must_respond_to(:truncate) }
-        # it { including_instance.must_respond_to(:value) }
         it { including_instance.must_respond_to(:width) }
         it { including_instance.must_respond_to(:wordwrap) }
       end
@@ -37,14 +45,13 @@ module Vedeu
         let(:expected) {
           {
             align:    Vedeu::Coercers::Alignment.new,
-            # client:   nil,
-            # colour:   nil,
-            # name:     nil,
+            client:   nil,
+            colour:   nil,
+            name:     nil,
             pad:      ' ',
-            # parent:   nil,
-            # style:    nil,
+            parent:   nil,
+            style:    nil,
             truncate: false,
-            # value:    '',
             width:    nil,
             wordwrap: false,
           }
