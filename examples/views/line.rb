@@ -125,6 +125,7 @@ class DSLApp
 
   Vedeu.render do
     view(:test1_interface) do
+      background '#440000'
       line 'view->line', { foreground: '#ff0000' }
     end
 
@@ -165,27 +166,41 @@ class DSLApp
 
     view(:help4_interface) do
       line do
+        foreground '#ff0000'
         text 'Line `block` syntax.'
       end
       line do
-        text 'A single `text` is just a'
+        background '#ffff00'
+        foreground '#000000'
+        text 'A single '
+        text '`text` ', { background: '#000000', foreground: '#ffff00' }
+        text 'is just a'
       end
       line do
+        colour background: '#ff0000'
         text 'stream within a line, whilst'
       end
       line do
-        text 'multiple `text`s '
-        text 'are treated'
+        colour foreground: '#006600'
+        text 'multiple '
+        text '`text`', { foreground: '#ff0000' }
+        text 's are treated'
       end
       line do
+        colour background: '#000066', foreground: '#ff9999'
         text 'as separate streams.'
+      end
+      line do
+        foreground '#ff0000'
+        text 'Line `block` syntax.', { background: '#00ff00' }
       end
     end
 
     view(:test5_interface) do
       lines do
+        background '#000066'
         line 'view->lines->line 1', { foreground: '#00ff00' }
-        line 'view->lines->line 2', { foreground: '#007fff' }
+        line 'view->lines->line 2', { background: '#000000', foreground: '#007fff' }
         line 'view->lines->line 3', { foreground: '#55aa00' }
       end
     end

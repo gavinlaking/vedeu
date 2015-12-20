@@ -272,8 +272,8 @@ module Vedeu
       def not_implemented
         fail Vedeu::Error::NotImplemented, 'Subclasses implement this.'.freeze
       end
-      alias_method :named_codes,     :not_implemented
-      alias_method :repository,      :not_implemented
+      alias_method :named_codes, :not_implemented
+      alias_method :repository,  :not_implemented
 
     end # Translator
 
