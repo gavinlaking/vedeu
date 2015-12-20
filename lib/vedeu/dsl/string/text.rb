@@ -43,9 +43,9 @@ module Vedeu
         Vedeu::DSL::Align.new(value, options).text
       end
 
+      # @return [NilClass|Vedeu::Coercers::Alignment]
       def align?
-        options[:align] &&
-        [:center, :centre, :left, :right].include?(options[:align])
+        options[:align]
       end
 
       # @param char [String]
@@ -95,6 +95,7 @@ module Vedeu
         Vedeu::DSL::Truncate.new(value, options).text
       end
 
+      # @return [Boolean|NilClass]
       def truncate?
         options[:truncate]
       end
