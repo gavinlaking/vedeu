@@ -183,32 +183,32 @@ module Vedeu
           it { subject.must_equal(expected) }
         end
 
-        context 'with a style directive' do
-          let(:content) { "This is a <%= style(:bold) { 'test' } %>." }
-          let(:style) {
-            Vedeu::Presentation::Style.new(:bold)
-          }
+        # context 'with a style directive' do
+        #   let(:content) { "This is a <%= style(:bold) { 'test' } %>." }
+        #   let(:style) {
+        #     Vedeu::Presentation::Style.new(:bold)
+        #   }
 
-          let(:expected) {
-            Vedeu::Views::Lines.new([
-              Vedeu::Views::Line.new(value: [
-                Vedeu::Views::Stream.new(colour: {
-                                           background: :default,
-                                           foreground: :default },
-                                         style: :normal,
-                                         value: 'This is a '),
-                Vedeu::Views::Stream.new(value: 'test', style: style),
-                Vedeu::Views::Stream.new(colour: {
-                                           background: :default,
-                                           foreground: :default },
-                                         style: :normal,
-                                         value: '.'),
-              ])
-            ])
-          }
+        #   let(:expected) {
+        #     Vedeu::Views::Lines.new([
+        #       Vedeu::Views::Line.new(value: [
+        #         Vedeu::Views::Stream.new(colour: {
+        #                                    background: :default,
+        #                                    foreground: :default },
+        #                                  style: :normal,
+        #                                  value: 'This is a '),
+        #         Vedeu::Views::Stream.new(value: 'test', style: style),
+        #         Vedeu::Views::Stream.new(colour: {
+        #                                    background: :default,
+        #                                    foreground: :default },
+        #                                  style: :normal,
+        #                                  value: '.'),
+        #       ])
+        #     ])
+        #   }
 
-          it { subject.must_equal(expected) }
-        end
+        #   it { subject.must_equal(expected) }
+        # end
       end
 
       describe '#parse' do
