@@ -102,6 +102,48 @@ class DSLApp
     end
   end
 
+  Vedeu.interface :test5_interface do
+    border do
+      title 'Test 5'
+    end
+    geometry do
+      x  use(:help1_interface).x
+      y  use(:help3_interface).south
+      xn use(:help1_interface).xn
+      yn use(:help3_interface).south(5)
+    end
+  end
+
+  Vedeu.interface :help5_interface do
+    geometry do
+      x  use(:test5_interface).x
+      y  use(:test5_interface).south
+      xn use(:test5_interface).xn
+      yn use(:test5_interface).south(5)
+    end
+  end
+
+  Vedeu.interface :test6_interface do
+    border do
+      title 'Test 6'
+    end
+    geometry do
+      x  use(:help4_interface).x
+      y  use(:help4_interface).south
+      xn use(:help4_interface).xn
+      yn use(:help4_interface).south(5)
+    end
+  end
+
+  Vedeu.interface :help6_interface do
+    geometry do
+      x  use(:test6_interface).x
+      y  use(:test6_interface).south
+      xn use(:test6_interface).xn
+      yn use(:test6_interface).south(5)
+    end
+  end
+
   Vedeu.render do
     view(:test1_interface) do
       line 'view->line (align: :left)',   { align: :left }
@@ -137,7 +179,7 @@ class DSLApp
 
     view(:help3_interface) do
       lines do
-        left 'view->lines->left'
+        ''
       end
     end
 
@@ -149,8 +191,26 @@ class DSLApp
 
     view(:help4_interface) do
       lines do
-        right 'view->lines->right'
+        ''
       end
+    end
+
+    view(:test5_interface) do
+      lines do
+        centre 'view->lines->centre'
+      end
+    end
+
+    view(:help5_interface) do
+      lines do
+        ''
+      end
+    end
+
+    view(:test6_interface) do
+    end
+
+    view(:help6_interface) do
     end
   end
 
