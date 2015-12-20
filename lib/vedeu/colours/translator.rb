@@ -176,9 +176,7 @@ module Vedeu
       #
       # @return [Boolean]
       def rgb?
-        return true if colour =~ /^#([A-Fa-f0-9]{6})$/.freeze
-
-        false
+        @_result ||= Vedeu::Colours::Validator.valid?(colour)
       end
 
       # Returns an escape sequence.
