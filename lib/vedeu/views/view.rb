@@ -12,7 +12,11 @@ module Vedeu
       class DSL
 
         include Vedeu::DSL
+        include Vedeu::DSL::Border
+        include Vedeu::DSL::Cursors
         include Vedeu::DSL::Elements
+        include Vedeu::DSL::Geometry
+        include Vedeu::DSL::Use
 
       end # DSL
 
