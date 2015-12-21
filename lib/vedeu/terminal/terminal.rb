@@ -35,7 +35,12 @@ module Vedeu
     # @param streams [String|Array]
     # @return [Array]
     def output(*streams)
-      streams.each { |stream| console.print(stream) }
+      streams.each do |stream|
+        Vedeu.log(type:    :output,
+                  message: "Writing to terminal #{stream.size} bytes".freeze)
+
+        console.print(stream)
+      end
     end
     alias_method :write, :output
 
