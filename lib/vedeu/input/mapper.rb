@@ -78,7 +78,7 @@ module Vedeu
 
         return true if global_key? && keymap('_global_').use(key)
 
-        Vedeu.log(type: :input, message: "Key detected: #{key.inspect}".freeze)
+        Vedeu.log(type: :input, message: log_message(key))
 
         false
       end
@@ -136,6 +136,18 @@ module Vedeu
       # @return [Boolean]
       def keymap?(named = name)
         repository.registered?(named)
+      end
+
+      # @param key [NilClass|String|Symbol|Vedeu::Cursors::Cursor]
+      # @return [String]
+      def log_message(key)
+        if key.is_a?(Vedeu::Cursors::Cursor)
+          "Click detected: x: #{key.x} y: #{key.y}".freeze
+
+        else
+          "Key detected: #{key.inspect}".freeze
+
+        end
       end
 
       # With a name, we check the keymap with that name, otherwise we
