@@ -170,9 +170,10 @@ module Vedeu
             compress: [:white, :light_grey],
 
             input:    [:light_yellow, :yellow],
+            output:   [:light_yellow, :yellow],
 
             cursor:   [:light_green, :green],
-            output:   [:light_green, :green],
+            buffer:   [:light_green, :green],
             render:   [:light_green, :green],
 
             error:    [:light_red, :red],
