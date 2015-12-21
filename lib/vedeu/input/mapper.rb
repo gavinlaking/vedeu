@@ -23,13 +23,18 @@ module Vedeu
           new(key, name).keypress
         end
 
+        # @param key [String|Symbol] The keypress.
+        # @param name [String|Symbol] The keymap name.
+        # @raise [Vedeu::Error::MissingRequired] When the key or name
+        #   params are missing.
+        # @return [Boolean]
         def registered?(key = nil, name = nil)
           fail Vedeu::Error::MissingRequired,
                'Cannot check whether a key is registered to a keymap without ' \
-               'the key.' if absent?(key)
+               'the key.'.freeze if absent?(key)
           fail Vedeu::Error::MissingRequired,
                'Cannot check whether a key is registered to a keymap without ' \
-               'the keymap name.' if absent?(name)
+               'the keymap name.'.freeze if absent?(name)
 
           new(key, name).registered?
         end
@@ -100,7 +105,7 @@ module Vedeu
       protected
 
       # @!attribute [r] key
-      # @return [String|Symbol]
+      # @return [NilClass|String|Symbol|Vedeu::Cursors::Cursor]
       attr_reader :key
 
       # @!attribute [r] repository
