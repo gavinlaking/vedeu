@@ -12,7 +12,15 @@ module Vedeu
 
       # @return [Vedeu::Colours::Colour]
       def colour
-        @_colour ||= if @colour
+        @_colour ||= if @colour.is_a?(Hash)
+                       if @colour.empty?
+                         Vedeu.interfaces.by_name(name).colour if name
+
+                       else
+                         Vedeu::Colours::Colour.coerce(@colour)
+
+                       end
+                     elsif @colour
                        Vedeu::Colours::Colour.coerce(@colour)
 
                      elsif self.is_a?(Vedeu::Views::Char) && name
