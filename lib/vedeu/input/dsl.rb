@@ -45,6 +45,16 @@ module Vedeu
       #     end
       #   end
       #
+      # @note
+      #   If a keymap with this name does not already exist,
+      #   pre-register it, otherwise we have no way of knowing if a
+      #   key defined in the DSL for this keymap has already been
+      #   registered. This protects the client application from
+      #   attempting to define the same key more than once for the
+      #   same keymap.
+      #
+      #   This is also used when defining the '_global_' keymap.
+      #
       # @param name [String|Symbol] The name of the interface which
       #   this keymap relates to.
       # @param block [Proc]
@@ -52,13 +62,13 @@ module Vedeu
       #   Vedeu::Error::RequiresBlock] When a name or block
       #   respectively are not given.
       # @return [Vedeu::Input::Keymap]
-      # @todo Try to remember why we need to pre-create the keymap in
-      #   the repository.
       def self.keymap(name, &block)
         fail Vedeu::Error::MissingRequired unless name
         fail Vedeu::Error::RequiresBlock unless block_given?
 
-        Vedeu::Input::Keymap.new(name: name).store
+        unless Vedeu.keymaps.registered?(name)
+          Vedeu::Input::Keymap.new(name: name).store
+        end
 
         Vedeu::Input::Keymap.build(name: name, &block).store
       end

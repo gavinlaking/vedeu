@@ -78,8 +78,6 @@ module Vedeu
 
         Vedeu.log(type: :input, message: "Key pressed: '#{input}'".freeze)
 
-        Vedeu.trigger(:key, input)
-
         keys.select { |key| key.input == input }.map(&:press)
       end
 

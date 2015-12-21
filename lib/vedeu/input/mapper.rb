@@ -20,10 +20,6 @@ module Vedeu
         # @param (see #initialize)
         # @return [Boolean]
         def keypress(key = nil, name = nil)
-          Vedeu.trigger(:key, key)
-
-          return false unless key
-
           new(key, name).keypress
         end
 
@@ -69,6 +65,8 @@ module Vedeu
       #
       # @return [Boolean]
       def keypress
+        Vedeu.trigger(:key, key)
+
         return false unless key
 
         return true if key_defined? && keymap.use(key)
@@ -158,8 +156,6 @@ module Vedeu
   # See {file:docs/events/system.md#\_keypress_}
   Vedeu.bind(:_keypress_) do |key, name|
     Vedeu.timer('Executing keypress') do
-      Vedeu.trigger(:key, key)
-
       Vedeu.add_keypress(key)
 
       Vedeu.keypress(key, name)
@@ -170,10 +166,12 @@ module Vedeu
   Vedeu.bind(:_drb_input_) do |data, type|
     Vedeu.log(type: :drb, message: "Sending input (#{type})".freeze)
 
-    case type
-    when :command  then Vedeu.trigger(:_command_, data)
-    when :keypress then Vedeu.trigger(:_keypress_, data)
-    else Vedeu.trigger(:_keypress_, data)
+    if type == :command
+      Vedeu.trigger(:_command_, data)
+
+    else
+      Vedeu.trigger(:_keypress_, data)
+
     end
   end
 

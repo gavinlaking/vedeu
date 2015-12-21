@@ -22,9 +22,10 @@ module Vedeu
       # Returns a boolean indicating whether the collection is not
       # empty.
       #
+      # @param block [Proc]
       # @return [Boolean]
-      def any?
-        collection.any?
+      def any?(&block)
+        collection.any?(&block)
       end
 
       # Provides iteration over the collection.

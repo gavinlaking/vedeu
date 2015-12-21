@@ -49,6 +49,7 @@ module Vedeu
           add_cursor!(name)
           add_editor!(name) if interface.editable?
           add_focusable!(name)
+          add_keymap!(name)
 
           interface
         end
@@ -89,6 +90,15 @@ module Vedeu
         # @return [void]
         def add_focusable!(name)
           Vedeu::Models::Focus.add(name)
+        end
+
+        # Registers a new keymap for the interface unless already
+        # registered.
+        #
+        # @param name [String|Symbol]
+        # @return [Vedeu::Input::Keymap]
+        def add_keymap!(name)
+          Vedeu::Input::Keymap.store(name: name)
         end
 
         # Returns the client object which called the DSL method.

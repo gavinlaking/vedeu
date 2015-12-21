@@ -54,7 +54,10 @@ module Vedeu
         elsif fake_mode?
           @key ||= keypress
 
-          if click?(@key)
+          if @key.nil?
+            nil
+
+          elsif click?(@key)
             Vedeu.trigger(:_mouse_event_, @key)
 
           elsif Vedeu::Input::Mapper.registered?(@key, name)
@@ -62,9 +65,6 @@ module Vedeu
 
           elsif interface.editable?
             Vedeu.trigger(:_editor_, @key)
-
-          elsif @key.nil?
-            nil
 
           else
             Vedeu.trigger(:key, @key)
@@ -93,9 +93,13 @@ module Vedeu
       def input
         keys = Vedeu::Input::Raw.read
 
-        return Vedeu::Input::Mouse.click(keys) if click?(keys)
+        if click?(keys)
+          Vedeu::Input::Mouse.click(keys)
 
-        keys
+        else
+          keys
+
+        end
       end
 
       # @return [Vedeu::Interfaces::Interface]
@@ -106,12 +110,12 @@ module Vedeu
       # Returns a boolean indicating whether a mouse click was
       # received.
       #
-      # @param input [NilClass|String|Symbol|Vedeu::Cursors::Cursor]
+      # @param keys [NilClass|String|Symbol|Vedeu::Cursors::Cursor]
       # @return [Boolean]
-      def click?(input)
-        return false if input.nil? || input.is_a?(Symbol)
+      def click?(keys)
+        return false if keys.nil? || keys.is_a?(Symbol)
 
-        input.is_a?(Vedeu::Cursors::Cursor) || input.start_with?("\e[M".freeze)
+        keys.is_a?(Vedeu::Cursors::Cursor) || keys.start_with?("\e[M".freeze)
       end
 
       # @return [IO]
