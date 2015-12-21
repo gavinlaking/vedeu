@@ -39,7 +39,7 @@ module Vedeu
 
           Vedeu.log(type:    :debug,
                     message: "DSL building: '#{model.class.name}' for " \
-                             "'#{model.name}'")
+                             "'#{model.name}'".freeze)
 
           model.deputy.instance_eval(&block) if block_given?
 
@@ -74,7 +74,7 @@ module Vedeu
         def defaults
           {
             client: nil,
-            name:   '',
+            name:   ''.freeze,
           }
         end
 

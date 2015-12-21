@@ -11,7 +11,7 @@ module Vedeu
       # @return [Hash]
       def self.build(context = nil,
                      model   = nil,
-                     value   = '',
+                     value   = ''.freeze,
                      options = {},
                      &block)
         new(context, model, value, options, &block).attributes
@@ -39,12 +39,12 @@ module Vedeu
       # @return [Vedeu::DSL::Attributes]
       def initialize(context = nil,
                      model   = nil,
-                     value   = '',
+                     value   = ''.freeze,
                      options = {},
                      &block)
         @context = context
         @model   = model
-        @value   = value   || ''
+        @value   = value   || ''.freeze
         @options = options || {}
         @block   = block
       end
@@ -115,7 +115,7 @@ module Vedeu
           client:     nil,
           colour:     nil,
           name:       nil,
-          pad:        ' ',
+          pad:        ' '.freeze,
           style:      nil,
           truncate:   false,
           width:      nil,
@@ -142,7 +142,7 @@ module Vedeu
 
       # @return [String]
       def pad
-        options[:pad].to_s[0] || ' '
+        options[:pad].to_s[0] || ' '.freeze
       end
 
       # @return [NilClass|Vedeu::Presentation::Style]

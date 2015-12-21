@@ -36,7 +36,7 @@ module Vedeu
       def clear
         @output = Vedeu::Cells::Escape.new
 
-        ''
+        ''.freeze
       end
 
       # @param output [Vedeu::Models::Page]
@@ -49,14 +49,14 @@ module Vedeu
 
       # @return [String]
       def html_body
-        return '' if output.is_a?(Vedeu::Cells::Escape)
+        return ''.freeze if output.is_a?(Vedeu::Cells::Escape)
 
         out = ''
 
         output.each do |line|
-          out << "#{start_row_tag}\n"
+          out << "#{start_row_tag}\n".freeze
           line.each { |char| out << char.to_html(options) }
-          out << "#{end_row_tag}\n"
+          out << "#{end_row_tag}\n".freeze
         end
 
         out.freeze
@@ -108,12 +108,12 @@ module Vedeu
       # @return [Hash<Symbol => void>]
       def defaults
         {
-          content:       '',
-          end_tag:       '</td>',
-          end_row_tag:   '</tr>',
-          filename:      'out',
-          start_tag:     '<td',
-          start_row_tag: '<tr>',
+          content:       ''.freeze,
+          end_tag:       '</td>'.freeze,
+          end_row_tag:   '</tr>'.freeze,
+          filename:      'out'.freeze,
+          start_tag:     '<td'.freeze,
+          start_row_tag: '<tr>'.freeze,
           template:      default_template,
           timestamp:     false,
           write_file:    true,
@@ -122,7 +122,7 @@ module Vedeu
 
       # @return [String]
       def default_template
-        ::File.dirname(__FILE__) + '/../templates/html_renderer.vedeu'
+        ::File.dirname(__FILE__) + '/../templates/html_renderer.vedeu'.freeze
       end
 
     end # HTML

@@ -90,7 +90,7 @@ module Vedeu
       # @return [Hash<Symbol => Array|String|Vedeu::Input::Repository]
       def defaults
         {
-          name:       '',
+          name:       ''.freeze,
           keys:       [],
           repository: Vedeu.keymaps,
         }

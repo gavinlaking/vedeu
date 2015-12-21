@@ -176,7 +176,7 @@ module Vedeu
         {
           back:       nil,
           front:      nil,
-          name:       '',
+          name:       ''.freeze,
           previous:   nil,
           repository: Vedeu.buffers,
         }

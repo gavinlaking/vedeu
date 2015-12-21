@@ -111,7 +111,7 @@ module Vedeu
 
         else
           fail Vedeu::Error::Fatal,
-               "Cannot add line to '#{model.class.name}' model."
+               "Cannot add line to '#{model.class.name}' model.".freeze
 
         end
       end
@@ -187,7 +187,7 @@ module Vedeu
 
         else
           fail Vedeu::Error::Fatal,
-               "Cannot add line to '#{model.class.name}' model."
+               "Cannot add line to '#{model.class.name}' model.".freeze
 
         end
       end
@@ -270,7 +270,7 @@ module Vedeu
 
         else
           fail Vedeu::Error::Fatal,
-               "Cannot add text to '#{model.class.name}' model."
+               "Cannot add text to '#{model.class.name}' model.".freeze
 
         end
       end
@@ -302,7 +302,7 @@ module Vedeu
       # @return [NilClass]
       def requires_model!
         fail Vedeu::Error::Fatal,
-             'No model, cannot continue.' unless present?(model)
+             'No model, cannot continue.'.freeze unless present?(model)
       end
 
       # @param callee [Symbol]

@@ -67,7 +67,7 @@ module Vedeu
       #
       # @return [String]
       def value
-        @value || ''
+        @value || ''.freeze
       end
       alias_method :title, :value
       alias_method :caption, :value

@@ -53,11 +53,11 @@ module Vedeu
           client:   nil,
           colour:   nil,
           name:     nil,
-          pad:      ' ',
+          pad:      ' '.freeze,
           parent:   nil,
           style:    nil,
           truncate: false,
-          value:    '',
+          value:    ''.freeze,
           width:    nil,
           wordwrap: false,
         }

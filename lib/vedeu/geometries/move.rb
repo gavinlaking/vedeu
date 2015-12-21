@@ -64,7 +64,7 @@ module Vedeu
       def defaults
         {
           direction: :none,
-          name:      '',
+          name:      ''.freeze,
           offset:    1,
         }
       end

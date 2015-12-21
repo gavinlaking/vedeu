@@ -60,7 +60,7 @@ module Vedeu
       # @param _options [Hash] Ignored.
       # @return [String]
       def to_html(_options = {})
-        ''
+        ''.freeze
       end
 
       # @return [String]
@@ -75,10 +75,10 @@ module Vedeu
       def defaults
         {
           colour:   {},
-          name:     '',
+          name:     ''.freeze,
           position: nil,
-          style:    '',
-          value:    '',
+          style:    ''.freeze,
+          value:    ''.freeze,
         }
       end
 

@@ -44,7 +44,7 @@ module Vedeu
       # @return [Hash<Symbol => Array<void>>]
       def in_memory
         {
-          compressed: '',
+          compressed: ''.freeze,
           original:   [],
         }
       end

@@ -143,7 +143,7 @@ module Vedeu
           client:         nil,
           colour:         Vedeu::Configuration.colour,
           cursor_visible: true,
-          name:           '',
+          name:           ''.freeze,
           parent:         nil,
           style:          :normal,
           value:          [],

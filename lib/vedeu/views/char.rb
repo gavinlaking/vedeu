@@ -106,9 +106,11 @@ module Vedeu
       # @return [String]
       def text
         if border
-          ' '
+          ' '.freeze
+
         else
           @value
+
         end
       end
 
@@ -158,7 +160,7 @@ module Vedeu
           parent:   nil,
           position: nil,
           style:    nil,
-          value:    '',
+          value:    ''.freeze,
         }
       end
 

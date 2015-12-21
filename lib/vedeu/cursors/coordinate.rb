@@ -164,7 +164,7 @@ module Vedeu
       # @return [Hash<Symbol => Fixnum|String|Symbol>]
       def defaults
         {
-          name:   '',
+          name:   ''.freeze,
           offset: nil,
           type:   :x,
         }
