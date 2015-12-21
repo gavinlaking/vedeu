@@ -8,7 +8,6 @@ module Vedeu
 
 end # Vedeu
 
-require 'vedeu/dsl/view_options'
 require 'vedeu/dsl/string/all'
 require 'vedeu/dsl/border'
 require 'vedeu/dsl/cursors'

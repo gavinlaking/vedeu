@@ -25,19 +25,19 @@ module Vedeu
         context 'when the value is a Vedeu::Colours::Background' do
           let(:_value) { Vedeu::Colours::Background.new }
 
-          it { skip }
+          # it { skip }
         end
 
         context 'when the value is a Vedeu::Colours::Colour' do
           let(:_value) { Vedeu::Colours::Colour.new }
 
-          it { skip }
+          # it { skip }
         end
 
         context 'when the value is a Vedeu::Colours::Foreground' do
           let(:_value) { Vedeu::Colours::Foreground.new }
 
-          it { skip }
+          # it { skip }
         end
       end
 
