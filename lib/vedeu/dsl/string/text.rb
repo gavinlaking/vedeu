@@ -12,7 +12,7 @@ module Vedeu
       include Vedeu::Common
 
       # @param value [String]
-      # @param options [Vedeu::DSL::ViewOptions]
+      # @param options [Vedeu::DSL::Attributes]
       # @return [Vedeu::DSL::Text]
       def initialize(value = '', options = {})
         @value   = value   || ''
