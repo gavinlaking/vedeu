@@ -173,7 +173,8 @@ class DSLApp
 
     view(:test3_interface) do
       lines do
-        left 'view->lines->left'
+        left 'view->lines->left 1', { foreground: '#ff0000' }
+        left 'view->lines->left 2', { background: '#ff0000', foreground: '#000000' }
       end
     end
 
@@ -185,7 +186,8 @@ class DSLApp
 
     view(:test4_interface) do
       lines do
-        right 'view->lines->right'
+        right 'view->lines->right 1', { foreground: '#00ff00' }
+        right 'view->lines->right 2', { background: '#00ff00', foreground: '#000000' }
       end
     end
 
@@ -197,7 +199,8 @@ class DSLApp
 
     view(:test5_interface) do
       lines do
-        centre 'view->lines->centre'
+        centre 'view->lines->centre 1', { foreground: '#0044ff' }
+        centre 'view->lines->centre 2', { background: '#0044ff', foreground: '#000000' }
       end
     end
 
