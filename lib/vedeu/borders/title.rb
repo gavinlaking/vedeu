@@ -169,7 +169,7 @@ module Vedeu
       #
       # @return [String]
       def truncate
-        @_truncate ||= value.chomp.slice(0...(width - 4))
+        value.chomp.slice(0...(width - 4))
       end
 
       # Return the size of the horizontal border given.
