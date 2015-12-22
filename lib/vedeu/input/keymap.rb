@@ -72,7 +72,7 @@ module Vedeu
       # method triggers the action associated with the key.
       #
       # @param input [String|Symbol]
-      # @return [Array|FalseClass]
+      # @return [Array|Boolean]
       def use(input)
         return false unless key_defined?(input)
 

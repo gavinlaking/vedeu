@@ -2,11 +2,17 @@ module Vedeu
 
   module Coercers
 
+    # Converts a given value into a {Vedeu::Colours::Colour} if
+    # possible.
+    #
+    # @api private
+    #
     class Colour
 
       include Vedeu::Common
 
-      # @param value [void]
+      # @param (see #initialize)
+      # @return (see #coerce)
       def self.coerce(value)
         new(value).coerce
       end
@@ -17,6 +23,7 @@ module Vedeu
         @value = value
       end
 
+      # @raise [Vedeu::Error::Fatal] When the value cannot be coerced.
       # @return [void]
       def coerce
         if absent?(value)

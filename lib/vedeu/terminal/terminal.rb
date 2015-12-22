@@ -52,7 +52,7 @@ module Vedeu
     # @example
     #   Vedeu.resize
     #
-    # @return [TrueClass]
+    # @return [Boolean]
     def resize
       Vedeu.trigger(:_clear_)
 

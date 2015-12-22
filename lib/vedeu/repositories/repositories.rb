@@ -38,7 +38,7 @@ module Vedeu
 
     # Remove all stored models from the repository.
     #
-    # @return [TrueClass]
+    # @return [Boolean]
     def reset!
       all.map { |repository| repository.send(:reset) }
 

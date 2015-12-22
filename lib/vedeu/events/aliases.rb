@@ -58,7 +58,7 @@ module Vedeu
       #   Vedeu.unbind_alias(alias_name)
       #
       # @param alias_name [Symbol] The name of the alias.
-      # @return [FalseClass|Hash<Symbol => Array<Symbol>>]
+      # @return [Boolean|Hash<Symbol => Array<Symbol>>]
       def unbind_alias(alias_name)
         return false if empty?
         return false unless registered?(alias_name)
@@ -83,7 +83,7 @@ module Vedeu
 
       # @param alias_name [Symbol]
       # @param args [void]
-      # @return [FalseClass|Array<void>|void]
+      # @return [Boolean|Array<void>|void]
       def trigger(alias_name, *args)
         return [] unless registered?(alias_name)
 

@@ -15,7 +15,7 @@ module Vedeu
 
     # Set the visible state to false and store the model.
     #
-    # @return [FalseClass]
+    # @return [Boolean]
     def hide
       @visible = false
 
@@ -24,7 +24,7 @@ module Vedeu
 
     # Set the visible state to true and store the model.
     #
-    # @return [TrueClass]
+    # @return [Boolean]
     def show
       @visible = true
 
@@ -34,7 +34,7 @@ module Vedeu
     # Toggle the visible state and store the model. When the model is
     # hidden, then it is shown, and vice versa.
     #
-    # @return [FalseClass|TrueClass]
+    # @return [Boolean]
     def toggle
       return hide if visible?
 

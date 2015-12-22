@@ -22,7 +22,7 @@ module Vedeu
         # @param type [Symbol] Colour code messages in the log file
         #   depending on their source. See {message_types}
         #
-        # @return [TrueClass]
+        # @return [String]
         def log(message:, force: false, type: :info)
           output = log_entry(type, message)
 
@@ -38,7 +38,7 @@ module Vedeu
         # @example
         #   Vedeu.log_stdout
         #
-        # @return [TrueClass]
+        # @return [String]
         def log_stdout(type: :info, message:)
           $stdout.puts log_entry(type, message)
         end
@@ -48,7 +48,7 @@ module Vedeu
         # @example
         #   Vedeu.log_stderr
         #
-        # @return [TrueClass]
+        # @return [String]
         def log_stderr(type: :info, message:)
           $stderr.puts log_entry(type, message)
         end
@@ -73,7 +73,7 @@ module Vedeu
 
         private
 
-        # @return [TrueClass]
+        # @return [Boolean]
         def logger
           MonoLogger.new(log_file).tap do |log|
             log.formatter = proc do |_, _, _, message|

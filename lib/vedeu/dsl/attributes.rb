@@ -8,7 +8,8 @@ module Vedeu
 
       include Vedeu::Common
 
-      # @return [Hash]
+      # @param (see #initialize)
+      # @return (see #attributes)
       def self.build(context = nil,
                      model   = nil,
                      value   = ''.freeze,

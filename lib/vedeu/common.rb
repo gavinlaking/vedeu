@@ -36,7 +36,7 @@ module Vedeu
 
     # Returns a boolean indicating whether the value is a Boolean.
     #
-    # @param value [FalseClass|TrueClass]
+    # @param value [Boolean]
     # @return [Boolean]
     def boolean?(value)
       value.is_a?(TrueClass) || value.is_a?(FalseClass)

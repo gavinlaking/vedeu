@@ -82,7 +82,7 @@ module Vedeu
         #     # ... some code here ...
         #   end
         #
-        # @return [TrueClass]
+        # @return [Boolean]
         def bind(name, options = {}, &block)
           Vedeu.log(type: :event, message: "Binding: '#{name.inspect}'".freeze)
 

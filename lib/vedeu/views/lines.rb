@@ -8,7 +8,7 @@ module Vedeu
     #
     class Lines < Vedeu::Repositories::Collection
 
-      # @param See Vedeu::Repositories::Collection#initialize
+      # @param (see Vedeu::Repositories::Collection#initialize)
       # @raise [Vedeu::Error::InvalidSyntax] When the collection
       #   cannot be coerced since it is unrecognised or unsupported.
       # @return [Vedeu::Views::Lines]

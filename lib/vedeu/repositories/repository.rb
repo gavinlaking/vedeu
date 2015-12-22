@@ -143,7 +143,7 @@ module Vedeu
       # when the model does not exist.
       #
       # @param name [String|Symbol]
-      # @return [Hash|FalseClass]
+      # @return [Hash|Boolean]
       def remove(name)
         return false if empty?
         return false unless registered?(name)

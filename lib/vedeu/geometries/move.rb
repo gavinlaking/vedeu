@@ -27,13 +27,13 @@ module Vedeu
                      :y,
                      :yn
 
-      # @param attributes See #initialize
-      # @return See #move
+      # @param (see #initialize)
+      # @return (see #move)
       def self.move(attributes = {})
         new(attributes).move
       end
 
-      # @return [FalseClass|Vedeu::Geometries::Geometry]
+      # @return [Boolean|Vedeu::Geometries::Geometry]
       def move
         return false unless valid?
 
