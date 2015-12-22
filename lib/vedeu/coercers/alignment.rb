@@ -13,41 +13,53 @@ module Vedeu
     #
     class Alignment
 
-      # @param value [NilClass|Symbol|Vedeu::Coercers::Alignment]
+      include Vedeu::Common
+
+      # @!attribute [r] value
+      # @return [Symbol]
+      attr_reader :value
+
+      # @param value [Symbol|Vedeu::Coercers::Alignment]
       # @return [Vedeu::Coercers::Alignment]
-      def self.coerce(value = nil)
-        if value.is_a?(self)
-          value
+      def self.coerce(value = :none)
+        return value if value.is_a?(self)
 
-        elsif value.is_a?(Symbol)
-          new(value)
-
-        else
-          new(:none)
-
-        end
+        new(value).coerce
       end
 
       # Returns a new instance of Vedeu::Coercers::Alignment.
       #
-      # @param value [NilClass|Symbol]
+      # @param value [Symbol]
       # @return [Vedeu::Coercers::Alignment]
       def initialize(value = :none)
-        @_value = value || :none
+        @value = value || :none
+      end
+
+      # @return [Symbol]
+      def coerce
+        if value == :center
+          @value = :centre
+
+        elsif invalid?
+          @value = :none
+
+        end
+
+        self
       end
 
       # Return a boolean indicating alignment was set to :bottom.
       #
       # @return [Boolean]
       def bottom_aligned?
-        _value == :bottom
+        value == :bottom
       end
 
       # Return a boolean indicating alignment was set to :centre.
       #
       # @return [Boolean]
       def centre_aligned?
-        _value == :centre
+        value == :centre
       end
 
       # An object is equal when its values are the same.
@@ -59,66 +71,54 @@ module Vedeu
       end
       alias_method :==, :eql?
 
+      # @return [Boolean]
+      def invalid?
+        !valid?
+      end
+
       # Return a boolean indicating alignment was set to :left.
       #
       # @return [Boolean]
       def left_aligned?
-        _value == :left
+        value == :left
       end
 
       # Return a boolean indicating alignment was set to :middle.
       #
       # @return [Boolean]
       def middle_aligned?
-        _value == :middle
+        value == :middle
       end
 
       # Return a boolean indicating alignment was set to :right.
       #
       # @return [Boolean]
       def right_aligned?
-        _value == :right
+        value == :right
       end
 
       # Return a boolean indicating alignment was set to :top.
       #
       # @return [Boolean]
       def top_aligned?
-        _value == :top
+        value == :top
       end
 
       # Return a boolean indicating alignment was set to, or is :none.
       #
       # @return [Boolean]
       def unaligned?
-        _value == :none
+        value == :none
       end
 
-      # @return [Symbol]
-      def value
-        _value
+      # Return a boolean indicating the value is a valid alignment.
+      #
+      # @return [Boolean]
+      def valid?
+        present?(value) && value.is_a?(Symbol) && values.include?(value)
       end
 
       private
-
-      # @return [Boolean]
-      def invalid?
-        @_value.nil? || !(@_value.is_a?(Symbol)) || !values.include?(@_value)
-      end
-
-      # @return [Symbol]
-      def _value
-        @value ||= if @_value == :center
-                     :centre
-
-                   elsif invalid?
-                     :none
-
-                   else
-                     @_value
-
-                   end
-      end
 
       # @return [Array<Symbol>]
       def values

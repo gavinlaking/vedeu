@@ -8,11 +8,20 @@ module Vedeu
 
       let(:described) { Vedeu::Coercers::Alignment }
       let(:instance)  { described.new(_value) }
-      let(:_value)    {}
+      let(:_value)    { :left }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
-        it { instance.instance_variable_get('@value').must_equal(_value) }
+
+        context 'when the value is not given' do
+          let(:_value) {}
+
+          it { instance.instance_variable_get('@value').must_equal(:none) }
+        end
+
+        context 'when the value is given' do
+          it { instance.instance_variable_get('@value').must_equal(_value) }
+        end
       end
 
       describe '.coerce' do
@@ -31,6 +40,8 @@ module Vedeu
         end
 
         context 'when the value is nil or something else' do
+          let(:_value) {}
+
           it { subject.must_be_instance_of(described) }
         end
       end
@@ -83,12 +94,12 @@ module Vedeu
         subject { instance.left_aligned? }
 
         context 'when the value is :left' do
-          let(:_value) { :left }
-
           it { subject.must_equal(true) }
         end
 
         context 'when the value is not :left' do
+          let(:_value) { :right }
+
           it { subject.must_equal(false) }
         end
       end
@@ -139,6 +150,8 @@ module Vedeu
         subject { instance.unaligned? }
 
         context 'when the value is :none' do
+          let(:_value) { :none }
+
           it { subject.must_equal(true) }
         end
 
@@ -152,7 +165,7 @@ module Vedeu
       describe '#value' do
         subject { instance.value }
 
-        it { subject.must_equal(:none) }
+        it { subject.must_equal(:left) }
       end
 
     end # Alignment

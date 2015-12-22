@@ -237,31 +237,25 @@ module Vedeu
       #
       # @param value [String|Object] A string or object that responds
       #   to `to_s`.
-      # @param options [Hash<Symbol => void>] Text options.
-      # @option options :align [Symbol] One of `:left`,
+      # @param opts [Hash<Symbol => void>] Text options.
+      # @option opts :align [Symbol] One of `:left`,
       #   `:centre`/`:center`, or `:right`.
-      # @option options :width [Integer|NilClass] The width of the
+      # @option opts :width [Integer|NilClass] The width of the
       #   text stream to add. If the `string` provided is longer than
       #   this value, the string will be truncated. If no width is
       #   provided in the context of 'lines', then the interface width
       #   is used. If no width is provided in the context of a
       #   'stream', then no alignment will occur.
-      # @option options :pad [String] The character to use to pad the
+      # @option opts :pad [String] The character to use to pad the
       #   width, by default uses an empty space (0x20). Only when the
       #   string is shorter than the specified width.
-      #
-      # @param value [String]
-      # @param opts [Hash]
-      # @option opts ... [void]
       # @raise [Vedeu::Error::Fatal]
       # @return [void]
       def text(value = '', opts = {})
         requires_model!
 
-        options = text_align(__callee__, opts)
-
         if view_model? || line_model?
-          attrs = Vedeu::DSL::Attributes.build(self, model, value, options)
+          attrs = Vedeu::DSL::Attributes.build(self, model, value, opts)
           s  = Vedeu::Views::Stream.new(attrs)
           ss = Vedeu::Views::Streams.coerce([s])
           l  = Vedeu::Views::Line.new(attrs.merge!(value: ss))
@@ -274,10 +268,31 @@ module Vedeu
 
         end
       end
-      alias_method :center, :text
-      alias_method :centre, :text
-      alias_method :left,   :text
-      alias_method :right,  :text
+
+      # @param (see #text)
+      # @return (see #text)
+      def centre(value = '', opts = {})
+        opts.merge!(align: :centre)
+
+        text(value, opts)
+      end
+      alias_method :center, :centre
+
+      # @param (see #text)
+      # @return (see #text)
+      def left(value = '', opts = {})
+        opts.merge!(align: :left)
+
+        text(value, opts)
+      end
+
+      # @param (see #text)
+      # @return (see #text)
+      def right(value = '', opts = {})
+        opts.merge!(align: :right)
+
+        text(value, opts)
+      end
 
       private
 
@@ -303,20 +318,6 @@ module Vedeu
       def requires_model!
         fail Vedeu::Error::Fatal,
              'No model, cannot continue.'.freeze unless present?(model)
-      end
-
-      # @param callee [Symbol]
-      # @param opts [Hash]
-      # @return [Hash]
-      def text_align(callee, opts)
-        return opts if valid_alignment?(opts)
-
-        opts.merge!(align: callee)
-      end
-
-      # @return [Boolean]
-      def valid_alignment?(opts)
-        [:center, :centre, :left, :right].include?(opts[:align])
       end
 
       # Returns a boolean indicating the model is a
