@@ -44,7 +44,7 @@ module Vedeu
       describe '#attributes' do
         let(:expected) {
           {
-            align:    Vedeu::Coercers::Alignment.new,
+            align:    nil,
             client:   nil,
             colour:   nil,
             name:     nil,

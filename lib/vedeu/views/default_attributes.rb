@@ -49,7 +49,7 @@ module Vedeu
       # @return [Hash<Symbol => Array<void>|NilClass>]
       def defaults
         {
-          align:    Vedeu::Coercers::Alignment.new,
+          align:    nil,
           client:   nil,
           colour:   nil,
           name:     nil,
