@@ -33,8 +33,6 @@ module Vedeu
         # @param block [Proc] The block passed to the build method.
         # @return [Object] An instance of the model.
         def build(attributes = {}, &block)
-          attributes = defaults.merge!(attributes)
-
           model = new(attributes)
 
           Vedeu.log(type:    :debug,
@@ -64,18 +62,6 @@ module Vedeu
         # @return [Object] An instance of the model.
         def store(attributes = {}, &block)
           new(attributes).store(&block)
-        end
-
-        private
-
-        # The default values for a new instance of this class.
-        #
-        # @return [Hash<Symbol => NilClass, String>]
-        def defaults
-          {
-            client: nil,
-            name:   ''.freeze,
-          }
         end
 
       end # ClassMethods
