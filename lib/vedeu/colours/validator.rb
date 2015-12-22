@@ -23,6 +23,25 @@ module Vedeu
         @value = value
       end
 
+      # Returns a boolean indicating whether the value is within the
+      # range of valid terminal numbered colours.
+      #
+      # @return [Boolean]
+      def within_range?
+        numeric?(value) && value >= 0 && value <= 255
+      end
+
+      # Returns a boolean indicating whether the colour provided is a
+      # valid named colour.
+      #
+      # @return [Boolean]
+      def named?
+        Vedeu::EscapeSequences::Esc.valid_name?(value)
+      end
+
+      # Returns a boolean indicated whether the colour is a valid
+      # HTML/CSS colour.
+      #
       # @return [Boolean]
       def rgb?
         return true if value =~ /^#([A-Fa-f0-9]{6})$/.freeze
@@ -32,7 +51,7 @@ module Vedeu
 
       # @return [Boolean]
       def valid?
-        background? || colour? || foreground? || rgb? || symbol?
+        background? || colour? || foreground? || rgb? || named? || within_range?
       end
 
       protected
@@ -56,11 +75,6 @@ module Vedeu
       # @return [Boolean]
       def foreground?
         value.is_a?(Vedeu::Colours::Foreground)
-      end
-
-      # @return [Boolean]
-      def symbol?
-        Vedeu::EscapeSequences::Esc.valid_name?(value)
       end
 
     end # Validator
