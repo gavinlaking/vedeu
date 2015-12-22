@@ -10,6 +10,7 @@ class DSLApp
   Vedeu.configure do
     debug!
     log '/tmp/vedeu_views_dsl.log'
+    renderers Vedeu::Renderers::File.new(filename: '/tmp/line.out')
     run_once!
     standalone!
   end
