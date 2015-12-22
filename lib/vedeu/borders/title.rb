@@ -89,10 +89,8 @@ module Vedeu
       # @param x [Fixnum]
       # @return [Hash<Symbol => void>]
       def attributes(char, x)
-        @_attributes ||= border.attributes
-
-        @_attributes.merge!(position: Vedeu::Geometries::Position.new(y, x),
-                            value:    char)
+        border.attributes.merge(position: Vedeu::Geometries::Position.new(y, x),
+                                value:    char)
       end
 
       # @return [Vedeu::Borders::Border]
@@ -181,12 +179,12 @@ module Vedeu
 
       # @return [Fixnum]
       def x
-        @_x ||= geometry.bx + start_index
+        geometry.bx + start_index
       end
 
       # @return [Fixnum]
       def y
-        @_y ||= geometry.y
+        geometry.y
       end
 
     end # Title

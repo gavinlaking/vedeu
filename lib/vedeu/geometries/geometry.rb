@@ -189,7 +189,7 @@ module Vedeu
 
       # @return [Vedeu::Geometries::Area]
       def area
-        @area = Vedeu::Geometries::Area.from_attributes(area_attributes)
+        Vedeu::Geometries::Area.from_attributes(area_attributes)
       end
 
       # @return [Hash<Symbol => Boolean|Fixnum>]

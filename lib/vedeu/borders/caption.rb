@@ -22,7 +22,7 @@ module Vedeu
 
       # @return [Fixnum]
       def y
-        @_y ||= geometry.yn
+        geometry.yn
       end
 
     end # Caption
