@@ -36,10 +36,6 @@ module Vedeu
       alias_method :lines=, :value=
       alias_method :lines?, :value?
 
-      # @!attribute [rw] client
-      # @return [Fixnum|Float]
-      attr_accessor :client
-
       # @!attribute [rw] cursor_visible
       # @return [Boolean]
       attr_accessor :cursor_visible
@@ -48,10 +44,6 @@ module Vedeu
       # @!attribute [rw] name
       # @return [String|Symbol]
       attr_accessor :name
-
-      # @!attribute [rw] parent
-      # @return [Vedeu::Views::Composition]
-      attr_accessor :parent
 
       # @!attribute [rw] zindex
       # @return [Fixnum]

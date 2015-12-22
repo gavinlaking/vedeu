@@ -57,14 +57,17 @@ module Vedeu
         # that we can send messages to the client application object
         # should we need to.
         #
+        # @!attribute [rw] client
         # @return [void]
-        def client
-          @_client ||= client? ? @client : nil
-        end
+        attr_accessor :client
+
+        # @!attribute [rw] parent
+        # @return [void]
+        attr_accessor :parent
 
         # @return [Boolean]
         def client?
-          present?(@client)
+          present?(client)
         end
 
         # @return [void]
@@ -85,14 +88,9 @@ module Vedeu
           self.class.entity_klass
         end
 
-        # @return [NilClass|void]
-        def parent
-          @_parent ||= parent? ? @parent : nil
-        end
-
         # @return [Boolean]
         def parent?
-          present?(@parent)
+          present?(parent)
         end
 
         # @return [void]

@@ -10,8 +10,8 @@ module Vedeu
 
       include Vedeu::Repositories::Model
       include Vedeu::Presentation
-
       include Vedeu::Views::Value
+
       collection Vedeu::Views::Views
       deputy     Vedeu::DSL::View
       entity     Vedeu::Views::View
@@ -19,10 +19,6 @@ module Vedeu
       alias_method :views,  :value
       alias_method :views=, :value=
       alias_method :views?, :value?
-
-      # @!attribute [r] parent
-      # @return [NilClass] Composition objects do not have a parent.
-      attr_reader :parent
 
       # Returns a new instance of Vedeu::Views::Composition.
       #

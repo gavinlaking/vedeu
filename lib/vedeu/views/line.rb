@@ -35,14 +35,6 @@ module Vedeu
       alias_method :streams=, :value=
       alias_method :streams?, :value?
 
-      # @!attribute [rw] client
-      # @return [void]
-      attr_accessor :client
-
-      # @!attribute [rw] parent
-      # @return [Vedeu::Views::View]
-      attr_accessor :parent
-
       # Returns a new instance of Vedeu::Views::Line.
       #
       # @param attributes [Hash]

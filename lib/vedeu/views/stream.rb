@@ -38,10 +38,6 @@ module Vedeu
       alias_method :chars=, :value=
       alias_method :chars?, :value?
 
-      # @!attribute [w] parent
-      # @return [Vedeu::Views::Line]
-      attr_writer :parent
-
       # @!attribute [w] value
       # @return [String]
       attr_writer :value
