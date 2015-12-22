@@ -70,8 +70,7 @@ module Vedeu
       # @param other [Vedeu::Views::Char]
       # @return [Boolean]
       def eql?(other)
-        self.class == other.class && value == other.value &&
-          colour == other.colour && style == other.style
+        self.class == other.class && value == other.value
       end
       alias_method :==, :eql?
 
