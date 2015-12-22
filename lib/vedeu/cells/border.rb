@@ -40,17 +40,6 @@ module Vedeu
         self
       end
 
-      # @return [Vedeu::Borders::Border|Vedeu::Interfaces::Interface]
-      def named_parent
-        if border
-          border
-
-        elsif interface
-          interface
-
-        end
-      end
-
       # @return [String]
       def value
         return '' unless present?(@value)
