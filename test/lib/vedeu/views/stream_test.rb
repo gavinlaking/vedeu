@@ -70,25 +70,6 @@ module Vedeu
         it { subject.must_be_instance_of(Hash) }
       end
 
-      describe '#chars' do
-        subject { instance.chars }
-
-        it { subject.must_be_instance_of(Array) }
-
-        context 'when there is content' do
-          it { subject.size.must_equal(9) }
-        end
-
-        context 'when there is no content' do
-          let(:_value)   { '' }
-          let(:expected) { Vedeu::Views::Chars.new(parent: instance) }
-
-          it 'returns an empty collection' do
-            # subject.must_equal(expected)
-          end
-        end
-      end
-
       describe '#eql?' do
         let(:other) { described.new(attributes) }
 
@@ -118,16 +99,6 @@ module Vedeu
           let(:parent) {}
 
           it { subject.must_equal(nil) }
-        end
-      end
-
-      describe '#size' do
-        subject { instance.size }
-
-        it { subject.must_be_instance_of(Fixnum) }
-
-        it 'returns the size of the stream' do
-          subject.must_equal(9)
         end
       end
 

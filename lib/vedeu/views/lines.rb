@@ -37,6 +37,8 @@ module Vedeu
         end
       end
 
+      alias_method :lines, :value
+
     end # Lines
 
   end # Views

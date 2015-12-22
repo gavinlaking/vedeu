@@ -17,6 +17,7 @@ module Vedeu
 
       end # DSL
 
+      extend Forwardable
       include Vedeu::Views::DefaultAttributes
       include Vedeu::Repositories::Model
       include Vedeu::Repositories::Parent
@@ -27,6 +28,10 @@ module Vedeu
       deputy     Vedeu::Views::Stream::DSL
       entity     Vedeu::Views::Char
       parent     Vedeu::Views::Streams
+
+      def_delegators :value,
+                     :chars,
+                     :size
 
       alias_method :content, :value
       alias_method :text,    :value
@@ -64,27 +69,6 @@ module Vedeu
       end
       alias_method :<<, :add
 
-      # Returns an array of characters, each element is the escape
-      # sequences of colours and styles for this stream, the character
-      # itself, and the escape sequences of colours and styles for the
-      # parent of the stream ({Vedeu::Views::Line}).
-      #
-      # @return [Array]
-      def chars
-        return [] unless value?
-
-        value.value
-
-        # @chars ||= value.chars.map do |char|
-        #   Vedeu::Views::Char.new(value:    char,
-        #                          name:     name,
-        #                          parent:   parent,
-        #                          colour:   colour,
-        #                          style:    style,
-        #                          position: nil)
-        # end
-      end
-
       # An object is equal when its values are the same.
       #
       # @param other [Vedeu::Views::Char]
@@ -94,14 +78,6 @@ module Vedeu
           colour == other.colour && style == other.style
       end
       alias_method :==, :eql?
-
-      # Returns the size of the content in characters without
-      # formatting.
-      #
-      # @return [Fixnum]
-      def size
-        value.size
-      end
 
     end # Stream
 

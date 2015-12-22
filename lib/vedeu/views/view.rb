@@ -20,14 +20,18 @@ module Vedeu
 
       end # DSL
 
+      extend Forwardable
       include Vedeu::Repositories::Model
       include Vedeu::Repositories::Parent
       include Vedeu::Presentation
-
       include Vedeu::Views::Value
+
       collection Vedeu::Views::Lines
       deputy     Vedeu::Views::View::DSL
       entity     Vedeu::Views::Line
+
+      def_delegators :value,
+                     :lines
 
       alias_method :lines=, :value=
       alias_method :lines?, :value?
@@ -90,11 +94,6 @@ module Vedeu
           value:          value,
           zindex:         zindex,
         }
-      end
-
-      # @return [Array<Vedeu::Views::Line>]
-      def lines
-        value.value
       end
 
       # Store the view and immediately refresh it; causing to be

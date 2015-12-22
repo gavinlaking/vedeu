@@ -48,6 +48,8 @@ module Vedeu
         end
       end
 
+      alias_method :chars, :value
+
     end # Chars
 
   end # Views

@@ -48,6 +48,8 @@ module Vedeu
         end
       end
 
+      alias_method :streams, :value
+
     end # Streams
 
   end # Views

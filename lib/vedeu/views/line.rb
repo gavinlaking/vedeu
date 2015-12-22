@@ -17,16 +17,20 @@ module Vedeu
 
       end # DSL
 
+      extend Forwardable
       include Vedeu::Views::DefaultAttributes
       include Vedeu::Repositories::Model
       include Vedeu::Repositories::Parent
       include Vedeu::Presentation
-
       include Vedeu::Views::Value
+
       collection Vedeu::Views::Streams
       deputy     Vedeu::Views::Line::DSL
       entity     Vedeu::Views::Stream
       parent     Vedeu::Views::Lines
+
+      def_delegators :value,
+                     :streams
 
       alias_method :streams=, :value=
       alias_method :streams?, :value?
@@ -70,7 +74,7 @@ module Vedeu
       def chars
         return [] unless value?
 
-        @chars ||= value.value.flat_map(&:chars)
+        @chars ||= streams.flat_map(&:chars)
       end
 
       # Returns a DSL instance responsible for defining the DSL
@@ -100,11 +104,6 @@ module Vedeu
       # @return [Fixnum]
       def size
         value.map(&:size).inject(0, :+)
-      end
-
-      # @return [Array<Vedeu::Views::Stream>]
-      def streams
-        value.value
       end
 
     end # Line
