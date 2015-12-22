@@ -22,9 +22,15 @@ module Vedeu
         "\e[38;".freeze
       end
 
+      # Returns an escape sequence for a named colour.
+      #
+      # @note
+      #   Valid names can be found at
+      #   {Vedeu::EscapeSequences::Esc#valid_codes}
+      #
       # @return [String]
-      def named_codes
-        Vedeu::EscapeSequences::Esc.foreground_codes[colour]
+      def named_code
+        Vedeu::EscapeSequences::Esc.foreground_colour(colour)
       end
 
       # @return [Vedeu::Colours::Foregrounds]

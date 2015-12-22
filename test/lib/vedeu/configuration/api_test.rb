@@ -387,54 +387,77 @@ module Vedeu
       end
 
       describe '#colour' do
-        context 'when a background and foreground is given' do
-          it do
-            configuration = Vedeu.configure { colour background: '#ff0000', foreground: '#ffff00' }
-            configuration.colour.must_be_instance_of(Vedeu::Colours::Colour)
-            configuration.colour.to_s.must_equal("\e[38;2;255;255;0m\e[48;2;255;0;0m")
+        let(:configuration) {
+          Vedeu.configure do
           end
+        }
+
+        subject { configuration.colour }
+
+        it { subject.must_be_instance_of(Vedeu::Colours::Colour) }
+
+        context 'when a background and foreground is given' do
+          let(:configuration) {
+            Vedeu.configure do
+              colour background: '#ff0000', foreground: '#ffff00'
+            end
+          }
+          let(:expected) {
+            Vedeu::Colours::Colour.coerce(background: '#ff0000',
+                                          foreground: '#ffff00')
+          }
+
+          it { subject.must_equal(expected) }
         end
 
         context 'when only a background is given' do
-          it do
-            configuration = Vedeu.configure { colour background: '#ff0000' }
-            configuration.colour.must_be_instance_of(Vedeu::Colours::Colour)
-            configuration.colour.to_s.must_equal("\e[48;2;255;0;0m")
-          end
+          let(:configuration) {
+            Vedeu.configure { colour background: '#ff0000' }
+          }
+          let(:expected) {
+            Vedeu::Colours::Colour.coerce(background: '#ff0000')
+          }
+
+          it { subject.must_equal(expected) }
         end
 
         context 'when only a foreground is given' do
-          it do
-            configuration = Vedeu.configure { colour foreground: '#ffff00' }
-            configuration.colour.must_be_instance_of(Vedeu::Colours::Colour)
-            configuration.colour.to_s.must_equal("\e[38;2;255;255;0m")
-          end
+          let(:configuration) {
+            Vedeu.configure { colour foreground: '#ffff00' }
+          }
+          let(:expected) {
+            Vedeu::Colours::Colour.coerce(foreground: '#ffff00')
+          }
+
+          it { subject.must_equal(expected) }
         end
 
         context 'when neither a background nor foreground is given' do
-          it do
-            configuration = Vedeu.configure { colour background: nil, foreground: nil }
-            configuration.colour.must_be_instance_of(Vedeu::Colours::Colour)
-            configuration.colour.to_s.must_equal('')
-          end
+          let(:expected) { Vedeu::Colours::Colour.new(background: :default, foreground: :default) }
+
+          it { subject.must_equal(expected) }
         end
       end
 
       describe '#foreground' do
+        subject { configuration.foreground }
+
         context 'when a value is given' do
-          it do
-            configuration = Vedeu.configure { foreground '#ffff00' }
-            configuration.foreground.must_be_instance_of(Vedeu::Colours::Foreground)
-            configuration.foreground.to_s.must_equal("\e[38;2;255;255;0m")
-          end
+          let(:configuration) {
+            Vedeu.configure { foreground('#ffff00') }
+          }
+          let(:expected) { Vedeu::Colours::Foreground.coerce('#ffff00') }
+
+          it { subject.must_equal(expected) }
         end
 
         context 'when a value is not given' do
-          it do
-            configuration = Vedeu.configure { background nil }
-            configuration.foreground.must_be_instance_of(Vedeu::Colours::Foreground)
-            configuration.foreground.to_s.must_equal("\e[39m")
-          end
+          let(:configuration) {
+            Vedeu.configure {}
+          }
+          let(:expected) { Vedeu::Colours::Foreground.new(:default) }
+
+          it { subject.must_equal(expected) }
         end
       end
 

@@ -27,11 +27,14 @@ module Vedeu
       def coerce
         fail Vedeu::Error::InvalidSyntax unless hash?(value)
 
-        if colour?
-          Vedeu::Coercers::ColourAttributes.coerce(value[:colour])
+        if colour? && hash?(colour)
+          Vedeu::Coercers::ColourAttributes.coerce(colour)
+
+        elsif colour? && already_coerced?(colour)
+          colour.attributes
 
         else
-          background.merge(foreground)
+          coerced_background.merge(coerced_foreground)
 
         end
       end
@@ -44,11 +47,17 @@ module Vedeu
 
       private
 
+      # @param colour [void]
+      # @return [Boolean]
+      def already_coerced?(colour)
+        colour.is_a?(Vedeu::Colours::Colour)
+      end
+
       # @return [Hash]
-      def background
+      def coerced_background
         if background?
           {
-            background: value[:background]
+            background: background
           }
 
         else
@@ -57,9 +66,14 @@ module Vedeu
         end
       end
 
+      # @return [NilClass|String]
+      def background
+        value[:background]
+      end
+
       # @return [Boolean]
       def background?
-        value.key?(:background) && valid?(value[:background])
+        valid?(background)
       end
 
       # @return [Hash]
@@ -69,14 +83,14 @@ module Vedeu
 
       # @return [Boolean]
       def colour?
-        value.key?(:colour) && hash?(value[:colour])
+        value.key?(:colour)
       end
 
       # @return [Hash]
-      def foreground
+      def coerced_foreground
         if foreground?
           {
-            foreground: value[:foreground]
+            foreground: foreground
           }
 
         else
@@ -85,11 +99,17 @@ module Vedeu
         end
       end
 
-      # @return [Boolean]
-      def foreground?
-        value.key?(:foreground) && valid?(value[:foreground])
+      # @return [NilClass|String]
+      def foreground
+        value[:foreground]
       end
 
+      # @return [Boolean]
+      def foreground?
+        valid?(foreground)
+      end
+
+      # @param colour [void]
       # @return [Boolean]
       def valid?(colour)
         Vedeu::Colours::Validator.valid?(colour)

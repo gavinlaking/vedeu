@@ -18,8 +18,26 @@ module Vedeu
       describe '.valid?' do
         subject { described.valid?(_value) }
 
-        context 'when the value is valid' do
+        context 'when the value is a HTML/CSS formatted hexidecimal string' do
           let(:_value) { '#654321' }
+
+          it { subject.must_equal(true) }
+        end
+
+        context 'when the value is a Vedeu::Colours::Background' do
+          let(:_value) { Vedeu::Colours::Background.new('#654321') }
+
+          it { subject.must_equal(true) }
+        end
+
+        context 'when the value is a Vedeu::Colours::Colour' do
+          let(:_value) { Vedeu::Colours::Colour.new }
+
+          it { subject.must_equal(true) }
+        end
+
+        context 'when the value is a Vedeu::Colours::Foreground' do
+          let(:_value) { Vedeu::Colours::Foreground.new('#654321') }
 
           it { subject.must_equal(true) }
         end

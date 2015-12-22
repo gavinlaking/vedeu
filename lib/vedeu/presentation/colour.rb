@@ -10,27 +10,19 @@ module Vedeu
       include Vedeu::Presentation::Colour::Background
       include Vedeu::Presentation::Colour::Foreground
 
-      # @return [Vedeu::Colours::Colour]
       def colour
-        @_colour ||= if @colour.is_a?(Hash)
-                       if @colour.empty?
-                         Vedeu.interfaces.by_name(name).colour if name
-
-                       else
-                         Vedeu::Colours::Colour.coerce(@colour)
-
-                       end
-                     elsif @colour
+        @_colour ||= if colour?
                        Vedeu::Colours::Colour.coerce(@colour)
 
+                     elsif parent_colour?
+                       Vedeu::Colours::Colour.coerce(parent_colour)
+
+                     elsif named_colour?
+                       Vedeu::Colours::Colour.coerce(named_colour)
+
                      elsif self.is_a?(Vedeu::Views::Char) && name
+                       # Currently used by Vedeu::Output::Viewport
                        Vedeu::Colours::Colour.coerce(interface.colour)
-
-                     elsif self.respond_to?(:named_parent) && name
-                       Vedeu::Colours::Colour.coerce(named_parent.colour)
-
-                     elsif parent && present?(parent.colour)
-                       Vedeu::Colours::Colour.coerce(parent.colour)
 
                      else
                        Vedeu::Colours::Colour.new
@@ -44,6 +36,35 @@ module Vedeu
       # @return [Vedeu::Colours::Colour]
       def colour=(value)
         @_colour = @colour = Vedeu::Colours::Colour.coerce(value)
+      end
+
+      # @return [Boolean]
+      def colour?
+        present?(@colour)
+      end
+
+      private
+
+      # @return [Vedeu::Colours::Colour]
+      def named_colour
+        Vedeu.interfaces.by_name(name).colour
+      end
+
+      # @return [Boolean]
+      def named_colour?
+        return false if self.is_a?(Vedeu::Interfaces::Interface)
+
+        present?(name) && Vedeu.interfaces.registered?(name)
+      end
+
+      # @return [Vedeu::Colours::Colour]
+      def parent_colour
+        parent.colour
+      end
+
+      # @return [Boolean]
+      def parent_colour?
+        present?(parent) && parent.respond_to?(:colour?)
       end
 
     end # Colour

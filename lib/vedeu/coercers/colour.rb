@@ -19,22 +19,24 @@ module Vedeu
 
       # @return [void]
       def coerce
-        fail Vedeu::Error::InvalidSyntax unless present?(value)
+        if absent?(value)
+          Vedeu::Colours::Colour.new
 
-        if background?
-          :background
+        elsif background?
+          Vedeu::Colours::Colour.new(background: value)
 
         elsif colour?
-          :colour
+          value
 
         elsif foreground?
-          :foreground
+          Vedeu::Colours::Colour.new(foreground: value)
 
-        elsif hash?
-
+        elsif hash?(value)
+          attributes = Vedeu::Coercers::ColourAttributes.coerce(value)
+          Vedeu::Colours::Colour.new(attributes)
 
         else
-          :not_yet_supported
+          fail Vedeu::Error::Fatal, 'Vedeu cannot coerce this colour.'.freeze
 
         end
       end
@@ -60,10 +62,6 @@ module Vedeu
       # @return [Boolean]
       def foreground?
         value.is_a?(Vedeu::Colours::Foreground)
-      end
-
-      def hash?
-        value.is_a?(Hash)
       end
 
     end # Colour

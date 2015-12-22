@@ -66,7 +66,38 @@ module Vedeu
           white:         97,
         }.freeze
       end
-      alias_method :codes, :foreground_codes
+
+      # @param named_colour [Symbol]
+      # @return [String]
+      def background_colour(named_colour)
+        return ''.freeze unless valid_name?(named_colour)
+
+        colour(named_colour.to_s.prepend('on_').to_sym)
+      end
+
+      # @param named_colour [Symbol]
+      # @return [String]
+      def colour(named_colour)
+        return ''.freeze unless valid_name?(named_colour)
+
+        public_send(named_colour)
+      end
+      alias_method :foreground_colour, :colour
+
+      # @return [Array<Symbol>]
+      def valid_codes
+        @_valid_codes ||= foreground_codes.keys.map do |name|
+          name.to_s.prepend('on_').to_sym
+        end + foreground_codes.keys
+      end
+
+      # @param named_colour [Symbol]
+      # @return [Boolean]
+      def valid_name?(named_colour)
+        return false unless named_colour.is_a?(Symbol)
+
+        valid_codes.include?(named_colour)
+      end
 
     end # Colours
 

@@ -37,6 +37,20 @@ module Vedeu
     #
     class Colour
 
+      class << self
+
+        extend Forwardable
+
+        def_delegators Vedeu::Coercers::Colour,
+                       :coerce
+
+        # @return [Vedeu::Colours::Colour]
+        def default
+          new(background: :default, foreground: :default)
+        end
+
+      end # Eigenclass
+
       extend Forwardable
 
       def_delegators :background,
@@ -46,32 +60,6 @@ module Vedeu
                      :foreground?
 
       include Vedeu::Repositories::Defaults
-
-      # @param value [Vedeu::Colours::Colour|Hash<Symbol => void>]
-      # @return [Vedeu::Colours::Colour]
-      def self.coerce(value)
-        return value if value.is_a?(self)
-        return new unless value.is_a?(Hash)
-
-        if value[:colour] && value[:colour].is_a?(self)
-          value[:colour]
-
-        elsif value[:colour] && value[:colour].is_a?(Hash)
-          new(value[:colour])
-
-        elsif value[:background] || value[:foreground]
-          new(value)
-
-        else
-          new
-
-        end
-      end
-
-      # @return [Vedeu::Colours::Colour]
-      def self.default
-        new(background: :default, foreground: :default)
-      end
 
       # @return [Hash<Symbol => Vedeu::Colours::Background,
       #   Vedeu::Colours::Foreground>]

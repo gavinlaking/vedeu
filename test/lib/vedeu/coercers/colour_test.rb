@@ -19,25 +19,48 @@ module Vedeu
         subject { described.coerce(_value) }
 
         context 'when the value is nil' do
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+          it { subject.must_be_instance_of(Vedeu::Colours::Colour) }
+        end
+
+        context 'when the value is a Hash' do
+          let(:_value) {
+            {
+              background: '#ff0000',
+              foreground: '#00ff00',
+            }
+          }
+
+          it { subject.must_be_instance_of(Vedeu::Colours::Colour) }
+          it do
+            subject.background.must_be_instance_of(Vedeu::Colours::Background)
+          end
+          it do
+            subject.foreground.must_be_instance_of(Vedeu::Colours::Foreground)
+          end
         end
 
         context 'when the value is a Vedeu::Colours::Background' do
-          let(:_value) { Vedeu::Colours::Background.new }
+          let(:_value)   { Vedeu::Colours::Background.new('#aadd00') }
 
-          # it { skip }
+          it { subject.must_be_instance_of(Vedeu::Colours::Colour) }
         end
 
         context 'when the value is a Vedeu::Colours::Colour' do
           let(:_value) { Vedeu::Colours::Colour.new }
 
-          # it { skip }
+          it { subject.must_be_instance_of(Vedeu::Colours::Colour) }
         end
 
         context 'when the value is a Vedeu::Colours::Foreground' do
-          let(:_value) { Vedeu::Colours::Foreground.new }
+          let(:_value) { Vedeu::Colours::Foreground.new('#448822') }
 
-          # it { skip }
+          it { subject.must_be_instance_of(Vedeu::Colours::Colour) }
+        end
+
+        context 'when the value is invalid or unsupported' do
+          let(:_value) { :invalid }
+
+          it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
         end
       end
 

@@ -85,7 +85,7 @@ module Vedeu
           numbered
 
         elsif named?
-          named
+          named_code
 
         else
           ''
@@ -133,28 +133,12 @@ module Vedeu
         repository.registered?(colour)
       end
 
-      # @return [Boolean]
-      def named?
-        colour.is_a?(Symbol) && valid_name?
-      end
-
-      # Returns an escape sequence for a named background colour.
-      #
-      # @note
-      #   Valid names can be found at
-      #   {Vedeu::EscapeSequences::Esc#codes}
-      #
-      # @return [String]
-      def named
-        "\e[#{named_codes}m".freeze
-      end
-
       # Returns a boolean indicating whether the colour provided is a
       # valid named colour.
       #
       # @return [Boolean]
-      def valid_name?
-        Vedeu::EscapeSequences::Esc.codes.keys.include?(colour)
+      def named?
+        colour.is_a?(Symbol) && Vedeu::EscapeSequences::Esc.valid_name?(colour)
       end
 
       # Returns a boolean indicating whether the colour provided is a
@@ -177,7 +161,7 @@ module Vedeu
       #
       # @return [Boolean]
       def rgb?
-        @_result ||= Vedeu::Colours::Validator.valid?(colour)
+        Vedeu::Colours::Validator.new(colour).rgb?
       end
 
       # Returns an escape sequence.
@@ -271,8 +255,8 @@ module Vedeu
       def not_implemented
         fail Vedeu::Error::NotImplemented, 'Subclasses implement this.'.freeze
       end
-      alias_method :named_codes, :not_implemented
-      alias_method :repository,  :not_implemented
+      alias_method :named_code, :not_implemented
+      alias_method :repository, :not_implemented
 
     end # Translator
 

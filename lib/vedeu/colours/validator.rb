@@ -24,8 +24,15 @@ module Vedeu
       end
 
       # @return [Boolean]
+      def rgb?
+        return true if value =~ /^#([A-Fa-f0-9]{6})$/.freeze
+
+        false
+      end
+
+      # @return [Boolean]
       def valid?
-        rgb?
+        background? || colour? || foreground? || rgb? || symbol?
       end
 
       protected
@@ -37,10 +44,23 @@ module Vedeu
       private
 
       # @return [Boolean]
-      def rgb?
-        return true if value =~ /^#([A-Fa-f0-9]{6})$/.freeze
+      def background?
+        value.is_a?(Vedeu::Colours::Background)
+      end
 
-        false
+      # @return [Boolean]
+      def colour?
+        value.is_a?(Vedeu::Colours::Colour)
+      end
+
+      # @return [Boolean]
+      def foreground?
+        value.is_a?(Vedeu::Colours::Foreground)
+      end
+
+      # @return [Boolean]
+      def symbol?
+        Vedeu::EscapeSequences::Esc.valid_name?(value)
       end
 
     end # Validator
