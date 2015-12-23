@@ -98,7 +98,9 @@ module Vedeu
         # @param name [String|Symbol]
         # @return [Vedeu::Input::Keymap]
         def add_keymap!(name)
-          Vedeu::Input::Keymap.store(name: name)
+          unless Vedeu.keymaps.registered?(name)
+            Vedeu::Input::Keymap.store(name: name)
+          end
         end
 
         # Returns the client object which called the DSL method.

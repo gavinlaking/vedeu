@@ -17,7 +17,7 @@ module Vedeu
         # @return [Symbol]
         def null(klass, attributes = {})
           define_method(:null_model)      { klass }
-          define_method(:null_attributes) { attributes }
+          define_method(:null_attributes) { attributes || {} }
         end
 
         # The real model is the usual model to use for a given
@@ -62,6 +62,19 @@ module Vedeu
 
       end # ClassMethods
 
+      # When {Vedeu::Repositories::Registerable} is included in a
+      # class, the methods within this module are included as instance
+      # methods on that class.
+      #
+      module InstanceMethods
+
+        # @return [Boolean]
+        def null_model?
+          self.respond_to?(:null_model) && present?(:null_model)
+        end
+
+      end # InstanceMethods
+
       # When this module is included in a class, provide ClassMethods
       # as class methods for the class.
       #
@@ -69,6 +82,7 @@ module Vedeu
       # @return [void]
       def self.included(klass)
         klass.extend(Vedeu::Repositories::Registerable::ClassMethods)
+        klass.include(Vedeu::Repositories::Registerable::InstanceMethods)
       end
 
     end # Registerable
