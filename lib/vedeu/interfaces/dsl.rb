@@ -87,7 +87,7 @@ module Vedeu
         # registered.
         #
         # @param name [String|Symbol]
-        # @return [void]
+        # @return [Array<String|Symbol>]
         def add_focusable!(name)
           Vedeu::Models::Focus.add(name)
         end
@@ -96,11 +96,9 @@ module Vedeu
         # registered.
         #
         # @param name [String|Symbol]
-        # @return [Vedeu::Input::Keymap]
+        # @return [NilClass|Vedeu::Input::Keymap]
         def add_keymap!(name)
-          unless Vedeu.keymaps.registered?(name)
-            Vedeu::Input::Keymap.store(name: name)
-          end
+          Vedeu::Input::Keymap.store(name: name) unless keymap?(name)
         end
 
         # Returns the client object which called the DSL method.
@@ -109,6 +107,14 @@ module Vedeu
         # @return [Object]
         def client(&block)
           eval('self', block.binding)
+        end
+
+        private
+
+        # @param name [String|Symbol]
+        # @return [Boolean]
+        def keymap?(name)
+          Vedeu.keymaps.registered?(name)
         end
 
       end # Eigenclass

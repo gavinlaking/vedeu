@@ -67,9 +67,7 @@ module Vedeu
 
         return find(name) if registered?(name)
 
-        if null_model?
-          null_model.new(null_attributes.merge(name: name))
-        end
+        null_model.new(null_attributes.merge(name: name)) if null_model?
       end
 
       # Return the model for the interface currently in focus.
