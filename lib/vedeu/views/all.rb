@@ -11,7 +11,6 @@ end # Vedeu
 require 'vedeu/views/default_attributes'
 require 'vedeu/views/value'
 
-require 'vedeu/views/buffer'
 require 'vedeu/views/chars'
 require 'vedeu/views/char'
 require 'vedeu/views/html_char'
