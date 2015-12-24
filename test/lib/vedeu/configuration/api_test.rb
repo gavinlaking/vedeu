@@ -38,9 +38,11 @@ module Vedeu
         end
       end
 
-      describe '#interactive!' do
+      describe '#interactive' do
         it { instance.must_respond_to(:interactive) }
+      end
 
+      describe '#interactive!' do
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { interactive! }
           configuration.interactive?.must_equal(true)
@@ -62,9 +64,11 @@ module Vedeu
         end
       end
 
-      describe '#standalone!' do
+      describe '#standalone' do
         it { instance.must_respond_to(:standalone) }
+      end
 
+      describe '#standalone!' do
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { standalone! }
           configuration.interactive?.must_equal(false)
@@ -87,8 +91,6 @@ module Vedeu
       end
 
       describe '#run_once!' do
-        it { instance.must_respond_to(:run_once) }
-
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { run_once! }
           configuration.once.must_equal(true)
@@ -110,9 +112,11 @@ module Vedeu
         end
       end
 
-      describe '#drb!' do
-        it { instance.must_respond_to(:drb) }
+      describe '#run_once' do
+        it { instance.must_respond_to(:run_once) }
+      end
 
+      describe '#drb!' do
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { drb! }
           configuration.drb.must_equal(true)
@@ -132,6 +136,10 @@ module Vedeu
           configuration = Vedeu.configure { drb }
           configuration.drb.must_equal(true)
         end
+      end
+
+      describe '#drb' do
+        it { instance.must_respond_to(:drb) }
       end
 
       describe '#drb_host' do
@@ -163,36 +171,40 @@ module Vedeu
       end
 
       describe '#cooked!' do
-        it { instance.must_respond_to(:cooked) }
-
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { cooked! }
           configuration.terminal_mode.must_equal(:cooked)
         end
       end
 
-      describe '#fake!' do
-        it { instance.must_respond_to(:fake) }
+      describe '#cooked' do
+        it { instance.must_respond_to(:cooked) }
+      end
 
+      describe '#fake!' do
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { fake! }
           configuration.terminal_mode.must_equal(:fake)
         end
       end
 
+      describe '#fake' do
+        it { instance.must_respond_to(:fake) }
+      end
+
       describe '#raw!' do
         subject { Vedeu.configure { raw! } }
-
-        it { instance.must_respond_to(:raw) }
 
         it 'sets the option to the desired value' do
           subject.terminal_mode.must_equal(:raw)
         end
       end
 
-      describe '#debug!' do
-        it { instance.must_respond_to(:debug) }
+      describe '#raw' do
+        it { instance.must_respond_to(:raw) }
+      end
 
+      describe '#debug!' do
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { debug! }
           configuration.debug.must_equal(true)
@@ -209,14 +221,18 @@ module Vedeu
         end
       end
 
+      describe '#debug' do
+        it { instance.must_respond_to(:debug) }
+      end
+
       describe '#colour_mode' do
-        context 'when the value is invalid (nil)' do
+        context 'when the value is invalid (nil' do
           it { proc {
             Vedeu.configure { colour_mode(nil) }
           }.must_raise(Vedeu::Error::InvalidSyntax) }
         end
 
-        context 'when the value is invalid (empty)' do
+        context 'when the value is invalid (empty' do
           it { proc {
             Vedeu.configure { colour_mode('') }
           }.must_raise(Vedeu::Error::InvalidSyntax) }
@@ -274,14 +290,16 @@ module Vedeu
         #     returns([some])
         # end
 
-        it { instance.must_respond_to(:renderers) }
-
         # it 'sets the options to the desired value' do
         #   configuration = Vedeu.configure do
         #     renderer proc { other }
         #   end
         #   configuration.renderers.must_equal([some, other])
         # end
+      end
+
+      describe '#renderers' do
+        it { instance.must_respond_to(:renderers) }
       end
 
       describe '#root' do
@@ -318,9 +336,11 @@ module Vedeu
         end
       end
 
-      describe '#compression!' do
+      describe '#compression' do
         it { instance.must_respond_to(:compression) }
+      end
 
+      describe '#compression!' do
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { compression! }
           configuration.compression.must_equal(true)
@@ -462,8 +482,6 @@ module Vedeu
       end
 
       describe '#mouse!' do
-        it { instance.must_respond_to(:mouse) }
-
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { mouse! }
           configuration.mouse.must_equal(true)
@@ -483,6 +501,10 @@ module Vedeu
           configuration = Vedeu.configure { mouse }
           configuration.mouse.must_equal(true)
         end
+      end
+
+      describe '#mouse' do
+        it { instance.must_respond_to(:mouse) }
       end
 
     end # API

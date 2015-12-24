@@ -50,7 +50,7 @@ module Vedeu
         end
       end
 
-      describe 'accessors' do
+      describe '#name' do
         it { instance.must_respond_to(:name) }
       end
 

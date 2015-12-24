@@ -60,42 +60,136 @@ module Vedeu
         it { instance.must_be_instance_of(described) }
       end
 
-      describe 'accessors' do
-        it do
-          instance.must_respond_to(:attributes)
-          instance.must_respond_to(:bottom_horizontal=)
-          instance.must_respond_to(:bottom_left=)
-          instance.must_respond_to(:bottom_right=)
-          instance.must_respond_to(:caption)
-          instance.must_respond_to(:caption=)
-          instance.must_respond_to(:horizontal)
-          instance.must_respond_to(:horizontal=)
-          instance.must_respond_to(:show_bottom)
-          instance.must_respond_to(:bottom?)
-          instance.must_respond_to(:show_bottom=)
-          instance.must_respond_to(:show_left)
-          instance.must_respond_to(:left?)
-          instance.must_respond_to(:show_left=)
-          instance.must_respond_to(:show_right)
-          instance.must_respond_to(:right?)
-          instance.must_respond_to(:show_right=)
-          instance.must_respond_to(:show_top)
-          instance.must_respond_to(:top?)
-          instance.must_respond_to(:show_top=)
-          instance.must_respond_to(:title)
-          instance.must_respond_to(:title=)
-          instance.must_respond_to(:top_horizontal=)
-          instance.must_respond_to(:top_left=)
-          instance.must_respond_to(:top_right=)
-          instance.must_respond_to(:left_vertical=)
-          instance.must_respond_to(:right_vertical=)
-          instance.must_respond_to(:vertical)
-          instance.must_respond_to(:vertical=)
-          instance.must_respond_to(:name)
-          instance.must_respond_to(:enabled)
-          instance.must_respond_to(:enabled=)
-          instance.must_respond_to(:enabled?)
-        end
+      describe '#attributes' do
+        it { instance.must_respond_to(:attributes) }
+      end
+
+      describe '#bottom_horizontal=' do
+        it { instance.must_respond_to(:bottom_horizontal=) }
+      end
+
+      describe '#bottom_left=' do
+        it { instance.must_respond_to(:bottom_left=) }
+      end
+
+      describe '#bottom_right=' do
+        it { instance.must_respond_to(:bottom_right=) }
+      end
+
+      describe '#caption' do
+        it { instance.must_respond_to(:caption) }
+      end
+
+      describe '#caption=' do
+        it { instance.must_respond_to(:caption=) }
+      end
+
+      describe '#horizontal' do
+        it { instance.must_respond_to(:horizontal) }
+      end
+
+      describe '#horizontal=' do
+        it { instance.must_respond_to(:horizontal=) }
+      end
+
+      describe '#show_bottom' do
+        it { instance.must_respond_to(:show_bottom) }
+      end
+
+      describe '#bottom?' do
+        it { instance.must_respond_to(:bottom?) }
+      end
+
+      describe '#show_bottom=' do
+        it { instance.must_respond_to(:show_bottom=) }
+      end
+
+      describe '#show_left' do
+        it { instance.must_respond_to(:show_left) }
+      end
+
+      describe '#left?' do
+        it { instance.must_respond_to(:left?) }
+      end
+
+      describe '#show_left=' do
+        it { instance.must_respond_to(:show_left=) }
+      end
+
+      describe '#show_right' do
+        it { instance.must_respond_to(:show_right) }
+      end
+
+      describe '#right?' do
+        it { instance.must_respond_to(:right?) }
+      end
+
+      describe '#show_right=' do
+        it { instance.must_respond_to(:show_right=) }
+      end
+
+      describe '#show_top' do
+        it { instance.must_respond_to(:show_top) }
+      end
+
+      describe '#top?' do
+        it { instance.must_respond_to(:top?) }
+      end
+
+      describe '#show_top=' do
+        it { instance.must_respond_to(:show_top=) }
+      end
+
+      describe '#title' do
+        it { instance.must_respond_to(:title) }
+      end
+
+      describe '#title=' do
+        it { instance.must_respond_to(:title=) }
+      end
+
+      describe '#top_horizontal=' do
+        it { instance.must_respond_to(:top_horizontal=) }
+      end
+
+      describe '#top_left=' do
+        it { instance.must_respond_to(:top_left=) }
+      end
+
+      describe '#top_right=' do
+        it { instance.must_respond_to(:top_right=) }
+      end
+
+      describe '#left_vertical=' do
+        it { instance.must_respond_to(:left_vertical=) }
+      end
+
+      describe '#right_vertical=' do
+        it { instance.must_respond_to(:right_vertical=) }
+      end
+
+      describe '#vertical' do
+        it { instance.must_respond_to(:vertical) }
+      end
+
+      describe '#vertical=' do
+        it { instance.must_respond_to(:vertical=) }
+      end
+
+      describe '#name' do
+        it { instance.must_respond_to(:name) }
+      end
+
+      describe '#enabled' do
+        it { instance.must_respond_to(:enabled) }
+      end
+
+      describe '#enabled=' do
+        it { instance.must_respond_to(:enabled=) }
+      end
+
+      describe '#enabled?' do
+        it { instance.must_respond_to(:enabled?) }
       end
 
       describe '#deputy' do

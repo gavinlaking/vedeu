@@ -41,19 +41,44 @@ module Vedeu
         it { instance.instance_variable_get('@zindex').must_equal(zindex) }
       end
 
-      describe 'accessors' do
-        it do
-          instance.must_respond_to(:client)
-          instance.must_respond_to(:client=)
-          instance.must_respond_to(:cursor_visible)
-          instance.must_respond_to(:cursor_visible=)
-          instance.must_respond_to(:name)
-          instance.must_respond_to(:name=)
-          instance.must_respond_to(:parent)
-          instance.must_respond_to(:parent=)
-          instance.must_respond_to(:zindex)
-          instance.must_respond_to(:zindex=)
-        end
+      describe '#client' do
+        it { instance.must_respond_to(:client) }
+      end
+
+      describe '#client=' do
+        it { instance.must_respond_to(:client=) }
+      end
+
+      describe '#cursor_visible' do
+        it { instance.must_respond_to(:cursor_visible) }
+      end
+
+      describe '#cursor_visible=' do
+        it { instance.must_respond_to(:cursor_visible=) }
+      end
+
+      describe '#name' do
+        it { instance.must_respond_to(:name) }
+      end
+
+      describe '#name=' do
+        it { instance.must_respond_to(:name=) }
+      end
+
+      describe '#parent' do
+        it { instance.must_respond_to(:parent) }
+      end
+
+      describe '#parent=' do
+        it { instance.must_respond_to(:parent=) }
+      end
+
+      describe '#zindex' do
+        it { instance.must_respond_to(:zindex) }
+      end
+
+      describe '#zindex=' do
+        it { instance.must_respond_to(:zindex=) }
       end
 
       describe '#add' do

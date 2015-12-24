@@ -27,9 +27,15 @@ module Vedeu
         end
       end
 
-      describe 'accessors' do
+      describe '#collection' do
         it { instance.must_respond_to(:collection) }
+      end
+
+      describe '#collection=' do
         it { instance.must_respond_to(:collection=) }
+      end
+
+      describe '#lines' do
         it { instance.must_respond_to(:lines) }
       end
 
@@ -463,8 +469,6 @@ module Vedeu
       describe '#to_s' do
         subject { instance.to_s }
 
-        it { instance.must_respond_to(:to_str) }
-
         context 'when there are no lines' do
           let(:collection) {}
 
@@ -476,6 +480,10 @@ module Vedeu
 
           it { subject.must_equal(expected) }
         end
+      end
+
+      describe '#to_str' do
+        it { instance.must_respond_to(:to_str) }
       end
 
     end # Lines

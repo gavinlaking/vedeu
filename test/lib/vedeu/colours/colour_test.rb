@@ -239,8 +239,6 @@ module Vedeu
 
         subject { instance.eql?(other) }
 
-        it { instance.must_respond_to(:==) }
-
         it { subject.must_equal(true) }
 
         context 'when different to other' do
@@ -248,6 +246,10 @@ module Vedeu
 
           it { subject.must_equal(false) }
         end
+      end
+
+      describe '#==' do
+        it { instance.must_respond_to(:==) }
       end
 
       describe '#foreground' do

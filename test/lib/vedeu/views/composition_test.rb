@@ -42,13 +42,20 @@ module Vedeu
         it { instance.instance_variable_get('@value').must_equal(_value) }
       end
 
-      describe 'accessors' do
-        it do
-          instance.must_respond_to(:attributes)
-          instance.must_respond_to(:parent)
-          instance.must_respond_to(:value)
-          instance.must_respond_to(:views)
-        end
+      describe '#attributes' do
+        it { instance.must_respond_to(:attributes) }
+      end
+
+      describe '#parent' do
+        it { instance.must_respond_to(:parent) }
+      end
+
+      describe '#value' do
+        it { instance.must_respond_to(:value) }
+      end
+
+      describe '#views' do
+        it { instance.must_respond_to(:views) }
       end
 
       describe '#add' do
@@ -56,9 +63,11 @@ module Vedeu
 
         subject { instance.add(child) }
 
-        it { instance.must_respond_to(:<<) }
-
         it { subject.must_be_instance_of(Vedeu::Views::Views) }
+      end
+
+      describe '#<<' do
+        it { instance.must_respond_to(:<<) }
       end
 
     end # Composition

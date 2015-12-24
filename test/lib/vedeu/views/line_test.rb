@@ -56,19 +56,27 @@ module Vedeu
         it { instance.instance_variable_get('@parent').must_equal(parent) }
       end
 
-      describe 'accessors' do
-        it do
-          instance.must_respond_to(:client)
-          instance.must_respond_to(:client=)
-          instance.must_respond_to(:parent)
-          instance.must_respond_to(:parent=)
-        end
+      describe '#client' do
+      it { instance.must_respond_to(:client) }
+      end
+
+      describe '#client=' do
+      it { instance.must_respond_to(:client=) }
+      end
+
+      describe '#parent' do
+      it { instance.must_respond_to(:parent) }
+      end
+
+      describe '#parent=' do
+      it { instance.must_respond_to(:parent=) }
       end
 
       describe '#add' do
         subject { instance.add(child) }
+      end
 
-        it { instance.must_respond_to(:add) }
+      describe '#<<' do
         it { instance.must_respond_to(:<<) }
       end
 
@@ -99,8 +107,6 @@ module Vedeu
 
         subject { instance.eql?(other) }
 
-        it { instance.must_respond_to(:==) }
-
         it { subject.must_equal(true) }
 
         context 'when different to other' do
@@ -108,6 +114,10 @@ module Vedeu
 
           it { subject.must_equal(false) }
         end
+      end
+
+      describe '#==' do
+        it { instance.must_respond_to(:==) }
       end
 
       describe '#name' do

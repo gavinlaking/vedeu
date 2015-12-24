@@ -19,10 +19,19 @@ module Vedeu
           it { instance.instance_variable_get('@count').must_equal(0) }
         end
 
-        describe 'accessors' do
+        describe '#samples' do
           it { instance.must_respond_to(:samples) }
+        end
+
+        describe '#samples=' do
           it { instance.must_respond_to(:samples=) }
+        end
+
+        describe '#benchmark' do
           it { instance.must_respond_to(:benchmark) }
+        end
+
+        describe '#benchmark=' do
           it { instance.must_respond_to(:benchmark=) }
         end
 

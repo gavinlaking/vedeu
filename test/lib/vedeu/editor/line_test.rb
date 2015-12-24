@@ -21,8 +21,11 @@ module Vedeu
         end
       end
 
-      describe 'accessors' do
+      describe '#collection' do
         it { instance.must_respond_to(:collection) }
+      end
+
+      describe '#collection=' do
         it { instance.must_respond_to(:collection=) }
       end
 

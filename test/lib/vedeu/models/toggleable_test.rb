@@ -21,12 +21,16 @@ module Vedeu
     let(:instance)           { described_included.new(visible) }
     let(:visible)            { false }
 
-    describe 'accessors' do
-      it do
-        instance.must_respond_to(:visible)
-        instance.must_respond_to(:visible=)
-        instance.must_respond_to(:visible?)
-      end
+    describe '#visible' do
+      it { instance.must_respond_to(:visible) }
+    end
+
+    describe '#visible=' do
+      it { instance.must_respond_to(:visible=) }
+    end
+
+    describe '#visible?' do
+      it { instance.must_respond_to(:visible?) }
     end
 
     describe '#hide' do

@@ -43,16 +43,32 @@ module Vedeu
         it { instance.instance_variable_get('@ox').must_equal(0) }
       end
 
-      describe '#accessors' do
-        it do
-          instance.must_respond_to(:name)
-          instance.must_respond_to(:ox)
-          instance.must_respond_to(:ox=)
-          instance.must_respond_to(:oy)
-          instance.must_respond_to(:oy=)
-          instance.must_respond_to(:x=)
-          instance.must_respond_to(:y=)
-        end
+      describe '#name' do
+        it { instance.must_respond_to(:name) }
+      end
+
+      describe '#ox' do
+        it { instance.must_respond_to(:ox) }
+      end
+
+      describe '#ox=' do
+        it { instance.must_respond_to(:ox=) }
+      end
+
+      describe '#oy' do
+        it { instance.must_respond_to(:oy) }
+      end
+
+      describe '#oy=' do
+        it { instance.must_respond_to(:oy=) }
+      end
+
+      describe '#x=' do
+        it { instance.must_respond_to(:x=) }
+      end
+
+      describe '#y=' do
+        it { instance.must_respond_to(:y=) }
       end
 
       describe '#bol' do
@@ -147,11 +163,13 @@ module Vedeu
 
         subject { instance.to_s }
 
-        it { instance.must_respond_to(:to_str) }
-
         it { subject.must_be_instance_of(String) }
 
         it { subject.must_equal("\e[6;12H\e[?25h") }
+      end
+
+      describe '#to_str' do
+        it { instance.must_respond_to(:to_str) }
       end
 
       describe '#up' do

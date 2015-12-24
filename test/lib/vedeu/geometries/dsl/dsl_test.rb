@@ -181,8 +181,6 @@ module Vedeu
 
         subject { instance.align_centre(width) }
 
-        it { instance.must_respond_to(:align_center) }
-
         context 'when a width is given' do
           it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
         end
@@ -192,6 +190,10 @@ module Vedeu
 
           it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
         end
+      end
+
+      describe '#align_center' do
+        it { instance.must_respond_to(:align_center) }
       end
 
       describe '#align_left' do
@@ -279,8 +281,6 @@ module Vedeu
       describe '#height' do
         subject { instance.height(6) }
 
-        it { instance.must_respond_to(:height=) }
-
         it 'sets the attribute to the value' do
           subject.call.must_equal(6)
         end
@@ -298,6 +298,10 @@ module Vedeu
             subject.height.must_equal(17)
           end
         end
+      end
+
+      describe '#height=' do
+        it { instance.must_respond_to(:height=) }
       end
 
       describe '#rows' do
@@ -342,8 +346,6 @@ module Vedeu
       describe '#width' do
         subject { instance.width(25) }
 
-        it { instance.must_respond_to(:width=) }
-
         it 'sets the attribute to the value' do
           subject.call.must_equal(25)
         end
@@ -363,10 +365,16 @@ module Vedeu
         end
       end
 
+      describe '#width=' do
+        it { instance.must_respond_to(:width=) }
+      end
+
+      describe '#x=' do
+        it { instance.must_respond_to(:x=) }
+      end
+
       describe '#x' do
         subject { instance.x(2) }
-
-        it { instance.must_respond_to(:x=) }
 
         it 'sets the attribute to the value' do
           subject.must_equal(2)
@@ -421,10 +429,12 @@ module Vedeu
         end
       end
 
+      describe '#y=' do
+        it { instance.must_respond_to(:y=) }
+      end
+
       describe '#y' do
         subject { instance.y(5) }
-
-        it { instance.must_respond_to(:y=) }
 
         it 'sets the attribute to the value' do
           subject.must_equal(5)
@@ -479,10 +489,13 @@ module Vedeu
         end
       end
 
+      describe '#xn=' do
+        it { instance.must_respond_to(:xn=) }
+      end
+
       describe '#xn' do
         subject { instance.xn(15) }
 
-        it { instance.must_respond_to(:xn=) }
         it { subject.must_equal(15) }
 
         context 'when a block is given' do
@@ -498,10 +511,13 @@ module Vedeu
         end
       end
 
+      describe '#yn=' do
+        it { instance.must_respond_to(:yn=) }
+      end
+
       describe '#yn' do
         subject { instance.yn(8) }
 
-        it { instance.must_respond_to(:yn=) }
         it { subject.must_equal(8) }
 
         context 'when a block is given' do

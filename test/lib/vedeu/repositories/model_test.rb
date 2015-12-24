@@ -14,8 +14,11 @@ module Vedeu
         }
       }
 
-      describe 'accessors' do
+      describe '#repository' do
         it { instance.must_respond_to(:repository) }
+      end
+
+      describe '#repository=' do
         it { instance.must_respond_to(:repository=) }
       end
 

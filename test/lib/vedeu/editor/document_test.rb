@@ -49,14 +49,24 @@ module Vedeu
         end
       end
 
-      describe 'accessors' do
-        it do
-          instance.must_respond_to(:attributes)
-          instance.must_respond_to(:data)
-          instance.must_respond_to(:data=)
-          instance.must_respond_to(:name)
-          instance.must_respond_to(:name=)
-        end
+      describe '#attributes' do
+        it { instance.must_respond_to(:attributes) }
+      end
+
+      describe '#data' do
+        it { instance.must_respond_to(:data) }
+      end
+
+      describe '#data=' do
+        it { instance.must_respond_to(:data=) }
+      end
+
+      describe '#name' do
+        it { instance.must_respond_to(:name) }
+      end
+
+      describe '#name=' do
+        it { instance.must_respond_to(:name=) }
       end
 
       describe '#execute' do
@@ -92,8 +102,6 @@ module Vedeu
       end
 
       describe '#insert_character' do
-        it { instance.must_respond_to(:insert_character) }
-
         context 'when the character is a Symbol' do
           let(:character) { :a }
 

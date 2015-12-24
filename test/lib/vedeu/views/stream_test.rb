@@ -43,15 +43,28 @@ module Vedeu
         it { instance.instance_variable_get('@value').must_equal(_value) }
       end
 
-      describe 'accessors' do
-        it do
-          instance.must_respond_to(:parent)
-          instance.must_respond_to(:parent=)
-          instance.must_respond_to(:value)
-          instance.must_respond_to(:content)
-          instance.must_respond_to(:text)
-          instance.must_respond_to(:value=)
-        end
+      describe '#parent' do
+        it { instance.must_respond_to(:parent) }
+      end
+
+      describe '#parent=' do
+        it { instance.must_respond_to(:parent=) }
+      end
+
+      describe '#value' do
+        it { instance.must_respond_to(:value) }
+      end
+
+      describe '#content' do
+        it { instance.must_respond_to(:content) }
+      end
+
+      describe '#text' do
+        it { instance.must_respond_to(:text) }
+      end
+
+      describe '#value=' do
+        it { instance.must_respond_to(:value=) }
       end
 
       describe '#add' do
@@ -60,7 +73,9 @@ module Vedeu
         subject { instance.add(child) }
 
         it { subject.must_be_instance_of(Vedeu::Views::Streams) }
+      end
 
+      describe '#<<' do
         it { instance.must_respond_to(:<<) }
       end
 
@@ -75,8 +90,6 @@ module Vedeu
 
         subject { instance.eql?(other) }
 
-        it { instance.must_respond_to(:==) }
-
         it { subject.must_equal(true) }
 
         context 'when different to other' do
@@ -86,6 +99,10 @@ module Vedeu
 
           it { subject.must_equal(false) }
         end
+      end
+
+      describe '#==' do
+        it { instance.must_respond_to(:==) }
       end
 
       describe '#name' do

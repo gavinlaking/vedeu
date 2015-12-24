@@ -43,6 +43,8 @@ module Vedeu
         subject { instance.bottom_left(char, options) }
 
         it { subject.must_be_instance_of(Vedeu::Cells::BottomLeft) }
+      end
+      describe '#bottom_left=' do
         it { instance.must_respond_to(:bottom_left=) }
       end
 
@@ -53,6 +55,8 @@ module Vedeu
         subject { instance.bottom_right(char, options) }
 
         it { subject.must_be_instance_of(Vedeu::Cells::BottomRight) }
+      end
+      describe '#bottom_right=' do
         it { instance.must_respond_to(:bottom_right=) }
       end
 
@@ -75,6 +79,9 @@ module Vedeu
         subject { instance.top_horizontal(char, options) }
 
         it { subject.must_be_instance_of(Vedeu::Cells::TopHorizontal) }
+      end
+
+      describe '#top_horizontal=' do
         it { instance.must_respond_to(:top_horizontal=) }
       end
 
@@ -85,6 +92,9 @@ module Vedeu
         subject { instance.bottom_horizontal(char, options) }
 
         it { subject.must_be_instance_of(Vedeu::Cells::BottomHorizontal) }
+      end
+
+      describe '#bottom_horizontal=' do
         it { instance.must_respond_to(:bottom_horizontal=) }
       end
 
@@ -95,13 +105,15 @@ module Vedeu
         subject { instance.horizontal(char, options) }
 
         it { subject.must_be_instance_of(Vedeu::Cells::Horizontal) }
+      end
+
+      describe '#horizontal=' do
         it { instance.must_respond_to(:horizontal=) }
       end
 
       describe '#show_bottom' do
         subject { instance.show_bottom(boolean) }
 
-        it { instance.must_respond_to(:bottom) }
         it { subject.must_be_instance_of(TrueClass) }
 
         context 'when false' do
@@ -109,8 +121,13 @@ module Vedeu
 
           it { subject.must_be_instance_of(FalseClass) }
         end
+      end
 
+      describe '#bottom' do
         it { instance.must_respond_to(:bottom) }
+      end
+
+      describe '#bottom=' do
         it { instance.must_respond_to(:bottom=) }
       end
 
@@ -131,14 +148,19 @@ module Vedeu
 
         it { subject.must_be_instance_of(TrueClass) }
 
-        it { instance.must_respond_to(:left) }
-        it { instance.must_respond_to(:left=) }
-
         context 'when false' do
           let(:boolean) { false }
 
           it { subject.must_be_instance_of(FalseClass) }
         end
+      end
+
+      describe '#left' do
+        it { instance.must_respond_to(:left) }
+      end
+
+      describe '#left=' do
+        it { instance.must_respond_to(:left=) }
       end
 
       describe '#hide_left!' do
@@ -158,14 +180,19 @@ module Vedeu
 
         it { subject.must_be_instance_of(TrueClass) }
 
-        it { instance.must_respond_to(:right) }
-        it { instance.must_respond_to(:right=) }
-
         context 'when false' do
           let(:boolean) { false }
 
           it { subject.must_be_instance_of(FalseClass) }
         end
+      end
+
+      describe '#right' do
+        it { instance.must_respond_to(:right) }
+      end
+
+      describe '#right=' do
+        it { instance.must_respond_to(:right=) }
       end
 
       describe '#hide_right!' do
@@ -185,14 +212,19 @@ module Vedeu
 
         it { subject.must_be_instance_of(TrueClass) }
 
-        it { instance.must_respond_to(:top) }
-        it { instance.must_respond_to(:top=) }
-
         context 'when false' do
           let(:boolean) { false }
 
           it { subject.must_be_instance_of(FalseClass) }
         end
+      end
+
+      describe '#top' do
+        it { instance.must_respond_to(:top) }
+      end
+
+      describe '#top=' do
+        it { instance.must_respond_to(:top=) }
       end
 
       describe '#hide_top!' do
@@ -214,6 +246,9 @@ module Vedeu
 
         it { subject.must_be_instance_of(String) }
         it { subject.must_equal('Some title') }
+      end
+
+      describe '#title=' do
         it { instance.must_respond_to(:title=) }
       end
 
@@ -224,6 +259,9 @@ module Vedeu
 
         it { subject.must_be_instance_of(String) }
         it { subject.must_equal('Some caption') }
+      end
+
+      describe '#caption=' do
         it { instance.must_respond_to(:caption=) }
       end
 
@@ -234,6 +272,9 @@ module Vedeu
         subject { instance.top_left(char, options) }
 
         it { subject.must_be_instance_of(Vedeu::Cells::TopLeft) }
+      end
+
+      describe '#top_left=' do
         it { instance.must_respond_to(:top_left=) }
       end
 
@@ -244,6 +285,9 @@ module Vedeu
         subject { instance.top_right(char, options) }
 
         it { subject.must_be_instance_of(Vedeu::Cells::TopRight) }
+      end
+
+      describe '#top_right=' do
         it { instance.must_respond_to(:top_right=) }
       end
 
@@ -273,6 +317,9 @@ module Vedeu
         subject { instance.left_vertical(char, options) }
 
         it { subject.must_be_instance_of(Vedeu::Cells::LeftVertical) }
+      end
+
+      describe '#left_vertical=' do
         it { instance.must_respond_to(:left_vertical=) }
       end
 
@@ -283,6 +330,9 @@ module Vedeu
         subject { instance.right_vertical(char, options) }
 
         it { subject.must_be_instance_of(Vedeu::Cells::RightVertical) }
+      end
+
+      describe '#right_vertical=' do
         it { instance.must_respond_to(:right_vertical=) }
       end
 
@@ -293,6 +343,9 @@ module Vedeu
         subject { instance.vertical(char, options) }
 
         it { subject.must_be_instance_of(Vedeu::Cells::Vertical) }
+      end
+
+      describe '#vertical=' do
         it { instance.must_respond_to(:vertical=) }
       end
 

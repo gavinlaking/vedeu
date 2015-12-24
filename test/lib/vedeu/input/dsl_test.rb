@@ -37,12 +37,14 @@ module Vedeu
         end
       end
 
+      describe '#key=' do
+        it { instance.must_respond_to(:key=) }
+      end
+
       describe '#key' do
         let(:value_or_values) { ['j', :down] }
 
         subject { instance.key(*value_or_values) { :some_action } }
-
-        it { instance.must_respond_to(:key=) }
 
         context 'when a block was not given' do
           subject { instance.key(value_or_values) }

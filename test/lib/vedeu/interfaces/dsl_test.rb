@@ -138,6 +138,9 @@ module Vedeu
         }
 
         it { subject.must_be_instance_of(Vedeu::Input::Keymap) }
+      end
+
+      describe '#keys' do
         it { instance.must_respond_to(:keys) }
       end
 
@@ -193,7 +196,9 @@ module Vedeu
         subject { instance.zindex(_value) }
 
         it { subject.must_equal(1) }
-        it { instance.must_respond_to(:z_index) }
+      end
+
+      describe '#z' do
         it { instance.must_respond_to(:z) }
       end
 

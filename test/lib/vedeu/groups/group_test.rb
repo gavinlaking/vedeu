@@ -37,14 +37,24 @@ module Vedeu
         it { instance.instance_variable_get('@visible').must_equal(visible) }
       end
 
-      describe 'accessors' do
-        it do
-          instance.must_respond_to(:name)
-          instance.must_respond_to(:name=)
-          instance.must_respond_to(:visible)
-          instance.must_respond_to(:visible=)
-          instance.must_respond_to(:visible?)
-        end
+      describe '#name' do
+        it { instance.must_respond_to(:name) }
+      end
+
+      describe '#name=' do
+        it { instance.must_respond_to(:name=) }
+      end
+
+      describe '#visible' do
+        it { instance.must_respond_to(:visible) }
+      end
+
+      describe '#visible=' do
+        it { instance.must_respond_to(:visible=) }
+      end
+
+      describe '#visible?' do
+        it { instance.must_respond_to(:visible?) }
       end
 
       describe '#add' do

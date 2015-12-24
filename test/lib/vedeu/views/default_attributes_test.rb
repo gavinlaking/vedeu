@@ -28,16 +28,43 @@ module Vedeu
       let(:including_instance)  { including_described.new }
       let(:model)               {}
 
-      describe 'accessors' do
+      describe '#align' do
         it { including_instance.must_respond_to(:align) }
-        # it { including_instance.must_respond_to(:client) }
-        # it { including_instance.must_respond_to(:colour) }
-        # it { including_instance.must_respond_to(:name) }
+      end
+
+      describe '#client' do
+        it { including_instance.must_respond_to(:client) }
+      end
+
+      describe '#colour' do
+        it { including_instance.must_respond_to(:colour) }
+      end
+
+      describe '#name' do
+        it { including_instance.must_respond_to(:name) }
+      end
+
+      describe '#pad' do
         it { including_instance.must_respond_to(:pad) }
-        # it { including_instance.must_respond_to(:parent) }
-        # it { including_instance.must_respond_to(:style) }
+      end
+
+      describe '#parent' do
+        it { including_instance.must_respond_to(:parent) }
+      end
+
+      describe '#style' do
+        it { including_instance.must_respond_to(:style) }
+      end
+
+      describe '#truncate' do
         it { including_instance.must_respond_to(:truncate) }
+      end
+
+      describe '#width' do
         it { including_instance.must_respond_to(:width) }
+      end
+
+      describe '#wordwrap' do
         it { including_instance.must_respond_to(:wordwrap) }
       end
 

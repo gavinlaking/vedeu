@@ -49,8 +49,6 @@ module Vedeu
 
         subject { instance.item(_value) }
 
-        it { instance.must_respond_to(:item=) }
-
         context 'when items are provided' do
           it { subject.must_equal([:sodium,
                                     :magnesium,
@@ -60,12 +58,14 @@ module Vedeu
         end
       end
 
+      describe '#item=' do
+        it { instance.must_respond_to(:item=) }
+      end
+
       describe '#items' do
         let(:_value) { [] }
 
         subject { instance.items(_value) }
-
-        it { instance.must_respond_to(:items=) }
 
         context 'when no items are provided' do
           it { subject.must_equal([]) }
@@ -76,6 +76,10 @@ module Vedeu
 
           it { subject.must_equal(_value)}
         end
+      end
+
+      describe '#items=' do
+        it { instance.must_respond_to(:items=) }
       end
 
     end # DSL

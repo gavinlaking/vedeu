@@ -32,8 +32,6 @@ module Vedeu
 
         subject { instance.render(output) }
 
-        it { instance.must_respond_to(:clear) }
-
         # it { subject.must_be_instance_of(String) }
 
         context 'when the filename option is not set' do
@@ -64,6 +62,10 @@ module Vedeu
           #   subject
           # end
         end
+      end
+
+      describe '#clear' do
+        it { instance.must_respond_to(:clear) }
       end
 
     end # File

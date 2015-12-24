@@ -42,12 +42,14 @@ module Vedeu
           subject
           described.ready?.must_equal(false)
         end
-        it { described.instance.must_respond_to(:reset) }
       end
 
-      describe '#reset!' do
-        it { described.instance.must_respond_to(:reset!) }
-        it { described.instance.must_respond_to(:reset) }
+      describe '.reset' do
+        it { described.must_respond_to(:reset) }
+      end
+
+      describe '.reset!' do
+        it { described.must_respond_to(:reset!) }
       end
 
     end # Flags

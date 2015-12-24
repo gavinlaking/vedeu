@@ -19,16 +19,32 @@ module Vedeu
         it { instance.instance_variable_get('@parent').must_equal(parent) }
       end
 
-      describe 'accessors' do
-        it do
-          instance.must_respond_to(:collection)
-          instance.must_respond_to(:all)
-          instance.must_respond_to(:value)
-          instance.must_respond_to(:parent)
-          instance.must_respond_to(:parent=)
-          instance.must_respond_to(:name)
-          instance.must_respond_to(:name=)
-        end
+      describe '#collection' do
+        it { instance.must_respond_to(:collection) }
+      end
+
+      describe '#all' do
+        it { instance.must_respond_to(:all) }
+      end
+
+      describe '#value' do
+        it { instance.must_respond_to(:value) }
+      end
+
+      describe '#parent' do
+        it { instance.must_respond_to(:parent) }
+      end
+
+      describe '#parent=' do
+        it { instance.must_respond_to(:parent=) }
+      end
+
+      describe '#name' do
+        it { instance.must_respond_to(:name) }
+      end
+
+      describe '#name=' do
+        it { instance.must_respond_to(:name=) }
       end
 
       describe '.coerce' do
@@ -41,9 +57,12 @@ module Vedeu
       describe '#add' do
         subject { instance.add(:hydrogen) }
 
-        it { instance.must_respond_to(:<<) }
         it { subject.must_be_instance_of(Vedeu::Repositories::Collection) }
         it { subject.all.must_equal([:hydrogen]) }
+      end
+
+      describe '#<<' do
+        it { instance.must_respond_to(:<<) }
       end
 
       describe '#all' do
@@ -75,6 +94,10 @@ module Vedeu
 
           it { subject.must_equal('hydrogen') }
         end
+      end
+
+      describe '#to_str' do
+        it { instance.must_respond_to(:to_str) }
       end
 
     end # Collection

@@ -15,9 +15,15 @@ module Vedeu
       }
       let(:_name) { 'null_generic' }
 
-      describe 'alias methods' do
+      describe '#name' do
         it { instance.must_respond_to(:name) }
+      end
+
+      describe '#attributes' do
         it { instance.must_respond_to(:attributes) }
+      end
+
+      describe '#visible?' do
         it { instance.must_respond_to(:visible?) }
       end
 
@@ -42,13 +48,33 @@ module Vedeu
         subject { instance.falsy }
 
         it { subject.must_be_instance_of(FalseClass) }
+      end
 
+      describe '#enabled?' do
         it { instance.must_respond_to(:enabled?) }
+      end
+
+      describe '#maximise' do
         it { instance.must_respond_to(:maximise) }
+      end
+
+      describe '#maximised?' do
         it { instance.must_respond_to(:maximised?) }
+      end
+
+      describe '#unmaximise' do
         it { instance.must_respond_to(:unmaximise) }
+      end
+
+      describe '#visible' do
         it { instance.must_respond_to(:visible) }
+      end
+
+      describe '#visible?' do
         it { instance.must_respond_to(:visible?) }
+      end
+
+      describe '#editable?' do
         it { instance.must_respond_to(:editable?) }
       end
 
@@ -56,26 +82,89 @@ module Vedeu
         subject { instance.null }
 
         it { subject.must_be_instance_of(NilClass) }
+      end
+
+      describe '#add' do
         it { instance.must_respond_to(:add) }
+      end
+
+      describe '#bottom_item' do
         it { instance.must_respond_to(:bottom_item) }
+      end
+
+      describe '#clear' do
         it { instance.must_respond_to(:clear) }
+      end
+
+      describe '#colour' do
         it { instance.must_respond_to(:colour) }
+      end
+
+      describe '#current_item' do
         it { instance.must_respond_to(:current_item) }
+      end
+
+      describe '#deselect_item' do
         it { instance.must_respond_to(:deselect_item) }
+      end
+
+      describe '#hide' do
         it { instance.must_respond_to(:hide) }
+      end
+
+      describe '#item' do
         it { instance.must_respond_to(:item) }
+      end
+
+      describe '#items' do
         it { instance.must_respond_to(:items) }
+      end
+
+      describe '#next_item' do
         it { instance.must_respond_to(:next_item) }
+      end
+
+      describe '#parent' do
         it { instance.must_respond_to(:parent) }
+      end
+
+      describe '#prev_item' do
         it { instance.must_respond_to(:prev_item) }
+      end
+
+      describe '#render' do
         it { instance.must_respond_to(:render) }
+      end
+
+      describe '#select_item' do
         it { instance.must_respond_to(:select_item) }
+      end
+
+      describe '#selected_item' do
         it { instance.must_respond_to(:selected_item) }
+      end
+
+      describe '#show' do
         it { instance.must_respond_to(:show) }
+      end
+
+      describe '#style' do
         it { instance.must_respond_to(:style) }
+      end
+
+      describe '#toggle' do
         it { instance.must_respond_to(:toggle) }
+      end
+
+      describe '#top_item' do
         it { instance.must_respond_to(:top_item) }
+      end
+
+      describe '#view' do
         it { instance.must_respond_to(:view) }
+      end
+
+      describe '#zindex' do
         it { instance.must_respond_to(:zindex) }
       end
 

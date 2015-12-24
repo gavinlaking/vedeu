@@ -40,7 +40,9 @@ module Vedeu
         it 'returns the key defined' do
           subject.must_equal('a')
         end
+      end
 
+      describe '#key' do
         it { instance.must_respond_to(:key) }
       end
 
@@ -50,9 +52,14 @@ module Vedeu
         it 'returns the result of calling the proc' do
           subject.must_equal(:output)
         end
+      end
 
-        it { instance.must_respond_to(:action) }
+      describe '#press' do
         it { instance.must_respond_to(:press) }
+      end
+
+      describe '#action' do
+        it { instance.must_respond_to(:action) }
       end
 
     end # Key

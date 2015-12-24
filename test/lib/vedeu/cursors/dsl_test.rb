@@ -15,11 +15,25 @@ module Vedeu
       let(:described) { Vedeu::Cursors::DSL }
       let(:instance)  { Vedeu::Cursors::DSLTestClass.new }
 
-      it { instance.must_respond_to(:cursor) }
-      it { instance.must_respond_to(:cursor!) }
-      it { instance.must_respond_to(:show_cursor!) }
-      it { instance.must_respond_to(:no_cursor!) }
-      it { instance.must_respond_to(:hide_cursor!) }
+      describe '#cursor' do
+        it { instance.must_respond_to(:cursor) }
+      end
+
+      describe '#cursor!' do
+        it { instance.must_respond_to(:cursor!) }
+      end
+
+      describe '#show_cursor!' do
+        it { instance.must_respond_to(:show_cursor!) }
+      end
+
+      describe '#no_cursor!' do
+        it { instance.must_respond_to(:no_cursor!) }
+      end
+
+      describe '#hide_cursor!' do
+        it { instance.must_respond_to(:hide_cursor!) }
+      end
 
       # describe '#cursor' do
       #   let(:_value) {}

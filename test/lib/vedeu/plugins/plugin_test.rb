@@ -20,15 +20,28 @@ module Vedeu
       it { instance.instance_variable_get('@enabled').must_equal(false) }
     end
 
-    describe 'accessors' do
-      it do
-        instance.must_respond_to(:name)
-        instance.must_respond_to(:gem)
-        instance.must_respond_to(:gem_name)
-        instance.must_respond_to(:enabled)
-        instance.must_respond_to(:enabled=)
-        instance.must_respond_to(:enabled?)
-      end
+    describe '#name' do
+      it { instance.must_respond_to(:name) }
+    end
+
+    describe '#gem' do
+      it { instance.must_respond_to(:gem) }
+    end
+
+    describe '#gem_name' do
+      it { instance.must_respond_to(:gem_name) }
+    end
+
+    describe '#enabled' do
+     it { instance.must_respond_to(:enabled) }
+    end
+
+    describe '#enabled=' do
+      it { instance.must_respond_to(:enabled=) }
+    end
+
+    describe '#enabled?' do
+      it { instance.must_respond_to(:enabled?) }
     end
 
     describe '#load!' do

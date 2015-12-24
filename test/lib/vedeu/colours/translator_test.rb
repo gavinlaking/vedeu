@@ -15,8 +15,11 @@ module Vedeu
         it { instance.instance_variable_get('@colour').must_equal(colour) }
       end
 
-      describe 'accessors' do
+      describe '#colour' do
         it { instance.must_respond_to(:colour) }
+      end
+
+      describe '#value' do
         it { instance.must_respond_to(:value) }
       end
 
@@ -78,8 +81,6 @@ module Vedeu
 
         subject { instance.eql?(other) }
 
-        it { instance.must_respond_to(:==) }
-
         it { subject.must_equal(true) }
 
         context 'when different to other' do
@@ -87,6 +88,10 @@ module Vedeu
 
           it { subject.must_equal(false) }
         end
+      end
+
+      describe '#==' do
+        it { instance.must_respond_to(:==) }
       end
 
       describe '#escape_sequence' do

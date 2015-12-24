@@ -26,9 +26,11 @@ module Vedeu
 
         subject { instance.background('#000000') { 'background text' } }
 
-        it { instance.must_respond_to(:bg) }
-
         # it { subject.must_equal(expected) }
+      end
+
+      describe '#bg' do
+        it { instance.must_respond_to(:bg) }
       end
 
       describe '#colour' do
@@ -113,9 +115,11 @@ module Vedeu
 
         subject { instance.foreground('#000000') { 'foreground text' } }
 
-        it { instance.must_respond_to(:fg) }
-
         # it { subject.must_equal(expected) }
+      end
+
+      describe '#fg' do
+        it { instance.must_respond_to(:fg) }
       end
 
       # describe '#style' do

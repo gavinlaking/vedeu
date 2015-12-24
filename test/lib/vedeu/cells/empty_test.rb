@@ -23,8 +23,11 @@ module Vedeu
       let(:style)    { '' }
       let(:_value)   { '' }
 
-      describe 'accessors' do
+      describe '#name' do
         it { instance.must_respond_to(:name) }
+      end
+
+      describe '#value' do
         it { instance.must_respond_to(:value) }
       end
 
@@ -39,8 +42,6 @@ module Vedeu
 
         subject { instance.eql?(other) }
 
-        it { instance.must_respond_to(:==) }
-
         it { subject.must_equal(true) }
 
         context 'when different to other' do
@@ -48,6 +49,10 @@ module Vedeu
 
           it { subject.must_equal(false) }
         end
+      end
+
+      describe '#==' do
+        it { instance.must_respond_to(:==) }
       end
 
       describe '#text' do
@@ -84,9 +89,12 @@ module Vedeu
       describe '#to_s' do
         subject { instance.to_s }
 
-        it { instance.must_respond_to(:to_str) }
         it { subject.must_be_instance_of(String) }
         it { subject.must_equal('') }
+      end
+
+      describe '#to_str' do
+        it { instance.must_respond_to(:to_str) }
       end
 
     end # Empty

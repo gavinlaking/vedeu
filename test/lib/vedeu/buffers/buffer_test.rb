@@ -33,16 +33,32 @@ module Vedeu
         end
       end
 
-      describe 'accessors' do
-        it do
-          instance.must_respond_to(:back)
-          instance.must_respond_to(:back=)
-          instance.must_respond_to(:front)
-          instance.must_respond_to(:front=)
-          instance.must_respond_to(:previous)
-          instance.must_respond_to(:previous=)
-          instance.must_respond_to(:name)
-        end
+      describe '#back' do
+        it { instance.must_respond_to(:back) }
+      end
+
+      describe '#back=' do
+        it { instance.must_respond_to(:back=) }
+      end
+
+      describe '#front' do
+        it { instance.must_respond_to(:front) }
+      end
+
+      describe '#front=' do
+        it { instance.must_respond_to(:front=) }
+      end
+
+      describe '#previous' do
+        it { instance.must_respond_to(:previous) }
+      end
+
+      describe '#previous=' do
+        it { instance.must_respond_to(:previous=) }
+      end
+
+      describe '#name' do
+        it { instance.must_respond_to(:name) }
       end
 
       describe '#add' do

@@ -23,7 +23,7 @@ module Vedeu
       }
       let(:compression) { false }
 
-      describe 'accessors' do
+      describe '#options=' do
         it { instance.must_respond_to(:options=) }
       end
 
