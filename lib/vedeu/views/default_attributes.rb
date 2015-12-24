@@ -2,6 +2,10 @@ module Vedeu
 
   module Views
 
+    # Provides the default attributes for variaus Vedeu::Views models.
+    #
+    # @api private
+    #
     module DefaultAttributes
 
       include Vedeu::Repositories::Defaults

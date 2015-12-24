@@ -2,6 +2,8 @@ module Vedeu
 
   module DSL
 
+    # Creates attributes for DSL objects.
+    #
     # @api private
     #
     class Attributes

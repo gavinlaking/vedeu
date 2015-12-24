@@ -2,8 +2,16 @@ module Vedeu
 
   module Views
 
+    # Provides view model methods for Vedeu::Views.
+    #
+    # @api private
+    #
     module Value
 
+      # Provides view model class methods for Vedeu::Views.
+      #
+      # @api private
+      #
       module ClassMethods
 
         # @!attribute [w] collection_klass
@@ -48,6 +56,10 @@ module Vedeu
 
       end # ClassMethods
 
+      # Provides view model instance methods for Vedeu::Views.
+      #
+      # @api private
+      #
       module InstanceMethods
 
         include Vedeu::Common

@@ -4,12 +4,15 @@ module Vedeu
 
     # Provides colour related presentation behaviour.
     #
+    # @api private
+    #
     module Colour
 
       include Vedeu::Repositories::Parent
       include Vedeu::Presentation::Colour::Background
       include Vedeu::Presentation::Colour::Foreground
 
+      # @return [Vedeu::Colours::Colour]
       def colour
         @_colour ||= if colour?
                        Vedeu::Colours::Colour.coerce(@colour)

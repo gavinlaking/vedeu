@@ -2,6 +2,10 @@ module Vedeu
 
   module DSL
 
+    # Aligns a text value based on given options when building views.
+    #
+    # @api private
+    #
     class Align
 
       extend Forwardable

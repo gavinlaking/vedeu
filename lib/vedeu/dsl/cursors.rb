@@ -2,6 +2,10 @@ module Vedeu
 
   module DSL
 
+    # Provides DSL methods for Vedeu::Cursors::Cursor objects.
+    #
+    # @api public
+    #
     module Cursors
 
       # Set the cursor visibility on an interface.

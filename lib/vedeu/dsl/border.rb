@@ -2,6 +2,10 @@ module Vedeu
 
   module DSL
 
+    # Provides DSL methods for Vedeu::Borders::Border objects.
+    #
+    # @api public
+    #
     module Border
 
       # When {Vedeu::DSL::Border} is included in a class, the

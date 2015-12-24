@@ -10,6 +10,10 @@ module Vedeu
     #
     class Line
 
+      # Provides DSL methods for Vedeu::Views::Line objects.
+      #
+      # @api public
+      #
       class DSL
 
         include Vedeu::DSL

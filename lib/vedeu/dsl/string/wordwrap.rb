@@ -2,13 +2,17 @@ module Vedeu
 
   module DSL
 
-    # Wrap or prune text.
+    # Wrap or prune a text value based on given options when building
+    # views.
+    #
+    # @api private
     #
     class Wordwrap
 
       include Vedeu::Common
 
-      # @see Vedeu::DSL::Wordwrap#initialize
+      # @param (see #initialize)
+      # @return (see #content)
       def self.for(text, options = {})
         new(text, options).content
       end

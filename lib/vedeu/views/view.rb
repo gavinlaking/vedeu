@@ -9,6 +9,10 @@ module Vedeu
     #
     class View
 
+      # Provides DSL methods for Vedeu::Views::View objects.
+      #
+      # @api public
+      #
       class DSL
 
         include Vedeu::DSL

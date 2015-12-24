@@ -1,17 +1,23 @@
 module Vedeu
 
+  # Represent a boolean object.
+  #
+  # @api private
+  #
   class Boolean
 
-    attr_writer :value
-
+    # @param value [void]
+    # @return [Vedeu::Boolean]
     def initialize(value = nil)
-      self.value = value
+      @value = value
     end
 
+    # @return [Boolean]
     def false?
       value.nil? || value == false
     end
 
+    # @return [Boolean]
     def true?
       return false if false?
 
@@ -20,6 +26,8 @@ module Vedeu
 
     private
 
+    # @!attribute [r] value
+    # @return [void]
     attr_reader :value
 
   end # Boolean

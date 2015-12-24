@@ -9,6 +9,9 @@ module Vedeu
 
       extend self
 
+      # @param binding [Binding]
+      # @param obj [Object]
+      # @return [void]
       def debug(binding = nil, obj = nil)
         require 'pry'
 

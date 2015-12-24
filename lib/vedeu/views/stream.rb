@@ -10,6 +10,10 @@ module Vedeu
     #
     class Stream
 
+      # Provides DSL methods for Vedeu::Views::Stream objects.
+      #
+      # @api public
+      #
       class DSL
 
         include Vedeu::DSL

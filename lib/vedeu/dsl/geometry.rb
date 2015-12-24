@@ -2,6 +2,10 @@ module Vedeu
 
   module DSL
 
+    # Provides DSL methods for Vedeu::Geometries::Geometry objects.
+    #
+    # @api public
+    #
     module Geometry
 
       # When {Vedeu::DSL::Geometry} is included in a class, the
