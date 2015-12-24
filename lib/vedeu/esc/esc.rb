@@ -9,8 +9,10 @@ module Vedeu
 
       include Vedeu::Common
       include Vedeu::EscapeSequences::Actions
+      include Vedeu::EscapeSequences::Background
       include Vedeu::EscapeSequences::Borders
       include Vedeu::EscapeSequences::Colours
+      include Vedeu::EscapeSequences::Foreground
       include Vedeu::EscapeSequences::Mouse
       extend self
 
@@ -70,8 +72,6 @@ module Vedeu
         "#{last_character_position}\n".freeze
       end
 
-      private
-
       # @return [String]
       def clear_line
         "#{colour_reset}\e[2K".freeze
@@ -84,7 +84,7 @@ module Vedeu
 
       # @return [String]
       def disable_mouse
-        if Vedeu::Configuration.mouse == true
+        if truthy?(Vedeu::Configuration.mouse)
           "#{mouse_x10_off}".freeze
 
         else
@@ -95,7 +95,7 @@ module Vedeu
 
       # @return [String]
       def enable_mouse
-        if Vedeu::Configuration.mouse == true
+        if truthy?(Vedeu::Configuration.mouse)
           "#{mouse_x10_on}".freeze
 
         else

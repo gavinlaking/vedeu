@@ -76,6 +76,10 @@ module Vedeu
         end
       end
 
+      describe '#==' do
+        it { instance.must_respond_to(:==) }
+      end
+
       describe '#render' do
         it { instance.must_respond_to(:render) }
       end
@@ -83,16 +87,15 @@ module Vedeu
       describe '#to_s' do
         subject { instance.to_s }
 
-        it { instance.must_respond_to(:to_str) }
-
         it { subject.must_equal('Aluminium') }
+      end
+
+      describe '#to_str' do
+        it { instance.must_respond_to(:to_str) }
       end
 
       describe '#value' do
         subject { instance.value }
-
-        it { instance.must_respond_to(:title) }
-        it { instance.must_respond_to(:caption) }
 
         context 'when the value is nil' do
           let(:_value) {}
@@ -103,6 +106,14 @@ module Vedeu
         context 'when the value is not nil' do
           it { subject.must_equal('Aluminium') }
         end
+      end
+
+      describe '#title' do
+        it { instance.must_respond_to(:title) }
+      end
+
+      describe '#caption' do
+        it { instance.must_respond_to(:caption) }
       end
 
     end # Title

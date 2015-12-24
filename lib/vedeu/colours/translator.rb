@@ -30,6 +30,14 @@ module Vedeu
     #
     class Translator
 
+      extend Forwardable
+      include Vedeu::Common
+
+      def_delegators :validator,
+                     :named?,
+                     :rgb?,
+                     :within_range?
+
       # @!attribute [r] colour
       # @return [String]
       attr_reader :colour
@@ -56,7 +64,7 @@ module Vedeu
 
       # @return [Boolean]
       def empty?
-        colour.nil? || colour.to_s.empty?
+        absent?(colour)
       end
 
       # An object is equal when its values are the same.
@@ -71,20 +79,19 @@ module Vedeu
       # @return [String]
       # @see Vedeu::Colours::Translator
       def escape_sequence
-        if empty?
-          ''
+        return '' if empty?
 
-        elsif registered?(colour)
+        if registered?(colour)
           retrieve(colour)
 
         elsif rgb?
           rgb
 
-        elsif numbered?
+        elsif within_range?
           numbered
 
         elsif named?
-          named
+          named_code
 
         else
           ''
@@ -132,53 +139,11 @@ module Vedeu
         repository.registered?(colour)
       end
 
-      # @return [Boolean]
-      def named?
-        colour.is_a?(Symbol) && valid_name?
-      end
-
-      # Returns an escape sequence for a named background colour.
-      #
-      # @note
-      #   Valid names can be found at
-      #   {Vedeu::EscapeSequences::Esc#codes}
-      #
-      # @return [String]
-      def named
-        "\e[#{named_codes}m".freeze
-      end
-
-      # Returns a boolean indicating whether the colour provided is a
-      # valid named colour.
-      #
-      # @return [Boolean]
-      def valid_name?
-        Vedeu::EscapeSequences::Esc.codes.keys.include?(colour)
-      end
-
-      # Returns a boolean indicating whether the colour provided is a
-      # terminal numbered colour.
-      #
-      # @return [Boolean]
-      def numbered?
-        colour.is_a?(Fixnum) && valid_range?
-      end
-
       # Returns an escape sequence.
       #
       # @return [String]
       def numbered
         "#{prefix}5;#{css_to_numbered}m".freeze
-      end
-
-      # Returns a boolean indicated whether the colour is a valid
-      # HTML/CSS colour.
-      #
-      # @return [Boolean]
-      def rgb?
-        return true if colour =~ /^#([A-Fa-f0-9]{6})$/.freeze
-
-        false
       end
 
       # Returns an escape sequence.
@@ -207,14 +172,6 @@ module Vedeu
         "#{prefix}2;%s;%s;%sm".freeze
       end
 
-      # Returns a boolean indicating whether the numbered colour is
-      # within the range of valid terminal numbered colours.
-      #
-      # @return [Boolean]
-      def valid_range?
-        colour >= 0 && colour <= 255
-      end
-
       # Returns a collection of converted HTML/CSS octets as their
       # decimal equivalents.
       #
@@ -236,7 +193,7 @@ module Vedeu
         if rgb?
           [16, red, green, blue].inject(:+)
 
-        elsif numbered?
+        elsif within_range?
           colour
 
         end
@@ -272,8 +229,13 @@ module Vedeu
       def not_implemented
         fail Vedeu::Error::NotImplemented, 'Subclasses implement this.'.freeze
       end
-      alias_method :named_codes,     :not_implemented
-      alias_method :repository,      :not_implemented
+      alias_method :named_code, :not_implemented
+      alias_method :repository, :not_implemented
+
+      # @return [Vedeu::Colours::Validator]
+      def validator
+        @validator ||= Vedeu::Colours::Validator.new(colour)
+      end
 
     end # Translator
 

@@ -11,18 +11,18 @@ module Vedeu
 
       # @return [NilClass|void]
       def parent
-        @_parent ||= present?(@parent) ? @parent : nil
+        present?(@parent) ? @parent : nil
       end
 
       # @return [NilClass|String|Symbol]
       def name
-        @_name ||= if present?(@name)
-                     @name
+        if present?(@name)
+          @name
 
-                   elsif parent && present?(parent.name)
-                     parent.name
+        elsif parent && present?(parent.name)
+          parent.name
 
-                   end
+        end
       end
 
     end # Parent

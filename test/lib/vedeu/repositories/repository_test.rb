@@ -54,8 +54,11 @@ module Vedeu
         it { instance.instance_variable_get('@storage').must_equal(storage) }
       end
 
-      describe 'accessors' do
+      describe '#model' do
         it { instance.must_respond_to(:model) }
+      end
+
+      describe '#storage' do
         it { instance.must_respond_to(:storage) }
       end
 
@@ -218,8 +221,6 @@ module Vedeu
       describe '#remove' do
         subject { instance.remove('francium') }
 
-        it { instance.must_respond_to(:delete) }
-
         context 'when the storage is empty' do
           before { instance.reset }
 
@@ -248,12 +249,14 @@ module Vedeu
         end
       end
 
+      describe '#delete' do
+        it { instance.must_respond_to(:delete) }
+      end
+
       describe '#store' do
         subject { instance.store(model_instance) }
 
         before { Vedeu.stubs(:log) }
-
-        it { instance.must_respond_to(:register) }
 
         context 'when a name attribute is empty or nil' do
           before { model_instance.name = '' }
@@ -266,6 +269,10 @@ module Vedeu
 
           it { subject.must_be_instance_of(Vedeu::Repositories::TestModel) }
         end
+      end
+
+      describe '#register' do
+        it { instance.must_respond_to(:register) }
       end
 
     end # Repository

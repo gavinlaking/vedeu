@@ -113,7 +113,7 @@ end
 
 ### Creating a new named geometry
 
-{include:Vedeu::Geometries::DSL.geometry}
+{include:Vedeu::DSL::Geometry::ClassMethods.geometry}
 
 ### Setting the interface dimensions
 
@@ -169,16 +169,16 @@ end
 
 ## Views
 
-{include:Vedeu::DSL::View}
+{include:Vedeu::DSL::Views}
 {include:Vedeu::Interfaces::DSL.interface}
 
 ### Immediate rendering
 
-{include:Vedeu::DSL::View.renders}
+{include:Vedeu::DSL::Views.renders}
 
 ### Deferred rendering
 
-{include:Vedeu::DSL::View.views}
+{include:Vedeu::DSL::Views.views}
 
 ### Specifying view content
 

@@ -118,8 +118,8 @@ module Vedeu
       # @return [Hash<Symbol => String>]
       def defaults
         {
-          start_tag: '<td',
-          end_tag:   '</td>',
+          start_tag: '<td'.freeze,
+          end_tag:   '</td>'.freeze,
         }
       end
 

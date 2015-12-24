@@ -12,7 +12,7 @@ module Vedeu
 
       # @param value [Fixnum] The number of lines/rows.
       # @raise [Vedeu::Error::InvalidSyntax] When the value is nil.
-      # @return [TrueClass]
+      # @return [Boolean]
       def validate_height!(value)
         fail Vedeu::Error::InvalidSyntax,
              'No height given.'.freeze if absent?(value)
@@ -23,7 +23,7 @@ module Vedeu
       # @param value [Symbol] One of :center, :centre, :left,
       #   :none, :right.
       # @raise [Vedeu::Error::InvalidSyntax] When the value is nil.
-      # @return [TrueClass]
+      # @return [Boolean]
       def validate_horizontal_alignment!(value)
         fail Vedeu::Error::InvalidSyntax,
              'No horizontal alignment given. Valid values are :center, ' \
@@ -34,7 +34,7 @@ module Vedeu
 
       # @param value [Symbol] One of :bottom, :middle, :none, :top.
       # @raise [Vedeu::Error::InvalidSyntax] When the value is nil.
-      # @return [TrueClass]
+      # @return [Boolean]
       def validate_vertical_alignment!(value)
         fail Vedeu::Error::InvalidSyntax,
              'No vertical alignment given. Valid values are :bottom, ' \
@@ -45,7 +45,7 @@ module Vedeu
 
       # @param value [Fixnum] The number of characters/columns.
       # @raise [Vedeu::Error::InvalidSyntax] When the value is nil.
-      # @return [TrueClass]
+      # @return [Boolean]
       def validate_width!(value)
         fail Vedeu::Error::InvalidSyntax,
              'No width given.'.freeze if absent?(value)

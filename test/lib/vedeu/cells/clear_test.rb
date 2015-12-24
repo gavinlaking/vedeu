@@ -25,7 +25,9 @@ module Vedeu
         subject { instance.value }
 
         it { subject.must_equal(' ') }
+      end
 
+      describe '#text' do
         it { instance.must_respond_to(:text) }
       end
 

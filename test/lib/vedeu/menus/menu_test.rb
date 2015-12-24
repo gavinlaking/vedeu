@@ -34,14 +34,24 @@ module Vedeu
         end
       end
 
-      describe 'accessors' do
-        it do
-          instance.must_respond_to(:collection)
-          instance.must_respond_to(:collection=)
-          instance.must_respond_to(:current=)
-          instance.must_respond_to(:name)
-          instance.must_respond_to(:name=)
-        end
+      describe '#collection' do
+        it { instance.must_respond_to(:collection) }
+      end
+
+      describe '#collection=' do
+        it { instance.must_respond_to(:collection=) }
+      end
+
+      describe '#current=' do
+        it { instance.must_respond_to(:current=) }
+      end
+
+      describe '#name' do
+        it { instance.must_respond_to(:name) }
+      end
+
+      describe '#name=' do
+        it { instance.must_respond_to(:name=) }
       end
 
       describe '#current' do

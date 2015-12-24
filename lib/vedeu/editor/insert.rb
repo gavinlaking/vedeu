@@ -8,6 +8,8 @@ module Vedeu
     #
     class Insert
 
+      include Vedeu::Common
+
       # @param (see #initialize)
       # @return (see #insert)
       def self.into(collection, entity, index = nil, size = 0)
@@ -30,7 +32,7 @@ module Vedeu
 
       # @return [Vedeu::Editor::Line|Vedeu::Editor::Lines]
       def insert
-        return collection.insert(index, entity) if index
+        return collection.insert(position, entity) if index?
 
         collection << entity
       end
@@ -45,19 +47,33 @@ module Vedeu
       # @return [String]
       attr_reader :entity
 
+      # @!attribute [r] index
+      # @return [Fixnum]
+      attr_reader :index
+
       # @!attribute [r] size
       # @return [Fixnum]
       attr_reader :size
 
       private
 
-      # @return [Fixnum]
-      def index
-        return nil unless @index
+      # @return [Boolean]
+      def index?
+        numeric?(index)
+      end
 
-        @index = 0    if @index < 0
-        @index = size if @index > size
-        @index
+      # @return [Fixnum]
+      def position
+        if index < 0
+          0
+
+        elsif index > size
+          size
+
+        else
+          index
+
+        end
       end
 
     end # Insert

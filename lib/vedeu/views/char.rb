@@ -14,7 +14,6 @@ module Vedeu
     class Char
 
       include Comparable
-      include Vedeu::Geometries::Positionable
       include Vedeu::Repositories::Parent
       include Vedeu::Presentation
 
@@ -57,7 +56,7 @@ module Vedeu
       def attributes
         {
           border:   @border,
-          # colour:   colour,
+          colour:   colour,
           name:     @name,
           parent:   @parent,
           position: position,
@@ -107,9 +106,11 @@ module Vedeu
       # @return [String]
       def text
         if border
-          ' '
+          ' '.freeze
+
         else
           @value
+
         end
       end
 
@@ -159,7 +160,7 @@ module Vedeu
           parent:   nil,
           position: nil,
           style:    nil,
-          value:    '',
+          value:    ''.freeze,
         }
       end
 

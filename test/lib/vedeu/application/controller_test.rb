@@ -14,45 +14,39 @@ module Vedeu
   describe Controller do
 
     let(:described) { Vedeu::Controller }
-
     let(:described_model) { Vedeu::ControllerTestKlass }
     let(:instance_model)  { described.new }
 
-    describe 'ClassMethods' do
-      let(:described) { Vedeu::Controller::ClassMethods }
+    it { described_model.must_respond_to(:controller_name) }
+    it { described_model.must_respond_to(:action_name) }
+    it { described_model.must_respond_to(:controller) }
+    it { described_model.must_respond_to(:action) }
 
-      it { described_model.must_respond_to(:controller_name) }
-      it { described_model.must_respond_to(:action_name) }
-      it { described_model.must_respond_to(:controller) }
-      it { described_model.must_respond_to(:action) }
+    describe '.controller' do
+      subject { described_model.controller(:some_controller) }
 
-      describe '.controller' do
-        subject { described_model.controller(:some_controller) }
-
-        it do
-          Vedeu::Runtime::Router.expects(:add_controller).
-            with(:some_controller, 'Vedeu::ControllerTestKlass')
-          subject
-        end
-
-        it { subject.must_be_instance_of(Hash) }
+      it do
+        Vedeu::Runtime::Router.expects(:add_controller).
+          with(:some_controller, 'Vedeu::ControllerTestKlass')
+        subject
       end
 
-      describe '.action' do
-        subject { described_model.action(:some_action, :other_action) }
+      it { subject.must_be_instance_of(Hash) }
+    end
 
-        it do
-          Vedeu::Runtime::Router.expects(:add_action).
-            with(:some_controller, :some_action)
-          Vedeu::Runtime::Router.expects(:add_action).
-            with(:some_controller, :other_action)
-          subject
-        end
+    describe '.action' do
+      subject { described_model.action(:some_action, :other_action) }
 
-        it { subject.must_be_instance_of(Array) }
+      it do
+        Vedeu::Runtime::Router.expects(:add_action).
+          with(:some_controller, :some_action)
+        Vedeu::Runtime::Router.expects(:add_action).
+          with(:some_controller, :other_action)
+        subject
       end
 
-    end # ClassMethods
+      it { subject.must_be_instance_of(Array) }
+    end
 
   end # Controller
 

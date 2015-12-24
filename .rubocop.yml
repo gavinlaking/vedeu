@@ -108,5 +108,8 @@ Metrics/MethodLength:
   CountComments: false
   Max: 30
 
+Metrics/ModuleLength:
+  Max: 200
+
 Metrics/PerceivedComplexity:
   Max: 10

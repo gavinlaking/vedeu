@@ -47,17 +47,36 @@ module Vedeu
         Vedeu.borders.stubs(:by_name).returns(border)
       end
 
-      describe 'accessors' do
-        it do
-          instance.must_respond_to(:y)
-          instance.must_respond_to(:yn)
-          instance.must_respond_to(:x)
-          instance.must_respond_to(:xn)
-          instance.must_respond_to(:top)
-          instance.must_respond_to(:bottom)
-          instance.must_respond_to(:left)
-          instance.must_respond_to(:right)
-        end
+      describe '#y' do
+        it { instance.must_respond_to(:y) }
+      end
+
+      describe '#yn' do
+        it { instance.must_respond_to(:yn) }
+      end
+
+      describe '#x' do
+        it { instance.must_respond_to(:x) }
+      end
+
+      describe '#xn' do
+        it { instance.must_respond_to(:xn) }
+      end
+
+      describe '#top' do
+        it { instance.must_respond_to(:top) }
+      end
+
+      describe '#bottom' do
+        it { instance.must_respond_to(:bottom) }
+      end
+
+      describe '#left' do
+        it { instance.must_respond_to(:left) }
+      end
+
+      describe '#right' do
+        it { instance.must_respond_to(:right) }
       end
 
       describe '#initialize' do
@@ -273,6 +292,10 @@ module Vedeu
 
           it { subject.must_equal(false) }
         end
+      end
+
+      describe '#==' do
+        it { instance.must_respond_to(:==) }
       end
 
       describe '#centre' do

@@ -175,7 +175,7 @@ module Vedeu
       # @return [Hash<Symbol => Fixnum|NilClass|String|Symbol>]
       def defaults
         {
-          name: '',
+          name: ''.freeze,
           ox:   0,
           oy:   0,
           x:    0,

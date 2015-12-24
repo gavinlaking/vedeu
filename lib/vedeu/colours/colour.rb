@@ -37,44 +37,29 @@ module Vedeu
     #
     class Colour
 
-      # @param value [Vedeu::Colours::Colour|Hash<Symbol => void>]
-      # @return [Vedeu::Colours::Colour]
-      def self.coerce(value)
-        return value if value.is_a?(self)
-        return new unless value.is_a?(Hash)
+      class << self
 
-        if value[:colour] && value[:colour].is_a?(self)
-          value[:colour]
+        extend Forwardable
 
-        elsif value[:colour] && value[:colour].is_a?(Hash)
-          new(value[:colour])
+        def_delegators Vedeu::Coercers::Colour,
+                       :coerce
 
-        elsif value[:background] || value[:foreground]
-          new(value)
-
-        else
-          new
-
+        # @return [Vedeu::Colours::Colour]
+        def default
+          new(background: :default, foreground: :default)
         end
-      end
 
-      # @return [Vedeu::Colours::Colour]
-      def self.default
-        new(background: :default, foreground: :default)
-      end
+      end # Eigenclass
 
-      # Returns a new instance of Vedeu::Colours::Colour.
-      #
-      # @param attributes [Hash<Symbol => String|
-      #   Vedeu::Colours::Background|Vedeu::Colours:Foreground>]
-      # @option attributes background [String]
-      # @option attributes foreground [String]
-      # @return [Vedeu::Colours::Colour]
-      def initialize(attributes = {})
-        defaults.merge!(attributes).each do |key, value|
-          instance_variable_set("@#{key}", value)
-        end
-      end
+      extend Forwardable
+
+      def_delegators :background,
+                     :background?
+
+      def_delegators :foreground,
+                     :foreground?
+
+      include Vedeu::Repositories::Defaults
 
       # @return [Hash<Symbol => Vedeu::Colours::Background,
       #   Vedeu::Colours::Foreground>]

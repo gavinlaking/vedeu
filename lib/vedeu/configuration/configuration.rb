@@ -19,7 +19,7 @@ module Vedeu
       #
       # @return [Vedeu::Colours::Background]
       def background
-        instance.options[:background]
+        Vedeu::Colours::Background.coerce(instance.options[:background])
       end
 
       # Returns the base_path value.
@@ -134,7 +134,7 @@ module Vedeu
       #
       # @return [Vedeu::Colours::Foreground]
       def foreground
-        instance.options[:foreground]
+        Vedeu::Colours::Foreground.coerce(instance.options[:foreground])
       end
 
       # Returns the client defined height for the terminal.
@@ -325,7 +325,7 @@ module Vedeu
     # @return [Hash<Symbol => void>]
     def defaults
       {
-        background:    Vedeu::Colours::Background.coerce(:default),
+        background:    :default,
         base_path:     base_path,
         colour_mode:   detect_colour_mode,
         compression:   true,
@@ -335,7 +335,7 @@ module Vedeu
         drb_port:      nil,
         drb_height:    25,
         drb_width:     80,
-        foreground:    Vedeu::Colours::Foreground.coerce(:default),
+        foreground:    :default,
         height:        nil,
         interactive:   true,
         log:           nil,

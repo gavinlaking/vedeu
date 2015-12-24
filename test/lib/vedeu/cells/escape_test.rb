@@ -47,9 +47,11 @@ module Vedeu
 
       #     it { subject.must_equal(false) }
       #   end
-
-      #   it { instance.must_respond_to(:==) }
       # end
+
+      describe '#==' do
+        it { instance.must_respond_to(:==) }
+      end
 
       describe '#value' do
         subject { instance.value }
@@ -77,6 +79,9 @@ module Vedeu
 
         it { subject.must_be_instance_of(String) }
         it { subject.must_equal("\e[2;6H\e[?25h") }
+      end
+
+      describe '#to_str' do
         it { instance.must_respond_to(:to_str) }
       end
 

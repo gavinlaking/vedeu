@@ -67,7 +67,7 @@ module Vedeu
       #
       # @return [String]
       def value
-        @value || ''
+        @value || ''.freeze
       end
       alias_method :title, :value
       alias_method :caption, :value
@@ -89,10 +89,8 @@ module Vedeu
       # @param x [Fixnum]
       # @return [Hash<Symbol => void>]
       def attributes(char, x)
-        @_attributes ||= border.attributes
-
-        @_attributes.merge!(position: Vedeu::Geometries::Position.new(y, x),
-                            value:    char)
+        border.attributes.merge(position: Vedeu::Geometries::Position.new(y, x),
+                                value:    char)
       end
 
       # @return [Vedeu::Borders::Border]
@@ -169,7 +167,7 @@ module Vedeu
       #
       # @return [String]
       def truncate
-        @_truncate ||= value.chomp.slice(0...(width - 4))
+        value.chomp.slice(0...(width - 4))
       end
 
       # Return the size of the horizontal border given.
@@ -181,12 +179,12 @@ module Vedeu
 
       # @return [Fixnum]
       def x
-        @_x ||= geometry.bx + start_index
+        geometry.bx + start_index
       end
 
       # @return [Fixnum]
       def y
-        @_y ||= geometry.y
+        geometry.y
       end
 
     end # Title

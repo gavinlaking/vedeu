@@ -145,6 +145,10 @@ module Vedeu
         end
       end
 
+      describe '#==' do
+        it { instance.must_respond_to(:==) }
+      end
+
       describe '#reset_character' do
         subject { instance.reset_character }
 

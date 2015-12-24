@@ -9,9 +9,6 @@ module Vedeu
 
       include Vedeu::Repositories::Model
 
-      collection Vedeu::Input::Keys
-      member     Vedeu::Input::Key
-
       # @!attribute [rw] name
       # @return [String]
       attr_accessor :name
@@ -59,7 +56,7 @@ module Vedeu
       #
       # @return [Vedeu::Input::Keys]
       def keys
-        collection.coerce(@keys, self)
+        Vedeu::Input::Keys.coerce(@keys, self)
       end
 
       # Check whether the key is already defined for this keymap.
@@ -75,13 +72,11 @@ module Vedeu
       # method triggers the action associated with the key.
       #
       # @param input [String|Symbol]
-      # @return [Array|FalseClass]
+      # @return [Array|Boolean]
       def use(input)
         return false unless key_defined?(input)
 
         Vedeu.log(type: :input, message: "Key pressed: '#{input}'".freeze)
-
-        Vedeu.trigger(:key, input)
 
         keys.select { |key| key.input == input }.map(&:press)
       end
@@ -93,9 +88,9 @@ module Vedeu
       # @return [Hash<Symbol => Array|String|Vedeu::Input::Repository]
       def defaults
         {
-          name:       '',
+          name:       ''.freeze,
           keys:       [],
-          repository: Vedeu::Input::Repository.keymaps,
+          repository: Vedeu.keymaps,
         }
       end
 

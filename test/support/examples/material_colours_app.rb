@@ -87,7 +87,7 @@ class VedeuMaterialColoursApp
     end
     colour(foreground: '#ffffff', background: :default)
     cursor!
-    geometry 'other_interface' do
+    geometry do
       x(27)
       xn(47)
       y(3)
@@ -264,7 +264,7 @@ class VedeuMaterialColoursApp
 
   Vedeu.interface 'keys_interface' do
     colour(foreground: '#ffffff', background: :default)
-    geometry 'keys_interface' do
+    geometry do
       x(3)
       xn(45)
       y(15)

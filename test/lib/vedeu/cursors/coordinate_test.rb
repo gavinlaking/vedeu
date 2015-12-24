@@ -15,9 +15,16 @@ module Vedeu
           type:   type,
         }
       }
-      let(:_name)  {}
-      let(:offset) {}
-      let(:type)   {}
+      let(:_name)      {}
+      let(:offset)     {}
+      let(:type)       {}
+      let(:geometry)   {
+        Vedeu::Geometries::Geometry.new(name: _name, x: 2, y: 3, xn: 10, yn: 6)
+      }
+
+      before do
+        Vedeu.geometries.stubs(:by_name).returns(geometry)
+      end
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -26,139 +33,73 @@ module Vedeu
         it { instance.instance_variable_get('@type').must_equal(type) }
       end
 
-      describe '#dn' do
-        subject { instance.dn }
+      describe '#dn_position' do
+        subject { instance.dn_position }
 
-        # it { skip }
+        context 'when the type is x' do
+          let(:type) { :x }
+
+          context 'when d_dn is <= 0' do
+            before { geometry.stubs(:bordered_width).returns(0) }
+
+            it { subject.must_equal(0) }
+          end
+
+          context 'when d_dn > 0' do
+            it { subject.must_equal(11) }
+          end
+        end
+
+        context 'when the type is y' do
+          let(:type) { :y }
+
+          context 'when d_dn is <= 0' do
+            before { geometry.stubs(:bordered_height).returns(0) }
+
+            it { subject.must_equal(0) }
+          end
+
+          context 'when d_dn > 0' do
+            it { subject.must_equal(7) }
+          end
+        end
       end
 
-      describe '#position' do
-        subject { instance.position }
+      describe '#d_position' do
+        subject { instance.d_position }
 
-        # it { skip }
+        context 'when the type is x' do
+          let(:type) { :x }
+
+          context 'when the offset is <= 0' do
+            let(:offset) { 0 }
+
+            it { subject.must_equal(2) }
+          end
+
+          context 'when the offset is > dn_index' do
+            let(:offset) { 0 }
+
+            it { subject.must_equal(2) }
+          end
+
+          context 'when the offset is <= dn_index' do
+            let(:offset) { 0 }
+
+            it { subject.must_equal(2) }
+          end
+        end
+
+        context 'when the type is y' do
+          let(:type) { :y }
+
+          context 'when the offset is <= 0' do
+            let(:offset) { 0 }
+
+            it { subject.must_equal(3) }
+          end
+        end
       end
-
-      # let(:described) { Vedeu::Cursors::Coordinate }
-      # let(:instance)  { described.new(_name, oy, ox) }
-      # let(:_name)     { 'coordinate' }
-      # let(:oy)        { 0 }
-      # let(:ox)        { 0 }
-      # let(:height)    { 6 }
-      # let(:width)     { 6 }
-      # let(:x)         { 7 }
-      # let(:y)         { 5 }
-      # let(:border)    { Vedeu::Borders::Border.new(name: _name, enabled: true) }
-      # let(:geometry)  {
-      #   Vedeu::Geometries::Geometry.new(name:   _name,
-      #                                 height: height,
-      #                                 width:  width,
-      #                                 x:      x,
-      #                                 y:      y)
-      # }
-
-      # before do
-      #   Vedeu.borders.stubs(:by_name).returns(border)
-      #   Vedeu.geometries.stubs(:by_name).returns(geometry)
-      # end
-
-      # describe '#initialize' do
-      #   it { instance.must_be_instance_of(described) }
-      #   it { instance.instance_variable_get('@name').must_equal(_name) }
-      #   it { instance.instance_variable_get('@oy').must_equal(oy) }
-      #   it { instance.instance_variable_get('@ox').must_equal(ox) }
-      # end
-
-      # describe '#yn' do
-      #   subject { instance.yn }
-
-      #   context 'when the height is <= to 0' do
-      #     let(:height) { 0 }
-
-      #     it { subject.must_equal(0) }
-      #   end
-
-      #   context 'when the height is > 0' do
-      #     it { subject.must_equal(9) }
-      #   end
-      # end
-
-      # describe '#xn' do
-      #   subject { instance.xn }
-
-      #   context 'when the width is <= to 0' do
-      #     let(:width) { 0 }
-
-      #     it { subject.must_equal(0) }
-      #   end
-
-      #   context 'when the width is > 0' do
-      #     it { subject.must_equal(11) }
-      #   end
-      # end
-
-      # describe '#y' do
-      #   let(:oy)  { 0 }
-
-      #   subject { instance.y }
-
-      #   it { subject.must_be_instance_of(Fixnum) }
-
-      #   context 'with a negative index' do
-      #     let(:oy) { -3 }
-
-      #     it { subject.must_equal(6) }
-      #   end
-
-      #   context 'with an index greater than the maximum index for y' do
-      #     let(:oy) { 9 }
-
-      #     it { subject.must_equal(9) }
-
-      #     context 'but the height is negative' do
-      #       let(:height) { -2 }
-
-      #       it { subject.must_equal(1) }
-      #     end
-      #   end
-
-      #   context 'with an index within range' do
-      #     let(:oy) { 3 }
-
-      #     it { subject.must_equal(8) }
-      #   end
-      # end
-
-      # describe '#x' do
-      #   let(:ox)  { 0 }
-
-      #   subject { instance.x }
-
-      #   it { subject.must_be_instance_of(Fixnum) }
-
-      #   context 'with a negative index' do
-      #     let(:ox) { -3 }
-
-      #     it { subject.must_equal(8) }
-      #   end
-
-      #   context 'with an index greater than the maximum index for x' do
-      #     let(:ox) { 9 }
-
-      #     it { subject.must_equal(11) }
-
-      #     context 'but the width is negative' do
-      #       let(:width) { -2 }
-
-      #       it { subject.must_equal(3) }
-      #     end
-      #   end
-
-      #   context 'with an index within range' do
-      #     let(:ox) { 3 }
-
-      #     it { subject.must_equal(10) }
-      #   end
-      # end
 
     end # Coordinate
 

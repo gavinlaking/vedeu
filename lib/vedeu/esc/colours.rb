@@ -66,42 +66,41 @@ module Vedeu
           white:         97,
         }.freeze
       end
-      alias_method :codes, :foreground_codes
 
-      # @return [void]
-      def setup!
-        define_backgrounds!
-        define_foregrounds!
+      # @param named_colour [Symbol]
+      # @return [String]
+      def background_colour(named_colour)
+        return ''.freeze unless valid_name?(named_colour)
+
+        colour(named_colour.to_s.prepend('on_').to_sym)
       end
 
-      # @return [void]
-      def define_backgrounds!
-        background_codes.each do |key, code|
-          define_method(:"on_#{key}") do |&blk|
-            "\e[#{code}m".freeze +
-              (blk ? blk.call + "\e[49m".freeze : ''.freeze)
-          end
-        end
+      # @param named_colour [Symbol]
+      # @return [String]
+      def colour(named_colour)
+        return ''.freeze unless valid_name?(named_colour)
+
+        public_send(named_colour)
+      end
+      alias_method :foreground_colour, :colour
+
+      # @return [Array<Symbol>]
+      def valid_codes
+        @_valid_codes ||= foreground_codes.keys.map do |name|
+          name.to_s.prepend('on_').to_sym
+        end + foreground_codes.keys
       end
 
-      # Dynamically creates methods for each terminal named colour.
-      # When a block is given, then the colour is reset to 'default'
-      # once the block is called.
-      #
-      # @return [void]
-      def define_foregrounds!
-        foreground_codes.each do |key, code|
-          define_method(key) do |&blk|
-            "\e[#{code}m".freeze +
-              (blk ? blk.call + "\e[39m".freeze : ''.freeze)
-          end
-        end
+      # @param named_colour [Symbol]
+      # @return [Boolean]
+      def valid_name?(named_colour)
+        return false unless named_colour.is_a?(Symbol)
+
+        valid_codes.include?(named_colour)
       end
 
     end # Colours
 
   end # EscapeSequences
-
-  Vedeu::EscapeSequences::Colours.setup!
 
 end # Vedeu

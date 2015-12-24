@@ -58,17 +58,17 @@ module Vedeu
 
       # @return [Array]
       def buffer_update
-        buffer_update!
+        Vedeu::Buffers::Terminal.update(output)
       end
 
       # @return [Array]
       def buffer_write
-        buffer_write!
+        Vedeu::Buffers::Terminal.write(output)
       end
 
       # @return [Array<String>]
       def direct_write
-        direct_write!
+        Vedeu::Terminal.output(output.to_s)
       end
 
       # Send the view to the renderers. If the output is a
@@ -81,10 +81,10 @@ module Vedeu
       # @return [Array|String|NilClass]
       def render_output
         if escape_sequence?
-          direct_write!
+          direct_write
 
         else
-          buffer_write!
+          buffer_write
 
         end
       end
@@ -97,21 +97,6 @@ module Vedeu
       attr_reader :output
 
       private
-
-      # @return [Array]
-      def buffer_update!
-        Vedeu::Buffers::Terminal.update(output)
-      end
-
-      # @return [Array]
-      def buffer_write!
-        Vedeu::Buffers::Terminal.write(output)
-      end
-
-      # @return [Array<String>]
-      def direct_write!
-        Vedeu::Terminal.output(output.to_s)
-      end
 
       # @return [Boolean]
       def escape_sequence?

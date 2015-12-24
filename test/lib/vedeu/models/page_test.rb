@@ -30,7 +30,7 @@ module Vedeu
         end
       end
 
-      describe 'accessors' do
+      describe '#rows' do
         it { instance.must_respond_to(:rows) }
       end
 
@@ -243,6 +243,10 @@ module Vedeu
 
           it { subject.must_equal(false) }
         end
+      end
+
+      describe '#==' do
+        it { instance.must_respond_to(:==) }
       end
 
       describe '#row' do

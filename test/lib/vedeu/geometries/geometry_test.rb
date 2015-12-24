@@ -60,24 +60,64 @@ module Vedeu
         end
       end
 
-      describe 'accessors' do
-        it do
-          instance.must_respond_to(:name)
-          instance.must_respond_to(:name=)
-          instance.must_respond_to(:height=)
-          instance.must_respond_to(:horizontal_alignment)
-          instance.must_respond_to(:horizontal_alignment=)
-          instance.must_respond_to(:maximised)
-          instance.must_respond_to(:maximised?)
-          instance.must_respond_to(:maximised=)
-          instance.must_respond_to(:vertical_alignment)
-          instance.must_respond_to(:vertical_alignment=)
-          instance.must_respond_to(:width=)
-          instance.must_respond_to(:x=)
-          instance.must_respond_to(:xn=)
-          instance.must_respond_to(:y=)
-          instance.must_respond_to(:yn=)
-        end
+      describe '#name' do
+        it { instance.must_respond_to(:name) }
+      end
+
+      describe '#name=' do
+        it { instance.must_respond_to(:name=) }
+      end
+
+      describe '#height=' do
+        it { instance.must_respond_to(:height=) }
+      end
+
+      describe '#horizontal_alignment' do
+        it { instance.must_respond_to(:horizontal_alignment) }
+      end
+
+      describe '#horizontal_alignment=' do
+        it { instance.must_respond_to(:horizontal_alignment=) }
+      end
+
+      describe '#maximised' do
+        it { instance.must_respond_to(:maximised) }
+      end
+
+      describe '#maximised?' do
+        it { instance.must_respond_to(:maximised?) }
+      end
+
+      describe '#maximised=' do
+        it { instance.must_respond_to(:maximised=) }
+      end
+
+      describe '#vertical_alignment' do
+        it { instance.must_respond_to(:vertical_alignment) }
+      end
+
+      describe '#vertical_alignment=' do
+        it { instance.must_respond_to(:vertical_alignment=) }
+      end
+
+      describe '#width=' do
+        it { instance.must_respond_to(:width=) }
+      end
+
+      describe '#x=' do
+        it { instance.must_respond_to(:x=) }
+      end
+
+      describe '#xn=' do
+        it { instance.must_respond_to(:xn=) }
+      end
+
+      describe '#y=' do
+        it { instance.must_respond_to(:y=) }
+      end
+
+      describe '#yn=' do
+        it { instance.must_respond_to(:yn=) }
       end
 
       describe '#attributes' do
@@ -109,6 +149,10 @@ module Vedeu
 
           it { subject.must_equal(false) }
         end
+      end
+
+      describe '#==' do
+        it { instance.must_respond_to(:==) }
       end
 
       describe '#maximise' do

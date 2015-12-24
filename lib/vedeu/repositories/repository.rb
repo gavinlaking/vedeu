@@ -67,17 +67,7 @@ module Vedeu
 
         return find(name) if registered?(name)
 
-        attrs = if null_attributes.any?
-                  null_attributes.merge!(name: name)
-
-                else
-                  {
-                    name: name
-                  }
-
-                end
-
-        null_model.new(attrs)
+        null_model.new(null_attributes.merge(name: name)) if null_model?
       end
 
       # Return the model for the interface currently in focus.
@@ -143,7 +133,7 @@ module Vedeu
       # when the model does not exist.
       #
       # @param name [String|Symbol]
-      # @return [Hash|FalseClass]
+      # @return [Hash|Boolean]
       def remove(name)
         return false if empty?
         return false unless registered?(name)

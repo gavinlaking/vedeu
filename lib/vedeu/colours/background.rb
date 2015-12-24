@@ -10,6 +10,11 @@ module Vedeu
     #
     class Background < Vedeu::Colours::Translator
 
+      # @return [Boolean]
+      def background?
+        present?(to_s)
+      end
+
       private
 
       # @return [String]
@@ -17,9 +22,15 @@ module Vedeu
         "\e[48;".freeze
       end
 
+      # Returns an escape sequence for a named colour.
+      #
+      # @note
+      #   Valid names can be found at
+      #   {Vedeu::EscapeSequences::Esc#valid_codes}
+      #
       # @return [String]
-      def named_codes
-        Vedeu::EscapeSequences::Esc.background_codes[colour]
+      def named_code
+        Vedeu::EscapeSequences::Esc.background_colour(colour)
       end
 
       # @return [Vedeu::Colours::Backgrounds]

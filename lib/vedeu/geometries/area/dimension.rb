@@ -76,9 +76,9 @@ module Vedeu
 
       private
 
-      # @return [Vedeu::Geometries::Alignment]
+      # @return [Vedeu::Coercers::Alignment]
       def alignment
-        Vedeu::Geometries::Alignment.coerce(@alignment)
+        @_alignment ||= Vedeu::Coercers::Alignment.coerce(@alignment)
       end
 
       # Return the dimension.

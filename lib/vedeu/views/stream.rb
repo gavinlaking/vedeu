@@ -1,3 +1,5 @@
+require 'vedeu/dsl/all'
+
 module Vedeu
 
   module Views
@@ -8,30 +10,50 @@ module Vedeu
     #
     class Stream
 
+      # Provides DSL methods for Vedeu::Views::Stream objects.
+      #
+      # @api public
+      #
+      class DSL
+
+        include Vedeu::DSL
+        include Vedeu::DSL::Elements
+
+      end # DSL
+
+      extend Forwardable
+      include Vedeu::Views::DefaultAttributes
       include Vedeu::Repositories::Model
       include Vedeu::Repositories::Parent
       include Vedeu::Presentation
 
+      include Vedeu::Views::Value
       collection Vedeu::Views::Chars
-      member     Vedeu::Views::Char
+      deputy     Vedeu::Views::Stream::DSL
+      entity     Vedeu::Views::Char
+      parent     Vedeu::Views::Streams
 
-      # @!attribute [rw] parent
-      # @return [Vedeu::Views::Line]
-      attr_accessor :parent
+      def_delegators :value,
+                     :chars,
+                     :size
 
-      # @!attribute [rw] value
-      # @return [String]
-      attr_accessor :value
       alias_method :content, :value
       alias_method :text,    :value
+      alias_method :chars=, :value=
+      alias_method :chars?, :value?
+
+      # @!attribute [w] value
+      # @return [String]
+      attr_writer :value
 
       # Returns a new instance of Vedeu::Views::Stream.
       #
       # @param attributes [Hash]
       # @option attributes client [void]
       # @option attributes colour [Vedeu::Colours::Colour]
-      # @option attributes style [Vedeu::Presentation::Style]
+      # @option attributes name [String|Symbol]
       # @option attributes parent [Vedeu::Views::Line]
+      # @option attributes style [Vedeu::Presentation::Style]
       # @option attributes value [String]
       # @return [Vedeu::Views::Stream]
       def initialize(attributes = {})
@@ -47,83 +69,14 @@ module Vedeu
       end
       alias_method :<<, :add
 
-      # @return [Hash<Symbol => void>]
-      def attributes
-        {
-          client: @client,
-          colour: colour,
-          name:   name,
-          parent: parent,
-          style:  style,
-          value:  value,
-        }
-      end
-
-      # Returns an array of characters, each element is the escape
-      # sequences of colours and styles for this stream, the character
-      # itself, and the escape sequences of colours and styles for the
-      # parent of the stream ({Vedeu::Views::Line}).
-      #
-      # @return [Array]
-      def chars
-        return [] if value.empty?
-
-        @chars ||= value.chars.map do |char|
-          member.new(value:    char,
-                     name:     name,
-                     parent:   parent,
-                     colour:   colour,
-                     style:    style,
-                     position: nil)
-        end
-      end
-
-      # Returns a DSL instance responsible for defining the DSL
-      # methods of this model.
-      #
-      # @param client [Object|NilClass] The client binding represents
-      #   the client application object that is currently invoking a
-      #   DSL method. It is required so that we can send messages to
-      #   the client application object should we need to.
-      # @return [Vedeu::DSL::Stream] The DSL instance for this model.
-      def deputy(client = nil)
-        Vedeu::DSL::Stream.new(self, client)
-      end
-
       # An object is equal when its values are the same.
       #
       # @param other [Vedeu::Views::Char]
       # @return [Boolean]
       def eql?(other)
-        self.class == other.class && value == other.value &&
-          colour == other.colour && style == other.style &&
-          parent == other.parent
+        self.class == other.class && value == other.value
       end
       alias_method :==, :eql?
-
-      # Returns the size of the content in characters without
-      # formatting.
-      #
-      # @return [Fixnum]
-      def size
-        value.size
-      end
-
-      private
-
-      # The default values for a new instance of this class.
-      #
-      # @return [Hash]
-      def defaults
-        {
-          client: nil,
-          colour: nil,
-          name:   nil,
-          parent: nil,
-          style:  nil,
-          value:  '',
-        }
-      end
 
     end # Stream
 

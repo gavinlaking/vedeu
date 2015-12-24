@@ -33,28 +33,16 @@ module Vedeu
         # @param block [Proc] The block passed to the build method.
         # @return [Object] An instance of the model.
         def build(attributes = {}, &block)
-          attributes = defaults.merge!(attributes)
-
           model = new(attributes)
 
-          if block_given?
-            model.deputy(attributes[:client]).instance_eval(&block)
-          end
+          Vedeu.log(type:    :debug,
+                    message: "DSL building: '#{model.class.name}' for " \
+                             "'#{model.name}'".freeze)
+
+          model.deputy.instance_eval(&block) if block_given?
 
           model
         end
-
-        # Provide a convenient way to define the child or children of
-        # a model.
-        #
-        # @param klass [Class] The member (singular) or collection
-        #   (multiple) class name for the respective model.
-        # @return [void]
-        def child(klass)
-          send(:define_method, __callee__) { klass }
-        end
-        alias_method :member,     :child
-        alias_method :collection, :child
 
         # Allow models to specify their repository using a class
         # method.
@@ -73,25 +61,7 @@ module Vedeu
         #   storing.
         # @return [Object] An instance of the model.
         def store(attributes = {}, &block)
-          if block_given?
-            new(attributes).store(&block)
-
-          else
-            new(attributes).store
-
-          end
-        end
-
-        private
-
-        # The default values for a new instance of this class.
-        #
-        # @return [Hash<Symbol => NilClass, String>]
-        def defaults
-          {
-            client: nil,
-            name:   '',
-          }
+          new(attributes).store(&block)
         end
 
       end # ClassMethods
@@ -102,7 +72,7 @@ module Vedeu
       # @param klass [Class]
       # @return [void]
       def self.included(klass)
-        klass.send(:extend, ClassMethods)
+        klass.extend(Vedeu::Repositories::Model::ClassMethods)
       end
 
       # @note If a block is given, store the model, return the model

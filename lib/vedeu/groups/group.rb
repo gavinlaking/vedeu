@@ -163,7 +163,7 @@ module Vedeu
       def defaults
         {
           members:    Set.new,
-          name:       '',
+          name:       ''.freeze,
           repository: Vedeu.groups,
           visible:    true,
         }

@@ -45,15 +45,30 @@ module Vedeu
       #     end
       #   end
       #
+      # @note
+      #   If a keymap with this name does not already exist,
+      #   pre-register it, otherwise we have no way of knowing if a
+      #   key defined in the DSL for this keymap has already been
+      #   registered. This protects the client application from
+      #   attempting to define the same key more than once for the
+      #   same keymap.
+      #
+      #   This is also used when defining the '_global_' keymap.
+      #
       # @param name [String|Symbol] The name of the interface which
       #   this keymap relates to.
       # @param block [Proc]
-      # @raise [Vedeu::Error::RequiresBlock]
+      # @raise [Vedeu::Error::MissingRequired|
+      #   Vedeu::Error::RequiresBlock] When a name or block
+      #   respectively are not given.
       # @return [Vedeu::Input::Keymap]
-      # @todo Try to remember why we need to pre-create the keymap in
-      #   the repository.
       def self.keymap(name, &block)
-        Vedeu::Input::Keymap.new(name: name).store
+        fail Vedeu::Error::MissingRequired unless name
+        fail Vedeu::Error::RequiresBlock unless block_given?
+
+        unless Vedeu.keymaps.registered?(name)
+          Vedeu::Input::Keymap.new(name: name).store
+        end
 
         Vedeu::Input::Keymap.build(name: name, &block).store
       end
@@ -84,31 +99,10 @@ module Vedeu
                  'An invalid value for `key` was encountered.'.freeze
           end
 
-          model.add(model.member.new(value, &block))
+          model.add(Vedeu::Input::Key.new(value, &block))
         end
       end
       alias_method :key=, :key
-
-      # Define the name of the keymap.
-      #
-      # To only allow certain keys to work with specific interfaces,
-      # use the same name as the interface.
-      #
-      # When the name :_global_ is used, all keys in the keymap block
-      # will be available to all interfaces. Once a key has been
-      # defined in the :_global_ keymap, it cannot be used for a
-      # specific interface.
-      #
-      #   Vedeu.keymap do
-      #     name :some_interface
-      #   end
-      #
-      # @param value [String|Symbol]
-      # @return [String]
-      def name(value)
-        model.name = value
-      end
-      alias_method :name=, :name
 
     end # DSL
 

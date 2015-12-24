@@ -74,57 +74,9 @@ module Vedeu
     class DSL
 
       include Vedeu::DSL
+      include Vedeu::DSL::Geometry
       include Vedeu::DSL::Use
       include Vedeu::Geometries::Validator
-
-      # Specify the geometry of an interface or view with a simple
-      # DSL.
-      #
-      #   Vedeu.geometry :some_interface do
-      #     # ...
-      #   end
-      #
-      # @param name [String|Symbol] The name of the interface or view
-      #   to which this geometry belongs.
-      # @param block [Proc]
-      # @raise [Vedeu::Error::RequiresBlock]
-      # @return [Vedeu::Geometries::Geometry]
-      def self.geometry(name, &block)
-        fail Vedeu::Error::RequiresBlock unless block_given?
-
-        Vedeu::Geometries::Geometry.build(name: name, &block).store
-      end
-
-      # Instructs Vedeu to align the interface/view either left,
-      # centre or right. A width is also required so that required
-      # coordinates are calculated correctly.
-      #
-      #   Vedeu.geometry :some_interface do
-      #     # :some_value must be one of: :left, :none, :center,
-      #     #   :centre, or :right
-      #     # `width` is a positive integer, e.g. 30
-      #     alignment(:some_value, width)
-      #
-      #     # ... some code
-      #   end
-      #
-      # @param value [Symbol] One of :center, :centre, :left, :none,
-      #   :right.
-      # @param width [Fixnum] The width of the aligned interface/view.
-      # @raise [Vedeu::Error::InvalidSyntax] When the value or width
-      #   is not given.
-      # @return [Vedeu::Geometries::Geometry]
-      # def alignment(value, width)
-      #   fail Vedeu::Error::InvalidSyntax,
-      #        'No alignment given. Valid values are :center, :centre, ' \
-      #        ':left, :none, :right.'.freeze unless present?(value)
-      #   fail Vedeu::Error::InvalidSyntax,
-      #        'No width given.'.freeze unless present?(width)
-
-      #   model.alignment = Vedeu::Geometries::Alignment.align(value)
-      #   model.width     = width
-      #   model
-      # end
 
       # Align the interface/view horizontally or vertically within
       # the terminal.
@@ -164,7 +116,7 @@ module Vedeu
         validate_horizontal_alignment!(value)
         validate_width!(width)
 
-        model.horizontal_alignment = Vedeu::Geometries::HorizontalAlignment
+        model.horizontal_alignment = Vedeu::Coercers::HorizontalAlignment
           .coerce(value)
         model.width = width
         model
@@ -177,7 +129,7 @@ module Vedeu
         validate_vertical_alignment!(value)
         validate_height!(height)
 
-        model.vertical_alignment = Vedeu::Geometries::VerticalAlignment
+        model.vertical_alignment = Vedeu::Coercers::VerticalAlignment
           .coerce(value)
         model.height = height
         model

@@ -9,6 +9,28 @@ module Vedeu
 
       extend self
 
+      # @param binding [Binding]
+      # @param obj [Object]
+      # @return [void]
+      def debug(binding = nil, obj = nil)
+        require 'pry'
+
+        if obj
+          message = ::Pry::ColorPrinter.pp(obj, '')
+
+          Vedeu.log(type: :debug, message: "#{message}")
+
+        elsif binding
+          Vedeu::Terminal.cooked_mode!
+          Vedeu::Terminal.open do
+            Vedeu::Terminal.debugging!
+
+            binding.pry
+          end
+          Vedeu::Terminal.raw_mode!
+        end
+      end
+
       # :nocov:
       # Helps to profile a running application by providing a stack
       # trace of its execution upon exiting.
@@ -98,5 +120,16 @@ module Vedeu
   # @return [Vedeu::Logging::Debug]
   def_delegators Vedeu::Logging::Debug,
                  :profile
+
+  # Drop into a debugging session within a running client application,
+  # courtesy of pry.
+  #
+  # @example
+  #   Vedeu.debug
+  #
+  # @!method debug
+  # @return [void]
+  def_delegators Vedeu::Logging::Debug,
+                 :debug
 
 end # Vedeu

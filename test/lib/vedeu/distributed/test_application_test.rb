@@ -12,25 +12,68 @@ module Vedeu
       it { instance.must_be_instance_of(described) }
     end
 
-    describe 'accessors' do
-      it do
-        instance.must_respond_to(:borders)
-        instance.must_respond_to(:borders=)
-        instance.must_respond_to(:configuration)
-        instance.must_respond_to(:configuration=)
-        instance.must_respond_to(:events)
-        instance.must_respond_to(:events=)
-        instance.must_respond_to(:geometries)
-        instance.must_respond_to(:geometries=)
-        instance.must_respond_to(:interfaces)
-        instance.must_respond_to(:interfaces=)
-        instance.must_respond_to(:keymaps)
-        instance.must_respond_to(:keymaps=)
-        instance.must_respond_to(:menus)
-        instance.must_respond_to(:menus=)
-        instance.must_respond_to(:views)
-        instance.must_respond_to(:views=)
-      end
+    describe '#borders' do
+      it { instance.must_respond_to(:borders) }
+    end
+
+    describe '#borders=' do
+      it { instance.must_respond_to(:borders=) }
+    end
+
+    describe '#configuration' do
+      it { instance.must_respond_to(:configuration) }
+    end
+
+    describe '#configuration=' do
+      it { instance.must_respond_to(:configuration=) }
+    end
+
+    describe '#events' do
+      it { instance.must_respond_to(:events) }
+    end
+
+    describe '#events=' do
+      it { instance.must_respond_to(:events=) }
+    end
+
+    describe '#geometries' do
+      it { instance.must_respond_to(:geometries) }
+    end
+
+    describe '#geometries=' do
+      it { instance.must_respond_to(:geometries=) }
+    end
+
+    describe '#interfaces' do
+      it { instance.must_respond_to(:interfaces) }
+    end
+
+    describe '#interfaces=' do
+      it { instance.must_respond_to(:interfaces=) }
+    end
+
+    describe '#keymaps' do
+      it { instance.must_respond_to(:keymaps) }
+    end
+
+    describe '#keymaps=' do
+      it { instance.must_respond_to(:keymaps=) }
+    end
+
+    describe '#menus' do
+      it { instance.must_respond_to(:menus) }
+    end
+
+    describe '#menus=' do
+      it { instance.must_respond_to(:menus=) }
+    end
+
+    describe '#views' do
+      it { instance.must_respond_to(:views) }
+    end
+
+    describe '#views=' do
+      it { instance.must_respond_to(:views=) }
     end
 
     describe '.build' do

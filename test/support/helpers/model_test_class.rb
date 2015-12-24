@@ -58,6 +58,7 @@ module Vedeu
       #
       def defaults
         {
+          client:     nil,
           colour:     {},
           name:       '',
           repository: Vedeu::Repositories::RepositoryTestModule,

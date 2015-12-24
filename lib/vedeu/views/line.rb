@@ -1,3 +1,5 @@
+require 'vedeu/dsl/all'
+
 module Vedeu
 
   module Views
@@ -8,16 +10,34 @@ module Vedeu
     #
     class Line
 
+      # Provides DSL methods for Vedeu::Views::Line objects.
+      #
+      # @api public
+      #
+      class DSL
+
+        include Vedeu::DSL
+        include Vedeu::DSL::Elements
+
+      end # DSL
+
+      extend Forwardable
+      include Vedeu::Views::DefaultAttributes
       include Vedeu::Repositories::Model
       include Vedeu::Repositories::Parent
       include Vedeu::Presentation
+      include Vedeu::Views::Value
 
       collection Vedeu::Views::Streams
-      member     Vedeu::Views::Stream
+      deputy     Vedeu::Views::Line::DSL
+      entity     Vedeu::Views::Stream
+      parent     Vedeu::Views::Lines
 
-      # @!attribute [rw] parent
-      # @return [Vedeu::Views::View]
-      attr_accessor :parent
+      def_delegators :value,
+                     :streams
+
+      alias_method :streams=, :value=
+      alias_method :streams?, :value?
 
       # Returns a new instance of Vedeu::Views::Line.
       #
@@ -42,42 +62,18 @@ module Vedeu
       end
       alias_method :<<, :add
 
-      # @return [Hash<Symbol => void>]
-      def attributes
-        {
-          client: @client,
-          colour: @colour,
-          name:   name,
-          parent: parent,
-          style:  @style,
-          value:  value,
-        }
-      end
-
       # Returns an array of all the characters with formatting for
       # this line.
       #
       # @return [Array]
       # @see Vedeu::Views::Stream
       def chars
-        return [] if value.empty?
+        return [] unless value?
 
-        @chars ||= value.flat_map(&:chars)
+        @chars ||= streams.flat_map(&:chars)
       end
 
-      # Returns a DSL instance responsible for defining the DSL
-      # methods of this model.
-      #
-      # @param client [Object|NilClass] The client binding represents
-      #   the client application object that is currently invoking a
-      #   DSL method. It is required so that we can send messages to
-      #   the client application object should we need to.
-      # @return [Vedeu::DSL::Line] The DSL instance for this model.
-      def deputy(client = nil)
-        Vedeu::DSL::Line.new(self, client)
-      end
-
-      # An object is equal when its values are the same./
+      # An object is equal when its values are the same.
       #
       # @param other [Vedeu::Repositories::Collection]
       # @return [Boolean]
@@ -92,28 +88,6 @@ module Vedeu
       # @return [Fixnum]
       def size
         value.map(&:size).inject(0, :+)
-      end
-
-      # @return [Vedeu::Views::Streams]
-      def value
-        collection.coerce(@value, self)
-      end
-      alias_method :streams, :value
-
-      private
-
-      # The default values for a new instance of this class.
-      #
-      # @return [Hash<Symbol => Array<void>|NilClass>]
-      def defaults
-        {
-          client: nil,
-          colour: nil,
-          name:   nil,
-          parent: nil,
-          style:  nil,
-          value:  [],
-        }
       end
 
     end # Line

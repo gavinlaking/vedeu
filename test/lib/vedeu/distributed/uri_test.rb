@@ -59,11 +59,13 @@ module Vedeu
 
         subject { instance.to_s }
 
-        it { instance.must_respond_to(:to_str) }
-
         it 'returns a single value for the uri' do
           subject.must_equal('druby://myserver:40000')
         end
+      end
+
+      describe '#to_str' do
+        it { instance.must_respond_to(:to_str) }
       end
 
     end # Uri

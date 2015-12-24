@@ -15,22 +15,36 @@ module Vedeu
     #
     class Style
 
+      class << self
+
+        include Vedeu::Common
+
+        # Produces new objects of the correct class from the value,
+        # ignores objects that have already been coerced.
+        #
+        # @param value [Object|NilClass]
+        # @return [Object]
+        def coerce(value)
+          return value if value.is_a?(Vedeu::Presentation::Style)
+          return new(value) unless value.is_a?(Hash)
+          return new unless present?(value[:style])
+
+          if value[:style].is_a?(Vedeu::Presentation::Style)
+            value[:style]
+
+          else
+            new(value[:style])
+
+          end
+        end
+
+      end # Eigenclass
+
       include Vedeu::Common
 
       # @!attribute [rw] value
       # @return [String|Symbol]
       attr_accessor :value
-
-      # Produces new objects of the correct class from the value,
-      # ignores objects that have already been coerced.
-      #
-      # @param value [Object|NilClass]
-      # @return [Object]
-      def self.coerce(value)
-        return value if value.is_a?(self)
-
-        new(value)
-      end
 
       # Return a new instance of Vedeu::Presentation::Style.
       #

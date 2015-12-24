@@ -28,8 +28,13 @@ module Vedeu
         Vedeu.expects(:trigger).with(:_goto_, controller, action, params)
         subject
       end
+    end
 
+    describe '#redirect' do
       it { instance.must_respond_to(:redirect) }
+    end
+
+    describe '#goto' do
       it { instance.must_respond_to(:goto) }
     end
 

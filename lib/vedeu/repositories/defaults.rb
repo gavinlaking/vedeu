@@ -21,7 +21,10 @@ module Vedeu
       # @return [void] A new instance of the class including this
       #   module.
       def initialize(attributes = {})
-        attrs = attributes.to_h.keep_if { |key, _| defaults.key?(key) }
+        fail Vedeu::Error::InvalidSyntax,
+             'Argument :attributes is not a Hash.' unless attributes.is_a?(Hash)
+
+        attrs = attributes.keep_if { |key, _| defaults.key?(key) }
 
         defaults.merge!(attrs).each do |key, value|
           instance_variable_set("@#{key}", value || defaults.fetch(key))

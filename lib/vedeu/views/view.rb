@@ -1,3 +1,5 @@
+require 'vedeu/dsl/all'
+
 module Vedeu
 
   module Views
@@ -7,16 +9,36 @@ module Vedeu
     #
     class View
 
+      # Provides DSL methods for Vedeu::Views::View objects.
+      #
+      # @api public
+      #
+      class DSL
+
+        include Vedeu::DSL
+        include Vedeu::DSL::Border
+        include Vedeu::DSL::Cursors
+        include Vedeu::DSL::Elements
+        include Vedeu::DSL::Geometry
+        include Vedeu::DSL::Use
+
+      end # DSL
+
+      extend Forwardable
       include Vedeu::Repositories::Model
       include Vedeu::Repositories::Parent
       include Vedeu::Presentation
+      include Vedeu::Views::Value
 
       collection Vedeu::Views::Lines
-      member     Vedeu::Views::Line
+      deputy     Vedeu::Views::View::DSL
+      entity     Vedeu::Views::Line
 
-      # @!attribute [rw] client
-      # @return [Fixnum|Float]
-      attr_accessor :client
+      def_delegators :value,
+                     :lines
+
+      alias_method :lines=, :value=
+      alias_method :lines?, :value?
 
       # @!attribute [rw] cursor_visible
       # @return [Boolean]
@@ -24,16 +46,8 @@ module Vedeu
       alias_method :cursor_visible?, :cursor_visible
 
       # @!attribute [rw] name
-      # @return [String]
+      # @return [String|Symbol]
       attr_accessor :name
-
-      # @!attribute [rw] parent
-      # @return [Vedeu::Views::Composition]
-      attr_accessor :parent
-
-      # @!attribute [w] lines
-      # @return [Array<Vedeu::Views::Line>]
-      attr_writer :lines
 
       # @!attribute [rw] zindex
       # @return [Fixnum]
@@ -60,14 +74,14 @@ module Vedeu
       # @param child [Vedeu::Views::Line]
       # @return [Vedeu::Views::Lines]
       def add(child)
-        @value = value.add(child)
+        @_value = value.add(child)
       end
       alias_method :<<, :add
 
       # @return [Hash]
       def attributes
         {
-          client:         @client,
+          client:         client,
           colour:         colour,
           cursor_visible: cursor_visible,
           name:           name,
@@ -78,26 +92,8 @@ module Vedeu
         }
       end
 
-      # Returns a DSL instance responsible for defining the DSL
-      # methods of this model.
-      #
-      # @param client [Object|NilClass] The client binding represents
-      #   the client application object that is currently invoking a
-      #   DSL method. It is required so that we can send messages to
-      #   the client application object should we need to.
-      # @return [Vedeu::DSL::View] The DSL instance for this model.
-      def deputy(client = nil)
-        Vedeu::DSL::View.new(self, client)
-      end
-
-      # @return [Vedeu::Views::Lines]
-      def value
-        collection.coerce(@value, self)
-      end
-      alias_method :lines, :value
-
       # Store the view and immediately refresh it; causing to be
-      # pushed to the Terminal. Called by {Vedeu::DSL::View.renders}.
+      # pushed to the Terminal. Called by {Vedeu::DSL::Views.renders}.
       #
       # @return [Vedeu::Views::View]
       def store_immediate
@@ -110,7 +106,7 @@ module Vedeu
 
       # When a name is given, the view is stored with this name. This
       # view will be shown next time a refresh event is triggered with
-      # this name. Called by {Vedeu::DSL::View.views}.
+      # this name. Called by {Vedeu::DSL::Views.views}.
       #
       # @raise [Vedeu::Error::InvalidSyntax] The name is not defined.
       # @return [Vedeu::Views::View]
@@ -146,7 +142,7 @@ module Vedeu
           client:         nil,
           colour:         Vedeu::Configuration.colour,
           cursor_visible: true,
-          name:           '',
+          name:           ''.freeze,
           parent:         nil,
           style:          :normal,
           value:          [],

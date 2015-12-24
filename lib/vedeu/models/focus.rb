@@ -216,7 +216,7 @@ module Vedeu
       # refresh event for that interface. Returns false when the
       # storage is empty.
       #
-      # @return [String|FalseClass]
+      # @return [String|Boolean]
       def update
         return false if storage.empty?
 

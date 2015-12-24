@@ -4,32 +4,21 @@ module Vedeu
 
   module Views
 
-    describe Streams do
-
-      let(:described) { Vedeu::Views::Streams }
-      let(:instance)  { described.new }
-
-      it { described.superclass.must_equal(Vedeu::Repositories::Collection) }
-
-      describe '#initialize' do
-        it { instance.must_be_instance_of(described) }
-      end
-
-    end # Streams
-
     describe Stream do
 
       let(:described)  { Vedeu::Views::Stream }
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
-          value:  _value,
-          parent: parent,
           colour: colour,
-          style:  style
+          name:   _name,
+          parent: parent,
+          style:  style,
+          value:  _value,
         }
       }
-      let(:_value)  { 'Some text' }
+      let(:_name)  {}
+      let(:_value) { 'Some text' }
       let(:parent) {
         Vedeu::Views::Line.new(value:  [],
                                parent: line_parent,
@@ -47,19 +36,35 @@ module Vedeu
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
-        it { instance.instance_variable_get('@value').must_equal(_value) }
+        it { instance.instance_variable_get('@colour').must_equal(colour) }
+        it { instance.instance_variable_get('@name').must_equal(_name) }
         it { instance.instance_variable_get('@parent').must_equal(parent) }
+        it { instance.instance_variable_get('@style').must_equal(style) }
+        it { instance.instance_variable_get('@value').must_equal(_value) }
       end
 
-      describe 'accessors' do
-        it do
-          instance.must_respond_to(:parent)
-          instance.must_respond_to(:parent=)
-          instance.must_respond_to(:value)
-          instance.must_respond_to(:content)
-          instance.must_respond_to(:text)
-          instance.must_respond_to(:value=)
-        end
+      describe '#parent' do
+        it { instance.must_respond_to(:parent) }
+      end
+
+      describe '#parent=' do
+        it { instance.must_respond_to(:parent=) }
+      end
+
+      describe '#value' do
+        it { instance.must_respond_to(:value) }
+      end
+
+      describe '#content' do
+        it { instance.must_respond_to(:content) }
+      end
+
+      describe '#text' do
+        it { instance.must_respond_to(:text) }
+      end
+
+      describe '#value=' do
+        it { instance.must_respond_to(:value=) }
       end
 
       describe '#add' do
@@ -68,7 +73,9 @@ module Vedeu
         subject { instance.add(child) }
 
         it { subject.must_be_instance_of(Vedeu::Views::Streams) }
+      end
 
+      describe '#<<' do
         it { instance.must_respond_to(:<<) }
       end
 
@@ -76,32 +83,6 @@ module Vedeu
         subject { instance.attributes }
 
         it { subject.must_be_instance_of(Hash) }
-      end
-
-      describe '#chars' do
-        subject { instance.chars }
-
-        it { subject.must_be_instance_of(Array) }
-
-        context 'when there is content' do
-          it { subject.size.must_equal(9) }
-        end
-
-        context 'when there is no content' do
-          let(:_value) { '' }
-
-          it 'returns an empty collection' do
-            subject.must_equal([])
-          end
-        end
-      end
-
-      describe '#deputy' do
-        subject { instance.deputy }
-
-        it 'returns the DSL instance' do
-          subject.must_be_instance_of(Vedeu::DSL::Stream)
-        end
       end
 
       describe '#eql?' do
@@ -120,6 +101,10 @@ module Vedeu
         end
       end
 
+      describe '#==' do
+        it { instance.must_respond_to(:==) }
+      end
+
       describe '#name' do
         subject { instance.name }
 
@@ -131,16 +116,6 @@ module Vedeu
           let(:parent) {}
 
           it { subject.must_equal(nil) }
-        end
-      end
-
-      describe '#size' do
-        subject { instance.size }
-
-        it { subject.must_be_instance_of(Fixnum) }
-
-        it 'returns the size of the stream' do
-          subject.must_equal(9)
         end
       end
 

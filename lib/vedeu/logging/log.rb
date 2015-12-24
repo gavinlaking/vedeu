@@ -22,7 +22,7 @@ module Vedeu
         # @param type [Symbol] Colour code messages in the log file
         #   depending on their source. See {message_types}
         #
-        # @return [TrueClass]
+        # @return [String]
         def log(message:, force: false, type: :info)
           output = log_entry(type, message)
 
@@ -38,7 +38,7 @@ module Vedeu
         # @example
         #   Vedeu.log_stdout
         #
-        # @return [TrueClass]
+        # @return [String]
         def log_stdout(type: :info, message:)
           $stdout.puts log_entry(type, message)
         end
@@ -48,7 +48,7 @@ module Vedeu
         # @example
         #   Vedeu.log_stderr
         #
-        # @return [TrueClass]
+        # @return [String]
         def log_stderr(type: :info, message:)
           $stderr.puts log_entry(type, message)
         end
@@ -73,7 +73,7 @@ module Vedeu
 
         private
 
-        # @return [TrueClass]
+        # @return [Boolean]
         def logger
           MonoLogger.new(log_file).tap do |log|
             log.formatter = proc do |_, _, _, message|
@@ -120,9 +120,17 @@ module Vedeu
         # @param body [String] The log message itself.
         # @return [String]
         def message_body(type, body)
-          Vedeu::EscapeSequences::Esc
-            .send(message_types.fetch(type, :default)[-1]) do
-            body
+          message_colour(type, -1) { body }
+        end
+
+        # @param type [Symbol] The type of log message.
+        # @param index [Fixnum] Either 0 or -1.
+        # @param block [Proc]
+        # @return [String]
+        def message_colour(type, index, &block)
+          Vedeu::EscapeSequences::Esc.send(
+            message_types.fetch(type, :default)[index]) do
+            yield if block_given?
           end
         end
 
@@ -132,10 +140,7 @@ module Vedeu
         # @param type [Symbol] The type of log message.
         # @return [String]
         def message_type(type)
-          Vedeu::EscapeSequences::Esc
-            .send(message_types.fetch(type, :default)[0]) do
-            "[#{type}]".ljust(11)
-          end
+          message_colour(type, 0) { "[#{type}]".ljust(11) }
         end
 
         # The defined message types for Vedeu with their respective
@@ -147,40 +152,44 @@ module Vedeu
         # value array, whilst the 'message' will be shown using the
         # last colour.
         #
-        # Valid types available:
-        #
-        #     :config, :create, :debug, :error, :drb, :event, :info,
-        #     :input, :output, :reset, :store, :test, :timer, :update
-        #
         # @return [Hash<Symbol => Array<Symbol>>]
         def message_types
           {
-            create: [:light_cyan, :cyan],
-            store:  [:light_cyan, :cyan],
-            update: [:light_cyan, :cyan],
-            reset:  [:light_cyan, :cyan],
+            create:   [:light_cyan, :cyan],
+            store:    [:light_cyan, :cyan],
+            update:   [:light_cyan, :cyan],
+            reset:    [:light_cyan, :cyan],
 
-            event:  [:light_magenta, :magenta],
+            event:    [:light_magenta, :magenta],
 
-            timer:  [:light_blue, :blue],
+            timer:    [:light_blue, :blue],
 
-            info:   [:white, :light_grey],
-            test:   [:white, :light_grey],
-            debug:  [:white, :light_grey],
-
-            input:  [:light_yellow, :yellow],
-
+            info:     [:white, :light_grey],
+            test:     [:white, :light_grey],
+            debug:    [:white, :light_grey],
             compress: [:white, :light_grey],
+
+            input:    [:light_yellow, :yellow],
+            output:   [:light_yellow, :yellow],
+
             cursor:   [:light_green, :green],
-            output:   [:light_green, :green],
+            buffer:   [:light_green, :green],
             render:   [:light_green, :green],
 
-            error:  [:light_red, :red],
+            error:    [:light_red, :red],
 
-            config: [:light_blue, :blue],
-            dsl:    [:light_blue, :blue],
-            editor: [:light_blue, :blue],
-            drb:    [:light_blue, :blue],
+            config:   [:light_blue, :blue],
+            dsl:      [:light_blue, :blue],
+            editor:   [:light_blue, :blue],
+            drb:      [:light_blue, :blue],
+
+            blue:     [:light_blue,    :blue],
+            cyan:     [:light_cyan,    :cyan],
+            green:    [:light_green,   :green],
+            magenta:  [:light_magenta, :magenta],
+            red:      [:light_red,     :red],
+            white:    [:white,         :light_grey],
+            yellow:   [:light_yellow,  :yellow],
           }
         end
 

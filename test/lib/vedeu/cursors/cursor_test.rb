@@ -73,18 +73,40 @@ module Vedeu
         it { subject.instance_variable_get('@y').must_equal(y) }
       end
 
-      describe 'accessors' do
-        it do
-          instance.must_respond_to(:attributes)
-          instance.must_respond_to(:name)
-          instance.must_respond_to(:ox)
-          instance.must_respond_to(:ox=)
-          instance.must_respond_to(:oy)
-          instance.must_respond_to(:oy=)
-          instance.must_respond_to(:visible)
-          instance.must_respond_to(:x=)
-          instance.must_respond_to(:y=)
-        end
+      describe '#attributes' do
+        it { instance.must_respond_to(:attributes) }
+      end
+
+      describe '#name' do
+        it { instance.must_respond_to(:name) }
+      end
+
+      describe '#ox' do
+        it { instance.must_respond_to(:ox) }
+      end
+
+      describe '#ox=' do
+        it { instance.must_respond_to(:ox=) }
+      end
+
+      describe '#oy' do
+        it { instance.must_respond_to(:oy) }
+      end
+
+      describe '#oy=' do
+        it { instance.must_respond_to(:oy=) }
+      end
+
+      describe '#visible' do
+        it { instance.must_respond_to(:visible) }
+      end
+
+      describe '#x=' do
+        it { instance.must_respond_to(:x=) }
+      end
+
+      describe '#y=' do
+        it { instance.must_respond_to(:y=) }
       end
 
       describe '#eql?' do
@@ -101,6 +123,10 @@ module Vedeu
         end
       end
 
+      describe '#==' do
+        it { instance.must_respond_to(:==) }
+      end
+
       describe '#hide' do
         let(:visible) { true }
         let(:escape)  {
@@ -114,10 +140,10 @@ module Vedeu
 
         subject { instance.hide }
 
-        it {
+        it do
           Vedeu.expects(:render_output).with(escape)
           subject
-        }
+        end
       end
 
       describe '#inspect' do
@@ -255,10 +281,10 @@ module Vedeu
 
         subject { instance.show }
 
-        it {
+        it do
           Vedeu.expects(:render_output).with(escape)
           subject
-        }
+        end
       end
 
       describe '#to_a' do
@@ -273,7 +299,6 @@ module Vedeu
 
         subject { instance.to_s }
 
-        it { instance.must_respond_to(:to_str) }
         it { subject.must_be_instance_of(String) }
 
         context 'when the cursor is visible' do
@@ -303,6 +328,10 @@ module Vedeu
             subject.must_equal("\e[8;19H\e[8;19H\e[?25h")
           end
         end
+      end
+
+      describe '#to_str' do
+        it { instance.must_respond_to(:to_str) }
       end
 
       describe '#x' do

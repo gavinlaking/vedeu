@@ -8,10 +8,10 @@ module Vedeu
 
       include Vedeu::Common
       include Vedeu::DSL
-      include Vedeu::Cursors::DSL
+      include Vedeu::DSL::Cursors
+      include Vedeu::DSL::Border
+      include Vedeu::DSL::Geometry
       include Vedeu::DSL::Presentation
-      include Vedeu::DSL::Shared
-      include Vedeu::DSL::Text
       include Vedeu::DSL::Use
 
       class << self
@@ -36,9 +36,8 @@ module Vedeu
         # @return [Vedeu::Interfaces::Interface]
         # @todo More documentation required.
         def interface(name, &block)
+          fail Vedeu::Error::MissingRequired unless name
           fail Vedeu::Error::RequiresBlock unless block_given?
-          fail Vedeu::Error::MissingRequired,
-               'name not given'.freeze unless present?(name)
 
           attributes = { client: client(&block), name: name }
 
@@ -50,6 +49,7 @@ module Vedeu
           add_cursor!(name)
           add_editor!(name) if interface.editable?
           add_focusable!(name)
+          add_keymap!(name)
 
           interface
         end
@@ -87,9 +87,18 @@ module Vedeu
         # registered.
         #
         # @param name [String|Symbol]
-        # @return [void]
+        # @return [Array<String|Symbol>]
         def add_focusable!(name)
           Vedeu::Models::Focus.add(name)
+        end
+
+        # Registers a new keymap for the interface unless already
+        # registered.
+        #
+        # @param name [String|Symbol]
+        # @return [NilClass|Vedeu::Input::Keymap]
+        def add_keymap!(name)
+          Vedeu::Input::Keymap.store(name: name) unless keymap?(name)
         end
 
         # Returns the client object which called the DSL method.
@@ -98,6 +107,14 @@ module Vedeu
         # @return [Object]
         def client(&block)
           eval('self', block.binding)
+        end
+
+        private
+
+        # @param name [String|Symbol]
+        # @return [Boolean]
+        def keymap?(name)
+          Vedeu.keymaps.registered?(name)
         end
 
       end # Eigenclass
@@ -212,22 +229,6 @@ module Vedeu
         Vedeu.keymap(name, &block)
       end
       alias_method :keys, :keymap
-
-      # The name of the interface. Used to reference the interface
-      # throughout your application's execution lifetime.
-      #
-      # @param value [String|Symbol]
-      #
-      # @example
-      #   Vedeu.interface do
-      #     name :my_interface
-      #     # ...
-      #   end
-      #
-      # @return [String|Symbol]
-      def name(value)
-        model.name = value
-      end
 
       # Set the interface to visible.
       #

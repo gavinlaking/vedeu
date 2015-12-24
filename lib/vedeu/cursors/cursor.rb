@@ -278,7 +278,7 @@ module Vedeu
       #   Vedeu::Cursors::Repository>]
       def defaults
         {
-          name:       '',
+          name:       ''.freeze,
           ox:         0,
           oy:         0,
           repository: Vedeu.cursors,

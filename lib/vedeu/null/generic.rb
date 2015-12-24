@@ -24,7 +24,7 @@ module Vedeu
         @name       = @attributes.fetch(:name, '')
       end
 
-      # @return [FalseClass]
+      # @return [Boolean]
       def falsy
         false
       end
@@ -73,7 +73,7 @@ module Vedeu
         self
       end
 
-      # @return [FalseClass]
+      # @return [Boolean]
       def visible=(*)
         false
       end

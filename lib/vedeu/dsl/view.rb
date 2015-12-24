@@ -2,273 +2,149 @@ module Vedeu
 
   module DSL
 
-    # There are two ways to construct views with Vedeu. You would like
-    # to draw the view to the screen immediately (immediate render) or
-    # you want to save a view to be drawn when you trigger a refresh
-    # event later (deferred view).
+    # DSL for creating collections of interfaces.
     #
-    # Both of these approaches require that you have defined an
-    # interface (or 'visible area') first. You can find out how to
-    # define an interface with Vedeu below or in
-    # {Vedeu::Interfaces::DSL}. The examples in 'Immediate Render' and
-    # 'Deferred View' use these interface definitions: (Note: should
-    # you use these examples, ensure your terminal is at least 70
-    # characters in width and 5 lines in height.)
-    #
-    #   Vedeu.interface :main do
-    #     geometry do
-    #       height 4
-    #       width  50
-    #     end
-    #   end
-    #
-    #   Vedeu.interface :title do
-    #     geometry do
-    #       height 1
-    #       width  50
-    #       x      use('main').left
-    #       y      use('main').north
-    #     end
-    #   end
-    #
-    # Both of these approaches use a concept of Buffers in Vedeu.
-    # There are three buffers for any defined interface. These are
-    # imaginatively called: 'back', 'front' and 'previous'.
-    #
-    # The 'back' buffer is the content for an interface which will be
-    # shown next time a refresh event is fired globally or for that
-    # interface. So, 'back' becomes 'front'.
-    #
-    # The 'front' buffer is the content for an interface which is
-    # currently showing. When a refresh event is fired, again,
-    # globally or for that interface specifically, the content of this
-    # 'front' buffer is first copied to the 'previous' buffer, and
-    # then the current 'back' buffer overwrites this 'front' buffer.
-    #
-    # The 'previous' buffer contains what was shown on the 'front'
-    # before the current 'front'.
-    #
-    # You can only write to either the 'front' (you want the content
-    # to be drawn immediately (immediate render)) or the 'back' (you
-    # would like the content to be drawn on the next refresh
-    # (deferred view)).
-    #
-    # The basic view DSL methods look like this:
-    #
-    #   renders/views
-    #     |- view
-    #         |- lines
-    #         |   |- line
-    #         |       |- streams
-    #         |       |   |- stream
-    #         |       |       |- char
-    #         |       |
-    #         |       |- stream
-    #         |           |- char
-    #         |
-    #         |- line
-    #             |- streams
-    #             |   |- stream
-    #             |       |- char
-    #             |
-    #             |- stream
-    #                 |- char
-    #
-    #   renders/views
-    #     |- view
-    #         |- lines/line
-    #             |- streams/stream
-    #                 |- char
+    # Views with Vedeu are made up of simple building blocks. These
+    # blocks can be arranged in a multitude of ways which I hope is
+    # more than sufficient for your design needs.
+
+    # - A view (`View`) is made up of one or more interfaces.
+    # - An interface is an area on the screen where you can take input
+    #   or direct output. You will define it's colour and style, its
+    #   dimensions, including position and give it a name. You can
+    #   then direct the output of a command, or event, to this
+    #   interface and Vedeu will ensure the content is placed there.
+    # - Interfaces (`Interface`) are made up of lines (`Line`), their
+    #   length being the width of the interface and their number being
+    #   the height of the interface.
+    # - An interface with `width: 12, height: 5` will have five lines,
+    #   each made of 12 characters- providing 60 cells. Colours and
+    #   styles are handled by terminal escape sequences and therefore
+    #   do not consume a cell.
+    # - Lines are made up of zero, one or multiple streams which are
+    #   basically subsets of the line.
+    # - An interface, line or stream can have a colour attribute.
+    # - An interface, line or stream can have a style attribute.
+    # - Interfaces have a position (`y`, `x`) on the screen, and a
+    #   size. (`width`, `height`)
+    # - Interfaces can be placed relative to each other based on their
+    #   attributes.
+    #   - An interface has a `top`, `right`, `bottom`, `left`.
+    #   - An interface also has a `north` and `west` (`top` and `left`
+    #     minus 1 respectively).
+    #   - An interface also has a `south` and `east` (`bottom` and
+    #     `right` plus 1 respectively).
+    # - Colours are defined in CSS-style values, i.e. `#ff0000` would
+    #   be red.
+    # - Styles are named. See the table below for supported styles.
     #
     class View
 
       include Vedeu::DSL
-      include Vedeu::Cursors::DSL
-      include Vedeu::DSL::Presentation
-      include Vedeu::DSL::Shared
-      include Vedeu::DSL::Text
-      include Vedeu::DSL::Use
 
-      class << self
-
-        include Vedeu::Common
-
-        # Directly write a view buffer to the terminal. Using this
-        # method means that the refresh event does not need to be
-        # triggered after creating the views, though can be later
-        # triggered when needed.
-        #
-        #   Vedeu.renders do
-        #     view :some_interface do
-        #       line do
-        #         stream do
-        #           left 'Title goes here', width: 35
-        #         end
-        #         stream do
-        #           right Time.now.strftime('%H:%m'), width: 7
-        #         end
-        #       end
-        #     end
-        #     view :other_interface do
-        #       lines do
-        #         line 'This is content for the main interface.'
-        #         line ''
-        #         line 'Pretty easy eh?'
-        #       end
-        #     end
-        #     # ... some code
-        #   end
-        #
-        #   # or...
-        #
-        #   Vedeu.render do
-        #     view :my_interface do
-        #       # ... some code
-        #     end
-        #   end
-        #
-        # @param block [Proc] The directives you wish to send to
-        #   render. Typically includes `view` with associated
-        #   sub-directives.
-        # @raise [Vedeu::Error::RequiresBlock]
-        # @return [Array<View>]
-        def renders(&block)
-          fail Vedeu::Error::RequiresBlock unless block_given?
-
-          client = eval('self', block.binding)
-
-          store(:store_immediate, client, &block)
-        end
-        alias_method :render, :renders
-
-        # Define a view (content) for an interface.
-        #
-        # As you can see by comparing the examples above to these
-        # below, the immediate render simply wraps what is already
-        # here in the deferred view.
-        #
-        # The views declared within this block are stored in their
-        # respective interface back buffers until a refresh event
-        # occurs. When the refresh event is triggered, the back
-        # buffers are swapped into the front buffers and the content
-        # here will be rendered to {Vedeu::Terminal#output}.
-        #
-        #   Vedeu.views do
-        #     view :some_interface do
-        #       line do
-        #         stream do
-        #           left 'Title goes here', width: 35
-        #         end
-        #         stream do
-        #           right Time.now.strftime('%H:%m'), width: 7
-        #         end
-        #       end
-        #     end
-        #     view :other_interface do
-        #       lines do
-        #         line 'This is content for the main interface.'
-        #         line ''
-        #         line 'Pretty easy eh?'
-        #       end
-        #     end
-        #     # ... some code
-        #   end
-        #
-        # @param block [Proc] The directives you wish to send to
-        #   render. Typically includes `view` with associated
-        #   sub-directives.
-        # @raise [Vedeu::Error::RequiresBlock]
-        # @return [Array<View>]
-        def views(&block)
-          fail Vedeu::Error::RequiresBlock unless block_given?
-
-          client = eval('self', block.binding)
-
-          store(:store_deferred, client, &block)
-        end
-
-        private
-
-        # Returns the client object which called the DSL method.
-        #
-        # @param block [Proc]
-        # @return [Object]
-        def client(&block)
-          eval('self', block.binding)
-        end
-
-        # Creates a new Vedeu::Views::Composition which may contain
-        # one or more views (Vedeu::Views::View objects).
-        #
-        # @param client [Object]
-        # @param block [Proc]
-        # @return [Vedeu::Views::Composition]
-        def composition(client, &block)
-          attrs = { client: client, colour: Vedeu::Configuration.colour }
-
-          Vedeu::Views::Composition.build(attrs, &block)
-        end
-
-        # Creates a new Vedeu::Views::Composition which may contain
-        # one or more views (Vedeu::Views::View objects).
-        #
-        # Stores each of the views defined in their respective buffers
-        # ready to be rendered on next refresh.
-        #
-        # @param method [Symbol] An instruction; `:store_immediate` or
-        #   `:store_deferred` which determines whether the view will
-        #   be shown immediately or later respectively.
-        # @param client [Object] The client class which called the DSL
-        #   object.
-        # @param block [Proc]
-        # @return [Array]
-        def store(method, client, &block)
-          composition(client, &block).views.map do |view|
-            view.public_send(method)
-          end
-        end
-
-      end # Eigenclass
-
-      # Specify multiple lines in a view.
+      # Define a view.
       #
-      # @param block [Proc]
+      # A view is just an Interface object.
+      #
+      # When a view already exists, we take its attributes and use
+      # them as the basis for the newly defined view. This way we
+      # don't need to specify everything again.
+      #
+      # @todo More documentation required.
+      # @param name [String|Symbol] The name of the interface you are
+      #   targetting for this view.
+      # @param block [Proc] The directives you wish to send to this
+      #   interface.
       #
       # @example
-      #   Vedeu.view :my_interface do
-      #     lines do
-      #       # ... see {Vedeu::DSL::Line} and {Vedeu::DSL::Stream}
-      #     end
-      #   end
-      #
-      #   Vedeu.view :my_interface do
-      #     line do
-      #       # ... see {Vedeu::DSL::Line} and {Vedeu::DSL::Stream}
-      #     end
+      #   view :my_interface do
+      #     # ...
       #   end
       #
       # @raise [Vedeu::Error::RequiresBlock]
-      # @return [Vedeu::Views::Line]
-      def lines(&block)
+      # @return [Vedeu::Views::Views<Vedeu::Views::View>]
+      def view(name = '', &block)
         fail Vedeu::Error::RequiresBlock unless block_given?
 
-        model.add(model.member.build(attributes, &block))
+        new_model = Vedeu::Views::View.build(new_attributes(name), &block)
+
+        model.add(new_model)
       end
-      alias_method :line, :lines
+
+      # Load content from an ERb template.
+      #
+      # @example
+      #   Vedeu.renders do
+      #     template_for(:my_interface,
+      #                  '/path/to/template.erb',
+      #                  @some_object, options)
+      #   end
+      #
+      # @todo More documentation required.
+      #
+      # @param name [String|Symbol] The name of interface for which this
+      #   template's content belongs to.
+      # @param filename [String] The filename (including path) to the
+      #   template to be used. Yoy can use `File.dirname(__FILE__)` to
+      #   use relative paths.
+      # @param object [Object] The object for which the values of
+      #   template's variables can be obtained.
+      # @param options [Hash<Symbol => void>] See {Vedeu::DSL::Wordwrap}
+      # @raise [Vedeu::Error::MissingRequired]
+      # @return [Vedeu::Views::Views<Vedeu::Views::View>]
+      def template_for(name, filename, object = nil, options = {})
+        fail Vedeu::Error::MissingRequired,
+             'Cannot render template without the name of the ' \
+             'view.'.freeze unless name
+        fail Vedeu::Error::MissingRequired,
+             'Cannot render template without a filename.'.freeze unless filename
+
+        options.merge!(name: name)
+
+        content = Vedeu::Templating::ViewTemplate.parse(object,
+                                                        filename,
+                                                        options)
+
+        # lines     = Vedeu::DSL::Wordwrap.for(content, options)
+
+        new_model = Vedeu::Views::View.build(template_attributes(name, content))
+
+        model.add(new_model)
+      end
+
+      private
+
+      # @param name [String|Symbol]
+      # @param lines [Vedeu::Views::Lines]
+      # @return [Hash<Symbol => void>]
+      def template_attributes(name, lines)
+        new_attributes(name).merge!(value: lines)
+      end
+
+      # Return the current attributes combined with the existing
+      # interface attributes defined by the interface.
+      #
+      # @param name [String|Symbol] The name of the interface.
+      # @return [Hash<Symbol => void>]
+      def new_attributes(name)
+        existing_attributes(name).merge!(attributes)
+      end
+
+      # Retrieve the attributes of the interface by name.
+      #
+      # @param name [String|Symbol] The name of the interface.
+      # @return [Hash<Symbol => void>]
+      def existing_attributes(name)
+        interface(name).attributes
+      end
+
+      # @return [Vedeu::Interfaces::Interface]
+      def interface(name)
+        Vedeu.interfaces.by_name(name)
+      end
 
     end # View
 
   end # DSL
-
-  # @!method render
-  #   @see Vedeu::DSL::View.render
-  # @!method renders
-  #   @see Vedeu::DSL::View.renders
-  # @!method views
-  #   @see Vedeu::DSL::View.views
-  def_delegators Vedeu::DSL::View,
-                 :renders,
-                 :render,
-                 :views
 
 end # Vedeu

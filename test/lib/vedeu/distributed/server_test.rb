@@ -204,10 +204,18 @@ module Vedeu
       end
 
       describe '#input' do
+        it { instance.must_respond_to(:input) }
+      end
+
+      describe '#read' do
         it { instance.must_respond_to(:read) }
       end
 
       describe '#output' do
+        it { instance.must_respond_to(:output) }
+      end
+
+      describe '#write' do
         it { instance.must_respond_to(:write) }
       end
 

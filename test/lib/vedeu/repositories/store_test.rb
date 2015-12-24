@@ -82,7 +82,9 @@ module Vedeu
 
           it { subject.must_equal(true) }
         end
+      end
 
+      describe '#registered?' do
         it { instance.must_respond_to(:registered?) }
       end
 
@@ -136,8 +138,13 @@ module Vedeu
         it 'resets the repository' do
           instance.reset.must_equal({})
         end
+      end
 
+      describe '#reset!' do
         it { instance.must_respond_to(:reset!) }
+      end
+
+      describe '#clear' do
         it { instance.must_respond_to(:clear) }
       end
 
@@ -159,7 +166,9 @@ module Vedeu
         subject { instance.storage }
 
         it { subject.must_equal({}) }
+      end
 
+      describe '#all' do
         it { instance.must_respond_to(:all) }
       end
 

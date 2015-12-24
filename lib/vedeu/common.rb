@@ -24,6 +24,41 @@ module Vedeu
       klass.new(attributes)
     end
 
+    # Returns a boolean indicating the value was a boolean.
+    #
+    # @param value [void]
+    # @return [Boolean]
+    def boolean(value)
+      return value if boolean?(value)
+      return false if falsy?(value)
+      return true  if truthy?(value)
+    end
+
+    # Returns a boolean indicating whether the value is a Boolean.
+    #
+    # @param value [Boolean]
+    # @return [Boolean]
+    def boolean?(value)
+      value.is_a?(TrueClass) || value.is_a?(FalseClass)
+    end
+
+    # Returns a boolean indicating whether the value should be
+    # considered false.
+    #
+    # @param value [void]
+    # @return [Boolean]
+    def falsy?(value)
+      value.nil? || value.is_a?(FalseClass)
+    end
+
+    # Returns a boolean indicating whether the value is a Hash.
+    #
+    # @param value [Hash|void]
+    # @return [Boolean]
+    def hash?(value)
+      value.is_a?(Hash)
+    end
+
     # Returns a boolean indicating whether the value is a Fixnum.
     #
     # @param value [Fixnum|void]
@@ -62,6 +97,23 @@ module Vedeu
       name.tr!('-', '_')
       name.downcase!
       name
+    end
+
+    # Returns a boolean indicating whether the value is a Fixnum.
+    #
+    # @param value [String|void]
+    # @return [Boolean]
+    def string?(value)
+      value.is_a?(String)
+    end
+
+    # Returns a boolean indicating whether the value should be
+    # considered true.
+    #
+    # @param value [void]
+    # @return [Boolean]
+    def truthy?(value)
+      !falsy?(value)
     end
 
   end # Common

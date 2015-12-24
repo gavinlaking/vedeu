@@ -20,20 +20,21 @@ module Vedeu
         # @param (see #initialize)
         # @return [Boolean]
         def keypress(key = nil, name = nil)
-          Vedeu.trigger(:key, key)
-
-          return false unless key
-
           new(key, name).keypress
         end
 
+        # @param key [String|Symbol] The keypress.
+        # @param name [String|Symbol] The keymap name.
+        # @raise [Vedeu::Error::MissingRequired] When the key or name
+        #   params are missing.
+        # @return [Boolean]
         def registered?(key = nil, name = nil)
           fail Vedeu::Error::MissingRequired,
                'Cannot check whether a key is registered to a keymap without ' \
-               'the key.' if absent?(key)
+               'the key.'.freeze if absent?(key)
           fail Vedeu::Error::MissingRequired,
                'Cannot check whether a key is registered to a keymap without ' \
-               'the keymap name.' if absent?(name)
+               'the keymap name.'.freeze if absent?(name)
 
           new(key, name).registered?
         end
@@ -69,13 +70,15 @@ module Vedeu
       #
       # @return [Boolean]
       def keypress
+        Vedeu.trigger(:key, key)
+
         return false unless key
 
         return true if key_defined? && keymap.use(key)
 
         return true if global_key? && keymap('_global_').use(key)
 
-        Vedeu.log(type: :input, message: "Key detected: #{key.inspect}".freeze)
+        Vedeu.log(type: :input, message: log_message(key))
 
         false
       end
@@ -102,7 +105,7 @@ module Vedeu
       protected
 
       # @!attribute [r] key
-      # @return [String|Symbol]
+      # @return [NilClass|String|Symbol|Vedeu::Cursors::Cursor]
       attr_reader :key
 
       # @!attribute [r] repository
@@ -135,6 +138,18 @@ module Vedeu
         repository.registered?(named)
       end
 
+      # @param key [NilClass|String|Symbol|Vedeu::Cursors::Cursor]
+      # @return [String]
+      def log_message(key)
+        if key.is_a?(Vedeu::Cursors::Cursor)
+          "Click detected: x: #{key.x} y: #{key.y}".freeze
+
+        else
+          "Key detected: #{key.inspect}".freeze
+
+        end
+      end
+
       # With a name, we check the keymap with that name, otherwise we
       # use the name of the interface currently in focus.
       #
@@ -158,8 +173,6 @@ module Vedeu
   # See {file:docs/events/system.md#\_keypress_}
   Vedeu.bind(:_keypress_) do |key, name|
     Vedeu.timer('Executing keypress') do
-      Vedeu.trigger(:key, key)
-
       Vedeu.add_keypress(key)
 
       Vedeu.keypress(key, name)
@@ -170,10 +183,12 @@ module Vedeu
   Vedeu.bind(:_drb_input_) do |data, type|
     Vedeu.log(type: :drb, message: "Sending input (#{type})".freeze)
 
-    case type
-    when :command  then Vedeu.trigger(:_command_, data)
-    when :keypress then Vedeu.trigger(:_keypress_, data)
-    else Vedeu.trigger(:_keypress_, data)
+    if type == :command
+      Vedeu.trigger(:_command_, data)
+
+    else
+      Vedeu.trigger(:_keypress_, data)
+
     end
   end
 

@@ -65,18 +65,23 @@ module Vedeu
       }
       let(:stream_value)  { 'Some text' }
       let(:stream_style)  { Vedeu::Presentation::Style.new(:underline) }
+      let(:expected) {
+        "\e[38;2;255;0;0m\e[48;2;0;0;0m\e[4m" \
+        "\e[38;2;255;0;0m\e[48;2;0;0;0m\e[4mS" \
+        "\e[38;2;255;0;0m\e[48;2;0;0;0m\e[4mo" \
+        "\e[38;2;255;0;0m\e[48;2;0;0;0m\e[4mm" \
+        "\e[38;2;255;0;0m\e[48;2;0;0;0m\e[4me" \
+        "\e[38;2;255;0;0m\e[48;2;0;0;0m\e[4m " \
+        "\e[38;2;255;0;0m\e[48;2;0;0;0m\e[4mt" \
+        "\e[38;2;255;0;0m\e[48;2;0;0;0m\e[4me" \
+        "\e[38;2;255;0;0m\e[48;2;0;0;0m\e[4mx" \
+        "\e[38;2;255;0;0m\e[48;2;0;0;0m\e[4mt"
+      }
 
       it { includer.must_respond_to(:to_str) }
 
       it 'returns output' do
-        stream.to_s.must_equal(
-          # - stream colour
-          # - stream style
-          # - stream content
-          "\e[38;2;255;0;0m\e[48;2;0;0;0m"  \
-          "\e[4m"                           \
-          'Some text'
-        )
+        stream.to_s.must_equal(expected)
       end
     end
 

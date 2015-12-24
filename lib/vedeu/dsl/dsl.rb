@@ -16,6 +16,15 @@ module Vedeu
       @client = client
     end
 
+    # Returns the model name if available.
+    #
+    # @return [NilClass|String|Symbol]
+    def name
+      return nil unless model
+
+      model.name
+    end
+
     protected
 
     # @!attribute [r] client

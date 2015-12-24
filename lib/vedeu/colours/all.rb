@@ -8,6 +8,7 @@ module Vedeu
 
 end # Vedeu
 
+require 'vedeu/colours/validator'
 require 'vedeu/colours/repository'
 require 'vedeu/colours/backgrounds'
 require 'vedeu/colours/foregrounds'

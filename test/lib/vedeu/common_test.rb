@@ -60,6 +60,100 @@ module Vedeu
       it { subject.must_be_instance_of(Vedeu::Cells::Char) }
     end
 
+    describe '#boolean' do
+      subject { instance.boolean(_value) }
+
+      context 'when the value is a TrueClass' do
+        let(:_value) { true }
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when the value is a FalseClass' do
+        let(:_value) { false }
+
+        it { subject.must_equal(false) }
+      end
+
+      context 'when the value is nil' do
+        let(:_value) {}
+
+        it { subject.must_equal(false) }
+      end
+
+      context 'when the value is anything else' do
+        let(:_value) { 'anything' }
+
+        it { subject.must_equal(true) }
+      end
+    end
+
+    describe '#boolean?' do
+      subject { instance.boolean?(_value) }
+
+      context 'when the value is a TrueClass' do
+        let(:_value) { true }
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when the value is a FalseClass' do
+        let(:_value) { false }
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when the value is anything else' do
+        let(:_value) { 'anything' }
+
+        it { subject.must_equal(false) }
+      end
+    end
+
+    describe '#falsy?' do
+      subject { instance.falsy?(_value) }
+
+      context 'when the value is a TrueClass' do
+        let(:_value) { true }
+
+        it { subject.must_equal(false) }
+      end
+
+      context 'when the value is a FalseClass' do
+        let(:_value) { false }
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when the value is nil' do
+        let(:_value) {}
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when the value is anything else' do
+        let(:_value) { 'anything' }
+
+        it { subject.must_equal(false) }
+      end
+    end
+
+    describe '#hash?' do
+      let(:_value) {}
+
+      subject { instance.hash?(_value) }
+
+      context 'when the value is a Hash' do
+        let(:_value) { { element: :hydrogen } }
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when the value is not a Hash' do
+        it { subject.must_equal(false) }
+      end
+    end
+
     describe '#numeric?' do
       let(:_value) {}
 
@@ -122,6 +216,50 @@ module Vedeu
         let(:_name) { 'MyFirstApp::SomeController' }
 
         it { subject.must_equal('my_first_app/some_controller') }
+      end
+    end
+
+    describe '#string?' do
+      let(:_value) {}
+
+      subject { instance.string?(_value) }
+
+      context 'when the value is string' do
+        let(:_value) { 'test' }
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when the value is not string' do
+        it { subject.must_equal(false) }
+      end
+    end
+
+    describe '#truthy?' do
+      subject { instance.truthy?(_value) }
+
+      context 'when the value is a TrueClass' do
+        let(:_value) { true }
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when the value is a FalseClass' do
+        let(:_value) { false }
+
+        it { subject.must_equal(false) }
+      end
+
+      context 'when the value is nil' do
+        let(:_value) {}
+
+        it { subject.must_equal(false) }
+      end
+
+      context 'when the value is anything else' do
+        let(:_value) { 'anything' }
+
+        it { subject.must_equal(true) }
       end
     end
 

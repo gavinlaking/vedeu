@@ -56,21 +56,42 @@ module Vedeu
         it { instance.instance_variable_get('@name').must_equal(_name) }
         it { instance.instance_variable_get('@parent').must_equal(parent) }
         it { instance.instance_variable_get('@value').must_equal(_value) }
+      end
 
+      describe '#value' do
         it { instance.must_respond_to(:value) }
       end
 
-      describe 'accessors' do
-        it do
-          instance.must_respond_to(:border)
-          instance.must_respond_to(:border=)
-          instance.must_respond_to(:name)
-          instance.must_respond_to(:name=)
-          instance.must_respond_to(:parent)
-          instance.must_respond_to(:parent=)
-          instance.must_respond_to(:attributes)
-          instance.must_respond_to(:value=)
-        end
+      describe '#border' do
+        it { instance.must_respond_to(:border) }
+      end
+
+      describe '#border=' do
+        it { instance.must_respond_to(:border=) }
+      end
+
+      describe '#name' do
+        it { instance.must_respond_to(:name) }
+      end
+
+      describe '#name=' do
+        it { instance.must_respond_to(:name=) }
+      end
+
+      describe '#parent' do
+        it { instance.must_respond_to(:parent) }
+      end
+
+      describe '#parent=' do
+        it { instance.must_respond_to(:parent=) }
+      end
+
+      describe '#attributes' do
+        it { instance.must_respond_to(:attributes) }
+      end
+
+      describe '#value=' do
+        it { instance.must_respond_to(:value=) }
       end
 
       describe '#cell?' do
@@ -95,6 +116,10 @@ module Vedeu
 
           it { subject.must_equal(false) }
         end
+      end
+
+      describe '#==' do
+        it { instance.must_respond_to(:==) }
       end
 
       describe '#interface' do

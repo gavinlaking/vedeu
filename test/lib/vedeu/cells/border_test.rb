@@ -33,12 +33,6 @@ module Vedeu
         # @todo Add more tests.
       end
 
-      describe '#named_parent' do
-        subject { instance.named_parent }
-
-        # @todo Add more tests.
-      end
-
       describe '#value' do
         subject { instance.value }
 

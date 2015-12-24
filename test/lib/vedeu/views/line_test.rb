@@ -4,19 +4,6 @@ module Vedeu
 
   module Views
 
-    describe Lines do
-
-      let(:described) { Vedeu::Views::Lines }
-      let(:instance)  { described.new }
-
-      it { described.superclass.must_equal(Vedeu::Repositories::Collection) }
-
-      describe '#initialize' do
-        it { instance.must_be_instance_of(described) }
-      end
-
-    end # Lines
-
     describe Line do
 
       let(:described)  { Vedeu::Views::Line }
@@ -69,17 +56,27 @@ module Vedeu
         it { instance.instance_variable_get('@parent').must_equal(parent) }
       end
 
-      describe 'accessors' do
-        it do
-          instance.must_respond_to(:parent)
-          instance.must_respond_to(:parent=)
-        end
+      describe '#client' do
+      it { instance.must_respond_to(:client) }
+      end
+
+      describe '#client=' do
+      it { instance.must_respond_to(:client=) }
+      end
+
+      describe '#parent' do
+      it { instance.must_respond_to(:parent) }
+      end
+
+      describe '#parent=' do
+      it { instance.must_respond_to(:parent=) }
       end
 
       describe '#add' do
         subject { instance.add(child) }
+      end
 
-        it { instance.must_respond_to(:add) }
+      describe '#<<' do
         it { instance.must_respond_to(:<<) }
       end
 
@@ -105,14 +102,6 @@ module Vedeu
         end
       end
 
-      describe '#deputy' do
-        subject { instance.deputy }
-
-        it 'returns the DSL instance' do
-          subject.must_be_instance_of(Vedeu::DSL::Line)
-        end
-      end
-
       describe '#eql?' do
         let(:other) { instance }
 
@@ -125,6 +114,10 @@ module Vedeu
 
           it { subject.must_equal(false) }
         end
+      end
+
+      describe '#==' do
+        it { instance.must_respond_to(:==) }
       end
 
       describe '#name' do
@@ -148,54 +141,6 @@ module Vedeu
 
         it 'returns the size of the line' do
           subject.must_equal(53)
-        end
-      end
-
-      describe '#value' do
-        subject { instance.value }
-
-        it { instance.must_respond_to(:streams) }
-
-        it { subject.must_be_instance_of(Vedeu::Views::Streams) }
-      end
-
-      describe '#to_s' do
-        subject { instance.to_s }
-
-        it { subject.must_be_instance_of(String) }
-
-        it 'returns the line complete with formatting' do
-          # (starts in Line colour)
-          # (starts in Line style)
-          # Stream 1 colour
-          # Stream 1 style
-          # Stream 1 value
-          # (resets style to Line style)
-          # (resets colour to Line colour)
-          # Stream 2 colour
-          # Stream 2 style
-          # Stream 2 value
-          # (resets style to Line style)
-          # (resets colour to Line colour)
-          # Stream 3 colour
-          # Stream 3 style
-          # Stream 3 value
-          # (resets style to Line style)
-          # (resets colour to Line colour)
-
-          subject.must_equal(
-            "\e[38;2;255;0;0m\e[48;2;0;0;0m"  \
-            "\e[24m\e[22m\e[27m"              \
-            "\e[38;2;255;255;0m"              \
-            "\e[24m\e[22m\e[27m"              \
-            'Something interesting '          \
-            "\e[38;2;0;255;0m"                \
-            "\e[24m\e[22m\e[27m"              \
-            'on this line '                   \
-            "\e[38;2;0;0;255m"                \
-            "\e[24m\e[22m\e[27m"              \
-            'would be cool, eh?'
-          )
         end
       end
 

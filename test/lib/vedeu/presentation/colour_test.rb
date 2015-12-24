@@ -6,7 +6,8 @@ module Vedeu
 
     describe Colour do
 
-      let(:includer) { Vedeu::PresentationColourTestClass.new(attributes) }
+      let(:described)  { Vedeu::Presentation::Colour }
+      let(:includer)   { Vedeu::PresentationColourTestClass.new(attributes) }
       let(:attributes) {
         {
           colour: colour,

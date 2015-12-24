@@ -14,8 +14,11 @@ module Vedeu
         }
       }
 
-      describe 'accessors' do
+      describe '#repository' do
         it { instance.must_respond_to(:repository) }
+      end
+
+      describe '#repository=' do
         it { instance.must_respond_to(:repository=) }
       end
 
@@ -23,18 +26,6 @@ module Vedeu
         let(:attributes) {}
 
         subject { described.build(attributes) { } }
-
-        # @todo Add more tests.
-        # it { skip }
-      end
-
-      describe '.child' do
-        let(:klass) {}
-
-        subject { described.child(klass) }
-
-        it { described.must_respond_to(:member) }
-        it { described.must_respond_to(:collection) }
 
         # @todo Add more tests.
         # it { skip }

@@ -15,7 +15,7 @@ module Vedeu
         it { instance.instance_variable_get('@storage').must_equal(storage) }
       end
 
-      describe 'accessors' do
+      describe '#storage' do
         it { instance.must_respond_to(:storage) }
       end
 

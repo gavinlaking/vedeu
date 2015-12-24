@@ -7,28 +7,9 @@ module Vedeu
     class DSL
 
       include Vedeu::DSL
+      include Vedeu::DSL::Border
       include Vedeu::DSL::Presentation
       include Vedeu::DSL::Use
-
-      # Specify the border of an interface or view with a simple DSL.
-      #
-      #   Vedeu.border :some_interface do
-      #     # ...
-      #   end
-      #
-      # @param name [String|Symbol] The name of the interface or view
-      #   to which this border belongs.
-      # @param block [Proc]
-      # @raise [Vedeu::Error::MissingRequired|
-      #   Vedeu::Error::RequiresBlock] When a name or block
-      #   respectively are not given.
-      # @return [Vedeu::Borders::Border]
-      def self.border(name, &block)
-        fail Vedeu::Error::MissingRequired unless name
-        fail Vedeu::Error::RequiresBlock unless block_given?
-
-        Vedeu::Borders::Border.build(enabled: true, name: name, &block).store
-      end
 
       # Set the character to be used to draw the bottom left corner of
       # the border.

@@ -175,7 +175,7 @@ Repository method. Access registered background colours.
 
 ### Vedeu.border
 
-See {Vedeu::Borders::DSL.border}
+See {Vedeu::DSL::Border::ClassMethods.border}
 
 ### Vedeu.borders
 
@@ -244,6 +244,10 @@ Repository method. Access registered cursors.
     Vedeu.cursors # [Vedeu::Cursors::Repository]
 
     Vedeu.cursors.all # [Array<Vedeu::Cursors::Cursor>]
+
+### Vedeu.debug
+
+@todo Add more documentation.
 
 ### Vedeu.direct_write
 
