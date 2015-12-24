@@ -17,16 +17,12 @@ class DSLApp
 
   Vedeu.interface :test1_interface do
     border do
-      # background '#ff0000'
-      # foreground '#ff0000'
-      # colour foreground: '#ff0000'
-      # colour background: '#ff0000'
       title 'Test 1'
     end
     geometry do
       x  4
       y  3
-      xn 34
+      xn 35
       yn 8
     end
   end
@@ -212,6 +208,14 @@ class DSLApp
     end
 
     view(:test6_interface) do
+      foreground '#ffffff'
+      line do
+        left   'v->l->left',   { background: '#aa2200', width: 15 }
+        right  'v->l->right',  { background: '#0022ff', width: 15 }
+      end
+      line do
+        centre 'v->l->centre', { background: '#007700', width: 30 }
+      end
     end
 
     view(:help6_interface) do
