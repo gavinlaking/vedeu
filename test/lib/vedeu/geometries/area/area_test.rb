@@ -333,7 +333,7 @@ module Vedeu
           let(:yn) { 13 }
           let(:subject) { described.from_attributes(y: y, yn: yn).height }
 
-          it { subject.must_equal(10) }
+          it { subject.must_equal(11) }
         end
       end
 
