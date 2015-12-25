@@ -584,12 +584,8 @@ module Vedeu
       # @param attrs [Hash<Symbol => String>]
       # @return [Hash<Symbol => void>]
       def colour(attrs = {})
-        if attrs.key?(:background)
-          options[:background] = attrs[:background]
-        end
-        if attrs.key?(:foreground)
-          options[:foreground] = attrs[:foreground]
-        end
+        options[:background] = attrs[:background] if attrs.key?(:background)
+        options[:foreground] = attrs[:foreground] if attrs.key?(:foreground)
         options
       end
 
