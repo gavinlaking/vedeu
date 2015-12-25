@@ -54,22 +54,6 @@ module Vedeu
       output
     end
 
-    # Adds the given renderer class(es) to the list of renderers.
-    #
-    # @example
-    #   Vedeu.renderer SomeRenderer
-    #
-    # @note
-    #   A renderer class must respond to the '.render' class method.
-    #
-    # @param renderers [Class]
-    # @return [Set]
-    def renderer(*renderers)
-      renderers.each { |renderer| storage.add(renderer) unless renderer.nil? }
-
-      storage
-    end
-
     # @example
     #   Vedeu.renderers.reset!
     #
@@ -83,7 +67,13 @@ module Vedeu
 
     # @return [Set]
     def in_memory
-      Set.new
+      if Vedeu::Configuration.renderers.any?
+        Set.new(Vedeu::Configuration.renderers)
+
+      else
+        Set.new([Vedeu::Renderers::Terminal.new])
+
+      end
     end
 
     # @param message [String]
@@ -129,15 +119,11 @@ module Vedeu
   end # Renderers
 
   # @example
-  #   Vedeu.renderer
   #   Vedeu.renderers
   #
-  # @!method renderer
-  #   @see Vedeu::Renderers#renderer
   # @!method renderers
   #   @see Vedeu::Renderers#renderers
   def_delegators Vedeu::Renderers,
-                 :renderer,
                  :renderers
 
 end # Vedeu

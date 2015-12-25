@@ -70,7 +70,6 @@ describe Vedeu do
   it { Vedeu.must_respond_to(:render) }
   it { Vedeu.must_respond_to(:render_output) }
   it { Vedeu.must_respond_to(:renders) }
-  it { Vedeu.must_respond_to(:renderer) }
   it { Vedeu.must_respond_to(:renderers) }
   it { Vedeu.must_respond_to(:resize) }
   it { Vedeu.must_respond_to(:show_cursor) }

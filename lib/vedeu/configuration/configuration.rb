@@ -294,8 +294,6 @@ module Vedeu
 
       @options.merge!(Config::API.configure(&block)) if block_given?
 
-      Vedeu::Renderers.renderer(*@options[:renderers])
-
       Vedeu::Configuration
     end
 
@@ -333,7 +331,7 @@ module Vedeu
         mouse:         true,
         once:          false,
         profile:       false,
-        renderers:     [Vedeu::Renderers::Terminal.new],
+        renderers:     [],
         root:          nil,
         stdin:         nil,
         stdout:        nil,
@@ -363,8 +361,6 @@ module Vedeu
     end
 
   end # Configuration
-
-  require 'vedeu/renderers/all'
 
   Vedeu::Configuration.configure({})
 
