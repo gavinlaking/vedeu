@@ -106,7 +106,7 @@ module Vedeu
         # @param block [Proc]
         # @return [Object]
         def client(&block)
-          eval('self', block.binding)
+          eval('self', block.binding) if block_given?
         end
 
         private
