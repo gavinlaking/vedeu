@@ -110,16 +110,6 @@ module Vedeu
                      end
       end
 
-      # Return a boolean indicating we know the length if a we know
-      # either the terminal width or height, or we can determine a
-      # length from the values provided.
-      #
-      # @return [Boolean]
-      # @todo Investigate: should this be && or ||. (GL: 2015-10-16)
-      def length?
-        default && length
-      end
-
       # Provide the number of rows/lines or columns/characters.
       #
       # 1) Use the starting (x or y) and ending (xn or yn) values.
@@ -227,23 +217,18 @@ module Vedeu
       # @return [Fixnum]
       def _dn
         if dn
-          # fail "_dn 1 v:#{d} #{dn}"
           dn
 
         elsif d.nil? && d_dn
-          # fail "_dn 2 v:#{d_dn}"
           d_dn
 
         elsif d && d_dn
-          # fail "_dn 3 v:#{d} #{d_dn}"
           (d + d_dn) - 1
 
         elsif default
-          # fail "_dn 4 v:#{default}"
           default
 
         else
-          # fail "_dn 5 v:1"
           1
 
         end
