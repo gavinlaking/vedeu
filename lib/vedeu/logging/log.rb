@@ -102,7 +102,16 @@ module Vedeu
         #   log file, useful for debugging.
         # @return [String]
         def log_entry(type, message)
-          "#{message_type(type)}#{message_body(type, message)}".freeze
+          colours = message_types.fetch(type, [:default, :default])
+
+          [
+            Vedeu::EscapeSequences::Esc.colour(colours[0]) do
+              "[#{type}]".ljust(11)
+            end,
+            Vedeu::EscapeSequences::Esc.colour(colours[1]) do
+              message
+            end,
+          ].join('')
         end
 
         # Fetches the filename from the configuration.
@@ -112,36 +121,6 @@ module Vedeu
           Vedeu::Configuration.log
         end
         alias_method :enabled?, :log_file
-
-        # Displays the message body using the colour specified in the
-        # last element of {message_types}.
-        #
-        # @param type [Symbol] The type of log message.
-        # @param body [String] The log message itself.
-        # @return [String]
-        def message_body(type, body)
-          message_colour(type, -1) { body }
-        end
-
-        # @param type [Symbol] The type of log message.
-        # @param index [Fixnum] Either 0 or -1.
-        # @param block [Proc]
-        # @return [String]
-        def message_colour(type, index, &block)
-          Vedeu::EscapeSequences::Esc.send(
-            message_types.fetch(type, :default)[index]) do
-            yield if block_given?
-          end
-        end
-
-        # Displays the message type using the colour specified in the
-        # first element of {message_types}.
-        #
-        # @param type [Symbol] The type of log message.
-        # @return [String]
-        def message_type(type)
-          message_colour(type, 0) { "[#{type}]".ljust(11) }
-        end
 
         # The defined message types for Vedeu with their respective
         # colours. When used, produces a log entry of the format:
@@ -212,12 +191,5 @@ module Vedeu
                  :log_stdout,
                  :log_stderr,
                  :log_timestamp
-
-  # :nocov:
-
-  # See {file:docs/events/system.md#\_log_}
-  Vedeu.bind(:_log_) { |msg| Vedeu.log(type: :debug, message: msg) }
-
-  # :nocov:
 
 end # Vedeu

@@ -17,9 +17,9 @@ module Vedeu
       # Return the configured background colour for the client
       # application.
       #
-      # @return [Vedeu::Colours::Background]
+      # @return [String|Symbol]
       def background
-        Vedeu::Colours::Background.coerce(instance.options[:background])
+        instance.options[:background]
       end
 
       # Returns the base_path value.
@@ -56,10 +56,12 @@ module Vedeu
         instance
       end
 
-      # @return [Vedeu::Colours::Colour]
+      # @return [Hash]
       def colour
-        Vedeu::Colours::Colour.coerce(background: background,
-                                      foreground: foreground)
+        {
+          background: background,
+          foreground: foreground,
+        }
       end
 
       # Returns the chosen colour mode.
@@ -119,9 +121,9 @@ module Vedeu
       # Return the configured foreground colour for the client
       # application.
       #
-      # @return [Vedeu::Colours::Foreground]
+      # @return [String|Symbol]
       def foreground
-        Vedeu::Colours::Foreground.coerce(instance.options[:foreground])
+        instance.options[:foreground]
       end
 
       # Returns the client defined height for the terminal.

@@ -389,20 +389,22 @@ module Vedeu
       end
 
       describe '#background' do
+        subject { configuration.background }
+
         context 'when a value is given' do
-          it do
-            configuration = Vedeu.configure { background '#ff0000' }
-            configuration.background.must_be_instance_of(Vedeu::Colours::Background)
-            configuration.background.to_s.must_equal("\e[48;2;255;0;0m")
-          end
+          let(:configuration) {
+            Vedeu.configure { background '#ff0000' }
+          }
+
+          it { subject.must_equal('#ff0000') }
         end
 
         context 'when a value is not given' do
-          it do
-            configuration = Vedeu.configure { background nil }
-            configuration.background.must_be_instance_of(Vedeu::Colours::Background)
-            configuration.background.to_s.must_equal("\e[49m")
-          end
+          let(:configuration) {
+            Vedeu.configure { background nil }
+          }
+
+          it { subject.must_equal(:default) }
         end
       end
 
@@ -414,7 +416,7 @@ module Vedeu
 
         subject { configuration.colour }
 
-        it { subject.must_be_instance_of(Vedeu::Colours::Colour) }
+        it { subject.must_be_instance_of(Hash) }
 
         context 'when a background and foreground is given' do
           let(:configuration) {
@@ -423,8 +425,10 @@ module Vedeu
             end
           }
           let(:expected) {
-            Vedeu::Colours::Colour.coerce(background: '#ff0000',
-                                          foreground: '#ffff00')
+            {
+              background: '#ff0000',
+              foreground: '#ffff00',
+            }
           }
 
           it { subject.must_equal(expected) }
@@ -435,7 +439,10 @@ module Vedeu
             Vedeu.configure { colour background: '#ff0000' }
           }
           let(:expected) {
-            Vedeu::Colours::Colour.coerce(background: '#ff0000')
+            {
+              background: '#ff0000',
+              foreground: :default,
+            }
           }
 
           it { subject.must_equal(expected) }
@@ -446,14 +453,22 @@ module Vedeu
             Vedeu.configure { colour foreground: '#ffff00' }
           }
           let(:expected) {
-            Vedeu::Colours::Colour.coerce(foreground: '#ffff00')
+            {
+              background: :default,
+              foreground: '#ffff00',
+            }
           }
 
           it { subject.must_equal(expected) }
         end
 
         context 'when neither a background nor foreground is given' do
-          let(:expected) { Vedeu::Colours::Colour.new(background: :default, foreground: :default) }
+          let(:expected) {
+            {
+              background: :default,
+              foreground: :default,
+            }
+          }
 
           it { subject.must_equal(expected) }
         end
@@ -466,7 +481,7 @@ module Vedeu
           let(:configuration) {
             Vedeu.configure { foreground('#ffff00') }
           }
-          let(:expected) { Vedeu::Colours::Foreground.coerce('#ffff00') }
+          let(:expected) { '#ffff00' }
 
           it { subject.must_equal(expected) }
         end
@@ -475,7 +490,7 @@ module Vedeu
           let(:configuration) {
             Vedeu.configure {}
           }
-          let(:expected) { Vedeu::Colours::Foreground.new(:default) }
+          let(:expected) { :default }
 
           it { subject.must_equal(expected) }
         end

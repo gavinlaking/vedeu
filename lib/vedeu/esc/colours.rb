@@ -68,19 +68,21 @@ module Vedeu
       end
 
       # @param named_colour [Symbol]
+      # @param block [Proc]
       # @return [String]
-      def background_colour(named_colour)
+      def background_colour(named_colour, &block)
         return ''.freeze unless valid_name?(named_colour)
 
-        colour(named_colour.to_s.prepend('on_').to_sym)
+        colour(named_colour.to_s.prepend('on_').to_sym, &block)
       end
 
       # @param named_colour [Symbol]
+      # @param block [Proc]
       # @return [String]
-      def colour(named_colour)
+      def colour(named_colour, &block)
         return ''.freeze unless valid_name?(named_colour)
 
-        public_send(named_colour)
+        public_send(named_colour, &block)
       end
       alias_method :foreground_colour, :colour
 

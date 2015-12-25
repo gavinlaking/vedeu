@@ -311,4 +311,11 @@ module Vedeu
                  :bound?,
                  :unbind
 
+  # :nocov:
+
+  # See {file:docs/events/system.md#\_log_}
+  Vedeu.bind(:_log_) { |msg| Vedeu.log(type: :debug, message: msg) }
+
+  # :nocov:
+
 end # Vedeu

@@ -584,8 +584,12 @@ module Vedeu
       # @param attrs [Hash<Symbol => String>]
       # @return [Hash<Symbol => void>]
       def colour(attrs = {})
-        options[:background] = attrs[:background]
-        options[:foreground] = attrs[:foreground]
+        if attrs.key?(:background)
+          options[:background] = attrs[:background]
+        end
+        if attrs.key?(:foreground)
+          options[:foreground] = attrs[:foreground]
+        end
         options
       end
 
@@ -609,18 +613,6 @@ module Vedeu
       alias_method :mouse, :mouse!
 
       private
-
-      # @param attrs [Hash<Symbol => Vedeu::Colours::Background,
-      #   Vedeu::Colours::Foreground>]
-      # @option attrs background [Vedeu::Colours::Background]
-      # @option attrs foreground [Vedeu::Colours::Foreground]
-      # @return [Hash<Symbol => Symbol>]
-      def colour_attributes(attrs = {})
-        {
-          background: Vedeu::Configuration.background,
-          foreground: Vedeu::Configuration.foreground,
-        }.merge!(attrs)
-      end
 
       # @raise [Vedeu::Error::InvalidSyntax]
       def invalid_mode!
