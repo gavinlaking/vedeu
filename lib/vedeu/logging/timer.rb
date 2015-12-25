@@ -10,18 +10,10 @@ module Vedeu
 
       class << self
 
-        # Measure the execution time of the code in the given block.
-        # The message provided will have ' took <time>ms.' appended.
-        #
-        # @example
-        #   Vedeu.timer 'Really complex code' do
-        #     # ... code to be measured
-        #   end
-        #
-        #   # => 'Really complex code took 0.234ms.'
-        #
+        # {include:file:docs/dsl/by_method/timer.md}
         # @param message [String]
         # @param block [Proc]
+        # @macro raise_requires_block
         # @return [void] The return value of the executed block.
         def timer(message = '', &block)
           new(message).measure(&block)
@@ -42,7 +34,7 @@ module Vedeu
       # code took in milliseconds. Useful for debugging performance.
       #
       # @param block [Proc]
-      # @raise [Vedeu::Error::RequiresBlock]
+      # @macro raise_requires_block
       # @return [void] The return value of the executed block.
       def measure(&block)
         fail Vedeu::Error::RequiresBlock unless block_given?
@@ -83,13 +75,7 @@ module Vedeu
 
   end # Logging
 
-  # Measure the execution time of the code in the given block.
-  #
-  # @example
-  #   Vedeu.timer do
-  #     # ... some code here ...
-  #   end
-  #
+  # {include:file:docs/dsl/by_method/timer.md}
   # @!method timer
   #   @see Vedeu::Logging::Timer.timer
   def_delegators Vedeu::Logging::Timer,

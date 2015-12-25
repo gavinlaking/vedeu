@@ -66,7 +66,6 @@ documentation for the various aspects of Vedeu (not comprehensive):
 - [Colours & Styles](http://rubydoc.info/gems/vedeu/file/docs/colours_styles.md)
 - [Configuration](http://rubydoc.info/gems/vedeu/file/docs/configuration.md)
 - [Cursors](http://rubydoc.info/gems/vedeu/file/docs/cursors.md)
-- [Debugging](http://rubydoc.info/gems/vedeu/file/docs/debugging.md)
 - [The Vedeu DSL](http://rubydoc.info/gems/vedeu/file/docs/dsl.md)
 - [Events](http://rubydoc.info/gems/vedeu/file/docs/events.md)
     - [Application Events](http://rubydoc.info/gems/vedeu/file/docs/events/application.md)

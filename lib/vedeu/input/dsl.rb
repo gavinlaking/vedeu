@@ -58,9 +58,9 @@ module Vedeu
       # @param name [String|Symbol] The name of the interface which
       #   this keymap relates to.
       # @param block [Proc]
-      # @raise [Vedeu::Error::MissingRequired|
-      #   Vedeu::Error::RequiresBlock] When a name or block
-      #   respectively are not given.
+      # @macro raise_requires_block
+      # @raise [Vedeu::Error::MissingRequired] When the name is not
+      #   given.
       # @return [Vedeu::Input::Keymap]
       def self.keymap(name, &block)
         fail Vedeu::Error::MissingRequired unless name

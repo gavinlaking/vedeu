@@ -10,7 +10,7 @@ module Vedeu
 
       # @param value [String] The HTML/CSS colour.
       # @param block [Proc]
-      # @raise [Vedeu::Error::RequiresBlock]
+      # @macro raise_requires_block
       # @return [Vedeu::Views::Stream]
       def background(value, &block)
         define_stream(background: value, &block)
@@ -23,7 +23,7 @@ module Vedeu
       # @option attributes background [String] The HTML/CSS background
       #   colour.
       # @param block [Proc]
-      # @raise [Vedeu::Error::RequiresBlock]
+      # @macro raise_requires_block
       # @return [Vedeu::Views::Stream]
       def colour(attributes = {}, &block)
         define_stream(attributes, &block)
@@ -31,7 +31,7 @@ module Vedeu
 
       # @param value [String] The HTML/CSS colour.
       # @param block [Proc]
-      # @raise [Vedeu::Error::RequiresBlock]
+      # @macro raise_requires_block
       # @return [Vedeu::Views::Stream]
       def foreground(value, &block)
         define_stream(foreground: value, &block)

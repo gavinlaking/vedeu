@@ -54,7 +54,7 @@ module Vedeu
       #
       # @param name [String|Symbol] The name of this group.
       # @param block [Proc]
-      # @raise [Vedeu::Error::RequiresBlock]
+      # @macro raise_requires_block
       # @return [Vedeu::Groups::Group]
       def self.group(name, &block)
         fail Vedeu::Error::MissingRequired unless name

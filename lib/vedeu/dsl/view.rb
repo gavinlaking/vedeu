@@ -61,7 +61,7 @@ module Vedeu
       #     # ...
       #   end
       #
-      # @raise [Vedeu::Error::RequiresBlock]
+      # @macro raise_requires_block
       # @return [Vedeu::Views::Views<Vedeu::Views::View>]
       def view(name = '', &block)
         fail Vedeu::Error::RequiresBlock unless block_given?

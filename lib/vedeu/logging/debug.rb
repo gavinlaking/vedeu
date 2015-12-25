@@ -32,17 +32,11 @@ module Vedeu
       end
 
       # :nocov:
-      # Helps to profile a running application by providing a stack
-      # trace of its execution upon exiting.
-      #
-      # @example
-      #   Vedeu.profile('some_file.html') do
-      #     # ... code to profile ...
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/profile.md}
       # @param filename [String] Optional, and defaults to being
       #   written to the /tmp directory.
       # @param block [Proc]
+      # @macro raise_requires_block
       # @return [void]
       # @yieldreturn [void] The section of the application to profile.
       def self.profile(filename = 'profile.html', &block)
@@ -110,23 +104,13 @@ module Vedeu
 
   end # Logging
 
-  # Allow debugging via the creation of stack traces courtesy of
-  # ruby-prof.
-  #
-  # @example
-  #   Vedeu.profile
-  #
+  # {include:file:docs/dsl/by_method/profile.md}
   # @!method profile
   # @return [Vedeu::Logging::Debug]
   def_delegators Vedeu::Logging::Debug,
                  :profile
 
-  # Drop into a debugging session within a running client application,
-  # courtesy of pry.
-  #
-  # @example
-  #   Vedeu.debug
-  #
+  # {include:file:docs/dsl/by_method/debug.md}
   # @!method debug
   # @return [void]
   def_delegators Vedeu::Logging::Debug,

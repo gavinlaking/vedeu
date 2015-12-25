@@ -13,8 +13,7 @@ module Vedeu
     # {Vedeu::Terminal#restore_screen}.
     #
     # @param block [Proc]
-    # @raise [Vedeu::Error::RequiresBlock] The required block was not
-    #   given.
+    # @macro raise_requires_block
     # @return [Array]
     def open(&block)
       fail Vedeu::Error::RequiresBlock unless block_given?
@@ -65,8 +64,7 @@ module Vedeu
       yield if block_given?
     end
 
-    # Disables the mouse and shows the cursor. Used by the debugging
-    # snippet in {file:docs/debugging.md}.
+    # Disables the mouse and shows the cursor.
     #
     # @return [String]
     def debugging!

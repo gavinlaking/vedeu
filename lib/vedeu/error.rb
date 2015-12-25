@@ -97,8 +97,11 @@ module Vedeu
 
     end # OutOfRange
 
-    # Raised when a method expecting a block to be given was not given
-    # the block.
+    # Raised when a method requiring a block was not given the block.
+    #
+    # @!macro [new] raise_requires_block
+    #    @raise [Vedeu::Error::RequiresBlock] When the required block
+    #      was not given.
     #
     class RequiresBlock < StandardError
 
