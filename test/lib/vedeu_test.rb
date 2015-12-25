@@ -42,7 +42,7 @@ describe Vedeu do
   it { Vedeu.must_respond_to(:group) }
   it { Vedeu.must_respond_to(:groups) }
 
-  describe 'Vedeu.height' do
+  describe '.height' do
     before { Vedeu::Terminal.stubs(:size).returns([25, 40]) }
 
     it { Vedeu.must_respond_to(:height) }
@@ -101,7 +101,7 @@ describe Vedeu do
   it { Vedeu.must_respond_to(:unbind_alias) }
   it { Vedeu.must_respond_to(:views) }
 
-  describe 'Vedeu.width' do
+  describe '.width' do
     before { Vedeu::Terminal.stubs(:size).returns([25, 40]) }
 
     it { Vedeu.must_respond_to(:width) }
