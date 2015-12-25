@@ -41,6 +41,6 @@ class DSLApp
     Vedeu::Launcher.execute!(argv)
   end
 
-end # EditorApp
+end # DSLApp
 
 DSLApp.start
