@@ -40,7 +40,7 @@ module Vedeu
 
       it { described.must_respond_to(:reset) }
       it { subject.must_be_instance_of(Set) }
-      it { subject.size.must_equal(0) }
+      it { subject.size.must_equal(1) }
     end
 
   end # Renderers
