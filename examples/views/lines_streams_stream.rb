@@ -28,17 +28,12 @@ class DSLApp
     end
   end
 
-  Vedeu.keymap '_global_' do
-    key('q') { Vedeu.exit }
-  end
-
-  # vedeu/dsl/stream.rb:16:in `stream': wrong number of arguments (1 for 0)
   Vedeu.render do
     view(:test1_interface) do
       lines do
         streams do
-          stream 'view->lines->streams->stream 1'
-          stream 'view->lines->streams->stream 2'
+          stream 'v->ls->ss->stream 1', { foreground: '#00ff00' }
+          stream 'v->ls->ss->stream 2', { foreground: '#ff0000' }
         end
       end
     end

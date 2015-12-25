@@ -12,7 +12,8 @@ class ColoursApp
   Vedeu.configure do
     debug!
     log '/tmp/colours.log'
-    renderers Vedeu::Renderers::File.new(filename: '/tmp/colours.out')
+    renderers(Vedeu::Renderers::Terminal.new,
+              Vedeu::Renderers::File.new(filename: '/tmp/colours.out'))
   end
 
   Vedeu.interface :interface_colours_view do

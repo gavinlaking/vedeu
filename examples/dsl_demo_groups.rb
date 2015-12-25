@@ -17,6 +17,7 @@ class DemoGroupsApp
   }
 
   Vedeu.configure do
+    debug!
     log '/tmp/demo_groups.log'
   end
 

@@ -10,8 +10,12 @@ class AlignmentApp
   Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   Vedeu.configure do
+    debug!
     log '/tmp/alignment.log'
-    renderers Vedeu::Renderers::File.new(filename: '/tmp/alignment.out')
+    renderers(Vedeu::Renderers::Terminal.new,
+              Vedeu::Renderers::File.new(filename: '/tmp/alignment.out'))
+    run_once!
+    standalone!
   end
 
   Vedeu.interface :top_left_view do
@@ -93,10 +97,6 @@ class AlignmentApp
     geometry do
       align(:bottom, :right, 20, 4)
     end
-  end
-
-  Vedeu.keymap '_global_' do
-    key('q') { Vedeu.exit }
   end
 
   Vedeu.render do

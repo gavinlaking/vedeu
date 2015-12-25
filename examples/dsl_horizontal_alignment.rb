@@ -20,19 +20,6 @@ class HorizontalAlignmentApp
     geometry_stats(:right_interface)
   end
 
-  def self.border_stats(name)
-    Vedeu.borders.by_name(name)
-  end
-  def self.bl
-    border_stats(:left_interface)
-  end
-  def self.bc
-    border_stats(:centre_interface)
-  end
-  def self.br
-    border_stats(:right_interface)
-  end
-
   class CentreHorizontalAlignmentView
     def render
       Vedeu.render do
@@ -41,8 +28,8 @@ class HorizontalAlignmentApp
             line "x:#{gc.x}, xn:#{gc.xn} (w:#{gc.width})"
             line "y:#{gc.y}, yn:#{gc.yn} (h:#{gc.height})"
             line ""
-            line "bx:#{bc.bx}, bxn:#{bc.bxn} (bw:#{bc.width})"
-            line "by:#{bc.by}, byn:#{bc.byn} (bh:#{bc.height})"
+            line "bx:#{gc.bx}, bxn:#{gc.bxn} (bw:#{gc.width})"
+            line "by:#{gc.by}, byn:#{gc.byn} (bh:#{gc.height})"
             line ""
             line "The 'h', 'j', 'k' and 'l' keys will"
             line "move this view left, down, up, and"
@@ -57,17 +44,15 @@ class HorizontalAlignmentApp
     def gc
       Vedeu.geometries.by_name(:centre_interface)
     end
-
-    def bc
-      Vedeu.borders.by_name(:centre_interface)
-    end
   end
 
   Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   Vedeu.configure do
-    log '/tmp/horizontal_alignment.log'
-    renderers Vedeu::Renderers::File.new(filename: '/tmp/horizontal_alignment.out')
+    debug!
+    log '/tmp/vedeu_horizontal.log'
+    renderers(Vedeu::Renderers::Terminal.new,
+              Vedeu::Renderers::File.new(filename: '/tmp/vedeu_horizontal.out'))
   end
 
   Vedeu.interface :left_interface do
@@ -152,8 +137,8 @@ class HorizontalAlignmentApp
         line "x:#{gl.x}, xn:#{gl.xn} (w:#{gl.width})"
         line "y:#{gl.y}, yn:#{gl.yn} (h:#{gl.height})"
         line ""
-        line "bx:#{bl.bx}, bxn:#{bl.bxn} (bw:#{bl.width})"
-        line "by:#{bl.by}, byn:#{bl.byn} (bh:#{bl.height})"
+        line "bx:#{gl.bx}, bxn:#{gl.bxn} (bw:#{gl.width})"
+        line "by:#{gl.by}, byn:#{gl.byn} (bh:#{gl.height})"
       end
     end
 
@@ -162,8 +147,8 @@ class HorizontalAlignmentApp
         line "x:#{gc.x}, xn:#{gc.xn} (w:#{gc.width})"
         line "y:#{gc.y}, yn:#{gc.yn} (h:#{gc.height})"
         line ""
-        line "bx:#{bc.bx}, bxn:#{bc.bxn} (bw:#{bc.width})"
-        line "by:#{bc.by}, byn:#{bc.byn} (bh:#{bc.height})"
+        line "bx:#{gc.bx}, bxn:#{gc.bxn} (bw:#{gc.width})"
+        line "by:#{gc.by}, byn:#{gc.byn} (bh:#{gc.height})"
         line ""
         line "The 'h', 'j', 'k' and 'l' keys will"
         line "move this view left, down, up, and"
@@ -179,8 +164,8 @@ class HorizontalAlignmentApp
         line "x:#{gr.x}, xn:#{gr.xn} (w:#{gr.width})"
         line "y:#{gr.y}, yn:#{gr.yn} (h:#{gr.height})"
         line ""
-        line "bx:#{br.bx}, bxn:#{br.bxn} (bw:#{br.width})"
-        line "by:#{br.by}, byn:#{br.byn} (bh:#{br.height})"
+        line "bx:#{gr.bx}, bxn:#{gr.bxn} (bw:#{gr.width})"
+        line "by:#{gr.by}, byn:#{gr.byn} (bh:#{gr.height})"
       end
     end
   end

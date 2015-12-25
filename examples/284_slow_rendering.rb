@@ -12,7 +12,8 @@ class EditorApp
   Vedeu.configure do
     debug!
     log '/tmp/284_slow_rendering.log'
-    # renderers Vedeu::Renderers::File.new(filename: '/tmp/284_slow.out')
+    # renderers(Vedeu::Renderers::Terminal.new,
+    #           Vedeu::Renderers::File.new(filename: '/tmp/284_slow.out'))
     fake!
   end
 

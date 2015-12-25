@@ -12,7 +12,8 @@ class EditorApp
   Vedeu.configure do
     debug!
     log '/tmp/editor.log'
-    renderers Vedeu::Renderers::File.new(filename: '/tmp/editor.out')
+    renderers(Vedeu::Renderers::Terminal.new,
+              Vedeu::Renderers::File.new(filename: '/tmp/editor.out'))
     fake!
   end
 

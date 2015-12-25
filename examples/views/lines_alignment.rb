@@ -12,7 +12,8 @@ class DSLApp
   Vedeu.configure do
     debug!
     log '/tmp/vedeu_views_dsl.log'
-    renderers Vedeu::Renderers::Terminal.new, Vedeu::Renderers::File.new(filename: '/tmp/lines_alignment.out')
+    renderers(Vedeu::Renderers::Terminal.new,
+              Vedeu::Renderers::File.new(filename: '/tmp/lines_alignment.out'))
     run_once!
     standalone!
   end
