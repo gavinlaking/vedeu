@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Ruby standard libraries
 require 'base64'
 require 'date'

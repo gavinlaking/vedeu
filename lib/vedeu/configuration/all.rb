@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # Namespace for configuration classes.
@@ -14,7 +16,7 @@ module Vedeu
     def log(from, options)
       options.each do |option, value|
         Vedeu.log(type:    :config,
-                  message: "#{from} #{option}: #{value}".freeze)
+                  message: "#{from} #{option}: #{value}")
       end
     end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Input
@@ -125,6 +127,6 @@ module Vedeu
     "\e[Z" => :shift_tab,
     "\t" => :tab,
     "\u21B9" => :tab,
-  }.freeze
+  }
 
 end # Vedeu

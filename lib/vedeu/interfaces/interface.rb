@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Interfaces
@@ -148,8 +150,8 @@ module Vedeu
           cursor_visible: true,
           delay:          0.0,
           editable:       false,
-          group:          ''.freeze,
-          name:           ''.freeze,
+          group:          '',
+          name:           '',
           parent:         nil,
           repository:     Vedeu.interfaces,
           style:          :normal,

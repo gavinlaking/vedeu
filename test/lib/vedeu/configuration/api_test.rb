@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 module YourApp
@@ -6,6 +8,8 @@ module YourApp
   end # SomeController
 
 end # YourApp
+
+# frozen_string_literal: true
 
 module Vedeu
 

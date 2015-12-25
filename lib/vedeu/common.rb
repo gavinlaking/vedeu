@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # A module for common methods used throughout Vedeu.
@@ -88,15 +90,22 @@ module Vedeu
     #   snake_case(NameSpaced::ClassName)
     #   # => "name_spaced/class_name"
     #
-    # @param name [String]
+    #   snake_case('MyClassName') # => "my_class_name"
+    #   snake_case(NameSpaced::ClassName)
+    #   # => "name_spaced/class_name"
+    #
+    # @param klass [Module|Class|String]
     # @return [String]
-    def snake_case(name)
-      name.gsub!(/::/, '/')
-      name.gsub!(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
-      name.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
-      name.tr!('-', '_')
-      name.downcase!
-      name
+    def snake_case(klass)
+      str = klass.is_a?(Module) ? klass.name : klass
+
+      str.split(/::/).map do |namespace|
+        *upper, _ = namespace.split(/([A-Z]+)/).reject(&:empty?).map do |chars|
+          chars.match(/\p{Lower}/) ? [chars, '_'] : chars
+        end.flatten
+
+        upper.map(&:downcase).join
+      end.join('/')
     end
 
     # Returns a boolean indicating whether the value is a Fixnum.

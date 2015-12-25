@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Geometries
@@ -116,7 +118,7 @@ module Vedeu
       # @yieldreturn [String] Returns the block wrapped in position
       #   escape sequences.
       def to_s(&block)
-        return "#{sequence}#{yield}".freeze if block_given?
+        return "#{sequence}#{yield}" if block_given?
 
         sequence
       end
@@ -157,7 +159,7 @@ module Vedeu
       #
       # @return [String]
       def sequence
-        "\e[#{y};#{x}H".freeze
+        "\e[#{y};#{x}H"
       end
 
     end # Position

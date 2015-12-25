@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Input
@@ -31,10 +33,10 @@ module Vedeu
         def registered?(key = nil, name = nil)
           fail Vedeu::Error::MissingRequired,
                'Cannot check whether a key is registered to a keymap without ' \
-               'the key.'.freeze if absent?(key)
+               'the key.' if absent?(key)
           fail Vedeu::Error::MissingRequired,
                'Cannot check whether a key is registered to a keymap without ' \
-               'the keymap name.'.freeze if absent?(name)
+               'the keymap name.' if absent?(name)
 
           new(key, name).registered?
         end
@@ -142,10 +144,10 @@ module Vedeu
       # @return [String]
       def log_message(key)
         if key.is_a?(Vedeu::Cursors::Cursor)
-          "Click detected: x: #{key.x} y: #{key.y}".freeze
+          "Click detected: x: #{key.x} y: #{key.y}"
 
         else
-          "Key detected: #{key.inspect}".freeze
+          "Key detected: #{key.inspect}"
 
         end
       end
@@ -181,7 +183,7 @@ module Vedeu
 
   # See {file:docs/events/drb.md#\_drb_input_}
   Vedeu.bind(:_drb_input_) do |data, type|
-    Vedeu.log(type: :drb, message: "Sending input (#{type})".freeze)
+    Vedeu.log(type: :drb, message: "Sending input (#{type})")
 
     if type == :command
       Vedeu.trigger(:_command_, data)

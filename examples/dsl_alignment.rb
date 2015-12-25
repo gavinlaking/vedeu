@@ -100,55 +100,55 @@ class AlignmentApp
   Vedeu.render do
     view(:top_left_view) do
       lines do
-        line "top left".freeze
+        line "top left"
       end
     end
 
     view(:top_centre_view) do
       lines do
-        line "top centre".freeze
+        line "top centre"
       end
     end
 
     view(:top_right_view) do
       lines do
-        line "top right".freeze
+        line "top right"
       end
     end
 
     view(:middle_left_view) do
       lines do
-        line "middle left".freeze
+        line "middle left"
       end
     end
 
     view(:middle_centre_view) do
       lines do
-        line "middle centre".freeze
+        line "middle centre"
       end
     end
 
     view(:middle_right_view) do
       lines do
-        line "middle right".freeze
+        line "middle right"
       end
     end
 
     view(:bottom_left_view) do
       lines do
-        line "bottom left".freeze
+        line "bottom left"
       end
     end
 
     view(:bottom_centre_view) do
       lines do
-        line "bottom centre".freeze
+        line "bottom centre"
       end
     end
 
     view(:bottom_right_view) do
       lines do
-        line "bottom right".freeze
+        line "bottom right"
       end
     end
   end

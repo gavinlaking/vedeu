@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Editor
@@ -129,7 +131,7 @@ module Vedeu
       #
       # @return [String]
       def to_s
-        "\e[#{real_y};#{real_x}H\e[?25h".freeze
+        "\e[#{real_y};#{real_x}H\e[?25h"
       end
       alias_method :to_str, :to_s
 
@@ -175,7 +177,7 @@ module Vedeu
       # @return [Hash<Symbol => Fixnum|NilClass|String|Symbol>]
       def defaults
         {
-          name: ''.freeze,
+          name: '',
           ox:   0,
           oy:   0,
           x:    0,

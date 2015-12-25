@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'vedeu/dsl/all'
 
 module Vedeu
@@ -112,8 +114,7 @@ module Vedeu
       # @return [Vedeu::Views::View]
       def store_deferred
         fail Vedeu::Error::InvalidSyntax,
-             'Cannot store an interface ' \
-             'without a name.'.freeze unless present?(name)
+             'Cannot store an interface without a name.' unless present?(name)
 
         buffer.add(self)
 
@@ -142,7 +143,7 @@ module Vedeu
           client:         nil,
           colour:         Vedeu::Configuration.colour,
           cursor_visible: true,
-          name:           ''.freeze,
+          name:           nil,
           parent:         nil,
           style:          :normal,
           value:          [],

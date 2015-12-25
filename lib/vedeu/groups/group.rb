@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Groups
@@ -163,7 +165,7 @@ module Vedeu
       def defaults
         {
           members:    Set.new,
-          name:       ''.freeze,
+          name:       '',
           repository: Vedeu.groups,
           visible:    true,
         }

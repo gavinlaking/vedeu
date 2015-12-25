@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Logging
@@ -90,7 +92,7 @@ module Vedeu
         #   coloured and combined.
         # @return [String]
         def formatted_message(message)
-          "#{timestamp}#{message}\n".freeze if message
+          "#{timestamp}#{message}\n" if message
         end
 
         # Returns the message:

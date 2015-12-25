@@ -1,4 +1,17 @@
+# frozen_string_literal: true
+
 require 'test_helper'
+
+class OtherKlass
+end # OtherKlass
+
+module MyFirstApp
+
+  class SomeKlass
+
+  end # SomeKlass
+
+end # MyFirstApp
 
 module Vedeu
 
@@ -206,16 +219,36 @@ module Vedeu
     end
 
     describe '#snake_case' do
-      let(:_name) { 'MyFirstApp' }
+      subject { instance.snake_case(klass) }
 
-      subject { instance.snake_case(_name) }
+      context 'when empty' do
+        let(:klass) { '' }
 
-      it { subject.must_equal('my_first_app') }
+        it { subject.must_equal('') }
+      end
 
-      context 'when namespaced' do
-        let(:_name) { 'MyFirstApp::SomeController' }
+      context 'when a single module' do
+        let(:klass) { MyFirstApp }
 
-        it { subject.must_equal('my_first_app/some_controller') }
+        it { subject.must_equal('my_first_app') }
+      end
+
+      context 'when namespaced class' do
+        let(:klass) { MyFirstApp::SomeKlass }
+
+        it { subject.must_equal('my_first_app/some_klass') }
+      end
+
+      context 'when single class' do
+        let(:klass) { ::OtherKlass }
+
+        it { subject.must_equal('other_klass') }
+      end
+
+      context 'when a string' do
+        let(:klass) { 'MyFirstApp' }
+
+        it { subject.must_equal('my_first_app') }
       end
     end
 

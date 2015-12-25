@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Runtime
@@ -65,12 +67,12 @@ module Vedeu
       # @return [void]
       def client_application!
         [
-          'app/views/templates/**/*'.freeze,
-          'app/views/interfaces/**/*'.freeze,
-          'app/controllers/**/*'.freeze,
-          'app/helpers/**/*'.freeze,
-          'app/views/**/*'.freeze,
-          'app/models/keymaps/**/*'.freeze,
+          'app/views/templates/**/*',
+          'app/views/interfaces/**/*',
+          'app/controllers/**/*',
+          'app/helpers/**/*',
+          'app/views/**/*',
+          'app/models/keymaps/**/*',
         ].each { |path| load(File.join(base_path, path)) }
       end
 
@@ -103,7 +105,7 @@ module Vedeu
       # @return [Array<String>]
       def loadables(path)
         Dir.glob(path).select do |file|
-          File.file?(file) && File.extname(file) == '.rb'.freeze
+          File.file?(file) && File.extname(file) == '.rb'
         end
       end
 
@@ -121,7 +123,7 @@ module Vedeu
         "controller and action: (args are optional)\n\n" \
         "Vedeu.configure do\n" \
         "  root :some_controller, :show, *args\n" \
-        "end\n\n".freeze
+        "end\n\n"
       end
 
     end # Bootstrap

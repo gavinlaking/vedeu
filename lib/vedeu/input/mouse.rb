@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Input
@@ -28,7 +30,7 @@ module Vedeu
       def click
         Vedeu.log(type:    :input,
                   message: "Mouse pressed: '#{button}' " \
-                           "(x: #{x}, y: #{y})".freeze)
+                           "(x: #{x}, y: #{y})")
 
         Vedeu.trigger(:_mouse_event_, input)
 
@@ -44,7 +46,7 @@ module Vedeu
         else
           Vedeu.log(type:    :input,
                     message: 'Vedeu does not support mouse button ' \
-                             "'#{button}' yet.".freeze)
+                             "'#{button}' yet.")
 
         end
       end

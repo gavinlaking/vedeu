@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Geometries
@@ -64,7 +66,7 @@ module Vedeu
       def defaults
         {
           direction: :none,
-          name:      ''.freeze,
+          name:      '',
           offset:    1,
         }
       end

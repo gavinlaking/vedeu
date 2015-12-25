@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Editor
@@ -36,7 +38,7 @@ module Vedeu
       #
       # @return [String]
       def execute
-        command = lines.map(&:to_s).join("\n".freeze)
+        command = lines.map(&:to_s).join("\n")
 
         reset!
 

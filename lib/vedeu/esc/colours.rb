@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module EscapeSequences
@@ -16,7 +18,7 @@ module Vedeu
         foreground_codes.each_with_object({}) do |(k, v), h|
           h[k] = v + 10
           h
-        end.freeze
+        end
       end
 
       # Produces the foreground named colour escape sequence hash. The
@@ -64,14 +66,14 @@ module Vedeu
           light_magenta: 95,
           light_cyan:    96,
           white:         97,
-        }.freeze
+        }
       end
 
       # @param named_colour [Symbol]
       # @param block [Proc]
       # @return [String]
       def background_colour(named_colour, &block)
-        return ''.freeze unless valid_name?(named_colour)
+        return '' unless valid_name?(named_colour)
 
         colour(named_colour.to_s.prepend('on_').to_sym, &block)
       end
@@ -80,7 +82,7 @@ module Vedeu
       # @param block [Proc]
       # @return [String]
       def colour(named_colour, &block)
-        return ''.freeze unless valid_name?(named_colour)
+        return '' unless valid_name?(named_colour)
 
         public_send(named_colour, &block)
       end

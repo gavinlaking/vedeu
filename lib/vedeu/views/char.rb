@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'vedeu/geometries/positionable'
 
 module Vedeu
@@ -105,13 +107,9 @@ module Vedeu
 
       # @return [String]
       def text
-        if border
-          ' '.freeze
+        return ' ' if border
 
-        else
-          @value
-
-        end
+        @value
       end
 
       # Returns a Hash of all the values before coercion.
@@ -160,7 +158,7 @@ module Vedeu
           parent:   nil,
           position: nil,
           style:    nil,
-          value:    ''.freeze,
+          value:    '',
         }
       end
 

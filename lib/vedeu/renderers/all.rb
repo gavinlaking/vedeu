@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # Provides a single interface to all registered renderers.
@@ -81,7 +83,7 @@ module Vedeu
     # @return [void]
     def log(message, renderer)
       Vedeu.log(type:    :render,
-                message: "#{message} via #{renderer.class.name}".freeze)
+                message: "#{message} via #{renderer.class.name}")
     end
 
     # @return [Mutex]

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # Allows the customisation of Vedeu's behaviour through the

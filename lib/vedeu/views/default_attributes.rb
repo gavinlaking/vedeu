@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Views
@@ -57,11 +59,11 @@ module Vedeu
           client:   nil,
           colour:   nil,
           name:     nil,
-          pad:      ' '.freeze,
+          pad:      ' ',
           parent:   nil,
           style:    nil,
           truncate: false,
-          value:    ''.freeze,
+          value:    '',
           width:    nil,
           wordwrap: false,
         }

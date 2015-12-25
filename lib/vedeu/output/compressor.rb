@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Output
@@ -80,7 +82,7 @@ module Vedeu
 
       # @return [String]
       def compress
-        message = "Compression for #{content.size} objects".freeze
+        message = "Compression for #{content.size} objects"
 
         @compress ||= Vedeu.timer(message) do
           out = content.map do |cell|
@@ -94,7 +96,7 @@ module Vedeu
           end.join
 
           Vedeu.log(type:    :compress,
-                    message: "#{message} -> #{out.size} characters".freeze)
+                    message: "#{message} -> #{out.size} characters")
 
           out
         end
@@ -106,7 +108,7 @@ module Vedeu
 
         Vedeu.log(type:    :compress,
                   message: "No compression: #{content.size} objects -> " \
-                           "#{out.size} characters".freeze)
+                           "#{out.size} characters")
 
         out
       end
@@ -118,8 +120,8 @@ module Vedeu
       # @param char [Vedeu::Views::Char]
       # @return [String]
       def position_for(char)
-        return ''.freeze unless char.position
-        return ''.freeze if char.position.y == @y
+        return '' unless char.position
+        return '' if char.position.y == @y
 
         @y = char.position.y
         char.position.to_s
@@ -132,7 +134,7 @@ module Vedeu
       # @param char [Vedeu::Views::Char]
       # @return [String]
       def colour_for(char)
-        return ''.freeze if char.colour == @colour
+        return '' if char.colour == @colour
 
         @colour = char.colour
         @colour.to_s
@@ -145,7 +147,7 @@ module Vedeu
       # @param char [Vedeu::Views::Char]
       # @return [String]
       def style_for(char)
-        return ''.freeze if char.style == @style
+        return '' if char.style == @style
 
         @style = char.style
         @style.to_s

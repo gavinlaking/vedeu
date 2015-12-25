@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # Provides a mechanism to control a running client application via
@@ -92,19 +94,19 @@ module Vedeu
       #
       # @return [void]
       def restart
-        log('Attempting to restart'.freeze)
+        log('Attempting to restart')
 
         return not_enabled unless Vedeu::Configuration.drb?
 
         if drb_running?
-          log('Restarting'.freeze)
+          log('Restarting')
 
           stop
 
           start
 
         else
-          log('Not running'.freeze)
+          log('Not running')
 
           start
 
@@ -136,15 +138,15 @@ module Vedeu
       #
       # @return [Vedeu::Distributed::Server]
       def start
-        log('Attempting to start'.freeze)
+        log('Attempting to start')
 
         return not_enabled unless Vedeu::Configuration.drb?
 
         if drb_running?
-          log('Already started'.freeze)
+          log('Already started')
 
         else
-          log('Starting'.freeze)
+          log('Starting')
 
           DRb.start_service(uri, self)
 
@@ -159,17 +161,17 @@ module Vedeu
       #
       # @return [Symbol]
       def status
-        log('Fetching status'.freeze)
+        log('Fetching status')
 
         return not_enabled unless Vedeu::Configuration.drb?
 
         if drb_running?
-          log('Running'.freeze)
+          log('Running')
 
           :running
 
         else
-          log('Stopped'.freeze)
+          log('Stopped')
 
           :stopped
 
@@ -183,24 +185,24 @@ module Vedeu
       #
       # @return [void]
       def stop
-        log('Attempting to stop'.freeze)
+        log('Attempting to stop')
 
         return not_enabled unless Vedeu::Configuration.drb?
 
         if drb_running?
-          log('Stopping'.freeze)
+          log('Stopping')
 
           DRb.stop_service
 
           DRb.thread.join
 
         else
-          log('Already stopped'.freeze)
+          log('Already stopped')
 
         end
       rescue NoMethodError # raised when #join is called on NilClass.
         Vedeu.log(type:    :drb,
-                  message: 'Attempted to #join on DRb.thread.'.freeze)
+                  message: 'Attempted to #join on DRb.thread.')
       end
 
       protected
@@ -218,12 +220,12 @@ module Vedeu
 
       # @return [void]
       def log(message)
-        Vedeu.log(type: :drb, message: "#{message}: '#{uri}'".freeze)
+        Vedeu.log(type: :drb, message: "#{message}: '#{uri}'")
       end
 
       # @return [Symbol]
       def not_enabled
-        log('Not enabled'.freeze)
+        log('Not enabled')
 
         :drb_not_enabled
       end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module DSL
@@ -116,7 +118,7 @@ module Vedeu
       def ellipsis_string(string)
         return prune_string(string) if string.size < ellipsis.size
 
-        "#{prune_string(string)}#{ellipsis}".freeze
+        "#{prune_string(string)}#{ellipsis}"
       end
 
       # Returns the string pruned.

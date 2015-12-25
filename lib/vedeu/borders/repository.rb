@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Borders
@@ -30,12 +32,16 @@ module Vedeu
 
   # See {file:docs/borders.md#label-3A_set_border_caption_}
   Vedeu.bind(:_set_border_caption_) do |name, caption|
-    Vedeu::Borders::SetAttribute.update(name, :title, caption)
+    if Vedeu.borders.registered?(name)
+      Vedeu.borders.by_name(name).caption = caption
+    end
   end
 
   # See {file:docs/borders.md#label-3A_set_border_title_}
   Vedeu.bind(:_set_border_title_) do |name, title|
-    Vedeu::Borders::SetAttribute.update(name, :caption, title)
+    if Vedeu.borders.registered?(name)
+      Vedeu.borders.by_name(name).title = title
+    end
   end
 
   # :nocov:

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Logging
@@ -43,7 +45,7 @@ module Vedeu
           work = yield
 
           Vedeu.log(type:    :timer,
-                    message: "#{message} took #{elapsed}ms.".freeze)
+                    message: "#{message} took #{elapsed}ms.")
 
           work
 

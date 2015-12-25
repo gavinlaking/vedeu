@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Cursors
@@ -88,7 +90,7 @@ module Vedeu
       # @return [String]
       def inspect
         "<#{self.class.name} name:'#{name}', x:#{x}, y:#{y}, ox:#{ox}, " \
-        "oy:#{oy}, visible:#{visible}>".freeze
+        "oy:#{oy}, visible:#{visible}>"
       end
 
       # Moves the cursor down by one row.
@@ -179,7 +181,7 @@ module Vedeu
       def to_s(&block)
         return escape_sequence.to_s unless block_given?
 
-        "#{position}#{yield}#{escape_sequence}".freeze
+        "#{position}#{yield}#{escape_sequence}"
       end
       alias_method :to_str, :to_s
 
@@ -198,7 +200,7 @@ module Vedeu
       def hide
         super
 
-        Vedeu.log(type: :cursor, message: "Hiding cursor: '#{name}'".freeze)
+        Vedeu.log(type: :cursor, message: "Hiding cursor: '#{name}'")
 
         render
       end
@@ -235,7 +237,7 @@ module Vedeu
       def show
         super
 
-        Vedeu.log(type: :cursor, message: "Showing cursor: '#{name}'".freeze)
+        Vedeu.log(type: :cursor, message: "Showing cursor: '#{name}'")
 
         render
       end
@@ -278,7 +280,7 @@ module Vedeu
       #   Vedeu::Cursors::Repository>]
       def defaults
         {
-          name:       ''.freeze,
+          name:       '',
           ox:         0,
           oy:         0,
           repository: Vedeu.cursors,

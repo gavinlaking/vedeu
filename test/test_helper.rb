@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if ENV['SIMPLECOV'].to_i == 1 || ENV['CONSOLE_COVERAGE'].to_i == 1
   require 'simplecov'
   require 'simplecov-console' if ENV['CONSOLE_COVERAGE'].to_i == 1
@@ -52,7 +54,7 @@ end
 module VedeuMiniTestPlugin
   # def before_setup
   #   # Vedeu::Repositories.reset!
-  #   # Vedeu.log(type: :debug, message: "#{self.class}".freeze)
+  #   # Vedeu.log(type: :debug, message: "#{self.class}")
   #
   #   super
   # end

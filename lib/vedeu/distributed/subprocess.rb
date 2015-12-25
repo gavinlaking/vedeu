@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Distributed
@@ -59,7 +61,7 @@ module Vedeu
 
       # @return [String]
       def command
-        "ruby #{file_path}".freeze
+        "ruby #{file_path}"
       end
 
       # @return [Fixnum] The number of bytes written.
@@ -90,7 +92,7 @@ module Vedeu
 
       # @return [String]
       def file_name
-        "/tmp/foo_#{timestamp}".freeze
+        "/tmp/foo_#{timestamp}"
       end
 
       # return [Fixnum]

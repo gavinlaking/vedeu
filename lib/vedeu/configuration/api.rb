@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Config
@@ -613,7 +615,7 @@ module Vedeu
       # @raise [Vedeu::Error::InvalidSyntax]
       def invalid_mode!
         fail Vedeu::Error::InvalidSyntax,
-             'Terminal mode can be set to either :cooked, :fake or :raw'.freeze
+             'Terminal mode can be set to either :cooked, :fake or :raw'
       end
 
       # Returns the options set via the configuration API DSL or an

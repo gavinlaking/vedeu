@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Menus
@@ -201,7 +203,7 @@ module Vedeu
           client:     nil,
           collection: [],
           current:    0,
-          name:       ''.freeze,
+          name:       '',
           repository: Vedeu.menus,
           selected:   nil,
         }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Cells
@@ -60,7 +62,7 @@ module Vedeu
       # @param _options [Hash] Ignored.
       # @return [String]
       def to_html(_options = {})
-        ''.freeze
+        ''
       end
 
       # @return [String]
@@ -75,10 +77,10 @@ module Vedeu
       def defaults
         {
           colour:   {},
-          name:     ''.freeze,
+          name:     '',
           position: nil,
-          style:    ''.freeze,
-          value:    ''.freeze,
+          style:    '',
+          value:    '',
         }
       end
 

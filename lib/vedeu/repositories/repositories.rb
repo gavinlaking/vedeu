@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # Provides all registered repositories.
@@ -30,7 +32,7 @@ module Vedeu
 
         Vedeu.log(type:    :store,
                   message: "Repository '#{repository.class.name}':" \
-                           " #{registered.inspect}".freeze)
+                           " #{registered.inspect}")
 
         registered
       end

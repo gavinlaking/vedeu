@@ -1,5 +1,7 @@
 require 'vedeu/geometries/positionable'
 
+# frozen_string_literal: true
+
 module Vedeu
 
   module Presentation
@@ -26,7 +28,7 @@ module Vedeu
     # @param block [Proc]
     # @return [String]
     def render_colour(&block)
-      "#{colour}#{yield}".freeze
+      "#{colour}#{yield}"
     end
 
     # @param block [Proc]
@@ -43,7 +45,7 @@ module Vedeu
     # @param block [Proc]
     # @return [String]
     def render_style(&block)
-      "#{style}#{yield}".freeze
+      "#{style}#{yield}"
     end
 
   end # Presentation

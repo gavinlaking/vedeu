@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # Custom exceptions/errors which Vedeu will raise in certain
@@ -92,7 +94,7 @@ module Vedeu
       #
       # @return [String]
       def message
-        'Valid value is between 1 and 12 inclusive.'.freeze
+        'Valid value is between 1 and 12 inclusive.'
       end
 
     end # OutOfRange
@@ -109,7 +111,7 @@ module Vedeu
       #
       # @return [String]
       def message
-        'The required block was not given.'.freeze
+        'The required block was not given.'
       end
 
     end

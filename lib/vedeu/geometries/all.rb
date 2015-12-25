@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # The Geometry group of classes all handle the size of interfaces in

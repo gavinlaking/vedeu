@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # This module is the direct interface between Vedeu and your

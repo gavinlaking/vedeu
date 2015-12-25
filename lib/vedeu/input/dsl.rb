@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Input
@@ -88,15 +90,15 @@ module Vedeu
       # @return [Array] A collection containing the keypress(es).
       def key(*values, &block)
         fail Vedeu::Error::InvalidSyntax,
-             'No action defined for `key`.'.freeze unless block_given?
+             'No action defined for `key`.' unless block_given?
 
         fail Vedeu::Error::InvalidSyntax,
-             'No keypress(es) defined for `key`.'.freeze unless present?(values)
+             'No keypress(es) defined for `key`.' unless present?(values)
 
         values.each do |value|
           unless present?(value)
             fail Vedeu::Error::InvalidSyntax,
-                 'An invalid value for `key` was encountered.'.freeze
+                 'An invalid value for `key` was encountered.'
           end
 
           model.add(Vedeu::Input::Key.new(value, &block))

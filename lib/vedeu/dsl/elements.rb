@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module DSL
@@ -115,7 +117,7 @@ module Vedeu
 
         else
           fail Vedeu::Error::Fatal,
-               "Cannot add line to '#{model.class.name}' model.".freeze
+               "Cannot add line to '#{model.class.name}' model."
 
         end
       end
@@ -192,7 +194,7 @@ module Vedeu
 
         else
           fail Vedeu::Error::Fatal,
-               "Cannot add line to '#{model.class.name}' model.".freeze
+               "Cannot add line to '#{model.class.name}' model."
 
         end
       end
@@ -269,7 +271,7 @@ module Vedeu
 
         else
           fail Vedeu::Error::Fatal,
-               "Cannot add text to '#{model.class.name}' model.".freeze
+               "Cannot add text to '#{model.class.name}' model."
 
         end
       end
@@ -321,7 +323,7 @@ module Vedeu
       # @return [NilClass]
       def requires_model!
         fail Vedeu::Error::Fatal,
-             'No model, cannot continue.'.freeze unless present?(model)
+             'No model, cannot continue.' unless present?(model)
       end
 
       # Returns a boolean indicating the model is a

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Logging
@@ -34,7 +36,7 @@ module Vedeu
         @dev.write(message)
 
       rescue StandardError => exception
-        warn("log writing failed. #{exception}".freeze)
+        warn("log writing failed. #{exception}")
       end
 
       # @return [void]

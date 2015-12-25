@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # Provides a mechanism to help configure and use Vedeu.
@@ -64,7 +66,7 @@ module Vedeu
     def method_missing(method, *args, &block)
       Vedeu.log(type:    :debug,
                 message: "!!!method_missing '#{method}' " \
-                         "(#{client.inspect})".freeze)
+                         "(#{client.inspect})")
 
       client.send(method, *args, &block) if client
     end

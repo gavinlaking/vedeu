@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Renderers
@@ -67,10 +69,10 @@ module Vedeu
       # @return [Float]
       def timestamp
         if options[:timestamp]
-          "_#{Vedeu.clock_time}".freeze
+          "_#{Vedeu.clock_time}"
 
         else
-          ''.freeze
+          ''
 
         end
       end

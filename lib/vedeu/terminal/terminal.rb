@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # This module is the direct interface between Vedeu and your
@@ -36,7 +38,7 @@ module Vedeu
     def output(*streams)
       streams.each do |stream|
         Vedeu.log(type:    :output,
-                  message: "Writing to terminal #{stream.size} bytes".freeze)
+                  message: "Writing to terminal #{stream.size} bytes")
 
         console.print(stream)
       end
@@ -57,7 +59,7 @@ module Vedeu
     # @param mode [Symbol]
     # @return [void]
     def initialize_screen(mode, &block)
-      Vedeu.log(message: "Terminal entering '#{mode}' mode".freeze)
+      Vedeu.log(message: "Terminal entering '#{mode}' mode")
 
       output(Vedeu::EscapeSequences::Esc.screen_init)
 

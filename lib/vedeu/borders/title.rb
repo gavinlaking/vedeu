@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Borders
@@ -67,7 +69,7 @@ module Vedeu
       #
       # @return [String]
       def value
-        @value || ''.freeze
+        @value || ''
       end
       alias_method :title, :value
       alias_method :caption, :value

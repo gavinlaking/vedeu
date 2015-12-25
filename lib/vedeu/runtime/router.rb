@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Runtime
@@ -22,11 +24,11 @@ module Vedeu
       def add_controller(controller, klass)
         unless present?(controller)
           fail Vedeu::Error::MissingRequired,
-               'Cannot store controller without a name attribute.'.freeze
+               'Cannot store controller without a name attribute.'
         end
 
         Vedeu.log(type:    :create,
-                  message: "Controller: ':#{controller}'.freeze")
+                  message: "Controller: ':#{controller}'")
 
         if registered?(controller)
           storage[controller].merge!(klass: klass)
@@ -51,7 +53,7 @@ module Vedeu
         if present?(controller) && present?(action)
           Vedeu.log(type:    :create,
                     message: "Action: ':#{action}' " \
-                             "(for ':#{controller}')".freeze)
+                             "(for ':#{controller}')")
 
           if registered?(controller)
             storage[controller][:actions] << action
@@ -67,7 +69,7 @@ module Vedeu
         else
           fail Vedeu::Error::MissingRequired,
                'Cannot store action without a controller or name ' \
-               'attribute.'.freeze
+               'attribute.'
 
         end
       end
@@ -81,7 +83,7 @@ module Vedeu
       # @return [void]
       def goto(controller, action, **args)
         Vedeu.log(type:    :debug,
-                  message: "Routing: #{controller} #{action}".freeze)
+                  message: "Routing: #{controller} #{action}")
 
         route(controller, action, args) if action_defined?(action, controller)
       end
@@ -117,11 +119,11 @@ module Vedeu
           return true if storage[controller][:actions].include?(action)
 
           fail Vedeu::Error::ActionNotFound,
-               "#{action} is not registered for #{controller}.".freeze
+               "#{action} is not registered for #{controller}."
 
         else
           fail Vedeu::Error::ControllerNotFound,
-               "#{controller} is not registered.".freeze
+               "#{controller} is not registered."
 
         end
       end
@@ -150,7 +152,7 @@ module Vedeu
 
         else
           fail Vedeu::Error::MissingRequired,
-               "Cannot route to #{controller} as no class defined.".freeze
+               "Cannot route to #{controller} as no class defined."
 
         end
       end

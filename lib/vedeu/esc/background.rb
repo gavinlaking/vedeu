@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module EscapeSequences
@@ -12,10 +14,10 @@ module Vedeu
       # @return [String]
       def on_black(&block)
         if block_given?
-          "\e[40m".freeze + yield + "\e[49m".freeze
+          "\e[40m" + yield + "\e[49m"
 
         else
-          "\e[40m".freeze
+          "\e[40m"
 
         end
       end
@@ -24,10 +26,10 @@ module Vedeu
       # @return [String]
       def on_red(&block)
         if block_given?
-          "\e[41m".freeze + yield + "\e[49m".freeze
+          "\e[41m" + yield + "\e[49m"
 
         else
-          "\e[41m".freeze
+          "\e[41m"
 
         end
       end
@@ -36,10 +38,10 @@ module Vedeu
       # @return [String]
       def on_green(&block)
         if block_given?
-          "\e[42m".freeze + yield + "\e[49m".freeze
+          "\e[42m" + yield + "\e[49m"
 
         else
-          "\e[42m".freeze
+          "\e[42m"
 
         end
       end
@@ -48,10 +50,10 @@ module Vedeu
       # @return [String]
       def on_yellow(&block)
         if block_given?
-          "\e[43m".freeze + yield + "\e[49m".freeze
+          "\e[43m" + yield + "\e[49m"
 
         else
-          "\e[43m".freeze
+          "\e[43m"
 
         end
       end
@@ -60,10 +62,10 @@ module Vedeu
       # @return [String]
       def on_blue(&block)
         if block_given?
-          "\e[44m".freeze + yield + "\e[49m".freeze
+          "\e[44m" + yield + "\e[49m"
 
         else
-          "\e[44m".freeze
+          "\e[44m"
 
         end
       end
@@ -72,10 +74,10 @@ module Vedeu
       # @return [String]
       def on_magenta(&block)
         if block_given?
-          "\e[45m".freeze + yield + "\e[49m".freeze
+          "\e[45m" + yield + "\e[49m"
 
         else
-          "\e[45m".freeze
+          "\e[45m"
 
         end
       end
@@ -84,10 +86,10 @@ module Vedeu
       # @return [String]
       def on_cyan(&block)
         if block_given?
-          "\e[46m".freeze + yield + "\e[49m".freeze
+          "\e[46m" + yield + "\e[49m"
 
         else
-          "\e[46m".freeze
+          "\e[46m"
 
         end
       end
@@ -96,10 +98,10 @@ module Vedeu
       # @return [String]
       def on_light_grey(&block)
         if block_given?
-          "\e[47m".freeze + yield + "\e[49m".freeze
+          "\e[47m" + yield + "\e[49m"
 
         else
-          "\e[47m".freeze
+          "\e[47m"
 
         end
       end
@@ -108,10 +110,10 @@ module Vedeu
       # @return [String]
       def on_default(&block)
         if block_given?
-          "\e[49m".freeze + yield + "\e[49m".freeze
+          "\e[49m" + yield + "\e[49m"
 
         else
-          "\e[49m".freeze
+          "\e[49m"
 
         end
       end
@@ -120,10 +122,10 @@ module Vedeu
       # @return [String]
       def on_dark_grey(&block)
         if block_given?
-          "\e[100m".freeze + yield + "\e[49m".freeze
+          "\e[100m" + yield + "\e[49m"
 
         else
-          "\e[100m".freeze
+          "\e[100m"
 
         end
       end
@@ -132,10 +134,10 @@ module Vedeu
       # @return [String]
       def on_light_red(&block)
         if block_given?
-          "\e[101m".freeze + yield + "\e[49m".freeze
+          "\e[101m" + yield + "\e[49m"
 
         else
-          "\e[101m".freeze
+          "\e[101m"
 
         end
       end
@@ -144,10 +146,10 @@ module Vedeu
       # @return [String]
       def on_light_green(&block)
         if block_given?
-          "\e[102m".freeze + yield + "\e[49m".freeze
+          "\e[102m" + yield + "\e[49m"
 
         else
-          "\e[102m".freeze
+          "\e[102m"
 
         end
       end
@@ -156,10 +158,10 @@ module Vedeu
       # @return [String]
       def on_light_yellow(&block)
         if block_given?
-          "\e[103m".freeze + yield + "\e[49m".freeze
+          "\e[103m" + yield + "\e[49m"
 
         else
-          "\e[103m".freeze
+          "\e[103m"
 
         end
       end
@@ -168,10 +170,10 @@ module Vedeu
       # @return [String]
       def on_light_blue(&block)
         if block_given?
-          "\e[104m".freeze + yield + "\e[49m".freeze
+          "\e[104m" + yield + "\e[49m"
 
         else
-          "\e[104m".freeze
+          "\e[104m"
 
         end
       end
@@ -180,10 +182,10 @@ module Vedeu
       # @return [String]
       def on_light_magenta(&block)
         if block_given?
-          "\e[105m".freeze + yield + "\e[49m".freeze
+          "\e[105m" + yield + "\e[49m"
 
         else
-          "\e[105m".freeze
+          "\e[105m"
 
         end
       end
@@ -192,10 +194,10 @@ module Vedeu
       # @return [String]
       def on_light_cyan(&block)
         if block_given?
-          "\e[106m".freeze + yield + "\e[49m".freeze
+          "\e[106m" + yield + "\e[49m"
 
         else
-          "\e[106m".freeze
+          "\e[106m"
 
         end
       end
@@ -204,10 +206,10 @@ module Vedeu
       # @return [String]
       def on_white(&block)
         if block_given?
-          "\e[107m".freeze + yield + "\e[49m".freeze
+          "\e[107m" + yield + "\e[49m"
 
         else
-          "\e[107m".freeze
+          "\e[107m"
 
         end
       end

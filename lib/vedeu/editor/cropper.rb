@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Editor
@@ -45,7 +47,7 @@ module Vedeu
           line.chars.each_with_index do |char, ix|
             out << Vedeu::Views::Char.new(name:     name,
                                           position: [(by + iy), (bx + ix)],
-                                          value:    char.freeze)
+                                          value:    char)
           end
         end
 

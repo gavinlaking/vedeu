@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # Vedeu creates an individual cursor for each interface defined,

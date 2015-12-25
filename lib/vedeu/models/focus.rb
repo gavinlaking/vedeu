@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Models
@@ -36,7 +38,7 @@ module Vedeu
 
         else
           Vedeu.log(type:    :store,
-                    message: "Storing focus entry: '#{name}'".freeze)
+                    message: "Storing focus entry: '#{name}'")
 
           focus ? storage.unshift(name) : storage.push(name)
         end
@@ -209,7 +211,7 @@ module Vedeu
       def not_registered!(name)
         fail Vedeu::Error::ModelNotFound,
              "Cannot focus '#{name}' as this interface has not been " \
-             'registered.'.freeze
+             'registered.'
       end
 
       # Return the name of the interface in focus after triggering the
@@ -220,7 +222,7 @@ module Vedeu
       def update
         return false if storage.empty?
 
-        Vedeu.log(message: "Interface in focus: '#{current}'".freeze)
+        Vedeu.log(message: "Interface in focus: '#{current}'")
 
         refresh
 

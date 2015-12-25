@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Events
@@ -40,7 +42,7 @@ module Vedeu
       def trigger
         if results.empty?
           Vedeu.log(type:    :event,
-                    message: "No action for: '#{name.inspect}'".freeze)
+                    message: "No action for: '#{name.inspect}'")
         end
 
         return results[0] if results.one?
