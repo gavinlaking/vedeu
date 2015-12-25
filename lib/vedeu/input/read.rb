@@ -103,7 +103,7 @@ module Vedeu
 
                     elsif fake?
                       console.cooked do
-                        Vedeu::Terminal.output(mouse_off + show_cursor)
+                        Vedeu::Terminal.debugging!
 
                         console.gets.chomp
                       end
