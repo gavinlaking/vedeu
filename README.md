@@ -27,7 +27,6 @@ Vedeu relies on the following gems, these will be automatically
 - benchmark-ips
 - bundler
 - rake
-- ruby-prof
 - thor
 - vedeu_cli
 

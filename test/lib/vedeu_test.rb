@@ -71,6 +71,23 @@ describe Vedeu do
   it { Vedeu.must_respond_to(:render_output) }
   it { Vedeu.must_respond_to(:renders) }
   it { Vedeu.must_respond_to(:renderers) }
+
+  describe '.requires_gem!' do
+    let(:gem_name) { 'vedeu' }
+
+    subject { Vedeu.requires_gem!(gem_name) }
+
+    context 'when the gem is available' do
+      it { subject.must_equal(true) }
+    end
+
+    context 'when the gem is not available' do
+      let(:gem_name) { 'some_unknown_gem' }
+
+      it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
+    end
+  end
+
   it { Vedeu.must_respond_to(:resize) }
   it { Vedeu.must_respond_to(:show_cursor) }
   it { Vedeu.must_respond_to(:show_group) }
