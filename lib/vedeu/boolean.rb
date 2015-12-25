@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # Represent a boolean object.

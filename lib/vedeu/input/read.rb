@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Input
@@ -118,7 +120,7 @@ module Vedeu
       def mode
         unless valid_mode?
           fail Vedeu::Error::InvalidSyntax,
-               ':mode must be `:raw`, `:fake` or `:cooked`.'.freeze
+               ':mode must be `:raw`, `:fake` or `:cooked`.'
         end
 
         options[:mode]

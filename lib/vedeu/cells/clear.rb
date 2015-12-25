@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Cells
@@ -19,7 +21,7 @@ module Vedeu
 
       # @return [String]
       def value
-        ' '.freeze
+        ' '
       end
       alias_method :text, :value
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Events
@@ -90,7 +92,7 @@ module Vedeu
         find(alias_name).map do |event_name|
           Vedeu.log(type:    :event,
                     message: "Triggering: '#{event_name}' from alias " \
-                             "'#{alias_name}'".freeze)
+                             "'#{alias_name}'")
           Vedeu::Events::Trigger.trigger(event_name, *args)
         end
       end

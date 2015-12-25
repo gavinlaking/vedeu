@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # Provides the mechanism to create menus within client

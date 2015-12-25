@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Geometries
@@ -225,18 +227,23 @@ module Vedeu
       # @return [Fixnum]
       def _dn
         if dn
+          # fail "_dn 1 v:#{d} #{dn}"
           dn
 
         elsif d.nil? && d_dn
+          # fail "_dn 2 v:#{d_dn}"
           d_dn
 
         elsif d && d_dn
+          # fail "_dn 3 v:#{d} #{d_dn}"
           (d + d_dn) - 1
 
         elsif default
+          # fail "_dn 4 v:#{default}"
           default
 
         else
+          # fail "_dn 5 v:1"
           1
 
         end

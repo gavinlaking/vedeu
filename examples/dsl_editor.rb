@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# frozen_string_literal: true
+
 require 'bundler/setup'
 require 'vedeu'
 
@@ -9,8 +11,9 @@ class EditorApp
 
   Vedeu.configure do
     debug!
-    log '/tmp/editor.log'.freeze
-    renderers Vedeu::Renderers::File.new(filename: '/tmp/editor.out'.freeze)
+    log '/tmp/editor.log'
+    renderers(Vedeu::Renderers::Terminal.new,
+              Vedeu::Renderers::File.new(filename: '/tmp/editor.out'))
     fake!
   end
 
@@ -49,14 +52,14 @@ class EditorApp
     key(:enter)  { Vedeu.trigger(:_editor_insert_line_, :editor_view) }
     key(:insert) do
       Vedeu.log(type:    :debug,
-                message: "Commands: #{Vedeu.all_commands.inspect}".freeze)
+                message: "Commands: #{Vedeu.all_commands.inspect}")
       Vedeu.log(type:    :debug,
-                message: "Keypresses: #{Vedeu.all_keypresses.inspect}".freeze)
+                message: "Keypresses: #{Vedeu.all_keypresses.inspect}")
     end
   end
 
-  Vedeu.keymap '_global_'.freeze do
-    key('q'.freeze) { Vedeu.exit }
+  Vedeu.keymap '_global_' do
+    key('q') { Vedeu.exit }
   end
 
   Vedeu.render do
@@ -67,10 +70,10 @@ class EditorApp
   Vedeu.render do
     view(:help_view) do
       lines do
-        line 'Type into the editor dialog above,'.freeze
-        line 'and press Escape. This will trigger the'.freeze
-        line ':command event with the contents of '.freeze
-        line 'the view.'.freeze
+        line 'Type into the editor dialog above,'
+        line 'and press Escape. This will trigger the'
+        line ':command event with the contents of '
+        line 'the view.'
 
         # @todo Not implemented yet:
         #

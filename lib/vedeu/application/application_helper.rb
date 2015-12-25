@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # Provides methods which should be available to all client

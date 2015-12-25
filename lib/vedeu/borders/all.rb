@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # Borders are defined by name for each of the client application's
@@ -39,4 +41,3 @@ require 'vedeu/borders/border'
 require 'vedeu/borders/dsl'
 require 'vedeu/borders/refresh'
 require 'vedeu/borders/repository'
-require 'vedeu/borders/set_attribute'

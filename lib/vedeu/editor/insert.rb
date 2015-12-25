@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Editor
@@ -18,7 +20,7 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Editor::Insert.
       #
-      # @param collection [Vedeu::Editor::Line|Vedeu::Editor::Lines]
+      # @param collection [String|Vedeu::Editor::Line|Vedeu::Editor::Lines]
       # @param entity [String]
       # @param index [Fixnum]
       # @param size [Fixnum]
@@ -30,7 +32,7 @@ module Vedeu
         @size       = size
       end
 
-      # @return [Vedeu::Editor::Line|Vedeu::Editor::Lines]
+      # @return [String|Vedeu::Editor::Line|Vedeu::Editor::Lines]
       def insert
         return collection.insert(position, entity) if index?
 
@@ -38,10 +40,6 @@ module Vedeu
       end
 
       protected
-
-      # @!attribute [r] collection
-      # @return [Vedeu::Editor::Line|Vedeu::Editor::Lines]
-      attr_reader :collection
 
       # @!attribute [r] entity
       # @return [String]
@@ -56,6 +54,18 @@ module Vedeu
       attr_reader :size
 
       private
+
+      # @!attribute [r] collection
+      # @return [String|Vedeu::Editor::Line|Vedeu::Editor::Lines]
+      def collection
+        if string?(@collection)
+          @collection.dup
+
+        else
+          @collection
+
+        end
+      end
 
       # @return [Boolean]
       def index?

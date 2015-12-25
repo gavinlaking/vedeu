@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Logging
@@ -13,12 +15,12 @@ module Vedeu
       # @param obj [Object]
       # @return [void]
       def debug(binding = nil, obj = nil)
-        require 'pry'
+        Vedeu.requires_gem!('pry')
 
         if obj
           message = ::Pry::ColorPrinter.pp(obj, '')
 
-          Vedeu.log(type: :debug, message: "#{message}")
+          Vedeu.log(type: :debug, message: message)
 
         elsif binding
           Vedeu::Terminal.cooked_mode!
@@ -32,37 +34,31 @@ module Vedeu
       end
 
       # :nocov:
-      # Helps to profile a running application by providing a stack
-      # trace of its execution upon exiting.
-      #
-      # @example
-      #   Vedeu.profile('some_file.html') do
-      #     # ... code to profile ...
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/profile.md}
       # @param filename [String] Optional, and defaults to being
       #   written to the /tmp directory.
       # @param block [Proc]
+      # @macro raise_requires_block
       # @return [void]
       # @yieldreturn [void] The section of the application to profile.
-      def self.profile(filename = 'profile.html', &block)
-        return nil unless block_given?
+      def profile(filename = '/tmp/profile.html', &block)
+        fail Vedeu::Error::RequiresBlock unless block_given?
 
-        require 'ruby-prof'
+        Vedeu.requires_gem!('ruby-prof')
 
-        # RubyProf.measure_mode = RubyProf::WALL_TIME
-        # RubyProf.measure_mode = RubyProf::PROCESS_TIME
-        RubyProf.measure_mode = RubyProf::CPU_TIME
-        # RubyProf.measure_mode = RubyProf::ALLOCATIONS
-        # RubyProf.measure_mode = RubyProf::MEMORY
-        # RubyProf.measure_mode = RubyProf::GC_TIME
-        # RubyProf.measure_mode = RubyProf::GC_RUNS
+        # ::RubyProf.measure_mode = ::RubyProf::WALL_TIME
+        # ::RubyProf.measure_mode = ::RubyProf::PROCESS_TIME
+        ::RubyProf.measure_mode = ::RubyProf::CPU_TIME
+        # ::RubyProf.measure_mode = ::RubyProf::ALLOCATIONS
+        # ::RubyProf.measure_mode = ::RubyProf::MEMORY
+        # ::RubyProf.measure_mode = ::RubyProf::GC_TIME
+        # ::RubyProf.measure_mode = ::RubyProf::GC_RUNS
 
-        RubyProf.start
+        ::RubyProf.start
 
         work = yield
 
-        result = RubyProf.stop
+        result = ::RubyProf.stop
         result.eliminate_methods!([
           /^Array/,
           /^Hash/,
@@ -70,39 +66,41 @@ module Vedeu
           /^Fixnum/,
         ])
 
-        File.open('/tmp/' + filename, 'w') do |file|
+        File.open(filename, 'w') do |file|
           # - Creates a HTML visualization of the Ruby stack
-          RubyProf::CallStackPrinter.new(result).print(file)
+          ::RubyProf::CallStackPrinter.new(result).print(file)
 
           # Used with QTCacheGrind to analyse performance.
-          # RubyProf::CallTreePrinter.new(result).print(file)
+          # ::RubyProf::CallTreePrinter.new(result).print(file)
 
           # Creates a flat report in text format
-          # RubyProf::FlatPrinter
+          # ::RubyProf::FlatPrinter
 
           # - same as above but more verbose
-          # RubyProf::FlatPrinterWithLineNumbers
+          # ::RubyProf::FlatPrinterWithLineNumbers
 
           # - Creates a call graph report in text format
-          # RubyProf::GraphPrinter
+          # ::RubyProf::GraphPrinter
 
           # - Creates a call graph report in HTML (separate files per
           #   thread)
-          # RubyProf::GraphHtmlPrinter
+          # ::RubyProf::GraphHtmlPrinter
 
           # - Creates a call graph report in GraphViz's DOT format
           #   which can be converted to an image
-          # RubyProf::DotPrinter
+          # ::RubyProf::DotPrinter
 
           # - Creates a call tree report compatible with KCachegrind.
-          # RubyProf::CallTreePrinter
+          # ::RubyProf::CallTreePrinter
 
           # - Uses the other printers to create several reports in one
           #   profiling run
-          # RubyProf::MultiPrinter
+          # ::RubyProf::MultiPrinter
         end
 
         work
+      rescue NameError
+        yield
       end
       # :nocov:
 
@@ -110,23 +108,13 @@ module Vedeu
 
   end # Logging
 
-  # Allow debugging via the creation of stack traces courtesy of
-  # ruby-prof.
-  #
-  # @example
-  #   Vedeu.profile
-  #
+  # {include:file:docs/dsl/by_method/profile.md}
   # @!method profile
   # @return [Vedeu::Logging::Debug]
   def_delegators Vedeu::Logging::Debug,
                  :profile
 
-  # Drop into a debugging session within a running client application,
-  # courtesy of pry.
-  #
-  # @example
-  #   Vedeu.debug
-  #
+  # {include:file:docs/dsl/by_method/debug.md}
   # @!method debug
   # @return [void]
   def_delegators Vedeu::Logging::Debug,

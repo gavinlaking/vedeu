@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# frozen_string_literal: true
+
 require 'bundler/setup'
 require 'vedeu'
 
@@ -10,7 +12,8 @@ class EditorApp
   Vedeu.configure do
     debug!
     log '/tmp/284_slow_rendering.log'
-    # renderers Vedeu::Renderers::File.new(filename: '/tmp/284_slow.out')
+    # renderers(Vedeu::Renderers::Terminal.new,
+    #           Vedeu::Renderers::File.new(filename: '/tmp/284_slow.out'))
     fake!
   end
 
@@ -58,9 +61,9 @@ class EditorApp
     key(:enter) { Vedeu.trigger(:_editor_execute_, :editor_view) }
     key(:insert) do
       Vedeu.log(type:    :debug,
-                message: "Commands: #{Vedeu.all_commands.inspect}".freeze)
+                message: "Commands: #{Vedeu.all_commands.inspect}")
       Vedeu.log(type:    :debug,
-                message: "Keypresses: #{Vedeu.all_keypresses.inspect}".freeze)
+                message: "Keypresses: #{Vedeu.all_keypresses.inspect}")
     end
   end
 

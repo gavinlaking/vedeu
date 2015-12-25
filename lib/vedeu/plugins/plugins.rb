@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # A class responsible for managing plugins installation.
@@ -25,7 +27,7 @@ module Vedeu
     # @return [Array<void>]
     def register(name, plugin = false)
       Vedeu.log(type:    :debug,
-                message: "Attempting to register plugin: #{name}".freeze)
+                message: "Attempting to register plugin: #{name}")
 
       plugins << plugin if plugin && not_loaded?(name)
     end
@@ -37,7 +39,7 @@ module Vedeu
       Gem.refresh
 
       Gem::Specification.each do |gem|
-        next unless gem.name =~ /^#{prefix}/.freeze
+        next unless gem.name =~ /^#{prefix}/
 
         plugin_name = gem.name[/^#{prefix}(.*)/, 1]
 
@@ -76,7 +78,7 @@ module Vedeu
 
     # @return [String]
     def prefix
-      'vedeu_'.freeze
+      'vedeu_'
     end
 
   end # Plugins

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Input
@@ -76,7 +78,7 @@ module Vedeu
       def use(input)
         return false unless key_defined?(input)
 
-        Vedeu.log(type: :input, message: "Key pressed: '#{input}'".freeze)
+        Vedeu.log(type: :input, message: "Key pressed: '#{input}'")
 
         keys.select { |key| key.input == input }.map(&:press)
       end
@@ -88,7 +90,7 @@ module Vedeu
       # @return [Hash<Symbol => Array|String|Vedeu::Input::Repository]
       def defaults
         {
-          name:       ''.freeze,
+          name:       '',
           keys:       [],
           repository: Vedeu.keymaps,
         }
@@ -104,7 +106,7 @@ module Vedeu
 
         Vedeu.log(type:    :input,
                   message: "Keymap '#{name}' already " \
-                           "defines '#{key.input}'.".freeze)
+                           "defines '#{key.input}'.")
 
         false
       end

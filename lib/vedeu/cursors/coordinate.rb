@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Cursors
@@ -129,7 +131,7 @@ module Vedeu
                    when :y then [:y, :by, :byn, :bordered_height]
                    else
                      fail Vedeu::Error::InvalidSyntax,
-                          'Coordinate type not given, cannot continue.'.freeze
+                          'Coordinate type not given, cannot continue.'
                    end
       end
 
@@ -164,7 +166,7 @@ module Vedeu
       # @return [Hash<Symbol => Fixnum|String|Symbol>]
       def defaults
         {
-          name:   ''.freeze,
+          name:   '',
           offset: nil,
           type:   :x,
         }

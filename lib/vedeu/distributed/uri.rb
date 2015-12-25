@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # Provides a mechanism to control a running client application via
@@ -33,7 +35,7 @@ module Vedeu
       #
       # @return [String] The host and port as a single value.
       def to_s
-        "druby://#{host}:#{port}".freeze
+        "druby://#{host}:#{port}"
       end
       alias_method :to_str, :to_s
 

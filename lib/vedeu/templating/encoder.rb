@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Templating
@@ -43,7 +45,7 @@ module Vedeu
       #
       # @return [String]
       def wrap
-        "{{#{encode64}}}".freeze
+        "{{#{encode64}}}"
       end
 
       # Encode the compressed, marshalled object or objects into a

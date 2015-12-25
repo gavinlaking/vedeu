@@ -1,5 +1,7 @@
 require 'vedeu/dsl/all'
 
+# frozen_string_literal: true
+
 module Vedeu
 
   module Views

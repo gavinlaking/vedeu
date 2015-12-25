@@ -1,7 +1,12 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module DSL
 
+    # @todo This documentation needs editing and is out of date.
+    # (GL: 2015-12-25)
+    #
     # Provides methods to be used to define views.
     #
     #   Vedeu.renders do
@@ -55,7 +60,8 @@ module Vedeu
       #   end
       #
       # @param block [Proc]
-      # @raise [Vedeu::Error::RequiresBlock|Vedeu::Error::Fatal]
+      # @macro raise_requires_block
+      # @raise [Vedeu::Error::Fatal]
       # @return [void]
       def lines(&block)
         requires_block!(&block)
@@ -111,7 +117,7 @@ module Vedeu
 
         else
           fail Vedeu::Error::Fatal,
-               "Cannot add line to '#{model.class.name}' model.".freeze
+               "Cannot add line to '#{model.class.name}' model."
 
         end
       end
@@ -139,7 +145,8 @@ module Vedeu
       #   end
       #
       # @param block [Proc]
-      # @raise [Vedeu::Error::RequiresBlock|Vedeu::Error::Fatal]
+      # @macro raise_requires_block
+      # @raise [Vedeu::Error::Fatal]
       # @return [void]
       def streams(&block)
         requires_block!(&block)
@@ -187,7 +194,7 @@ module Vedeu
 
         else
           fail Vedeu::Error::Fatal,
-               "Cannot add line to '#{model.class.name}' model.".freeze
+               "Cannot add line to '#{model.class.name}' model."
 
         end
       end
@@ -264,7 +271,7 @@ module Vedeu
 
         else
           fail Vedeu::Error::Fatal,
-               "Cannot add text to '#{model.class.name}' model.".freeze
+               "Cannot add text to '#{model.class.name}' model."
 
         end
       end
@@ -305,8 +312,7 @@ module Vedeu
       end
 
       # @param block [Proc]
-      # @raise [Vedeu::Error::RequiresBlock] When the required block
-      #   is not given.
+      # @macro raise_requires_block
       # @return [NilClass]
       def requires_block!(&block)
         fail Vedeu::Error::RequiresBlock unless block_given?
@@ -317,7 +323,7 @@ module Vedeu
       # @return [NilClass]
       def requires_model!
         fail Vedeu::Error::Fatal,
-             'No model, cannot continue.'.freeze unless present?(model)
+             'No model, cannot continue.' unless present?(model)
       end
 
       # Returns a boolean indicating the model is a

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Repositories
@@ -53,7 +55,7 @@ module Vedeu
       # @return [Array|Hash|Set]
       def reset!
         Vedeu.log(type:    :reset,
-                  message: "(#{self.class.name}) #{registered.inspect}".freeze)
+                  message: "(#{self.class.name}) #{registered.inspect}")
 
         @storage = in_memory
       end

@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# frozen_string_literal: true
+
 require 'bundler/setup'
 require 'vedeu'
 
@@ -26,16 +28,12 @@ class DSLApp
     end
   end
 
-  Vedeu.keymap '_global_' do
-    key('q') { Vedeu.exit }
-  end
-
   Vedeu.render do
     view(:test1_interface) do
       lines do
         streams do
-          text 'view->lines->streams->text 1'
-          text 'view->lines->streams->text 2'
+          text 'v->ls->ss->text 1', { foreground: '#00ff00' }
+          text 'v->ls->ss->text 2', { foreground: '#0000ff' }
         end
       end
     end
@@ -45,6 +43,6 @@ class DSLApp
     Vedeu::Launcher.execute!(argv)
   end
 
-end # EditorApp
+end # DSLApp
 
 DSLApp.start

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # This module provides behaviour for certain classes which can be

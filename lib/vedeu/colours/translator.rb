@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Colours
@@ -143,7 +145,7 @@ module Vedeu
       #
       # @return [String]
       def numbered
-        "#{prefix}5;#{css_to_numbered}m".freeze
+        "#{prefix}5;#{css_to_numbered}m"
       end
 
       # Returns an escape sequence.
@@ -169,7 +171,7 @@ module Vedeu
       #
       # @return [String]
       def rgb_prefix
-        "#{prefix}2;%s;%s;%sm".freeze
+        "#{prefix}2;%s;%s;%sm"
       end
 
       # Returns a collection of converted HTML/CSS octets as their
@@ -227,7 +229,7 @@ module Vedeu
       #   must implement this method.
       # @return [Vedeu::Error::NotImplemented]
       def not_implemented
-        fail Vedeu::Error::NotImplemented, 'Subclasses implement this.'.freeze
+        fail Vedeu::Error::NotImplemented, 'Subclasses implement this.'
       end
       alias_method :named_code, :not_implemented
       alias_method :repository, :not_implemented

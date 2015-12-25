@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module DSL
@@ -130,7 +132,7 @@ module Vedeu
         # @param block [Proc] The directives you wish to send to
         #   render. Typically includes `view` with associated
         #   sub-directives.
-        # @raise [Vedeu::Error::RequiresBlock]
+        # @macro raise_requires_block
         # @return [Array<View>]
         def renders(&block)
           fail Vedeu::Error::RequiresBlock unless block_given?
@@ -175,7 +177,7 @@ module Vedeu
         # @param block [Proc] The directives you wish to send to
         #   render. Typically includes `view` with associated
         #   sub-directives.
-        # @raise [Vedeu::Error::RequiresBlock]
+        # @macro raise_requires_block
         # @return [Array<View>]
         def views(&block)
           fail Vedeu::Error::RequiresBlock unless block_given?

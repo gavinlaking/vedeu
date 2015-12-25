@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Input
@@ -16,7 +18,7 @@ module Vedeu
       #
       # @param input [String|Symbol]
       # @param block [Proc]
-      # @raise [Vedeu::Error::RequiresBlock]
+      # @macro raise_requires_block
       # @return [Vedeu::Input::Key]
       def initialize(input = nil, &block)
         fail Vedeu::Error::RequiresBlock unless block_given?

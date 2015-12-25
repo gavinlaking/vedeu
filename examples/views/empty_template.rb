@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# frozen_string_literal: true
+
 require 'bundler/setup'
 require 'vedeu'
 
@@ -41,6 +43,6 @@ class DSLApp
     Vedeu::Launcher.execute!(argv)
   end
 
-end # EditorApp
+end # DSLApp
 
 DSLApp.start

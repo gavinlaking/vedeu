@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # A group of objects that serve to intercept messages destined for

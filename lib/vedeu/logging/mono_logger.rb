@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Logging
@@ -14,7 +16,7 @@ module Vedeu
       #   (typically STDOUT, STDERR or an open file).
       # @return [Vedeu::Logging::MonoLogger]
       def initialize(logdev)
-        @progname          = 'Vedeu'.freeze
+        @progname          = 'Vedeu'
         @level             = Logger::DEBUG
         @default_formatter = Logger::Formatter.new
         @formatter         = nil

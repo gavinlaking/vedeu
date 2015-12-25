@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Coercers
@@ -43,7 +45,7 @@ module Vedeu
           Vedeu::Colours::Colour.new(attributes)
 
         else
-          fail Vedeu::Error::Fatal, 'Vedeu cannot coerce this colour.'.freeze
+          fail Vedeu::Error::Fatal, 'Vedeu cannot coerce this colour.'
 
         end
       end

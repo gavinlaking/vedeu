@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module DSL
@@ -14,7 +16,7 @@ module Vedeu
       # @return (see #attributes)
       def self.build(context = nil,
                      model   = nil,
-                     value   = ''.freeze,
+                     value   = '',
                      options = {},
                      &block)
         new(context, model, value, options, &block).attributes
@@ -42,12 +44,12 @@ module Vedeu
       # @return [Vedeu::DSL::Attributes]
       def initialize(context = nil,
                      model   = nil,
-                     value   = ''.freeze,
+                     value   = '',
                      options = {},
                      &block)
         @context = context
         @model   = model
-        @value   = value   || ''.freeze
+        @value   = value   || ''
         @options = options || {}
         @block   = block
       end
@@ -118,7 +120,7 @@ module Vedeu
           client:     nil,
           colour:     nil,
           name:       nil,
-          pad:        ' '.freeze,
+          pad:        ' ',
           style:      nil,
           truncate:   false,
           width:      nil,
@@ -145,7 +147,7 @@ module Vedeu
 
       # @return [String]
       def pad
-        options[:pad].to_s[0] || ' '.freeze
+        options[:pad].to_s[0] || ' '
       end
 
       # @return [NilClass|Vedeu::Presentation::Style]

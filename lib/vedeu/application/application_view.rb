@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # Provides the mechanism to render views for the client application.
@@ -33,7 +35,7 @@ module Vedeu
     def render
       fail Vedeu::Error::NotImplemented,
            'The subclass of Vedeu::ApplicationView must implement the #render' \
-           'method.'.freeze
+           'method.'
     end
 
     protected
@@ -51,7 +53,7 @@ module Vedeu
     # @return [String]
     def template(value)
       @template = Vedeu::Configuration.base_path +
-                  "/app/views/templates/#{value}.erb".freeze
+                  "/app/views/templates/#{value}.erb"
     end
 
   end # ApplicationView

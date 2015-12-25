@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# frozen_string_literal: true
+
 require 'bundler/setup'
 require 'vedeu'
 
@@ -56,8 +58,8 @@ class DSLApp
       lines do
         line do
           streams do
-            text 'v->ls->line->streams->text 1'
-            text 'v->ls->line->streams->text 2' # doesn't show
+            text 'v->ls->l->ss->text 1', { foreground: '#00ffff' }
+            text 'v->ls->l->ss->text 2', { foreground: '#ffff00' }
           end
         end
       end
@@ -68,6 +70,6 @@ class DSLApp
     Vedeu::Launcher.execute!(argv)
   end
 
-end # EditorApp
+end # DSLApp
 
 DSLApp.start

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Events
@@ -84,7 +86,7 @@ module Vedeu
         #
         # @return [Boolean]
         def bind(name, options = {}, &block)
-          Vedeu.log(type: :event, message: "Binding: '#{name.inspect}'".freeze)
+          Vedeu.log(type: :event, message: "Binding: '#{name.inspect}'")
 
           new(name, block, options).bind
         end
@@ -117,7 +119,7 @@ module Vedeu
           return false unless Vedeu.bound?(name)
 
           Vedeu.log(type:    :event,
-                    message: "Unbinding: '#{name.inspect}'".freeze)
+                    message: "Unbinding: '#{name.inspect}'")
 
           Vedeu.events.remove(name)
 
@@ -194,15 +196,18 @@ module Vedeu
         @executed_at = @now # set execution time to now
         @now         = 0    # reset now
 
-        message = "Triggering: '#{name.inspect}'"
-
         if args.size > 1
-          message << " with #{args.inspect}"
+          message = "Triggering: '#{name.inspect}' with #{args.inspect}"
+
         elsif args.one?
-          message << " for #{args.first.inspect}"
+          message = "Triggering: '#{name.inspect}' for #{args.first.inspect}"
+
+        else
+          message = "Triggering: '#{name.inspect}'"
+
         end
 
-        Vedeu.log(type: :event, message: message.freeze)
+        Vedeu.log(type: :event, message: message)
 
         closure.call(*args)
       end
@@ -224,7 +229,7 @@ module Vedeu
       def throttle_expired?
         return true if (@now - @executed_at) > delay
 
-        Vedeu.log(type: :event, message: "Throttling: '#{name.inspect}'".freeze)
+        Vedeu.log(type: :event, message: "Throttling: '#{name.inspect}'")
 
         false
       end
@@ -251,7 +256,7 @@ module Vedeu
       def debounce_expired?
         return true if (@executed_at = @now) > @deadline
 
-        Vedeu.log(type: :event, message: "Debouncing: '#{name.inspect}'".freeze)
+        Vedeu.log(type: :event, message: "Debouncing: '#{name.inspect}'")
 
         false
       end
@@ -310,5 +315,12 @@ module Vedeu
                  :bind,
                  :bound?,
                  :unbind
+
+  # :nocov:
+
+  # See {file:docs/events/system.md#\_log_}
+  Vedeu.bind(:_log_) { |msg| Vedeu.log(type: :debug, message: msg) }
+
+  # :nocov:
 
 end # Vedeu

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 module Vedeu
@@ -12,23 +14,49 @@ module Vedeu
         File.stubs(:open).with('/tmp/profile.html', 'w').returns(:some_code)
       end
 
+      describe '.debug' do
+        let(:_binding) {}
+        let(:_obj)     {}
+
+        subject { described.debug(_binding, _obj) }
+
+        context 'when pry is available' do
+          # @todo Add more tests.
+        end
+
+        context 'when pry is not available' do
+          before { Vedeu.stubs(:requires_gem!).raises(Vedeu::Error::Fatal) }
+
+          it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
+        end
+      end
+
       describe '.profile' do
         let(:filename)  { 'profile.html' }
         let(:some_code) { :some_code }
 
-        context 'when the block is not given' do
-          subject { described.profile(filename) }
+        subject { described.profile(filename) { some_code } }
 
-          it { subject.must_equal(nil) }
+        context 'when ruby-prof is available' do
+          before { Vedeu.stubs(:requires_gem!).returns(true) }
+
+          context 'when the block is not given' do
+            subject { described.profile(filename) }
+
+            it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
+          end
+
+          context 'when the block is given' do
+            subject { described.profile(filename) { some_code } }
+
+            it { subject.must_equal(some_code) }
+          end
         end
 
-        context 'when the block is given' do
-          subject { described.profile(filename) { some_code } }
+        context 'when ruby-prof is not available' do
+          before { Vedeu.stubs(:requires_gem!).raises(Vedeu::Error::Fatal) }
 
-          it do
-            ::File.expects(:open).with('/tmp/profile.html', 'w')
-            subject
-          end
+          it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
         end
       end
 

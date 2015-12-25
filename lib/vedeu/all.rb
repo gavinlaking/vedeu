@@ -1,23 +1,24 @@
+# frozen_string_literal: true
+
+require 'vedeu/version'
+
 require 'vedeu/boolean'
 require 'vedeu/common'
 require 'vedeu/error'
-require 'vedeu/version'
+
+require 'vedeu/configuration/all'
+require 'vedeu/esc/all'
+require 'vedeu/logging/all'
 
 require 'vedeu/coercers/all'
 require 'vedeu/repositories/all'
-
-require 'vedeu/esc/all'
 require 'vedeu/colours/all'
-require 'vedeu/configuration/all'
 require 'vedeu/events/all'
 
-require 'vedeu/logging/all'
-require 'vedeu/runtime/all'
 require 'vedeu/terminal/all'
 require 'vedeu/presentation/all'
-require 'vedeu/output/all'
 require 'vedeu/renderers/all'
-require 'vedeu/esc/all'
+require 'vedeu/output/all'
 require 'vedeu/null/all'
 require 'vedeu/views/all'
 require 'vedeu/cells/all'
@@ -37,3 +38,5 @@ require 'vedeu/interfaces/all'
 require 'vedeu/menus/all'
 require 'vedeu/templating/all'
 require 'vedeu/plugins/all'
+
+require 'vedeu/runtime/all'

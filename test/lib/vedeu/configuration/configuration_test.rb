@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 module Vedeu
@@ -11,7 +13,7 @@ module Vedeu
 
     describe '.background' do
       it 'returns the value of the background option' do
-        described.background.must_be_instance_of(Vedeu::Colours::Background)
+        described.background.must_equal(:default)
       end
     end
 
@@ -49,7 +51,7 @@ module Vedeu
 
     describe '.foreground' do
       it 'returns the value of the foreground option' do
-        described.foreground.must_be_instance_of(Vedeu::Colours::Foreground)
+        described.foreground.must_equal(:default)
       end
     end
 

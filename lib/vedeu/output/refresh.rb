@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Output
@@ -19,7 +21,7 @@ module Vedeu
       #
       # @return [Array<Vedeu::Interfaces::Interface>]
       def all
-        Vedeu.timer('Refreshing all'.freeze) do
+        Vedeu.timer('Refreshing all') do
           Vedeu.interfaces.zindexed.each do |interface|
             Vedeu.trigger(:_refresh_view_, interface.name)
           end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # Custom exceptions/errors which Vedeu will raise in certain
@@ -92,13 +94,16 @@ module Vedeu
       #
       # @return [String]
       def message
-        'Valid value is between 1 and 12 inclusive.'.freeze
+        'Valid value is between 1 and 12 inclusive.'
       end
 
     end # OutOfRange
 
-    # Raised when a method expecting a block to be given was not given
-    # the block.
+    # Raised when a method requiring a block was not given the block.
+    #
+    # @!macro [new] raise_requires_block
+    #    @raise [Vedeu::Error::RequiresBlock] When the required block
+    #      was not given.
     #
     class RequiresBlock < StandardError
 
@@ -106,7 +111,7 @@ module Vedeu
       #
       # @return [String]
       def message
-        'The required block was not given.'.freeze
+        'The required block was not given.'
       end
 
     end

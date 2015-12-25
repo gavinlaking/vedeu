@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Repositories
@@ -94,7 +96,7 @@ module Vedeu
       # @return [Hash<String => Object>]
       def find!(name)
         find(name) || fail(Vedeu::Error::ModelNotFound,
-                           "Cannot find model by name: '#{name}'".freeze)
+                           "Cannot find model by name: '#{name}'")
       end
 
       # Find a model by name, registers the model by name when not
@@ -107,14 +109,14 @@ module Vedeu
 
         Vedeu.log(type:    :store,
                   message: "Model (#{model}) not found, " \
-                           "registering: '#{name}'".freeze)
+                           "registering: '#{name}'")
 
         model.new(name).store
       end
 
       # @return [String]
       def inspect
-        "<#{self.class.name}>".freeze
+        "<#{self.class.name}>"
       end
 
       # Returns a boolean indicating whether the named model is
@@ -173,8 +175,8 @@ module Vedeu
       def log_store(model)
         type = registered?(model.name) ? :update : :create
 
-        Vedeu.log(type: type,
-                  message: "#{model.class.name}: '#{model.name}'".freeze)
+        Vedeu.log(type:    type,
+                  message: "#{model.class.name}: '#{model.name}'")
       end
 
       #
@@ -183,7 +185,7 @@ module Vedeu
       def valid_model?(model)
         fail Vedeu::Error::MissingRequired,
              "Cannot store model '#{model.class}' without a name " \
-             'attribute.'.freeze unless present?(model.name)
+             'attribute.' unless present?(model.name)
       end
 
     end # Repository

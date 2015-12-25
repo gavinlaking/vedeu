@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Repositories
@@ -37,7 +39,7 @@ module Vedeu
 
           Vedeu.log(type:    :debug,
                     message: "DSL building: '#{model.class.name}' for " \
-                             "'#{model.name}'".freeze)
+                             "'#{model.name}'")
 
           model.deputy.instance_eval(&block) if block_given?
 

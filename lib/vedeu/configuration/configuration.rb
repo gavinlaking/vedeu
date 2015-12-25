@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # Allows the customisation of Vedeu's behaviour through the
@@ -17,9 +19,9 @@ module Vedeu
       # Return the configured background colour for the client
       # application.
       #
-      # @return [Vedeu::Colours::Background]
+      # @return [String|Symbol]
       def background
-        Vedeu::Colours::Background.coerce(instance.options[:background])
+        instance.options[:background]
       end
 
       # Returns the base_path value.
@@ -37,14 +39,7 @@ module Vedeu
       end
       alias_method :compression?, :compression
 
-      # Provides the mechanism to configure Vedeu. If the client
-      # application sets options, override the defaults with those.
-      #
-      # @example
-      #   Vedeu.configure do
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/configure.md}
       # @param opts [Hash<Symbol => void>]
       # @option opts stdin [File|IO]
       # @option opts stdout [File|IO]
@@ -57,22 +52,18 @@ module Vedeu
         instance.configure(opts, &block)
       end
 
-      # Returns the configuration singleton.
-      # Append configuration methods to access the configuration
-      # variable.
-      #
-      # @example
-      #   Vedeu.configuration
-      #
+      # {include:file:docs/dsl/by_method/configuration.md}
       # @return [Vedeu::Configuration]
       def configuration
         instance
       end
 
-      # @return [Vedeu::Colours::Colour]
+      # @return [Hash]
       def colour
-        Vedeu::Colours::Colour.coerce(background: background,
-                                      foreground: foreground)
+        {
+          background: background,
+          foreground: foreground,
+        }
       end
 
       # Returns the chosen colour mode.
@@ -132,9 +123,9 @@ module Vedeu
       # Return the configured foreground colour for the client
       # application.
       #
-      # @return [Vedeu::Colours::Foreground]
+      # @return [String|Symbol]
       def foreground
-        Vedeu::Colours::Foreground.coerce(instance.options[:foreground])
+        instance.options[:foreground]
       end
 
       # Returns the client defined height for the terminal.
@@ -305,8 +296,6 @@ module Vedeu
 
       @options.merge!(Config::API.configure(&block)) if block_given?
 
-      Vedeu::Renderers.renderer(*@options[:renderers])
-
       Vedeu::Configuration
     end
 
@@ -344,7 +333,7 @@ module Vedeu
         mouse:         true,
         once:          false,
         profile:       false,
-        renderers:     [Vedeu::Renderers::Terminal.new],
+        renderers:     [],
         root:          nil,
         stdin:         nil,
         stdout:        nil,
@@ -374,8 +363,6 @@ module Vedeu
     end
 
   end # Configuration
-
-  require 'vedeu/renderers/all'
 
   Vedeu::Configuration.configure({})
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 describe Vedeu do
@@ -42,7 +44,7 @@ describe Vedeu do
   it { Vedeu.must_respond_to(:group) }
   it { Vedeu.must_respond_to(:groups) }
 
-  describe 'Vedeu.height' do
+  describe '.height' do
     before { Vedeu::Terminal.stubs(:size).returns([25, 40]) }
 
     it { Vedeu.must_respond_to(:height) }
@@ -70,8 +72,24 @@ describe Vedeu do
   it { Vedeu.must_respond_to(:render) }
   it { Vedeu.must_respond_to(:render_output) }
   it { Vedeu.must_respond_to(:renders) }
-  it { Vedeu.must_respond_to(:renderer) }
   it { Vedeu.must_respond_to(:renderers) }
+
+  describe '.requires_gem!' do
+    let(:gem_name) { 'vedeu' }
+
+    subject { Vedeu.requires_gem!(gem_name) }
+
+    context 'when the gem is available' do
+      it { subject.must_equal(true) }
+    end
+
+    context 'when the gem is not available' do
+      let(:gem_name) { 'some_unknown_gem' }
+
+      it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
+    end
+  end
+
   it { Vedeu.must_respond_to(:resize) }
   it { Vedeu.must_respond_to(:show_cursor) }
   it { Vedeu.must_respond_to(:show_group) }
@@ -85,7 +103,7 @@ describe Vedeu do
   it { Vedeu.must_respond_to(:unbind_alias) }
   it { Vedeu.must_respond_to(:views) }
 
-  describe 'Vedeu.width' do
+  describe '.width' do
     before { Vedeu::Terminal.stubs(:size).returns([25, 40]) }
 
     it { Vedeu.must_respond_to(:width) }

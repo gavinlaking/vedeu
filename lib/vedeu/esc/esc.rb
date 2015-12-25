@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module EscapeSequences
@@ -37,11 +39,11 @@ module Vedeu
       # @param value [String|Symbol]
       # @return [String]
       def string(value = '')
-        return ''.freeze if value.empty?
+        return '' if value.empty?
 
         send(value)
       rescue NoMethodError
-        ''.freeze
+        ''
       end
 
       # Return the escape sequence to render a border character.
@@ -53,42 +55,42 @@ module Vedeu
       def border(&block)
         return '' unless block_given?
 
-        "#{border_on}#{yield}#{border_off}".freeze
+        "#{border_on}#{yield}#{border_off}"
       end
 
       # @return [String]
       def clear
-        "#{colour_reset}\e[2J".freeze
+        "#{colour_reset}\e[2J"
       end
 
       # @return [String]
       def screen_init
-        "#{reset}#{clear}#{hide_cursor}#{enable_mouse}".freeze
+        "#{reset}#{clear}#{hide_cursor}#{enable_mouse}"
       end
 
       # @return [String]
       def screen_exit
         "#{disable_mouse}#{show_cursor}#{screen_colour_reset}#{reset}" \
-        "#{last_character_position}\n".freeze
+        "#{last_character_position}\n"
       end
 
       # @return [String]
       def clear_line
-        "#{colour_reset}\e[2K".freeze
+        "#{colour_reset}\e[2K"
       end
 
       # @return [String]
       def colour_reset
-        Vedeu::Configuration.colour.to_s
+        Vedeu::Colours::Colour.coerce(Vedeu::Configuration.colour).to_s
       end
 
       # @return [String]
       def disable_mouse
         if truthy?(Vedeu::Configuration.mouse)
-          "#{mouse_x10_off}".freeze
+          "#{mouse_x10_off}"
 
         else
-          ''.freeze
+          ''
 
         end
       end
@@ -96,22 +98,22 @@ module Vedeu
       # @return [String]
       def enable_mouse
         if truthy?(Vedeu::Configuration.mouse)
-          "#{mouse_x10_on}".freeze
+          "#{mouse_x10_on}"
 
         else
-          ''.freeze
+          ''
 
         end
       end
 
       # @return [String]
       def normal
-        "#{underline_off}#{bold_off}#{positive}".freeze
+        "#{underline_off}#{bold_off}#{positive}"
       end
 
       # @return [String]
       def screen_colour_reset
-        "#{fg_reset}#{bg_reset}".freeze
+        "#{fg_reset}#{bg_reset}"
       end
 
       # @return [String]

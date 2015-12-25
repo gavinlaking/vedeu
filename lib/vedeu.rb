@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Ruby standard libraries
 require 'base64'
 require 'date'
@@ -24,6 +26,20 @@ module Vedeu
 
   extend Forwardable
   extend self
+
+  # @param gem_name [String]
+  # @raise [Vedeu::Error::Fatal] When the required gem is not
+  #   available.
+  # @return [Boolean]
+  def requires_gem!(gem_name)
+    require gem_name if Gem::Specification.find_by_name(gem_name)
+
+    true
+
+  rescue Gem::LoadError
+    raise Vedeu::Error::Fatal,
+          "Vedeu requires '#{gem_name}' for this functionality."
+  end
 
 end # Vedeu
 

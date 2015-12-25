@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # This module is the direct interface between Vedeu and your
@@ -13,8 +15,7 @@ module Vedeu
     # {Vedeu::Terminal#restore_screen}.
     #
     # @param block [Proc]
-    # @raise [Vedeu::Error::RequiresBlock] The required block was not
-    #   given.
+    # @macro raise_requires_block
     # @return [Array]
     def open(&block)
       fail Vedeu::Error::RequiresBlock unless block_given?
@@ -37,21 +38,14 @@ module Vedeu
     def output(*streams)
       streams.each do |stream|
         Vedeu.log(type:    :output,
-                  message: "Writing to terminal #{stream.size} bytes".freeze)
+                  message: "Writing to terminal #{stream.size} bytes")
 
         console.print(stream)
       end
     end
     alias_method :write, :output
 
-    # When the terminal emit the 'SIGWINCH' signal, Vedeu can
-    # intercept this and attempt to redraw the current interface with
-    # varying degrees of success. Can also be used to simulate a
-    # terminal resize.
-    #
-    # @example
-    #   Vedeu.resize
-    #
+    # {include:file:docs/dsl/by_method/resize.md}
     # @return [Boolean]
     def resize
       Vedeu.trigger(:_clear_)
@@ -65,15 +59,14 @@ module Vedeu
     # @param mode [Symbol]
     # @return [void]
     def initialize_screen(mode, &block)
-      Vedeu.log(message: "Terminal entering '#{mode}' mode".freeze)
+      Vedeu.log(message: "Terminal entering '#{mode}' mode")
 
       output(Vedeu::EscapeSequences::Esc.screen_init)
 
       yield if block_given?
     end
 
-    # Disables the mouse and shows the cursor. Used by the debugging
-    # snippet in {file:docs/debugging.md}.
+    # Disables the mouse and shows the cursor.
     #
     # @return [String]
     def debugging!
@@ -145,16 +138,7 @@ module Vedeu
     alias_method :tx, :origin
     alias_method :ty, :origin
 
-    # Returns the total width (number of columns/characters) of the
-    # current terminal.
-    #
-    # @example
-    #   Vedeu.width # => provides the width via the Vedeu API.
-    #
-    # @note
-    #   See Vedeu::Terminal#size for more information about the
-    #   reported terminal size.
-    #
+    # {include:file:docs/dsl/by_method/width.md}
     # @return [Fixnum]
     def width
       return Vedeu::Configuration.drb_width if Vedeu::Configuration.drb?
@@ -165,16 +149,7 @@ module Vedeu
     alias_method :xn, :width
     alias_method :txn, :width
 
-    # Returns the total height (number of rows/lines) of the current
-    # terminal.
-    #
-    # @example
-    #   Vedeu.height # => provides the height via the Vedeu API.
-    #
-    # @note
-    #   See Vedeu::Terminal#size for more information about the
-    #   reported terminal size.
-    #
+    # {include:file:docs/dsl/by_method/height.md}
     # @return [Fixnum]
     def height
       return Vedeu::Configuration.drb_height if Vedeu::Configuration.drb?

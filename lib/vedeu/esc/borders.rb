@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module EscapeSequences
@@ -24,82 +26,82 @@ module Vedeu
 
       # @return [String]
       def border_off
-        "\e(B".freeze
+        "\e(B"
       end
 
       # @return [String]
       def border_on
-        "\e(0".freeze
+        "\e(0"
       end
 
       # └ # \u2514
       #
       # @return [String]
       def bottom_left
-        "\x6D".freeze
+        "\x6D"
       end
 
       # ┘ # \u2518
       #
       # @return [String]
       def bottom_right
-        "\x6A".freeze
+        "\x6A"
       end
 
       # ─ # \u2500
       #
       # @return [String]
       def horizontal
-        "\x71".freeze
+        "\x71"
       end
 
       # ┴ # \u2534
       #
       # @return [String]
       def horizontal_bottom
-        "\x76".freeze
+        "\x76"
       end
 
       # ┬ # \u252C
       #
       # @return [String]
       def horizontal_top
-        "\x77".freeze
+        "\x77"
       end
 
       # ┌ # \u250C
       #
       # @return [String]
       def top_left
-        "\x6C".freeze
+        "\x6C"
       end
 
       # ┐ # \u2510
       #
       # @return [String]
       def top_right
-        "\x6B".freeze
+        "\x6B"
       end
 
       # │ # \u2502
       #
       # @return [String]
       def vertical
-        "\x78".freeze
+        "\x78"
       end
 
       # ├ # \u251C
       #
       # @return [String]
       def vertical_left
-        "\x74".freeze
+        "\x74"
       end
 
       # ┤ # \u2524
       #
       # @return [String]
       def vertical_right
-        "\x75".freeze
+        "\x75"
       end
 
     end # Borders

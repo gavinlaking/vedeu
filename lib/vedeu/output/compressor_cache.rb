@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Output
@@ -44,7 +46,7 @@ module Vedeu
       # @return [Hash<Symbol => Array<void>>]
       def in_memory
         {
-          compressed: ''.freeze,
+          compressed: '',
           original:   [],
         }
       end

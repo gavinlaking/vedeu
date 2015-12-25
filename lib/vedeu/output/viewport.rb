@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Output
@@ -53,7 +55,7 @@ module Vedeu
       #
       # @return [String]
       def to_s
-        Array(render).map(&:to_s).join("\n".freeze)
+        Array(render).map(&:to_s).join("\n")
       end
       alias_method :to_str, :to_s
 
@@ -67,7 +69,7 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       def output
-        Vedeu.timer("Rendering content: '#{name}'".freeze) do
+        Vedeu.timer("Rendering content: '#{name}'") do
           out = []
 
           show.each_with_index do |line, iy|

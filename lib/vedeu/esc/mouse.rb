@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module EscapeSequences
@@ -32,22 +34,22 @@ module Vedeu
 
       # @return [String]
       def mouse_x10_on
-        "\e[?9h".freeze
+        "\e[?9h"
       end
 
       # @return [String]
       def mouse_x10_off
-        "\e[?9l".freeze
+        "\e[?9l"
       end
 
       # @return [String]
       def mouse_on
-        "\e[?1000h".freeze
+        "\e[?1000h"
       end
 
       # @return [String]
       def mouse_off
-        "\e[?1000l".freeze
+        "\e[?1000l"
       end
 
     end # Mouse

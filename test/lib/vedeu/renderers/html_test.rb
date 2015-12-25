@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 module Vedeu
@@ -86,7 +88,8 @@ module Vedeu
           "  <body>\n" \
           "    <table>\n" \
           "      <tr>\n" \
-          "<td style='border:1px #ff0000 solid;background:#ff0000;color:#ffffff;'>a</td></tr>\n" \
+          "<td style='border:1px #ff0000 solid;" \
+          "background:#ff0000;color:#ffffff;'>a</td></tr>\n" \
           "    </table>\n" \
           "  </body>\n" \
           "</html>\n"
@@ -95,6 +98,30 @@ module Vedeu
         subject { instance.render(output) }
 
         it { subject.must_be_instance_of(String) }
+        it { subject.must_equal(expected) }
+      end
+
+      describe '#html_body' do
+        let(:output) {
+          Vedeu::Models::Page.coerce([
+            Vedeu::Views::Char.new(value: 'a',
+                                   colour: {
+                                     background: '#ff0000',
+                                     foreground: '#ffffff' }),
+          ])
+        }
+        let(:expected) {
+          "<tr>\n" \
+          "<td style='border:1px #ff0000 solid;" \
+          "background:#ff0000;color:#ffffff;'>a</td></tr>\n" \
+        }
+
+        before do
+          instance.instance_variable_set('@output', output)
+        end
+
+        subject { instance.html_body }
+
         it { subject.must_equal(expected) }
       end
 

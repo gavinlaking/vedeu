@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Views
@@ -29,7 +31,7 @@ module Vedeu
 
       # @return [String]
       def render
-        "#{start_tag}#{tag_style}>#{tag_value}#{end_tag}".freeze
+        "#{start_tag}#{tag_style}>#{tag_value}#{end_tag}"
       end
 
       protected
@@ -44,26 +46,27 @@ module Vedeu
       def tag_style
         return '' unless border || present?(value)
 
-        out = " style='"
-        out << tag_style_background unless char.background.empty?
-        out << tag_style_foreground unless char.foreground.empty?
-        out << "'".freeze
+        " style='#{tag_style_background}#{tag_style_foreground}'"
       end
 
       # @return [String]
       def tag_style_background
+        return '' if char.background.empty?
+
         "border:1px #{char.background.to_html} solid;" \
-          "background:#{char.background.to_html};".freeze
+          "background:#{char.background.to_html};"
       end
 
       # @return [String]
       def tag_style_foreground
-        "color:#{char.foreground.to_html};#{border_style}".freeze
+        return '' if char.foreground.empty?
+
+        "color:#{char.foreground.to_html};#{border_style}"
       end
 
       # @return [String]
       def tag_value
-        return '&nbsp;'.freeze if border || !present?(value)
+        return '&nbsp;' if border || !present?(value)
 
         value
       end
@@ -75,10 +78,10 @@ module Vedeu
         when :left_vertical     then css(:left)
         when :right_vertical    then css(:right)
         when :bottom_horizontal then css(:bottom)
-        when :top_left     then "#{css(:top)}#{css(:left)}".freeze
-        when :top_right    then "#{css(:top)}#{css(:right)}".freeze
-        when :bottom_left  then "#{css(:bottom)}#{css(:left)}".freeze
-        when :bottom_right then "#{css(:bottom)}#{css(:right)}".freeze
+        when :top_left     then "#{css(:top)}#{css(:left)}"
+        when :top_right    then "#{css(:top)}#{css(:right)}"
+        when :bottom_left  then "#{css(:bottom)}#{css(:left)}"
+        when :bottom_right then "#{css(:bottom)}#{css(:right)}"
         else
           ''
         end
@@ -87,7 +90,7 @@ module Vedeu
       # @param direction [Symbol]
       # @return [String]
       def css(direction)
-        "border-#{direction}:1px #{char.foreground.to_html} solid;".freeze
+        "border-#{direction}:1px #{char.foreground.to_html} solid;"
       end
 
       # @return [Symbol|NilClass]
@@ -118,8 +121,8 @@ module Vedeu
       # @return [Hash<Symbol => String>]
       def defaults
         {
-          start_tag: '<td'.freeze,
-          end_tag:   '</td>'.freeze,
+          start_tag: '<td',
+          end_tag:   '</td>',
         }
       end
 

@@ -129,10 +129,6 @@ See {file:docs/events.md}
   - items
   - name
 
-## Renderers
-
-### Vedeu.renderer
-
 
 # API Methods
 
@@ -487,10 +483,6 @@ You can also access the input given using the API methods:
 @todo Add more documentation.
 
 ### Vedeu.render_output
-
-@todo Add more documentation.
-
-### Vedeu.renderer
 
 @todo Add more documentation.
 

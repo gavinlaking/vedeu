@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Models
@@ -33,7 +35,7 @@ module Vedeu
         else
           fail Vedeu::Error::InvalidSyntax,
                'Cannot coerce as value is not an Array, Vedeu::Models::Page ' \
-               "or Vedeu::Models::Row. Is a '#{value.class.name}'.".freeze
+               "or Vedeu::Models::Row. Is a '#{value.class.name}'."
 
         end
       end

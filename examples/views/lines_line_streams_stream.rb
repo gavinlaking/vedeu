@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# frozen_string_literal: true
+
 require 'bundler/setup'
 require 'vedeu'
 
@@ -38,35 +40,28 @@ class DSLApp
     end
   end
 
-  Vedeu.keymap '_global_' do
-    key('q') { Vedeu.exit }
-  end
-
-  # vedeu/dsl/stream.rb:16:in `stream': wrong number of arguments (1 for 0)
   Vedeu.render do
-    # view(:test1_interface) do
-    #   lines do
-    #     line do
-    #       streams do
-    #         stream 'test 1'
-    #       end
-    #     end
-    #   end
-    # end
+    view(:test1_interface) do
+      lines do
+        line do
+          streams do
+            stream 'test 1', { foreground: '#00ff00' }
+          end
+        end
+      end
+    end
 
     view(:test2_interface) do
       lines do
         line do
           streams do
             stream do
-              text 'v->ls->l->ss->s 1->text 1'
-              # below does not render
-              text 'v->ls->l->ss->s 1->text 2'
+              text 'text 1', { foreground: '#00ffff' }
+              text 'text 2', { foreground: '#ffff00' }
             end
-            # below does not render
             stream do
-              text 'v->ls->l->ss->s 2->text 1'
-              text 'v->ls->l->ss->s 2->text 2'
+              text 'text 3', { foreground: '#ff0000' }
+              text 'text 4', { foreground: '#ff00ff' }
             end
           end
         end
@@ -78,6 +73,6 @@ class DSLApp
     Vedeu::Launcher.execute!(argv)
   end
 
-end # EditorApp
+end # DSLApp
 
 DSLApp.start

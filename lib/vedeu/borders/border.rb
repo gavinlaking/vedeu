@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Borders
@@ -296,13 +298,13 @@ module Vedeu
           bottom_horizontal: nil,
           bottom_left:       nil,
           bottom_right:      nil,
-          caption:           ''.freeze,
+          caption:           '',
           client:            nil,
           colour:            nil,
           enabled:           false,
           horizontal:        Vedeu::EscapeSequences::Borders.horizontal,
           left_vertical:     nil,
-          name:              ''.freeze,
+          name:              '',
           parent:            nil,
           repository:        Vedeu.borders,
           right_vertical:    nil,
@@ -311,7 +313,7 @@ module Vedeu
           show_right:        true,
           show_top:          true,
           style:             nil,
-          title:             ''.freeze,
+          title:             '',
           top_horizontal:    nil,
           top_left:          nil,
           top_right:         nil,

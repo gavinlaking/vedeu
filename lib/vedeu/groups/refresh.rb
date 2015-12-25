@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Groups
@@ -35,7 +37,7 @@ module Vedeu
 
       # @return [void]
       def by_name
-        Vedeu.timer("Refresh Group: '#{group_name}'".freeze) do
+        Vedeu.timer("Refresh Group: '#{group_name}'") do
           Vedeu.groups.by_name(group_name).by_zindex.each do |name|
             Vedeu.trigger(:_refresh_view_, name)
           end
@@ -58,7 +60,7 @@ module Vedeu
         return group_from_interface if present?(group_from_interface)
 
         fail Vedeu::Error::MissingRequired,
-             'Cannot refresh group with an empty group name.'.freeze
+             'Cannot refresh group with an empty group name.'
       end
 
       # @return [String|Symbol]

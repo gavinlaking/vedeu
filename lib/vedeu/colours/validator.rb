@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Colours
@@ -44,7 +46,7 @@ module Vedeu
       #
       # @return [Boolean]
       def rgb?
-        return true if value =~ /^#([A-Fa-f0-9]{6})$/.freeze
+        return true if value =~ /^#([A-Fa-f0-9]{6})$/
 
         false
       end

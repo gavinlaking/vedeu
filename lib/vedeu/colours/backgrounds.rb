@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Colours
@@ -6,11 +8,7 @@ module Vedeu
     #
     class Backgrounds < Vedeu::Colours::Repository
 
-      # Manipulate the repository of background colours.
-      #
-      # @example
-      #   Vedeu.background_colours
-      #
+      # {include:file:docs/dsl/by_method/background_colours.md}
       # @return [Vedeu::Colours::Backgrounds]
       # @see Vedeu::Repositories::Repository
       def self.background_colours

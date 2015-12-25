@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Buffers
@@ -176,7 +178,7 @@ module Vedeu
         {
           back:       nil,
           front:      nil,
-          name:       ''.freeze,
+          name:       '',
           previous:   nil,
           repository: Vedeu.buffers,
         }
@@ -192,7 +194,7 @@ module Vedeu
       #
       # @return [Boolean]
       def swap
-        Vedeu.log(type: :buffer, message: "Buffer swapping: '#{name}'".freeze)
+        Vedeu.log(type: :buffer, message: "Buffer swapping: '#{name}'")
 
         @previous = front
         @front    = back

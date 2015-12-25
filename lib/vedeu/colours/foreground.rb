@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Colours
@@ -19,7 +21,7 @@ module Vedeu
 
       # @return [String]
       def prefix
-        "\e[38;".freeze
+        "\e[38;"
       end
 
       # Returns an escape sequence for a named colour.

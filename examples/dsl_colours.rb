@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# frozen_string_literal: true
+
 require 'bundler/setup'
 require 'vedeu'
 
@@ -10,7 +12,8 @@ class ColoursApp
   Vedeu.configure do
     debug!
     log '/tmp/colours.log'
-    renderers Vedeu::Renderers::File.new(filename: '/tmp/colours.out')
+    renderers(Vedeu::Renderers::Terminal.new,
+              Vedeu::Renderers::File.new(filename: '/tmp/colours.out'))
   end
 
   Vedeu.interface :interface_colours_view do
@@ -35,34 +38,34 @@ class ColoursApp
       # line "test" - does not work, (wrong number of args for lines dsl/view.rb:240)
 
       lines do
-        line "A line using interface colours.".freeze
+        line "A line using interface colours."
         line ""
         line do
           stream do
-            text "Stream { ".freeze
-            text "background".freeze, background: '#001177'
-            text " }".freeze
+            text "Stream { "
+            text "background", background: '#001177'
+            text " }"
           end
         end
         line do
           stream do
-            text "Stream { ".freeze
-            text "foreground".freeze, foreground: '#aa00ff'
-            text " }".freeze
+            text "Stream { "
+            text "foreground", foreground: '#aa00ff'
+            text " }"
           end
         end
         line do
           stream do
-            text "Stream { ".freeze
-            text "background".freeze, background: '#117700'
-            text " }".freeze
+            text "Stream { "
+            text "background", background: '#117700'
+            text " }"
           end
         end
         line do
           stream do
-            text "Stream { ".freeze
-            text "foreground".freeze, foreground: '#00aaff'
-            text " }".freeze
+            text "Stream { "
+            text "foreground", foreground: '#00aaff'
+            text " }"
           end
         end
       end

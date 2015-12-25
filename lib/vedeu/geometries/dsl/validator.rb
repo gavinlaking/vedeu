@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Geometries
@@ -15,7 +17,7 @@ module Vedeu
       # @return [Boolean]
       def validate_height!(value)
         fail Vedeu::Error::InvalidSyntax,
-             'No height given.'.freeze if absent?(value)
+             'No height given.' if absent?(value)
 
         true
       end
@@ -27,7 +29,7 @@ module Vedeu
       def validate_horizontal_alignment!(value)
         fail Vedeu::Error::InvalidSyntax,
              'No horizontal alignment given. Valid values are :center, ' \
-             ':centre, :left, :none, :right.'.freeze unless present?(value)
+             ':centre, :left, :none, :right.' unless present?(value)
 
         true
       end
@@ -38,7 +40,7 @@ module Vedeu
       def validate_vertical_alignment!(value)
         fail Vedeu::Error::InvalidSyntax,
              'No vertical alignment given. Valid values are :bottom, ' \
-             ':middle, :none, :top.'.freeze unless present?(value)
+             ':middle, :none, :top.' unless present?(value)
 
         true
       end
@@ -48,7 +50,7 @@ module Vedeu
       # @return [Boolean]
       def validate_width!(value)
         fail Vedeu::Error::InvalidSyntax,
-             'No width given.'.freeze if absent?(value)
+             'No width given.' if absent?(value)
 
         true
       end

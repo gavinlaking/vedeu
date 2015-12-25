@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Config
@@ -584,8 +586,8 @@ module Vedeu
       # @param attrs [Hash<Symbol => String>]
       # @return [Hash<Symbol => void>]
       def colour(attrs = {})
-        options[:background] = attrs[:background]
-        options[:foreground] = attrs[:foreground]
+        options[:background] = attrs[:background] if attrs.key?(:background)
+        options[:foreground] = attrs[:foreground] if attrs.key?(:foreground)
         options
       end
 
@@ -610,22 +612,10 @@ module Vedeu
 
       private
 
-      # @param attrs [Hash<Symbol => Vedeu::Colours::Background,
-      #   Vedeu::Colours::Foreground>]
-      # @option attrs background [Vedeu::Colours::Background]
-      # @option attrs foreground [Vedeu::Colours::Foreground]
-      # @return [Hash<Symbol => Symbol>]
-      def colour_attributes(attrs = {})
-        {
-          background: Vedeu::Configuration.background,
-          foreground: Vedeu::Configuration.foreground,
-        }.merge!(attrs)
-      end
-
       # @raise [Vedeu::Error::InvalidSyntax]
       def invalid_mode!
         fail Vedeu::Error::InvalidSyntax,
-             'Terminal mode can be set to either :cooked, :fake or :raw'.freeze
+             'Terminal mode can be set to either :cooked, :fake or :raw'
       end
 
       # Returns the options set via the configuration API DSL or an

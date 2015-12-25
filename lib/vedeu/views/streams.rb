@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Views
@@ -43,7 +45,7 @@ module Vedeu
         else
           fail Vedeu::Error::InvalidSyntax,
                'Cannot coerce for Vedeu::View::Streams, as collection ' \
-               'unrecognised.'.freeze
+               'unrecognised.'
 
         end
       end

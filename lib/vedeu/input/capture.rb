@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   ESCAPE_KEY_CODE = 27 # \e
@@ -46,7 +48,7 @@ module Vedeu
       #
       # @return [Array|String|Symbol]
       def read
-        Vedeu.log(type: :input, message: 'Waiting for user input...'.freeze)
+        Vedeu.log(type: :input, message: 'Waiting for user input...')
 
         if raw_mode?
           Vedeu.trigger(:_keypress_, keypress)
@@ -115,7 +117,7 @@ module Vedeu
       def click?(keys)
         return false if keys.nil? || keys.is_a?(Symbol)
 
-        keys.is_a?(Vedeu::Cursors::Cursor) || keys.start_with?("\e[M".freeze)
+        keys.is_a?(Vedeu::Cursors::Cursor) || keys.start_with?("\e[M")
       end
 
       # @return [IO]

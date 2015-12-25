@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # Provides a mechanism to control a running client application via
@@ -40,7 +42,7 @@ module Vedeu
 
       rescue DRb::DRbBadURI
         Vedeu.log_stdout(message: 'Could not connect to DRb server, URI may ' \
-                                  'be bad.'.freeze)
+                                  'be bad.')
 
         :drb_bad_uri
       end
@@ -85,7 +87,7 @@ module Vedeu
         drb_connection_error
 
       rescue Interrupt
-        Vedeu.log_stdout(message: 'Client application exited.'.freeze)
+        Vedeu.log_stdout(message: 'Client application exited.')
 
       ensure
         :shutdown
@@ -106,7 +108,7 @@ module Vedeu
 
       # @return [Symbol]
       def drb_connection_error
-        Vedeu.log_stdout(message: 'Could not connect to DRb server.'.freeze)
+        Vedeu.log_stdout(message: 'Could not connect to DRb server.')
 
         :drb_connection_error
       end

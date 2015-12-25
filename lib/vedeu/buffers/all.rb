@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # The Buffer object represents the states of display for an

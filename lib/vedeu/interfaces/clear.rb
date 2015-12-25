@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Interfaces
@@ -83,7 +85,7 @@ module Vedeu
 
       # @return [String] A string of blank characters.
       def chars
-        @chars ||= (' ' * width).freeze
+        @chars ||= (' ' * width)
       end
 
       # @return [Vedeu::Colours::Colour]
@@ -139,7 +141,7 @@ module Vedeu
 
       # @return [String]
       def optimised_output
-        Vedeu.timer("Optimised clearing #{clearing}: '#{name}'".freeze) do
+        Vedeu.timer("Optimised clearing #{clearing}: '#{name}'") do
           height.times.map do |iy|
             [
               build_position(y + iy, x),
@@ -157,7 +159,7 @@ module Vedeu
       #
       # @return [Array<Array<Vedeu::Views::Char>>]
       def output
-        Vedeu.timer("Clearing #{clearing}: '#{name}'".freeze) do
+        Vedeu.timer("Clearing #{clearing}: '#{name}'") do
           @clear ||= Array.new(height) do |iy|
             Array.new(width) do |ix|
               Vedeu::Cells::Clear.new(colour:   colour,
@@ -171,10 +173,10 @@ module Vedeu
       # @return [String]
       def clearing
         @clearing ||= if content_only?
-                        'content'.freeze
+                        'content'
 
                       else
-                        'interface'.freeze
+                        'interface'
 
                       end
       end

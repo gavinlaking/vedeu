@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # A class responsible for plugin loading.
@@ -29,7 +31,7 @@ module Vedeu
     def initialize(name, gem)
       @name     = name
       @gem      = gem
-      @gem_name = "vedeu_#{name}".freeze
+      @gem_name = "vedeu_#{name}"
       @enabled  = false
     end
 
@@ -41,10 +43,10 @@ module Vedeu
         require gem_name unless enabled?
       rescue LoadError => error
         raise Vedeu::Error::Fatal,
-              "Unable to load plugin #{gem_name} due to #{error}.".freeze
+              "Unable to load plugin #{gem_name} due to #{error}."
       rescue => error
         raise Vedeu::Error::Fatal,
-              "require '#{gem_name}' failed with #{error}.".freeze
+              "require '#{gem_name}' failed with #{error}."
       end
 
       @enabled = true

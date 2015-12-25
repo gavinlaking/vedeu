@@ -18,7 +18,7 @@ class VedeuMaterialColoursApp
   # performance.
   Vedeu.configure do
     # background '#607d8b'
-    # colour background: '#607d8b', foreground: '#ffff00'
+    colour background: '#607d8b', foreground: '#ffff00'
     debug!
     # foreground '#ffff00'
     # profile!
@@ -51,6 +51,12 @@ class VedeuMaterialColoursApp
     foreground  '#ffffff'
     show_top false
   end
+
+  # 0      1         2
+  # ----------------------
+  # 3456789012345678901234
+  # ----------------------
+  # 0         1         2
 
   Vedeu.interface 'main_interface' do
     border 'main_interface' do
@@ -485,33 +491,39 @@ class VedeuMaterialColoursApp
       end
       lines do
         line 'default'
+        line '4, 10'
       end
     end
     view('border_off') do
       lines do
         line 'border'
         line 'off'
+        line '4, 10'
       end
     end
     view('no_top') do
       lines do
         line 'no top'
+        line '4, 10'
       end
     end
     view('no_bottom') do
       lines do
         line 'no'
         line 'bottom'
+        line '4, 10'
       end
     end
     view('no_left') do
       lines do
         line 'no left'
+        line '4, 10'
       end
     end
     view('no_right') do
       lines do
         line 'no right'
+        line '4, 10'
       end
     end
     view('custom_corners') do
@@ -545,24 +557,28 @@ class VedeuMaterialColoursApp
       lines do
         line 'only'
         line 'top'
+        line '4, 10'
       end
     end
     view('only_bottom') do
       lines do
         line 'only'
         line 'bottom'
+        line '4, 10'
       end
     end
     view('only_left') do
       lines do
         line 'only'
         line 'left'
+        line '4, 10'
       end
     end
     view('only_right') do
       lines do
         line 'only'
         line 'right'
+        line '4, 10'
       end
     end
     view('custom_colour') do

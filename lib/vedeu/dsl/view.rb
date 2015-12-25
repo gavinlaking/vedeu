@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module DSL
@@ -61,7 +63,7 @@ module Vedeu
       #     # ...
       #   end
       #
-      # @raise [Vedeu::Error::RequiresBlock]
+      # @macro raise_requires_block
       # @return [Vedeu::Views::Views<Vedeu::Views::View>]
       def view(name = '', &block)
         fail Vedeu::Error::RequiresBlock unless block_given?
@@ -95,9 +97,9 @@ module Vedeu
       def template_for(name, filename, object = nil, options = {})
         fail Vedeu::Error::MissingRequired,
              'Cannot render template without the name of the ' \
-             'view.'.freeze unless name
+             'view.' unless name
         fail Vedeu::Error::MissingRequired,
-             'Cannot render template without a filename.'.freeze unless filename
+             'Cannot render template without a filename.' unless filename
 
         options.merge!(name: name)
 

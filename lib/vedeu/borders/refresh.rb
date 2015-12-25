@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Borders
@@ -101,7 +103,7 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       def output
-        Vedeu.timer("Drawing border: '#{name}'".freeze) do
+        Vedeu.timer("Drawing border: '#{name}'") do
           [
             (top if top?),
             (left if left?),

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Geometries
@@ -46,38 +48,36 @@ module Vedeu
       # @option attributes maximised [Boolean]
       # @option attributes name [String|Symbol]
       # @option attributes vertical_alignment [Symbol]
-      # @option attributes x [Fixnum]
-      # @option attributes xn [Fixnum]
-      # @option attributes x_xn [Fixnum]
-      # @option attributes x_default [Fixnum]
-      # @option attributes y [Fixnum]
-      # @option attributes yn [Fixnum]
-      # @option attributes y_yn [Fixnum]
-      # @option attributes y_default [Fixnum]
+      # @option attributes x [Fixnum] The starting x coordinate.
+      # @option attributes xn [Fixnum] The ending x coordinate.
+      # @option attributes width [Fixnum]
+      # @option attributes y [Fixnum] The starting y coordinate.
+      # @option attributes yn [Fixnum] The ending y coordinate.
+      # @option attributes height [Fixnum]
       # @return [Vedeu::Geometries::Area]
       def self.from_attributes(attributes = {})
         y_attributes = {
           alignment: attributes[:vertical_alignment],
           d:         attributes[:y],
           dn:        attributes[:yn],
-          d_dn:      attributes[:y_yn],
+          d_dn:      attributes[:height],
           maximised: attributes[:maximised],
         }
         x_attributes = {
           alignment: attributes[:horizontal_alignment],
           d:         attributes[:x],
           dn:        attributes[:xn],
-          d_dn:      attributes[:x_xn],
+          d_dn:      attributes[:width],
           maximised: attributes[:maximised],
         }
-        y_yn = Vedeu::Geometries::YDimension.pair(y_attributes)
-        x_xn = Vedeu::Geometries::XDimension.pair(x_attributes)
+        height = Vedeu::Geometries::YDimension.pair(y_attributes)
+        width  = Vedeu::Geometries::XDimension.pair(x_attributes)
 
         new(name: attributes[:name],
-            y:    y_yn[0],
-            yn:   y_yn[-1],
-            x:    x_xn[0],
-            xn:   x_xn[-1])
+            y:    height[0],
+            yn:   height[-1],
+            x:    width[0],
+            xn:   width[-1])
       end
 
       # Returns a new instance of Vedeu::Area.
@@ -111,7 +111,18 @@ module Vedeu
       #
       # @return [Fixnum]
       def bordered_width
-        (bxn - bx) + 1
+        return width unless border && enabled?
+
+        if left? && right?
+          width - 2
+
+        elsif left? || right?
+          width - 1
+
+        else
+          width
+
+        end
       end
 
       # Returns the height of the interface determined by whether a
@@ -119,7 +130,18 @@ module Vedeu
       #
       # @return [Fixnum]
       def bordered_height
-        (byn - by) + 1
+        return height unless border && enabled?
+
+        if top? && bottom?
+          height - 2
+
+        elsif top? || bottom?
+          height - 1
+
+        else
+          height
+
+        end
       end
 
       # Return the column position for 1 character right of the left
@@ -183,6 +205,9 @@ module Vedeu
       # @return [Fixnum]
       def height
         (yn - y) + 1
+
+        # (yn - y) + 2
+        # (y..yn).size# + 1
       end
 
       # Returns the width of the interface.
@@ -190,6 +215,9 @@ module Vedeu
       # @return [Fixnum]
       def width
         (xn - x) + 1
+
+        # (xn - x) + 2
+        # (x..xn).size# + 1
       end
 
       # Returns the row above the top by default.

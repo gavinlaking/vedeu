@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Cursors
@@ -55,7 +57,7 @@ module Vedeu
 
         Vedeu.log(type:    :cursor,
                   message: "Refreshing cursor: '#{name}' (x:#{x}, y:#{y}, " \
-                           "ox:#{ox}, oy:#{oy}, visible:#{visible})".freeze)
+                           "ox:#{ox}, oy:#{oy}, visible:#{visible})")
 
         render
       end
