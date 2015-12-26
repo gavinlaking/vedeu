@@ -100,9 +100,7 @@ module Vedeu
 
       # @return [String]
       def to_s
-        @_to_s ||= super +
-                   Vedeu::EscapeSequences::Esc.reset +
-                   position(position_end)
+        @_to_s ||= super + Vedeu.esc.reset + position(position_end)
       end
       alias_method :to_str, :to_s
 

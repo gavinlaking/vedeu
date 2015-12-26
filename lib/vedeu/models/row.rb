@@ -81,7 +81,7 @@ module Vedeu
       #
       # @return [Vedeu::Views::Char]
       def reset_character
-        Vedeu::Views::Char.new(value: Vedeu::EscapeSequences::Esc.reset)
+        Vedeu::Views::Char.new(value: Vedeu.esc.reset)
       end
 
       # @return [Fixnum]

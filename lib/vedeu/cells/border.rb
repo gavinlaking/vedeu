@@ -46,7 +46,7 @@ module Vedeu
       def value
         return '' unless present?(@value)
 
-        Vedeu::EscapeSequences::Esc.border { @value }
+        Vedeu.esc.border { @value }
       end
 
       private

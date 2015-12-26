@@ -82,9 +82,7 @@ module Vedeu
       def to_s
         return '' unless present?(value)
 
-        @sequences ||= Array(value).flat_map do |v|
-          Vedeu::EscapeSequences::Esc.string(v)
-        end.join
+        @sequences ||= Array(value).flat_map { |v| Vedeu.esc.string(v) }.join
       end
       alias_method :escape_sequences, :to_s
       alias_method :to_str, :to_s

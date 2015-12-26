@@ -305,9 +305,9 @@ module Vedeu
       #
       # @return [String]
       def visibility
-        return Vedeu::EscapeSequences::Esc.show_cursor if visible?
+        return Vedeu.esc.show_cursor if visible?
 
-        Vedeu::EscapeSequences::Esc.hide_cursor
+        Vedeu.esc.hide_cursor
       end
 
     end # Cursor

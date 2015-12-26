@@ -102,7 +102,7 @@ module Vedeu
       def value
         return @value unless border
 
-        Vedeu::EscapeSequences::Esc.border { @value }
+        Vedeu.esc.border { @value }
       end
 
       # @return [String]

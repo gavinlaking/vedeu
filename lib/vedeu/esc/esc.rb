@@ -18,6 +18,11 @@ module Vedeu
       include Vedeu::EscapeSequences::Mouse
       extend self
 
+      # @return [Vedeu::EscapeSequences::Esc]
+      def esc
+        self
+      end
+
       # Return the stream with the escape sequences escaped so that
       # they can be printed to the terminal instead of being
       # interpreted by the terminal which will render them. This way
@@ -102,5 +107,8 @@ module Vedeu
     end # Esc
 
   end # EscapeSequences
+
+  def_delegators Vedeu::EscapeSequences::Esc.esc,
+                 :esc
 
 end # Vedeu

@@ -131,10 +131,7 @@ module Vedeu
 
       describe '#hide' do
         let(:visible) { true }
-        let(:escape)  {
-          Vedeu::Cells::Escape.
-            new(value: Vedeu::EscapeSequences::Esc.hide_cursor)
-        }
+        let(:escape)  { Vedeu::Cells::Escape.new(value: Vedeu.esc.hide_cursor) }
 
         before do
           Vedeu::Cells::Escape.stubs(:new).returns(escape)
@@ -274,7 +271,7 @@ module Vedeu
         let(:visible) { false }
         let(:escape)  {
           Vedeu::Cells::Escape.
-            new(value: Vedeu::EscapeSequences::Esc.show_cursor)
+            new(value: Vedeu.esc.show_cursor)
         }
 
         before do

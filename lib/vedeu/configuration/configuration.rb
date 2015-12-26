@@ -16,6 +16,8 @@ module Vedeu
 
     class << self
 
+      include Vedeu::Common
+
       # Return the configured background colour for the client
       # application.
       #
@@ -154,11 +156,11 @@ module Vedeu
       end
 
       # Returns a boolean indicating whether the log has been
-      # configured.
+      # configured; if {#log} contains a path, then this will be true.
       #
       # @return [Boolean]
       def log?
-        log != nil
+        present?(log)
       end
 
       # @return [Array<Symbol>]
@@ -178,8 +180,7 @@ module Vedeu
       # @param type [Symbol]
       # @return [Boolean]
       def loggable?(type)
-        Vedeu::Configuration.log_only.include?(type) ||
-        !Vedeu::Configuration.log_except.include?(type)
+        log_only.include?(type) || !log_except.include?(type)
       end
 
       # Returns whether mouse support was enabled or disabled.

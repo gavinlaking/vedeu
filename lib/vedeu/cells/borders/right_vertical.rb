@@ -20,7 +20,7 @@ module Vedeu
 
       # @return [Hash<Symbol => String>]
       def defaults
-        super.merge!(value: Vedeu::EscapeSequences::Borders.vertical)
+        super.merge!(value: Vedeu.esc.vertical)
       end
 
     end # RightVertical
