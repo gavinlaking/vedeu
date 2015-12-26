@@ -14,6 +14,7 @@ class DSLApp
     standalone!
     renderers(Vedeu::Renderers::Terminal.new,
               Vedeu::Renderers::File.new(filename: '/tmp/misc_view.out'))
+    height 40
   end
 
   Vedeu.border 'no_bottom' do
@@ -37,6 +38,25 @@ class DSLApp
     show_top false
   end
 
+  Vedeu.interface 'horiz_ruler' do
+    foreground '#ffffff'
+    geometry do
+      x 1
+      width 80
+      y 1
+      height 1
+    end
+  end
+  Vedeu.interface 'vert_ruler' do
+    foreground '#ffffff'
+    geometry do
+      x 1
+      width 1
+      y 2
+      height 48
+    end
+  end
+
   Vedeu.interface 'main_interface' do
     border 'main_interface' do
       colour foreground: '#ffffff', background: :default
@@ -48,8 +68,8 @@ class DSLApp
     geometry 'main_interface' do
       x  3
       xn 24
-      y  2
-      yn 13
+      y  4
+      yn 15
     end
     group :my_group
     zindex 2
@@ -71,8 +91,8 @@ class DSLApp
     geometry do
       x(27)
       xn(47)
-      y(3)
-      yn(13)
+      y(5)
+      yn(15)
     end
     zindex(1)
   end
@@ -80,7 +100,7 @@ class DSLApp
   Vedeu.interface 'default_border' do
     geometry do
       x      50
-      y      2
+      y      4
       height 4
       width  10
     end
@@ -90,7 +110,7 @@ class DSLApp
   Vedeu.interface 'border_off' do
     geometry do
       x      62
-      y      2
+      y      4
       height 4
       width  10
     end
@@ -100,7 +120,7 @@ class DSLApp
   Vedeu.interface 'no_top' do
     geometry do
       x      50
-      y      7
+      y      9
       height 4
       width  10
     end
@@ -110,7 +130,7 @@ class DSLApp
   Vedeu.interface 'no_bottom' do
     geometry do
       x      62
-      y      7
+      y      9
       height 4
       width  10
     end
@@ -120,7 +140,7 @@ class DSLApp
   Vedeu.interface 'no_left' do
     geometry do
       x      50
-      y      12
+      y      14
       height 4
       width  10
     end
@@ -130,7 +150,7 @@ class DSLApp
   Vedeu.interface 'no_right' do
     geometry do
       x      62
-      y      12
+      y      14
       height 4
       width  10
     end
@@ -139,7 +159,7 @@ class DSLApp
 
   Vedeu.interface 'custom_corners' do
     geometry do
-      x      50
+      x      3
       y      17
       height 4
       width  10
@@ -149,7 +169,7 @@ class DSLApp
 
   Vedeu.interface 'custom_sides' do
     geometry do
-      x      62
+      x      15
       y      17
       height 4
       width  10
@@ -166,8 +186,8 @@ class DSLApp
       show_left   false
     end
     geometry do
-      x      50
-      y      22
+      x      27
+      y      17
       height 4
       width  10
     end
@@ -176,14 +196,15 @@ class DSLApp
   Vedeu.interface 'only_bottom' do
     colour  foreground: '#000000', background: '#8bc34a'
     border do
+      background  '#00ff00'
       foreground  '#000000'
       show_top   false
       show_right false
       show_left  false
     end
     geometry do
-      x      62
-      y      22
+      x      39
+      y      17
       height 4
       width  10
     end
@@ -192,14 +213,15 @@ class DSLApp
   Vedeu.interface 'only_left' do
     colour  foreground: '#000000', background: '#cddc39'
     border do
+      background  '#cd39cd'
       foreground  '#000000'
       show_top    false
       show_bottom false
       show_right  false
     end
     geometry do
-      x      50
-      y      27
+      x      3
+      y      23
       height 4
       width  10
     end
@@ -208,14 +230,15 @@ class DSLApp
   Vedeu.interface 'only_right' do
     colour  foreground: '#000000', background: '#ffeb3b'
     border do
+      background  '#cd39cd'
       foreground  '#000000'
       show_top    false
       show_bottom false
       show_left   false
     end
     geometry do
-      x      62
-      y      27
+      x      27
+      y      23
       height 4
       width  10
     end
@@ -223,8 +246,8 @@ class DSLApp
 
   Vedeu.interface 'custom_colour' do
     geometry do
-      x      50
-      y      32
+      x      15
+      y      23
       height 4
       width  10
     end
@@ -234,7 +257,7 @@ class DSLApp
   Vedeu.interface 'negative' do
     geometry do
       x      62
-      y      32
+      y      23
       height 4
       width  10
     end
@@ -243,6 +266,33 @@ class DSLApp
   end
 
   Vedeu.renders do
+    view 'horiz_ruler' do
+      background '#0046a3'
+      line do
+        stream '1--------1'
+        stream '---------2'
+        stream '---------3'
+        stream '---------4'
+        stream '---------5'
+        stream '---------6'
+        stream '---------7'
+        stream '---------8'
+        stream '---------9'
+      end
+    end
+    view 'vert_ruler' do
+      background '#0046a3'
+      line '-'; line '-'; line '-'; line '-';
+      line '-'; line '-'; line '-'; line '-'; line '1';
+      line '-'; line '-'; line '-'; line '-'; line '-';
+      line '-'; line '-'; line '-'; line '-'; line '2';
+      line '-'; line '-'; line '-'; line '-'; line '-';
+      line '-'; line '-'; line '-'; line '-'; line '3';
+      line '-'; line '-'; line '-'; line '-'; line '-';
+      line '-'; line '-'; line '-'; line '-'; line '4';
+      line '-'; line '-'; line '-'; line '-'; line '-';
+    end
+
     view 'main_interface' do
       line { left   'Left',        background: '#f44336' }
       line { centre 'Centre',      background: '#e91e63' }
