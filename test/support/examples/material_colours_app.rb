@@ -49,12 +49,6 @@ class VedeuMaterialColoursApp
     show_top false
   end
 
-  # 0      1         2
-  # ----------------------
-  # 3456789012345678901234
-  # ----------------------
-  # 0         1         2
-
   Vedeu.interface 'main_interface' do
     border 'main_interface' do
       colour foreground: '#ffffff', background: :default
