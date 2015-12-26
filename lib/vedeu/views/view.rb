@@ -141,7 +141,7 @@ module Vedeu
       def defaults
         {
           client:         nil,
-          colour:         Vedeu::Configuration.colour,
+          colour:         Vedeu.config.colour,
           cursor_visible: true,
           name:           nil,
           parent:         nil,

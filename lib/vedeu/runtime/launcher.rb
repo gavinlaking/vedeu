@@ -62,16 +62,14 @@ module Vedeu
       $stdout = @stdout
       $stderr = @stderr
 
-      optionally_profile do
-        Vedeu::Runtime::Application.start(Vedeu::Configuration)
-      end
+      optionally_profile { Vedeu::Runtime::Application.start }
 
       @exit_code = 0
 
       terminate!
 
     rescue StandardError => uncaught_exception
-      output = if Vedeu::Configuration.debug?
+      output = if Vedeu.config.debug?
                  uncaught_exception.message + "\n" +
                  uncaught_exception.backtrace.join("\n")
                else
@@ -93,7 +91,7 @@ module Vedeu
     # @param block [Proc]
     # @return [void]
     def optionally_profile(&block)
-      if Vedeu::Configuration.profile?
+      if Vedeu.config.profile?
         Vedeu.profile { yield }
 
       else

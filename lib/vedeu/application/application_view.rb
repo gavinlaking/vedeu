@@ -52,7 +52,7 @@ module Vedeu
     # @param value [String]
     # @return [String]
     def template(value)
-      @template = Vedeu::Configuration.base_path +
+      @template = Vedeu.config.base_path +
                   "/app/views/templates/#{value}.erb"
     end
 

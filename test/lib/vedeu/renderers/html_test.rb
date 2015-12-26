@@ -37,7 +37,7 @@ module Vedeu
       let(:buffer)        { Vedeu::Buffers::Terminal }
 
       before do
-        Vedeu::Configuration.stubs(:compression?).returns(false)
+        Vedeu.config.stubs(:compression?).returns(false)
         ::File.stubs(:write)
         Vedeu.stubs(:height).returns(2)
         Vedeu.stubs(:width).returns(4)

@@ -61,19 +61,19 @@ module Vedeu
           it 'returns :fake if previously :raw' do
             described.raw_mode!
             subject
-            Vedeu::Configuration.terminal_mode.must_equal(:fake)
+            Vedeu.config.terminal_mode.must_equal(:fake)
           end
 
           it 'returns :cooked if previously :fake' do
             described.fake_mode!
             subject
-            Vedeu::Configuration.terminal_mode.must_equal(:cooked)
+            Vedeu.config.terminal_mode.must_equal(:cooked)
           end
 
           it 'returns :raw if previously :cooked' do
             described.cooked_mode!
             subject
-            Vedeu::Configuration.terminal_mode.must_equal(:raw)
+            Vedeu.config.terminal_mode.must_equal(:raw)
           end
         end
 
@@ -82,7 +82,7 @@ module Vedeu
 
           it do
             subject
-            Vedeu::Configuration.terminal_mode.must_equal(:cooked)
+            Vedeu.config.terminal_mode.must_equal(:cooked)
           end
 
           context 'when the mode given is not valid' do
@@ -92,7 +92,7 @@ module Vedeu
 
             it do
               subject
-              Vedeu::Configuration.terminal_mode.must_equal(:raw)
+              Vedeu.config.terminal_mode.must_equal(:raw)
             end
           end
         end

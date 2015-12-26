@@ -18,7 +18,7 @@ module Vedeu
         end
 
         context 'when the mouse is not enabled in the configuration' do
-          before { Vedeu::Configuration.stubs(:mouse?).returns(false) }
+          before { Vedeu.config.stubs(:mouse?).returns(false) }
 
           it { subject.must_equal('') }
         end
@@ -32,7 +32,7 @@ module Vedeu
         end
 
         context 'when the mouse is not enabled in the configuration' do
-          before { Vedeu::Configuration.stubs(:mouse?).returns(false) }
+          before { Vedeu.config.stubs(:mouse?).returns(false) }
 
           it { subject.must_equal('') }
         end

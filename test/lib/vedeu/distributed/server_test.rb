@@ -23,7 +23,7 @@ module Vedeu
 
       before do
         Vedeu.stubs(:log)
-        Vedeu::Configuration.stubs(:drb?).returns(enabled)
+        Vedeu.config.stubs(:drb?).returns(enabled)
         DRb.stubs(:thread).returns(running)
       end
 
@@ -53,7 +53,7 @@ module Vedeu
         end
 
         context 'when the server is enabled' do
-          before { Vedeu::Configuration.stubs(:drb?).returns(true) }
+          before { Vedeu.config.stubs(:drb?).returns(true) }
 
           context 'and the server is running' do
             before { DRb.stubs(:thread).returns(true) }

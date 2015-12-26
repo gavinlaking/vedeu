@@ -28,8 +28,8 @@ module Vedeu
         def log(message:, force: false, type: :info)
           output = log_entry(type, message)
 
-          if (Vedeu::Configuration.log? || force) &&
-             Vedeu::Configuration.loggable?(type)
+          if (Vedeu.config.log? || force) &&
+             Vedeu.config.loggable?(type)
             logger.debug(output)
           end
 
@@ -78,7 +78,7 @@ module Vedeu
 
         # @return [Boolean]
         def logger
-          MonoLogger.new(Vedeu::Configuration.log).tap do |log|
+          MonoLogger.new(Vedeu.config.log).tap do |log|
             log.formatter = proc do |_, _, _, message|
               formatted_message(message)
             end

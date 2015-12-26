@@ -202,7 +202,7 @@ module Vedeu
         # @param block [Proc]
         # @return [Vedeu::Views::Composition]
         def composition(client, &block)
-          attrs = { client: client, colour: Vedeu::Configuration.colour }
+          attrs = { client: client, colour: Vedeu.config.colour }
 
           Vedeu::Views::Composition.build(attrs, &block)
         end

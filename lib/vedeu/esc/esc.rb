@@ -86,7 +86,7 @@ module Vedeu
 
       # @return [String]
       def colour_reset
-        Vedeu::Colours::Colour.coerce(Vedeu::Configuration.colour).to_s
+        Vedeu::Colours::Colour.coerce(Vedeu.config.colour).to_s
       end
 
       # @return [String]

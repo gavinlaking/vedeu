@@ -15,7 +15,7 @@ module Vedeu
       let(:_name)     { 'Vedeu::Renderers::JSON' }
 
       before do
-        Vedeu::Configuration.stubs(:compression?).returns(false)
+        Vedeu.config.stubs(:compression?).returns(false)
         ::File.stubs(:write)
         Vedeu.stubs(:height).returns(1)
         Vedeu.stubs(:width).returns(1)

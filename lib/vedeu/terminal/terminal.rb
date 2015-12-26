@@ -140,8 +140,8 @@ module Vedeu
     # {include:file:docs/dsl/by_method/width.md}
     # @return [Fixnum]
     def width
-      return Vedeu::Configuration.drb_width if Vedeu::Configuration.drb?
-      return Vedeu::Configuration.width     if Vedeu::Configuration.width
+      return Vedeu.config.drb_width if Vedeu.config.drb?
+      return Vedeu.config.width     if Vedeu.config.width
 
       size[-1]
     end
@@ -151,8 +151,8 @@ module Vedeu
     # {include:file:docs/dsl/by_method/height.md}
     # @return [Fixnum]
     def height
-      return Vedeu::Configuration.drb_height if Vedeu::Configuration.drb?
-      return Vedeu::Configuration.height     if Vedeu::Configuration.height
+      return Vedeu.config.drb_height if Vedeu.config.drb?
+      return Vedeu.config.height     if Vedeu.config.height
 
       size[0]
     end

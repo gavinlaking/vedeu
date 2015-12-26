@@ -35,14 +35,14 @@ module Vedeu
         context 'when the option is not set or is set to false' do
           before { options.tap { |o| o.delete(:compression) } }
 
-          context 'when Vedeu::Configuration.compression? is set to false' do
-            before { Vedeu::Configuration.stubs(:compression?).returns(false) }
+          context 'when Vedeu.config.compression? is set to false' do
+            before { Vedeu.config.stubs(:compression?).returns(false) }
 
             it { subject.must_equal(false) }
           end
 
-          context 'when Vedeu::Configuration.compression? is set to true' do
-            before { Vedeu::Configuration.stubs(:compression?).returns(true) }
+          context 'when Vedeu.config.compression? is set to true' do
+            before { Vedeu.config.stubs(:compression?).returns(true) }
 
             it { subject.must_equal(true) }
           end

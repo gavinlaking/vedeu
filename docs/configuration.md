@@ -14,7 +14,7 @@ If you need to access the value of Vedeu's configuration for whatever
 reason, simply ask for it:
 
     # => The current value of 'base_path'
-    Vedeu.configuration.base_path
+    Vedeu.config.base_path
 
 ## Configuration Options
 

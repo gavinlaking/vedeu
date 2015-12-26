@@ -156,7 +156,7 @@ module Vedeu
           retrieve(colour)
 
         else
-          if Vedeu::Configuration.colour_mode == 16_777_216
+          if Vedeu.config.colour_mode == 16_777_216
             register(colour, format(rgb_prefix, *css_to_rgb))
 
           else

@@ -57,8 +57,9 @@ module Vedeu
       # {include:file:docs/dsl/by_method/configuration.md}
       # @return [Vedeu::Configuration]
       def configuration
-        instance
+        self
       end
+      alias_method :config, :configuration
 
       # @return [Hash]
       def colour
@@ -365,14 +366,19 @@ module Vedeu
 
   end # Configuration
 
-  Vedeu::Configuration.configure({})
-
+  # @!method config
+  #   @see Vedeu::Configuration.config
   # @!method configure
   #   @see Vedeu::Configuration.configure
   # @!method configuration
   #   @see Vedeu::Configuration.configuration
   def_delegators Vedeu::Configuration,
+                 :config,
                  :configure,
                  :configuration
+
+  # Sets up a default configuration. Client applications calling using
+  # the `Vedeu.configure` API method will override these settings.
+  Vedeu.configure({})
 
 end # Vedeu

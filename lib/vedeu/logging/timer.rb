@@ -41,7 +41,7 @@ module Vedeu
       def measure(&block)
         fail Vedeu::Error::RequiresBlock unless block_given?
 
-        if Vedeu::Configuration.debug?
+        if Vedeu.config.debug?
           work = yield
 
           Vedeu.log(type:    :timer,
