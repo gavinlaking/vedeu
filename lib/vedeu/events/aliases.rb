@@ -12,13 +12,7 @@ module Vedeu
       include Vedeu::Common
       extend self
 
-      # Add events by name to the alias name group. When an alias is
-      # triggered, all the events stored in the group are also
-      # triggered.
-      #
-      # @example
-      #   Vedeu.bind_alias(alias_name, event_name)
-      #
+      # {include:file:docs/dsl/by_method/bind_alias.md}
       # @param alias_name [Symbol] The name of the alias. This can
       #   represent a single event or group of events.
       # @param event_name [Symbol] The name of the event to bind to
@@ -53,12 +47,7 @@ module Vedeu
         storage.include?(alias_name)
       end
 
-      # Remove an alias by name. The alias name group is destroyed,
-      #   but events stored within this alias are not.
-      #
-      # @example
-      #   Vedeu.unbind_alias(alias_name)
-      #
+      # {include:file:docs/dsl/by_method/unbind_alias.md}
       # @param alias_name [Symbol] The name of the alias.
       # @return [Boolean|Hash<Symbol => Array<Symbol>>]
       def unbind_alias(alias_name)
