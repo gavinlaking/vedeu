@@ -18,7 +18,7 @@ module Vedeu
         Vedeu.requires_gem!('pry')
 
         if obj
-          message = ::Pry::ColorPrinter.pp(obj, '')
+          message = ::Pry::ColorPrinter.pp(obj, ''.dup)
 
           Vedeu.log(type: :debug, message: message)
 
