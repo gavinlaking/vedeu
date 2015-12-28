@@ -352,10 +352,12 @@ module Vedeu
     # @return [Fixnum]
     def detect_colour_mode
       case ENV['TERM']
-      when /-truecolor$/         then 16_777_216
-      when /-256color$/, 'xterm' then 256
-      when /-color$/, 'rxvt'     then 16
-      else 256
+      when 'xterm-256color', 'screen-256color'
+        256
+      when 'xterm', 'screen', 'xterm-color', 'screen-color', 'rxvt'
+        16
+      else
+        256
       end
     end
 

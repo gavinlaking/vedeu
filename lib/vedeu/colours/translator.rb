@@ -155,14 +155,11 @@ module Vedeu
         if registered?(colour)
           retrieve(colour)
 
+        elsif Vedeu.config.colour_mode == 16_777_216
+          register(colour, format(rgb_prefix, *css_to_rgb))
+
         else
-          if Vedeu.config.colour_mode == 16_777_216
-            register(colour, format(rgb_prefix, *css_to_rgb))
-
-          else
-            register(colour, numbered)
-
-          end
+          register(colour, numbered)
 
         end
       end
