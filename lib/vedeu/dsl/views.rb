@@ -93,137 +93,47 @@ module Vedeu
 
       class << self
 
-        include Vedeu::Common
-
-        # Directly write a view buffer to the terminal. Using this
-        # method means that the refresh event does not need to be
-        # triggered after creating the views, though can be later
-        # triggered when needed.
-        #
-        #   Vedeu.renders do
-        #     view :some_interface do
-        #       line do
-        #         stream do
-        #           left 'Title goes here', width: 35
-        #         end
-        #         stream do
-        #           right Time.now.strftime('%H:%m'), width: 7
-        #         end
-        #       end
-        #     end
-        #     view :other_interface do
-        #       lines do
-        #         line 'This is content for the main interface.'
-        #         line ''
-        #         line 'Pretty easy eh?'
-        #       end
-        #     end
-        #     # ... some code
-        #   end
-        #
-        #   # or...
-        #
-        #   Vedeu.render do
-        #     view :my_interface do
-        #       # ... some code
-        #     end
-        #   end
-        #
+        # {include:file:docs/dsl/by_method/renders.md}
         # @param block [Proc] The directives you wish to send to
         #   render. Typically includes `view` with associated
         #   sub-directives.
         # @macro raise_requires_block
-        # @return [Array<View>]
+        # @return [Vedeu::Views::Composition]
         def renders(&block)
           fail Vedeu::Error::RequiresBlock unless block_given?
 
-          store(:store_immediate, client(&block), &block)
+          composition(eval('self', block.binding), true, &block)
         end
         alias_method :render, :renders
 
-        # Define a view (content) for an interface.
-        #
-        # As you can see by comparing the examples above to these
-        # below, the immediate render simply wraps what is already
-        # here in the deferred view.
-        #
-        # The views declared within this block are stored in their
-        # respective interface back buffers until a refresh event
-        # occurs. When the refresh event is triggered, the back
-        # buffers are swapped into the front buffers and the content
-        # here will be rendered to {Vedeu::Terminal#output}.
-        #
-        #   Vedeu.views do
-        #     view :some_interface do
-        #       line do
-        #         stream do
-        #           left 'Title goes here', width: 35
-        #         end
-        #         stream do
-        #           right Time.now.strftime('%H:%m'), width: 7
-        #         end
-        #       end
-        #     end
-        #     view :other_interface do
-        #       lines do
-        #         line 'This is content for the main interface.'
-        #         line ''
-        #         line 'Pretty easy eh?'
-        #       end
-        #     end
-        #     # ... some code
-        #   end
-        #
+        # {include:file:docs/dsl/by_method/views.md}
         # @param block [Proc] The directives you wish to send to
         #   render. Typically includes `view` with associated
         #   sub-directives.
         # @macro raise_requires_block
-        # @return [Array<View>]
+        # @return [Vedeu::Views::Composition]
         def views(&block)
           fail Vedeu::Error::RequiresBlock unless block_given?
 
-          store(:store_deferred, client(&block), &block)
+          composition(eval('self', block.binding), false, &block)
         end
 
         private
 
-        # Returns the client object which called the DSL method.
-        #
-        # @param block [Proc]
-        # @return [Object]
-        def client(&block)
-          eval('self', block.binding)
-        end
-
         # Creates a new Vedeu::Views::Composition which may contain
-        # one or more views (Vedeu::Views::View objects).
+        # one or more view {Vedeu::Views::View} objects.
         #
-        # @param client [Object]
-        # @param block [Proc]
-        # @return [Vedeu::Views::Composition]
-        def composition(client, &block)
-          attrs = { client: client, colour: Vedeu.config.colour }
-
-          Vedeu::Views::Composition.build(attrs, &block)
-        end
-
-        # Creates a new Vedeu::Views::Composition which may contain
-        # one or more views (Vedeu::Views::View objects).
-        #
-        # Stores each of the views defined in their respective buffers
-        # ready to be rendered on next refresh.
-        #
-        # @param method [Symbol] An instruction; `:store_immediate` or
-        #   `:store_deferred` which determines whether the view will
-        #   be shown immediately or later respectively.
         # @param client [Object] The client class which called the DSL
         #   object.
-        # @param block [Proc]
-        # @return [Array]
-        def store(method, client, &block)
-          composition(client, &block).views.map do |view|
-            view.public_send(method)
-          end
+        # @param refresh [Boolean]
+        # @param block [Proc] The directives you wish to send to
+        #   render. Typically includes `view` with associated
+        #   sub-directives.
+        # # @return [Vedeu::Views::Composition]
+        def composition(client, refresh = false, &block)
+          attrs = { client: client, colour: Vedeu.config.colour }
+
+          Vedeu::Views::Composition.build(attrs, &block).update_buffers(refresh)
         end
 
       end # Eigenclass

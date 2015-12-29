@@ -44,10 +44,6 @@ module Vedeu
         it { instance.instance_variable_get('@value').must_equal(_value) }
       end
 
-      describe '#attributes' do
-        it { instance.must_respond_to(:attributes) }
-      end
-
       describe '#parent' do
         it { instance.must_respond_to(:parent) }
       end
@@ -70,6 +66,30 @@ module Vedeu
 
       describe '#<<' do
         it { instance.must_respond_to(:<<) }
+      end
+
+      describe '#attributes' do
+        subject { instance.attributes }
+
+        it { subject.must_be_instance_of(Hash) }
+      end
+
+      describe '#update_buffers' do
+        let(:refresh) {}
+
+        before { Vedeu.stubs(:trigger) }
+
+        subject { instance.update_buffers(refresh) }
+
+        it { subject.must_be_instance_of(described) }
+
+        context 'when the instance has views defined' do
+          # @todo Add more tests.
+        end
+
+        context 'when the instance has no views defined' do
+          # @todo Add more tests.
+        end
       end
 
     end # Composition

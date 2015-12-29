@@ -64,13 +64,26 @@ module Vedeu
       end
 
       describe '#add' do
+        let(:refresh) { false }
         let(:content) {
-          Vedeu::Views::View.new(value: [Vedeu::Views::Line.new])
+          Vedeu::Views::View.new(name:  :vedeu_buffers_buffer,
+                                 value: [Vedeu::Views::Line.new])
         }
 
-        subject { instance.add(content) }
+        subject { instance.add(content, refresh) }
 
         it { subject.must_equal(true) }
+
+        context 'when refresh is true' do
+          let(:refresh) { true }
+
+          before { Vedeu.stubs(:trigger) }
+
+          it do
+            Vedeu.expects(:trigger).with(:_refresh_view_, :vedeu_buffers_buffer)
+            subject
+          end
+        end
       end
 
       describe '#back?' do

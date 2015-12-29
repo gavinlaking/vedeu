@@ -14,17 +14,35 @@ module Vedeu
       let(:client)    {}
 
       describe '#view' do
+        let(:_name) { :dysprosium }
+
         subject {
-          instance.view('dysprosium') do
+          instance.view(_name) do
             # ...
           end
         }
 
-        it { subject.must_be_instance_of(Vedeu::Views::Views) }
-        it { subject[0].must_be_instance_of(Vedeu::Views::View) }
+        context 'when the block is given' do
+          context 'when the name is given' do
+            it { subject.must_be_instance_of(Vedeu::Views::Views) }
+            it { subject[0].must_be_instance_of(Vedeu::Views::View) }
+          end
+
+          context 'when the name is not given' do
+            let(:_name) {}
+
+            it do
+              proc { subject }.must_raise(Vedeu::Error::MissingRequired)
+            end
+          end
+        end
 
         context 'when the block is not given' do
-          it { proc { instance.view }.must_raise(Vedeu::Error::RequiresBlock) }
+          subject { instance.view(_name) }
+
+          it do
+            proc { subject }.must_raise(Vedeu::Error::RequiresBlock)
+          end
         end
       end
 

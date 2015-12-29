@@ -94,29 +94,22 @@ module Vedeu
         }
       end
 
-      # Store the view and immediately refresh it; causing to be
-      # pushed to the Terminal. Called by {Vedeu::DSL::Views.renders}.
+      # Store the view in its respective buffer.
       #
+      # @param refresh [Boolean] Should the buffer of the view be
+      #   refreshed once stored? Default: false.
+      # @raise [Vedeu::Error::MissingRequired] When the name of the
+      #   view is not defined.
       # @return [Vedeu::Views::View]
-      def store_immediate
-        store_deferred
+      def update_buffer(refresh = false)
+        if present?(name)
+          buffer.add(self, refresh)
 
-        Vedeu.trigger(:_refresh_view_, name)
+        else
+          fail Vedeu::Error::MissingRequired,
+               'Cannot store a view without a name.'
 
-        self
-      end
-
-      # When a name is given, the view is stored with this name. This
-      # view will be shown next time a refresh event is triggered with
-      # this name. Called by {Vedeu::DSL::Views.views}.
-      #
-      # @raise [Vedeu::Error::InvalidSyntax] The name is not defined.
-      # @return [Vedeu::Views::View]
-      def store_deferred
-        fail Vedeu::Error::InvalidSyntax,
-             'Cannot store an interface without a name.' unless present?(name)
-
-        buffer.add(self)
+        end
 
         self
       end
