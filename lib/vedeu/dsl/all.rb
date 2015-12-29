@@ -10,7 +10,7 @@ module Vedeu
 
 end # Vedeu
 
-require 'vedeu/dsl/string/all'
+require 'vedeu/dsl/helpers/all'
 require 'vedeu/dsl/border'
 require 'vedeu/dsl/cursors'
 require 'vedeu/dsl/dsl'

@@ -10,7 +10,7 @@ module Vedeu
 
 end # Vedeu
 
-require 'vedeu/dsl/string/align'
-require 'vedeu/dsl/string/truncate'
-require 'vedeu/dsl/string/wordwrap'
-require 'vedeu/dsl/string/text'
+require 'vedeu/dsl/helpers/align'
+require 'vedeu/dsl/helpers/truncate'
+require 'vedeu/dsl/helpers/wordwrap'
+require 'vedeu/dsl/helpers/text'
