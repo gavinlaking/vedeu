@@ -113,7 +113,7 @@ end
 
 ### Creating a new named geometry
 
-{include:Vedeu::DSL::Geometry::ClassMethods.geometry}
+{include:Vedeu::DSL::Geometry::ClassMethods#geometry}
 
 ### Setting the interface dimensions
 
@@ -150,7 +150,6 @@ end
 ## Keymaps
 
 {include:Vedeu::Input::DSL}
-{include:Vedeu::Input::DSL#name}
 
 ### Creating a new named group
 
@@ -161,7 +160,6 @@ end
 {include:Vedeu::Menus::DSL}
 {include:Vedeu::Menus::DSL#item}
 {include:Vedeu::Menus::DSL#items}
-{include:Vedeu::Menus::DSL#name}
 
 ### Creating a new named menu
 
@@ -179,14 +177,6 @@ end
 ### Deferred rendering
 
 {include:Vedeu::DSL::Views.views}
-
-### Specifying view content
-
-{include:Vedeu::DSL::Line}
-{include:Vedeu::DSL::Line#line}
-{include:Vedeu::DSL::Line#streams}
-
-`@todo` More documentation coming soon.
 
 #### Authors Notes
 

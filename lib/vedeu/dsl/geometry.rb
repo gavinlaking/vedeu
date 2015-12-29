@@ -27,9 +27,9 @@ module Vedeu
         # @param name [String|Symbol] The name of the interface or
         #   view to which this geometry belongs.
         # @param block [Proc]
-        # @raise [Vedeu::Error::MissingRequired|
-        #   Vedeu::Error::RequiresBlock] When a name or block
-        #   respectively are not given.
+        # @macro raise_requires_block
+        # @raise [Vedeu::Error::MissingRequired] When a name is not
+        #   given.
         # @return [Vedeu::Geometries::Geometry]
         # @see Vedeu::Geometries::DSL
         def geometry(name = nil, &block)
@@ -80,11 +80,11 @@ module Vedeu
         # @param name [String|Symbol] The name of the interface; this
         #   is already provided when we define the interface or view,
         #   setting it here is just mirroring functionality of
-        #   {Vedeu::DSL::Geometry::ClassMethods.geometry}.
+        #   {Vedeu::DSL::Geometry::ClassMethods#geometry}.
         # @param block [Proc]
-        # @raise [Vedeu::Error::MissingRequired|
-        #   Vedeu::Error::RequiresBlock] When a name or block
-        #   respectively are not given.
+        # @macro raise_requires_block
+        # @raise [Vedeu::Error::MissingRequired] When a name is not
+        #   given.
         # @return [Vedeu::Geometries::Geometry]
         # @see Vedeu::Geometries::DSL
         def geometry(name = nil, &block)
