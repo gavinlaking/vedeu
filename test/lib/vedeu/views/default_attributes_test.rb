@@ -15,9 +15,9 @@ module Vedeu
       end
       alias_method :client, :nil_for_testing_purposes
       alias_method :colour, :nil_for_testing_purposes
-      alias_method :name, :nil_for_testing_purposes
+      alias_method :name,   :nil_for_testing_purposes
       alias_method :parent, :nil_for_testing_purposes
-      alias_method :style, :nil_for_testing_purposes
+      alias_method :style,  :nil_for_testing_purposes
 
     end # DefaultAttributesTest
 
@@ -62,12 +62,20 @@ module Vedeu
         it { including_instance.must_respond_to(:truncate) }
       end
 
+      describe '#truncate?' do
+        it { including_instance.must_respond_to(:truncate?) }
+      end
+
       describe '#width' do
         it { including_instance.must_respond_to(:width) }
       end
 
       describe '#wordwrap' do
         it { including_instance.must_respond_to(:wordwrap) }
+      end
+
+      describe '#wordwrap?' do
+        it { including_instance.must_respond_to(:wordwrap?) }
       end
 
       describe '#attributes' do

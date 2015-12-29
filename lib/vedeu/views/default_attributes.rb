@@ -23,6 +23,7 @@ module Vedeu
       # @!attribute [r] truncate
       # @return [Boolean]
       attr_reader :truncate
+      alias_method :truncate?, :truncate
 
       # @!attribute [r] width
       # @return [Fixnum|NilClass]
@@ -31,6 +32,7 @@ module Vedeu
       # @!attribute [r] wordwrap
       # @return [Boolean]
       attr_reader :wordwrap
+      alias_method :wordwrap?, :wordwrap
 
       # @return [Hash<Symbol => void>]
       def attributes
