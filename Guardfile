@@ -12,3 +12,7 @@ guard :minitest, all_after_pass: true,
   watch(%r{^test/test_helper\.rb}) { 'test' }
   watch(%r{^lib/(.+)all\.rb})      { 'test' }
 end
+
+guard 'yard' do
+  watch(%r{lib/.+\.rb})
+end
