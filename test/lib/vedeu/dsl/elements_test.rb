@@ -27,6 +27,64 @@ module Vedeu
       let(:including_instance)  { including_described.new(model) }
       let(:model)               {}
 
+      describe '#centre' do
+        let(:_value) {}
+        let(:opts)   {
+          {
+
+          }
+        }
+
+        subject { including_instance.centre(_value, opts) }
+
+        context 'when a model exists' do
+        end
+
+        context 'when a model does not exist' do
+          it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
+        end
+      end
+
+      describe '#center' do
+        it { including_instance.must_respond_to(:center) }
+      end
+
+      describe '#left' do
+        let(:_value) {}
+        let(:opts)   {
+          {
+
+          }
+        }
+
+        subject { including_instance.left(_value, opts) }
+
+        context 'when a model exists' do
+        end
+
+        context 'when a model does not exist' do
+          it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
+        end
+      end
+
+      describe '#right' do
+        let(:_value) {}
+        let(:opts)   {
+          {
+
+          }
+        }
+
+        subject { including_instance.right(_value, opts) }
+
+        context 'when a model exists' do
+        end
+
+        context 'when a model does not exist' do
+          it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
+        end
+      end
+
       describe '#lines' do
         subject { including_instance.lines { } }
 
@@ -106,6 +164,24 @@ module Vedeu
 
             # @todo Add more tests.
           end
+        end
+
+        context 'when a model does not exist' do
+          it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
+        end
+      end
+
+      describe '#text' do
+        let(:_value) {}
+        let(:opts)   {
+          {
+
+          }
+        }
+
+        subject { including_instance.text(_value, opts) }
+
+        context 'when a model exists' do
         end
 
         context 'when a model does not exist' do
