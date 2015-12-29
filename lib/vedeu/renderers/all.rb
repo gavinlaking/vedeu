@@ -69,8 +69,8 @@ module Vedeu
 
     # @return [Set]
     def in_memory
-      if Vedeu::Configuration.renderers.any?
-        Set.new(Vedeu::Configuration.renderers)
+      if Vedeu.config.renderers.any?
+        Set.new(Vedeu.config.renderers)
 
       else
         Set.new([Vedeu::Renderers::Terminal.new])

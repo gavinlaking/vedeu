@@ -111,7 +111,7 @@ if ENV['PERFORMANCE'].to_i == 1
 end
 
 def test_configuration
-  Vedeu::Configuration.reset!
+  Vedeu.config.reset!
 
   Vedeu.ready!
 

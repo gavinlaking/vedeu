@@ -15,11 +15,10 @@ module Vedeu
     describe Application do
 
       let(:described)     { Vedeu::Runtime::Application }
-      let(:instance)      { described.new(configuration) }
-      let(:configuration) { Vedeu.configuration }
+      let(:instance)      { described.new }
 
       before do
-        configuration.stubs(:drb?).returns(false)
+        Vedeu.config.stubs(:drb?).returns(false)
         Vedeu::Terminal.stubs(:open).returns([''])
 
         Vedeu.stubs(:trigger)
@@ -27,20 +26,16 @@ module Vedeu
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
-        it do
-          instance.instance_variable_get('@configuration').
-            must_equal(configuration)
-        end
       end
 
       describe '.restart' do
-        subject { described.restart(configuration) }
+        subject { described.restart }
 
         it { subject.must_be_instance_of(Array) }
       end
 
       describe '.start' do
-        subject { described.start(configuration) }
+        subject { described.start }
 
         it { subject.must_be_instance_of(Array) }
       end

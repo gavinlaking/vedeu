@@ -81,7 +81,7 @@ module Vedeu
       #
       # @return [Symbol]
       def mode
-        @mode = Vedeu::Configuration.terminal_mode
+        @mode = Vedeu.config.terminal_mode
       end
 
       private

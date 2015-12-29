@@ -96,7 +96,7 @@ module Vedeu
       def restart
         log('Attempting to restart')
 
-        return not_enabled unless Vedeu::Configuration.drb?
+        return not_enabled unless Vedeu.config.drb?
 
         if drb_running?
           log('Restarting')
@@ -122,7 +122,7 @@ module Vedeu
       #
       # @return [void]
       def shutdown
-        return not_enabled unless Vedeu::Configuration.drb?
+        return not_enabled unless Vedeu.config.drb?
 
         stop if drb_running?
 
@@ -140,7 +140,7 @@ module Vedeu
       def start
         log('Attempting to start')
 
-        return not_enabled unless Vedeu::Configuration.drb?
+        return not_enabled unless Vedeu.config.drb?
 
         if drb_running?
           log('Already started')
@@ -163,7 +163,7 @@ module Vedeu
       def status
         log('Fetching status')
 
-        return not_enabled unless Vedeu::Configuration.drb?
+        return not_enabled unless Vedeu.config.drb?
 
         if drb_running?
           log('Running')
@@ -187,7 +187,7 @@ module Vedeu
       def stop
         log('Attempting to stop')
 
-        return not_enabled unless Vedeu::Configuration.drb?
+        return not_enabled unless Vedeu.config.drb?
 
         if drb_running?
           log('Stopping')
@@ -232,8 +232,8 @@ module Vedeu
 
       # @return [String]
       def uri
-        Vedeu::Distributed::Uri.new(Vedeu::Configuration.drb_host,
-                                    Vedeu::Configuration.drb_port).to_s
+        Vedeu::Distributed::Uri.new(Vedeu.config.drb_host,
+                                    Vedeu.config.drb_port).to_s
       end
 
     end # Server

@@ -32,7 +32,7 @@ module Vedeu
       #
       # @return [String]
       def named_code
-        Vedeu::EscapeSequences::Esc.foreground_colour(colour)
+        Vedeu.esc.foreground_colour(colour)
       end
 
       # @return [Vedeu::Colours::Foregrounds]

@@ -4,7 +4,7 @@ module Vedeu
 
   module EscapeSequences
 
-    # Provides backgroundcolour related escape sequences.
+    # Provides background colour related escape sequences.
     #
     module Background
 

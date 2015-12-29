@@ -36,7 +36,7 @@ module Vedeu
       # @return [Hash<Symbol => Boolean, Fixnum, String>]
       def configuration
         Vedeu::Config
-          .log(Vedeu::EscapeSequences::Esc.green { '[api]' }, options)
+          .log(Vedeu.esc.green { '[api]' }, options)
       end
 
       # Sets boolean to allow user input. The default behaviour of

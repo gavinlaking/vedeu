@@ -10,11 +10,39 @@ module Vedeu
 
       let(:described) { Vedeu::EscapeSequences::Mouse }
 
+      describe '.disable_mouse' do
+        subject { described.disable_mouse }
+
+        context 'when the mouse is enabled in the configuration' do
+          it { subject.must_equal("\e[?9l") }
+        end
+
+        context 'when the mouse is not enabled in the configuration' do
+          before { Vedeu.config.stubs(:mouse?).returns(false) }
+
+          it { subject.must_equal('') }
+        end
+      end
+
+      describe '.enable_mouse' do
+        subject { described.enable_mouse }
+
+        context 'when the mouse is enabled in the configuration' do
+          it { subject.must_equal("\e[?9h") }
+        end
+
+        context 'when the mouse is not enabled in the configuration' do
+          before { Vedeu.config.stubs(:mouse?).returns(false) }
+
+          it { subject.must_equal('') }
+        end
+      end
+
       describe '.mouse_x10_on' do
         it { described.mouse_x10_on.must_equal("\e[?9h") }
       end
 
-      describe '.mouse_x10_on' do
+      describe '.mouse_x10_off' do
         it { described.mouse_x10_off.must_equal("\e[?9l") }
       end
 

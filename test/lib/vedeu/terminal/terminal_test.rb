@@ -26,7 +26,7 @@ module Vedeu
       end
 
       it 'opens a new terminal console in raw mode' do
-        Vedeu::Configuration.stub(:terminal_mode, :raw) do
+        Vedeu.config.stub(:terminal_mode, :raw) do
           capture_io do
             Vedeu::Terminal.open do
               print 'Hello from raw mode!'
@@ -36,7 +36,7 @@ module Vedeu
       end
 
       it 'opens a new terminal console in cooked mode' do
-        Vedeu::Configuration.stub(:terminal_mode, :cooked) do
+        Vedeu.config.stub(:terminal_mode, :cooked) do
           capture_io do
             Vedeu::Terminal.open do
               print 'Hello from cooked mode!'

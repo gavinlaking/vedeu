@@ -49,7 +49,7 @@ module Vedeu
 
       # @return [String]
       def base_path
-        Vedeu::Configuration.base_path
+        Vedeu.config.base_path
       end
 
       # @note
@@ -78,8 +78,8 @@ module Vedeu
 
       # @return [void]
       def client_initialize!
-        if Vedeu::Configuration.root
-          Vedeu.trigger(:_goto_, *Vedeu::Configuration.root)
+        if Vedeu.config.root
+          Vedeu.trigger(:_goto_, *Vedeu.config.root)
 
         else
           Vedeu.log_stderr(type: :debug, message: client_initialize_error)
@@ -113,7 +113,7 @@ module Vedeu
       def configure_log!
         Vedeu.configure do
           log('/tmp/vedeu_bootstrap.log')
-        end unless Vedeu::Configuration.log?
+        end unless Vedeu.config.log?
       end
 
       # @return [String]

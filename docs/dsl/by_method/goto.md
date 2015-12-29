@@ -1,6 +1,5 @@
-# Instruct Vedeu to load the client application controller
-# action with parameters.
-#
-# @example
-#   Vedeu.goto(controller, action, args)
-#
+Instruct Vedeu to load the client application controller action with
+parameters.
+
+    Vedeu.goto(controller, action, args)
+

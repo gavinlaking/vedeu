@@ -33,6 +33,20 @@ module Vedeu
       extend self
 
       # @return [String]
+      def disable_mouse
+        return mouse_x10_off if Vedeu.config.mouse?
+
+        ''
+      end
+
+      # @return [String]
+      def enable_mouse
+        return mouse_x10_on if Vedeu.config.mouse?
+
+        ''
+      end
+
+      # @return [String]
       def mouse_x10_on
         "\e[?9h"
       end

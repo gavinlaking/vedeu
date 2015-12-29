@@ -64,7 +64,7 @@ module Vedeu
         end
 
         context 'when the colour is a CSS value (8-bit / 256 colours)' do
-          before { Vedeu::Configuration.stubs(:colour_mode).returns(8) }
+          before { Vedeu.config.stubs(:colour_mode).returns(8) }
 
           {
             '#0000d7' => "\e[48;5;20m",

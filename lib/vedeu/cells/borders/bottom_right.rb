@@ -21,7 +21,7 @@ module Vedeu
       # @return [Hash<Symbol => String>]
       def defaults
         super.merge!(position: Vedeu::Geometries::Position.coerce([yn, xn]),
-                     value:    Vedeu::EscapeSequences::Borders.bottom_right)
+                     value:    Vedeu.esc.bottom_right)
       end
 
     end # BottomRight

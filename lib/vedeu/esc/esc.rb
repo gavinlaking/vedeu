@@ -18,6 +18,11 @@ module Vedeu
       include Vedeu::EscapeSequences::Mouse
       extend self
 
+      # @return [Vedeu::EscapeSequences::Esc]
+      def esc
+        self
+      end
+
       # Return the stream with the escape sequences escaped so that
       # they can be printed to the terminal instead of being
       # interpreted by the terminal which will render them. This way
@@ -39,7 +44,7 @@ module Vedeu
       # @param value [String|Symbol]
       # @return [String]
       def string(value = '')
-        return '' if value.empty?
+        return '' unless present?(value)
 
         send(value)
       rescue NoMethodError
@@ -55,7 +60,7 @@ module Vedeu
       def border(&block)
         return '' unless block_given?
 
-        "#{border_on}#{yield}#{border_off}"
+        border_on + yield + border_off
       end
 
       # @return [String]
@@ -81,29 +86,7 @@ module Vedeu
 
       # @return [String]
       def colour_reset
-        Vedeu::Colours::Colour.coerce(Vedeu::Configuration.colour).to_s
-      end
-
-      # @return [String]
-      def disable_mouse
-        if truthy?(Vedeu::Configuration.mouse)
-          "#{mouse_x10_off}"
-
-        else
-          ''
-
-        end
-      end
-
-      # @return [String]
-      def enable_mouse
-        if truthy?(Vedeu::Configuration.mouse)
-          "#{mouse_x10_on}"
-
-        else
-          ''
-
-        end
+        Vedeu::Colours::Colour.coerce(Vedeu.config.colour).to_s
       end
 
       # @return [String]
@@ -124,5 +107,8 @@ module Vedeu
     end # Esc
 
   end # EscapeSequences
+
+  def_delegators Vedeu::EscapeSequences::Esc.esc,
+                 :esc
 
 end # Vedeu

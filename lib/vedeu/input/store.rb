@@ -10,70 +10,39 @@ module Vedeu
 
       extend self
 
-      # Add a command (a collection of characters/keypresses from an
-      # Editor::Document) to the store. Used by Vedeu internally to
-      # store commands entered.
-      #
-      # @example
-      #   Vedeu.add_command(:some_command)
-      #
+      # {include:file:docs/dsl/by_method/add_command.md}
       # @param command [Symbol|String]
       # @return [Hash<Symbol => Array<Symbol|String>>]
       def add_command(command)
         all_commands << command
       end
 
-      # Add a keypress to the store. Used by Vedeu internally to
-      # store a keypress entered.
-      #
-      # @example
-      #   Vedeu.add_keypress(:escape)
-      #
+      # {include:file:docs/dsl/by_method/add_keypress.md}
       # @param keypress [Symbol|String]
       # @return [Hash<Symbol => Array<Symbol|String>>]
       def add_keypress(keypress)
         all_keypresses << keypress
       end
 
-      # Access all commands stored.
-      #
-      # @example
-      #   Vedeu.all_commands
-      #
+      # {include:file:docs/dsl/by_method/all_commands.md}
       # @return [Array<Symbol|String>]
       def all_commands
         storage[:commands]
       end
 
-      # Access all keypresses stored.
-      #
-      # @example
-      #   Vedeu.all_keypresses
-      #
+      # {include:file:docs/dsl/by_method/all_keypresses.md}
       # @return [Array<Symbol|String>]
       def all_keypresses
         storage[:keypresses]
       end
 
-      # Access the last command stored. If no commands have been
-      # entered since the client application started, then this will
-      # return nil.
-      #
-      # @example
-      #   Vedeu.last_command
-      #
+      # {include:file:docs/dsl/by_method/last_command.md}
       # @return [NilClass|Symbol|String]
       def last_command
         all_commands[-1]
       end
 
-      # Access the last keypress stored. If no keys have been pressed
-      # since the client application started, then this will return
-      # nil.
-      #
-      # @example
-      #   Vedeu.last_keypress
-      #
+      # {include:file:docs/dsl/by_method/last_keypress.md}
       # @return [NilClass|Symbol|String]
       def last_keypress
         all_keypresses[-1]

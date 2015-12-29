@@ -28,6 +28,36 @@ class DSLApp
     end
   end
 
+  Vedeu.interface :help1_interface do
+    geometry do
+      x  use(:test1_interface).x
+      y  use(:test1_interface).south
+      xn use(:test1_interface).xn
+      yn use(:test1_interface).south(3)
+    end
+  end
+
+  Vedeu.interface :test2_interface do
+    border do
+      title 'Test 2'
+    end
+    geometry do
+      x      use(:test1_interface).east(6)
+      y      use(:test1_interface).y
+      width  use(:test1_interface).width
+      height use(:test1_interface).height
+    end
+  end
+
+  Vedeu.interface :help2_interface do
+    geometry do
+      x  use(:test2_interface).x
+      y  use(:test2_interface).south
+      xn use(:test2_interface).xn
+      yn use(:test2_interface).south(3)
+    end
+  end
+
   Vedeu.render do
     view(:test1_interface) do
       lines do
@@ -36,6 +66,21 @@ class DSLApp
           text 'v->ls->ss->text 2', { foreground: '#0000ff' }
         end
       end
+    end
+
+    view(:help1_interface) do
+    end
+
+    view(:test2_interface) do
+      lines do
+        streams do
+          stream 'v->ls->ss->stream 1', { foreground: '#00ff00' }
+          stream 'v->ls->ss->stream 2', { foreground: '#ff0000' }
+        end
+      end
+    end
+
+    view(:help2_interface) do
     end
   end
 

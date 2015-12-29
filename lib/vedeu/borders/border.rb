@@ -302,7 +302,7 @@ module Vedeu
           client:            nil,
           colour:            nil,
           enabled:           false,
-          horizontal:        Vedeu::EscapeSequences::Borders.horizontal,
+          horizontal:        Vedeu.esc.horizontal,
           left_vertical:     nil,
           name:              '',
           parent:            nil,
@@ -317,7 +317,7 @@ module Vedeu
           top_horizontal:    nil,
           top_left:          nil,
           top_right:         nil,
-          vertical:          Vedeu::EscapeSequences::Borders.vertical,
+          vertical:          Vedeu.esc.vertical,
         }
       end
 

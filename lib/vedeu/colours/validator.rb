@@ -38,7 +38,7 @@ module Vedeu
       #
       # @return [Boolean]
       def named?
-        Vedeu::EscapeSequences::Esc.valid_name?(value)
+        Vedeu.esc.valid_name?(value)
       end
 
       # Returns a boolean indicated whether the colour is a valid

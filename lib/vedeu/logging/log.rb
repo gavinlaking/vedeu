@@ -28,7 +28,8 @@ module Vedeu
         def log(message:, force: false, type: :info)
           output = log_entry(type, message)
 
-          if (enabled? || force) && Vedeu::Configuration.loggable?(type)
+          if (Vedeu.config.log? || force) &&
+             Vedeu.config.loggable?(type)
             logger.debug(output)
           end
 
@@ -77,7 +78,7 @@ module Vedeu
 
         # @return [Boolean]
         def logger
-          MonoLogger.new(log_file).tap do |log|
+          MonoLogger.new(Vedeu.config.log).tap do |log|
             log.formatter = proc do |_, _, _, message|
               formatted_message(message)
             end
@@ -107,22 +108,10 @@ module Vedeu
           colours = message_types.fetch(type, [:default, :default])
 
           [
-            Vedeu::EscapeSequences::Esc.colour(colours[0]) do
-              "[#{type}]".ljust(11)
-            end,
-            Vedeu::EscapeSequences::Esc.colour(colours[1]) do
-              message
-            end,
-          ].join('')
+            Vedeu.esc.colour(colours[0]) { "[#{type}]".ljust(11) },
+            Vedeu.esc.colour(colours[1]) { message },
+          ].join
         end
-
-        # Fetches the filename from the configuration.
-        #
-        # @return [String]
-        def log_file
-          Vedeu::Configuration.log
-        end
-        alias_method :enabled?, :log_file
 
         # The defined message types for Vedeu with their respective
         # colours. When used, produces a log entry of the format:

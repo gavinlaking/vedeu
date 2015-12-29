@@ -57,7 +57,7 @@ module Vedeu
           Vedeu::Runtime::Application.
             stubs(:start).
             raises(StandardError, 'Oops!')
-          Vedeu::Configuration.stubs(:debug?).returns(debug)
+          Vedeu.config.stubs(:debug?).returns(debug)
         end
 
         context 'but debugging is disabled' do

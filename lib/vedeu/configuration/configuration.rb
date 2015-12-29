@@ -16,6 +16,8 @@ module Vedeu
 
     class << self
 
+      include Vedeu::Common
+
       # Return the configured background colour for the client
       # application.
       #
@@ -55,8 +57,9 @@ module Vedeu
       # {include:file:docs/dsl/by_method/configuration.md}
       # @return [Vedeu::Configuration]
       def configuration
-        instance
+        self
       end
+      alias_method :config, :configuration
 
       # @return [Hash]
       def colour
@@ -154,11 +157,11 @@ module Vedeu
       end
 
       # Returns a boolean indicating whether the log has been
-      # configured.
+      # configured; if {#log} contains a path, then this will be true.
       #
       # @return [Boolean]
       def log?
-        log != nil
+        present?(log)
       end
 
       # @return [Array<Symbol>]
@@ -178,8 +181,7 @@ module Vedeu
       # @param type [Symbol]
       # @return [Boolean]
       def loggable?(type)
-        Vedeu::Configuration.log_only.include?(type) ||
-        !Vedeu::Configuration.log_except.include?(type)
+        log_only.include?(type) || !log_except.include?(type)
       end
 
       # Returns whether mouse support was enabled or disabled.
@@ -350,10 +352,12 @@ module Vedeu
     # @return [Fixnum]
     def detect_colour_mode
       case ENV['TERM']
-      when /-truecolor$/         then 16_777_216
-      when /-256color$/, 'xterm' then 256
-      when /-color$/, 'rxvt'     then 16
-      else 256
+      when 'xterm-256color', 'screen-256color'
+        256
+      when 'xterm', 'screen', 'xterm-color', 'screen-color', 'rxvt'
+        16
+      else
+        256
       end
     end
 
@@ -364,14 +368,19 @@ module Vedeu
 
   end # Configuration
 
-  Vedeu::Configuration.configure({})
-
+  # @!method config
+  #   @see Vedeu::Configuration.config
   # @!method configure
   #   @see Vedeu::Configuration.configure
   # @!method configuration
   #   @see Vedeu::Configuration.configuration
   def_delegators Vedeu::Configuration,
+                 :config,
                  :configure,
                  :configuration
+
+  # Sets up a default configuration. Client applications calling using
+  # the `Vedeu.configure` API method will override these settings.
+  Vedeu.configure({})
 
 end # Vedeu

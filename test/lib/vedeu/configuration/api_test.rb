@@ -290,7 +290,7 @@ module Vedeu
         let(:other) { Vedeu::OtherRenderer.new }
 
         # before do
-        #   Vedeu::Configuration.stubs(:renderers).
+        #   Vedeu.config.stubs(:renderers).
         #     returns([some])
         # end
 

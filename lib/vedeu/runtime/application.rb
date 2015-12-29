@@ -10,14 +10,14 @@ module Vedeu
 
       class << self
 
-        # @param (see #initialize)
-        def start(configuration)
-          new(configuration).start
+        # @return [void]
+        def start
+          new.start
         end
 
-        # @param (see #initialize)
-        def restart(configuration)
-          new(configuration).start
+        # @return [void]
+        def restart
+          new.start
         end
 
         # Stops the application! - The `:_cleanup_` event is
@@ -44,11 +44,8 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Runtime::Application.
       #
-      # @param configuration [Vedeu::Configuration]
       # @return [Vedeu::Runtime::Application]
-      def initialize(configuration = Vedeu::Configuration)
-        @configuration = configuration
-      end
+      def initialize; end
 
       # Starts the application!
       #
@@ -75,12 +72,6 @@ module Vedeu
         end
       end
 
-      protected
-
-      # @!attribute [r] configuration
-      # @return [Vedeu::Configuration]
-      attr_reader :configuration
-
       private
 
       # Runs the application loop either once, or forever (exceptions
@@ -89,7 +80,7 @@ module Vedeu
       # @param block [Proc]
       # @return [void]
       def runner(&block)
-        return yield if configuration.once?
+        return yield if Vedeu.config.once?
 
         run_many { yield }
       end
@@ -104,7 +95,7 @@ module Vedeu
       #
       # @return [void]
       def main_sequence
-        if configuration.interactive?
+        if Vedeu.config.interactive?
           Vedeu::Input::Capture.read
 
         else
@@ -124,7 +115,7 @@ module Vedeu
         Vedeu::Runtime::MainLoop.start! { yield }
 
       rescue Vedeu::Error::ModeSwitch
-        Vedeu::Runtime::Application.restart(Vedeu::Configuration)
+        Vedeu::Runtime::Application.restart
       end
 
       # :nocov:

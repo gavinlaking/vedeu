@@ -19,7 +19,7 @@ module Vedeu
       #
       # @return [Boolean]
       def compress?
-        options[:compression] || Vedeu::Configuration.compression? || false
+        options[:compression] || Vedeu.config.compression? || false
       end
 
       private

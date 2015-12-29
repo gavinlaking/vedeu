@@ -32,7 +32,7 @@ module Vedeu
           subject { instance.measure { :thing_to_be_measured } }
 
           context 'when debugging is enabled' do
-            before { Vedeu::Configuration.stubs(:debug?).returns(true) }
+            before { Vedeu.config.stubs(:debug?).returns(true) }
 
             it do
               Vedeu.expects(:log).with(type:    :timer,
@@ -42,7 +42,7 @@ module Vedeu
           end
 
           context 'when debugging is disabled' do
-            before { Vedeu::Configuration.stubs(:debug?).returns(false) }
+            before { Vedeu.config.stubs(:debug?).returns(false) }
 
             it { subject.must_equal(:thing_to_be_measured) }
           end

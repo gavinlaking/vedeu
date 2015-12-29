@@ -95,6 +95,9 @@ module Vedeu
         end + foreground_codes.keys
       end
 
+      # Returns a boolean indicating whether the colour provided is a
+      # valid named colour.
+      #
       # @param named_colour [Symbol]
       # @return [Boolean]
       def valid_name?(named_colour)

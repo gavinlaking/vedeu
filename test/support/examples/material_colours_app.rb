@@ -17,17 +17,14 @@ class VedeuMaterialColoursApp
   # Be aware that running an application with debugging enabled will affect
   # performance.
   Vedeu.configure do
-    # background '#607d8b'
-    colour background: '#607d8b', foreground: '#ffff00'
     debug!
-    # foreground '#ffff00'
     # profile!
     log '/tmp/vedeu_material_colours_app.log'
     log_except [:cursor, :update, :render]
     # height 11
     # width  20
-    # renderers(Vedeu::Renderers::File
-    #             .new(filename: '/tmp/material_colours.out'))
+    renderers(Vedeu::Renderers::Terminal.new,
+              Vedeu::Renderers::File.new(filename: '/tmp/material_colours.out'))
   end
 
   # Borders can be defined as standalone declarations.
