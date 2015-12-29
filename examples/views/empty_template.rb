@@ -38,10 +38,6 @@ class DSLApp
     end
   end
 
-  Vedeu.keymap '_global_' do
-    key('q') { Vedeu.exit }
-  end
-
   Vedeu.render do
     view(:test1_interface) do
       lines do
