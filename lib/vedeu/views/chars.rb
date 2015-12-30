@@ -31,6 +31,9 @@ module Vedeu
           new(coerced_collection, parent, name)
 
         elsif collection.is_a?(Vedeu::Views::Stream)
+          Vedeu::Views::Chars.coerce(collection.value,
+                                     collection.parent,
+                                     collection.name)
 
         elsif collection.is_a?(String)
           return new([], parent, name) if collection.empty?
@@ -44,7 +47,7 @@ module Vedeu
 
         else
           fail Vedeu::Error::InvalidSyntax,
-               'Cannot coerce for Vedeu::View::Streams, as collection ' \
+               'Cannot coerce for Vedeu::View::Chars, as collection ' \
                'unrecognised.'
 
         end
