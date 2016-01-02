@@ -24,6 +24,11 @@ module Vedeu
         @value || ' '
       end
 
+      # @return [Symbol]
+      def type
+        :char
+      end
+
     end # Char
 
   end # Cells

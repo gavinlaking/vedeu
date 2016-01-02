@@ -23,6 +23,12 @@ module Vedeu
         it { subject.must_equal('') }
       end
 
+      describe '#type' do
+        subject { instance.type }
+
+        it { subject.must_equal(:char) }
+      end
+
     end # Char
 
   end # Cells

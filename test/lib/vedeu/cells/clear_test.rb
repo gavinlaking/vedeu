@@ -33,6 +33,12 @@ module Vedeu
         it { instance.must_respond_to(:text) }
       end
 
+      describe '#type' do
+        subject { instance.type }
+
+        it { subject.must_equal(:clear) }
+      end
+
     end # Clear
 
   end # Cells

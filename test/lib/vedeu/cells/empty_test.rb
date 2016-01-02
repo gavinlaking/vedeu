@@ -99,6 +99,12 @@ module Vedeu
         it { instance.must_respond_to(:to_str) }
       end
 
+      describe '#type' do
+        subject { instance.type }
+
+        it { subject.must_equal(:empty) }
+      end
+
     end # Empty
 
   end # Cells

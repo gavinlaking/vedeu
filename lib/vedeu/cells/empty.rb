@@ -71,6 +71,11 @@ module Vedeu
       end
       alias_method :to_str, :to_s
 
+      # @return [Symbol]
+      def type
+        :empty
+      end
+
       private
 
       # @return [Hash<Symbol => Hash<void>|NilClass|String>]
