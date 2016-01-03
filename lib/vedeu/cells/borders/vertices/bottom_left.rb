@@ -11,6 +11,11 @@ module Vedeu
     #
     class BottomLeft < Vedeu::Cells::Corner
 
+      # @return [String]
+      def as_html
+        '&#x2514;'
+      end
+
       # @return [Symbol]
       def type
         :bottom_left

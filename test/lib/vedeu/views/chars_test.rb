@@ -20,6 +20,12 @@ module Vedeu
         }
       }
 
+      it { described.superclass.must_equal(Vedeu::Repositories::Collection) }
+
+      describe '#initialize' do
+        it { instance.must_be_instance_of(described) }
+      end
+
       describe '.coerce' do
         subject { described.coerce(collection, parent, _name) }
 

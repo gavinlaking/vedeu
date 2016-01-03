@@ -25,20 +25,20 @@ module Vedeu
         @value = value
       end
 
-      # Returns a boolean indicating whether the value is within the
-      # range of valid terminal numbered colours.
-      #
-      # @return [Boolean]
-      def within_range?
-        numeric?(value) && value >= 0 && value <= 255
-      end
-
       # Returns a boolean indicating whether the colour provided is a
       # valid named colour.
       #
       # @return [Boolean]
       def named?
         Vedeu.esc.valid_name?(value)
+      end
+
+      # Returns a boolean indicating whether the value is within the
+      # range of valid terminal numbered colours.
+      #
+      # @return [Boolean]
+      def numbered?
+        numeric?(value) && value >= 0 && value <= 255
       end
 
       # Returns a boolean indicated whether the colour is a valid
@@ -53,7 +53,7 @@ module Vedeu
 
       # @return [Boolean]
       def valid?
-        background? || colour? || foreground? || rgb? || named? || within_range?
+        background? || colour? || foreground? || rgb? || named? || numbered?
       end
 
       protected

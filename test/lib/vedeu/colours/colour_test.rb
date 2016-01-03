@@ -284,6 +284,72 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Colours::Foreground) }
       end
 
+      describe '#to_h' do
+        subject { instance.to_h }
+
+        it { subject.must_be_instance_of(Hash) }
+
+        context 'with both background and foreground' do
+          let(:background) { '#000000' }
+          let(:foreground) { '#ff0000' }
+          let(:expected)   {
+            {
+              colour: {
+                background: '#000000',
+                foreground: '#ff0000',
+              }
+            }
+          }
+
+          it { subject.must_equal(expected) }
+        end
+
+        context 'when the foreground is missing' do
+          let(:background) { '#000000' }
+          let(:expected)   {
+            {
+              colour: {
+                background: '#000000',
+                foreground: '',
+              }
+            }
+          }
+
+          it { subject.must_equal(expected) }
+        end
+
+        context 'when the background is missing' do
+          let(:foreground) { '#ff0000' }
+          let(:expected)   {
+            {
+              colour: {
+                background: '',
+                foreground: '#ff0000',
+              }
+            }
+          }
+
+          it { subject.must_equal(expected) }
+        end
+
+        context 'when both are missing' do
+          let(:expected)   {
+            {
+              colour: {
+                background: '',
+                foreground: '',
+              }
+            }
+          }
+
+          it { subject.must_equal(expected) }
+        end
+      end
+
+      describe '#to_hash' do
+        it { instance.must_respond_to(:to_hash) }
+      end
+
       describe '#to_s' do
         subject { instance.to_s }
 

@@ -42,6 +42,11 @@ module Vedeu
         self
       end
 
+      # @return [Symbol]
+      def type
+        :border
+      end
+
       # @return [String]
       def value
         return '' unless present?(@value)

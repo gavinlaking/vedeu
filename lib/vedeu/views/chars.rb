@@ -4,7 +4,7 @@ module Vedeu
 
   module Views
 
-    # A collection of {Vedeu::Views::Char} instances.
+    # A collection of {Vedeu::Cells::Char} instances.
     #
     # @api private
     #
@@ -25,12 +25,15 @@ module Vedeu
 
           coerced_collection = []
           collection.each do |element|
-            coerced_collection << element if element.is_a?(Vedeu::Views::Char)
+            coerced_collection << element if element.is_a?(Vedeu::Cells::Char)
           end
 
           new(coerced_collection, parent, name)
 
         elsif collection.is_a?(Vedeu::Views::Stream)
+          Vedeu::Views::Chars.coerce(collection.value,
+                                     collection.parent,
+                                     collection.name)
 
         elsif collection.is_a?(String)
           return new([], parent, name) if collection.empty?
@@ -44,7 +47,7 @@ module Vedeu
 
         else
           fail Vedeu::Error::InvalidSyntax,
-               'Cannot coerce for Vedeu::View::Streams, as collection ' \
+               'Cannot coerce for Vedeu::View::Chars, as collection is ' \
                'unrecognised.'
 
         end

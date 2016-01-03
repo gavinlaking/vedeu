@@ -3,6 +3,7 @@
     <style type='text/css'>
       body {
         background:#000;
+        color:#fff;
       }
       td {
         border:1px #171717 solid;

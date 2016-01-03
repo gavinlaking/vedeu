@@ -19,6 +19,11 @@ module Vedeu
         false
       end
 
+      # @return [Symbol]
+      def type
+        :clear
+      end
+
       # @return [String]
       def value
         ' '

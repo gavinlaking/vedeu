@@ -17,6 +17,26 @@ module Vedeu
         present?(to_s)
       end
 
+      # @return [Hash<Symbol => String>]
+      def to_h
+        {
+          foreground: colour.to_s
+        }
+      end
+      alias_method :to_hash, :to_h
+
+      # @param _options [Hash] Ignored.
+      # @return [String]
+      def to_html(_options = {})
+        if rgb?
+          "color:#{colour};"
+
+        else
+          ''
+
+        end
+      end
+
       private
 
       # @return [String]
@@ -31,7 +51,7 @@ module Vedeu
       #   {Vedeu::EscapeSequences::Esc#valid_codes}
       #
       # @return [String]
-      def named_code
+      def named
         Vedeu.esc.foreground_colour(colour)
       end
 

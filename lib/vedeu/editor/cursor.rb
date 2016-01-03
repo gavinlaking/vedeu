@@ -91,7 +91,7 @@ module Vedeu
       # document being edited.
       #
       # @return [Vedeu::Editor::Cursor]
-      # @todo GL 2015-10-02 Should ox/oy be 0; or set to @ox/@oy?
+      # @todo Should ox/oy be 0; or set to @ox/@oy? (GL: 2015-10-02)
       def refresh
         Vedeu::Cursors::Cursor.store(name:    name,
                                      x:       real_x,

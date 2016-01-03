@@ -11,6 +11,11 @@ module Vedeu
     #
     class BottomRight < Vedeu::Cells::Corner
 
+      # @return [String]
+      def as_html
+        '&#x2518;'
+      end
+
       # @return [Symbol]
       def type
         :bottom_right

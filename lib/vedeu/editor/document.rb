@@ -257,7 +257,7 @@ module Vedeu
       # representation of the full document depending on the size of
       # the interface.
       #
-      # @return [Array<Vedeu::Views::Char>]
+      # @return [Array<Vedeu::Cells::Char>]
       def output
         Vedeu::Editor::Cropper.new(lines: lines,
                                    name:  name,

@@ -9,6 +9,16 @@ class DSLApp
 
   Vedeu.configure do
     log '/tmp/vedeu_views_dsl.log'
+    renderers(Vedeu::Renderers::Terminal.new(
+                filename: '/tmp/vedeu_full_screen.out',
+                write_file: true),
+              Vedeu::Renderers::JSON.new(
+                filename: '/tmp/vedeu_full_screen.json'),
+              Vedeu::Renderers::HTML.new(
+                filename: '/tmp/vedeu_full_screen.html'),
+              Vedeu::Renderers::Text.new(
+                filename: '/tmp/vedeu_full_screen.txt')
+              )
     debug!
     run_once!
     standalone!

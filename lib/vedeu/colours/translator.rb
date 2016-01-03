@@ -38,7 +38,7 @@ module Vedeu
       def_delegators :validator,
                      :named?,
                      :rgb?,
-                     :within_range?
+                     :numbered?
 
       # @!attribute [r] colour
       # @return [String]
@@ -71,7 +71,7 @@ module Vedeu
 
       # An object is equal when its values are the same.
       #
-      # @param other [Vedeu::Views::Char]
+      # @param other [void]
       # @return [Boolean]
       def eql?(other)
         self.class == other.class && colour == other.colour
@@ -89,11 +89,11 @@ module Vedeu
         elsif rgb?
           rgb
 
-        elsif within_range?
+        elsif numbered?
           numbered
 
         elsif named?
-          named_code
+          named
 
         else
           ''
@@ -102,14 +102,6 @@ module Vedeu
       end
       alias_method :to_s, :escape_sequence
       alias_method :to_str, :escape_sequence
-
-      # @param _options [Hash] Ignored.
-      # @return [String]
-      def to_html(_options = {})
-        return colour if rgb?
-
-        ''
-      end
 
       private
 
@@ -145,7 +137,14 @@ module Vedeu
       #
       # @return [String]
       def numbered
-        "#{prefix}5;#{css_to_numbered}m"
+        format(numbered_prefix, colour)
+      end
+
+      # Returns an escape sequence.
+      #
+      # @return [String]
+      def numbered_prefix
+        "#{prefix}5;%sm"
       end
 
       # Returns an escape sequence.
@@ -155,11 +154,11 @@ module Vedeu
         if registered?(colour)
           retrieve(colour)
 
+        elsif [8, 16, 256].include?(Vedeu.config.colour_mode)
+          register(colour, format(numbered_prefix, css_to_numbered))
+
         elsif Vedeu.config.colour_mode == 16_777_216
           register(colour, format(rgb_prefix, *css_to_rgb))
-
-        else
-          register(colour, numbered)
 
         end
       end
@@ -189,13 +188,7 @@ module Vedeu
 
       # @return [Fixnum]
       def css_to_numbered
-        if rgb?
-          [16, red, green, blue].inject(:+)
-
-        elsif within_range?
-          colour
-
-        end
+        [16, red, green, blue].inject(:+)
       end
 
       # Takes the red component of {#css_to_rgb} and converts to the
@@ -228,7 +221,7 @@ module Vedeu
       def not_implemented
         fail Vedeu::Error::NotImplemented, 'Subclasses implement this.'
       end
-      alias_method :named_code, :not_implemented
+      alias_method :named,      :not_implemented
       alias_method :repository, :not_implemented
 
       # @return [Vedeu::Colours::Validator]

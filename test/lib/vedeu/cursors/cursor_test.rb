@@ -131,10 +131,10 @@ module Vedeu
 
       describe '#hide' do
         let(:visible) { true }
-        let(:escape)  { Vedeu::Cells::Escape.new(value: Vedeu.esc.hide_cursor) }
+        let(:escape)  { Vedeu::Cells::Cursor.new(value: Vedeu.esc.hide_cursor) }
 
         before do
-          Vedeu::Cells::Escape.stubs(:new).returns(escape)
+          Vedeu::Cells::Cursor.stubs(:new).returns(escape)
         end
 
         subject { instance.hide }
@@ -270,12 +270,12 @@ module Vedeu
       describe '#show' do
         let(:visible) { false }
         let(:escape)  {
-          Vedeu::Cells::Escape.
+          Vedeu::Cells::Cursor.
             new(value: Vedeu.esc.show_cursor)
         }
 
         before do
-          Vedeu::Cells::Escape.stubs(:new).returns(escape)
+          Vedeu::Cells::Cursor.stubs(:new).returns(escape)
         end
 
         subject { instance.show }

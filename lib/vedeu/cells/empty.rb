@@ -27,6 +27,13 @@ module Vedeu
       # @return [String]
       attr_reader :value
 
+      # Returns the value represented as HTML.
+      #
+      # @return [String]
+      def as_html
+        '&nbsp;'
+      end
+
       # @return [Boolean]
       def cell?
         true
@@ -49,27 +56,30 @@ module Vedeu
         ' '
       end
 
-      # @return [Hash]
-      def to_hash
+      # @return [Hash<Symbol => Hash<Symbol => String>, String>]
+      def to_h
         {
-          colour:   colour.to_s,
-          style:    style.to_s,
-          value:    value.to_s,
-          position: position.to_s,
-        }
+          name:  name.to_s,
+          style: style.to_s,
+          type:  type,
+          value: value.to_s,
+        }.merge!(colour.to_h).merge!(position.to_h)
+      end
+      alias_method :to_hash, :to_h
+
+      # Returns the object represented as HTML.
+      #
+      # @param options [Hash] Options provided by
+      #   {Vedeu::Renderers::HTML}.
+      # @return [String]
+      def to_html(options = {})
+        Vedeu::Cells::HTML.new(self, options).to_html
       end
 
-      # @param _options [Hash] Ignored.
-      # @return [String]
-      def to_html(_options = {})
-        ''
+      # @return [Symbol]
+      def type
+        :empty
       end
-
-      # @return [String]
-      def to_s
-        value.to_s
-      end
-      alias_method :to_str, :to_s
 
       private
 

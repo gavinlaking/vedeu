@@ -155,9 +155,22 @@ module Vedeu
       end
 
       describe '#to_h' do
+        let(:expected) {
+          {
+            position: {
+              y: 12,
+              x: 19,
+            }
+          }
+        }
+
         subject { instance.to_h }
 
-        it { subject.must_equal({ y: 12, x: 19 }) }
+        it { subject.must_equal(expected) }
+      end
+
+      describe '#to_hash' do
+        it { instance.must_respond_to(:to_h) }
       end
 
       describe '#to_s' do

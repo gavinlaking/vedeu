@@ -87,7 +87,7 @@ module Vedeu
 
       # An object is equal when its values are the same.
       #
-      # @param other [Vedeu::Views::Char]
+      # @param other [void]
       # @return [Boolean]
       def eql?(other)
         self.class == other.class && background == other.background &&
@@ -108,12 +108,20 @@ module Vedeu
         @_foreground = @foreground = Vedeu::Colours::Foreground.coerce(value)
       end
 
+      # @return [Hash<Symbol => Hash<Symbol => String>>]
+      def to_h
+        {
+          colour: background.to_h.merge!(foreground.to_h)
+        }
+      end
+      alias_method :to_hash, :to_h
+
       # Returns both or either of the converted attributes into a
       # single escape sequence.
       #
       # @return [String]
       def to_s
-        foreground.to_s + background.to_s
+        "#{foreground}#{background}"
       end
       alias_method :to_str, :to_s
 

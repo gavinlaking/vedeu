@@ -48,7 +48,7 @@ module Vedeu
         end
 
         context 'when the colour is a CSS value (8-bit / 256 colours)' do
-          before { Configuration.stubs(:colour_mode).returns(8) }
+          before { Configuration.stubs(:colour_mode).returns(256) }
 
           {
             '#afd700' => "\e[38;5;148m",
@@ -92,6 +92,38 @@ module Vedeu
         end
       end
 
+      describe '#to_h' do
+        subject { instance.to_h }
+
+        it { subject.must_be_instance_of(Hash) }
+
+        context 'when the colour is empty' do
+          let(:colour) {}
+          let(:expected) {
+            {
+              foreground: ''
+            }
+          }
+
+          it { subject.must_equal(expected) }
+        end
+
+        context 'when the colour is not empty' do
+          let(:colour) { '#afd700' }
+          let(:expected) {
+            {
+              foreground: '#afd700'
+            }
+          }
+
+          it { subject.must_equal(expected) }
+        end
+      end
+
+      describe '#to_hash' do
+        it { instance.must_respond_to(:to_hash) }
+      end
+
       describe '#to_html' do
         subject { instance.to_html }
 
@@ -116,8 +148,8 @@ module Vedeu
         context 'when the colour is a CSS value' do
           let(:colour) { '#afd700' }
 
-          it 'returns the colour as a CSS value' do
-            subject.must_equal('#afd700')
+          it 'returns the colour as a CSS property' do
+            subject.must_equal('color:#afd700;')
           end
         end
       end

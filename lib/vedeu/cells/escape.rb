@@ -40,7 +40,10 @@ module Vedeu
       #
       # @return [Hash<void>]
       def to_h
-        {}
+        {
+          type:  type,
+          value: value,
+        }
       end
       alias_method :to_hash, :to_h
 
@@ -55,15 +58,13 @@ module Vedeu
 
       # @return [String]
       def to_s
-        "#{position}#{value}"
+        value
       end
       alias_method :to_str, :to_s
 
-      private
-
-      # @return [Hash]
-      def defaults
-        super.merge!(position: [1, 1], value: '')
+      # @return [Symbol]
+      def type
+        :escape
       end
 
     end # Escape

@@ -15,11 +15,11 @@ module Vedeu
 
 end # Vedeu
 
+require 'vedeu/cells/support/all'
 require 'vedeu/cells/empty'
 require 'vedeu/cells/border'
 require 'vedeu/cells/borders/all'
 require 'vedeu/cells/char'
 require 'vedeu/cells/clear'
+require 'vedeu/cells/cursor'
 require 'vedeu/cells/escape'
-require 'vedeu/cells/html'
-require 'vedeu/cells/json'

@@ -1,4 +1,5 @@
 require 'vedeu/dsl/all'
+require 'vedeu/cells/all'
 
 # frozen_string_literal: true
 
@@ -32,7 +33,7 @@ module Vedeu
       include Vedeu::Views::Value
       collection Vedeu::Views::Chars
       deputy     Vedeu::Views::Stream::DSL
-      entity     Vedeu::Views::Char
+      entity     Vedeu::Cells::Char
       parent     Vedeu::Views::Streams
 
       def_delegators :value,
@@ -73,7 +74,7 @@ module Vedeu
 
       # An object is equal when its values are the same.
       #
-      # @param other [Vedeu::Views::Char]
+      # @param other [void]
       # @return [Boolean]
       def eql?(other)
         self.class == other.class && value == other.value

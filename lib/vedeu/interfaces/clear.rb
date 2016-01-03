@@ -18,7 +18,7 @@ module Vedeu
         #   Vedeu.trigger(:_clear_view_, name)
         #   Vedeu.clear_by_name(name)
         #
-        # @return [Array<Array<Vedeu::Views::Char>>]
+        # @return [Array<Array<Vedeu::Cells::Char>>]
         # @see #initialize
         def render(name = Vedeu.focus)
           name || Vedeu.focus
@@ -34,7 +34,7 @@ module Vedeu
         #   Vedeu.trigger(:_clear_view_content_, name)
         #   Vedeu.clear_content_by_name(name)
         #
-        # @return [Array<Array<Vedeu::Views::Char>>]
+        # @return [Array<Array<Vedeu::Cells::Char>>]
         # @see #initialize
         def clear_content_by_name(name = Vedeu.focus)
           name || Vedeu.focus
@@ -55,14 +55,14 @@ module Vedeu
       #   to the terminal using a faster mechanism. The virtual buffer
       #   will still be updated. This improves the refresh time for
       #   Vedeu as we will not be building a grid of
-      #   {Vedeu::Views::Char} objects.
+      #   {Vedeu::Cells::Char} objects.
       # @return [Vedeu::Interfaces::Clear]
       def initialize(name, options = {})
         @name    = present?(name) ? name : Vedeu.focus
         @options = options
       end
 
-      # @return [Array<Array<Vedeu::Views::Char>>]
+      # @return [Array<Array<Vedeu::Cells::Char>>]
       def render
         if direct?
           Vedeu.direct_write(optimised_output)
@@ -157,7 +157,7 @@ module Vedeu
       # defined, then starting write space characters over the area
       # which the interface occupies.
       #
-      # @return [Array<Array<Vedeu::Views::Char>>]
+      # @return [Array<Array<Vedeu::Cells::Char>>]
       def output
         Vedeu.timer("Clearing #{clearing}: '#{name}'") do
           @clear ||= Array.new(height) do |iy|

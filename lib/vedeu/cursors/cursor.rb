@@ -162,7 +162,7 @@ module Vedeu
 
       # Renders the cursor.
       #
-      # @return [Array<Vedeu::Cells::Escape>]
+      # @return [Array<Vedeu::Cells::Cursor>]
       def render
         Vedeu.render_output(escape_sequence)
       end
@@ -196,7 +196,7 @@ module Vedeu
       #   Vedeu.hide_cursor(Vedeu.focus)
       #   Vedeu.hide_cursor
       #
-      # @return [Vedeu::Cells::Escape]
+      # @return [Vedeu::Cells::Cursor]
       def hide
         super
 
@@ -233,7 +233,7 @@ module Vedeu
       #   Vedeu.show_cursor(Vedeu.focus)
       #   Vedeu.show_cursor
       #
-      # @return [Vedeu::Cells::Escape]
+      # @return [Vedeu::Cells::Cursor]
       def show
         super
 
@@ -290,9 +290,9 @@ module Vedeu
         }
       end
 
-      # @return [Vedeu::Cells::Escape]
+      # @return [Vedeu::Cells::Cursor]
       def escape_sequence
-        Vedeu::Cells::Escape.new(position: position, value: visibility)
+        Vedeu::Cells::Cursor.new(position: position, value: visibility)
       end
 
       # @return [Hash<Symbol => Fixnum>]

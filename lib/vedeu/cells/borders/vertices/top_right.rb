@@ -11,6 +11,11 @@ module Vedeu
     #
     class TopRight < Vedeu::Cells::Corner
 
+      # @return [String]
+      def as_html
+        '&#x2510;'
+      end
+
       # @return [Symbol]
       def type
         :top_right

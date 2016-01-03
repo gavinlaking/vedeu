@@ -86,8 +86,8 @@ module Vedeu
             context 'when a width option is set' do
               let(:expected) {
                 [
-                  Vedeu::Views::Char.new(name: _name, value: 'a'),
-                  Vedeu::Views::Char.new(name: _name, value: 'b'),
+                  Vedeu::Cells::Char.new(name: _name, value: 'a'),
+                  Vedeu::Cells::Char.new(name: _name, value: 'b'),
                 ]
               }
 
@@ -100,10 +100,10 @@ module Vedeu
               context 'when a name option is set' do
                 let(:expected) {
                   [
-                    Vedeu::Views::Char.new(name: _name, value: 'a'),
-                    Vedeu::Views::Char.new(name: _name, value: 'b'),
-                    Vedeu::Views::Char.new(name: _name, value: 'c'),
-                    Vedeu::Views::Char.new(name: _name, value: 'd'),
+                    Vedeu::Cells::Char.new(name: _name, value: 'a'),
+                    Vedeu::Cells::Char.new(name: _name, value: 'b'),
+                    Vedeu::Cells::Char.new(name: _name, value: 'c'),
+                    Vedeu::Cells::Char.new(name: _name, value: 'd'),
                   ]
                 }
 
@@ -114,11 +114,11 @@ module Vedeu
                 let(:_name) {}
                 let(:expected) {
                   [
-                    Vedeu::Views::Char.new(name: _name, value: 'a'),
-                    Vedeu::Views::Char.new(name: _name, value: 'b'),
-                    Vedeu::Views::Char.new(name: _name, value: 'c'),
-                    Vedeu::Views::Char.new(name: _name, value: 'd'),
-                    Vedeu::Views::Char.new(name: _name, value: 'e'),
+                    Vedeu::Cells::Char.new(name: _name, value: 'a'),
+                    Vedeu::Cells::Char.new(name: _name, value: 'b'),
+                    Vedeu::Cells::Char.new(name: _name, value: 'c'),
+                    Vedeu::Cells::Char.new(name: _name, value: 'd'),
+                    Vedeu::Cells::Char.new(name: _name, value: 'e'),
                   ]
                 }
 
@@ -130,11 +130,11 @@ module Vedeu
           context 'when the truncate option is not set' do
             let(:expected) {
               [
-                Vedeu::Views::Char.new(name: _name, value: 'a'),
-                Vedeu::Views::Char.new(name: _name, value: 'b'),
-                Vedeu::Views::Char.new(name: _name, value: 'c'),
-                Vedeu::Views::Char.new(name: _name, value: 'd'),
-                Vedeu::Views::Char.new(name: _name, value: 'e'),
+                Vedeu::Cells::Char.new(name: _name, value: 'a'),
+                Vedeu::Cells::Char.new(name: _name, value: 'b'),
+                Vedeu::Cells::Char.new(name: _name, value: 'c'),
+                Vedeu::Cells::Char.new(name: _name, value: 'd'),
+                Vedeu::Cells::Char.new(name: _name, value: 'e'),
               ]
             }
 
@@ -147,11 +147,11 @@ module Vedeu
             context 'when a width option is set' do
               let(:expected) {
                 [
-                  Vedeu::Views::Char.new(name: _name, value: 'a'),
-                  Vedeu::Views::Char.new(name: _name, value: 'b'),
-                  Vedeu::Views::Char.new(name: _name, value: 'c'),
-                  Vedeu::Views::Char.new(name: _name, value: 'd'),
-                  Vedeu::Views::Char.new(name: _name, value: 'e'),
+                  Vedeu::Cells::Char.new(name: _name, value: 'a'),
+                  Vedeu::Cells::Char.new(name: _name, value: 'b'),
+                  Vedeu::Cells::Char.new(name: _name, value: 'c'),
+                  Vedeu::Cells::Char.new(name: _name, value: 'd'),
+                  Vedeu::Cells::Char.new(name: _name, value: 'e'),
                 ]
               }
 
@@ -164,11 +164,11 @@ module Vedeu
               context 'when a name option is set' do
                 let(:expected) {
                   [
-                    Vedeu::Views::Char.new(name: _name, value: 'a'),
-                    Vedeu::Views::Char.new(name: _name, value: 'b'),
-                    Vedeu::Views::Char.new(name: _name, value: 'c'),
-                    Vedeu::Views::Char.new(name: _name, value: 'd'),
-                    Vedeu::Views::Char.new(name: _name, value: 'e'),
+                    Vedeu::Cells::Char.new(name: _name, value: 'a'),
+                    Vedeu::Cells::Char.new(name: _name, value: 'b'),
+                    Vedeu::Cells::Char.new(name: _name, value: 'c'),
+                    Vedeu::Cells::Char.new(name: _name, value: 'd'),
+                    Vedeu::Cells::Char.new(name: _name, value: 'e'),
                   ]
                 }
 
@@ -179,11 +179,11 @@ module Vedeu
                 let(:_name) {}
                 let(:expected) {
                   [
-                    Vedeu::Views::Char.new(name: _name, value: 'a'),
-                    Vedeu::Views::Char.new(name: _name, value: 'b'),
-                    Vedeu::Views::Char.new(name: _name, value: 'c'),
-                    Vedeu::Views::Char.new(name: _name, value: 'd'),
-                    Vedeu::Views::Char.new(name: _name, value: 'e'),
+                    Vedeu::Cells::Char.new(name: _name, value: 'a'),
+                    Vedeu::Cells::Char.new(name: _name, value: 'b'),
+                    Vedeu::Cells::Char.new(name: _name, value: 'c'),
+                    Vedeu::Cells::Char.new(name: _name, value: 'd'),
+                    Vedeu::Cells::Char.new(name: _name, value: 'e'),
                   ]
                 }
 
@@ -195,11 +195,11 @@ module Vedeu
           context 'when the align option is not set' do
             let(:expected) {
               [
-                Vedeu::Views::Char.new(name: _name, value: 'a'),
-                Vedeu::Views::Char.new(name: _name, value: 'b'),
-                Vedeu::Views::Char.new(name: _name, value: 'c'),
-                Vedeu::Views::Char.new(name: _name, value: 'd'),
-                Vedeu::Views::Char.new(name: _name, value: 'e'),
+                Vedeu::Cells::Char.new(name: _name, value: 'a'),
+                Vedeu::Cells::Char.new(name: _name, value: 'b'),
+                Vedeu::Cells::Char.new(name: _name, value: 'c'),
+                Vedeu::Cells::Char.new(name: _name, value: 'd'),
+                Vedeu::Cells::Char.new(name: _name, value: 'e'),
               ]
             }
 

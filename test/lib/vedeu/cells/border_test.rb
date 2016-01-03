@@ -35,6 +35,12 @@ module Vedeu
         # @todo Add more tests.
       end
 
+      describe '#type' do
+        subject { instance.type }
+
+        it { subject.must_equal(:border) }
+      end
+
       describe '#value' do
         subject { instance.value }
 

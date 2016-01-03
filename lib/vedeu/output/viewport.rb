@@ -67,7 +67,7 @@ module Vedeu
 
       private
 
-      # @return [Array<Array<Vedeu::Views::Char>>]
+      # @return [Array<Array<Vedeu::Cells::Char>>]
       def output
         Vedeu.timer("Rendering content: '#{name}'") do
           out = []

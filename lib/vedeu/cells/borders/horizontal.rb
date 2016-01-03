@@ -12,6 +12,11 @@ module Vedeu
     class Horizontal < Vedeu::Cells::Border
 
       # @return [String]
+      def as_html
+        '&#x2500;'
+      end
+
+      # @return [String]
       def text
         '-'
       end

@@ -11,6 +11,18 @@ module Vedeu
       let(:described)  { Vedeu::Cells::Char }
       let(:instance)   { described.new }
 
+      describe '#as_html' do
+        subject { instance.as_html }
+
+        context 'when the value is present' do
+          # it { subject.must_equal('&nbsp;') }
+        end
+
+        context 'when the value is not present' do
+          it { subject.must_equal('&nbsp;') }
+        end
+      end
+
       describe '#cell?' do
         subject { instance.cell? }
 
@@ -21,6 +33,12 @@ module Vedeu
         subject { instance.text }
 
         it { subject.must_equal('') }
+      end
+
+      describe '#type' do
+        subject { instance.type }
+
+        it { subject.must_equal(:char) }
       end
 
     end # Char
