@@ -1,0 +1,58 @@
+                                                                                                                      
+                                                                                                                      
+   +- Test 1 ---------------------+     +- Test 2 ---------------------+                                              
+   |view->line (align: :left)     |     |view->left                    |                                              
+   | view->line (align: :center)  |     |         view->center         |                                              
+   | view->line (align: :centre)  |     |         view->centre         |                                              
+   |    view->line (align: :right)|     |                   view->right|                                              
+   +------------------------------+     +------------------------------+                                              
+   `:align` option on the `line`                                                                                      
+   DSL method. (no width or name                                                                                      
+   set)                                                                                                               
+                                                                                                                      
+                                                                                                                      
+   +- Test 3 ---------------------+     +- Test 4 ---------------------+                                              
+   |view->lines->left 1           |     |          view->lines->right 1|                                              
+   |view->lines->left 2           |     |          view->lines->right 2|                                              
+   |                              |     |                              |                                              
+   +------------------------------+     +------------------------------+                                              
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+   +- Test 5 ---------------------+     +- Test 6 ---------------------+                                              
+   |    view->lines->centre 1     |     |v->l->left         v->l->right|                                              
+   |    view->lines->centre 2     |     |         v->l->centre         |                                              
+   |                              |     |                              |                                              
+   +------------------------------+     +------------------------------+                                              
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      
+                                                                                                                      

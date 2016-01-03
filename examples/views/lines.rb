@@ -18,7 +18,9 @@ class DSLApp
               Vedeu::Renderers::JSON.new(
                 filename: '/tmp/vedeu_lines.json'),
               Vedeu::Renderers::HTML.new(
-                filename: '/tmp/vedeu_lines.html'))
+                filename: '/tmp/vedeu_lines.html'),
+              Vedeu::Renderers::Text.new(
+                filename: '/tmp/vedeu_lines.txt'))
     run_once!
     standalone!
   end
