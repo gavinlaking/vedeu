@@ -20,9 +20,6 @@ module Vedeu
         @_style ||= if @style
                       Vedeu::Presentation::Style.coerce(@style)
 
-                    elsif self.is_a?(Vedeu::Views::Char) && name
-                      Vedeu::Presentation::Style.coerce(interface.style)
-
                     elsif parent && present?(parent.style)
                       Vedeu::Presentation::Style.coerce(parent.style)
 
