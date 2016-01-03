@@ -14,16 +14,16 @@ module Vedeu
       let(:_value)     { 'Aluminium' }
       let(:horizontal) {
         [
-          Vedeu::Views::Char.new(value: '-', position: [1, 1], border: type),
-          Vedeu::Views::Char.new(value: '-', position: [1, 2], border: type),
-          Vedeu::Views::Char.new(value: '-', position: [1, 3], border: type),
-          Vedeu::Views::Char.new(value: '-', position: [1, 4], border: type),
-          Vedeu::Views::Char.new(value: '-', position: [1, 5], border: type),
-          Vedeu::Views::Char.new(value: '-', position: [1, 6], border: type),
-          Vedeu::Views::Char.new(value: '-', position: [1, 7], border: type),
-          Vedeu::Views::Char.new(value: '-', position: [1, 8], border: type),
-          Vedeu::Views::Char.new(value: '-', position: [1, 9], border: type),
-          Vedeu::Views::Char.new(value: '-', position: [1, 10], border: type),
+          Vedeu::Cells::TopHorizontal.new(position: [1, 1]),
+          Vedeu::Cells::TopHorizontal.new(position: [1, 2]),
+          Vedeu::Cells::TopHorizontal.new(position: [1, 3]),
+          Vedeu::Cells::TopHorizontal.new(position: [1, 4]),
+          Vedeu::Cells::TopHorizontal.new(position: [1, 5]),
+          Vedeu::Cells::TopHorizontal.new(position: [1, 6]),
+          Vedeu::Cells::TopHorizontal.new(position: [1, 7]),
+          Vedeu::Cells::TopHorizontal.new(position: [1, 8]),
+          Vedeu::Cells::TopHorizontal.new(position: [1, 9]),
+          Vedeu::Cells::TopHorizontal.new(position: [1, 10]),
         ]
       }
       let(:type) { :top_horizontal }
@@ -47,7 +47,7 @@ module Vedeu
         context 'when the title is not empty' do
           let(:expected) {
             [
-              Vedeu::Views::Char.new(value: '-', position: [1, 1], border: type),
+              Vedeu::Cells::TopHorizontal.new(position: [1, 1]),
               Vedeu::Cells::Char.new(value: ' ', position: [1, 2]),
               Vedeu::Cells::Char.new(value: 'A', position: [1, 3]),
               Vedeu::Cells::Char.new(value: 'l', position: [1, 4]),
@@ -56,7 +56,7 @@ module Vedeu
               Vedeu::Cells::Char.new(value: 'i', position: [1, 7]),
               Vedeu::Cells::Char.new(value: 'n', position: [1, 8]),
               Vedeu::Cells::Char.new(value: ' ', position: [1, 9]),
-              Vedeu::Views::Char.new(value: '-', position: [1, 10], border: type),
+              Vedeu::Cells::TopHorizontal.new(position: [1, 10]),
             ]
           }
 
