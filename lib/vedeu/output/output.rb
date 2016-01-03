@@ -11,8 +11,7 @@ module Vedeu
     #
     class Output
 
-      # @param output [Array<Array<Vedeu::Views::Char>>|
-      #   NilClass|Vedeu::Cells::Escape]
+      # @param output (see #output)
       # @return [Array]
       def self.buffer_update(output)
         return nil if output.nil?
@@ -20,8 +19,7 @@ module Vedeu
         new(output).buffer_update
       end
 
-      # @param output [Array<Array<Vedeu::Views::Char>>|
-      #   NilClass|Vedeu::Cells::Escape]
+      # @param output (see #output)
       # @return [Array]
       def self.buffer_write(output)
         return nil if output.nil?
@@ -29,8 +27,7 @@ module Vedeu
         new(output).buffer_write
       end
 
-      # @param output [Array<Array<Vedeu::Views::Char>>|
-      #   NilClass|Vedeu::Cells::Escape]
+      # @param output (see #output)
       # @return [Array<String>]
       def self.direct_write(output)
         return nil if output.nil?
@@ -40,8 +37,7 @@ module Vedeu
 
       # Writes output to the defined renderers.
       #
-      # @param output [Array<Array<Vedeu::Views::Char>>|
-      #   NilClass|Vedeu::Cells::Escape]
+      # @param output (see #output)
       # @return [Array|NilClass|String]
       def self.render_output(output)
         return nil if output.nil?
@@ -51,8 +47,7 @@ module Vedeu
 
       # Return a new instance of Vedeu::Output::Output.
       #
-      # @param output [Array<Array<Vedeu::Views::Char>>|
-      #   NilClass|Vedeu::Cells::Escape]
+      # @param output (see #output)
       # @return [Vedeu::Output::Output]
       def initialize(output)
         @output = output

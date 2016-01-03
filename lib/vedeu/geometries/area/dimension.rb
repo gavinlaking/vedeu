@@ -115,7 +115,7 @@ module Vedeu
       # length from the values provided.
       #
       # @return [Boolean]
-      # @todo GL 2015-10-16 Investigate: should this be && or ||.
+      # @todo Investigate: should this be && or ||. (GL: 2015-10-16)
       def length?
         default && length
       end

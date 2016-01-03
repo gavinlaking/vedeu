@@ -179,8 +179,7 @@ module Vedeu
 
       # An optional caption for when the bottom border is to be shown.
       #
-      # @return [Array<Vedeu::Views::Char>]
-      # @see [Vedeu::Borders::Caption#render]
+      # @return (see Vedeu::Borders::Caption#render)
       def captionbar
         characters = build_collection(bordered_width) do |ix|
           cell = bottom_horizontal.dup
@@ -195,8 +194,7 @@ module Vedeu
 
       # An optional title for when the top border is to be shown.
       #
-      # @return [Array<Vedeu::Views::Char>]
-      # @see [Vedeu::Borders::Title#render]
+      # @return (see Vedeu::Borders::Title#render)
       def titlebar
         characters = build_collection(bordered_width) do |ix|
           cell = top_horizontal.dup

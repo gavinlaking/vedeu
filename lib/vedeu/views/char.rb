@@ -79,13 +79,14 @@ module Vedeu
       # expected {Vedeu::Views::Line} and fail; this method fixes that.
       #
       # @return [Array]
+      # @todo Deprecate this method. (GL: 2016-01-02)
       def chars
         []
       end
 
       # An object is equal when its values are the same.
       #
-      # @param other [Vedeu::Views::Char]
+      # @param other [void]
       # @return [Boolean]
       def eql?(other)
         self.class == other.class && value == other.value &&
