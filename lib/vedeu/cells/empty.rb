@@ -72,12 +72,6 @@ module Vedeu
         ''
       end
 
-      # @return [String]
-      def to_s
-        value.to_s
-      end
-      alias_method :to_str, :to_s
-
       # @return [Symbol]
       def type
         :empty
