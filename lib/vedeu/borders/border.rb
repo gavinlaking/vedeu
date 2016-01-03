@@ -179,11 +179,11 @@ module Vedeu
           bottom_right:      bottom_right,
           caption:           @caption,
           client:            @client,
-          colour:            @colour,
+          colour:            colour,
           enabled:           @enabled,
           horizontal:        @horizontal,
           left_vertical:     left_vertical,
-          name:              @name,
+          name:              name,
           parent:            @parent,
           repository:        @repository,
           right_vertical:    right_vertical,
@@ -191,7 +191,7 @@ module Vedeu
           show_left:         @show_left,
           show_right:        @show_right,
           show_top:          @show_top,
-          style:             @style,
+          style:             style,
           title:             @title,
           top_horizontal:    top_horizontal,
           top_left:          top_left,
@@ -282,9 +282,9 @@ module Vedeu
       # @return [Hash<Symbol => void>]
       def cell_attributes
         {
-          colour: @colour,
-          name:   @name,
-          style:  @style,
+          colour: colour,
+          name:   name,
+          style:  style,
         }
       end
 
