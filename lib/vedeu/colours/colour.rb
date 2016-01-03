@@ -121,7 +121,7 @@ module Vedeu
       #
       # @return [String]
       def to_s
-        foreground.to_s + background.to_s
+        "#{foreground}#{background}"
       end
       alias_method :to_str, :to_s
 
