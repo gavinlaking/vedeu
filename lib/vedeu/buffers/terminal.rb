@@ -52,8 +52,8 @@ module Vedeu
       # Write a collection of cells to the virtual terminal, but do
       # not send to a renderer.
       #
-      # @param value_or_values [Array<Array<Vedeu::Views::Char>>]
-      # @return [Array<Array<Vedeu::Views::Char>>]
+      # @param value_or_values [Array<Array<Vedeu::Cells::Char>>]
+      # @return [Array<Array<Vedeu::Cells::Char>>]
       def update(value_or_values)
         buffer.update(value_or_values)
       end
@@ -67,8 +67,8 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_drb_store_output_, value_or_values)
       #
-      # @param value_or_values [Array<Array<Vedeu::Views::Char>>]
-      # @return [Array<Array<Vedeu::Views::Char>>]
+      # @param value_or_values [Array<Array<Vedeu::Cells::Char>>]
+      # @return [Array<Array<Vedeu::Cells::Char>>]
       def write(value_or_values)
         buffer.update(value_or_values)
 

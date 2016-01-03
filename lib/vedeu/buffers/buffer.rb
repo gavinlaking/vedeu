@@ -131,7 +131,7 @@ module Vedeu
       # - If the 'previous' buffer is empty, return an empty
       #   collection.
       #
-      # @return [Array<Array<Array<Vedeu::Views::Char>>>]
+      # @return [Array<Array<Array<Vedeu::Cells::Char>>>]
       def render
         current = if back?
                     swap

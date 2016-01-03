@@ -89,8 +89,8 @@ module Vedeu
       protected
 
       # @!attribute [r] output
-      # @return [Array<Array<Vedeu::Views::Char>>|
-      #   NilClass|Vedeu::Cells::Escape]
+      # @return [Array<Array<Vedeu::Cells::Char>>|
+      #   NilClass|Vedeu::Cells::Escape|Vedeu::Cells::Cursor]
       attr_reader :output
 
       private

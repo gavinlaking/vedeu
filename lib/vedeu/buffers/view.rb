@@ -35,8 +35,8 @@ module Vedeu
         Vedeu::Buffers::View.new(attributes)
       end
 
-      # @param value_or_values [Array<Array<Vedeu::Views::Char>>|
-      #   Vedeu::Views::Char]
+      # @param value_or_values [Array<Array<Vedeu::Cells::Char>>|
+      #   Vedeu::Cells::Char]
       # @return [Vedeu::Buffers::View]
       def update(value_or_values)
         Array(value_or_values).flatten.each do |value|

@@ -36,7 +36,7 @@ module Vedeu
         @oy    = oy
       end
 
-      # Returns the visible lines as a sequence of {Vedeu::View::Char}
+      # Returns the visible lines as a sequence of {Vedeu::Cells::Char}
       # objects.
       #
       # @return [Array<void>]
@@ -45,7 +45,7 @@ module Vedeu
 
         visible.each_with_index do |line, iy|
           line.chars.each_with_index do |char, ix|
-            out << Vedeu::Views::Char.new(name:     name,
+            out << Vedeu::Cells::Char.new(name:     name,
                                           position: [(by + iy), (bx + ix)],
                                           value:    char)
           end

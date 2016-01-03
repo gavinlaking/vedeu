@@ -71,7 +71,7 @@ module Vedeu
         @name = present?(name) ? name : Vedeu.focus
       end
 
-      # @return [Array<Array<Vedeu::Views::Char>>]
+      # @return [Array<Array<Vedeu::Cells::Char>>]
       def by_name
         Vedeu.render_output(output) if enabled? && visible?
       end
@@ -101,7 +101,7 @@ module Vedeu
         @border ||= Vedeu.borders.by_name(name)
       end
 
-      # @return [Array<Array<Vedeu::Views::Char>>]
+      # @return [Array<Array<Vedeu::Cells::Char>>]
       def output
         Vedeu.timer("Drawing border: '#{name}'") do
           [

@@ -21,7 +21,7 @@ module Vedeu
         @options = options || {}
       end
 
-      # @return [Array<Vedeu::Views::Char>]
+      # @return [Array<Vedeu::Cells::Char>]
       def chars
         return [] unless present?(value) && string?(value)
 
@@ -63,9 +63,9 @@ module Vedeu
         }
       end
 
-      # @return [Array<Vedeu::Views::Char>]
+      # @return [Array<Vedeu::Cells::Char>]
       def collection
-        text.chars.map { |char| Vedeu::Views::Char.new(attributes(char)) }
+        text.chars.map { |char| Vedeu::Cells::Char.new(attributes(char)) }
       end
 
       # @return [NilClass|String|Symbol]

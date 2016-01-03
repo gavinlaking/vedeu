@@ -4,7 +4,7 @@ module Vedeu
 
   module Output
 
-    # During the conversion of a Vedeu::Views::Char object into a
+    # During the conversion of a Vedeu::Cells::Char object into a
     # string of escape sequences, this class removes multiple
     # occurences of the same escape sequence, resulting in a smaller
     # payload being sent to the renderer.
@@ -24,7 +24,7 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Output::Compressor.
       #
-      # @param output [Array<Array<Vedeu::Views::Char>>]
+      # @param output [Array<Array<Vedeu::Cells::Char>>]
       # @param options [Hash]
       # @option options compression [Boolean]
       # @return [Vedeu::Output::Compressor]
@@ -117,7 +117,7 @@ module Vedeu
       # coordinate has changed; i.e. we are on the same line, just
       # advancing a character.
       #
-      # @param char [Vedeu::Views::Char]
+      # @param char [Vedeu::Cells::Char]
       # @return [String]
       def position_for(char)
         return '' unless char.position
@@ -131,7 +131,7 @@ module Vedeu
       # character which has the same colours as the last character
       # output.
       #
-      # @param char [Vedeu::Views::Char]
+      # @param char [Vedeu::Cells::Char]
       # @return [String]
       def colour_for(char)
         return '' if char.colour == @colour
@@ -144,7 +144,7 @@ module Vedeu
       # character which has the same style(s) as the last character
       # output.
       #
-      # @param char [Vedeu::Views::Char]
+      # @param char [Vedeu::Cells::Char]
       # @return [String]
       def style_for(char)
         return '' if char.style == @style
