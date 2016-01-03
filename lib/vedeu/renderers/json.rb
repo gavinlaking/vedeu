@@ -8,49 +8,33 @@ module Vedeu
     #
     class JSON < Vedeu::Renderers::File
 
-      # Returns a new instance of Vedeu::Renderers::JSON.
-      #
-      # @param options [Hash]
-      # @return [Vedeu::Renderers::JSON]
-      def initialize(options = {})
-        @options = options || {}
-      end
+      include Vedeu::Renderers::Options
 
       # Render a cleared output.
       #
-      # @return [String]
+      # @return [void]
       def clear
-        json = parse({})
-
-        super(json, { compression: false })
-
-        json
-      end
-
-      # @param output [Vedeu::Models::Page]
-      # @return [String]
-      def render(output)
-        json = parse(output)
-
-        super(json, { compression: false })
-
-        json
+        render({})
       end
 
       private
 
-      # @param output [Vedeu::Models::Page]
-      # @return [String]
-      def parse(output)
-        ::JSON.pretty_generate(as_hash(output))
+      # @return [Array]
+      def as_hash
+        output.content.map(&:to_h)
       end
 
-      # @param output [Vedeu::Models::Page]
-      # @return [Array]
-      def as_hash(output)
-        return output if output.is_a?(Hash)
+      # @return [String]
+      def content
+        if hash?(output)
+          ::JSON.pretty_generate(output)
 
-        output.content.map(&:to_hash)
+        else
+          Vedeu.log(type:    :render,
+                    message: "#{self.class.name}#content: #{output.class.name}")
+
+          ::JSON.pretty_generate(as_hash)
+        end
       end
 
     end # JSON

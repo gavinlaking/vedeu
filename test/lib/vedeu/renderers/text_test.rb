@@ -10,7 +10,32 @@ module Vedeu
 
       let(:described) { Vedeu::Renderers::Text }
       let(:instance)  { described.new(options) }
-      let(:options)   { {} }
+      let(:options)   {
+        {
+          compression:   compression,
+          end_tag:       end_tag,
+          end_row_tag:   end_row_tag,
+          filename:      filename,
+          output:        'EMPTY',
+          start_tag:     start_tag,
+          start_row_tag: start_row_tag,
+          template:      template,
+          timestamp:     timestamp,
+          write_file:    write_file,
+        }
+      }
+      let(:compression)   { false }
+      let(:end_tag)       { '</td>' }
+      let(:end_row_tag)   { '</tr>' }
+      let(:filename)      { 'vedeu_renderers_text' }
+      let(:start_tag)     { '<td' }
+      let(:start_row_tag) { '<tr>' }
+      let(:template)      {
+        ::File.dirname(__FILE__) + '/../../../support/templates/' \
+        'html_renderer.vedeu'
+      }
+      let(:timestamp)     { false }
+      let(:write_file)    { false }
 
       let(:geometry)  {
         Vedeu::Geometries::Geometry.new(name: 'Vedeu::Renderers::Text',
@@ -20,8 +45,11 @@ module Vedeu
                                         yn:   4)
       }
 
+      before { ::File.stubs(:write) }
+
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
+        it { instance.instance_variable_get('@options').must_equal(options) }
       end
 
       describe '#clear' do
@@ -31,8 +59,6 @@ module Vedeu
       end
 
       describe '#render' do
-        let(:output) {}
-
         before do
           Vedeu.stubs(:height).returns(5)
           Vedeu.stubs(:width).returns(5)
@@ -43,6 +69,8 @@ module Vedeu
         subject { instance.render(output) }
 
         context 'when the output is nil' do
+          let(:output) {}
+
           it { subject.must_equal('') }
         end
 
@@ -77,6 +105,10 @@ module Vedeu
 
           it { subject.must_equal(expected) }
         end
+      end
+
+      describe '#write' do
+        it { instance.must_respond_to(:write) }
       end
 
     end # Text

@@ -12,10 +12,11 @@ module Vedeu
       let(:instance)   { described.new(options) }
       let(:options)    {
         {
-          content:       content,
+          compression:   compression,
           end_tag:       end_tag,
           end_row_tag:   end_row_tag,
           filename:      filename,
+          output:        output,
           start_tag:     start_tag,
           start_row_tag: start_row_tag,
           template:      template,
@@ -23,18 +24,19 @@ module Vedeu
           write_file:    write_file,
         }
       }
-      let(:content)       { '' }
+      let(:compression)   { false }
       let(:end_tag)       { '</td>' }
       let(:end_row_tag)   { '</tr>' }
-      let(:filename)      { 'out' }
+      let(:filename)      { 'vedeu_renderers_html' }
+      let(:output)        { '' }
       let(:start_tag)     { '<td' }
       let(:start_row_tag) { '<tr>' }
       let(:template)      {
-        ::File.dirname(__FILE__) + '/../../../support/templates/html_renderer.vedeu'
+        ::File.dirname(__FILE__) + '/../../../support/templates/' \
+        'html_renderer.vedeu'
       }
       let(:timestamp)     { false }
       let(:write_file)    { false }
-      let(:buffer)        { Vedeu::Buffers::Terminal }
 
       before do
         Vedeu.config.stubs(:compression?).returns(false)
@@ -47,7 +49,6 @@ module Vedeu
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@options').must_equal(options) }
-        it { instance.instance_variable_get('@output').must_equal(nil) }
       end
 
       describe '#clear' do
@@ -60,7 +61,7 @@ module Vedeu
       describe '#render' do
         let(:output) {
           Vedeu::Models::Page.coerce([
-            Vedeu::Views::Char.new(value: 'a',
+            Vedeu::Cells::Char.new(value: 'a',
                                    colour: {
                                      background: '#ff0000',
                                      foreground: '#ffffff' }),
@@ -88,8 +89,9 @@ module Vedeu
           "  <body>\n" \
           "    <table>\n" \
           "      <tr>\n" \
-          "<td style='border:1px #ff0000 solid;" \
-          "background:#ff0000;color:#ffffff;'>a</td></tr>\n" \
+          "<td style='background-color:#ff0000;color:#ffffff;'>" \
+          "a" \
+          "</td></tr>\n" \
           "    </table>\n" \
           "  </body>\n" \
           "</html>\n"
@@ -104,7 +106,7 @@ module Vedeu
       describe '#html_body' do
         let(:output) {
           Vedeu::Models::Page.coerce([
-            Vedeu::Views::Char.new(value: 'a',
+            Vedeu::Cells::Char.new(value: 'a',
                                    colour: {
                                      background: '#ff0000',
                                      foreground: '#ffffff' }),
@@ -112,8 +114,9 @@ module Vedeu
         }
         let(:expected) {
           "<tr>\n" \
-          "<td style='border:1px #ff0000 solid;" \
-          "background:#ff0000;color:#ffffff;'>a</td></tr>\n" \
+          "<td style='background-color:#ff0000;color:#ffffff;'>" \
+          "a" \
+          "</td></tr>\n" \
         }
 
         before do
