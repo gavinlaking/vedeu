@@ -80,11 +80,17 @@ module Vedeu
         subject { instance.to_s }
 
         it { subject.must_be_instance_of(String) }
-        it { subject.must_equal("\e[2;6H\e[?25h") }
+        it { subject.must_equal("\e[?25h") }
       end
 
       describe '#to_str' do
         it { instance.must_respond_to(:to_str) }
+      end
+
+      describe '#type' do
+        subject { instance.type }
+
+        it { subject.must_equal(:escape) }
       end
 
     end # Escape
