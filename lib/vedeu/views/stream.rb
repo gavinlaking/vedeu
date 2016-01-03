@@ -1,4 +1,5 @@
 require 'vedeu/dsl/all'
+require 'vedeu/cells/all'
 
 # frozen_string_literal: true
 
@@ -32,7 +33,7 @@ module Vedeu
       include Vedeu::Views::Value
       collection Vedeu::Views::Chars
       deputy     Vedeu::Views::Stream::DSL
-      entity     Vedeu::Views::Char
+      entity     Vedeu::Cells::Char
       parent     Vedeu::Views::Streams
 
       def_delegators :value,

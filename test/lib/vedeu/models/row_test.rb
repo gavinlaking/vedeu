@@ -12,9 +12,9 @@ module Vedeu
       let(:instance)  { described.new(cells) }
       let(:cells)     {
         [
-          Vedeu::Views::Char.new(value: 'A'),
+          Vedeu::Cells::Char.new(value: 'A'),
           Vedeu::Cells::Empty.new(value: 'B'),
-          Vedeu::Views::Char.new(value: 'C'),
+          Vedeu::Cells::Char.new(value: 'C'),
         ]
       }
 
@@ -77,7 +77,7 @@ module Vedeu
 
         context 'when the index is not nil' do
           context 'and the index is in range' do
-            let(:expected) { Vedeu::Views::Char.new(value: 'C') }
+            let(:expected) { Vedeu::Cells::Char.new(value: 'C') }
 
             let(:index) { 2 }
 
@@ -101,9 +101,9 @@ module Vedeu
       describe '#content' do
         let(:expected) {
           [
-            Vedeu::Views::Char.new(value: 'A'),
+            Vedeu::Cells::Char.new(value: 'A'),
             Vedeu::Cells::Empty.new(value: 'B'),
-            Vedeu::Views::Char.new(value: 'C'),
+            Vedeu::Cells::Char.new(value: 'C'),
             Vedeu::Cells::Escape.new(value: "\e[0m"),
           ]
         }

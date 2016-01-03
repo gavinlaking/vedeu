@@ -40,7 +40,7 @@ module Vedeu
       #   - Takes approximately ~25ms for 2100 chars. (2015-07-25)
       # @return [String]
       def render
-        return cached if compress?
+        return cached if compression?
 
         uncompress
       end
@@ -48,7 +48,7 @@ module Vedeu
       protected
 
       # @!attribute [r] output
-      # @return [Array<Array<Vedeu::Views::Char>>]
+      # @return [Array<Array<Vedeu::Cells::Char>>]
       attr_reader :output
 
       private

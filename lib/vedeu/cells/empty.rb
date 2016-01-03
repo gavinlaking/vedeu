@@ -67,10 +67,13 @@ module Vedeu
       end
       alias_method :to_hash, :to_h
 
-      # @param _options [Hash] Ignored.
+      # Returns the object represented as HTML.
+      #
+      # @param options [Hash] Options provided by
+      #   {Vedeu::Renderers::HTML}.
       # @return [String]
-      def to_html(_options = {})
-        ''
+      def to_html(options = {})
+        Vedeu::Cells::HTML.new(self, options).to_html
       end
 
       # @return [Symbol]

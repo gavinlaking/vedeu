@@ -86,21 +86,21 @@ module Vedeu
           }
           let(:expected) {
             [
-              "\e[1;1H\e[39m\e[49m\e[24m\e[22m\e[27me",
-              "\e[1;2H\e[39m\e[49m\e[24m\e[22m\e[27ml",
-              "\e[1;3H\e[39m\e[49m\e[24m\e[22m\e[27mi",
-              "\e[1;4H\e[39m\e[49m\e[24m\e[22m\e[27mu",
-              "\e[1;5H\e[39m\e[49m\e[24m\e[22m\e[27mm",
-              "\e[2;1H\e[39m\e[49m\e[24m\e[22m\e[27mi",
-              "\e[2;2H\e[39m\e[49m\e[24m\e[22m\e[27mt",
-              "\e[2;3H\e[39m\e[49m\e[24m\e[22m\e[27mh",
-              "\e[2;4H\e[39m\e[49m\e[24m\e[22m\e[27mi",
-              "\e[2;5H\e[39m\e[49m\e[24m\e[22m\e[27mu",
-              "\e[3;1H\e[39m\e[49m\e[24m\e[22m\e[27me",
-              "\e[3;2H\e[39m\e[49m\e[24m\e[22m\e[27mr",
-              "\e[3;3H\e[39m\e[49m\e[24m\e[22m\e[27my",
-              "\e[3;4H\e[39m\e[49m\e[24m\e[22m\e[27ml",
-              "\e[3;5H\e[39m\e[49m\e[24m\e[22m\e[27ml"
+              "\e[1;1He",
+              "\e[1;2Hl",
+              "\e[1;3Hi",
+              "\e[1;4Hu",
+              "\e[1;5Hm",
+              "\e[2;1Hi",
+              "\e[2;2Ht",
+              "\e[2;3Hh",
+              "\e[2;4Hi",
+              "\e[2;5Hu",
+              "\e[3;1He",
+              "\e[3;2Hr",
+              "\e[3;3Hy",
+              "\e[3;4Hl",
+              "\e[3;5Hl"
             ]
           }
 
