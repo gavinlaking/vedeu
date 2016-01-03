@@ -25,6 +25,12 @@ module Vedeu
       let(:style)    { '' }
       let(:_value)   { '' }
 
+      describe '#as_html' do
+        subject { instance.as_html }
+
+        it { subject.must_equal('&nbsp;') }
+      end
+
       describe '#name' do
         it { instance.must_respond_to(:name) }
       end

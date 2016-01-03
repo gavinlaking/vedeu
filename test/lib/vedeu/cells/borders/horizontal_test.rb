@@ -11,6 +11,12 @@ module Vedeu
       let(:described) { Vedeu::Cells::Horizontal }
       let(:instance)  { described.new }
 
+      describe '#as_html' do
+        subject { instance.as_html }
+
+        it { subject.must_equal('&#x2500;') }
+      end
+
       describe '#text' do
         subject { instance.text }
 

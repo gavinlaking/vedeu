@@ -27,6 +27,13 @@ module Vedeu
       # @return [String]
       attr_reader :value
 
+      # Returns the value represented as HTML.
+      #
+      # @return [String]
+      def as_html
+        '&nbsp;'
+      end
+
       # @return [Boolean]
       def cell?
         true

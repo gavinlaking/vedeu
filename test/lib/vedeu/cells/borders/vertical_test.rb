@@ -11,6 +11,12 @@ module Vedeu
       let(:described) { Vedeu::Cells::Vertical }
       let(:instance)  { described.new }
 
+      describe '#as_html' do
+        subject { instance.as_html }
+
+        it { subject.must_equal('&#x2502;') }
+      end
+
       describe '#text' do
         subject { instance.text }
 

@@ -12,6 +12,11 @@ module Vedeu
     class Vertical < Vedeu::Cells::Border
 
       # @return [String]
+      def as_html
+        '&#x2502;'
+      end
+
+      # @return [String]
       def text
         '|'
       end

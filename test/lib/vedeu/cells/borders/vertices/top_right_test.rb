@@ -11,6 +11,12 @@ module Vedeu
       let(:described) { Vedeu::Cells::TopRight }
       let(:instance)  { described.new }
 
+      describe '#as_html' do
+        subject { instance.as_html }
+
+        it { subject.must_equal('&#x2510;') }
+      end
+
       describe '#type' do
         subject { instance.type }
 
