@@ -58,14 +58,6 @@ module Vedeu
       end
 
       describe '.coerce' do
-        let(:attributes) {
-          {
-            background: background,
-            foreground: foreground,
-          }
-        }
-        let(:background) {}
-        let(:foreground) {}
         let(:_value) {}
 
         subject { described.coerce(_value) }

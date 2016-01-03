@@ -14,7 +14,7 @@ module Vedeu
       #
       # @return [Vedeu::Geometries::Position]
       def position
-        @_position ||= Vedeu::Geometries::Position.coerce(@position)
+        Vedeu::Geometries::Position.coerce(@position)
       end
 
       # Sets the position.
@@ -23,7 +23,7 @@ module Vedeu
       #   Vedeu::Geometries::Position]
       # @return [Vedeu::Geometries::Position]
       def position=(value)
-        @_position = @position = Vedeu::Geometries::Position.coerce(value)
+        @position = Vedeu::Geometries::Position.coerce(value)
       end
 
       # Returns a boolean indicating the position attribute of the

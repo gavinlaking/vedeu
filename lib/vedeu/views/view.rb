@@ -76,7 +76,7 @@ module Vedeu
       # @param child [Vedeu::Views::Line]
       # @return [Vedeu::Views::Lines]
       def add(child)
-        @_value = value.add(child)
+        @value = value.add(child)
       end
       alias_method :<<, :add
 
