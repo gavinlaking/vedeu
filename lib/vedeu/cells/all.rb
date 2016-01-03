@@ -15,6 +15,7 @@ module Vedeu
 
 end # Vedeu
 
+require 'vedeu/cells/support/all'
 require 'vedeu/cells/empty'
 require 'vedeu/cells/border'
 require 'vedeu/cells/borders/all'
