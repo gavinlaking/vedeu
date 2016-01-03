@@ -9,6 +9,7 @@ module Vedeu
     class Row
 
       include Enumerable
+      include Vedeu::Common
 
       # @!attribute [r] cells
       # @return [Array<NilClass|void>]
@@ -43,7 +44,7 @@ module Vedeu
       # @param index [Fixnum]
       # @return [NilClass|void]
       def cell(index)
-        return nil if index.nil?
+        return nil if index.nil? || empty?
 
         cells[index]
       end
@@ -79,9 +80,9 @@ module Vedeu
       # reset colour and style information to prevent colour bleed on
       # the next line.
       #
-      # @return [Vedeu::Views::Char]
+      # @return [Vedeu::Cells::Escape]
       def reset_character
-        Vedeu::Views::Char.new(value: Vedeu.esc.reset)
+        Vedeu::Cells::Escape.new(value: Vedeu.esc.reset)
       end
 
       # @return [Fixnum]

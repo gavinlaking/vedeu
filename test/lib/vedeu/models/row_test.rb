@@ -104,7 +104,7 @@ module Vedeu
             Vedeu::Views::Char.new(value: 'A'),
             Vedeu::Cells::Empty.new(value: 'B'),
             Vedeu::Views::Char.new(value: 'C'),
-            Vedeu::Views::Char.new(value: "\e[0m"),
+            Vedeu::Cells::Escape.new(value: "\e[0m"),
           ]
         }
 
@@ -154,7 +154,7 @@ module Vedeu
       describe '#reset_character' do
         subject { instance.reset_character }
 
-        it { subject.must_be_instance_of(Vedeu::Views::Char) }
+        it { subject.must_be_instance_of(Vedeu::Cells::Escape) }
       end
 
       describe '#size' do
