@@ -69,9 +69,28 @@ module Vedeu
 
         attrs = Vedeu::DSL::Attributes.build(self, model, nil, {}, &block)
 
-        l = Vedeu::Views::View.build(attrs, &block)
-        model.value = l.value
+        if view_model?
+          if model.lines?
+            l = Vedeu::Views::Line.build(attrs, &block)
+            model.add(l)
+
+          else
+            l = Vedeu::Views::View.build(attrs, &block)
+            model.value = l.value
+
+          end
+
+        elsif line_model?
+          l = Vedeu::Views::Line.build(attrs, &block)
+          model.value = l.value
+
+        else
+          l = Vedeu::Views::View.build(attrs, &block)
+          model.value = l.value
+
+        end
       end
+      alias_method :streams, :lines
 
       # @todo This documentation needs editing. (GL: 2015-12-17)
       #
@@ -121,83 +140,7 @@ module Vedeu
 
         end
       end
-
-      # @todo This documentation needs editing. (GL: 2015-12-17)
-      #
-      # Define multiple streams (a stream is a subset of a line).
-      # Uses {Vedeu::DSL::Stream} for all directives within the
-      # required block.
-      #
-      #   Vedeu.renders do
-      #     view :my_interface do
-      #       lines do
-      #         line do
-      #           streams do
-      #             # ... some code
-      #           end
-      #
-      #           stream do
-      #             # ... some code
-      #           end
-      #         end
-      #       end
-      #     end
-      #   end
-      #
-      # @param block [Proc]
-      # @macro raise_requires_block
-      # @raise [Vedeu::Error::Fatal]
-      # @return [void]
-      def streams(&block)
-        requires_block!(&block)
-        requires_model!
-
-        attrs = Vedeu::DSL::Attributes.build(self, model, nil, {}, &block)
-
-        l = Vedeu::Views::Line.build(attrs, &block)
-
-        if view_model?
-          model.add(l)
-
-        elsif line_model?
-          model.value = l.value
-
-        end
-      end
-
-      # @todo This documentation needs editing. (GL: 2015-12-17)
-      #
-      # @param value [String]
-      # @param opts [Hash]
-      # @option opts ... [void]
-      # @param block [Proc]
-      # @raise [Vedeu::Error::Fatal]
-      # @return [void]
-      def stream(value = '', opts = {}, &block)
-        requires_model!
-
-        attrs = Vedeu::DSL::Attributes.build(self, model, value, opts, &block)
-
-        l = if block_given?
-              Vedeu::Views::Line.build(attrs, &block)
-
-            else
-              s  = Vedeu::Views::Stream.new(attrs)
-              ss = Vedeu::Views::Streams.coerce([s])
-
-              Vedeu::Views::Line.new(attrs.merge!(value: ss))
-
-            end
-
-        if view_model? || line_model?
-          model.add(l)
-
-        else
-          fail Vedeu::Error::Fatal,
-               "Cannot add line to '#{model.class.name}' model."
-
-        end
-      end
+      alias_method :stream, :line
 
       # @todo This documentation needs editing. (GL: 2015-12-17)
       #
