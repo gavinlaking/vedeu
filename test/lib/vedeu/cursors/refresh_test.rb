@@ -33,8 +33,11 @@ module Vedeu
 
       describe '.by_name' do
         before do
+          Vedeu.stubs(:trigger).with(:_hide_cursor_)
+          Vedeu.stubs(:trigger).with(:_show_cursor_)
+          Vedeu.stubs(:trigger).with(:_refresh_view_content_, _name)
           Vedeu.stubs(:log)
-          Vedeu.geometry 'refresh_cursor' do
+          Vedeu.geometry(_name) do
             x  1
             xn 3
             y  1

@@ -97,7 +97,7 @@ module Vedeu
 
       # @return [Boolean]
       def escape_sequence?
-        output.is_a?(Vedeu::Cells::Escape)
+        output.is_a?(Vedeu::Cells::Escape) || output.is_a?(Vedeu::Cells::Cursor)
       end
 
     end # Output
