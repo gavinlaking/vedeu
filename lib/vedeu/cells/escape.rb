@@ -40,7 +40,10 @@ module Vedeu
       #
       # @return [Hash<void>]
       def to_h
-        {}
+        {
+          type:  type,
+          value: value,
+        }
       end
       alias_method :to_hash, :to_h
 

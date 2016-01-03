@@ -17,6 +17,14 @@ module Vedeu
         present?(to_s)
       end
 
+      # @return [Hash<Symbol => String>]
+      def to_h
+        {
+          background: colour.to_s
+        }
+      end
+      alias_method :to_hash, :to_h
+
       private
 
       # @return [String]

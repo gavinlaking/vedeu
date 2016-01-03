@@ -69,24 +69,35 @@ module Vedeu
         it { subject.must_equal(' ') }
       end
 
-      describe '#to_hash' do
-        let(:position) { [1, 1] }
+      describe '#to_h' do
+        let(:position) { Vedeu::Geometries::Position.new(1, 1) }
         let(:colour)   { Vedeu::Colours::Colour.new(background: '#000000') }
         let(:expected) {
           {
-            colour:   "\e[48;2;0;0;0m",
+            name:     '',
             style:    '',
+            type:     :empty,
             value:    '',
-            position: "\e[1;1H",
+            colour:   {
+              background: '#000000',
+              foreground: '',
+            },
+            position: {
+              y: 1,
+              x: 1,
+            },
           }
         }
 
-        subject { instance.to_hash }
+        subject { instance.to_h }
 
         it { subject.must_be_instance_of(Hash) }
         it { subject.must_equal(expected) }
       end
 
+      describe '#to_hash' do
+        it { instance.must_respond_to(:to_hash) }
+      end
       describe '#to_html' do
         subject { instance.to_html }
 

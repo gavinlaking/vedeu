@@ -62,11 +62,21 @@ module Vedeu
         it { subject.must_equal("\e[?25h") }
       end
 
-      describe '#to_hash' do
-        subject { instance.to_hash }
+      describe '#to_h' do
+        let(:expected) {
+          {
+            type:  :escape,
+            value: "\e[?25h",
+          }
+        }
+        subject { instance.to_h }
 
         it { subject.must_be_instance_of(Hash) }
-        it { subject.must_equal({}) }
+        it { subject.must_equal(expected) }
+      end
+
+      describe '#to_hash' do
+        it { instance.must_respond_to(:to_hash) }
       end
 
       describe '#to_html' do

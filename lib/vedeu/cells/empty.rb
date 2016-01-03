@@ -56,15 +56,16 @@ module Vedeu
         ' '
       end
 
-      # @return [Hash]
-      def to_hash
+      # @return [Hash<Symbol => Hash<Symbol => String>, String>]
+      def to_h
         {
-          colour:   colour.to_s,
-          style:    style.to_s,
-          value:    value.to_s,
-          position: position.to_s,
-        }
+          name:  name.to_s,
+          style: style.to_s,
+          type:  type,
+          value: value.to_s,
+        }.merge!(colour.to_h).merge!(position.to_h)
       end
+      alias_method :to_hash, :to_h
 
       # @param _options [Hash] Ignored.
       # @return [String]

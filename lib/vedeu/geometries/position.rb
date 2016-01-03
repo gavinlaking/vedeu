@@ -103,10 +103,13 @@ module Vedeu
       # @return [Hash<Symbol => Fixnum|NilClass>]
       def to_h
         {
-          y: y,
-          x: x,
+          position: {
+            y: y,
+            x: x,
+          }
         }
       end
+      alias_method :to_hash, :to_h
 
       # Return the escape sequence required to position the cursor at
       # a particular point on the screen. When passed a block, will do

@@ -108,6 +108,14 @@ module Vedeu
         @_foreground = @foreground = Vedeu::Colours::Foreground.coerce(value)
       end
 
+      # @return [Hash<Symbol => Hash<Symbol => String>>]
+      def to_h
+        {
+          colour: background.to_h.merge!(foreground.to_h)
+        }
+      end
+      alias_method :to_hash, :to_h
+
       # Returns both or either of the converted attributes into a
       # single escape sequence.
       #
