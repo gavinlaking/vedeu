@@ -25,10 +25,6 @@ module Vedeu
                      elsif named_colour?
                        Vedeu::Colours::Colour.coerce(named_colour)
 
-                     elsif self.is_a?(Vedeu::Views::Char) && name
-                       # Currently used by Vedeu::Output::Viewport
-                       Vedeu::Colours::Colour.coerce(interface.colour)
-
                      else
                        Vedeu::Colours::Colour.new
 

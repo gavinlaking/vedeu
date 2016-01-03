@@ -48,7 +48,7 @@ module Vedeu
         end
 
         context 'when the colour is a CSS value (8-bit / 256 colours)' do
-          before { Configuration.stubs(:colour_mode).returns(8) }
+          before { Configuration.stubs(:colour_mode).returns(256) }
 
           {
             '#afd700' => "\e[38;5;148m",

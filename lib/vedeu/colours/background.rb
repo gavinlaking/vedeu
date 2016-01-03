@@ -51,7 +51,7 @@ module Vedeu
       #   {Vedeu::EscapeSequences::Esc#valid_codes}
       #
       # @return [String]
-      def named_code
+      def named
         Vedeu.esc.background_colour(colour)
       end
 

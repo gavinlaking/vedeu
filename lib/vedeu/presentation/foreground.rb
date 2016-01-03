@@ -24,8 +24,8 @@ module Vedeu
           @foreground ||= if colour && present?(colour.foreground)
                             colour.foreground
 
-                          elsif self.is_a?(Vedeu::Views::Char) && name
-                            interface.colour.foreground
+                          elsif named_colour?
+                            named_colour.foreground
 
                           elsif parent && present?(parent.foreground)
                             parent.foreground
