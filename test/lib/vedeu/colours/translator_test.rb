@@ -141,40 +141,6 @@ module Vedeu
         end
       end
 
-      describe '#to_html' do
-        subject { instance.to_html }
-
-        context 'when no colour is given' do
-          let(:colour) {}
-
-          it { subject.must_equal('') }
-        end
-
-        context 'when the colour is a terminal named colour; e.g. :red' do
-          let(:colour) { :red }
-
-          it { subject.must_equal('') }
-        end
-
-        context 'when the colour is a terminal numbered colour; e.g. 122' do
-          let(:colour) { 122 }
-
-          it { subject.must_equal('') }
-        end
-
-        context 'when the colour is a HTML/CSS colour (RGB specified)' do
-          let(:colour) { '#ff0000' }
-
-          it { subject.must_equal('#ff0000') }
-        end
-
-        context 'when the colour is not supported' do
-          let(:colour) { [:not_supported] }
-
-          it { subject.must_equal('') }
-        end
-      end
-
     end # Translator
 
   end # Colours

@@ -14,6 +14,17 @@ module Vedeu
     #
     class Char < Vedeu::Cells::Empty
 
+      # @return [String]
+      def as_html
+        if present?(value)
+          value
+
+        else
+          super
+
+        end
+      end
+
       # @return [Boolean]
       def cell?
         false

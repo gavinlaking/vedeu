@@ -25,6 +25,18 @@ module Vedeu
       end
       alias_method :to_hash, :to_h
 
+      # @param _options [Hash] Ignored.
+      # @return [String]
+      def to_html(_options = {})
+        if rgb?
+          "color:#{colour};"
+
+        else
+          ''
+
+        end
+      end
+
       private
 
       # @return [String]

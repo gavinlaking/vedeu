@@ -103,14 +103,6 @@ module Vedeu
       alias_method :to_s, :escape_sequence
       alias_method :to_str, :escape_sequence
 
-      # @param _options [Hash] Ignored.
-      # @return [String]
-      def to_html(_options = {})
-        return colour if rgb?
-
-        ''
-      end
-
       private
 
       # Retrieves the escape sequence for the HTML/CSS colour code.

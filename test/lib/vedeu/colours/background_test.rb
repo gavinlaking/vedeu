@@ -148,8 +148,8 @@ module Vedeu
         context 'when the colour is a CSS value' do
           let(:colour) { '#afd700' }
 
-          it 'returns the colour as a CSS value' do
-            subject.must_equal('#afd700')
+          it 'returns the colour as a CSS property' do
+            subject.must_equal('background-color:#afd700;')
           end
         end
       end
