@@ -21,6 +21,7 @@ AllCops:
   Exclude:
     - 'benchmarks/**/*'
     - 'examples/**/*'
+    - 'integrations/**/*'
     - 'test/**/*'
     - 'vendor/**/*'
   RunRailsCops: false
