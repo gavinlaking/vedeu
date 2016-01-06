@@ -60,6 +60,7 @@ module Vedeu
       # @!attribute [r] value
       # @return [String]
       attr_reader :value
+      alias_method :left, :value
 
       private
 
@@ -89,13 +90,6 @@ module Vedeu
       # @return [NilClass|Vedeu::Geometries::Geometry]
       def geometry
         @_geometry ||= Vedeu.geometries.by_name(options[:name])
-      end
-
-      # The value padded to width, left justified.
-      #
-      # @return [String]
-      def left
-        value.ljust(width, options[:pad])
       end
 
       # The value padded to width, right justified.

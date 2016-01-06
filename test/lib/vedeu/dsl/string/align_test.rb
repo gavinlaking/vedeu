@@ -75,20 +75,20 @@ module Vedeu
 
           context 'when a custom pad character is given' do
             let(:pad)      { '#' }
-            let(:expected) { 'Some text...########' }
+            let(:expected) { 'Some text...' }
 
             it { subject.must_equal(expected) }
           end
 
           context 'when a width is given' do
-            let(:expected) { 'Some text...        ' }
+            let(:expected) { 'Some text...' }
 
             it { subject.must_equal(expected) }
           end
 
           context 'when a width is not given' do
             let(:width)    {}
-            let(:expected) { 'Some text...                  ' }
+            let(:expected) { 'Some text...' }
 
             it 'uses the width of the named geometry' do
               subject.must_equal(expected)
