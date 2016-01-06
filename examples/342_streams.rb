@@ -10,6 +10,7 @@ class DSLApp
   Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   Vedeu.configure do
+    height 5
     debug!
     log '/tmp/vedeu_views_dsl.log'
     renderers(Vedeu::Renderers::Terminal.new(
@@ -22,10 +23,10 @@ class DSLApp
   Vedeu.interface :test1_interface do
     background '#000022'
     geometry do
-      x  4
+      x  3
       y  3
-      xn 34
-      yn 13
+      xn 53
+      yn 3
     end
   end
 
@@ -38,11 +39,11 @@ class DSLApp
         end
         stream do
           foreground '#007777'
-          left 'null'
+          left ' null'
         end
         stream do
           foreground '#dddddd'
-          left '> hi'
+          left ' > hi'
         end
       end
     end
