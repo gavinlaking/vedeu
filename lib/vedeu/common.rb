@@ -61,6 +61,20 @@ module Vedeu
       value.is_a?(Hash)
     end
 
+    # Returns a boolean indicating the model is a
+    # {Vedeu::Views::Line}.
+    #
+    # @return [Boolean]
+    def line_model?
+      if defined?(model)
+        model.is_a?(Vedeu::Views::Line)
+
+      else
+        false
+
+      end
+    end
+
     # Returns a boolean indicating whether the value is a Fixnum.
     #
     # @param value [Fixnum|void]
@@ -108,6 +122,20 @@ module Vedeu
       end.join('/')
     end
 
+    # Returns a boolean indicating the model is a
+    # {Vedeu::Views::Stream}.
+    #
+    # @return [Boolean]
+    def stream_model?
+      if defined?(model)
+        model.is_a?(Vedeu::Views::Stream)
+
+      else
+        false
+
+      end
+    end
+
     # Returns a boolean indicating whether the value is a Fixnum.
     #
     # @param value [String|void]
@@ -123,6 +151,20 @@ module Vedeu
     # @return [Boolean]
     def truthy?(value)
       !falsy?(value)
+    end
+
+    # Returns a boolean indicating the model is a
+    # {Vedeu::Views::View}.
+    #
+    # @return [Boolean]
+    def view_model?
+      if defined?(model)
+        model.is_a?(Vedeu::Views::View)
+
+      else
+        false
+
+      end
     end
 
   end # Common

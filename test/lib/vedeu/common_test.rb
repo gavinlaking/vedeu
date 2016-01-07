@@ -167,6 +167,30 @@ module Vedeu
       end
     end
 
+    describe '#line_model?' do
+      subject { instance.line_model? }
+
+      context 'when a model method is available in the including class' do
+        let(:model) { Vedeu::Views::Line.new }
+
+        before { instance.stubs(:model).returns(model) }
+
+        context 'when the model is a line' do
+          it { subject.must_equal(true) }
+        end
+
+        context 'when the model is not a line' do
+          let(:model) { :invalid }
+
+          it { subject.must_equal(false) }
+        end
+      end
+
+      context 'when a model method is not available in the including class' do
+        it { subject.must_equal(false) }
+      end
+    end
+
     describe '#numeric?' do
       let(:_value) {}
 
@@ -252,6 +276,30 @@ module Vedeu
       end
     end
 
+    describe '#stream_model?' do
+      subject { instance.stream_model? }
+
+      context 'when a model method is available in the including class' do
+        let(:model) { Vedeu::Views::Stream.new }
+
+        before { instance.stubs(:model).returns(model) }
+
+        context 'when the model is a stream' do
+          it { subject.must_equal(true) }
+        end
+
+        context 'when the model is not a stream' do
+          let(:model) { :invalid }
+
+          it { subject.must_equal(false) }
+        end
+      end
+
+      context 'when a model method is not available in the including class' do
+        it { subject.must_equal(false) }
+      end
+    end
+
     describe '#string?' do
       let(:_value) {}
 
@@ -293,6 +341,30 @@ module Vedeu
         let(:_value) { 'anything' }
 
         it { subject.must_equal(true) }
+      end
+    end
+
+    describe '#view_model?' do
+      subject { instance.view_model? }
+
+      context 'when a model method is available in the including class' do
+        let(:model) { Vedeu::Views::View.new }
+
+        before { instance.stubs(:model).returns(model) }
+
+        context 'when the model is a view' do
+          it { subject.must_equal(true) }
+        end
+
+        context 'when the model is not a view' do
+          let(:model) { :invalid }
+
+          it { subject.must_equal(false) }
+        end
+      end
+
+      context 'when a model method is not available in the including class' do
+        it { subject.must_equal(false) }
       end
     end
 

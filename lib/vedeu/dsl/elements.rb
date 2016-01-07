@@ -388,14 +388,6 @@ module Vedeu
 
       private
 
-      # Returns a boolean indicating the model is a
-      # {Vedeu::Views::Line}.
-      #
-      # @return [Boolean]
-      def line_model?
-        model.is_a?(Vedeu::Views::Line)
-      end
-
       # @param block [Proc]
       # @macro raise_requires_block
       # @return [NilClass]
@@ -409,22 +401,6 @@ module Vedeu
       def requires_model!
         fail Vedeu::Error::Fatal,
              'No model, cannot continue.' unless present?(model)
-      end
-
-      # Returns a boolean indicating the model is a
-      # {Vedeu::Views::Stream}.
-      #
-      # @return [Boolean]
-      def stream_model?
-        model.is_a?(Vedeu::Views::Stream)
-      end
-
-      # Returns a boolean indicating the model is a
-      # {Vedeu::Views::View}.
-      #
-      # @return [Boolean]
-      def view_model?
-        model.is_a?(Vedeu::Views::View)
       end
 
     end # Elements
