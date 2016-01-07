@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Notes:
+# At the moment, the terminal must be set to width 135 x height 34 for
+# these tests to pass.
+
 # die on error
 set -e
 
