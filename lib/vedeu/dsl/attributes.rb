@@ -181,7 +181,7 @@ module Vedeu
         if numeric?(options[:width])
           options[:width]
 
-        elsif name
+        elsif view_model? && name
           geometry.bordered_width
 
         end
