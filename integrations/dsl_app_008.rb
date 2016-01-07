@@ -45,7 +45,7 @@ class DSLApp
   end
 
   def self.expected
-    File.read('./expected/dsl_app_008.out')
+    File.read(File.expand_path('../expected/dsl_app_008.out', __FILE__))
   end
 
   def self.start(argv = ARGV)
