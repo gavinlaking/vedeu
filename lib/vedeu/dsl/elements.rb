@@ -121,18 +121,67 @@ module Vedeu
         attrs = Vedeu::DSL::Attributes.build(self, model, value, opts, &block)
 
         l = if block_given?
-              Vedeu::Views::Line.build(attrs, &block)
+              if view_model?
+                # Vedeu.log(type:    :blue,
+                #           message: "line blk view_model")
+
+                Vedeu::Views::Line.build(attrs, &block)
+
+              elsif line_model?
+                # Vedeu.log(type:    :magenta,
+                #           message: "line blk line_model")
+
+                if model.streams?
+                  # Vedeu.log(type:    :red,
+                  #           message: "streams: #{model.streams.size}")
+                  # Vedeu::Views::Streams.build(attrs, &block)
+                  # model.add(nil, &block)
+
+                else
+                  # Vedeu.log(type:    :red,
+                  #           message: "no streams: #{model.streams.size}")
+
+                  Vedeu::Views::Line.build(attrs, &block)
+
+                end
+              else
+                # Vedeu.log(type:    :red,
+                #           message: "line blk !!!_model")
+
+                Vedeu::Views::Line.build(attrs, &block)
+              end
 
             else
-              s  = Vedeu::Views::Stream.new(attrs)
-              ss = Vedeu::Views::Streams.coerce([s])
+              if view_model?
+                # Vedeu.log(type: :blue, message: "line noblk view_model")
+                s  = Vedeu::Views::Stream.new(attrs)
+                ss = Vedeu::Views::Streams.coerce([s])
 
-              Vedeu::Views::Line.new(attrs.merge!(value: ss))
+                Vedeu::Views::Line.new(attrs.merge!(value: ss))
+              elsif line_model?
+                # Vedeu.log(type: :magenta, message: "line noblk line_model")
+                s  = Vedeu::Views::Stream.new(attrs)
+                ss = Vedeu::Views::Streams.coerce([s])
+
+                Vedeu::Views::Line.new(attrs.merge!(value: ss))
+              else
+                # Vedeu.log(type: :red, message: "line noblk !!!_model")
+
+                s  = Vedeu::Views::Stream.new(attrs)
+                ss = Vedeu::Views::Streams.coerce([s])
+
+                Vedeu::Views::Line.new(attrs.merge!(value: ss))
+              end
 
             end
 
-        if view_model? || line_model?
+        if view_model?
+          # Vedeu.log(type: :green, message: "add line view_model #{l.class.name}  (#{l.object_id})->#{model.class.name} (#{model.object_id})")
           model.add(l)
+
+        elsif line_model?
+          # Vedeu.log(type: :yellow, message: "add line line_model #{l.value.class.name}  (#{l.value.object_id})->#{model.class.name} (#{model.object_id})")
+          model.add(l.value)
 
         else
           fail Vedeu::Error::Fatal,
@@ -140,7 +189,65 @@ module Vedeu
 
         end
       end
-      alias_method :stream, :line
+
+      # @param value [String] The value for the stream. Ignored when a
+      #   block is given.
+      # @param opts [Hash]
+      # @option opts ... [void]
+      # @param block [Proc]
+      # @raise [Vedeu::Error::Fatal]
+      # @return [void]
+      def stream(value = '', opts = {}, &block)
+        requires_model!
+
+        attrs = Vedeu::DSL::Attributes.build(self, model, value, opts, &block)
+
+        l = if block_given?
+              if view_model?
+                # Vedeu.log(type: :blue, message: "stream blk view_model")
+                Vedeu::Views::Line.build(attrs, &block)
+
+              elsif line_model?
+                # Vedeu.log(type: :magenta, message: "stream blk line_model")
+                Vedeu::Views::Stream.build(attrs, &block)
+
+              elsif stream_model?
+                # Vedeu.log(type: :yellow, message: "stream blk stream_model")
+                Vedeu::Views::Stream.build(attrs, &block)
+
+              else
+                # Vedeu.log(type: :red, message: "stream blk !!!_model")
+                Vedeu::Views::Stream.build(attrs, &block)
+
+              end
+
+            else
+              # Vedeu.log(type: :magenta, message: "stream noblk")
+              s  = Vedeu::Views::Stream.new(attrs)
+              ss = Vedeu::Views::Streams.coerce([s])
+
+              Vedeu::Views::Line.new(attrs.merge!(value: ss))
+
+            end
+
+        if view_model?
+          # Vedeu.log(type: :green, message: "add stream view_model #{l.class.name} (#{l.object_id})->#{model.class.name} (#{model.object_id})")
+          model.add(l)
+
+        elsif line_model?
+          # Vedeu.log(type: :magenta, message: "add stream line_model #{l.class.name} (#{l.object_id})->#{model.class.name} (#{model.object_id})")
+          model.add([l])
+
+        elsif stream_model?
+          # Vedeu.log(type: :yellow, message: "add stream stream_model #{l.class.name} (#{l.object_id})->#{model.class.name} (#{model.object_id})")
+          model.add([l])
+
+        else
+          fail Vedeu::Error::Fatal,
+               "Cannot add stream to '#{model.class.name}' model."
+
+        end
+      end
 
       # @todo This documentation needs editing. (GL: 2015-12-17)
       #
@@ -204,13 +311,48 @@ module Vedeu
       def text(value = '', opts = {})
         requires_model!
 
-        if view_model? || line_model?
+        if view_model?
           attrs = Vedeu::DSL::Attributes.build(self, model, value, opts)
           s  = Vedeu::Views::Stream.new(attrs)
           ss = Vedeu::Views::Streams.coerce([s])
           l  = Vedeu::Views::Line.new(attrs.merge!(value: ss))
 
-          model.add(l)
+          # Vedeu.log(type: :blue, message: "#{model.name} text [1] view_model #{value.inspect} (#{model.inspect})")
+
+          tmp = model.add(l)
+
+          # Vedeu.log(type: :blue, message: "#{model.name} text [2] view_model #{value.inspect} (#{model.inspect})")
+
+          tmp
+
+        elsif line_model?
+          attrs = Vedeu::DSL::Attributes.build(self, model, value, opts)
+          s  = Vedeu::Views::Stream.new(attrs)
+          # ss = Vedeu::Views::Streams.coerce([s])
+          # l  = Vedeu::Views::Line.new(attrs.merge!(value: ss))
+
+          # Vedeu.log(type: :magenta, message: "#{model.name} text [1] line_model #{value.inspect} (#{model.inspect})")
+
+          # tmp = model.add(ss)
+          tmp = model.add(s)
+          # tmp = model.add(s.value)
+
+          # Vedeu.log(type: :magenta, message: "#{model.name} text [2] line_model #{value.inspect} (#{model.inspect})")
+
+          tmp
+
+        elsif stream_model?
+          attrs = Vedeu::DSL::Attributes.build(self, model, value, opts)
+          s  = Vedeu::Views::Stream.new(attrs)
+
+          # Vedeu.log(type: :red, message: "text [1] stream_model #{s.value.inspect}")
+          # Vedeu.log(type: :yellow, message: "text [2] stream_model (#{model.inspect})")
+
+          tmp = model.add(s.value)
+
+          # Vedeu.log(type: :green, message: "text [3] stream_model (#{tmp.inspect})")
+
+          tmp
 
         else
           fail Vedeu::Error::Fatal,
@@ -267,6 +409,14 @@ module Vedeu
       def requires_model!
         fail Vedeu::Error::Fatal,
              'No model, cannot continue.' unless present?(model)
+      end
+
+      # Returns a boolean indicating the model is a
+      # {Vedeu::Views::Stream}.
+      #
+      # @return [Boolean]
+      def stream_model?
+        model.is_a?(Vedeu::Views::Stream)
       end
 
       # Returns a boolean indicating the model is a
