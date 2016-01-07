@@ -12,6 +12,8 @@ module Vedeu
     #
     module Defaults
 
+      include Vedeu::Common
+
       # Returns a new instance of the class including this module.
       #
       # @note
@@ -23,12 +25,7 @@ module Vedeu
       # @return [void] A new instance of the class including this
       #   module.
       def initialize(attributes = {})
-        fail Vedeu::Error::InvalidSyntax,
-             'Argument :attributes is not a Hash.' unless attributes.is_a?(Hash)
-
-        attrs = attributes.keep_if { |key, _| defaults.key?(key) }
-
-        defaults.merge!(attrs).each do |key, value|
+        defaults.merge!(validate(attributes)).each do |key, value|
           instance_variable_set("@#{key}", value || defaults.fetch(key))
         end
       end
@@ -38,6 +35,17 @@ module Vedeu
       # @return [Hash<void>]
       def defaults
         {}
+      end
+
+      # @param attributes [Hash]
+      # @raise [Vedeu::Error::InvalidSyntax] When the :attributes
+      #   param is not a Hash.
+      # @return [Hash]
+      def validate(attributes)
+        fail Vedeu::Error::InvalidSyntax,
+             'Argument :attributes is not a Hash.' unless hash?(attributes)
+
+        attributes.keep_if { |key, _| defaults.key?(key) }
       end
 
     end # Defaults

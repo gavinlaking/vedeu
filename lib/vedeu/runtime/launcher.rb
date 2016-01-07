@@ -112,7 +112,11 @@ module Vedeu
       $stdout = STDOUT
       $stderr = STDERR
 
-      @kernel.exit(exit_code)
+      # Commenting out this line means Vedeu can be run as a module within an
+      # application. Specifically, this allows me to run some very basic
+      # integration tests.
+      #
+      # @kernel.exit(exit_code)
     end
     # :nocov:
 

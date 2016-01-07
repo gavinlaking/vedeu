@@ -91,7 +91,7 @@ module Vedeu
         @_geometry ||= Vedeu.geometries.by_name(options[:name])
       end
 
-      # The value padded to width, left justified.
+      # The value padded to width, left justified. See {#width}.
       #
       # @return [String]
       def left
@@ -105,6 +105,15 @@ module Vedeu
         value.rjust(width, options[:pad])
       end
 
+      # Return the width given in the options. If no :width option was
+      # set, but a :name option was set, then we can use the width of
+      # the interface to determine the correct width to use. There is
+      # a caveat in this; if the :align option was set to :left, but
+      # no :width provided, then we don't want to use the interface's
+      # width. The reason being, is that there may be another stream
+      # in this line which will not appear by default as it will be
+      # push right out of the visible area.
+      #
       # Return the width of the interface when a name is given,
       # otherwise use the given width.
       #
@@ -114,7 +123,13 @@ module Vedeu
           options[:width]
 
         elsif present?(options[:name])
-          geometry.bordered_width
+          if left_aligned?
+            value.size
+
+          else
+            geometry.bordered_width
+
+          end
 
         else
           value.size

@@ -88,7 +88,7 @@ module Vedeu
 
           context 'when a width is not given' do
             let(:width)    {}
-            let(:expected) { 'Some text...                  ' }
+            let(:expected) { 'Some text...' }
 
             it 'uses the width of the named geometry' do
               subject.must_equal(expected)

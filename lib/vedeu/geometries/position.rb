@@ -98,6 +98,11 @@ module Vedeu
         [y, x]
       end
 
+      # @return [String]
+      def to_ast
+        ":y#{y}_x#{x}"
+      end
+
       # Return the position as a Hash.
       #
       # @return [Hash<Symbol => Fixnum|NilClass>]

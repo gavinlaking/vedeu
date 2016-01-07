@@ -109,19 +109,13 @@ module Vedeu
 
         # @return [void]
         def value
-          @_value ||= if present?(@value)
-                        collection.coerce(@value, self)
-
-                      else
-                        collection.coerce([], self)
-
-                      end
+          collection.coerce(@value || [], self)
         end
 
         # @param value [void]
         # @return [void]
         def value=(value)
-          @_value = @value = collection.coerce(value, self)
+          @value = collection.coerce(value, self)
         end
 
         # Returns a boolean indicating whether this model has a

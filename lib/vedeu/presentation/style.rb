@@ -75,6 +75,11 @@ module Vedeu
       end
       alias_method :==, :eql?
 
+      # @return [String]
+      def to_ast
+        ':s'
+      end
+
       # Return the terminal escape sequences after converting the
       # style or styles.
       #

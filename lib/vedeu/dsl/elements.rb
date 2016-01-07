@@ -126,13 +126,15 @@ module Vedeu
             else
               s  = Vedeu::Views::Stream.new(attrs)
               ss = Vedeu::Views::Streams.coerce([s])
-
               Vedeu::Views::Line.new(attrs.merge!(value: ss))
 
             end
 
-        if view_model? || line_model?
+        if view_model?
           model.add(l)
+
+        elsif line_model?
+          model.add(l.value)
 
         else
           fail Vedeu::Error::Fatal,
@@ -140,7 +142,48 @@ module Vedeu
 
         end
       end
-      alias_method :stream, :line
+
+      # @param value [String] The value for the stream. Ignored when a
+      #   block is given.
+      # @param opts [Hash]
+      # @option opts ... [void]
+      # @param block [Proc]
+      # @raise [Vedeu::Error::Fatal]
+      # @return [void]
+      def stream(value = '', opts = {}, &block)
+        requires_model!
+
+        attrs = Vedeu::DSL::Attributes.build(self, model, value, opts, &block)
+
+        l = if block_given?
+              if view_model?
+                Vedeu::Views::Line.build(attrs, &block)
+
+              else
+                Vedeu::Views::Stream.build(attrs, &block)
+
+              end
+
+            else
+              s  = Vedeu::Views::Stream.new(attrs)
+              ss = Vedeu::Views::Streams.coerce([s])
+
+              Vedeu::Views::Line.new(attrs.merge!(value: ss))
+
+            end
+
+        if view_model?
+          model.add(l)
+
+        elsif line_model? || stream_model?
+          model.add([l])
+
+        else
+          fail Vedeu::Error::Fatal,
+               "Cannot add stream to '#{model.class.name}' model."
+
+        end
+      end
 
       # @todo This documentation needs editing. (GL: 2015-12-17)
       #
@@ -204,13 +247,20 @@ module Vedeu
       def text(value = '', opts = {})
         requires_model!
 
-        if view_model? || line_model?
-          attrs = Vedeu::DSL::Attributes.build(self, model, value, opts)
-          s  = Vedeu::Views::Stream.new(attrs)
-          ss = Vedeu::Views::Streams.coerce([s])
+        attrs  = Vedeu::DSL::Attributes.build(self, model, value, opts)
+        stream = Vedeu::Views::Stream.new(attrs)
+
+        if view_model?
+          ss = Vedeu::Views::Streams.coerce([stream])
           l  = Vedeu::Views::Line.new(attrs.merge!(value: ss))
 
           model.add(l)
+
+        elsif line_model?
+          model.add(stream)
+
+        elsif stream_model?
+          model.add(stream.value)
 
         else
           fail Vedeu::Error::Fatal,
@@ -246,14 +296,6 @@ module Vedeu
 
       private
 
-      # Returns a boolean indicating the model is a
-      # {Vedeu::Views::Line}.
-      #
-      # @return [Boolean]
-      def line_model?
-        model.is_a?(Vedeu::Views::Line)
-      end
-
       # @param block [Proc]
       # @macro raise_requires_block
       # @return [NilClass]
@@ -267,14 +309,6 @@ module Vedeu
       def requires_model!
         fail Vedeu::Error::Fatal,
              'No model, cannot continue.' unless present?(model)
-      end
-
-      # Returns a boolean indicating the model is a
-      # {Vedeu::Views::View}.
-      #
-      # @return [Boolean]
-      def view_model?
-        model.is_a?(Vedeu::Views::View)
       end
 
     end # Elements

@@ -18,6 +18,11 @@ module Vedeu
         if collection.is_a?(Vedeu::Views::Lines)
           collection
 
+        elsif collection.is_a?(Vedeu::Views::Streams)
+          if collection.empty?
+            # @todo Investigate whether this is being used.
+          end
+
         elsif collection.is_a?(Array)
           return new(collection, parent, name) if collection.empty?
 
