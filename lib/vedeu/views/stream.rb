@@ -68,9 +68,7 @@ module Vedeu
       # @param child [Vedeu::Views::Stream]
       # @return [Vedeu::Views::Streams]
       def add(child)
-        @value = child
-
-        self
+        parent.add(child)
       end
       alias_method :<<, :add
 
