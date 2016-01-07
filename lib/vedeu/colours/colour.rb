@@ -108,6 +108,13 @@ module Vedeu
         @foreground = Vedeu::Colours::Foreground.coerce(value)
       end
 
+      # @return [String]
+      def to_ast
+        [foreground.to_ast, background.to_ast].reject do |value|
+          absent?(value)
+        end.join(' ')
+      end
+
       # @return [Hash<Symbol => Hash<Symbol => String>>]
       def to_h
         {

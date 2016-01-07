@@ -17,6 +17,19 @@ module Vedeu
         present?(to_s)
       end
 
+      # @return [String]
+      def to_ast
+        return '' unless background?
+
+        if rgb?
+          ":bg_#{colour.to_s.slice(1..-1)}"
+
+        else
+          ':bg'
+
+        end
+      end
+
       # @return [Hash<Symbol => String>]
       def to_h
         {

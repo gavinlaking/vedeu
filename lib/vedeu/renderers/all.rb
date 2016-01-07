@@ -132,6 +132,7 @@ end # Vedeu
 
 require 'vedeu/renderers/options'
 require 'vedeu/renderers/file'
+require 'vedeu/renderers/escape'
 require 'vedeu/renderers/html'
 require 'vedeu/renderers/json'
 require 'vedeu/renderers/terminal'

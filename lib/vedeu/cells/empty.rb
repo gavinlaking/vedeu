@@ -56,6 +56,20 @@ module Vedeu
         ' '
       end
 
+      # @return [String]
+      def to_ast
+        [
+          '[',
+          [
+            position.to_ast,
+            colour.to_ast,
+            style.to_ast,
+            ":#{type}",
+          ].reject { |v| v.empty? }.join(' '),
+          ']',
+        ].join
+      end
+
       # @return [Hash<Symbol => Hash<Symbol => String>, String>]
       def to_h
         {
