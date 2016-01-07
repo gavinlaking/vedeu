@@ -63,6 +63,8 @@ DSLApp.start
 
 if DSLApp.expected == DSLApp.actual
   puts "#{__FILE__} \e[32mPassed.\e[39m"
+  exit 0;
 else
   puts "#{__FILE__} \e[31mFailed.\e[39m"
+  exit 1;
 end
