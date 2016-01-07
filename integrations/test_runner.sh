@@ -6,6 +6,10 @@ set -e
 # change to directory that contains this script
 cd "$(dirname "$0")"
 
+# Issue regression tests
+./342_streams.rb
+
+# Integration tests
 ./dsl_app_001.rb
 ./dsl_app_002.rb
 ./dsl_app_003.rb
