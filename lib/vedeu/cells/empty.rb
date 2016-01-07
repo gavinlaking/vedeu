@@ -65,7 +65,7 @@ module Vedeu
             colour.to_ast,
             style.to_ast,
             ":#{type}",
-          ].reject { |v| v.empty? }.join(' '),
+          ].reject(&:empty?).join(' '),
           ']',
         ].join
       end
