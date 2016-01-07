@@ -31,6 +31,11 @@ class DSLApp
 
   Vedeu.render do
     view(:test_interface) do
+      foreground '#ffffff'
+      line do
+        left  'v->l->left',   { background: '#aa00ff' }
+        right 'v->l->right',  { background: '#5a5a5a' }
+      end
     end
   end
 
