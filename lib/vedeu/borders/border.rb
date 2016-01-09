@@ -37,10 +37,10 @@ module Vedeu
       #   horizontal border if enabled.
       attr_writer :bottom_horizontal
 
-      # @!attribute [rw] caption
+      # @!attribute [r] caption
       # @return [String] An optional caption for when the bottom
       #   border is to be shown.
-      attr_accessor :caption
+      attr_reader :caption
 
       # @!attribute [rw] horizontal
       # @return [String] The character to be used for the horizontal
@@ -71,10 +71,10 @@ module Vedeu
       attr_accessor :show_top
       alias_method :top?, :show_top
 
-      # @!attribute [rw] title
+      # @!attribute [r] title
       # @return [String] An optional title for when the top border is
       #   to be shown.
-      attr_accessor :title
+      attr_reader :title
 
       # @!attribute [w] top_left
       # @return [String] The character to be used for the top left
@@ -177,7 +177,7 @@ module Vedeu
           bottom_horizontal: bottom_horizontal,
           bottom_left:       bottom_left,
           bottom_right:      bottom_right,
-          caption:           @caption,
+          caption:           caption,
           client:            @client,
           colour:            colour,
           enabled:           @enabled,
@@ -192,12 +192,20 @@ module Vedeu
           show_right:        @show_right,
           show_top:          @show_top,
           style:             style,
-          title:             @title,
+          title:             title,
           top_horizontal:    top_horizontal,
           top_left:          top_left,
           top_right:         top_right,
           vertical:          @vertical,
         }
+      end
+
+      # @param value [String]
+      # @return [Vedeu::Borders::Border]
+      def caption=(value)
+        @caption = value
+
+        store
       end
 
       # Returns a DSL instance responsible for defining the DSL
@@ -275,6 +283,14 @@ module Vedeu
       # @return [Vedeu::Cells::BottomRight]
       def bottom_right
         @bottom_right ||= Vedeu::Cells::BottomRight.new(cell_attributes)
+      end
+
+      # @param value [String]
+      # @return [Vedeu::Borders::Border]
+      def title=(value)
+        @title = value
+
+        store
       end
 
       private
