@@ -11,8 +11,6 @@ module Vedeu
     #
     class Cursor < Vedeu::Cells::Empty
 
-      include Vedeu::Geometries::Positionable
-
       # @return [Boolean]
       def cell?
         false

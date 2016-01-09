@@ -4,9 +4,9 @@ require 'test_helper'
 
 module Vedeu
 
-  module Geometries
+  module Presentation
 
-    describe Positionable do
+    describe Position do
 
       # describe '#position' do
       #   subject { instance.position }
@@ -62,8 +62,8 @@ module Vedeu
       #   end
       # end
 
-    end # Positionable
+    end # Position
 
-  end # Positionable
+  end # Presentation
 
 end # Vedeu

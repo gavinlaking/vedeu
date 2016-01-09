@@ -2,13 +2,13 @@
 
 module Vedeu
 
-  module Geometries
+  module Presentation
 
     # Provide position functionality to the including model.
     #
     # @api private
     #
-    module Positionable
+    module Position
 
       # Gets the position.
       #
@@ -50,8 +50,8 @@ module Vedeu
         position.y if position?
       end
 
-    end # Positionable
+    end # Position
 
-  end # Geometries
+  end # Presentation
 
 end # Vedeu

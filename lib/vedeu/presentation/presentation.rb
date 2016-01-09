@@ -1,13 +1,11 @@
-require 'vedeu/geometries/positionable'
-
 # frozen_string_literal: true
 
 module Vedeu
 
   module Presentation
 
-    include Vedeu::Geometries::Positionable
     include Vedeu::Presentation::Colour
+    include Vedeu::Presentation::Position
     include Vedeu::Presentation::Styles
 
     # Converts the colours and styles to escape sequences, and when
