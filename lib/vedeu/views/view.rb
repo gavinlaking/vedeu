@@ -28,7 +28,6 @@ module Vedeu
 
       extend Forwardable
       include Vedeu::Repositories::Model
-      include Vedeu::Repositories::Parent
       include Vedeu::Presentation
       include Vedeu::Views::Value
 
@@ -92,6 +91,22 @@ module Vedeu
           value:          value,
           zindex:         zindex,
         }
+      end
+
+      # @return [NilClass|String|Symbol]
+      def name
+        if present?(@name)
+          @name
+
+        elsif parent && present?(parent.name)
+          parent.name
+
+        end
+      end
+
+      # @return [NilClass|void]
+      def parent
+        present?(@parent) ? @parent : nil
       end
 
       # Store the view in its respective buffer.
