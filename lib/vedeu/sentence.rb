@@ -18,7 +18,8 @@ module Vedeu
     # @param label [String]
     # @return [Vedeu::Sentence]
     def initialize(elements, label = 'elements')
-      @elements, @label = elements, label
+      @elements = elements
+      @label    = label
     end
 
     # @return [String]
