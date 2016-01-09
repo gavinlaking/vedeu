@@ -166,6 +166,38 @@ module Vedeu
         end
       end
 
+      describe '#valid_horizontal?' do
+        subject { instance.valid_horizontal? }
+
+        context 'when the value is valid' do
+          let(:_value) { :left }
+
+          it { subject.must_equal(true) }
+        end
+
+        context 'when the value is not valid' do
+          let(:_value) { :top }
+
+          it { subject.must_equal(false) }
+        end
+      end
+
+      describe '#valid_vertical?' do
+        subject { instance.valid_vertical? }
+
+        context 'when the value is valid' do
+          let(:_value) { :top }
+
+          it { subject.must_equal(true) }
+        end
+
+        context 'when the value is not valid' do
+          let(:_value) { :left }
+
+          it { subject.must_equal(false) }
+        end
+      end
+
       describe '#value' do
         subject { instance.value }
 

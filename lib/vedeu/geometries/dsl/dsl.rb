@@ -75,10 +75,10 @@ module Vedeu
     #
     class DSL
 
+      include Vedeu::Common
       include Vedeu::DSL
       include Vedeu::DSL::Geometry
       include Vedeu::DSL::Use
-      include Vedeu::Geometries::Validator
 
       # Align the interface/view horizontally or vertically within
       # the terminal.
@@ -100,12 +100,7 @@ module Vedeu
       #   - When the vertical is given (and not :none) and the height
       #     is not given.
       # @return [Vedeu::Geometries::Geometry]
-      def align(vertical, horizontal, width, height)
-        validate_vertical_alignment!(vertical)
-        validate_horizontal_alignment!(horizontal)
-        validate_height!(height) unless vertical == :none
-        validate_width!(width)   unless horizontal == :none
-
+      def align(vertical: :none, horizontal: :none, width: nil, height: nil)
         horizontal_alignment(horizontal, width)
         vertical_alignment(vertical, height)
       end
@@ -114,26 +109,22 @@ module Vedeu
       #   :right.
       # @param width [Fixnum] The number of characters/columns.
       # @return [Vedeu::Geometries::Geometry]
-      def horizontal_alignment(value, width)
-        validate_horizontal_alignment!(value)
-        validate_width!(width)
+      def horizontal_alignment(value = :none, width = nil)
+        alignment = Vedeu::Coercers::HorizontalAlignment.validate(value)
 
-        model.horizontal_alignment = Vedeu::Coercers::HorizontalAlignment
-          .coerce(value)
-        model.width = width
+        model.width = width if width
+        model.horizontal_alignment = alignment
         model
       end
 
       # @param value [Symbol] One of :bottom, :middle, :none, :top.
       # @param height [Fixnum] The number of lines/rows.
       # @return [Vedeu::Geometries::Geometry]
-      def vertical_alignment(value, height)
-        validate_vertical_alignment!(value)
-        validate_height!(height)
+      def vertical_alignment(value = :none, height = nil)
+        alignment = Vedeu::Coercers::VerticalAlignment.validate(value)
 
-        model.vertical_alignment = Vedeu::Coercers::VerticalAlignment
-          .coerce(value)
-        model.height = height
+        model.height = height if height
+        model.vertical_alignment = alignment
         model
       end
 
@@ -148,7 +139,7 @@ module Vedeu
       #     # vertical_alignment(:bottom, 30)
       #
       #     # or you can use: (see notes)
-      #     # align(:bottom, :none, Vedeu.width, 30)
+      #     # align(vertical: :bottom, height: 30)
       #
       #     # ... some code
       #   end
@@ -161,7 +152,7 @@ module Vedeu
       # @raise [Vedeu::Error::InvalidSyntax] When the height is not
       #   given.
       # @return [Vedeu::Geometries::Geometry]
-      def align_bottom(height)
+      def align_bottom(height = nil)
         vertical_alignment(:bottom, height)
       end
 
@@ -175,7 +166,7 @@ module Vedeu
       #     # horizontal_alignment(:centre, 30)
       #
       #     # or you can use: (see notes)
-      #     # align(:none, :centre, 30, Vedeu.height)
+      #     # align(horizontal: :centre, width: 30)
       #
       #     # ... some code
       #   end
@@ -190,7 +181,7 @@ module Vedeu
       # @raise [Vedeu::Error::InvalidSyntax] When the width is not
       #   given.
       # @return [Vedeu::Geometries::Geometry]
-      def align_centre(width)
+      def align_centre(width = nil)
         horizontal_alignment(:centre, width)
       end
       alias_method :align_center, :align_centre
@@ -205,7 +196,7 @@ module Vedeu
       #     # horizontal_alignment(:left, 30)
       #
       #     # or you can use: (see notes)
-      #     # align(:none, :left, 30, Vedeu.height)
+      #     # align(horizontal: :left, width: 30)
       #
       #     # ... some code
       #   end
@@ -218,7 +209,7 @@ module Vedeu
       # @raise [Vedeu::Error::InvalidSyntax] When the width is not
       #   given.
       # @return [Vedeu::Geometries::Geometry]
-      def align_left(width)
+      def align_left(width = nil)
         horizontal_alignment(:left, width)
       end
 
@@ -233,7 +224,7 @@ module Vedeu
       #     # vertical_alignment(:middle, 30)
       #
       #     # or you can use: (see notes)
-      #     # align(:middle, :none, Vedeu.width, 30)
+      #     # align(vertical: :middle, height: 30)
       #
       #     # ... some code
       #   end
@@ -246,7 +237,7 @@ module Vedeu
       # @raise [Vedeu::Error::InvalidSyntax] When the height is not
       #   given.
       # @return [Vedeu::Geometries::Geometry]
-      def align_middle(height)
+      def align_middle(height = nil)
         vertical_alignment(:middle, height)
       end
 
@@ -260,7 +251,7 @@ module Vedeu
       #     # horizontal_alignment(:right, 30)
       #
       #     # or you can use: (see notes)
-      #     # align(:none, :right, 30, Vedeu.height)
+      #     # align(horizontal: :right, width: 30)
       #
       #     # ... some code
       #   end
@@ -273,7 +264,7 @@ module Vedeu
       # @raise [Vedeu::Error::InvalidSyntax] When the width is not
       #   given.
       # @return [Vedeu::Geometries::Geometry]
-      def align_right(width)
+      def align_right(width = nil)
         horizontal_alignment(:right, width)
       end
 
@@ -288,7 +279,7 @@ module Vedeu
       #     # vertical_alignment(:top, 30)
       #
       #     # or you can use: (see notes)
-      #     # align(:top, :none, Vedeu.width, 30)
+      #     # align(vertical: :top, height: 30)
       #
       #     # ... some code
       #   end
@@ -301,7 +292,7 @@ module Vedeu
       # @raise [Vedeu::Error::InvalidSyntax] When the height is not
       #   given.
       # @return [Vedeu::Geometries::Geometry]
-      def align_top(height)
+      def align_top(height = nil)
         vertical_alignment(:top, height)
       end
 

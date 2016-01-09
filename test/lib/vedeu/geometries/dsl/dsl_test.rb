@@ -39,129 +39,6 @@ module Vedeu
         end
       end
 
-      describe '#align' do
-        let(:vertical)   { :top }
-        let(:horizontal) { :left }
-        let(:width)      { 20 }
-        let(:height)     { 20 }
-
-        subject { instance.align(vertical, horizontal, width, height) }
-
-        context 'when the vertical argument is not given' do
-          let(:vertical) {}
-
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax).
-                                message.must_match(/No vertical alignment/)
-          }
-        end
-
-        context 'when the vertical argument is given' do
-          context 'when the height is not given' do
-            let(:height) {}
-
-            it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax).
-                                  message.must_equal('No height given.')
-            }
-          end
-
-          context 'when the height is given' do
-            it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
-            it { subject.vertical_alignment.
-              must_be_instance_of(Vedeu::Coercers::VerticalAlignment) }
-            it { subject.horizontal_alignment.
-              must_be_instance_of(Vedeu::Coercers::HorizontalAlignment) }
-            it { subject.height.must_equal(20) }
-            it { subject.width.must_equal(20) }
-          end
-        end
-
-        context 'when the horizontal argument is not given' do
-          let(:horizontal) {}
-
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax).
-                                message.must_match(/No horizontal alignment/)
-          }
-        end
-
-        context 'when the horizontal argument is given' do
-          context 'when the width is not given' do
-            let(:width) {}
-
-            it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax).
-                                  message.must_equal('No width given.')
-            }
-          end
-
-          context 'when the width is given' do
-            it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
-            it { subject.vertical_alignment.
-              must_be_instance_of(Vedeu::Coercers::VerticalAlignment) }
-            it { subject.horizontal_alignment.
-              must_be_instance_of(Vedeu::Coercers::HorizontalAlignment) }
-            it { subject.height.must_equal(20) }
-            it { subject.width.must_equal(20) }
-          end
-        end
-      end
-
-      describe '#horizontal_alignment' do
-        let(:_value) {}
-        let(:width)  {}
-
-        subject { instance.horizontal_alignment(_value, width) }
-
-        context 'when the value is not given' do
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax).
-                                message.must_match(/No horizontal alignment/)
-          }
-        end
-
-        context 'when the value is given' do
-          let(:_value) { :right }
-
-          context 'when a width is not given' do
-            it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax).
-                                  message.must_equal('No width given.')
-            }
-          end
-
-          context 'when a width is given' do
-            let(:width) { 20 }
-
-            it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
-          end
-        end
-      end
-
-      describe '#vertical_alignment' do
-        let(:_value) {}
-        let(:height) {}
-
-        subject { instance.vertical_alignment(_value, height) }
-
-        context 'when the value is not given' do
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax).
-                                message.must_match(/No vertical alignment/)
-          }
-        end
-
-        context 'when the value is given' do
-          let(:_value) { :bottom }
-
-          context 'when a height is not given' do
-            it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax).
-                                  message.must_equal('No height given.')
-            }
-          end
-
-          context 'when a height is given' do
-            let(:height) { 20 }
-
-            it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
-          end
-        end
-      end
-
       describe '#align_bottom' do
         let(:height) { 20 }
 
@@ -169,12 +46,6 @@ module Vedeu
 
         context 'when a height is given' do
           it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
-        end
-
-        context 'when a height is not given' do
-          let(:height) {}
-
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
         end
       end
 
@@ -185,12 +56,6 @@ module Vedeu
 
         context 'when a width is given' do
           it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
-        end
-
-        context 'when a width is not given' do
-          let(:width) {}
-
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
         end
       end
 
@@ -204,12 +69,7 @@ module Vedeu
         subject { instance.align_left(width) }
 
         context 'when a width is given' do
-        end
-
-        context 'when a width is not given' do
-          let(:width) {}
-
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+          it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
         end
       end
 
@@ -221,12 +81,6 @@ module Vedeu
         context 'when a height is given' do
           it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
         end
-
-        context 'when a height is not given' do
-          let(:height) {}
-
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
-        end
       end
 
       describe '#align_right' do
@@ -235,12 +89,7 @@ module Vedeu
         subject { instance.align_right(width) }
 
         context 'when a width is given' do
-        end
-
-        context 'when a width is not given' do
-          let(:width) {}
-
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+          it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
         end
       end
 
@@ -251,12 +100,6 @@ module Vedeu
 
         context 'when a height is given' do
           it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
-        end
-
-        context 'when a height is not given' do
-          let(:height) {}
-
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
         end
       end
 
