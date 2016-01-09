@@ -95,23 +95,23 @@ module Vedeu
       #   end
       # end
 
-      # describe '#cursor!' do
-      #   subject { instance.cursor! }
+      describe '#cursor!' do
+        subject { instance.cursor! }
 
-      #   it do
-      #     subject
-      #     Vedeu.cursors.find('actinium').visible?.must_equal(true)
-      #   end
-      # end
+        it do
+          subject
+          Vedeu.cursors.by_name(:actinium).visible?.must_equal(true)
+        end
+      end
 
-      # describe '#no_cursor!' do
-      #   subject { instance.no_cursor! }
+      describe '#no_cursor!' do
+        subject { instance.no_cursor! }
 
-      #   it do
-      #     subject
-      #     Vedeu.cursors.find('actinium').visible?.must_equal(false)
-      #   end
-      # end
+        it do
+          subject
+          Vedeu.cursors.by_name(:actinium).visible?.must_equal(false)
+        end
+      end
 
     end # DSL
 
