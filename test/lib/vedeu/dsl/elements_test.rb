@@ -86,7 +86,9 @@ module Vedeu
       end
 
       describe '#lines' do
-        subject { including_instance.lines { } }
+        let(:opts) { {} }
+
+        subject { including_instance.lines(opts) { } }
 
         context 'when the block is given' do
           context 'when a model exists' do
@@ -102,6 +104,12 @@ module Vedeu
           subject { including_instance.lines }
 
           it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
+        end
+
+        context 'when the opts parameter is not given' do
+          subject { including_instance.lines { } }
+
+          # @todo Add more tests.
         end
       end
 
@@ -128,7 +136,9 @@ module Vedeu
       end
 
       describe '#streams' do
-        subject { including_instance.streams { } }
+        let(:opts) { {} }
+
+        subject { including_instance.streams(opts) { } }
 
         context 'when the block is given' do
           context 'when a model exists' do
@@ -146,6 +156,12 @@ module Vedeu
           subject { including_instance.streams }
 
           it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
+        end
+
+        context 'when the opts parameter is not given' do
+          subject { including_instance.streams { } }
+
+          # @todo Add more tests.
         end
       end
 

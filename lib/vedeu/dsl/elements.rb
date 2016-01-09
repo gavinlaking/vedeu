@@ -63,11 +63,11 @@ module Vedeu
       # @macro raise_requires_block
       # @raise [Vedeu::Error::Fatal]
       # @return [void]
-      def lines(&block)
+      def lines(opts = {}, &block)
         requires_block!(&block)
         requires_model!
 
-        attrs = Vedeu::DSL::Attributes.build(self, model, nil, {}, &block)
+        attrs = Vedeu::DSL::Attributes.build(self, model, nil, opts, &block)
 
         if view_model?
           if model.lines?
