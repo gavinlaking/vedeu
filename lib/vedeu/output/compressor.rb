@@ -84,15 +84,25 @@ module Vedeu
       def compress
         message = "Compression for #{content.size} objects"
 
+        @same = ''
         @compress ||= Vedeu.timer(message) do
           out = content.map do |cell|
-            [
+            rendered = [
               # position_for(cell),
               cell.position.to_s,
               colour_for(cell),
               style_for(cell),
               cell.value,
             ].join
+
+            if @same == rendered
+              next
+
+            else
+              @same = rendered
+              @same
+
+            end
           end.join
 
           Vedeu.log(type:    :compress,
