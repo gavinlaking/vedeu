@@ -61,9 +61,7 @@ module Vedeu
 
               end
 
-        pos = pos < bd ? bd : pos
-        pos = pos > bdn ? bdn : pos
-        pos
+        Vedeu::Point.coerce(value: pos, min: bd, max: bdn).value
       end
       alias_method :x, :d_position
       alias_method :y, :d_position
