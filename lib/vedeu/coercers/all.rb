@@ -10,6 +10,8 @@ module Vedeu
 
 end # Vedeu
 
+require 'vedeu/coercers/coordinate'
+
 require 'vedeu/coercers/alignment'
 require 'vedeu/coercers/horizontal_alignment'
 require 'vedeu/coercers/vertical_alignment'
