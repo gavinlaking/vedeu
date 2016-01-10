@@ -153,34 +153,8 @@ module Vedeu
 
       it { subject.must_be_instance_of(Fixnum) }
       it { subject.must_equal(1) }
-      it { described.must_respond_to(:x) }
-      it { described.must_respond_to(:y) }
       it { described.must_respond_to(:tx) }
       it { described.must_respond_to(:ty) }
-    end
-
-    describe '.width' do
-      subject { Vedeu::Terminal.width }
-
-      it { subject.must_be_instance_of(Fixnum) }
-      it { described.must_respond_to(:xn) }
-      it { described.must_respond_to(:txn) }
-
-      it 'returns the width' do
-        subject.must_equal(40)
-      end
-    end
-
-    describe '.height' do
-      subject { Vedeu::Terminal.height }
-
-      it { subject.must_be_instance_of(Fixnum) }
-      it { described.must_respond_to(:yn) }
-      it { described.must_respond_to(:tyn) }
-
-      it 'returns the height' do
-        subject.must_equal(25)
-      end
     end
 
     describe '.size' do

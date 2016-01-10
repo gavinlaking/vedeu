@@ -8,7 +8,15 @@ module Vedeu
   module Terminal
 
     include Vedeu::Terminal::Mode
+    extend Forwardable
     extend self
+
+    def_delegators Vedeu::Configuration,
+                   :height,
+                   :width
+
+    alias_method :tyn, :height
+    alias_method :txn, :width
 
     # Opens a terminal screen in either `raw` or `cooked` mode. On
     # exit, attempts to restore the screen. See
@@ -132,32 +140,8 @@ module Vedeu
     def origin
       1
     end
-    alias_method :x, :origin
-    alias_method :y, :origin
     alias_method :tx, :origin
     alias_method :ty, :origin
-
-    # {include:file:docs/dsl/by_method/width.md}
-    # @return [Fixnum]
-    def width
-      return Vedeu.config.drb_width if Vedeu.config.drb?
-      return Vedeu.config.width     if Vedeu.config.width
-
-      size[-1]
-    end
-    alias_method :xn, :width
-    alias_method :txn, :width
-
-    # {include:file:docs/dsl/by_method/height.md}
-    # @return [Fixnum]
-    def height
-      return Vedeu.config.drb_height if Vedeu.config.drb?
-      return Vedeu.config.height     if Vedeu.config.height
-
-      size[0]
-    end
-    alias_method :yn, :height
-    alias_method :tyn, :height
 
     # Returns a tuple containing the height and width of the current
     # terminal.
@@ -177,16 +161,10 @@ module Vedeu
 
   end # Terminal
 
-  # @!method height
-  #   @see Vedeu::Terminal#height
   # @!method resize
   #   @see Vedeu::Terminal#resize
-  # @!method width
-  #   @see Vedeu::Terminal#width
   def_delegators Vedeu::Terminal,
-                 :height,
-                 :resize,
-                 :width
+                 :resize
 
   # :nocov:
 
