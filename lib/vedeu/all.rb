@@ -6,6 +6,8 @@ require 'vedeu/error'
 require 'vedeu/sentence'
 require 'vedeu/version'
 
+require 'vedeu/support/point'
+
 require 'vedeu/configuration/all'
 require 'vedeu/esc/all'
 require 'vedeu/logging/all'
