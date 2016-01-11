@@ -70,14 +70,14 @@ module Vedeu
           d_dn:      attributes[:width],
           maximised: attributes[:maximised],
         }
-        height = Vedeu::Geometries::YDimension.pair(y_attributes)
-        width  = Vedeu::Geometries::XDimension.pair(x_attributes)
+        dy, dyn = Vedeu::Geometries::YDimension.pair(y_attributes)
+        dx, dxn = Vedeu::Geometries::XDimension.pair(x_attributes)
 
         new(name: attributes[:name],
-            y:    height[0],
-            yn:   height[-1],
-            x:    width[0],
-            xn:   width[-1])
+            y:    dy,
+            yn:   dyn,
+            x:    dx,
+            xn:   dxn)
       end
 
       # Returns a new instance of Vedeu::Area.
@@ -205,9 +205,6 @@ module Vedeu
       # @return [Fixnum]
       def height
         (yn - y) + 1
-
-        # (yn - y) + 2
-        # (y..yn).size# + 1
       end
 
       # Returns the width of the interface.
@@ -215,9 +212,6 @@ module Vedeu
       # @return [Fixnum]
       def width
         (xn - x) + 1
-
-        # (xn - x) + 2
-        # (x..xn).size# + 1
       end
 
       # Returns the row above the top by default.
