@@ -44,6 +44,9 @@ module Vedeu
         elsif value.is_a?(Hash)
           new(value.fetch(:y, 1), value.fetch(:x, 1))
 
+        elsif value.is_a?(NilClass)
+          nil
+
         end
       end
 
