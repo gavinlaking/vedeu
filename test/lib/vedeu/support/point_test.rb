@@ -76,8 +76,48 @@ module Vedeu
       end
     end
 
+    describe '.valid?' do
+      subject { described.valid?(value: _value, min: min, max: max) }
+
+      context 'when the value is not a Fixnum' do
+        let(:_value) { :invalid }
+
+        it { subject.must_equal(false) }
+      end
+
+      context 'when the value is a Fixnum' do
+        context 'but the value < min' do
+          let(:_value) { 1 }
+
+          it { subject.must_equal(false) }
+        end
+
+        context 'but the value >= min' do
+          let(:_value) { 5 }
+
+          it { subject.must_equal(true) }
+        end
+
+        context 'but the value > max' do
+          let(:_value) { 11 }
+
+          it { subject.must_equal(false) }
+        end
+
+        context 'but the value <= max' do
+          let(:_value) { 7 }
+
+          it { subject.must_equal(true) }
+        end
+      end
+    end
+
     describe '#coerce' do
       it { instance.must_respond_to(:coerce) }
+    end
+
+    describe '#valid?' do
+      it { instance.must_respond_to(:valid?) }
     end
 
     describe '#value' do

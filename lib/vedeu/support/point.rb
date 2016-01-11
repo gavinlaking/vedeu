@@ -8,6 +8,12 @@ module Vedeu
       new(value: value, min: min, max: max).coerce
     end
 
+    # @param (see #initialize)
+    # @return (see #initialize)
+    def self.valid?(value: nil, min: 1, max: nil)
+      new(value: value, min: min, max: max).valid?
+    end
+
     # @param value [Fixnum|NilClass]
     # @param min [Fixnum]
     # @param max [Fixnum]
@@ -33,6 +39,11 @@ module Vedeu
         self
 
       end
+    end
+
+    # @return [Boolean]
+    def valid?
+      @value.is_a?(Fixnum) && @value >= min && @value <= max
     end
 
     # @return [Fixnum]
