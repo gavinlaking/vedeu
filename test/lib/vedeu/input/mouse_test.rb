@@ -57,12 +57,7 @@ module Vedeu
         context 'when the mouse input was not recognised' do
           let(:input) { "\e[Mb0(" }
 
-          it do
-            Vedeu.expects(:trigger).with(:_mouse_event_, input)
-            subject.
-              must_equal("\e[93m[input]    \e[39m\e[33mVedeu does not " \
-                         "support mouse button '66' yet.\e[39m")
-          end
+          it { subject.must_equal(false) }
         end
       end
 
