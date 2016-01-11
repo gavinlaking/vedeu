@@ -42,31 +42,22 @@ module Vedeu
     #
     class View
 
+      include Vedeu::Common
       include Vedeu::DSL
 
-      # Define a view.
-      #
-      # A view is just an Interface object.
-      #
-      # When a view already exists, we take its attributes and use
-      # them as the basis for the newly defined view. This way we
-      # don't need to specify everything again.
-      #
-      # @todo More documentation required.
+      # {include:file:docs/dsl/by_method/view.md}
       # @param name [String|Symbol] The name of the interface you are
       #   targetting for this view.
       # @param block [Proc] The directives you wish to send to this
-      #   interface.
-      #
-      # @example
-      #   view :my_interface do
-      #     # ...
-      #   end
-      #
+      #   view.
       # @macro raise_requires_block
+      # @raise [Vedeu::Error::MissingRequired]
       # @return [Vedeu::Views::Views<Vedeu::Views::View>]
-      def view(name = '', &block)
+      # @todo More documentation required.
+      def view(name, &block)
         fail Vedeu::Error::RequiresBlock unless block_given?
+        fail Vedeu::Error::MissingRequired,
+             'Cannot add view without a name.' unless present?(name)
 
         new_model = Vedeu::Views::View.build(new_attributes(name), &block)
 
@@ -97,9 +88,10 @@ module Vedeu
       def template_for(name, filename, object = nil, options = {})
         fail Vedeu::Error::MissingRequired,
              'Cannot render template without the name of the ' \
-             'view.' unless name
+             'view.' unless present?(name)
         fail Vedeu::Error::MissingRequired,
-             'Cannot render template without a filename.' unless filename
+             'Cannot render template without a ' \
+             'filename.' unless present?(filename)
 
         options.merge!(name: name)
 

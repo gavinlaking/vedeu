@@ -133,9 +133,25 @@ module Vedeu
 
       # Returns the client defined height for the terminal.
       #
+      # {include:file:docs/dsl/by_method/height.md}
+      #
       # @return [Fixnum]
       def height
-        instance.options[:height]
+        if drb?
+          drb_height
+
+        elsif height?
+          instance.options[:height]
+
+        else
+          Vedeu::Terminal.size[0]
+
+        end
+      end
+
+      # @return [Boolean]
+      def height?
+        instance.options[:height].is_a?(Fixnum)
       end
 
       # Returns whether the application is interactive (required user
@@ -257,9 +273,25 @@ module Vedeu
 
       # Returns the client defined width for the terminal.
       #
+      # {include:file:docs/dsl/by_method/width.md}
+      #
       # @return [Fixnum]
       def width
-        instance.options[:width]
+        if drb?
+          drb_width
+
+        elsif width?
+          instance.options[:width]
+
+        else
+          Vedeu::Terminal.size[-1]
+
+        end
+      end
+
+      # @return [Boolean]
+      def width?
+        instance.options[:width].is_a?(Fixnum)
       end
 
       # @param value [void]
@@ -374,10 +406,16 @@ module Vedeu
   #   @see Vedeu::Configuration.configure
   # @!method configuration
   #   @see Vedeu::Configuration.configuration
+  # @!method height
+  #   @see Vedeu::Configuration.height
+  # @!method width
+  #   @see Vedeu::Configuration.width
   def_delegators Vedeu::Configuration,
                  :config,
                  :configure,
-                 :configuration
+                 :configuration,
+                 :height,
+                 :width
 
   # Sets up a default configuration. Client applications calling using
   # the `Vedeu.configure` API method will override these settings.

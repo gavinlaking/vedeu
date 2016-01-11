@@ -22,8 +22,7 @@ module Vedeu
           end
         }
 
-        it { described.must_respond_to(:render) }
-        it { subject.must_be_instance_of(Array) }
+        it { subject.must_be_instance_of(Vedeu::Views::Composition) }
 
         context 'when the block is not given' do
           subject { described.renders }
@@ -32,7 +31,9 @@ module Vedeu
         end
 
         context 'when the block is given' do
-          it { subject.must_equal([]) }
+          context 'but no views were defined' do
+            it { subject.views?.must_equal(false) }
+          end
         end
       end
 
@@ -43,7 +44,7 @@ module Vedeu
           end
         }
 
-        it { subject.must_be_instance_of(Array) }
+        it { subject.must_be_instance_of(Vedeu::Views::Composition) }
 
         context 'when the block is not given' do
           subject { described.views }
@@ -52,7 +53,9 @@ module Vedeu
         end
 
         context 'when the block is given' do
-          it { subject.must_equal([]) }
+          context 'but no views were defined' do
+            it { subject.views?.must_equal(false) }
+          end
         end
       end
 

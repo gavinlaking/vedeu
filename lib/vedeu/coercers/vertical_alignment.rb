@@ -10,16 +10,21 @@ module Vedeu
     #
     class VerticalAlignment < Vedeu::Coercers::Alignment
 
+      # @raise (see Vedeu::Coercers::Alignment#validate)
+      # @return (see Vedeu::Coercers::Alignment#validate)
+      def validate
+        return coerce if valid_vertical?
+
+        fail Vedeu::Error::InvalidSyntax,
+             'Missing or invalid vertical alignment value. ' \
+             "Valid values are: #{to_sentence}"
+      end
+
       private
 
-      # @return [Array<Symbol>]
-      def values
-        [
-          :bottom,
-          :middle,
-          :none,
-          :top,
-        ]
+      # @return [String]
+      def to_sentence
+        Vedeu::Sentence.construct(vertical_values)
       end
 
     end # VerticalAlignment

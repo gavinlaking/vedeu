@@ -26,7 +26,6 @@ module Vedeu
       extend Forwardable
       include Vedeu::Views::DefaultAttributes
       include Vedeu::Repositories::Model
-      include Vedeu::Repositories::Parent
       include Vedeu::Presentation
       include Vedeu::Views::Value
 
@@ -83,6 +82,22 @@ module Vedeu
         self.class == other.class && value == other.value
       end
       alias_method :==, :eql?
+
+      # @return [NilClass|String|Symbol]
+      def name
+        if present?(@name)
+          @name
+
+        elsif parent && present?(parent.name)
+          parent.name
+
+        end
+      end
+
+      # @return [NilClass|void]
+      def parent
+        present?(@parent) ? @parent : nil
+      end
 
       # Returns the size of the content in characters without
       # formatting.

@@ -244,16 +244,12 @@ module Vedeu
 
       # @return [Fixnum] The column/character coordinate.
       def x
-        @x = (@x < bx) ? bx : @x
-        @x = (@x > bxn) ? bxn : @x
-        @x
+        @x = Vedeu::Point.coerce(value: @x, min: bx, max: bxn).value
       end
 
       # @return [Fixnum] The row/line coordinate.
       def y
-        @y = (@y < by) ? by : @y
-        @y = (@y > byn) ? byn : @y
-        @y
+        @y = Vedeu::Point.coerce(value: @y, min: by, max: byn).value
       end
 
       private

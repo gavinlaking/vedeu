@@ -11,9 +11,8 @@ module Vedeu
 
 end # Vedeu
 
-require 'vedeu/presentation/background'
-require 'vedeu/presentation/foreground'
 require 'vedeu/presentation/colour'
+require 'vedeu/presentation/position'
 require 'vedeu/presentation/styles'
 require 'vedeu/presentation/style'
 require 'vedeu/presentation/presentation'

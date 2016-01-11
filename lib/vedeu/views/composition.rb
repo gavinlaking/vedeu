@@ -43,7 +43,7 @@ module Vedeu
       end
       alias_method :<<, :add
 
-      # @return [Hash]
+      # @return [Hash<Symbol => void>]
       def attributes
         {
           client: client,
@@ -52,6 +52,16 @@ module Vedeu
           style:  style,
           value:  value,
         }
+      end
+
+      # @param refresh [Boolean] Should the buffer(s) of the view(s)
+      #   in this composition be refreshed once stored? Default:
+      #   false.
+      # @return [Vedeu::Views::Composition]
+      def update_buffers(refresh = false)
+        views.each { |view| view.update_buffer(refresh) } if views?
+
+        self
       end
 
       private

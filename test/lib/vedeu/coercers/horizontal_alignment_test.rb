@@ -12,6 +12,22 @@ module Vedeu
       let(:instance)  { described.new(_value) }
       let(:_value)    {}
 
+      describe '#validate' do
+        subject { instance.validate }
+
+        context 'when the value is valid' do
+          let(:_value) { :none }
+
+          it { subject.must_equal(instance) }
+        end
+
+        context 'when the value is not valid' do
+          let(:_value) { :top }
+
+          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+        end
+      end
+
       describe '#value' do
         subject { described.coerce(_value).value }
 

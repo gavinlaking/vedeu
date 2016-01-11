@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
-require 'vedeu/version'
-
 require 'vedeu/boolean'
 require 'vedeu/common'
 require 'vedeu/error'
+require 'vedeu/sentence'
+require 'vedeu/version'
+
+require 'vedeu/support/point'
 
 require 'vedeu/configuration/all'
 require 'vedeu/esc/all'

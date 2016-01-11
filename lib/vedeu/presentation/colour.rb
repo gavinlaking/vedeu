@@ -10,9 +10,35 @@ module Vedeu
     #
     module Colour
 
-      include Vedeu::Repositories::Parent
-      include Vedeu::Presentation::Colour::Background
-      include Vedeu::Presentation::Colour::Foreground
+      # When the background colour for the model exists, return it,
+      # otherwise returns the parent background colour, or an empty
+      # Vedeu::Colours::Background.
+      #
+      # @return [Vedeu::Colours::Background]
+      def background
+        @background ||= if colour && present?(colour.background)
+                          colour.background
+
+                        elsif named_colour?
+                          named_colour.background
+
+                        elsif parent && present?(parent.background)
+                          parent.background
+
+                        else
+                          Vedeu::Colours::Background.new
+
+                        end
+      end
+
+      # Allows the setting of the background colour by coercing the
+      # given value into a Vedeu::Colours::Background colour.
+      #
+      # @return [Vedeu::Colours::Background]
+      def background=(value)
+        @background = colour.background = value
+        @_colour = @colour = colour
+      end
 
       # @return [Vedeu::Colours::Colour]
       def colour
@@ -42,6 +68,52 @@ module Vedeu
       # @return [Boolean]
       def colour?
         present?(@colour)
+      end
+
+      # When the foreground colour for the model exists, return it,
+      # otherwise returns the parent foreground colour, or an empty
+      # Vedeu::Colours::Foreground.
+      #
+      # @return [Vedeu::Colours::Foreground]
+      def foreground
+        @foreground ||= if colour && present?(colour.foreground)
+                          colour.foreground
+
+                        elsif named_colour?
+                          named_colour.foreground
+
+                        elsif parent && present?(parent.foreground)
+                          parent.foreground
+
+                        else
+                          Vedeu::Colours::Foreground.new
+
+                        end
+      end
+
+      # Allows the setting of the foreground colour by coercing the
+      # given value into a Vedeu::Colours::Foreground colour.
+      #
+      # @return [Vedeu::Colours::Foreground]
+      def foreground=(value)
+        @foreground = colour.foreground = value
+        @_colour = @colour = colour
+      end
+
+      # @return [NilClass|void]
+      def parent
+        present?(@parent) ? @parent : nil
+      end
+
+      # @return [NilClass|String|Symbol]
+      def name
+        if present?(@name)
+          @name
+
+        elsif parent && present?(parent.name)
+          parent.name
+
+        end
       end
 
       private

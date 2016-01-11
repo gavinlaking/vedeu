@@ -46,11 +46,30 @@ module Vedeu
         end
       end
 
-      # Fetch the coordinates.
+      # Return the coordinate pair.
+      #
+      # 1) If maximised, it will be from the first row/line or column/
+      #    character to the last row/line or column/character of the
+      #    terminal.
       #
       # @return [Array<Fixnum>]
       def pair
-        dimension
+        if maximised?
+          [1, default]
+
+        elsif bottom_aligned? || right_aligned?
+          [start_coordinate, default]
+
+        elsif centre_aligned? || middle_aligned?
+          [centred_d, centred_dn]
+
+        elsif left_aligned? || top_aligned?
+          [1, end_coordinate]
+
+        else
+          [_d, _dn]
+
+        end
       end
 
       protected
@@ -81,43 +100,6 @@ module Vedeu
       # @return [Vedeu::Coercers::Alignment]
       def alignment
         @_alignment ||= Vedeu::Coercers::Alignment.coerce(@alignment)
-      end
-
-      # Return the dimension.
-      #
-      # 1) If maximised, it will be from the first row/line or column/
-      #    character to the last row/line or column/character of the
-      #    terminal.
-      # 2) If centred,
-      #
-      # @return [Array<Fixnum>]
-      def dimension
-        @dimension = if maximised?
-                       [1, default]
-
-                     elsif bottom_aligned? || right_aligned?
-                       [start_coordinate, default]
-
-                     elsif centre_aligned? || middle_aligned?
-                       [centred_d, centred_dn]
-
-                     elsif left_aligned? || top_aligned?
-                       [1, end_coordinate]
-
-                     else
-                       [_d, _dn]
-
-                     end
-      end
-
-      # Return a boolean indicating we know the length if a we know
-      # either the terminal width or height, or we can determine a
-      # length from the values provided.
-      #
-      # @return [Boolean]
-      # @todo Investigate: should this be && or ||. (GL: 2015-10-16)
-      def length?
-        default && length
       end
 
       # Provide the number of rows/lines or columns/characters.
@@ -227,23 +209,18 @@ module Vedeu
       # @return [Fixnum]
       def _dn
         if dn
-          # fail "_dn 1 v:#{d} #{dn}"
           dn
 
         elsif d.nil? && d_dn
-          # fail "_dn 2 v:#{d_dn}"
           d_dn
 
         elsif d && d_dn
-          # fail "_dn 3 v:#{d} #{d_dn}"
           (d + d_dn) - 1
 
         elsif default
-          # fail "_dn 4 v:#{default}"
           default
 
         else
-          # fail "_dn 5 v:1"
           1
 
         end

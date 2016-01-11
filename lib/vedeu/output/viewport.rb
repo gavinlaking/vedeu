@@ -67,48 +67,14 @@ module Vedeu
 
       private
 
-      # @return [Array<Array<Vedeu::Cells::Char>>]
-      def output
-        Vedeu.timer("Rendering content: '#{name}'") do
-          out = []
-
-          show.each_with_index do |line, iy|
-            line.each_with_index do |column, ix|
-              column.position = [by + iy, bx + ix]
-              out << column
-            end
-          end
-
-          out
-        end
+      # @return [Fixnum]
+      def bx
+        @bx ||= geometry.bx
       end
 
-      # Returns the visible content for the view.
-      #
-      # @note If there are no lines of content, we return an empty
-      #   array. If there are no more columns of content we return a
-      #   space enclosed in an array; this prevents a weird line
-      #   hopping bug which occurs when the current line has no more
-      #   content, but subsequent lines do.
-      #
-      # @return [Array]
-      def show
-        (lines[rows] || []).map { |line| (line.chars[columns] || []) }
-      end
-
-      # Using the current cursor's y position, return a range of
-      # visible lines.
-      #
-      # Scrolls the content vertically when the stored cursor's y
-      # position for the interface is outside of the visible area.
-      #
-      # @note
-      #   The height is reduced by one as #rows is a range of Array
-      #   elements.
-      #
-      # @return [Range]
-      def rows
-        top...(top + bordered_height)
+      # @return [Fixnum]
+      def by
+        @by ||= geometry.by
       end
 
       # Using the current cursor's x position, return a range of
@@ -126,16 +92,6 @@ module Vedeu
         left...(left + bordered_width)
       end
 
-      # @return [Fixnum]
-      def left
-        @left ||= content_offset(ox, bordered_width)
-      end
-
-      # @return [Fixnum]
-      def top
-        @top ||= content_offset(oy, bordered_height)
-      end
-
       # Returns the offset for the content (the number of rows or
       # columns to change the viewport by on either the y or x axis)
       # determined by the offset (the cursor's y or x offset position.
@@ -149,6 +105,12 @@ module Vedeu
         offset - dimension
       end
 
+      # @return [Vedeu::Cursors::Cursor]
+      # @see Vedeu::Cursors::Repository#by_name
+      def cursor
+        @cursor ||= Vedeu.cursors.by_name(name)
+      end
+
       # Returns the geometry for the interface.
       #
       # @return (see Vedeu::Geometries::Repository#by_name)
@@ -157,19 +119,57 @@ module Vedeu
       end
 
       # @return [Fixnum]
-      def bx
-        @bx ||= geometry.bx
+      def left
+        @left ||= content_offset(ox, bordered_width)
+      end
+
+      # @return [Array<Array<Vedeu::Cells::Char>>]
+      def output
+        Vedeu.timer("Rendering content: '#{name}'") do
+          out = []
+
+          show.each_with_index do |line, iy|
+            line.each_with_index do |column, ix|
+              column.position = [by + iy, bx + ix]
+              out << column
+            end
+          end
+
+          out
+        end
+      end
+
+      # Using the current cursor's y position, return a range of
+      # visible lines.
+      #
+      # Scrolls the content vertically when the stored cursor's y
+      # position for the interface is outside of the visible area.
+      #
+      # @note
+      #   The height is reduced by one as #rows is a range of Array
+      #   elements.
+      #
+      # @return [Range]
+      def rows
+        top...(top + bordered_height)
+      end
+
+      # Returns the visible content for the view.
+      #
+      # @note If there are no lines of content, we return an empty
+      #   array. If there are no more columns of content we return a
+      #   space enclosed in an array; this prevents a weird line
+      #   hopping bug which occurs when the current line has no more
+      #   content, but subsequent lines do.
+      #
+      # @return [Array]
+      def show
+        (lines[rows] || []).map { |line| (line.chars[columns] || []) }
       end
 
       # @return [Fixnum]
-      def by
-        @by ||= geometry.by
-      end
-
-      # @return [Vedeu::Cursors::Cursor]
-      # @see Vedeu::Cursors::Repository#by_name
-      def cursor
-        @cursor ||= Vedeu.cursors.by_name(name)
+      def top
+        @top ||= content_offset(oy, bordered_height)
       end
 
     end # Viewport

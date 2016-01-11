@@ -13,26 +13,48 @@ module Vedeu
       let(:y)         { 12 }
       let(:x)         { 19 }
 
-      describe '#y' do
-        it { instance.must_respond_to(:y) }
-      end
+      let(:term_height) { 15 }
+      let(:term_width)  { 20 }
 
-      describe '#first' do
-        it { instance.must_respond_to(:first) }
-      end
-
-      describe '#x' do
-        it { instance.must_respond_to(:x) }
-      end
-
-      describe '#last' do
-        it { instance.must_respond_to(:last) }
+      before do
+        Vedeu.stubs(:height).returns(term_height)
+        Vedeu.stubs(:width).returns(term_width)
       end
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
-        it { instance.instance_variable_get('@y').must_equal(y) }
-        it { instance.instance_variable_get('@x').must_equal(x) }
+
+        context 'when y < 1' do
+          let(:y) { -3 }
+
+          it { instance.instance_variable_get('@y').must_equal(1) }
+        end
+
+        context 'when y > Vedeu.height' do
+          let(:y) { 17 }
+
+          it { instance.instance_variable_get('@y').must_equal(term_height) }
+        end
+
+        context 'when y >= 1 and y <= Vedeu.height' do
+          it { instance.instance_variable_get('@y').must_equal(y) }
+        end
+
+        context 'when x < 1' do
+          let(:x) { -2 }
+
+          it { instance.instance_variable_get('@x').must_equal(1) }
+        end
+
+        context 'when x > Vedeu.width' do
+          let(:x) { 23 }
+
+          it { instance.instance_variable_get('@x').must_equal(term_width) }
+        end
+
+        context 'when x >= 1 and x <= Vedeu.height' do
+          it { instance.instance_variable_get('@x').must_equal(x) }
+        end
       end
 
       describe '.[]' do
@@ -65,30 +87,6 @@ module Vedeu
 
           it { instance.y.must_equal(1) }
           it { instance.x.must_equal(1) }
-        end
-      end
-
-      describe '#<=>' do
-        subject { instance.<=>(other) }
-
-        context 'when y is the same as other.y' do
-          context 'when x is the same as other.x' do
-            let(:other) { described.new(12, 19) }
-
-            it { subject.must_equal(0) }
-          end
-
-          context 'when x is different to other.x' do
-            let(:other) { described.new(12, 21) }
-
-            it { subject.must_equal(-1) }
-          end
-        end
-
-        context 'when y is different to other.y' do
-          let(:other) { described.new(14, 19) }
-
-          it { subject.must_equal(-1) }
         end
       end
 
@@ -127,10 +125,40 @@ module Vedeu
           it { subject.x.must_equal(9) }
         end
 
+        context 'when the value is a NilClass' do
+          let(:_value) {}
+
+          it { subject.must_be_instance_of(NilClass) }
+        end
+
         context 'when the value is something unhandled' do
           let(:_value) { :invalid }
 
           it { subject.must_be_instance_of(NilClass) }
+        end
+      end
+
+      describe '#<=>' do
+        subject { instance.<=>(other) }
+
+        context 'when y is the same as other.y' do
+          context 'when x is the same as other.x' do
+            let(:other) { described.new(12, 19) }
+
+            it { subject.must_equal(0) }
+          end
+
+          context 'when x is different to other.x' do
+            let(:other) { described.new(12, 21) }
+
+            it { subject.must_equal(-1) }
+          end
+        end
+
+        context 'when y is different to other.y' do
+          let(:other) { described.new(14, 19) }
+
+          it { subject.must_equal(-1) }
         end
       end
 
@@ -146,6 +174,14 @@ module Vedeu
 
           it { subject.must_equal(false) }
         end
+      end
+
+      describe '#first' do
+        it { instance.must_respond_to(:first) }
+      end
+
+      describe '#last' do
+        it { instance.must_respond_to(:last) }
       end
 
       describe '#to_a' do
@@ -226,6 +262,14 @@ module Vedeu
         end
       end
 
+      describe '#x' do
+        it { instance.must_respond_to(:x) }
+      end
+
+      describe '#y' do
+        it { instance.must_respond_to(:y) }
+      end
+
       describe '#as_indices' do
         subject { instance.as_indices }
 
@@ -247,27 +291,33 @@ module Vedeu
       describe '#down' do
         subject { instance.down }
 
-        it { subject.must_be_instance_of(described) }
-        it { subject.y.must_equal(13) }
-        it { subject.x.must_equal(19) }
+        context 'when moving down is inside the terminal boundary' do
+          it { subject.must_be_instance_of(described) }
+          it { subject.wont_equal(instance) }
+          it { subject.y.must_equal(13) }
+        end
 
-        context 'when y is 0' do
-          let(:y) { 0 }
+        context 'when moving down is not inside the terminal boundary' do
+          let(:y) { 15 }
 
-          it { subject.y.must_equal(2) }
+          it { subject.must_equal(instance) }
+          it { subject.y.must_equal(15) }
         end
       end
 
       describe '#left' do
         subject { instance.left }
 
-        it { subject.must_be_instance_of(described) }
-        it { subject.y.must_equal(12) }
-        it { subject.x.must_equal(18) }
+        context 'when moving left is inside the terminal boundary' do
+          it { subject.must_be_instance_of(described) }
+          it { subject.wont_equal(instance) }
+          it { subject.x.must_equal(18) }
+        end
 
-        context 'when x is 0' do
-          let(:x) { 0 }
+        context 'when moving left is not inside the terminal boundary' do
+          let(:x) { 1 }
 
+          it { subject.must_equal(instance) }
           it { subject.x.must_equal(1) }
         end
       end
@@ -275,27 +325,35 @@ module Vedeu
       describe '#right' do
         subject { instance.right }
 
-        it { subject.must_be_instance_of(described) }
-        it { subject.y.must_equal(12) }
         it { subject.x.must_equal(20) }
 
-        context 'when x is 0' do
-          let(:x) { 0 }
+        context 'when moving right is inside the terminal boundary' do
+          it { subject.must_be_instance_of(described) }
+          it { subject.wont_equal(instance) }
+          it { subject.x.must_equal(20) }
+        end
 
-          it { subject.x.must_equal(2) }
+        context 'when moving right is not inside the terminal boundary' do
+          let(:x) { 20 }
+
+          it { subject.must_equal(instance) }
+          it { subject.x.must_equal(20) }
         end
       end
 
       describe '#up' do
         subject { instance.up }
 
-        it { subject.must_be_instance_of(described) }
-        it { subject.y.must_equal(11) }
-        it { subject.x.must_equal(19) }
+        context 'when moving up is inside the terminal boundary' do
+          it { subject.must_be_instance_of(described) }
+          it { subject.wont_equal(instance) }
+          it { subject.y.must_equal(11) }
+        end
 
-        context 'when y is 0' do
-          let(:y) { 0 }
+        context 'when moving up is not inside the terminal boundary' do
+          let(:y) { 1 }
 
+          it { subject.must_equal(instance) }
           it { subject.y.must_equal(1) }
         end
       end

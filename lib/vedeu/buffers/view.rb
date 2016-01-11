@@ -12,6 +12,15 @@ module Vedeu
 
       include Vedeu::Repositories::Defaults
       include Enumerable
+      extend Forwardable
+
+      def_delegators :geometry,
+                     :bordered_height,
+                     :bordered_width,
+                     :bx,
+                     :by,
+                     :byn,
+                     :bxn
 
       # @return [Hash<Symbol => String|Symbol>]
       def attributes
@@ -39,12 +48,7 @@ module Vedeu
       #   Vedeu::Cells::Char]
       # @return [Vedeu::Buffers::View]
       def update(value_or_values)
-        Array(value_or_values).flatten.each do |value|
-          if valid?(value)
-            current[value.position.y][value.position.x] = value
-            dirty << value.position.to_a
-          end
-        end
+        Array(value_or_values).flatten.each { |value| write(value) }
 
         self
       end
@@ -57,39 +61,20 @@ module Vedeu
 
       private
 
-      # @return [Vedeu::Buffers::Empty]
-      def buffer
-        @_buffer ||= Vedeu::Buffers::Empty
-                       .new(height: geometry.bordered_height,
-                            name:   name,
-                            width:  geometry.bordered_width).buffer
-      end
-
       # @return [Array<Vedeu::Cells::Empty>]
       def current
-        @current ||= buffer
-      end
-
-      # @return [Vedeu::Buffers::Empty]
-      def current_reset!
-        @current = buffer
+        @current ||= Vedeu::Buffers::Empty.new(height: bordered_height,
+                                               name:   name,
+                                               width:  bordered_width,
+                                               x:      bx,
+                                               y:      by).buffer
       end
 
       # @return [Hash<Symbol => NilClass|String|Symbol]
       def defaults
         {
-          name: ''
+          name: nil
         }
-      end
-
-      # @return [Vedeu::Buffers::Empty]
-      def dirty
-        @dirty ||= []
-      end
-
-      # @return [Vedeu::Buffers::Empty]
-      def dirty_reset!
-        @dirty = []
       end
 
       # @return [Vedeu::Geometries::Geometry]
@@ -103,16 +88,9 @@ module Vedeu
       # @param value [void]
       # @return [Boolean]
       def valid?(value)
-        valid_value?(value) && valid_position?(value)
-      end
-
-      # Returns a boolean indicating whether the position of the value
-      # object is valid for this terminal.
-      #
-      # @param value [void]
-      # @return [Boolean]
-      def valid_position?(value)
-        buffer[value.position.y] && buffer[value.position.y][value.position.x]
+        valid_value?(value)        &&
+        valid_y?(value.position.y) &&
+        valid_x?(value.position.x)
       end
 
       # Returns a boolean indicating the value has a position
@@ -123,6 +101,31 @@ module Vedeu
       def valid_value?(value)
         value.respond_to?(:position) &&
           value.position.is_a?(Vedeu::Geometries::Position)
+      end
+
+      # Returns a boolean indicating whether the x position of the
+      # value object is valid for this geometry.
+      #
+      # @return [Boolean]
+      def valid_x?(x)
+        Vedeu::Point.valid?(value: x, min: bx, max: bxn)
+      end
+
+      # Returns a boolean indicating whether the y position of the
+      # value object is valid for this geometry.
+      #
+      # @return [Boolean]
+      def valid_y?(y)
+        Vedeu::Point.valid?(value: y, min: by, max: byn)
+      end
+
+      def write(value)
+        if valid?(value)
+          row    = by - value.position.y
+          column = bx - value.position.x
+
+          current[row][column] = value
+        end
       end
 
     end # View

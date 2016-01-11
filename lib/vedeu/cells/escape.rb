@@ -19,8 +19,6 @@ module Vedeu
     #
     class Escape < Vedeu::Cells::Empty
 
-      include Vedeu::Geometries::Positionable
-
       # @return [Boolean]
       def cell?
         false

@@ -9,7 +9,22 @@ module Vedeu
     module Styles
 
       include Vedeu::Common
-      include Vedeu::Repositories::Parent
+
+      # @return [NilClass|String|Symbol]
+      def name
+        if present?(@name)
+          @name
+
+        elsif parent && present?(parent.name)
+          parent.name
+
+        end
+      end
+
+      # @return [NilClass|void]
+      def parent
+        present?(@parent) ? @parent : nil
+      end
 
       # When the style for the model exists, return it, otherwise
       # returns the parent style, or an empty

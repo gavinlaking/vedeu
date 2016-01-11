@@ -27,9 +27,9 @@ module Vedeu
         # @param name [String|Symbol] The name of the interface or
         #   view to which this border belongs.
         # @param block [Proc]
-        # @raise [Vedeu::Error::MissingRequired|
-        #   Vedeu::Error::RequiresBlock] When a name or block
-        #   respectively are not given.
+        # @macro raise_requires_block
+        # @raise [Vedeu::Error::MissingRequired] When a name is not
+        #   given.
         # @return [Vedeu::Borders::Border]
         # @see Vedeu::Borders::DSL
         def border(name, &block)
@@ -71,9 +71,9 @@ module Vedeu
         #   setting it here is just mirroring functionality of
         #   {Vedeu::DSL::Border::ClassMethods.border}.
         # @param block [Proc]
-        # @raise [Vedeu::Error::MissingRequired|
-        #   Vedeu::Error::RequiresBlock] When a name or block
-        #   respectively are not given.
+        # @macro raise_requires_block
+        # @raise [Vedeu::Error::MissingRequired] When a name is not
+        #   given.
         # @return [Vedeu::Borders::Border]
         # @see Vedeu::Borders::DSL
         def border(name = nil, &block)

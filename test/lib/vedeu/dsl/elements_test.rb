@@ -27,8 +27,68 @@ module Vedeu
       let(:including_instance)  { including_described.new(model) }
       let(:model)               {}
 
+      describe '#centre' do
+        let(:_value) {}
+        let(:opts)   {
+          {
+
+          }
+        }
+
+        subject { including_instance.centre(_value, opts) }
+
+        context 'when a model exists' do
+        end
+
+        context 'when a model does not exist' do
+          it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
+        end
+      end
+
+      describe '#center' do
+        it { including_instance.must_respond_to(:center) }
+      end
+
+      describe '#left' do
+        let(:_value) {}
+        let(:opts)   {
+          {
+
+          }
+        }
+
+        subject { including_instance.left(_value, opts) }
+
+        context 'when a model exists' do
+        end
+
+        context 'when a model does not exist' do
+          it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
+        end
+      end
+
+      describe '#right' do
+        let(:_value) {}
+        let(:opts)   {
+          {
+
+          }
+        }
+
+        subject { including_instance.right(_value, opts) }
+
+        context 'when a model exists' do
+        end
+
+        context 'when a model does not exist' do
+          it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
+        end
+      end
+
       describe '#lines' do
-        subject { including_instance.lines { } }
+        let(:opts) { {} }
+
+        subject { including_instance.lines(opts) { } }
 
         context 'when the block is given' do
           context 'when a model exists' do
@@ -44,6 +104,12 @@ module Vedeu
           subject { including_instance.lines }
 
           it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
+        end
+
+        context 'when the opts parameter is not given' do
+          subject { including_instance.lines { } }
+
+          # @todo Add more tests.
         end
       end
 
@@ -70,7 +136,9 @@ module Vedeu
       end
 
       describe '#streams' do
-        subject { including_instance.streams { } }
+        let(:opts) { {} }
+
+        subject { including_instance.streams(opts) { } }
 
         context 'when the block is given' do
           context 'when a model exists' do
@@ -89,6 +157,12 @@ module Vedeu
 
           it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
         end
+
+        context 'when the opts parameter is not given' do
+          subject { including_instance.streams { } }
+
+          # @todo Add more tests.
+        end
       end
 
       describe '#stream' do
@@ -106,6 +180,24 @@ module Vedeu
 
             # @todo Add more tests.
           end
+        end
+
+        context 'when a model does not exist' do
+          it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
+        end
+      end
+
+      describe '#text' do
+        let(:_value) {}
+        let(:opts)   {
+          {
+
+          }
+        }
+
+        subject { including_instance.text(_value, opts) }
+
+        context 'when a model exists' do
         end
 
         context 'when a model does not exist' do

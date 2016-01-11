@@ -22,8 +22,6 @@ class DSLApp
     debug!
     run_once!
     standalone!
-    width 100
-    height 50
   end
 
   Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
@@ -47,10 +45,27 @@ class DSLApp
   Vedeu.render do
     view(:test1_interface) do
       line do
-        stream '--------1---------2---------3---------4---------5'
-        stream '---------6---------7---------8---------9---------0'
+        stream '--------1---------2---------3---------4---------5', {
+          foreground: '#ff0000'
+        }
+        stream '---------6---------7---------8---------9---------', {
+          foreground: '#ff0000'
+        }
+        stream '0', { foreground: '#ffff00' }
+        stream '---------1---------2---------3---------4---------5', {
+          foreground: '#00ff00'
+        }
+        stream '---------6---------7---------8---------9---------', {
+          foreground: '#00ff00'
+        }
+        stream '0', { foreground: '#ffff00' }
+        stream '-2-4-6-8-1-2-4-----2---------3---------4---------5', {
+          foreground: '#0077ff'
+        }
       end
-      line '-'
+      line do
+        stream '- '
+      end
       line '-'
       line '-'
       line '-'
@@ -98,6 +113,16 @@ class DSLApp
       line '-'
       line '-'
       line '50'
+      line '-'
+      line '-'
+      line '-'
+      line '-'
+      line '-'
+      line '-'
+      line '-'
+      line '-'
+      line '-'
+      line '60'
     end
   end
 

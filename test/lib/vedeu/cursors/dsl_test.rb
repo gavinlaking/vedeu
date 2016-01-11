@@ -10,6 +10,16 @@ module Vedeu
 
       include Vedeu::Cursors::DSL
 
+      attr_accessor :cursor_visible
+
+      def model
+        self
+      end
+
+      def name
+        :actinium
+      end
+
     end # DSLTestClass
 
     describe DSL do
@@ -39,14 +49,18 @@ module Vedeu
 
       # describe '#cursor' do
       #   let(:_value) {}
+      #   let(:cursor) { Vedeu::Cursors::Cursor.new(name: :actinium) }
 
-      #   before { Vedeu.cursors.reset }
+      #   before do
+      #     Vedeu.cursors.reset!
+      #     Vedeu.cursors.stubs(:by_name).returns(cursor)
+      #   end
 
       #   subject { instance.cursor(_value) }
 
       #   it do
       #     subject
-      #     Vedeu.cursors.find('actinium').visible?.must_equal(false)
+      #     Vedeu.cursors.by_name(:actinium).visible?.must_equal(false)
       #   end
 
       #   context 'when the value is false' do
@@ -54,7 +68,7 @@ module Vedeu
 
       #     it do
       #       subject
-      #       Vedeu.cursors.find('actinium').visible?.must_equal(false)
+      #       Vedeu.cursors.by_name(:actinium).visible?.must_equal(false)
       #     end
       #   end
 
@@ -63,7 +77,7 @@ module Vedeu
 
       #     it do
       #       subject
-      #       Vedeu.cursors.find('actinium').visible?.must_equal(false)
+      #       Vedeu.cursors.by_name(:actinium).visible?.must_equal(false)
       #     end
       #   end
 
@@ -72,7 +86,7 @@ module Vedeu
 
       #     it do
       #       subject
-      #       Vedeu.cursors.find('actinium').visible?.must_equal(true)
+      #       Vedeu.cursors.by_name(:actinium).visible?.must_equal(true)
       #     end
       #   end
 
@@ -81,7 +95,7 @@ module Vedeu
 
       #     it do
       #       subject
-      #       Vedeu.cursors.find('actinium').visible?.must_equal(true)
+      #       Vedeu.cursors.by_name(:actinium).visible?.must_equal(true)
       #     end
       #   end
 
@@ -90,28 +104,28 @@ module Vedeu
 
       #     it do
       #       subject
-      #       Vedeu.cursors.find('actinium').visible?.must_equal(true)
+      #       Vedeu.cursors.by_name(:actinium).visible?.must_equal(true)
       #     end
       #   end
       # end
 
-      # describe '#cursor!' do
-      #   subject { instance.cursor! }
+      describe '#cursor!' do
+        subject { instance.cursor! }
 
-      #   it do
-      #     subject
-      #     Vedeu.cursors.find('actinium').visible?.must_equal(true)
-      #   end
-      # end
+        it do
+          subject
+          Vedeu.cursors.by_name(:actinium).visible?.must_equal(true)
+        end
+      end
 
-      # describe '#no_cursor!' do
-      #   subject { instance.no_cursor! }
+      describe '#no_cursor!' do
+        subject { instance.no_cursor! }
 
-      #   it do
-      #     subject
-      #     Vedeu.cursors.find('actinium').visible?.must_equal(false)
-      #   end
-      # end
+        it do
+          subject
+          Vedeu.cursors.by_name(:actinium).visible?.must_equal(false)
+        end
+      end
 
     end # DSL
 

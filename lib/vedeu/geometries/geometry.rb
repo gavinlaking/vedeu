@@ -189,6 +189,12 @@ module Vedeu
 
       private
 
+      # @todo Investigate the differences between memoizing this and
+      #   not memoizing. Memoizing saves ~80ms on running test suite
+      #   and considerably impacts app responsiveness, however changes
+      #   to the geometry (such as movement or maximising) are not
+      #   reflected. (GL: 2016-01-11)
+      #
       # @return [Vedeu::Geometries::Area]
       def area
         Vedeu::Geometries::Area.from_attributes(area_attributes)

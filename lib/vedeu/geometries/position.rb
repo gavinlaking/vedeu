@@ -44,6 +44,9 @@ module Vedeu
         elsif value.is_a?(Hash)
           new(value.fetch(:y, 1), value.fetch(:x, 1))
 
+        elsif value.is_a?(NilClass)
+          nil
+
         end
       end
 
@@ -53,8 +56,8 @@ module Vedeu
       # @param x [Fixnum] The column/character position.
       # @return [Vedeu::Geometries::Position]
       def initialize(y = 1, x = 1)
-        @y = (y.nil? || y < 1) ? 1 : y
-        @x = (x.nil? || x < 1) ? 1 : x
+        @y = Vedeu::Point.coerce(value: y, max: Vedeu.height).value
+        @x = Vedeu::Point.coerce(value: x, max: Vedeu.width).value
 
         freeze
       end
@@ -87,7 +90,7 @@ module Vedeu
       # @param other [Vedeu::Geometries::Position]
       # @return [Boolean]
       def eql?(other)
-        self.class == other.class && (x == other.x && y == other.y)
+        self.class == other.class && x == other.x && y == other.y
       end
       alias_method :==, :eql?
 

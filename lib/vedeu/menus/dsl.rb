@@ -20,8 +20,7 @@ module Vedeu
         # @param name [String|Symbol] The name of the interface or
         #   view to which this menu belongs.
         # @param block [Proc] A set of attributes which define the
-        #   features of the menu. See {Vedeu::Menus::DSL#items} and
-        #   {Vedeu::Menus::DSL#name}.
+        #   features of the menu.
         #
         # @example
         #   Vedeu.menu :my_interface do
@@ -35,9 +34,9 @@ module Vedeu
         #     # ...
         #   end
         #
-        # @raise [Vedeu::Error::MissingRequired|
-        #   Vedeu::Error::RequiresBlock] When a name or block
-        #   respectively are not given.
+        # @macro raise_requires_block
+        # @raise [Vedeu::Error::MissingRequired] When a name is not
+        #   given.
         # @return [API::Menu]
         def menu(name, &block)
           fail Vedeu::Error::MissingRequired unless name

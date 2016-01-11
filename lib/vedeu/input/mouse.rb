@@ -48,6 +48,7 @@ module Vedeu
                     message: 'Vedeu does not support mouse button ' \
                              "'#{button}' yet.")
 
+          false
         end
       end
 

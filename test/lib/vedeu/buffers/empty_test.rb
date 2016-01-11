@@ -15,49 +15,74 @@ module Vedeu
           height: height,
           name:   _name,
           width:  width,
+          x:      x,
+          y:      y,
         }
       }
-      let(:height) { 3 }
-      let(:_name)  {}
+      let(:height) { 4 }
+      let(:_name)  { :vedeu_buffers_empty }
       let(:width)  { 9 }
+      let(:x)      { 3 }
+      let(:y)      { 2 }
+
+      let(:term_height) { 8 }
+      let(:term_width)  { 15 }
 
       before do
-        Vedeu.stubs(:height).returns(4)
-        Vedeu.stubs(:width).returns(12)
+        Vedeu.stubs(:height).returns(term_height)
+        Vedeu.stubs(:width).returns(term_width)
       end
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
 
         context 'when the height is given' do
-          it { instance.instance_variable_get('@height').must_equal(3) }
+          it { instance.instance_variable_get('@height').must_equal(height) }
         end
 
         context 'when the height not is given' do
           let(:height) {}
 
-          it { instance.instance_variable_get('@height').must_equal(4) }
+          it do
+            instance.instance_variable_get('@height').must_equal(term_height)
+          end
         end
 
         it { instance.instance_variable_get('@name').must_equal(_name) }
 
         context 'when the width is given' do
-          it { instance.instance_variable_get('@width').must_equal(9) }
+          it { instance.instance_variable_get('@width').must_equal(width) }
         end
 
         context 'when the width not is given' do
           let(:width) {}
 
-          it { instance.instance_variable_get('@width').must_equal(12) }
+          it { instance.instance_variable_get('@width').must_equal(term_width) }
+        end
+
+        context 'when x is given' do
+          it { instance.instance_variable_get('@x').must_equal(x) }
+        end
+
+        context 'when x not is given' do
+          let(:x) {}
+
+          it { instance.instance_variable_get('@x').must_equal(1) }
+        end
+
+        context 'when y is given' do
+          it { instance.instance_variable_get('@y').must_equal(y) }
+        end
+
+        context 'when y not is given' do
+          let(:y) {}
+
+          it { instance.instance_variable_get('@y').must_equal(1) }
         end
       end
 
-      describe '#name' do
-        it { instance.must_respond_to(:name) }
-      end
-
       describe '#buffer' do
-        let(:position) { Vedeu::Geometries::Position.new(1, 1) }
+        let(:position) { Vedeu::Geometries::Position.new(y, x) }
 
         subject { instance.buffer }
 
@@ -65,21 +90,29 @@ module Vedeu
         it { subject.first.must_be_instance_of(Array) }
         it { subject.first.first.must_be_instance_of(Vedeu::Cells::Empty) }
 
-        it { subject.size.must_equal(3) }
-        it { subject.first.size.must_equal(9) }
+        it { subject.size.must_equal(height) }
+        it { subject.first.size.must_equal(width) }
         it { subject.first.first.position.must_equal(position) }
       end
 
       describe '#height' do
-        subject { instance.height }
+        it { instance.must_respond_to(:height) }
+      end
 
-        it { subject.must_equal(height + 1) }
+      describe '#name' do
+        it { instance.must_respond_to(:name) }
       end
 
       describe '#width' do
-        subject { instance.width }
+        it { instance.must_respond_to(:width) }
+      end
 
-        it { subject.must_equal(width + 1) }
+      describe '#x' do
+        it { instance.must_respond_to(:x) }
+      end
+
+      describe '#y' do
+        it { instance.must_respond_to(:y) }
       end
 
     end # Empty

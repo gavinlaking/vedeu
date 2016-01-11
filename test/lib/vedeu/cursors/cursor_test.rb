@@ -336,7 +336,7 @@ module Vedeu
       describe '#x' do
         subject { instance.x }
 
-        context 'when x is less than tx' do
+        context 'when x is less than 1' do
           let(:x) { -2 }
 
           it { subject.must_equal(6) }
@@ -360,7 +360,7 @@ module Vedeu
           end
         end
 
-        context 'when x is more than txn' do
+        context 'when x is more than the terminal width' do
           let(:x) { 47 }
 
           it { subject.must_equal(34) }
@@ -388,7 +388,7 @@ module Vedeu
       describe '#y' do
         subject { instance.y }
 
-        context 'when y is less than ty' do
+        context 'when y is less than 1' do
           let(:y) { -2 }
 
           it { subject.must_equal(6) }
@@ -412,7 +412,7 @@ module Vedeu
           end
         end
 
-        context 'when y is more than tyn' do
+        context 'when y is more than the terminal height' do
           let(:y) { 17 }
 
           it { subject.must_equal(9) }

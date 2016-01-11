@@ -21,23 +21,30 @@ module Vedeu
       # @return [Symbol]
       attr_reader :value
 
-      # @param value [Symbol|Vedeu::Coercers::Alignment]
-      # @return [Vedeu::Coercers::Alignment]
+      # @param (see #initialize)
+      # @return (see #coerce)
       def self.coerce(value = :none)
         return value if value.is_a?(self)
 
         new(value).coerce
       end
 
+      # @param (see #initialize)
+      # @raise (see #validate)
+      # @return (see #validate)
+      def self.validate(value)
+        new(value).validate
+      end
+
       # Returns a new instance of Vedeu::Coercers::Alignment.
       #
-      # @param value [Symbol]
+      # @param value [Symbol|Vedeu::Coercers::Alignment]
       # @return [Vedeu::Coercers::Alignment]
       def initialize(value = :none)
         @value = value || :none
       end
 
-      # @return [Symbol]
+      # @return [Vedeu::Coercers::Alignment]
       def coerce
         if value == :center
           @value = :centre
@@ -117,21 +124,64 @@ module Vedeu
       #
       # @return [Boolean]
       def valid?
-        present?(value) && value.is_a?(Symbol) && values.include?(value)
+        valid_type? && values.include?(value)
+      end
+
+      # @raise [Vedeu::Error::InvalidSyntax] When the value is missing or
+      #   invalid.
+      # @return [Boolean]
+      def validate
+        return coerce if valid_horizontal? || valid_vertical?
+
+        fail Vedeu::Error::InvalidSyntax,
+             'Missing or invalid alignment value. ' \
+             "Valid values are: #{to_sentence}"
+      end
+
+      # @return [Boolean]
+      def valid_horizontal?
+        valid_type? && horizontal_values.include?(value)
+      end
+
+      # @return [Boolean]
+      def valid_vertical?
+        valid_type? && vertical_values.include?(value)
       end
 
       private
 
       # @return [Array<Symbol>]
-      def values
+      def horizontal_values
         [
-          :bottom,
           :centre,
           :center,
           :left,
-          :middle,
           :none,
           :right,
+        ]
+      end
+
+      # @return [String]
+      def to_sentence
+        Vedeu::Sentence.construct(values)
+      end
+
+      # @return [Boolean]
+      def valid_type?
+        present?(value) && value.is_a?(Symbol)
+      end
+
+      # @return [Array<Symbol>]
+      def values
+        horizontal_values | vertical_values
+      end
+
+      # @return [Array<Symbol>]
+      def vertical_values
+        [
+          :bottom,
+          :middle,
+          :none,
           :top,
         ]
       end

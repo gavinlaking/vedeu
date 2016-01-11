@@ -52,16 +52,19 @@ module Vedeu
         end
       end
 
-      # Add the content to the back buffer, then update the
-      # repository. Returns boolean indicating that the repository was
-      # updated.
+      # Add the view to the back buffer, then update the repository.
+      # Returns boolean indicating that the repository was updated.
       #
-      # @param content [Vedeu::Views::View]
+      # @param view [Vedeu::Views::View]
+      # @param refresh [Boolean] Should the view be refreshed once
+      #   stored? Default: false.
       # @return [Boolean]
-      def add(content)
-        @back = content
+      def add(view, refresh = false)
+        @back = view
 
         store
+
+        Vedeu.trigger(:_refresh_view_, view.name) if boolean(refresh)
 
         true
       end

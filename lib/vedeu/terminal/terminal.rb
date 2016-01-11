@@ -8,7 +8,15 @@ module Vedeu
   module Terminal
 
     include Vedeu::Terminal::Mode
+    extend Forwardable
     extend self
+
+    def_delegators Vedeu::Configuration,
+                   :height,
+                   :width
+
+    alias_method :tyn, :height
+    alias_method :txn, :width
 
     # Opens a terminal screen in either `raw` or `cooked` mode. On
     # exit, attempts to restore the screen. See
@@ -132,59 +140,15 @@ module Vedeu
     def origin
       1
     end
-    alias_method :x, :origin
-    alias_method :y, :origin
     alias_method :tx, :origin
     alias_method :ty, :origin
-
-    # {include:file:docs/dsl/by_method/width.md}
-    # @return [Fixnum]
-    def width
-      return Vedeu.config.drb_width if Vedeu.config.drb?
-      return Vedeu.config.width     if Vedeu.config.width
-
-      size[-1]
-    end
-    alias_method :xn, :width
-    alias_method :txn, :width
-
-    # {include:file:docs/dsl/by_method/height.md}
-    # @return [Fixnum]
-    def height
-      return Vedeu.config.drb_height if Vedeu.config.drb?
-      return Vedeu.config.height     if Vedeu.config.height
-
-      size[0]
-    end
-    alias_method :yn, :height
-    alias_method :tyn, :height
 
     # Returns a tuple containing the height and width of the current
     # terminal.
     #
-    # @note
-    #   If the terminal is a odd number of characters in height or
-    #   width, then 1 is deducted from the dimension to make it even.
-    #   For example; the actual terminal is height: 37, width: 145,
-    #   then the reported size will be 36, 144 respectively.
-    #
-    #   This is done to make it easier for client applications to
-    #   divide the terminal space up when defining interfaces or
-    #   views, leading to more consistent rendering.
-    #
-    #   If the client application is using the
-    #   {Vedeu::Geometries::Grid#rows} or
-    #   {Vedeu::Geometries::Grid#columns} helpers, the dimensions are
-    #   made more consistent using this approach.
-    #
-    # @return [Array]
+    # @return [Array<Fixnum>]
     def size
-      h, w = console.winsize
-
-      h = (h.even? ? h : h - 1)
-      w = (w.even? ? w : w - 1)
-
-      [h, w]
+      console.winsize
     end
 
     # Provides our gateway into the wonderful rainbow-filled world of
@@ -197,16 +161,10 @@ module Vedeu
 
   end # Terminal
 
-  # @!method height
-  #   @see Vedeu::Terminal#height
   # @!method resize
   #   @see Vedeu::Terminal#resize
-  # @!method width
-  #   @see Vedeu::Terminal#width
   def_delegators Vedeu::Terminal,
-                 :height,
-                 :resize,
-                 :width
+                 :resize
 
   # :nocov:
 

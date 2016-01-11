@@ -112,18 +112,10 @@ module Vedeu
         subject.must_equal(["\e[?25h"])
       end
 
-      it 'hides the cursor in raw mode' do
+      it 'leaves the cursor hidden in raw mode' do
         described.raw_mode!
         subject.must_equal(nil)
       end
-    end
-
-
-    describe '.cursor' do
-      subject { described.cursor }
-
-      #it { subject.must_be_instance_of(Array) }
-      #it { subject.must_be_instance_of(Vedeu::Geometries::Position) }
     end
 
     describe '.centre' do
@@ -161,38 +153,8 @@ module Vedeu
 
       it { subject.must_be_instance_of(Fixnum) }
       it { subject.must_equal(1) }
-      it { described.must_respond_to(:x) }
-      it { described.must_respond_to(:y) }
       it { described.must_respond_to(:tx) }
       it { described.must_respond_to(:ty) }
-    end
-
-    describe '.width' do
-      subject { Vedeu::Terminal.width }
-
-      it { subject.must_be_instance_of(Fixnum) }
-      it { described.must_respond_to(:xn) }
-      it { described.must_respond_to(:txn) }
-
-      context 'when the terminal is an odd number of characters in width' do
-        it 'returns the width' do
-          subject.must_equal(40)
-        end
-      end
-    end
-
-    describe '.height' do
-      subject { Vedeu::Terminal.height }
-
-      it { subject.must_be_instance_of(Fixnum) }
-      it { described.must_respond_to(:yn) }
-      it { described.must_respond_to(:tyn) }
-
-      context 'when the terminal is an odd number of characters in height' do
-        it 'returns the height' do
-          subject.must_equal(24)
-        end
-      end
     end
 
     describe '.size' do
@@ -200,11 +162,8 @@ module Vedeu
 
       it { subject.must_be_instance_of(Array) }
 
-      context 'when the terminal is an odd number of characters in height or ' \
-              'width' do
-        it 'returns the width and height' do
-          subject.must_equal([24, 40])
-        end
+      it 'returns the width and height' do
+        subject.must_equal([25, 40])
       end
     end
 

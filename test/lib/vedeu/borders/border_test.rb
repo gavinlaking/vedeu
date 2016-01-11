@@ -83,7 +83,16 @@ module Vedeu
       end
 
       describe '#caption=' do
-        it { instance.must_respond_to(:caption=) }
+        let(:_value) { 'some caption' }
+
+        subject { instance.caption=(_value) }
+
+        it {
+          instance.caption.must_equal('')
+          instance.expects(:store)
+          subject
+          instance.caption.must_equal(_value)
+        }
       end
 
       describe '#horizontal' do
@@ -147,7 +156,16 @@ module Vedeu
       end
 
       describe '#title=' do
-        it { instance.must_respond_to(:title=) }
+        let(:_value) { 'some title' }
+
+        subject { instance.title=(_value) }
+
+        it {
+          instance.title.must_equal('')
+          instance.expects(:store)
+          subject
+          instance.title.must_equal(_value)
+        }
       end
 
       describe '#top_horizontal=' do

@@ -98,28 +98,21 @@ module Vedeu
         it { subject.must_be_instance_of(Hash) }
       end
 
-      describe '#store_immediate' do
+      describe '#update_buffer' do
+        let(:refresh) {}
+
         before { Vedeu.stubs(:trigger) }
 
-        subject { instance.store_immediate }
+        subject { instance.update_buffer(refresh) }
 
-        it { subject.must_be_instance_of(described) }
-
-        it do
-          Vedeu.expects(:trigger).with(:_refresh_view_, _name)
-          subject
+        context 'when the name attribute is defined' do
+          it { subject.must_be_instance_of(described) }
         end
-      end
 
-      describe '#store_deferred' do
-        subject { instance.store_deferred }
-
-        it { subject.must_be_instance_of(described) }
-
-        context 'when the name is not defined' do
+        context 'when the name attribute is not defined' do
           let(:_name) {}
 
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+          it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
         end
       end
 
