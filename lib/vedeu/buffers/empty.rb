@@ -12,37 +12,29 @@ module Vedeu
 
       include Vedeu::Repositories::Defaults
 
+      # @!attribute [r] height
+      # @return [Fixnum]
+      attr_reader :height
+
       # @!attribute [r] name
       # @return [NilClass|String|Symbol]
       attr_reader :name
 
+      # @!attribute [r] width
+      # @return [Fixnum]
+      attr_reader :width
+
+      # @!attribute [r] x
+      # @return [Fixnum]
+      attr_reader :x
+
+      # @!attribute [r] y
+      # @return [Fixnum]
+      attr_reader :y
+
       # @return [Array<Array<Vedeu::Cells::Empty>>]
       def buffer
-        Array.new(height) do |y|
-          if y > 0
-            Array.new(width) do |x|
-              Vedeu::Cells::Empty.new(name: name, position: [y, x]) if x > 0
-            end.compact
-          end
-        end.compact
-      end
-
-      # @note
-      #   We add 1 to both the width and height as terminal screens
-      #   are 1-indexed.
-      #
-      # @return [Fixnum]
-      def height
-        @height + 1
-      end
-
-      # @note
-      #   We add 1 to both the width and height as terminal screens
-      #   are 1-indexed.
-      #
-      # @return [Fixnum]
-      def width
-        @width + 1
+        @buffer ||= empty
       end
 
       private
@@ -55,7 +47,18 @@ module Vedeu
           height: Vedeu.height,
           name:   nil,
           width:  Vedeu.width,
+          x:      1,
+          y:      1,
         }
+      end
+
+      # @return [Array<Array<Vedeu::Cells::Empty>>]
+      def empty
+        Array.new(height) do |h|
+          Array.new(width) do |w|
+            Vedeu::Cells::Empty.new(name: name, position: [y + h, x + w])
+          end
+        end
       end
 
     end # Empty
