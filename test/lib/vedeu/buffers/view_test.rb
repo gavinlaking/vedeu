@@ -10,7 +10,7 @@ module Vedeu
 
       let(:described)  { Vedeu::Buffers::View }
       let(:instance)   { described.new(attributes) }
-      let(:_name)      { 'Vedeu::Buffers::View' }
+      let(:_name)      { :vedeu_buffers_view }
       let(:attributes) {
         {
           name: _name,
@@ -27,7 +27,7 @@ module Vedeu
         context 'when a name is not given' do
           let(:_name) {}
 
-          it { instance.instance_variable_get('@name').must_equal('') }
+          it { instance.instance_variable_get('@name').must_equal(nil) }
         end
       end
 
