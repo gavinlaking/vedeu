@@ -46,11 +46,30 @@ module Vedeu
         end
       end
 
-      # Fetch the coordinates.
+      # Return the coordinate pair.
+      #
+      # 1) If maximised, it will be from the first row/line or column/
+      #    character to the last row/line or column/character of the
+      #    terminal.
       #
       # @return [Array<Fixnum>]
       def pair
-        dimension
+        if maximised?
+          [1, default]
+
+        elsif bottom_aligned? || right_aligned?
+          [start_coordinate, default]
+
+        elsif centre_aligned? || middle_aligned?
+          [centred_d, centred_dn]
+
+        elsif left_aligned? || top_aligned?
+          [1, end_coordinate]
+
+        else
+          [_d, _dn]
+
+        end
       end
 
       protected
@@ -81,33 +100,6 @@ module Vedeu
       # @return [Vedeu::Coercers::Alignment]
       def alignment
         @_alignment ||= Vedeu::Coercers::Alignment.coerce(@alignment)
-      end
-
-      # Return the dimension.
-      #
-      # 1) If maximised, it will be from the first row/line or column/
-      #    character to the last row/line or column/character of the
-      #    terminal.
-      # 2) If centred,
-      #
-      # @return [Array<Fixnum>]
-      def dimension
-        @dimension = if maximised?
-                       [1, default]
-
-                     elsif bottom_aligned? || right_aligned?
-                       [start_coordinate, default]
-
-                     elsif centre_aligned? || middle_aligned?
-                       [centred_d, centred_dn]
-
-                     elsif left_aligned? || top_aligned?
-                       [1, end_coordinate]
-
-                     else
-                       [_d, _dn]
-
-                     end
       end
 
       # Provide the number of rows/lines or columns/characters.
