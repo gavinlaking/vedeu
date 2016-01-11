@@ -20,9 +20,20 @@ module Vedeu
       describe '.log' do
         subject { described.log(message: _message, force: force, type: type) }
 
-        it { subject.must_equal(
-          "\e[97m[info]     \e[39m\e[37mSome message...\e[39m"
-        ) }
+        context 'when :force is true' do
+          let(:force) { true }
+          let(:expected) {
+            "\e[97m[info]     \e[39m\e[37mSome message...\e[39m"
+          }
+
+          it { subject.must_equal(expected) }
+        end
+
+        context 'when :force is false' do
+          let(:force) { false }
+
+          it { subject.must_equal(nil) }
+        end
       end
 
       describe '.log_stdout' do

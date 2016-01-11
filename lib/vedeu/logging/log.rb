@@ -26,14 +26,11 @@ module Vedeu
         #
         # @return [String]
         def log(message:, force: false, type: :info)
-          output = log_entry(type, message)
-
-          if (Vedeu.config.log? || force) &&
-             Vedeu.config.loggable?(type)
+          if (Vedeu.config.log? || force) && Vedeu.config.loggable?(type)
+            output = log_entry(type, message)
             logger.debug(output)
+            output
           end
-
-          output
         end
 
         # Write a message to STDOUT.
