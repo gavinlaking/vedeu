@@ -50,9 +50,16 @@ module Vedeu
       # @return [String|Symbol]
       attr_accessor :name
 
+      # @!attribute [rw] wordwrap
+      # @return [Boolean]
+      attr_accessor :wordwrap
+      alias_method :wordwrap?, :wordwrap
+
       # @!attribute [rw] zindex
       # @return [Fixnum]
       attr_accessor :zindex
+
+
 
       # Return a new instance of Vedeu::Views::View.
       #
@@ -64,6 +71,7 @@ module Vedeu
       # @option attributes name [String|Symbol]
       # @option attributes parent [Vedeu::Views::Composition]
       # @option attributes style [Vedeu::Presentation::Style]
+      # @option attributes wordwrap [Boolean]
       # @option attributes zindex [Fixnum]
       # @return [Vedeu::Views::View]
       def initialize(attributes = {})
@@ -89,6 +97,7 @@ module Vedeu
           parent:         parent,
           style:          style,
           value:          value,
+          wordwrap:       wordwrap,
           zindex:         zindex,
         }
       end
@@ -154,6 +163,7 @@ module Vedeu
           parent:         nil,
           style:          :normal,
           value:          [],
+          wordwrap:       true,
           zindex:         0,
         }
       end
