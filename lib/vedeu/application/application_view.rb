@@ -30,8 +30,7 @@ module Vedeu
       end
     end
 
-    # @raise [Vedeu::Error::NotImplemented] Subclasses of this class
-    #   must implement this method.
+    # @macro raise_not_implemented
     def render
       fail Vedeu::Error::NotImplemented,
            'The subclass of Vedeu::ApplicationView must implement the #render' \

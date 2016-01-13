@@ -11,8 +11,7 @@ module Vedeu
     class Streams < Vedeu::Repositories::Collection
 
       # @param (see Vedeu::Repositories::Collection#initialize)
-      # @raise [Vedeu::Error::InvalidSyntax] When the collection
-      #   cannot be coerced since it is unrecognised or unsupported.
+      # @macro raise_invalid_syntax
       # @return [Vedeu::Views::Streams]
       def self.coerce(collection = [], parent = nil, name = nil)
         if collection.is_a?(Vedeu::Views::Streams)

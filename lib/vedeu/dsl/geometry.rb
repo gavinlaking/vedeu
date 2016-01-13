@@ -16,20 +16,12 @@ module Vedeu
       #
       module ClassMethods
 
-        # Specify the geometry of an interface or view with a simple
-        # DSL.
-        #
-        #   # Standalone (preferred):
-        #   Vedeu.geometry :my_interface do
-        #     # ... see {Vedeu::Geometries::DSL}
-        #   end
-        #
+        # {include:file:docs/dsl/by_method/geometry.md}
         # @param name [String|Symbol] The name of the interface or
         #   view to which this geometry belongs.
         # @param block [Proc]
         # @macro raise_requires_block
-        # @raise [Vedeu::Error::MissingRequired] When a name is not
-        #   given.
+        # @macro raise_missing_required
         # @return [Vedeu::Geometries::Geometry]
         # @see Vedeu::Geometries::DSL
         def geometry(name = nil, &block)
@@ -58,33 +50,14 @@ module Vedeu
       #
       module InstanceMethods
 
-        # Specify the geometry of an interface or view with a simple
-        # DSL.
-        #
-        #   # As part of an interface:
-        #   Vedeu.interface :my_interface do
-        #     geometry do
-        #       # ... see {Vedeu::Geometries::DSL}
-        #     end
-        #   end
-        #
-        #   # As part of a view:
-        #   Vedeu.render do
-        #     view :my_interface do
-        #       geometry do
-        #         # ... see {Vedeu::Geometries::DSL}
-        #       end
-        #     end
-        #   end
-        #
+        # {include:file:docs/dsl/by_method/geometry.md}
         # @param name [String|Symbol] The name of the interface; this
         #   is already provided when we define the interface or view,
         #   setting it here is just mirroring functionality of
         #   {Vedeu::DSL::Geometry::ClassMethods#geometry}.
         # @param block [Proc]
         # @macro raise_requires_block
-        # @raise [Vedeu::Error::MissingRequired] When a name is not
-        #   given.
+        # @macro raise_missing_required
         # @return [Vedeu::Geometries::Geometry]
         # @see Vedeu::Geometries::DSL
         def geometry(name = nil, &block)

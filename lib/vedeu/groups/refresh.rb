@@ -52,8 +52,7 @@ module Vedeu
 
       private
 
-      # @raise [Vedeu::Error::MissingRequired] When the name is empty
-      #   or nil.
+      # @macro raise_missing_required
       # @return [String]
       def group_name
         return name if present?(name)

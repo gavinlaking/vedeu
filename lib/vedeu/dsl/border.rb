@@ -28,8 +28,7 @@ module Vedeu
         #   view to which this border belongs.
         # @param block [Proc]
         # @macro raise_requires_block
-        # @raise [Vedeu::Error::MissingRequired] When a name is not
-        #   given.
+        # @macro raise_missing_required
         # @return [Vedeu::Borders::Border]
         # @see Vedeu::Borders::DSL
         def border(name, &block)
@@ -72,8 +71,7 @@ module Vedeu
         #   {Vedeu::DSL::Border::ClassMethods.border}.
         # @param block [Proc]
         # @macro raise_requires_block
-        # @raise [Vedeu::Error::MissingRequired] When a name is not
-        #   given.
+        # @macro raise_missing_required
         # @return [Vedeu::Borders::Border]
         # @see Vedeu::Borders::DSL
         def border(name = nil, &block)

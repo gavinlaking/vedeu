@@ -127,8 +127,7 @@ module Vedeu
         valid_type? && values.include?(value)
       end
 
-      # @raise [Vedeu::Error::InvalidSyntax] When the value is missing or
-      #   invalid.
+      # @macro raise_invalid_syntax
       # @return [Boolean]
       def validate
         return coerce if valid_horizontal? || valid_vertical?

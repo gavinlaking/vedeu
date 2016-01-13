@@ -49,8 +49,7 @@ module Vedeu
         File.read(path)
       end
 
-      # @raise [Vedeu::Error::MissingRequired] When the path is empty
-      #   or does not exist.
+      # @macro raise_missing_required
       # @return [String]
       def path
         fail Vedeu::Error::MissingRequired,

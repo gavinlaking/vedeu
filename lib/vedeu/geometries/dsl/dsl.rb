@@ -83,6 +83,7 @@ module Vedeu
       # Align the interface/view horizontally or vertically within
       # the terminal.
       #
+      # {include:file:docs/dsl/by_method/geometry/align.md}
       # @param vertical [Symbol] One of :bottom, :middle, :none, :top.
       # @param horizontal [Symbol] One of :center, :centre, :left,
       #   :none, :right.
@@ -92,13 +93,7 @@ module Vedeu
       # @param height [Fixnum] The number of lines/rows tall; this is
       #   required when the given value for vertical is any value
       #   other than :none.
-      # @raise [Vedeu::Error::InvalidSyntax]
-      #   - When the vertical is not given.
-      #   - When the horizontal is not given.
-      #   - When the horizontal is given (and not :none) and the width
-      #     is not given.
-      #   - When the vertical is given (and not :none) and the height
-      #     is not given.
+      # @macro raise_invalid_syntax
       # @return [Vedeu::Geometries::Geometry]
       def align(vertical: :none, horizontal: :none, width: nil, height: nil)
         horizontal_alignment(horizontal, width)
@@ -149,8 +144,6 @@ module Vedeu
       #   default width of the terminal, this can be substituted for
       #   your own positive integer.
       # @param height [Fixnum] The number of lines/rows.
-      # @raise [Vedeu::Error::InvalidSyntax] When the height is not
-      #   given.
       # @return [Vedeu::Geometries::Geometry]
       def align_bottom(height = nil)
         vertical_alignment(:bottom, height)
@@ -178,8 +171,6 @@ module Vedeu
       #   default height of the terminal, this can be substituted for
       #   your own positive integer.
       # @param width [Fixnum] The number of characters/columns.
-      # @raise [Vedeu::Error::InvalidSyntax] When the width is not
-      #   given.
       # @return [Vedeu::Geometries::Geometry]
       def align_centre(width = nil)
         horizontal_alignment(:centre, width)
@@ -206,8 +197,6 @@ module Vedeu
       #   default height of the terminal, this can be substituted for
       #   your own positive integer.
       # @param width [Fixnum] The number of characters/columns.
-      # @raise [Vedeu::Error::InvalidSyntax] When the width is not
-      #   given.
       # @return [Vedeu::Geometries::Geometry]
       def align_left(width = nil)
         horizontal_alignment(:left, width)
@@ -234,8 +223,6 @@ module Vedeu
       #   default width of the terminal, this can be substituted for
       #   your own positive integer.
       # @param height [Fixnum] The number of lines/rows.
-      # @raise [Vedeu::Error::InvalidSyntax] When the height is not
-      #   given.
       # @return [Vedeu::Geometries::Geometry]
       def align_middle(height = nil)
         vertical_alignment(:middle, height)
@@ -261,8 +248,6 @@ module Vedeu
       #   default height of the terminal, this can be substituted for
       #   your own positive integer.
       # @param width [Fixnum] The number of characters/columns.
-      # @raise [Vedeu::Error::InvalidSyntax] When the width is not
-      #   given.
       # @return [Vedeu::Geometries::Geometry]
       def align_right(width = nil)
         horizontal_alignment(:right, width)
@@ -289,8 +274,6 @@ module Vedeu
       #   default width of the terminal, this can be substituted for
       #   your own positive integer.
       # @param height [Fixnum] The number of lines/rows.
-      # @raise [Vedeu::Error::InvalidSyntax] When the height is not
-      #   given.
       # @return [Vedeu::Geometries::Geometry]
       def align_top(height = nil)
         vertical_alignment(:top, height)

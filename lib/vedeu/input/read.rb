@@ -116,6 +116,7 @@ module Vedeu
         present?(@input)
       end
 
+      # @macro raise_invalid_syntax
       # @return [Symbol]
       def mode
         unless valid_mode?

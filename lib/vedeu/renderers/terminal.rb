@@ -35,6 +35,10 @@ module Vedeu
 
       private
 
+      # Returns the output in a compressed form if the :compression
+      # option is true.
+      #
+      # @return [String]
       def content
         compression
       end

@@ -27,8 +27,7 @@ module Vedeu
 
         # @param key [String|Symbol] The keypress.
         # @param name [String|Symbol] The keymap name.
-        # @raise [Vedeu::Error::MissingRequired] When the key or name
-        #   params are missing.
+        # @macro raise_missing_required
         # @return [Boolean]
         def registered?(key = nil, name = nil)
           fail Vedeu::Error::MissingRequired,

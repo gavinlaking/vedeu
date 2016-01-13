@@ -1,8 +1,16 @@
 module Vedeu
 
+  # A `Vedeu::Point` represents part of a coordinate within the 2D
+  # space of a terminal. This class is specifically used to coerce
+  # a coordinate to be within boundaries. The `min` and `max`
+  # arguments are used to define this boundary.
+  #
+  # @api private
+  #
   class Point
 
     # @param (see #initialize)
+    # @macro raise_invalid_syntax
     # @return (see #initialize)
     def self.coerce(value: nil, min: 1, max: nil)
       new(value: value, min: min, max: max).coerce
@@ -24,6 +32,7 @@ module Vedeu
       @value = value
     end
 
+    # @macro raise_invalid_syntax
     # @return [Vedeu::Point]
     def coerce
       fail Vedeu::Error::InvalidSyntax,
@@ -53,6 +62,7 @@ module Vedeu
 
     private
 
+    # @macro raise_invalid_syntax
     # @return [Fixnum]
     def min
       return @min if @min.is_a?(Fixnum)
@@ -60,6 +70,7 @@ module Vedeu
       fail Vedeu::Error::InvalidSyntax, "Expecting 'min' to be a Fixnum."
     end
 
+    # @macro raise_invalid_syntax
     # @return [Fixnum]
     def max
       return @max if @max.is_a?(Fixnum)

@@ -181,7 +181,7 @@ module Vedeu
 
       # Returns the width to prune or wrap to.
       #
-      # @raise [Vedeu::Error::MissingRequired]
+      # @macro raise_missing_required
       # @return [Fixnum]
       def width
         return options[:width] if present?(options[:width])

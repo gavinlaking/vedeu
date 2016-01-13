@@ -13,8 +13,7 @@ module Vedeu
       # @param collection [void]
       # @param parent [Vedeu::Views::Stream]
       # @param name [NilClass|Symbol|String]
-      # @raise [Vedeu::Error::InvalidSyntax] When the collection
-      #   cannot be coerced since it is unrecognised or unsupported.
+      # @macro raise_invalid_syntax
       # @return [Vedeu::Views::Chars]
       def self.coerce(collection = [], parent = nil, name = nil)
         if collection.is_a?(Vedeu::Views::Chars)
