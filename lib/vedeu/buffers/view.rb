@@ -121,8 +121,8 @@ module Vedeu
 
       def write(value)
         if valid?(value)
-          row    = by - value.position.y
-          column = bx - value.position.x
+          row    = by + value.position.y
+          column = bx + value.position.x
 
           current[row][column] = value
         end
