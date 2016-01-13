@@ -30,3 +30,5 @@ cd "$(dirname "$0")"
 ./dsl_app_014.rb
 ./dsl_app_015.rb
 ./dsl_app_016.rb
+./dsl_app_021.rb
+./dsl_app_022.rb
