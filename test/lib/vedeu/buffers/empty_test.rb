@@ -90,8 +90,8 @@ module Vedeu
         it { subject.first.must_be_instance_of(Array) }
         it { subject.first.first.must_be_instance_of(Vedeu::Cells::Empty) }
 
-        it { subject.size.must_equal(height) }
-        it { subject.first.size.must_equal(width) }
+        it { subject.size.must_equal(height + 1) }
+        it { subject.first.size.must_equal(width + 1) }
         it { subject.first.first.position.must_equal(position) }
       end
 
