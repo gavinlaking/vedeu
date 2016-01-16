@@ -11,61 +11,59 @@ module Vedeu
     #
     class Output
 
-      # @param output (see #output)
-      # @return [Array]
-      def self.buffer_update(output)
-        return nil if output.nil?
+      include Vedeu::Common
 
-        new(output).buffer_update
-      end
+      class << self
 
-      # @param output (see #output)
-      # @return [Array]
-      def self.buffer_write(output)
-        return nil if output.nil?
+        # @param (see #output)
+        # @return (see #buffer_update)
+        def buffer_update(output)
+          new(output).buffer_update
+        end
 
-        new(output).buffer_write
-      end
+        # @param (see #output)
+        # @return (see #buffer_write)
+        def buffer_write(output)
+          new(output).buffer_write
+        end
 
-      # @param output (see #output)
-      # @return [Array<String>]
-      def self.direct_write(output)
-        return nil if output.nil?
+        # @param (see #output)
+        # @return (see #direct_write)
+        def direct_write(output)
+          new(output).direct_write
+        end
 
-        new(output).direct_write
-      end
+        # Writes output to the defined renderers.
+        #
+        # @param (see #output)
+        # @return (see #render_output)
+        def render_output(output)
+          new(output).render_output
+        end
 
-      # Writes output to the defined renderers.
-      #
-      # @param output (see #output)
-      # @return [Array|NilClass|String]
-      def self.render_output(output)
-        return nil if output.nil?
-
-        new(output).render_output
-      end
+      end # Eigenclass
 
       # Return a new instance of Vedeu::Output::Output.
       #
-      # @param output (see #output)
+      # @param (see #output)
       # @return [Vedeu::Output::Output]
       def initialize(output)
         @output = output
       end
 
-      # @return [Array]
+      # @return (see #render_output)
       def buffer_update
-        Vedeu::Buffers::Terminal.update(output)
+        Vedeu::Buffers::Terminal.update(output) if present?(output)
       end
 
-      # @return [Array]
+      # @return (see #render_output)
       def buffer_write
-        Vedeu::Buffers::Terminal.write(output)
+        Vedeu::Buffers::Terminal.write(output) if present?(output)
       end
 
-      # @return [Array<String>]
+      # @return (see #render_output)
       def direct_write
-        Vedeu::Terminal.output(output.to_s)
+        Vedeu::Terminal.output(output.to_s) if present?(output)
       end
 
       # Send the view to the renderers. If the output is a
@@ -75,9 +73,9 @@ module Vedeu
       # because escape sequences only make sense to the terminal and
       # not other renderers.
       #
-      # @return [Array|String|NilClass]
+      # @return [Array<String>|String|NilClass]
       def render_output
-        if escape_sequence?
+        if escape?(output)
           direct_write
 
         else
@@ -93,13 +91,6 @@ module Vedeu
       #   NilClass|Vedeu::Cells::Escape|Vedeu::Cells::Cursor]
       attr_reader :output
 
-      private
-
-      # @return [Boolean]
-      def escape_sequence?
-        output.is_a?(Vedeu::Cells::Escape) || output.is_a?(Vedeu::Cells::Cursor)
-      end
-
     end # Output
 
   end # Output
@@ -113,7 +104,7 @@ module Vedeu
   #   Vedeu.render_output(output)
   #
   # @!method render_output
-  # @return [Array|NilClass]
+  # @return (see Vedeu::Output::Output#render_output)
   def_delegators Vedeu::Output::Output,
                  :buffer_update,
                  :buffer_write,

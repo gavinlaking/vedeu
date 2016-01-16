@@ -45,6 +45,12 @@ module Vedeu
     # Raised when Vedeu attempts to parse a view or interface and
     # encounters a problem.
     #
+    # @!macro [new] raise_invalid_syntax
+    #   @raise [Vedeu::Error::InvalidSyntax] When the value given for
+    #     an argument or parameter cannot be used because it is not
+    #     valid for the use case, unsupported or the method expects a
+    #     different type.
+    #
     class InvalidSyntax < StandardError
 
     end # InvalidSyntax
@@ -52,6 +58,11 @@ module Vedeu
     # Raised when value required by Vedeu to proceed is not given.
     # For example, when a name is not provided for a model when
     # attempting to store it in a repository.
+    #
+    # @!macro [new] raise_missing_required
+    #    @raise [Vedeu::Error::MissingRequired] When the required
+    #      argument or parameter was given but without a meaningful or
+    #      usable value (e.g. nil).
     #
     class MissingRequired < StandardError
 
@@ -77,6 +88,12 @@ module Vedeu
     # subclass implements the functionality sought.
     #
     # @see Vedeu::Colours::Translator
+    #
+    # @!macro [new] raise_not_implemented
+    #    @raise [Vedeu::Error::NotImplemented] When a subclass of the
+    #      current class actually implements the method. Usually an
+    #      indicator that the subclass should be used instead of the
+    #      current class.
     #
     class NotImplemented < StandardError
 

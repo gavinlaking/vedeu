@@ -61,8 +61,7 @@ module Vedeu
       #   this keymap relates to.
       # @param block [Proc]
       # @macro raise_requires_block
-      # @raise [Vedeu::Error::MissingRequired] When the name is not
-      #   given.
+      # @macro raise_missing_required
       # @return [Vedeu::Input::Keymap]
       def self.keymap(name, &block)
         fail Vedeu::Error::MissingRequired unless name
@@ -83,10 +82,7 @@ module Vedeu
       #   defined, then the extras are treated as aliases.
       # @param block [Proc] The action to perform when this key is
       #   pressed. Can be a method call or event triggered.
-      # @raise [Vedeu::Error::InvalidSyntax]
-      #   When the required block is not given, the values parameter
-      #   is undefined, or when processing the collection, a member
-      #   is undefined.
+      # @macro raise_invalid_syntax
       # @return [Array] A collection containing the keypress(es).
       def key(*values, &block)
         fail Vedeu::Error::InvalidSyntax,

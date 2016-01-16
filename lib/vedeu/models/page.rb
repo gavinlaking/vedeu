@@ -16,6 +16,7 @@ module Vedeu
 
       # @param value
       #   [Vedeu::Models::Page|Vedeu::Models::Row|Array<void>|void]
+      # @macro raise_invalid_syntax
       # @return [Vedeu::Models::Page]
       def self.coerce(value)
         if value.is_a?(Vedeu::Models::Page)

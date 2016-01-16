@@ -47,8 +47,6 @@ module Vedeu
       # @option opts stdout [File|IO]
       # @option opts stderr [File|IO]
       # @param block [Proc]
-      # @raise [Vedeu::Error::InvalidSyntax]
-      #   When the required block is not given.
       # @return [Hash<Symbol => void>]
       def configure(opts = {}, &block)
         instance.configure(opts, &block)

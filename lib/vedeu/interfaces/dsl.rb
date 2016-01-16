@@ -35,6 +35,7 @@ module Vedeu
         # @param block [Proc] A set of attributes which define the
         #   features of the interface.
         # @macro raise_requires_block
+        # @macro raise_missing_required
         # @return [Vedeu::Interfaces::Interface]
         # @todo More documentation required.
         def interface(name, &block)

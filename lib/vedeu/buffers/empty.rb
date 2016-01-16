@@ -12,17 +12,9 @@ module Vedeu
 
       include Vedeu::Repositories::Defaults
 
-      # @!attribute [r] height
-      # @return [Fixnum]
-      attr_reader :height
-
       # @!attribute [r] name
       # @return [NilClass|String|Symbol]
       attr_reader :name
-
-      # @!attribute [r] width
-      # @return [Fixnum]
-      attr_reader :width
 
       # @!attribute [r] x
       # @return [Fixnum]
@@ -35,6 +27,16 @@ module Vedeu
       # @return [Array<Array<Vedeu::Cells::Empty>>]
       def buffer
         @buffer ||= empty
+      end
+
+      # @return [Fixnum]
+      def height
+        @height + 1
+      end
+
+      # @return [Fixnum]
+      def width
+        @width + 1
       end
 
       private

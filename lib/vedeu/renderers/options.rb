@@ -17,6 +17,20 @@ module Vedeu
       # Returns a new instance of the class including this module.
       #
       # @param opts [Hash]
+      # @option opts content [String] Defaults to an empty string.
+      # @option opts end_tag [String] Defaults to '</td>'.
+      # @option opts end_row_tag [String] Defaults to '</tr>'.
+      # @option opts filename [String] Provide a filename for the
+      #   output. Defaults to 'out'.
+      # @option opts start_tag [String] Defaults to '<td' (note the
+      #   end of the tag is missing, this is so that inline styles can
+      #   be added later).
+      # @option opts start_row_tag [String] Defaults to '<tr>'.
+      # @option opts template [String]
+      # @option opts timestamp [Boolean] Append a timestamp to the
+      #   filename.
+      # @option opts write_file [Boolean] Whether to write the file
+      #   to the given filename.
       # @return [void]
       def initialize(opts = {})
         @options = defaults.merge!(opts || {})
@@ -28,7 +42,6 @@ module Vedeu
       end
 
       # @param output [Vedeu::Models::Page]
-      # @param opts [Hash]
       # @return [void]
       def render(output = '')
         options.merge!(output: output)
@@ -36,9 +49,7 @@ module Vedeu
         write
       end
 
-      # @raise [Vedeu::Error::NotImplemented] Subclasses of this class
-      #   must implement this method.
-      # @return [Vedeu::Error::NotImplemented]
+      # @macro raise_not_implemented
       def write
         fail Vedeu::Error::NotImplemented, 'Including classes implement this.'
       end
@@ -66,28 +77,12 @@ module Vedeu
         end
       end
 
-      # @return [void]
+      # @macro raise_not_implemented
       def content
         fail Vedeu::Error::NotImplemented, 'Including classes implement this.'
       end
 
       # The default values for a new instance of this class.
-      #
-      # @param options [Hash]
-      # @option options content [String] Defaults to an empty string.
-      # @option options end_tag [String] Defaults to '</td>'.
-      # @option options end_row_tag [String] Defaults to '</tr>'.
-      # @option options filename [String] Provide a filename for the
-      #   output. Defaults to 'out'.
-      # @option options start_tag [String] Defaults to '<td' (note the
-      #   end of the tag is missing, this is so that inline styles can
-      #   be added later).
-      # @option options start_row_tag [String] Defaults to '<tr>'.
-      # @option options template [String]
-      # @option options timestamp [Boolean] Append a timestamp to the
-      #   filename.
-      # @option options write_file [Boolean] Whether to write the file
-      #   to the given filename.
       #
       # @return [Hash<Symbol => void>]
       def defaults

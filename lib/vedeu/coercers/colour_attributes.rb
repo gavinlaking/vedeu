@@ -25,6 +25,7 @@ module Vedeu
         @value = value
       end
 
+      # @macro raise_invalid_syntax
       # @return [Hash]
       def coerce
         fail Vedeu::Error::InvalidSyntax unless hash?(value)

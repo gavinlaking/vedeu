@@ -120,8 +120,7 @@ module Vedeu
       # Ascertain the correct methods to use for determining the
       # coordinates.
       #
-      # @raise [Vedeu::Error::InvalidSyntax] When the coordinate type
-      #   is not given.
+      # @macro raise_invalid_syntax
       # @return [Fixnum]
       def coordinate_type
         @_type ||= case type

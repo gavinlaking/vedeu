@@ -51,9 +51,7 @@ module Vedeu
       def_delegators :interface,
                      :visible?
 
-      # @example
-      #   Vedeu.trigger(:_refresh_border_, name)
-      #
+      # {include:file:docs/events/by_name/refresh_border.md}
       # @param (see #initialize)
       # @return (see #by_name)
       def self.by_name(name = Vedeu.focus)
@@ -223,7 +221,7 @@ module Vedeu
 
   # :nocov:
 
-  # See {file:docs/borders.md#label-3A_refresh_border_}
+  # {include:file:docs/events/by_name/refresh_border.md}
   Vedeu.bind(:_refresh_border_) do |name|
     Vedeu::Borders::Refresh.by_name(name) if Vedeu.ready?
   end

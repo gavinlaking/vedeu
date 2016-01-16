@@ -259,8 +259,7 @@ module Vedeu
       #   allow it to be detected, or use 256 here.
       #
       # @param value [Fixnum]
-      # @raise [Vedeu::Error::InvalidSyntax] When the value parameter
-      #   is not one of +8+, +16+, +256+ or +16777216+.
+      # @macro raise_invalid_syntax
       # @return [Boolean]
       def colour_mode(value = nil)
         unless valid_colour_mode?(value)
@@ -514,8 +513,7 @@ module Vedeu
       #   end
       #
       # @param mode [Symbol] Either ':cooked', ':fake' or ':raw'.
-      # @raise [Vedeu::Error::InvalidSyntax] When the mode is not
-      #   ':cooked', ':fake' or ':raw'.
+      # @macro raise_invalid_syntax
       # @return [Symbol]
       # @see Vedeu::Config::API#cooked!
       # @see Vedeu::Config::API#fake!
@@ -612,7 +610,7 @@ module Vedeu
 
       private
 
-      # @raise [Vedeu::Error::InvalidSyntax]
+      # @macro raise_invalid_syntax
       def invalid_mode!
         fail Vedeu::Error::InvalidSyntax,
              'Terminal mode can be set to either :cooked, :fake or :raw'

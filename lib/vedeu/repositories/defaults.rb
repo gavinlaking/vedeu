@@ -38,8 +38,7 @@ module Vedeu
       end
 
       # @param attributes [Hash]
-      # @raise [Vedeu::Error::InvalidSyntax] When the :attributes
-      #   param is not a Hash.
+      # @macro raise_invalid_syntax
       # @return [Hash]
       def validate(attributes)
         fail Vedeu::Error::InvalidSyntax,

@@ -18,8 +18,7 @@ module Vedeu
       #   to which this border belongs.
       # @param block [Proc]
       # @macro raise_requires_block
-      # @raise [Vedeu::Error::MissingRequired] When the name is not
-      #   given.
+      # @macro raise_missing_required
       # @return [Vedeu::Borders::Border]
       def self.border(name, &block)
         fail Vedeu::Error::MissingRequired unless name

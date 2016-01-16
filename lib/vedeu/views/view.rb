@@ -113,8 +113,7 @@ module Vedeu
       #
       # @param refresh [Boolean] Should the buffer of the view be
       #   refreshed once stored? Default: false.
-      # @raise [Vedeu::Error::MissingRequired] When the name of the
-      #   view is not defined.
+      # @macro raise_missing_required
       # @return [Vedeu::Views::View]
       def update_buffer(refresh = false)
         if present?(name)

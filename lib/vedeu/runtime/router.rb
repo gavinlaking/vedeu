@@ -18,8 +18,7 @@ module Vedeu
       #
       # @param controller [Symbol]
       # @param klass [String]
-      # @raise [Vedeu::Error::MissingRequired] When the controller
-      #   name is not given.
+      # @macro raise_missing_required
       # @return [void]
       def add_controller(controller, klass)
         unless present?(controller)
@@ -46,8 +45,7 @@ module Vedeu
       #
       # @param controller [Symbol]
       # @param action [Symbol]
-      # @raise [Vedeu::Error::MissingRequired] When the controller
-      #   name or action name is not given.
+      # @macro raise_missing_required
       # @return [void]
       def add_action(controller, action)
         if present?(controller) && present?(action)
@@ -143,8 +141,7 @@ module Vedeu
       # Fetch the class for the controller by name.
       #
       # @param controller [Symbol]
-      # @raise [Vedeu::Error::MissingRequired] When the given
-      #   controller name does not have a class defined.
+      # @macro raise_missing_required
       # @return [String]
       def klass_for(controller)
         if registered?(controller) && klass_defined?(controller)

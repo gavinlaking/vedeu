@@ -10,7 +10,7 @@ module Vedeu
     #
     class HorizontalAlignment < Vedeu::Coercers::Alignment
 
-      # @raise (see Vedeu::Coercers::Alignment#validate)
+      # @macro raise_invalid_syntax
       # @return (see Vedeu::Coercers::Alignment#validate)
       def validate
         return coerce if valid_horizontal?

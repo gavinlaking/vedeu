@@ -35,8 +35,7 @@ module Vedeu
         #   end
         #
         # @macro raise_requires_block
-        # @raise [Vedeu::Error::MissingRequired] When a name is not
-        #   given.
+        # @macro raise_missing_required
         # @return [API::Menu]
         def menu(name, &block)
           fail Vedeu::Error::MissingRequired unless name

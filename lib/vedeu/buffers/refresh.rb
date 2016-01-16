@@ -10,9 +10,7 @@ module Vedeu
 
       include Vedeu::Common
 
-      # @example
-      #   Vedeu.trigger(:_refresh_view_, name)
-      #
+      # {include:file:docs/events/by_name/refresh_view.md}
       # @param (see #initialize)
       # @return (see #by_name)
       def self.by_name(name = Vedeu.focus)
@@ -21,9 +19,7 @@ module Vedeu
         new(name).by_name
       end
 
-      # @example
-      #   Vedeu.trigger(:_refresh_view_content_, name)
-      #
+      # {include:file:docs/events/by_name/refresh_view_content.md}
       # @param (see #initialize)
       # @return (see #by_name)
       def self.refresh_content_by_name(name = Vedeu.focus)
@@ -87,12 +83,12 @@ module Vedeu
 
   # :nocov:
 
-  # See {file:docs/events/refresh.md}
+  # See {file:docs/events/by_name/refresh_view.md}
   Vedeu.bind(:_refresh_view_) do |name|
     Vedeu::Buffers::Refresh.by_name(name) if Vedeu.ready?
   end
 
-  # See {file:docs/events/refresh.md}
+  # See {file:docs/events/by_name/refresh_view_content.md}
   Vedeu.bind(:_refresh_view_content_) do |name|
     Vedeu::Buffers::Refresh.refresh_content_by_name(name) if Vedeu.ready?
   end

@@ -215,9 +215,7 @@ module Vedeu
         (css_to_rgb[2] / 51) * 1
       end
 
-      # @raise [Vedeu::Error::NotImplemented] Subclasses of this class
-      #   must implement this method.
-      # @return [Vedeu::Error::NotImplemented]
+      # @macro raise_not_implemented
       def not_implemented
         fail Vedeu::Error::NotImplemented, 'Subclasses implement this.'
       end

@@ -151,8 +151,7 @@ module Vedeu
       # @note If a block is given, store the model, return the model
       #   after yielding.
       # @param model [void] A model instance.
-      # @raise [Vedeu::Error::MissingRequired] When the name attribute
-      #   is not defined.
+      # @macro raise_missing_required
       # @return [void] The model instance which was stored.
       def store(model, &block)
         valid_model?(model)
@@ -179,8 +178,8 @@ module Vedeu
                   message: "#{model.class.name}: '#{model.name}'")
       end
 
-      #
       # @param model [void] A model instance.
+      # @macro raise_missing_required
       # @return [Boolean]
       def valid_model?(model)
         fail Vedeu::Error::MissingRequired,

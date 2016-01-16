@@ -44,6 +44,14 @@ module Vedeu
       value.is_a?(TrueClass) || value.is_a?(FalseClass)
     end
 
+    # Returns a boolean indicating whether the value is an escape
+    # sequence object (e.g. {Vedeu::Cells::Escape}.)
+    #
+    # @return [Boolean]
+    def escape?(value)
+      value.is_a?(Vedeu::Cells::Escape) || value.is_a?(Vedeu::Cells::Cursor)
+    end
+
     # Returns a boolean indicating whether the value should be
     # considered false.
     #
@@ -90,11 +98,11 @@ module Vedeu
     #   check.
     # @return [Boolean]
     def present?(variable)
-      return true if numeric?(variable)
-      return true unless variable.nil? ||
-                         (variable.respond_to?(:empty?) && variable.empty?)
+      return true  if numeric?(variable)
+      return false if variable.nil?
+      return false if variable.respond_to?(:empty?) && variable.empty?
 
-      false
+      true
     end
 
     # Converts a class name to a lowercase snake case string.

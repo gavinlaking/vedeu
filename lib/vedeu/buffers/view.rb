@@ -119,13 +119,13 @@ module Vedeu
         Vedeu::Point.valid?(value: y, min: by, max: byn)
       end
 
+      # Write the value into the respective cell as defined by the
+      # position attribute.
+      #
+      # @param value [void]
+      # @return [NilClass|void]
       def write(value)
-        if valid?(value)
-          row    = by - value.position.y
-          column = bx - value.position.x
-
-          current[row][column] = value
-        end
+        current[value.position.y][value.position.x] = value if valid?(value)
       end
 
     end # View

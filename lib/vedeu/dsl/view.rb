@@ -51,7 +51,7 @@ module Vedeu
       # @param block [Proc] The directives you wish to send to this
       #   view.
       # @macro raise_requires_block
-      # @raise [Vedeu::Error::MissingRequired]
+      # @macro raise_missing_required
       # @return [Vedeu::Views::Views<Vedeu::Views::View>]
       # @todo More documentation required.
       def view(name, &block)
@@ -82,8 +82,9 @@ module Vedeu
       #   use relative paths.
       # @param object [Object] The object for which the values of
       #   template's variables can be obtained.
-      # @param options [Hash<Symbol => void>] See {Vedeu::DSL::Wordwrap}
-      # @raise [Vedeu::Error::MissingRequired]
+      # @param options [Hash<Symbol => void>] See
+      #   {Vedeu::DSL::Wordwrap}
+      # @macro raise_missing_required
       # @return [Vedeu::Views::Views<Vedeu::Views::View>]
       def template_for(name, filename, object = nil, options = {})
         fail Vedeu::Error::MissingRequired,

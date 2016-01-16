@@ -123,6 +123,28 @@ module Vedeu
       end
     end
 
+    describe '#escape?' do
+      subject { instance.escape?(_value) }
+
+      context 'when the value is a Vedeu::Cells::Escape' do
+        let(:_value) { Vedeu::Cells::Escape.new(value: "\e[0m") }
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when the value is a Vedeu::Cells::Cursor' do
+        let(:_value) { Vedeu::Cells::Cursor.new(value: "\e[?25h") }
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when the value is anything else' do
+        let(:_value) { 'anything' }
+
+        it { subject.must_equal(false) }
+      end
+    end
+
     describe '#falsy?' do
       subject { instance.falsy?(_value) }
 
