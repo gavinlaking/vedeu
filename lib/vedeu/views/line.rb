@@ -69,7 +69,7 @@ module Vedeu
       # @return [Array]
       # @see Vedeu::Views::Stream
       def chars
-        return [] unless value?
+        return [] unless streams?
 
         @chars ||= streams.flat_map(&:chars)
       end
@@ -104,7 +104,7 @@ module Vedeu
       #
       # @return [Fixnum]
       def size
-        value.map(&:size).inject(0, :+)
+        streams.map(&:size).inject(0, :+)
       end
 
     end # Line
