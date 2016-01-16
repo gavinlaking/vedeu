@@ -41,18 +41,9 @@ module Vedeu
         end
       end
 
-      # Returns a boolean indicating whether the output is a
-      # {Vedeu::Cells::Escape}. If it is, it won't be rendered in
-      # HTML.
-      #
-      # @return [Boolean]
-      def escape?
-        output.is_a?(Vedeu::Cells::Escape) || output.is_a?(Vedeu::Cells::Cursor)
-      end
-
       # @return [Boolean]
       def valid?
-        return false if string?(output) || escape?
+        return false if string?(output) || escape?(output)
 
         true
       end

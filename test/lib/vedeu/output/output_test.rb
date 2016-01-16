@@ -26,7 +26,7 @@ module Vedeu
         end
 
         context 'when the output is not empty' do
-          let(:output) { Vedeu::Models::Page.new }
+          let(:output) { Vedeu::Cells::Char.new(value: 'a') }
 
           it do
             Vedeu::Buffers::Terminal.expects(:write).with(output)
@@ -74,7 +74,7 @@ module Vedeu
           end
 
           context 'and the output is not an escape sequence' do
-            let(:output) { Vedeu::Models::Page.new }
+            let(:output) { Vedeu::Cells::Char.new(value: 'a') }
 
             it do
               Vedeu::Buffers::Terminal.expects(:write).with(output)
