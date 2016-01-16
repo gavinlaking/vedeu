@@ -125,12 +125,7 @@ module Vedeu
       # @param value [void]
       # @return [NilClass|void]
       def write(value)
-        if valid?(value)
-          row    = by + value.position.y
-          column = bx + value.position.x
-
-          current[row][column] = value
-        end
+        current[value.position.y][value.position.x] = value if valid?(value)
       end
 
     end # View
