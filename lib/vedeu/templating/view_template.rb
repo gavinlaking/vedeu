@@ -26,8 +26,8 @@ module Vedeu
                              Vedeu::Templating::Decoder.process(stream)
 
                            else
-                             Vedeu::Views::Stream.new(colour: default_colour,
-                                                      style:  default_style,
+                             Vedeu::Views::Stream.new(colour: stream_colour,
+                                                      style:  stream_style,
                                                       value:  stream)
 
                            end
@@ -54,24 +54,22 @@ module Vedeu
       # Return the interface colours if a name option is set,
       # otherwise use the default colours.
       #
-      # @return [Vedeu::Colours::Colour|Hash<Symbol => Symbol>]
-      def default_colour
-        return interface.colour if options[:name]
+      # @return [Vedeu::Colours::Colour|Hash<Symbol => NilClass,String,Symbol>]
+      def stream_colour
+        return interface.colour if name
 
-        {
-          background: :default,
-          foreground: :default,
-        }
+        default[:colour]
       end
 
-      # Return the interface style(s) if a name option is set,
-      # otherwise use the default style.
-      #
-      # @return [Symbol]
-      def default_style
-        return interface.style if options[:name]
-
-        :normal
+      # @return [Hash<Symbol => Hash<Symbol => Symbol>,Symbol>]
+      def default
+        {
+          colour: {
+            background: :default,
+            foreground: :default,
+          },
+          style: :normal,
+        }
       end
 
       # Returns the interface by name.
@@ -93,6 +91,16 @@ module Vedeu
       # @return [Array<String>]
       def streams_for(line)
         line.split(/({{\s*[^}]+\s*}})/)
+      end
+
+      # Return the interface style(s) if a name option is set,
+      # otherwise use the default style.
+      #
+      # @return [Symbol]
+      def stream_style
+        return interface.style if name
+
+        default[:style]
       end
 
       # Convert the content into an array of strings without the line
