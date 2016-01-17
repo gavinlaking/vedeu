@@ -11,6 +11,7 @@ module Vedeu
 
       include Vedeu::Common
 
+      extend Vedeu::Repositories::Storage
       extend self
 
       # Registers a controller with the given controller name for the
@@ -96,14 +97,6 @@ module Vedeu
         storage.key?(controller)
       end
 
-      # Removes all stored controllers with their respective actions.
-      #
-      # @return [Hash<void>]
-      def reset!
-        @storage = in_memory
-      end
-      alias_method :reset, :reset!
-
       private
 
       # Returns a boolean indicating whether the given action name is
@@ -161,14 +154,6 @@ module Vedeu
       # @return [Boolean]
       def klass_defined?(controller)
         present?(storage[controller][:klass])
-      end
-
-      # Returns all the stored controllers and their respective
-      # actions.
-      #
-      # @return [Hash<Symbol => Hash<Symbol => String|Array<Symbol>>>]
-      def storage
-        @storage ||= in_memory
       end
 
       # Returns an empty collection ready for the storing of client

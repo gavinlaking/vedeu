@@ -12,6 +12,10 @@ module Vedeu
 
       include Enumerable
       include Vedeu::Common
+      include Vedeu::Repositories::Storage
+
+      alias_method :all, :storage
+      alias_method :clear, :reset!
 
       # @param block [Proc]
       # @return [Enumerator]
@@ -50,33 +54,12 @@ module Vedeu
         storage
       end
 
-      # Remove all currently stored data.
-      #
-      # @return [Array|Hash|Set]
-      def reset!
-        Vedeu.log(type:    :reset,
-                  message: "(#{self.class.name}) #{registered.inspect}")
-
-        @storage = in_memory
-      end
-      alias_method :reset, :reset!
-      alias_method :clear, :reset
-
       # Return the number of entries stored.
       #
       # @return [Fixnum]
       def size
         storage.size
       end
-
-      # Return whole repository; provides raw access to the storage
-      # for this repository.
-      #
-      # @return [Array|Hash|Set]
-      def storage
-        @storage ||= in_memory
-      end
-      alias_method :all, :storage
 
       # @return [Hash]
       def in_memory

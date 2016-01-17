@@ -9,6 +9,7 @@ module Vedeu
     module Store
 
       extend self
+      extend Vedeu::Repositories::Storage
 
       # {include:file:docs/dsl/by_method/add_command.md}
       # @param command [Symbol|String]
@@ -47,23 +48,6 @@ module Vedeu
       def last_keypress
         all_keypresses[-1]
       end
-
-      # Remove all stored entries. Any commands or keypresses entered
-      # before calling this method will be removed.
-      #
-      # @return [Hash<Symbol => Array<Symbol|String>>]
-      def reset!
-        @storage = in_memory
-      end
-      alias_method :reset, :reset!
-
-      # Access all commands and keypresses stored.
-      #
-      # @return [Hash<Symbol => Array<Symbol|String>>]
-      def storage
-        @storage ||= in_memory
-      end
-      alias_method :all, :storage
 
       private
 
