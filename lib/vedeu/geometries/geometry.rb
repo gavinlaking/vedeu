@@ -147,12 +147,7 @@ module Vedeu
       end
       alias == eql?
 
-      # Will maximise the named interface geometry. This means it will
-      # occupy all of the available space on the terminal window.
-      #
-      # @example
-      #   Vedeu.trigger(:_maximise_, name)
-      #
+      # {include:file:docs/events/by_name/maximise.md}
       # @return [Vedeu::Geometries::Geometry|NilClass]
       def maximise
         return self if maximised?
@@ -165,15 +160,7 @@ module Vedeu
         end
       end
 
-      # Will unmaximise the named interface geometry. Previously, when
-      # a geometry was maximised, then triggering the unmaximise event
-      # will return it to its usual defined size (terminal size
-      # permitting: when the terminal has been resized, then the new
-      # geometry size should adapt).
-      #
-      # @example
-      #   Vedeu.trigger(:_unmaximise_, name)
-      #
+      # {include:file:docs/events/by_name/unmaximise.md}
       # @return [Vedeu::Geometries::Geometry|NilClass]
       def unmaximise
         return self unless maximised?
@@ -189,12 +176,6 @@ module Vedeu
 
       private
 
-      # @todo Investigate the differences between memoizing this and
-      #   not memoizing. Memoizing saves ~80ms on running test suite
-      #   and considerably impacts app responsiveness, however changes
-      #   to the geometry (such as movement or maximising) are not
-      #   reflected. (GL: 2016-01-11)
-      #
       # @return [Vedeu::Geometries::Area]
       def area
         Vedeu::Geometries::Area.from_attributes(area_attributes)

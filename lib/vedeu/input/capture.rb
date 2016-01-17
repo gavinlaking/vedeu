@@ -2,7 +2,8 @@
 
 module Vedeu
 
-  ESCAPE_KEY_CODE = 27 # \e
+  # \e
+  ESCAPE_KEY_CODE = 27
 
   module Input
 
