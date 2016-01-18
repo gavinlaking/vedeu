@@ -58,15 +58,11 @@ module Vedeu
 
       # @return [Hash]
       def coerced_background
-        if background?
-          {
-            background: background
-          }
+        return {} unless background?
 
-        else
-          {}
-
-        end
+        {
+          background: background,
+        }
       end
 
       # @return [NilClass|String]
@@ -91,15 +87,11 @@ module Vedeu
 
       # @return [Hash]
       def coerced_foreground
-        if foreground?
-          {
-            foreground: foreground
-          }
+        return {} unless foreground?
 
-        else
-          {}
-
-        end
+        {
+          foreground: foreground,
+        }
       end
 
       # @return [NilClass|String]

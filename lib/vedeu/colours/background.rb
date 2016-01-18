@@ -41,13 +41,9 @@ module Vedeu
       # @param _options [Hash] Ignored.
       # @return [String]
       def to_html(_options = {})
-        if rgb?
-          "background-color:#{colour};"
+        return '' unless rgb?
 
-        else
-          ''
-
-        end
+        "background-color:#{colour};"
       end
 
       private
