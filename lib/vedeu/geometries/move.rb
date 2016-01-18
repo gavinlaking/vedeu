@@ -41,7 +41,7 @@ module Vedeu
 
         Vedeu::Geometries::Geometry.store(new_attributes) do
           update_cursor!
-          refresh!
+          Vedeu.trigger(:_movement_refresh_, name)
         end
       end
 
@@ -127,13 +127,6 @@ module Vedeu
           y:  1,
           yn: (yn - y + 1),
         }
-      end
-
-      # Refresh the screen after moving.
-      #
-      # @return [void]
-      def refresh!
-        Vedeu.trigger(:_movement_refresh_, name)
       end
 
       # Moves the geometry right by the offset.
