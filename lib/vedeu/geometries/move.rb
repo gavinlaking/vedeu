@@ -87,7 +87,7 @@ module Vedeu
       end
 
       # @return [Hash<Symbol => Symbol>]
-      def event
+      def cursor_event
         {
           down:   :_cursor_down_,
           left:   :_cursor_left_,
@@ -162,7 +162,7 @@ module Vedeu
       #
       # @return [void]
       def update_cursor!
-        Vedeu.trigger(event, name)
+        Vedeu.trigger(cursor_event, name, offset)
       end
 
       # @return [Boolean]
