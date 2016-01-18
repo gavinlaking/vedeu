@@ -25,8 +25,8 @@ module Vedeu
 
           new(name).render
         end
-        alias_method :clear_by_name, :render
-        alias_method :by_name, :render
+        alias clear_by_name render
+        alias by_name render
 
         # Clear the content of the interface with the given name.
         #
@@ -142,7 +142,7 @@ module Vedeu
       # @return [String]
       def optimised_output
         Vedeu.timer("Optimised clearing #{clearing}: '#{name}'") do
-          height.times.map do |iy|
+          Array.new(height) do |iy|
             [
               build_position(y + iy, x),
               colour.to_s,

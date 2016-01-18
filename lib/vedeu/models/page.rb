@@ -84,7 +84,7 @@ module Vedeu
       def eql?(other)
         self.class == other.class && rows == other.rows
       end
-      alias_method :==, :eql?
+      alias == eql?
 
       # @param index [Fixnum]
       # @return [NilClass|Vedeu::Models::Row]

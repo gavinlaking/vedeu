@@ -39,7 +39,7 @@ module Vedeu
       def compression
         instance.options[:compression]
       end
-      alias_method :compression?, :compression
+      alias compression? compression
 
       # {include:file:docs/dsl/by_method/configure.md}
       # @param opts [Hash<Symbol => void>]
@@ -57,7 +57,7 @@ module Vedeu
       def configuration
         self
       end
-      alias_method :config, :configuration
+      alias config configuration
 
       # @return [Hash]
       def colour
@@ -82,7 +82,7 @@ module Vedeu
       def debug?
         instance.options[:debug]
       end
-      alias_method :debug, :debug?
+      alias debug debug?
 
       # Returns whether the DRb server is enabled or disabled. Default
       # is false.
@@ -91,7 +91,7 @@ module Vedeu
       def drb?
         instance.options[:drb]
       end
-      alias_method :drb, :drb?
+      alias drb drb?
 
       # Returns the hostname for the DRb server.
       #
@@ -161,7 +161,7 @@ module Vedeu
       def interactive?
         instance.options[:interactive]
       end
-      alias_method :interactive, :interactive?
+      alias interactive interactive?
 
       # Returns the path to the log file.
       #
@@ -204,7 +204,7 @@ module Vedeu
       def mouse?
         instance.options[:mouse]
       end
-      alias_method :mouse, :mouse?
+      alias mouse mouse?
 
       # Returns whether the application will run through its main loop
       # once or not. Default is false; meaning the application will
@@ -214,7 +214,7 @@ module Vedeu
       def once?
         instance.options[:once]
       end
-      alias_method :once, :once?
+      alias once once?
 
       # Returns a boolean indicating whether profiling has been
       # enabled.
@@ -223,7 +223,7 @@ module Vedeu
       def profile?
         instance.options[:profile]
       end
-      alias_method :profile, :profile?
+      alias profile profile?
 
       # Returns the renderers which should receive output.
       #

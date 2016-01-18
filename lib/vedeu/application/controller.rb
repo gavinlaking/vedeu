@@ -36,7 +36,7 @@ module Vedeu
         Vedeu::Runtime::Router.add_controller(controller_name,
                                               ancestors[0].to_s)
       end
-      alias_method :controller_name, :controller
+      alias controller_name controller
 
       # Specifying the action names in your controller provides Vedeu
       # with the means to route requests to different parts of your
@@ -70,8 +70,8 @@ module Vedeu
           Vedeu::Runtime::Router.add_action(@controller_name, action_name)
         end
       end
-      alias_method :action_name, :action
-      alias_method :actions, :action
+      alias action_name action
+      alias actions action
 
     end # ClassMethods
 

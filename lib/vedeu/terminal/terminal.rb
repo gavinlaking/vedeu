@@ -15,8 +15,8 @@ module Vedeu
                    :height,
                    :width
 
-    alias_method :tyn, :height
-    alias_method :txn, :width
+    alias tyn height
+    alias txn width
 
     # Opens a terminal screen in either `raw` or `cooked` mode. On
     # exit, attempts to restore the screen. See
@@ -51,7 +51,7 @@ module Vedeu
         console.print(stream)
       end
     end
-    alias_method :write, :output
+    alias write output
 
     # {include:file:docs/dsl/by_method/resize.md}
     # @return [Boolean]
@@ -140,8 +140,8 @@ module Vedeu
     def origin
       1
     end
-    alias_method :tx, :origin
-    alias_method :ty, :origin
+    alias tx origin
+    alias ty origin
 
     # Returns a tuple containing the height and width of the current
     # terminal.

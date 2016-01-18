@@ -15,8 +15,8 @@ module Vedeu
       # @!attribute [rw] collection
       # @return [String]
       attr_accessor :collection
-      alias_method :line, :collection
-      alias_method :to_s, :collection
+      alias line collection
+      alias to_s collection
 
       class << self
 

@@ -89,7 +89,7 @@ module Vedeu
         self.class == other.class && name == other.name &&
           members == other.members
       end
-      alias_method :==, :eql?
+      alias == eql?
 
       # Hide the named group of interfaces, or without a name, the
       # group of the currently focussed interface. Useful for hiding
@@ -138,7 +138,7 @@ module Vedeu
 
         Vedeu::Groups::Group.store(attrs)
       end
-      alias_method :reset, :reset!
+      alias reset reset!
 
       # Show the named group of interfaces, or without a name, the
       # group of the currently focussed interface.

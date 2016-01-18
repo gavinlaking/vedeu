@@ -88,7 +88,7 @@ module Vedeu
       def file_open
         @file ||= File.new(file_name, 'w', 0755)
       end
-      alias_method :file, :file_open
+      alias file file_open
 
       # @return [String]
       def file_name

@@ -143,7 +143,7 @@ module Vedeu
         storage.delete(name)
         storage unless storage.is_a?(Set)
       end
-      alias_method :delete, :remove
+      alias delete remove
 
       # Stores the model instance by name in the repository of the
       # model.
@@ -164,8 +164,8 @@ module Vedeu
 
         model
       end
-      alias_method :register, :store
-      alias_method :add, :store
+      alias register store
+      alias add store
 
       private
 

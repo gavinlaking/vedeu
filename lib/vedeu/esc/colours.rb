@@ -86,7 +86,7 @@ module Vedeu
 
         public_send(named_colour, &block)
       end
-      alias_method :foreground_colour, :colour
+      alias foreground_colour colour
 
       # @return [Array<Symbol>]
       def valid_codes

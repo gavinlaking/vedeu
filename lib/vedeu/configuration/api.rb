@@ -63,7 +63,7 @@ module Vedeu
       def interactive!(value = true)
         options[:interactive] = value
       end
-      alias_method :interactive, :interactive!
+      alias interactive interactive!
 
       # Sets boolean to prevent user intervention. This is the same as
       # setting {include:Vedeu::Config::API#interactive!} to false.
@@ -89,7 +89,7 @@ module Vedeu
       def standalone!(value = true)
         options[:interactive] = !value
       end
-      alias_method :standalone, :standalone!
+      alias standalone standalone!
 
       # Sets boolean to run the Vedeu main application loop once. In
       # effect, using `run_once!` or setting `run_once` to true will
@@ -106,7 +106,7 @@ module Vedeu
       def run_once!(value = true)
         options[:once] = value
       end
-      alias_method :run_once, :run_once!
+      alias run_once run_once!
 
       # Sets boolean to run a DRb server.
       #
@@ -120,7 +120,7 @@ module Vedeu
       def drb!(value = true)
         options[:drb] = value
       end
-      alias_method :drb, :drb!
+      alias drb drb!
 
       # Sets the hostname or IP address of the DRb server.
       #
@@ -186,7 +186,7 @@ module Vedeu
       def cooked!
         options[:terminal_mode] = :cooked
       end
-      alias_method :cooked, :cooked!
+      alias cooked cooked!
 
       # Sets the terminal mode to `fake`. Default terminal mode is
       # `raw`.
@@ -201,7 +201,7 @@ module Vedeu
       def fake!
         options[:terminal_mode] = :fake
       end
-      alias_method :fake, :fake!
+      alias fake fake!
 
       # Sets the terminal mode to `raw`. Default terminal mode is
       # `raw`. Also, see {Vedeu::Config::API#cooked!}
@@ -215,7 +215,7 @@ module Vedeu
       def raw!
         options[:terminal_mode] = :raw
       end
-      alias_method :raw, :raw!
+      alias raw raw!
 
       # Sets boolean to enable/disable debugging. Vedeu's default
       # setting is for debugging to be disabled. Using `debug!` or
@@ -242,7 +242,7 @@ module Vedeu
       def debug!(value = true)
         options[:debug] = value
       end
-      alias_method :debug, :debug!
+      alias debug debug!
 
       # Sets the colour mode of the terminal.
       #
@@ -287,7 +287,7 @@ module Vedeu
       def height(height = 25)
         options[:height] = height
       end
-      alias_method :height=, :height
+      alias height= height
 
       # Sets the location of the log file.
       #
@@ -369,7 +369,7 @@ module Vedeu
       def profile!(value = true)
         options[:profile] = value
       end
-      alias_method :profile, :profile!
+      alias profile profile!
 
       # Sets the renderers for Vedeu. Each renderer added must have
       # the class method '.render' defined as this will be called when
@@ -390,7 +390,7 @@ module Vedeu
       def renderer(*renderer)
         options[:renderers] = renderer.flatten
       end
-      alias_method :renderers, :renderer
+      alias renderers renderer
 
       # Override the base path for the application (for locating
       # templates and other resources). By default the base path is
@@ -487,7 +487,7 @@ module Vedeu
       def compression(value = true)
         options[:compression] = value
       end
-      alias_method :compression!, :compression
+      alias compression! compression
 
       # Sets the terminal mode. Valid values can be either ':cooked',
       # ':fake' or :raw'.
@@ -523,7 +523,7 @@ module Vedeu
 
         options[:terminal_mode] = mode
       end
-      alias_method :terminal_mode=, :terminal_mode
+      alias terminal_mode= terminal_mode
 
       # Sets the width of the terminal.
       #
@@ -542,7 +542,7 @@ module Vedeu
       def width(width = 80)
         options[:width] = width
       end
-      alias_method :width=, :width
+      alias width= width
 
       # Sets the background of the terminal.
       #
@@ -606,7 +606,7 @@ module Vedeu
       def mouse!(value = true)
         options[:mouse] = value
       end
-      alias_method :mouse, :mouse!
+      alias mouse mouse!
 
       private
 

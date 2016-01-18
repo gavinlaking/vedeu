@@ -59,7 +59,7 @@ module Vedeu
       # @!attribute [r] output
       # @return [String]
       attr_reader :output
-      alias_method :value, :output
+      alias value output
 
       private
 
@@ -75,7 +75,7 @@ module Vedeu
       def options
         defaults.merge!(@options)
       end
-      alias_method :attributes, :options
+      alias attributes options
 
       # @return [String]
       def output
@@ -102,7 +102,7 @@ module Vedeu
       def to_s
         @_to_s ||= super + Vedeu.esc.reset + position(position_end)
       end
-      alias_method :to_str, :to_s
+      alias to_str to_s
 
     end # Write
 

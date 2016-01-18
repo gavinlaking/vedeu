@@ -94,7 +94,7 @@ module Vedeu
              'Cannot render template without a ' \
              'filename.' unless present?(filename)
 
-        options.merge!(name: name)
+        options[:name] = name
 
         content = Vedeu::Templating::ViewTemplate.parse(object,
                                                         filename,

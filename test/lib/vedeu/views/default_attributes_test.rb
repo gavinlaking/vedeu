@@ -13,11 +13,11 @@ module Vedeu
       def nil_for_testing_purposes
         nil
       end
-      alias_method :client, :nil_for_testing_purposes
-      alias_method :colour, :nil_for_testing_purposes
-      alias_method :name,   :nil_for_testing_purposes
-      alias_method :parent, :nil_for_testing_purposes
-      alias_method :style,  :nil_for_testing_purposes
+      alias client nil_for_testing_purposes
+      alias colour nil_for_testing_purposes
+      alias name nil_for_testing_purposes
+      alias parent nil_for_testing_purposes
+      alias style nil_for_testing_purposes
 
     end # DefaultAttributesTest
 

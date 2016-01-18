@@ -44,7 +44,7 @@ module Vedeu
       # @param output [Vedeu::Models::Page]
       # @return [void]
       def render(output = '')
-        options.merge!(output: output)
+        options[:output] = output
 
         write
       end

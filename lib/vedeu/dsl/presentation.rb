@@ -43,21 +43,21 @@ module Vedeu
       def background(value = '')
         colour(background: Vedeu::Colours::Background.coerce(value))
       end
-      alias_method :bg,          :background
-      alias_method :bgcolor,     :background
-      alias_method :background=, :background
-      alias_method :bg=,         :background
-      alias_method :bgcolor=,    :background
+      alias bg background
+      alias bgcolor background
+      alias background= background
+      alias bg= background
+      alias bgcolor= background
 
       # @see Vedeu::DSL::Presentation#background
       def foreground(value = '')
         colour(foreground: Vedeu::Colours::Foreground.coerce(value))
       end
-      alias_method :fg,          :foreground
-      alias_method :fgcolor,     :foreground
-      alias_method :foreground=, :foreground
-      alias_method :fg=,         :foreground
-      alias_method :fgcolor=,    :foreground
+      alias fg foreground
+      alias fgcolor foreground
+      alias foreground= foreground
+      alias fg= foreground
+      alias fgcolor= foreground
 
       # Define either or both foreground and background colours for an
       # interface, line or a stream. At least one attribute is
@@ -90,9 +90,9 @@ module Vedeu
       # @return [Vedeu::Colours::Colour]
       def colour(attrs = {})
         model.colour = Vedeu::Colours::Colour
-          .coerce(colour_attributes.merge!(attrs))
+                       .coerce(colour_attributes.merge!(attrs))
       end
-      alias_method :colour=, :colour
+      alias colour= colour
 
       # Define a style or styles for an interface, line or a stream.
       #
@@ -118,9 +118,9 @@ module Vedeu
       def style(value)
         model.style = Vedeu::Presentation::Style.coerce(value)
       end
-      alias_method :style=,  :style
-      alias_method :styles,  :style
-      alias_method :styles=, :style
+      alias style= style
+      alias styles style
+      alias styles= style
 
       private
 

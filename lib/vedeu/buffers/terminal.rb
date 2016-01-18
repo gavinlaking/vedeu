@@ -84,7 +84,7 @@ module Vedeu
       def buffer
         @buffer ||= Vedeu::Buffers::View.new(name: name)
       end
-      alias_method :cells, :buffer
+      alias cells buffer
 
     end # Terminal
 

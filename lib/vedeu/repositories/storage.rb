@@ -15,7 +15,7 @@ module Vedeu
 
         @storage = in_memory
       end
-      alias_method :reset, :reset!
+      alias reset reset!
 
       # Return whole repository; provides raw access to the storage
       # for this repository.
@@ -24,7 +24,7 @@ module Vedeu
       def storage
         @storage ||= in_memory
       end
-      alias_method :all, :storage
+      alias all storage
 
     end # Storage
 

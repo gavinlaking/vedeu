@@ -78,7 +78,7 @@ module Vedeu
       def interface
         Vedeu.interfaces.by_name(name)
       end
-      alias_method :interface?, :interface
+      alias interface? interface
 
       # @return [String|Symbol]
       def name

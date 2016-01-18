@@ -23,25 +23,25 @@ module Vedeu
       # @return [Fixnum] Returns the top coordinate (row/line start
       #   position) of the interface.
       attr_reader :y
-      alias_method :top, :y
+      alias top y
 
       # @!attribute [r] yn
       # @return [Fixnum] Returns the bottom coordinate (row/line end
       #   position) of the interface.
       attr_reader :yn
-      alias_method :bottom, :yn
+      alias bottom yn
 
       # @!attribute [r] x
       # @return [Fixnum] Returns the left coordinate (column/character
       #   start position) of the interface.
       attr_reader :x
-      alias_method :left, :x
+      alias left x
 
       # @!attribute [r] xn
       # @return [Fixnum] Returns the right coordinate (column/
       #   character end position) of the interface.
       attr_reader :xn
-      alias_method :right, :xn
+      alias right xn
 
       # @param attributes [Hash<Symbol => Boolean|Fixnum|Symbol>]
       # @option attributes horizontal_alignment [Symbol]
@@ -104,7 +104,7 @@ module Vedeu
         self.class == other.class && y == other.y && yn == other.yn &&
           x == other.x && xn == other.xn
       end
-      alias_method :==, :eql?
+      alias == eql?
 
       # Returns the width of the interface determined by whether a
       # left, right, both or neither borders are shown.

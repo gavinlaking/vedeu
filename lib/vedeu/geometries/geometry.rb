@@ -58,7 +58,7 @@ module Vedeu
       # @!attribute [rw] maximised
       # @return [Boolean]
       attr_accessor :maximised
-      alias_method :maximised?, :maximised
+      alias maximised? maximised
 
       # @!attribute [w] width
       # @return [Fixnum]
@@ -145,7 +145,7 @@ module Vedeu
       def eql?(other)
         self.class == other.class && name == other.name
       end
-      alias_method :==, :eql?
+      alias == eql?
 
       # Will maximise the named interface geometry. This means it will
       # occupy all of the available space on the terminal window.

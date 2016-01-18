@@ -48,7 +48,7 @@ module Vedeu
           value    == other.value    &&
           colour   == other.colour
       end
-      alias_method :==, :eql?
+      alias == eql?
 
       # @return [String]
       def text
@@ -78,7 +78,7 @@ module Vedeu
           value: value.to_s,
         }.merge!(colour.to_h).merge!(position.to_h)
       end
-      alias_method :to_hash, :to_h
+      alias to_hash to_h
 
       # Returns the object represented as HTML.
       #

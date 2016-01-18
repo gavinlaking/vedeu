@@ -59,7 +59,7 @@ module Vedeu
       def to_s
         Array(render).map(&:to_s).join("\n")
       end
-      alias_method :to_str, :to_s
+      alias to_str to_s
 
       protected
 

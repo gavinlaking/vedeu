@@ -14,8 +14,8 @@ module Vedeu
       include Vedeu::Common
       include Vedeu::Repositories::Storage
 
-      alias_method :all, :storage
-      alias_method :clear, :reset!
+      alias all storage
+      alias clear reset!
 
       # @param block [Proc]
       # @return [Enumerator]
@@ -40,7 +40,7 @@ module Vedeu
 
         storage.include?(name)
       end
-      alias_method :registered?, :exists?
+      alias registered? exists?
 
       # Returns a collection of the names of all the registered
       # entities.

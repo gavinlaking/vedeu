@@ -20,7 +20,7 @@ module Vedeu
       # @!attribute [rw] cursor_visible
       # @return [Boolean]
       attr_accessor :cursor_visible
-      alias_method :cursor_visible?, :cursor_visible
+      alias cursor_visible? cursor_visible
 
       # @!attribute [rw] delay
       # @return [Fixnum|Float]
@@ -29,7 +29,7 @@ module Vedeu
       # @!attribute [rw] editable
       # @return [Boolean]
       attr_accessor :editable
-      alias_method :editable?, :editable
+      alias editable? editable
 
       # @!attribute [rw] group
       # @return [Symbol|String]

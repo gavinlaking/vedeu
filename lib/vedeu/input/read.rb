@@ -69,7 +69,7 @@ module Vedeu
       # @return [Hash<Symbol => Symbol>]
       def defaults
         {
-          mode: :cooked
+          mode: :cooked,
         }
       end
 
@@ -97,9 +97,7 @@ module Vedeu
                       console.gets.chomp
 
                     elsif raw?
-                      keys = Vedeu::Input::Raw.read
-
-                      Vedeu::Input::Translator.translate(keys)
+                      Vedeu::Input::Translator.translate(Vedeu::Input::Raw.read)
 
                     elsif fake?
                       console.cooked do

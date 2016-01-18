@@ -21,8 +21,8 @@ module Vedeu
         def render(name)
           new(name).render
         end
-        alias_method :clear_by_group, :render
-        alias_method :by_group, :render
+        alias clear_by_group render
+        alias by_group render
 
       end # Eigenclass
 

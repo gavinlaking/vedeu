@@ -42,7 +42,7 @@ module Vedeu
       def eql?(other)
         self.class == other.class && value == other.value
       end
-      alias_method :==, :eql?
+      alias == eql?
 
       # Overwrite the border from
       # {Vedeu::Borders::Border#build_horizontal} on the top border to
@@ -63,7 +63,7 @@ module Vedeu
       def to_s
         value.to_s
       end
-      alias_method :to_str, :to_s
+      alias to_str to_s
 
       # Return the value (a title or a caption) or an empty string.
       #
@@ -71,8 +71,8 @@ module Vedeu
       def value
         @value || ''
       end
-      alias_method :title, :value
-      alias_method :caption, :value
+      alias title value
+      alias caption value
 
       protected
 

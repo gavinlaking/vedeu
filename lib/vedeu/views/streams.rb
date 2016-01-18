@@ -54,7 +54,7 @@ module Vedeu
         end
       end
 
-      alias_method :streams, :value
+      alias streams value
 
     end # Streams
 

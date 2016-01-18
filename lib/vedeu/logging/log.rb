@@ -69,7 +69,7 @@ module Vedeu
 
           "[#{format('%7.4f', @time.to_s)}] ".rjust(7)
         end
-        alias_method :log_timestamp, :timestamp
+        alias log_timestamp timestamp
 
         private
 

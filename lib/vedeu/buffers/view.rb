@@ -25,7 +25,7 @@ module Vedeu
       # @return [Hash<Symbol => String|Symbol>]
       def attributes
         {
-          name: name
+          name: name,
         }
       end
 
@@ -73,7 +73,7 @@ module Vedeu
       # @return [Hash<Symbol => NilClass|String|Symbol]
       def defaults
         {
-          name: nil
+          name: nil,
         }
       end
 

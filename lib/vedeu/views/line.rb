@@ -37,8 +37,8 @@ module Vedeu
       def_delegators :value,
                      :streams
 
-      alias_method :streams=, :value=
-      alias_method :streams?, :value?
+      alias streams= value=
+      alias streams? value?
 
       # Returns a new instance of Vedeu::Views::Line.
       #
@@ -61,7 +61,7 @@ module Vedeu
       def add(child)
         @value = value.add(child)
       end
-      alias_method :<<, :add
+      alias << add
 
       # Returns an array of all the characters with formatting for
       # this line.
@@ -81,7 +81,7 @@ module Vedeu
       def eql?(other)
         self.class == other.class && value == other.value
       end
-      alias_method :==, :eql?
+      alias == eql?
 
       # @return [NilClass|String|Symbol]
       def name

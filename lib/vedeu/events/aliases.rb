@@ -23,7 +23,7 @@ module Vedeu
       def bind_alias(alias_name, event_name)
         storage[alias_name] << event_name
       end
-      alias_method :add, :bind_alias
+      alias add bind_alias
 
       # Return a boolean indicating whether the storage is empty.
       #
@@ -58,7 +58,7 @@ module Vedeu
         storage.delete(alias_name)
         storage
       end
-      alias_method :remove, :unbind_alias
+      alias remove unbind_alias
 
       # @param alias_name [Symbol]
       # @param args [void]

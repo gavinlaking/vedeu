@@ -57,7 +57,7 @@ module Vedeu
       rescue DRb::DRbConnError
         drb_connection_error
       end
-      alias_method :read, :input
+      alias read input
 
       # Fetch output from the DRb server.
       #
@@ -68,7 +68,7 @@ module Vedeu
       rescue DRb::DRbConnError
         drb_connection_error
       end
-      alias_method :write, :output
+      alias write output
 
       # Shutdown the DRb server and the client application.
       #

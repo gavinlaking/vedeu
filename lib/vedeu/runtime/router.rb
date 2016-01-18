@@ -31,7 +31,7 @@ module Vedeu
                   message: "Controller: ':#{controller}'")
 
         if registered?(controller)
-          storage[controller].merge!(klass: klass)
+          storage[controller][:klass] = klass
 
         else
           storage.store(controller, klass: klass, actions: [])
@@ -86,7 +86,7 @@ module Vedeu
 
         route(controller, action, args) if action_defined?(action, controller)
       end
-      alias_method :action, :goto
+      alias action goto
 
       # Returns a boolean indicating whether the given controller name
       # is already registered.

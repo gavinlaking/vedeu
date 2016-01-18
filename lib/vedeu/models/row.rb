@@ -74,7 +74,7 @@ module Vedeu
       def eql?(other)
         self.class == other.class && cells == other.cells
       end
-      alias_method :==, :eql?
+      alias == eql?
 
       # Provides the reset escape sequence at the end of a row to
       # reset colour and style information to prevent colour bleed on

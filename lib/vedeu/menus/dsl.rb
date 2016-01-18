@@ -72,7 +72,7 @@ module Vedeu
       def item(element)
         model.collection << element
       end
-      alias_method :item=, :item
+      alias item= item
 
       # Define the items for the menu. Most powerful when used with
       # one of your model classes.
@@ -94,7 +94,7 @@ module Vedeu
       def items(collection = [])
         model.collection = collection
       end
-      alias_method :items=, :items
+      alias items= items
 
     end # DSL
 

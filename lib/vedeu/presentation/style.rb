@@ -62,7 +62,7 @@ module Vedeu
       # @return [Hash<Symbol => Array<String|Symbol>|String|Symbol>]
       def attributes
         {
-          style: value
+          style: value,
         }
       end
 
@@ -73,7 +73,7 @@ module Vedeu
       def eql?(other)
         self.class == other.class && value == other.value
       end
-      alias_method :==, :eql?
+      alias == eql?
 
       # @return [String]
       def to_ast
@@ -89,8 +89,8 @@ module Vedeu
 
         @sequences ||= Array(value).flat_map { |v| Vedeu.esc.string(v) }.join
       end
-      alias_method :escape_sequences, :to_s
-      alias_method :to_str, :to_s
+      alias escape_sequences to_s
+      alias to_str to_s
 
     end # Style
 

@@ -125,7 +125,7 @@ module Vedeu
 
       # @return [Boolean]
       def named_colour?
-        return false if self.is_a?(Vedeu::Interfaces::Interface)
+        return false if is_a?(Vedeu::Interfaces::Interface)
 
         present?(name) && Vedeu.interfaces.registered?(name)
       end

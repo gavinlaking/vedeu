@@ -90,7 +90,7 @@ module Vedeu
 
         end
       end
-      alias_method :streams, :lines
+      alias streams lines
 
       # @todo This documentation needs editing. (GL: 2015-12-17)
       #
@@ -272,16 +272,16 @@ module Vedeu
       # @param (see #text)
       # @return (see #text)
       def centre(value = '', opts = {})
-        opts.merge!(align: :centre)
+        opts[:align] = :centre
 
         text(value, opts)
       end
-      alias_method :center, :centre
+      alias center centre
 
       # @param (see #text)
       # @return (see #text)
       def left(value = '', opts = {})
-        opts.merge!(align: :left)
+        opts[:align] = :left
 
         text(value, opts)
       end
@@ -289,7 +289,7 @@ module Vedeu
       # @param (see #text)
       # @return (see #text)
       def right(value = '', opts = {})
-        opts.merge!(align: :right)
+        opts[:align] = :right
 
         text(value, opts)
       end

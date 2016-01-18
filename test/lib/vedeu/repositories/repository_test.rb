@@ -9,7 +9,7 @@ module Vedeu
     class RepositoriesTestClass < Vedeu::Repositories::Repository
 
       attr_accessor :storage
-      alias_method :in_memory, :storage
+      alias in_memory storage
 
       def initialize(storage = {})
         @storage = storage

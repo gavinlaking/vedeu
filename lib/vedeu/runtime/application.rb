@@ -36,7 +36,7 @@ module Vedeu
 
           Vedeu::Runtime::MainLoop.stop!
         end
-        alias_method :exit, :stop
+        alias exit stop
 
       end # Eigenclass
 

@@ -74,7 +74,7 @@ module Vedeu
       def centre
         value.center(width, options[:pad])
       end
-      alias_method :center, :centre
+      alias center centre
 
       # @return [Hash]
       def defaults

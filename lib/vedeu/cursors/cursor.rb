@@ -85,7 +85,7 @@ module Vedeu
       def eql?(other)
         self.class == other.class && name == other.name
       end
-      alias_method :==, :eql?
+      alias == eql?
 
       # @return [String]
       def inspect
@@ -183,7 +183,7 @@ module Vedeu
 
         "#{position}#{yield}#{escape_sequence}"
       end
-      alias_method :to_str, :to_s
+      alias to_str to_s
 
       # Hide a named cursor, or without a name, the cursor of the
       # currently focussed interface.

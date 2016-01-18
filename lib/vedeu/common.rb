@@ -123,7 +123,7 @@ module Vedeu
 
       str.split(/::/).map do |namespace|
         *upper, _ = namespace.split(/([A-Z]+)/).reject(&:empty?).map do |chars|
-          chars.match(/\p{Lower}/) ? [chars, '_'] : chars
+          chars =~ /\p{Lower}/ ? [chars, '_'] : chars
         end.flatten
 
         upper.map(&:downcase).join

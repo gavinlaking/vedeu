@@ -39,10 +39,10 @@ module Vedeu
                      :chars,
                      :size
 
-      alias_method :content, :value
-      alias_method :text,    :value
-      alias_method :chars=, :value=
-      alias_method :chars?, :value?
+      alias content value
+      alias text value
+      alias chars= value=
+      alias chars? value?
 
       # @!attribute [w] value
       # @return [String]
@@ -76,7 +76,7 @@ module Vedeu
           self
         end
       end
-      alias_method :<<, :add
+      alias << add
 
       # An object is equal when its values are the same.
       #
@@ -85,7 +85,7 @@ module Vedeu
       def eql?(other)
         self.class == other.class && value == other.value
       end
-      alias_method :==, :eql?
+      alias == eql?
 
       # @return [NilClass|String|Symbol]
       def name
