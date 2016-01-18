@@ -24,7 +24,6 @@ AllCops:
     - 'integrations/**/*'
     - 'test/**/*'
     - 'vendor/**/*'
-  RunRailsCops: false
   DisplayCopNames: true
   DisplayStyleGuide: true
   StyleGuideCopsOnly: false
@@ -93,7 +92,7 @@ Style/SpaceAroundOperators:
 Style/TrailingBlankLines:
   EnforcedStyle: final_newline
 
-Style/TrailingComma:
+Style/TrailingCommaInLiteral:
   EnforcedStyleForMultiline: comma
 
 Metrics/AbcSize:
