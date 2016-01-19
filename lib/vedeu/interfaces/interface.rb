@@ -43,6 +43,10 @@ module Vedeu
       # @return [Vedeu::Views::Composition]
       attr_accessor :parent
 
+      # @!attribute [rw] wordwrap
+      # @return [Boolean]
+      attr_accessor :wordwrap
+
       # @!attribute [rw] zindex
       # @return [Fixnum]
       attr_accessor :zindex
@@ -60,6 +64,7 @@ module Vedeu
       # @option attributes repository [Vedeu::Interfaces::Repository]
       # @option attributes style [Vedeu::Presentation::Style]
       # @option attributes visible [Boolean]
+      # @option attributes wordwrap [Boolean]
       # @option attributes zindex [Fixnum]
       # @return [Vedeu::Interfaces::Interface]
       def initialize(attributes = {})
@@ -82,6 +87,7 @@ module Vedeu
           repository:     repository,
           style:          style,
           visible:        visible,
+          wordwrap:       wordwrap,
           zindex:         zindex,
         }
       end
@@ -156,6 +162,7 @@ module Vedeu
           repository:     Vedeu.interfaces,
           style:          :normal,
           visible:        true,
+          wordwrap:       true,
           zindex:         0,
         }
       end

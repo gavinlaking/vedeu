@@ -90,7 +90,7 @@ module Vedeu
             style:    nil,
             truncate: false,
             width:    nil,
-            wordwrap: false,
+            wordwrap: true,
           }
         }
 

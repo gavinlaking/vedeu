@@ -67,7 +67,7 @@ module Vedeu
           truncate: false,
           value:    '',
           width:    nil,
-          wordwrap: false,
+          wordwrap: true,
         }
       end
 

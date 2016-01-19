@@ -148,28 +148,28 @@ module Vedeu
         context 'when the value is not given' do
           subject { instance.wordwrap }
 
-          it { subject.must_equal() }
+          it { subject.must_equal(true) }
         end
 
         context 'when the value is given' do
-          let(:_value) { false }
-
           subject { instance.wordwrap(_value) }
 
           context 'when the value is nil' do
             let(:_value) { nil }
 
-            it { subject.must_equal() }
+            it { subject.must_equal(false) }
           end
 
           context 'when the value is false' do
-            it { subject.must_equal() }
+            let(:_value) { false }
+
+            it { subject.must_equal(false) }
           end
 
           context 'when the value evaluates as true' do
             let(:_value) { :a_true_value }
 
-            it { subject.must_equal() }
+            it { subject.must_equal(true) }
           end
         end
 
@@ -178,8 +178,6 @@ module Vedeu
 
       describe '#wordwrap!' do
         it { instance.must_respond_to(:wordwrap!) }
-
-        # @todo Add more tests.
       end
 
     end # Presentation

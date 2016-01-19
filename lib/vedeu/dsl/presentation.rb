@@ -129,23 +129,16 @@ module Vedeu
       alias styles style
       alias styles= style
 
-      # Specify whether the view should use wordwrapping, or not
-      # (default).
+      # Specify whether the view should use wordwrapping (default).
       #
       # @param value [Boolean]
       # @return [Boolean]
-      def wordwrap(value = false)
+      def wordwrap(value = true)
         boolean = value ? true : false
 
         model.wordwrap = boolean
       end
-
-      # Instruct the view to use wordwrapping.
-      #
-      # @return [Boolean]
-      def wordwrap!
-        wordwrap(true)
-      end
+      alias wordwrap! wordwrap
 
       private
 
