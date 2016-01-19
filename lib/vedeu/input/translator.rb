@@ -38,6 +38,10 @@ module Vedeu
 
   end # Input
 
+  # Maps keypress escape sequences to symbols for special keys.
+  #
+  # @api private
+  # @return [Hash<String => Symbol>]
   KEY_TABLE = {
     # "\u0020" => :ctrl_t, # duplicates spacebar
     # "\u0009" => :ctrl_i, # duplicates tab

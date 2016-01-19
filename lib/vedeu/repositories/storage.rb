@@ -2,6 +2,11 @@ module Vedeu
 
   module Repositories
 
+    # Provides behaviour for resetting and accessing the storage of
+    # various repositories.
+    #
+    # @api private
+    #
     module Storage
 
       extend self
