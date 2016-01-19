@@ -59,12 +59,7 @@ module Vedeu
         work = yield
 
         result = ::RubyProf.stop
-        result.eliminate_methods!([
-          /^Array/,
-          /^Hash/,
-          /^String/,
-          /^Fixnum/,
-        ])
+        result.eliminate_methods!(ignore_classes)
 
         File.open(filename, 'w') do |file|
           # - Creates a HTML visualization of the Ruby stack
@@ -102,6 +97,19 @@ module Vedeu
       rescue NameError
         yield
       end
+
+      private
+
+      # @return [Array]
+      def ignore_classes
+        [
+          /^Array/,
+          /^Hash/,
+          /^String/,
+          /^Fixnum/,
+        ]
+      end
+
       # :nocov:
 
     end # Debug
