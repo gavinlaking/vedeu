@@ -92,6 +92,33 @@ module Vedeu
         end
       end
 
+      describe '#to_ast' do
+        subject { instance.to_ast }
+
+        context 'when there is no foreground' do
+          let(:colour)   { '' }
+          let(:expected) { '' }
+
+          it { subject.must_equal(expected) }
+        end
+
+        context 'when there is a foreground' do
+          context 'when the foreground is an CSS/HTML value' do
+            let(:colour)   { '#ff0000' }
+            let(:expected) { ':fg_ff0000' }
+
+            it { subject.must_equal(expected) }
+          end
+
+          context 'when the foreground is not a CSS/HTML value' do
+            let(:colour)   { 233 }
+            let(:expected) { ':fg' }
+
+            it { subject.must_equal(expected) }
+          end
+        end
+      end
+
       describe '#to_h' do
         subject { instance.to_h }
 
