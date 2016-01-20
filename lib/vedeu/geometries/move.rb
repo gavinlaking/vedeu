@@ -162,7 +162,13 @@ module Vedeu
       #
       # @return [void]
       def update_cursor!
-        Vedeu.trigger(cursor_event, name, offset)
+        if direction == :origin
+          Vedeu.trigger(cursor_event, name)
+
+        else
+          Vedeu.trigger(cursor_event, name, offset)
+
+        end
       end
 
       # @return [Boolean]

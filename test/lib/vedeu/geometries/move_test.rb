@@ -12,7 +12,7 @@ module Vedeu
       let(:instance)   { described.new(attributes) }
       let(:direction)  {}
       let(:_name)      { :vedeu_geometries_move }
-      let(:offset)     {}
+      let(:offset)     { 1 }
       let(:attributes) {
         {
           direction: direction,
@@ -26,11 +26,11 @@ module Vedeu
 
       before do
         Vedeu.stubs(:trigger).with(:_movement_refresh_, _name)
-        Vedeu.stubs(:trigger).with(:_cursor_down_, _name)
-        Vedeu.stubs(:trigger).with(:_cursor_left_, _name)
+        Vedeu.stubs(:trigger).with(:_cursor_down_, _name, offset)
+        Vedeu.stubs(:trigger).with(:_cursor_left_, _name, offset)
         Vedeu.stubs(:trigger).with(:_cursor_origin_, _name)
-        Vedeu.stubs(:trigger).with(:_cursor_right_, _name)
-        Vedeu.stubs(:trigger).with(:_cursor_up_, _name)
+        Vedeu.stubs(:trigger).with(:_cursor_right_, _name, offset)
+        Vedeu.stubs(:trigger).with(:_cursor_up_, _name, offset)
       end
 
       describe '#initialize' do
