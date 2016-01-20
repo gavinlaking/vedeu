@@ -10,19 +10,18 @@ module Vedeu
 
       let(:described)  { Vedeu::Buffers::Buffer }
       let(:instance)   { described.new(attributes) }
-      let(:_name)      { 'krypton' }
-      let(:back)       {}
-      let(:front)      {}
-      let(:previous)   {}
-      let(:interface)  {}
       let(:attributes) {
         {
-          name:     _name,
           back:     back,
           front:    front,
+          name:     _name,
           previous: previous,
         }
       }
+      let(:back)       {}
+      let(:front)      {}
+      let(:_name)      { :vedeu_buffers_buffer }
+      let(:previous)   {}
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -31,7 +30,8 @@ module Vedeu
         it { instance.instance_variable_get('@front').must_equal(front) }
         it { instance.instance_variable_get('@previous').must_equal(previous) }
         it do
-          instance.instance_variable_get('@repository').must_equal(Vedeu.buffers)
+          instance.instance_variable_get('@repository')
+            .must_equal(Vedeu.buffers)
         end
       end
 

@@ -21,7 +21,7 @@ module Vedeu
           direct:       false,
         }
       }
-      let(:_name)     { 'Vedeu::Interfaces::Clear' }
+      let(:_name)     { :vedeu_interfaces_clear }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }

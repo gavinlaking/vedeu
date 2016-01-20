@@ -21,7 +21,7 @@ module Vedeu
         "Helium\n"    \
         "Lithium\n"
       }
-      let(:_name)    { 'Vedeu::Editor::Document' }
+      let(:_name)    { :vedeu_editor_document }
       let(:border)   {
         Vedeu::Borders::Border.new({ name: _name, enabled: false })
       }

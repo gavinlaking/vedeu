@@ -14,7 +14,7 @@ module Vedeu
       let(:client)    {}
 
       describe '#view' do
-        let(:_name) { :dysprosium }
+        let(:_name) { :vedeu_dsl_view }
 
         subject {
           instance.view(_name) do
@@ -47,8 +47,9 @@ module Vedeu
       end
 
       describe '#template_for' do
-        let(:_name)    {}
-        let(:filename) {}
+        let(:_name)    { :vedeu_dsl_view }
+        let(:filename) { 'my_interface.erb' }
+
         let(:object)   {}
         let(:content)  { "Hydrogen\nCarbon\nOxygen\nNitrogen" }
         let(:options)  { {} }
@@ -56,21 +57,18 @@ module Vedeu
         subject { instance.template_for(_name, filename, object, options) }
 
         context 'when the name of the view is not given' do
-          let(:filename) { 'my_interface.erb' }
+          let(:_name)    {}
 
           it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
         end
 
         context 'when the filename of the template is not given' do
-          let(:_name) { 'my_interface' }
+          let(:filename) {}
 
           it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
         end
 
         context 'when the name and filename are given' do
-          let(:_name) { 'my_interface' }
-          let(:filename) { 'my_interface.erb' }
-
           before do
             Vedeu::Templating::ViewTemplate.expects(:parse).
               with(object, filename, options).returns(content)

@@ -17,7 +17,7 @@ module Vedeu
         described.new(input: input, name: _name)
       }
       let(:input)     {}
-      let(:_name)     { 'Vedeu::Editor::Editor' }
+      let(:_name)     { :vedeu_editor_editor }
       let(:document)  { Vedeu::Editor::Document.new(data: data, name: _name) }
       let(:data)      {
         "Hydrogen\n"  \

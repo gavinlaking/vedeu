@@ -24,7 +24,7 @@ module Vedeu
           visible:    visible,
         }
       }
-      let(:_name)      { 'organics' }
+      let(:_name)      { :vedeu_groups_group }
       let(:members)    { Set.new(['carbon', 'nitrogen', 'oxygen']) }
       let(:repository) { Vedeu.groups }
       let(:visible)    { true }

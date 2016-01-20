@@ -19,7 +19,7 @@ module Vedeu
           y:    y,
         }
       }
-      let(:_name) { 'editor_cursor' }
+      let(:_name) { :vedeu_editor_cursor }
       let(:ox)    { 0 }
       let(:oy)    { 0 }
       let(:x)     { 0 }

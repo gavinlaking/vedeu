@@ -63,8 +63,8 @@ module Vedeu
 
         subject { instance.exists?(_name) }
 
-        context 'when empty' do
-          let(:_name) { 'terbium' }
+        context 'when the store is empty' do
+          let(:_name) { :vedeu_repositories_store }
 
           it { subject.must_equal(false) }
         end

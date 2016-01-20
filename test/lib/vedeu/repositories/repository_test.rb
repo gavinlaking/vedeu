@@ -99,7 +99,7 @@ module Vedeu
       end
 
       describe '#by_name' do
-        let(:_name) { 'carbon' }
+        let(:_name) { :vedeu_repositories_repository }
 
         subject { instance.by_name(_name) }
 

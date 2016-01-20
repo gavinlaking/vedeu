@@ -10,7 +10,7 @@ module Vedeu
 
       let(:described) { Vedeu::Geometries::Area }
       let(:instance)  { described.new(name: _name, y: y, yn: yn, x: x, xn: xn) }
-      let(:_name)     { 'Vedeu::Geometries::Area' }
+      let(:_name)     { :vedeu_geometries_area }
       let(:y)         { 4 }
       let(:yn)        { 9 }
       let(:x)         { 6 }

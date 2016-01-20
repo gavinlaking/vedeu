@@ -14,7 +14,7 @@ module Vedeu
 
       let(:described) { Vedeu::Groups::Refresh }
       let(:instance)  { described.new(_name) }
-      let(:_name)     { 'Vedeu::Groups::Refresh' }
+      let(:_name)     { :vedeu_groups_refresh }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }

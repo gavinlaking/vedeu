@@ -13,7 +13,7 @@ module Vedeu
       let(:model)     {
         Vedeu::Interfaces::Interface.new(name: _name)
       }
-      let(:_name)  { 'actinium' }
+      let(:_name)  { :vedeu_interfaces_dsl }
       let(:client) {}
 
       describe '.interface' do
@@ -91,7 +91,7 @@ module Vedeu
         context 'when the interface has a name' do
           before { Vedeu::Models::Focus.reset }
 
-          it { subject.must_equal(['actinium']) }
+          it { subject.must_equal([_name]) }
         end
       end
 
@@ -111,7 +111,7 @@ module Vedeu
         end
 
         context 'when the named group exists' do
-          let(:members) { Set['actinium', 'lanthanum'] }
+          let(:members) { Set[_name, 'lanthanum'] }
 
           before do
             Vedeu::Groups::Group.new(name:    'elements',
@@ -127,7 +127,7 @@ module Vedeu
         context 'when the named group does not exist' do
           it do
             subject
-            Vedeu.groups.find('elements').members.must_equal(Set['actinium'])
+            Vedeu.groups.find('elements').members.must_equal(Set[_name])
           end
         end
       end

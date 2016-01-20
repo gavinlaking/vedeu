@@ -12,7 +12,7 @@ module Vedeu
       let(:instance)   { described.new(model, client) }
       let(:model)      { Vedeu::Groups::Group.new }
       let(:client)     {}
-      let(:_name)      { :main_screen }
+      let(:_name)      { :vedeu_groups_dsl }
 
       describe '.group' do
         subject {

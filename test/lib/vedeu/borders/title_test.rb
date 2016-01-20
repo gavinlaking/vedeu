@@ -10,7 +10,7 @@ module Vedeu
 
       let(:described)  { Vedeu::Borders::Title }
       let(:instance)   { described.new(_name, _value, horizontal) }
-      let(:_name)      { 'Vedeu::Borders::Title' }
+      let(:_name)      { :vedeu_borders_title }
       let(:_value)     { 'Aluminium' }
       let(:horizontal) {
         [

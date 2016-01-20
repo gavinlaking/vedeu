@@ -32,7 +32,7 @@ module Vedeu
         subject { described.move(_name, direction) }
 
         context 'when a name is given' do
-          let(:_name) { 'Vedeu::Cursors::Move' }
+          let(:_name) { :vedeu_cursors_move }
 
           before do
             Vedeu.cursors.stubs(:by_name).returns(cursor)

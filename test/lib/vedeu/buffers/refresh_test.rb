@@ -15,7 +15,7 @@ module Vedeu
 
       let(:described) { Vedeu::Buffers::Refresh }
       let(:instance)  { described.new(_name, options) }
-      let(:_name)     { 'Vedeu::Buffers::Refresh' }
+      let(:_name)     { :vedeu_buffers_refresh }
       let(:options)   {
         {
           content_only: content_only,
