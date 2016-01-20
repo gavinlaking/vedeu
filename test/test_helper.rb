@@ -35,6 +35,7 @@ if ENV['SIMPLECOV'].to_i == 1 || ENV['CONSOLE_COVERAGE'].to_i == 1
     add_group  'renderers',     'vedeu/renderers'
     add_group  'repositories',  'vedeu/repositories'
     add_group  'runtime',       'vedeu/runtime'
+    add_group  'support',       'vedeu/support'
     add_group  'templating',    'vedeu/templating'
     add_group  'terminal',      'vedeu/terminal'
     add_group  'views',         'vedeu/views'
