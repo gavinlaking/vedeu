@@ -38,7 +38,7 @@ module Vedeu
       def_delegators :value,
                      :lines
 
-      alias lines value=
+      alias lines= value=
       alias lines? value?
 
       # @!attribute [rw] cursor_visible
