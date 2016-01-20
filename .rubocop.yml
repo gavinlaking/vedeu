@@ -24,10 +24,10 @@ AllCops:
     - 'integrations/**/*'
     - 'test/**/*'
     - 'vendor/**/*'
-  RunRailsCops: false
   DisplayCopNames: true
   DisplayStyleGuide: true
   StyleGuideCopsOnly: false
+  TargetRubyVersion: 2.3
 
 Lint/UnusedMethodArgument:
   Enabled: false
@@ -93,7 +93,7 @@ Style/SpaceAroundOperators:
 Style/TrailingBlankLines:
   EnforcedStyle: final_newline
 
-Style/TrailingComma:
+Style/TrailingCommaInLiteral:
   EnforcedStyleForMultiline: comma
 
 Metrics/AbcSize:

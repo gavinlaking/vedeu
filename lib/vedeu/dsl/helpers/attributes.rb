@@ -170,7 +170,7 @@ module Vedeu
 
         else
           {
-            value: @value
+            value: @value,
           }
 
         end

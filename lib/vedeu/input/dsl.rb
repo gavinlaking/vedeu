@@ -100,7 +100,7 @@ module Vedeu
           model.add(Vedeu::Input::Key.new(value, &block))
         end
       end
-      alias_method :key=, :key
+      alias key= key
 
     end # DSL
 

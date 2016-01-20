@@ -65,39 +65,6 @@ module Vedeu
         end
       end
 
-      describe '#reset!' do
-        before { described.write(:original, [:original_data]) }
-
-        subject { described.reset! }
-
-        it { described.must_respond_to(:reset) }
-        it { subject.must_equal(empty) }
-      end
-
-      describe '#storage' do
-        subject { described.storage }
-
-        context 'when the storage is empty' do
-          it { subject.must_equal(empty) }
-        end
-
-        context 'when the storage is not empty' do
-          let(:expected) {
-            {
-              compressed: 'compressed_data',
-              original:   [:original_data],
-            }
-          }
-
-          before {
-            described.write(:original, [:original_data])
-            described.write(:compressed, 'compressed_data')
-          }
-
-          it { subject.must_equal(expected) }
-        end
-      end
-
       describe '#write' do
         let(:key)    {}
         let(:_value) {}

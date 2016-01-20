@@ -11,6 +11,7 @@ module Vedeu
 
       include Vedeu::Common
 
+      extend Vedeu::Repositories::Storage
       extend self
 
       # Registers a controller with the given controller name for the
@@ -30,7 +31,7 @@ module Vedeu
                   message: "Controller: ':#{controller}'")
 
         if registered?(controller)
-          storage[controller].merge!(klass: klass)
+          storage[controller][:klass] = klass
 
         else
           storage.store(controller, klass: klass, actions: [])
@@ -85,7 +86,7 @@ module Vedeu
 
         route(controller, action, args) if action_defined?(action, controller)
       end
-      alias_method :action, :goto
+      alias action goto
 
       # Returns a boolean indicating whether the given controller name
       # is already registered.
@@ -95,14 +96,6 @@ module Vedeu
       def registered?(controller)
         storage.key?(controller)
       end
-
-      # Removes all stored controllers with their respective actions.
-      #
-      # @return [Hash<void>]
-      def reset!
-        @storage = in_memory
-      end
-      alias_method :reset, :reset!
 
       private
 
@@ -161,14 +154,6 @@ module Vedeu
       # @return [Boolean]
       def klass_defined?(controller)
         present?(storage[controller][:klass])
-      end
-
-      # Returns all the stored controllers and their respective
-      # actions.
-      #
-      # @return [Hash<Symbol => Hash<Symbol => String|Array<Symbol>>>]
-      def storage
-        @storage ||= in_memory
       end
 
       # Returns an empty collection ready for the storing of client

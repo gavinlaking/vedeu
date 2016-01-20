@@ -13,7 +13,7 @@ module Vedeu
     # @!attribute [rw] visible
     # @return [Boolean] Whether the toggleable is visible.
     attr_accessor :visible
-    alias_method :visible?, :visible
+    alias visible? visible
 
     # Set the visible state to false and store the model.
     #
@@ -60,8 +60,8 @@ module Vedeu
       def hide(name = Vedeu.focus)
         repository.by_name(name).hide
       end
-      alias_method :hide_group,     :hide
-      alias_method :hide_interface, :hide
+      alias hide_group hide
+      alias hide_interface hide
 
       # Shows the named model, or without a name, the model with same
       # name as the currently focussed interface.
@@ -75,8 +75,8 @@ module Vedeu
       def show(name = Vedeu.focus)
         repository.by_name(name).show
       end
-      alias_method :show_group,     :show
-      alias_method :show_interface, :show
+      alias show_group show
+      alias show_interface show
 
       # Toggles the visibility of the named model, or without a name,
       # the model with same name as the currently focussed interface.
@@ -90,8 +90,8 @@ module Vedeu
       def toggle(name = Vedeu.focus)
         repository.by_name(name).toggle
       end
-      alias_method :toggle_group,     :toggle
-      alias_method :toggle_interface, :toggle
+      alias toggle_group toggle
+      alias toggle_interface toggle
 
       # Hide the cursor if visible.
       #

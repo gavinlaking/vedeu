@@ -12,7 +12,7 @@ module Vedeu
       let(:instance)  {
         described.new(lines: lines, name: _name, ox: ox, oy: oy)
       }
-      let(:_name)  { 'editor_cropper' }
+      let(:_name)  { :vedeu_editor_cropper }
       let(:lines)  { Vedeu::Editor::Lines.new }
       let(:ox)     { 1 }
       let(:oy)     { 1 }

@@ -78,7 +78,7 @@ module Vedeu
       def eql?(other)
         self.class == other.class && value == other.value
       end
-      alias_method :==, :eql?
+      alias == eql?
 
       # @return [Boolean]
       def invalid?

@@ -175,7 +175,7 @@ module Vedeu
       def align_centre(width = nil)
         horizontal_alignment(:centre, width)
       end
-      alias_method :align_center, :align_centre
+      alias align_center align_centre
 
       # Horizontally align the interface/view to the left.
       #
@@ -311,7 +311,7 @@ module Vedeu
       def height(value)
         model.height = proc { value }
       end
-      alias_method :height=, :height
+      alias height= height
 
       # Returns the height in characters for the number of rows
       # specified.
@@ -345,7 +345,7 @@ module Vedeu
       def width(value)
         model.width = proc { value }
       end
-      alias_method :width=, :width
+      alias width= width
 
       # Specify the starting x position (column) of the interface.
       #
@@ -366,7 +366,7 @@ module Vedeu
 
         model.x = value
       end
-      alias_method :x=, :x
+      alias x= x
 
       # Specify the ending x position (column) of the interface.
       # This value will override `width`.
@@ -388,7 +388,7 @@ module Vedeu
 
         model.xn = value
       end
-      alias_method :xn=, :xn
+      alias xn= xn
 
       # Specify the starting y position (row/line) of the interface.
       #
@@ -409,7 +409,7 @@ module Vedeu
 
         model.y = value
       end
-      alias_method :y=, :y
+      alias y= y
 
       # Specify the ending y position (row/line) of the interface.
       # This value will override `height`.
@@ -431,7 +431,7 @@ module Vedeu
 
         model.yn = value
       end
-      alias_method :yn=, :yn
+      alias yn= yn
 
     end # DSL
 

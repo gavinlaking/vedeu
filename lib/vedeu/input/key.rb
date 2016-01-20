@@ -12,7 +12,7 @@ module Vedeu
       # @!attribute [r] input
       # @return [String|Symbol] Returns the key defined.
       attr_reader :input
-      alias_method :key, :input
+      alias key input
 
       # Returns a new instance of Vedeu::Input::Key.
       #
@@ -33,8 +33,8 @@ module Vedeu
       def output
         @output.call
       end
-      alias_method :action, :output
-      alias_method :press, :output
+      alias action output
+      alias press output
 
     end # Key
 

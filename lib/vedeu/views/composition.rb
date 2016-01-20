@@ -18,9 +18,9 @@ module Vedeu
       deputy     Vedeu::DSL::View
       entity     Vedeu::Views::View
 
-      alias_method :views,  :value
-      alias_method :views=, :value=
-      alias_method :views?, :value?
+      alias views value
+      alias views= value=
+      alias views? value?
 
       # Returns a new instance of Vedeu::Views::Composition.
       #
@@ -41,7 +41,7 @@ module Vedeu
       def add(child)
         @value = value.add(child)
       end
-      alias_method :<<, :add
+      alias << add
 
       # @return [Hash<Symbol => void>]
       def attributes

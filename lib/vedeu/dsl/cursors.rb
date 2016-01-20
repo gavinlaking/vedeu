@@ -29,7 +29,7 @@ module Vedeu
       def cursor!
         cursor(true)
       end
-      alias_method :show_cursor!, :cursor!
+      alias show_cursor! cursor!
 
       # Set the cursor to invisible for the interface or view.
       #
@@ -37,7 +37,7 @@ module Vedeu
       def no_cursor!
         cursor(false)
       end
-      alias_method :hide_cursor!, :no_cursor!
+      alias hide_cursor! no_cursor!
 
     end # Cursors
 

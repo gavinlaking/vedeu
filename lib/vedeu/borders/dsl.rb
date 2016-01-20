@@ -38,7 +38,7 @@ module Vedeu
       def bottom_left(char, options = {})
         model.bottom_left = Vedeu::Cells::BottomLeft.new(attrs(char, options))
       end
-      alias_method :bottom_left=, :bottom_left
+      alias bottom_left= bottom_left
 
       # {include:file:docs/dsl/by_method/bottom_right.md}
       # @param char [String] Character to be used as the bottom right
@@ -51,7 +51,7 @@ module Vedeu
       def bottom_right(char, options = {})
         model.bottom_right = Vedeu::Cells::BottomRight.new(attrs(char, options))
       end
-      alias_method :bottom_right=, :bottom_right
+      alias bottom_right= bottom_right
 
       # {include:file:docs/dsl/by_method/disable.md}
       # @return [Boolean]
@@ -65,7 +65,7 @@ module Vedeu
 
         model.enabled
       end
-      alias_method :disabled!, :disable!
+      alias disabled! disable!
 
       # {include:file:docs/dsl/by_method/enable.md}
       # @return [Boolean]
@@ -79,7 +79,7 @@ module Vedeu
 
         model.enabled
       end
-      alias_method :enabled!, :enable!
+      alias enabled! enable!
 
       # {include:file:docs/dsl/by_method/top_horizontal.md}
       # @param char [String] Character to be used as the top
@@ -91,9 +91,9 @@ module Vedeu
       # @return [String]
       def top_horizontal(char, options = {})
         model.top_horizontal = Vedeu::Cells::TopHorizontal
-          .new(attrs(char, options))
+                               .new(attrs(char, options))
       end
-      alias_method :top_horizontal=, :top_horizontal
+      alias top_horizontal= top_horizontal
 
       # {include:file:docs/dsl/by_method/bottom_horizontal.md}
       # @param char [String] Character to be used as the bottom
@@ -105,9 +105,9 @@ module Vedeu
       # @return [String]
       def bottom_horizontal(char, options = {})
         model.bottom_horizontal = Vedeu::Cells::BottomHorizontal
-          .new(attrs(char, options))
+                                  .new(attrs(char, options))
       end
-      alias_method :bottom_horizontal=, :bottom_horizontal
+      alias bottom_horizontal= bottom_horizontal
 
       # {include:file:docs/dsl/by_method/horizontal.md}
       # @param char [String] Character to be used as the horizontal
@@ -120,7 +120,7 @@ module Vedeu
       def horizontal(char, options = {})
         model.horizontal = Vedeu::Cells::Horizontal.new(attrs(char, options))
       end
-      alias_method :horizontal=, :horizontal
+      alias horizontal= horizontal
 
       # {include:file:docs/dsl/by_method/bottom.md}
       # @param value [Boolean] All values evaluate as true except nil
@@ -131,8 +131,8 @@ module Vedeu
 
         model.show_bottom = boolean
       end
-      alias_method :show_bottom, :bottom
-      alias_method :bottom=, :bottom
+      alias show_bottom bottom
+      alias bottom= bottom
 
       # Disable the bottom border.
       #
@@ -157,8 +157,8 @@ module Vedeu
 
         model.show_left = boolean
       end
-      alias_method :show_left, :left
-      alias_method :left=, :left
+      alias show_left left
+      alias left= left
 
       # Disable the left border.
       #
@@ -183,8 +183,8 @@ module Vedeu
 
         model.show_right = boolean
       end
-      alias_method :show_right, :right
-      alias_method :right=, :right
+      alias show_right right
+      alias right= right
 
       # Disable the right border.
       #
@@ -207,7 +207,7 @@ module Vedeu
         model.title = value
         model.title
       end
-      alias_method :title=, :title
+      alias title= title
 
       # {include:file:docs/dsl/by_method/caption.md}
       # @param value [String] The caption.
@@ -216,7 +216,7 @@ module Vedeu
         model.caption = value
         model.caption
       end
-      alias_method :caption=, :caption
+      alias caption= caption
 
       # {include:file:docs/dsl/by_method/top.md}
       # @param value [Boolean] All values evaluate as true except nil
@@ -227,8 +227,8 @@ module Vedeu
 
         model.show_top = boolean
       end
-      alias_method :show_top, :top
-      alias_method :top=, :top
+      alias show_top top
+      alias top= top
 
       # Disable the top border.
       #
@@ -255,7 +255,7 @@ module Vedeu
       def top_left(char, options = {})
         model.top_left = Vedeu::Cells::TopLeft.new(attrs(char, options))
       end
-      alias_method :top_left=, :top_left
+      alias top_left= top_left
 
       # {include:file:docs/dsl/by_method/top_right.md}
       # @param char [String] Character to be used as the top right
@@ -268,7 +268,7 @@ module Vedeu
       def top_right(char, options = {})
         model.top_right = Vedeu::Cells::TopRight.new(attrs(char, options))
       end
-      alias_method :top_right=, :top_right
+      alias top_right= top_right
 
       # {include:file:docs/dsl/by_method/left_vertical.md}
       # @param char [String] Character to be used as the left vertical
@@ -280,9 +280,9 @@ module Vedeu
       # @return [String]
       def left_vertical(char, options = {})
         model.left_vertical = Vedeu::Cells::LeftVertical
-          .new(attrs(char, options))
+                              .new(attrs(char, options))
       end
-      alias_method :left_vertical=, :left_vertical
+      alias left_vertical= left_vertical
 
       # {include:file:docs/dsl/by_method/right_vertical.md}
       # @param char [String] Character to be used as the right
@@ -294,9 +294,9 @@ module Vedeu
       # @return [String]
       def right_vertical(char, options = {})
         model.right_vertical = Vedeu::Cells::RightVertical
-          .new(attrs(char, options))
+                               .new(attrs(char, options))
       end
-      alias_method :right_vertical=, :right_vertical
+      alias right_vertical= right_vertical
 
       # {include:file:docs/dsl/by_method/vertical.md}
       # @param char [String] Character to be used as the vertical
@@ -309,7 +309,7 @@ module Vedeu
       def vertical(char, options = {})
         model.vertical = Vedeu::Cells::Vertical.new(attrs(char, options))
       end
-      alias_method :vertical=, :vertical
+      alias vertical= vertical
 
       private
 

@@ -52,7 +52,7 @@ module Vedeu
       def eql?(other)
         self.class == other.class && collection == other.collection
       end
-      alias_method :==, :eql?
+      alias == eql?
 
       # Return the size of the collection.
       #

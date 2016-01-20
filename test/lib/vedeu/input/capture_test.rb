@@ -24,7 +24,7 @@ module Vedeu
         let(:is_fake_mode)   { false }
         let(:is_raw_mode)    { false }
         let(:keypress)       {}
-        let(:_name)          { 'Vedeu::Input::Capture' }
+        let(:_name)          { :vedeu_input_capture }
         let(:interface)      {
           Vedeu::Interfaces::Interface.new(editable: editable,
                                            name:     _name)
@@ -72,7 +72,7 @@ module Vedeu
 
                 it do
                   Vedeu.expects(:trigger).
-                    with(:_keypress_, translated, 'Vedeu::Input::Capture')
+                    with(:_keypress_, translated, _name)
                   subject
                 end
               end

@@ -11,6 +11,7 @@ module Vedeu
 
       include Vedeu::Common
       extend self
+      extend Vedeu::Repositories::Storage
 
       # {include:file:docs/dsl/by_method/bind_alias.md}
       # @param alias_name [Symbol] The name of the alias. This can
@@ -22,7 +23,7 @@ module Vedeu
       def bind_alias(alias_name, event_name)
         storage[alias_name] << event_name
       end
-      alias_method :add, :bind_alias
+      alias add bind_alias
 
       # Return a boolean indicating whether the storage is empty.
       #
@@ -57,20 +58,7 @@ module Vedeu
         storage.delete(alias_name)
         storage
       end
-      alias_method :remove, :unbind_alias
-
-      # @return [Hash<Symbol => Array<Symbol>>]
-      def reset!
-        @storage = in_memory
-      end
-      alias_method :reset, :reset!
-
-      # Access to the storage for this repository.
-      #
-      # @return [Hash<Symbol => Array<Symbol>>]
-      def storage
-        @storage ||= in_memory
-      end
+      alias remove unbind_alias
 
       # @param alias_name [Symbol]
       # @param args [void]

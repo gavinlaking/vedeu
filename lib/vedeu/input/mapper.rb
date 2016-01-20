@@ -91,7 +91,7 @@ module Vedeu
       def key_defined?(named = name)
         keymap?(named) && keymap(named).key_defined?(key)
       end
-      alias_method :registered?, :key_defined?
+      alias registered? key_defined?
 
       # Returns a boolean indicating that the key is not registered to
       # the current keymap, or the global keymap.
@@ -158,7 +158,7 @@ module Vedeu
       def name
         @name || Vedeu.focus
       end
-      alias_method :interface, :name
+      alias interface name
 
     end # Mapper
 

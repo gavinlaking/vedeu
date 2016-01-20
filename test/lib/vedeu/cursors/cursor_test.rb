@@ -34,7 +34,7 @@ module Vedeu
           y:          y,
         }
       }
-      let(:_name)      { 'silver' }
+      let(:_name)      { :vedeu_cursors_cursor }
       let(:ox)         { 3 }
       let(:oy)         { 2 }
       let(:repository) { Vedeu.cursors }
@@ -64,7 +64,7 @@ module Vedeu
         subject { instance }
 
         it { subject.must_be_instance_of(described) }
-        it { subject.instance_variable_get('@name').must_equal('silver') }
+        it { subject.instance_variable_get('@name').must_equal( _name) }
         it { subject.instance_variable_get('@ox').must_equal(ox) }
         it { subject.instance_variable_get('@oy').must_equal(oy) }
         it do
@@ -147,7 +147,7 @@ module Vedeu
 
       describe '#inspect' do
         let(:expected) {
-          "<Vedeu::Cursors::Cursor name:'silver', x:19, y:8, ox:3, oy:2, " \
+          "<Vedeu::Cursors::Cursor name:'vedeu_cursors_cursor', x:19, y:8, ox:3, oy:2, " \
           "visible:true>"
         }
 

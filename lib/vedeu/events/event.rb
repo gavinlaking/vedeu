@@ -90,8 +90,8 @@ module Vedeu
 
           new(name, block, options).bind
         end
-        alias_method :event, :bind
-        alias_method :register, :bind
+        alias event bind
+        alias register bind
 
         # {include:file:docs/dsl/by_method/bound.md}
         # @param name [Symbol]
@@ -138,13 +138,13 @@ module Vedeu
 
       # @see Vedeu::Events::Event.bind
       def bind
-        if repository.registered?(name)
-          new_collection = repository.find(name).add(self)
+        new_collection = if repository.registered?(name)
+                           repository.find(name).add(self)
 
-        else
-          new_collection = Vedeu::Events::Collection.new([self], nil, name)
+                         else
+                           Vedeu::Events::Collection.new([self], nil, name)
 
-        end
+                         end
 
         repository.store(new_collection)
 
@@ -185,16 +185,16 @@ module Vedeu
         @executed_at = @now # set execution time to now
         @now         = 0    # reset now
 
-        if args.size > 1
-          message = "Triggering: '#{name.inspect}' with #{args.inspect}"
+        message = if args.size > 1
+                    "Triggering: '#{name.inspect}' with #{args.inspect}"
 
-        elsif args.one?
-          message = "Triggering: '#{name.inspect}' for #{args.first.inspect}"
+                  elsif args.one?
+                    "Triggering: '#{name.inspect}' for #{args.first.inspect}"
 
-        else
-          message = "Triggering: '#{name.inspect}'"
+                  else
+                    "Triggering: '#{name.inspect}'"
 
-        end
+                  end
 
         Vedeu.log(type: :event, message: message)
 

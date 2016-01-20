@@ -92,6 +92,33 @@ module Vedeu
         end
       end
 
+      describe '#to_ast' do
+        subject { instance.to_ast }
+
+        context 'when there is no background' do
+          let(:colour)   { '' }
+          let(:expected) { '' }
+
+          it { subject.must_equal(expected) }
+        end
+
+        context 'when there is a background' do
+          context 'when the background is an CSS/HTML value' do
+            let(:colour)   { '#ff0000' }
+            let(:expected) { ':bg_ff0000' }
+
+            it { subject.must_equal(expected) }
+          end
+
+          context 'when the background is not a CSS/HTML value' do
+            let(:colour)   { 233 }
+            let(:expected) { ':bg' }
+
+            it { subject.must_equal(expected) }
+          end
+        end
+      end
+
       describe '#to_h' do
         subject { instance.to_h }
 

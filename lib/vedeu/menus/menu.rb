@@ -95,19 +95,19 @@ module Vedeu
       def items
         items = []
         @collection.each_with_index do |item, index|
-          if index == @current && index == @selected
-            items << [true, true, item]
+          items << if index == @current && index == @selected
+                     [true, true, item]
 
-          elsif index == @current
-            items << [false, true, item]
+                   elsif index == @current
+                     [false, true, item]
 
-          elsif index == @selected
-            items << [true, false, item]
+                   elsif index == @selected
+                     [true, false, item]
 
-          else
-            items << [false, false, item]
+                   else
+                     [false, false, item]
 
-          end
+                   end
         end
         items
       end

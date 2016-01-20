@@ -31,7 +31,7 @@ module Vedeu
       let(:delay)          { 0.0 }
       let(:editable)       { false }
       let(:group)          { '' }
-      let(:_name)          { 'hydrogen' }
+      let(:_name)          { :vedeu_interfaces_interface }
       let(:parent)         {}
       let(:repository)     { Vedeu.interfaces }
       let(:style)          {}

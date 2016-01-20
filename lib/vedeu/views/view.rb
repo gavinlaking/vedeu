@@ -38,13 +38,13 @@ module Vedeu
       def_delegators :value,
                      :lines
 
-      alias_method :lines=, :value=
-      alias_method :lines?, :value?
+      alias lines= value=
+      alias lines? value?
 
       # @!attribute [rw] cursor_visible
       # @return [Boolean]
       attr_accessor :cursor_visible
-      alias_method :cursor_visible?, :cursor_visible
+      alias cursor_visible? cursor_visible
 
       # @!attribute [rw] name
       # @return [String|Symbol]
@@ -77,7 +77,7 @@ module Vedeu
       def add(child)
         @value = value.add(child)
       end
-      alias_method :<<, :add
+      alias << add
 
       # @return [Hash]
       def attributes

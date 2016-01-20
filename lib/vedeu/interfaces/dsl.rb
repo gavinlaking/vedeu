@@ -231,7 +231,7 @@ module Vedeu
       def keymap(name = model.name, &block)
         Vedeu.keymap(name, &block)
       end
-      alias_method :keys, :keymap
+      alias keys keymap
 
       # Set the interface to visible.
       #
@@ -246,7 +246,7 @@ module Vedeu
       def show!
         visible(true)
       end
-      alias_method :visible!, :show!
+      alias visible! show!
 
       # Set the interface to invisible.
       #
@@ -321,8 +321,8 @@ module Vedeu
       def zindex(value)
         model.zindex = value
       end
-      alias_method :z_index, :zindex
-      alias_method :z,       :zindex
+      alias z_index zindex
+      alias z zindex
 
     end # DSL
 

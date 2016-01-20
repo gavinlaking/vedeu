@@ -16,8 +16,8 @@ module Vedeu
       # @!attribute [r] collection
       # @return [Array|Vedeu::Repositories::Collection]
       attr_reader :collection
-      alias_method :all, :collection
-      alias_method :value, :collection
+      alias all collection
+      alias value collection
 
       # @!attribute [rw] parent
       # @return [Fixnum]
@@ -66,7 +66,7 @@ module Vedeu
 
         end
       end
-      alias_method :<<, :add
+      alias << add
 
       # Returns the collection as a String.
       #
@@ -74,7 +74,7 @@ module Vedeu
       def to_s
         collection.map(&:to_s).join
       end
-      alias_method :to_str, :to_s
+      alias to_str to_s
 
     end # Collection
 

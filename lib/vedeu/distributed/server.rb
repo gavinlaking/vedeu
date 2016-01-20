@@ -34,7 +34,7 @@ module Vedeu
         def restart
           instance.restart
         end
-        alias_method :drb_restart, :restart
+        alias drb_restart restart
 
         # @return [void]
         # @see #shutdown
@@ -47,21 +47,21 @@ module Vedeu
         def start
           instance.start
         end
-        alias_method :drb_start, :start
+        alias drb_start start
 
         # @return [Symbol]
         # @see #status
         def status
           instance.status
         end
-        alias_method :drb_status, :status
+        alias drb_status status
 
         # @return [void]
         # @see #stop
         def stop
           instance.stop
         end
-        alias_method :drb_stop, :stop
+        alias drb_stop stop
 
       end # Eigenclass
 
@@ -74,13 +74,13 @@ module Vedeu
       def input(data, type = :keypress)
         Vedeu.trigger(:_drb_input_, data, type)
       end
-      alias_method :read, :input
+      alias read input
 
       # @return [void]
       def output
         Vedeu.trigger(:_drb_retrieve_output_)
       end
-      alias_method :write, :output
+      alias write output
 
       # @return [Fixnum] The PID of the currently running application.
       def pid
@@ -103,14 +103,12 @@ module Vedeu
 
           stop
 
-          start
-
         else
           log('Not running')
 
-          start
-
         end
+
+        start
       end
 
       # When called will stop the DRb server and attempt to terminate

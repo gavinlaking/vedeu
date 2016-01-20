@@ -227,14 +227,6 @@ module Vedeu
         end
       end
 
-      describe '.reset!' do
-        subject { described.reset! }
-
-        it { subject.must_equal({}) }
-
-        it { described.must_respond_to(:reset) }
-      end
-
     end # Router
 
   end # Runtime

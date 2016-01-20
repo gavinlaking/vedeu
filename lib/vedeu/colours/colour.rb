@@ -93,7 +93,7 @@ module Vedeu
         self.class == other.class && background == other.background &&
           foreground == other.foreground
       end
-      alias_method :==, :eql?
+      alias == eql?
 
       # @return [Vedeu::Colours::Foreground]
       def foreground
@@ -118,10 +118,10 @@ module Vedeu
       # @return [Hash<Symbol => Hash<Symbol => String>>]
       def to_h
         {
-          colour: background.to_h.merge!(foreground.to_h)
+          colour: background.to_h.merge!(foreground.to_h),
         }
       end
-      alias_method :to_hash, :to_h
+      alias to_hash to_h
 
       # Returns both or either of the converted attributes into a
       # single escape sequence.
@@ -130,7 +130,7 @@ module Vedeu
       def to_s
         "#{foreground}#{background}"
       end
-      alias_method :to_str, :to_s
+      alias to_str to_s
 
       private
 

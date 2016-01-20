@@ -104,7 +104,7 @@ module Vedeu
 
           composition(eval('self', block.binding), true, &block)
         end
-        alias_method :render, :renders
+        alias render renders
 
         # {include:file:docs/dsl/by_method/views.md}
         # @param block [Proc] The directives you wish to send to

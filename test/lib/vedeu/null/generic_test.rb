@@ -15,7 +15,7 @@ module Vedeu
           name: _name
         }
       }
-      let(:_name) { 'null_generic' }
+      let(:_name) { :vedeu_null_generic }
 
       describe '#name' do
         it { instance.must_respond_to(:name) }

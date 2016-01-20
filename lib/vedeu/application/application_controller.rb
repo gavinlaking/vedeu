@@ -29,8 +29,8 @@ module Vedeu
     def redirect_to(controller, action, **params)
       Vedeu.trigger(:_goto_, controller, action, params)
     end
-    alias_method :redirect, :redirect_to
-    alias_method :goto, :redirect_to
+    alias redirect redirect_to
+    alias goto redirect_to
 
     protected
 

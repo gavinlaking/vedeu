@@ -73,7 +73,7 @@ module Vedeu
       def by_name
         Vedeu.render_output(output) if enabled? && visible?
       end
-      alias_method :render, :by_name
+      alias render by_name
 
       protected
 
@@ -139,7 +139,7 @@ module Vedeu
       def interface
         @interface ||= Vedeu.interfaces.by_name(name)
       end
-      alias_method :parent, :interface
+      alias parent interface
 
       # Renders the left border for the interface.
       #

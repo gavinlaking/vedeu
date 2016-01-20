@@ -9,7 +9,7 @@ module Vedeu
     class RepositoriesTestClass < Vedeu::Repositories::Repository
 
       attr_accessor :storage
-      alias_method :in_memory, :storage
+      alias in_memory storage
 
       def initialize(storage = {})
         @storage = storage
@@ -99,7 +99,7 @@ module Vedeu
       end
 
       describe '#by_name' do
-        let(:_name) { 'carbon' }
+        let(:_name) { :vedeu_repositories_repository }
 
         subject { instance.by_name(_name) }
 

@@ -21,7 +21,7 @@ module Vedeu
         def reset!
           @events = new(Vedeu::Events::Collection)
         end
-        alias_method :reset, :reset!
+        alias reset reset!
 
       end # Eigenclass
 

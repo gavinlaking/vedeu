@@ -17,7 +17,7 @@ module Vedeu
       def background(value, &block)
         define_stream(background: value, &block)
       end
-      alias_method :bg, :background
+      alias bg background
 
       # @param attributes [Hash]
       # @option attributes foreground [String] The HTML/CSS foreground
@@ -38,7 +38,7 @@ module Vedeu
       def foreground(value, &block)
         define_stream(foreground: value, &block)
       end
-      alias_method :fg, :foreground
+      alias fg foreground
 
       # @param value [Symbol]
       # @param block [Proc]
@@ -53,11 +53,13 @@ module Vedeu
       def define_stream(attributes = {}, &block)
         fail Vedeu::Error::RequiresBlock unless block_given?
 
+        value = yield
+
         encode(
           Vedeu::Views::Stream.build(
             colour: Vedeu::Colours::Colour.new(attributes),
             style:  Vedeu::Presentation::Style.new(attributes[:style]),
-            value:  block.call))
+            value:  value))
       end
 
       # @param data [String]

@@ -16,7 +16,7 @@ module Vedeu
     def to_s
       render_position { render_colour { render_style { value } } }
     end
-    alias_method :to_str, :to_s
+    alias to_str to_s
 
     private
 

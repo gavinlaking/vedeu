@@ -21,7 +21,7 @@ module Vedeu
     # @!attribute [rw] enabled
     # @return [Boolean]
     attr_accessor :enabled
-    alias_method :enabled?, :enabled
+    alias enabled? enabled
 
     # Returns a new instance of Vedeu::Plugin.
     #

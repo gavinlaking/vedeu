@@ -14,7 +14,7 @@ module Vedeu
 
       let(:described) { Vedeu::Cursors::Refresh }
       let(:instance)  { described.new(_name) }
-      let(:_name)     { 'refresh_cursor' }
+      let(:_name)     { :vedeu_cursors_refresh }
       let(:expected)  {}
       let(:cursor)    {
         Vedeu::Cursors::Cursor.store(name:    _name,

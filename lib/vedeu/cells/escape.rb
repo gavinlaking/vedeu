@@ -28,10 +28,10 @@ module Vedeu
       def null
         nil
       end
-      alias_method :background, :null
-      alias_method :colour,     :null
-      alias_method :foreground, :null
-      alias_method :style,      :null
+      alias background null
+      alias colour null
+      alias foreground null
+      alias style null
 
       # Return an empty hash as most escape sequences won't make
       # sense as JSON.
@@ -43,7 +43,7 @@ module Vedeu
           value: value,
         }
       end
-      alias_method :to_hash, :to_h
+      alias to_hash to_h
 
       # Return an empty string as most escape sequences won't make
       # sense as HTML.
@@ -58,7 +58,7 @@ module Vedeu
       def to_s
         value
       end
-      alias_method :to_str, :to_s
+      alias to_str to_s
 
       # @return [Symbol]
       def type

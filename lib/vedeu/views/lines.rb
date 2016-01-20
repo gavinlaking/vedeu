@@ -43,7 +43,7 @@ module Vedeu
         end
       end
 
-      alias_method :lines, :value
+      alias lines value
 
     end # Lines
 

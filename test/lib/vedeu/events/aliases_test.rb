@@ -90,20 +90,6 @@ module Vedeu
         end
       end
 
-      describe '.reset!' do
-        subject { described.reset! }
-
-        it { described.must_respond_to(:reset) }
-
-        it { subject.must_equal({}) }
-      end
-
-      describe '.storage' do
-        subject { described.storage }
-
-        it { subject.must_equal({}) }
-      end
-
       describe '.trigger' do
         let(:alias_name) { :some_alias }
         let(:args)       {}

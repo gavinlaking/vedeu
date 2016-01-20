@@ -43,7 +43,7 @@ module Vedeu
       # @!attribute [r] colour
       # @return [String]
       attr_reader :colour
-      alias_method :value, :colour
+      alias value colour
 
       # Produces new objects of the correct class from the value,
       # ignores objects Colours::that have already been coerced.
@@ -76,7 +76,7 @@ module Vedeu
       def eql?(other)
         self.class == other.class && colour == other.colour
       end
-      alias_method :==, :eql?
+      alias == eql?
 
       # @return [String]
       # @see Vedeu::Colours::Translator
@@ -100,8 +100,8 @@ module Vedeu
 
         end
       end
-      alias_method :to_s, :escape_sequence
-      alias_method :to_str, :escape_sequence
+      alias to_s escape_sequence
+      alias to_str escape_sequence
 
       private
 
@@ -219,8 +219,8 @@ module Vedeu
       def not_implemented
         fail Vedeu::Error::NotImplemented, 'Subclasses implement this.'
       end
-      alias_method :named,      :not_implemented
-      alias_method :repository, :not_implemented
+      alias named not_implemented
+      alias repository not_implemented
 
       # @return [Vedeu::Colours::Validator]
       def validator

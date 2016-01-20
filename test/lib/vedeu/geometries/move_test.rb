@@ -11,7 +11,7 @@ module Vedeu
       let(:described)  { Vedeu::Geometries::Move }
       let(:instance)   { described.new(attributes) }
       let(:direction)  {}
-      let(:_name)      { 'Vedeu::Geometries::Move' }
+      let(:_name)      { :vedeu_geometries_move }
       let(:offset)     {}
       let(:attributes) {
         {

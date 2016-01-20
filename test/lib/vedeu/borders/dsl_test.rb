@@ -12,12 +12,11 @@ module Vedeu
       let(:instance)   { described.new(model, client) }
       let(:model)      { Vedeu::Borders::Border.new(attributes) }
       let(:client)     {}
-      let(:attributes) { { name: 'borders' } }
+      let(:attributes) { { name: _name } }
       let(:boolean)    { true }
+      let(:_name)      { :vedeu_borders_dsl }
 
       describe '.border' do
-        let(:_name) { 'Vedeu::Borders::DSL' }
-
         after { Vedeu.borders.reset! }
 
         subject { described.border(_name) { } }

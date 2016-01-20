@@ -24,7 +24,9 @@ module Vedeu
 
       def_delegators :geometry,
                      :bordered_height,
-                     :bordered_width
+                     :bordered_width,
+                     :bx,
+                     :by
 
       def_delegators :cursor,
                      :ox,
@@ -57,7 +59,7 @@ module Vedeu
       def to_s
         Array(render).map(&:to_s).join("\n")
       end
-      alias_method :to_str, :to_s
+      alias to_str to_s
 
       protected
 
@@ -66,16 +68,6 @@ module Vedeu
       attr_reader :view
 
       private
-
-      # @return [Fixnum]
-      def bx
-        @bx ||= geometry.bx
-      end
-
-      # @return [Fixnum]
-      def by
-        @by ||= geometry.by
-      end
 
       # Using the current cursor's x position, return a range of
       # visible columns.

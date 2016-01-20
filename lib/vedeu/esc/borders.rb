@@ -38,70 +38,70 @@ module Vedeu
       #
       # @return [String]
       def bottom_left
-        "\x6D"
+        %(\x6D)
       end
 
-      # ┘ # \u2518
+      # Produces '┘' (\u2518)
       #
       # @return [String]
       def bottom_right
-        "\x6A"
+        %(\x6A)
       end
 
-      # ─ # \u2500
+      # Produces '─' (\u2500)
       #
       # @return [String]
       def horizontal
-        "\x71"
+        %(\x71)
       end
 
-      # ┴ # \u2534
+      # Produces '┴' (\u2534)
       #
       # @return [String]
       def horizontal_bottom
-        "\x76"
+        %(\x76)
       end
 
-      # ┬ # \u252C
+      # Produces '┬' (\u252C)
       #
       # @return [String]
       def horizontal_top
-        "\x77"
+        %(\x77)
       end
 
-      # ┌ # \u250C
+      # Produces '┌' (\u250C)
       #
       # @return [String]
       def top_left
-        "\x6C"
+        %(\x6C)
       end
 
-      # ┐ # \u2510
+      # Produces '┐' (\u2510)
       #
       # @return [String]
       def top_right
-        "\x6B"
+        %(\x6B)
       end
 
-      # │ # \u2502
+      # Produces '│' (\u2502)
       #
       # @return [String]
       def vertical
-        "\x78"
+        %(\x78)
       end
 
-      # ├ # \u251C
+      # Produces '├' (\u251C)
       #
       # @return [String]
       def vertical_left
-        "\x74"
+        %(\x74)
       end
 
-      # ┤ # \u2524
+      # Produces '┤' (\u2524)
       #
       # @return [String]
       def vertical_right
-        "\x75"
+        %(\x75)
       end
 
     end # Borders

@@ -16,7 +16,7 @@ module Vedeu
       # @!attribute [rw] collection
       # @return [String]
       attr_accessor :collection
-      alias_method :lines, :collection
+      alias lines collection
 
       class << self
 
@@ -131,7 +131,7 @@ module Vedeu
       def to_s
         collection.map(&:to_s).join
       end
-      alias_method :to_str, :to_s
+      alias to_str to_s
 
     end # Lines
 

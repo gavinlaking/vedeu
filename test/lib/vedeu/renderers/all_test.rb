@@ -37,14 +37,6 @@ module Vedeu
       it { described.must_respond_to(:render) }
     end
 
-    describe '.reset!' do
-      subject { described.reset! }
-
-      it { described.must_respond_to(:reset) }
-      it { subject.must_be_instance_of(Set) }
-      it { subject.size.must_equal(1) }
-    end
-
   end # Renderers
 
 end # Vedeu

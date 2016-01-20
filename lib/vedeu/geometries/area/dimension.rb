@@ -93,7 +93,7 @@ module Vedeu
       # @!attribute [r] maximised
       # @return [Boolean]
       attr_reader :maximised
-      alias_method :maximised?, :maximised
+      alias maximised? maximised
 
       private
 

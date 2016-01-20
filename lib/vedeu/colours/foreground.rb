@@ -33,21 +33,17 @@ module Vedeu
       # @return [Hash<Symbol => String>]
       def to_h
         {
-          foreground: colour.to_s
+          foreground: colour.to_s,
         }
       end
-      alias_method :to_hash, :to_h
+      alias to_hash to_h
 
       # @param _options [Hash] Ignored.
       # @return [String]
       def to_html(_options = {})
-        if rgb?
-          "color:#{colour};"
+        return '' unless rgb?
 
-        else
-          ''
-
-        end
+        "color:#{colour};"
       end
 
       private

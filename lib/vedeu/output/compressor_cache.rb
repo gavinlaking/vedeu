@@ -14,22 +14,12 @@ module Vedeu
     module CompressorCache
 
       extend self
+      extend Vedeu::Repositories::Storage
 
       # @param key [NilClass|Symbol]
       # @return [Array<void>]
       def read(key)
         storage.fetch(key, [])
-      end
-
-      # @return [Hash<Symbol => Array<void>>]
-      def reset!
-        @storage = in_memory
-      end
-      alias_method :reset, :reset!
-
-      # @return [Hash<Symbol => Array<void>>]
-      def storage
-        @storage ||= in_memory
       end
 
       # @param key [NilClass|Symbol]

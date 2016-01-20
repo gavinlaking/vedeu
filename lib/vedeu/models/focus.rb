@@ -64,7 +64,7 @@ module Vedeu
 
         update
       end
-      alias_method :focus_by_name, :by_name
+      alias focus_by_name by_name
 
       # Return the interface currently focussed.
       #
@@ -77,8 +77,8 @@ module Vedeu
 
         storage[0]
       end
-      alias_method :focus, :current
-      alias_method :name, :current
+      alias focus current
+      alias name current
 
       # Returns a boolean indicating whether the named interface is
       # focussed.
@@ -91,7 +91,7 @@ module Vedeu
       def current?(name)
         current == name
       end
-      alias_method :focussed?, :current?
+      alias focussed? current?
 
       # Returns a boolean indicating whether there are interfaces
       # registered.
@@ -114,7 +114,7 @@ module Vedeu
 
         update
       end
-      alias_method :next, :next_item
+      # alias next_item
 
       # Put the next visible interface relative to the current
       # interfaces in focus.
@@ -130,7 +130,7 @@ module Vedeu
 
         update
       end
-      alias_method :focus_next, :next_visible_item
+      alias focus_next next_visible_item
 
       # Put the previous interface relative to the current interface
       # in focus.
@@ -145,8 +145,8 @@ module Vedeu
 
         update
       end
-      alias_method :prev,     :prev_item
-      alias_method :previous, :prev_item
+      alias prev prev_item
+      alias previous prev_item
 
       # Put the previous visible interface relative to the current
       # interfaces in focus.
@@ -162,7 +162,7 @@ module Vedeu
 
         update
       end
-      alias_method :focus_previous, :prev_visible_item
+      alias focus_previous prev_visible_item
 
       # Refresh the interface in focus.
       #
@@ -179,7 +179,7 @@ module Vedeu
       def storage
         @storage ||= in_memory
       end
-      alias_method :registered, :storage
+      alias registered storage
 
       # Returns a boolean indicating whether the named model is
       # registered.
@@ -198,7 +198,7 @@ module Vedeu
       def reset!
         @storage = in_memory
       end
-      alias_method :reset, :reset!
+      alias reset reset!
 
       private
 

@@ -36,7 +36,7 @@ module Vedeu
       # @option options content_only [Boolean]
       # @return [Vedeu::Buffers::Refresh]
       def initialize(name, options = {})
-        @name    = present?(name) ? name : Vedeu.focus
+        @name    = name
         @options = options
       end
 
@@ -49,11 +49,7 @@ module Vedeu
         Vedeu.trigger(:_refresh_border_, name) unless content_only?
       end
 
-      protected
-
-      # @!attribute [r] name
-      # @return [String|Symbol]
-      attr_reader :name
+      private
 
       # @return [Vedeu::Buffers::Buffer]
       def buffer
@@ -65,6 +61,11 @@ module Vedeu
         truthy?(options[:content_only])
       end
 
+      # @return [String|Symbol]
+      def name
+        present?(@name) ? @name : Vedeu.focus
+      end
+
       # @return [Hash<Symbol => Boolean>]
       def options
         defaults.merge!(@options)
@@ -73,7 +74,7 @@ module Vedeu
       # @return [Hash<Symbol => Boolean>]
       def defaults
         {
-          content_only: false
+          content_only: false,
         }
       end
 

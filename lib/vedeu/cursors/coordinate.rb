@@ -36,8 +36,8 @@ module Vedeu
 
         d + d_dn
       end
-      alias_method :xn, :dn_position
-      alias_method :yn, :dn_position
+      alias xn dn_position
+      alias yn dn_position
 
       # Returns the coordinate for a given index.
       #
@@ -63,8 +63,8 @@ module Vedeu
 
         Vedeu::Point.coerce(value: pos, min: bd, max: bdn).value
       end
-      alias_method :x, :d_position
-      alias_method :y, :d_position
+      alias x d_position
+      alias y d_position
 
       protected
 

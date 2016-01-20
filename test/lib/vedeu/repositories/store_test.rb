@@ -30,6 +30,14 @@ module Vedeu
       let(:model)     {}
       let(:storage)   {}
 
+      describe '#all' do
+        it { instance.must_respond_to(:all) }
+      end
+
+      describe '#clear' do
+        it { instance.must_respond_to(:clear) }
+      end
+
       describe '#each' do
         subject { instance.each }
 
@@ -55,8 +63,8 @@ module Vedeu
 
         subject { instance.exists?(_name) }
 
-        context 'when empty' do
-          let(:_name) { 'terbium' }
+        context 'when the store is empty' do
+          let(:_name) { :vedeu_repositories_store }
 
           it { subject.must_equal(false) }
         end
@@ -130,26 +138,6 @@ module Vedeu
         end
       end
 
-      describe '#reset' do
-        before { Vedeu.stubs(:log) }
-
-        it 'returns a Hash' do
-          instance.reset.must_be_instance_of(Hash)
-        end
-
-        it 'resets the repository' do
-          instance.reset.must_equal({})
-        end
-      end
-
-      describe '#reset!' do
-        it { instance.must_respond_to(:reset!) }
-      end
-
-      describe '#clear' do
-        it { instance.must_respond_to(:clear) }
-      end
-
       describe '#size' do
         subject { instance.size }
 
@@ -162,12 +150,6 @@ module Vedeu
 
           it { subject.must_equal(1) }
         end
-      end
-
-      describe '#storage' do
-        subject { instance.storage }
-
-        it { subject.must_equal({}) }
       end
 
       describe '#all' do

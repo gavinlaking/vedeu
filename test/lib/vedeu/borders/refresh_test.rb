@@ -26,7 +26,7 @@ module Vedeu
       }
       let(:visible)     { true }
       let(:enabled)     { false }
-      let(:_name)       { 'Vedeu::Borders::Refresh' }
+      let(:_name)       { :vedeu_borders_refresh }
       let(:title)       {}
       let(:caption)     {}
       let(:show_top)    { true }

@@ -52,7 +52,7 @@ module Vedeu
         end
       end
 
-      alias_method :chars, :value
+      alias chars value
 
     end # Chars
 

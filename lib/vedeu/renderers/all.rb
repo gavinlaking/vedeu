@@ -8,6 +8,7 @@ module Vedeu
 
     extend Enumerable
     extend self
+    extend Vedeu::Repositories::Storage
 
     # Instructs each renderer registered with Vedeu to clear their
     # content.
@@ -56,15 +57,6 @@ module Vedeu
       output
     end
 
-    # @example
-    #   Vedeu.renderers.reset!
-    #
-    # @return [Set]
-    def reset!
-      @storage = in_memory
-    end
-    alias_method :reset, :reset!
-
     private
 
     # @return [Set]
@@ -89,11 +81,6 @@ module Vedeu
     # @return [Mutex]
     def mutex
       @mutex ||= Mutex.new
-    end
-
-    # @return [Set]
-    def storage
-      @storage ||= in_memory
     end
 
     # @param block [Proc]

@@ -46,7 +46,7 @@ module Vedeu
       let(:top_left)          { 'l' }
       let(:top_right)         { 'k' }
       let(:geometry) {}
-      let(:_name)    { 'borders' }
+      let(:_name)    { :vedeu_borders_border }
 
       describe '.build' do
         subject {

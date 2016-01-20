@@ -25,7 +25,7 @@ module Vedeu
       let(:client)         {}
       let(:colour)         {}
       let(:cursor_visible) {}
-      let(:_name)          { 'Vedeu::Views::View' }
+      let(:_name)          { :vedeu_views_view }
       let(:parent)         {}
       let(:style)          {}
       let(:_value)         {}
@@ -35,7 +35,10 @@ module Vedeu
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@client').must_equal(client) }
         it { instance.instance_variable_get('@colour').must_equal(colour) }
-        it { instance.instance_variable_get('@cursor_visible').must_equal(cursor_visible) }
+        it do
+          instance.instance_variable_get('@cursor_visible')
+            .must_equal(cursor_visible)
+        end
         it { instance.instance_variable_get('@name').must_equal(_name) }
         it { instance.instance_variable_get('@parent').must_equal(parent) }
         it { instance.instance_variable_get('@style').must_equal(style) }

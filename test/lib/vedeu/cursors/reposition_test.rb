@@ -11,7 +11,7 @@ module Vedeu
       let(:described)  { Vedeu::Cursors::Reposition }
       let(:instance)   { described.new(attributes) }
       let(:mode)       {}
-      let(:_name)      { :reposition_test }
+      let(:_name)      { :vedeu_cursors_reposition }
       let(:x)          { 0 }
       let(:y)          { 0 }
       let(:attributes) {
@@ -24,7 +24,7 @@ module Vedeu
       }
 
       before {
-        Vedeu.interface :reposition_test do
+        Vedeu.interface _name do
           geometry do
             x  4
             y  4

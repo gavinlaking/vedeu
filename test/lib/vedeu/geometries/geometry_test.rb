@@ -30,7 +30,7 @@ module Vedeu
       let(:height)               {}
       let(:horizontal_alignment) {}
       let(:maximised)            { false }
-      let(:_name)                { 'vedeu_geometry_geometry' }
+      let(:_name)                { :vedeu_geometries_geometry }
       let(:vertical_alignment)   {}
       let(:width)                {}
       let(:x)                    {}

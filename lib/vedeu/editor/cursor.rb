@@ -133,7 +133,7 @@ module Vedeu
       def to_s
         "\e[#{real_y};#{real_x}H\e[?25h"
       end
-      alias_method :to_str, :to_s
+      alias to_str to_s
 
       # Move the virtual cursor up by one line.
       #

@@ -60,7 +60,7 @@ module Vedeu
         def reset!
           @models = register
         end
-        alias_method :reset, :reset!
+        alias reset reset!
 
       end # ClassMethods
 
@@ -72,7 +72,7 @@ module Vedeu
 
         # @return [Boolean]
         def null_model?
-          self.respond_to?(:null_model) && present?(:null_model)
+          respond_to?(:null_model) && present?(:null_model)
         end
 
       end # InstanceMethods

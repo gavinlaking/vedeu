@@ -14,12 +14,12 @@ module Vedeu
       # @!attribute [r] y
       # @return [Fixnum]
       attr_reader :y
-      alias_method :first, :y
+      alias first y
 
       # @!attribute [r] x
       # @return [Fixnum]
       attr_reader :x
-      alias_method :last, :x
+      alias last x
 
       # Convenience constructor for Vedeu::Geometries::Position.
       #
@@ -92,7 +92,7 @@ module Vedeu
       def eql?(other)
         self.class == other.class && x == other.x && y == other.y
       end
-      alias_method :==, :eql?
+      alias == eql?
 
       # Return a tuple containing the y and x coordinates.
       #
@@ -114,10 +114,10 @@ module Vedeu
           position: {
             y: y,
             x: x,
-          }
+          },
         }
       end
-      alias_method :to_hash, :to_h
+      alias to_hash to_h
 
       # Return the escape sequence required to position the cursor at
       # a particular point on the screen. When passed a block, will do
@@ -133,7 +133,7 @@ module Vedeu
 
         sequence
       end
-      alias_method :to_str, :to_s
+      alias to_str to_s
 
       # Increase y coordinate; moves down.
       #

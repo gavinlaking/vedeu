@@ -51,25 +51,25 @@ module Vedeu
       # @return [Boolean] Determines whether the bottom border should
       #   be shown.
       attr_accessor :show_bottom
-      alias_method :bottom?, :show_bottom
+      alias bottom? show_bottom
 
       # @!attribute [rw] show_left
       # @return [Boolean] Determines whether the left border should
       #   be shown.
       attr_accessor :show_left
-      alias_method :left?, :show_left
+      alias left? show_left
 
       # @!attribute [rw] show_right
       # @return [Boolean] Determines whether the right border should
       #   be shown.
       attr_accessor :show_right
-      alias_method :right?, :show_right
+      alias right? show_right
 
       # @!attribute [rw] show_top
       # @return [Boolean] Determines whether the top border should
       #   be shown.
       attr_accessor :show_top
-      alias_method :top?, :show_top
+      alias top? show_top
 
       # @!attribute [r] title
       # @return [String] An optional title for when the top border is
@@ -120,7 +120,7 @@ module Vedeu
       # @return [Boolean] Determines whether this border should be
       #   rendered.
       attr_accessor :enabled
-      alias_method :enabled?, :enabled
+      alias enabled? enabled
 
       # Returns a new instance of Vedeu::Borders::Border.
       #
@@ -266,7 +266,7 @@ module Vedeu
       # @return [Vedeu::Cells::BottomHorizontal]
       def bottom_horizontal
         @bottom_horizontal ||= Vedeu::Cells::BottomHorizontal
-                                 .new(cell_attributes)
+                               .new(cell_attributes)
       end
 
       # Return the client application configured bottom left cell

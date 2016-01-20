@@ -28,7 +28,7 @@ module Vedeu
       def value
         ' '
       end
-      alias_method :text, :value
+      alias text value
 
     end # Clear
 
