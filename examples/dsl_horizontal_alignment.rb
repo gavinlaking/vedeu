@@ -38,7 +38,7 @@ class HorizontalAlignmentApp
         end
       end
 
-      Vedeu.trigger(:_refresh_view, :centre_interface)
+      Vedeu.trigger(:_refresh_view_, :centre_interface)
     end
 
     def gc
