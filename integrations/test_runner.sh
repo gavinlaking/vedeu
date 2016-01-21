@@ -32,3 +32,10 @@ cd "$(dirname "$0")"
 ./dsl_app_016.rb
 ./dsl_app_021.rb
 ./dsl_app_022.rb
+
+# Test some border functionality
+./dsl_app_border_001.rb
+./dsl_app_border_002.rb
+./dsl_app_border_003.rb
+./dsl_app_border_004.rb
+./dsl_app_border_005.rb
