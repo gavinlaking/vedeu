@@ -166,7 +166,7 @@ module Vedeu
           Vedeu.trigger(cursor_event, name)
 
         else
-          Vedeu.trigger(cursor_event, name, offset)
+          Vedeu.trigger(cursor_event, name, 0)
 
         end
       end
