@@ -10,11 +10,6 @@ module Vedeu
 
       include Vedeu::Renderers::Options
 
-      # @return [String]
-      def clear
-        render('')
-      end
-
       # Render the output (either content or clearing) to a file.
       #
       # @return [String]

@@ -36,7 +36,9 @@ module Vedeu
         @options = defaults.merge!(opts || {})
       end
 
-      # @return [void]
+      # Render a cleared output.
+      #
+      # @return [String]
       def clear
         render('')
       end
