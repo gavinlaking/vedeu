@@ -49,7 +49,7 @@ module Vedeu
         end
       end
 
-      describe '.log_stdout' do
+      describe '.log_stderr' do
         let(:type)     { :debug }
         let(:_message) { 'Logging to stderr...' }
 

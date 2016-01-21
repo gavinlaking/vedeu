@@ -39,7 +39,6 @@ module Vedeu
 
     describe '#execute!' do
       before do
-        Vedeu.stubs(:log_stdout)
         Vedeu::Runtime::Application.stubs(:start)
         Kernel.stubs(:exit)
         Kernel.stubs(:puts)
@@ -63,8 +62,10 @@ module Vedeu
         context 'but debugging is disabled' do
           let(:debug) { false }
 
+          before { Vedeu.stubs(:log_stderr).with(message: "Oops!\n") }
+
           it do
-            Vedeu.expects(:log_stdout).with(type: :error, message: 'Oops!')
+            Vedeu.expects(:log_stderr).with(message: "Oops!\n")
             subject
           end
         end
@@ -72,9 +73,9 @@ module Vedeu
         context 'and debugging is enabled' do
           let(:debug) { true }
 
-          # Need to stub a backtrace.
+          # @todo Need to stub a backtrace.
           # it do
-          #   Vedeu.expects(:log_stdout).with(type: :error, message: 'Oops!')
+          #   Vedeu.expects(:log_stderr).with(message: "Oops!\n")
           #   subject
           # end
         end

@@ -69,15 +69,18 @@ module Vedeu
       terminate!
 
     rescue StandardError => uncaught_exception
+      message = uncaught_exception.message + "\n"
+      trace   = uncaught_exception.backtrace.join("\n")
+
       output = if Vedeu.config.debug?
-                 uncaught_exception.message + "\n" +
-                 uncaught_exception.backtrace.join("\n")
+                 message + Vedeu::Esc.screen_colour_reset + trace
+
                else
-                 uncaught_exception.message
+                 message
+
                end
 
-      Vedeu.log(type: :error, message: output)
-      Vedeu.log_stdout(type: :error, message: output)
+      Vedeu.log_stderr(message: output)
     end
 
     protected

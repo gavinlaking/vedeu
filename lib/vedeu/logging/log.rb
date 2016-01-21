@@ -43,7 +43,9 @@ module Vedeu
         # @param type [Symbol] See {Vedeu::Logging::Log.message_types}
         #   for valid values.
         # @return [String]
-        def log_stdout(type: :info, message:)
+        def log_stdout(message:, type: :info)
+          log(message: message, type: type)
+
           $stdout.puts log_entry(type, message)
         end
 
@@ -52,7 +54,9 @@ module Vedeu
         # @param type [Symbol] See {Vedeu::Logging::Log.message_types}
         #   for valid values.
         # @return [String]
-        def log_stderr(type: :info, message:)
+        def log_stderr(message:, type: :error)
+          log(message: message, type: type)
+
           $stderr.puts log_entry(type, message)
         end
 
