@@ -73,7 +73,7 @@ module Vedeu
       trace   = uncaught_exception.backtrace.join("\n")
 
       output = if Vedeu.config.debug?
-                 message + Vedeu::Esc.screen_colour_reset + trace
+                 message + Vedeu.esc.screen_colour_reset + trace
 
                else
                  message
