@@ -111,11 +111,7 @@ module Vedeu
         self
       end
 
-      # Moves the cursor to the top left of the named interface.
-      #
-      #   Vedeu.trigger(:_cursor_origin_, name)
-      #   Vedeu.trigger(:_cursor_origin_, Vedeu.focus)
-      #
+      # {include:file:docs/events/by_name/cursor_origin.md}
       # @return [Vedeu::Cursors::Cursor]
       def move_origin
         @x = bx
@@ -169,17 +165,7 @@ module Vedeu
       end
       alias to_str to_s
 
-      # Hide a named cursor, or without a name, the cursor of the
-      # currently focussed interface.
-      #
-      # @example
-      #   Vedeu.trigger(:_hide_cursor_, name)
-      #   Vedeu.trigger(:_hide_cursor_, Vedeu.focus)
-      #   Vedeu.trigger(:_hide_cursor_)
-      #   Vedeu.hide_cursor(name)
-      #   Vedeu.hide_cursor(Vedeu.focus)
-      #   Vedeu.hide_cursor
-      #
+      # {include:file:docs/events/by_name/hide_cursor.md}
       # @return [Vedeu::Cells::Cursor]
       def hide
         super
@@ -206,17 +192,7 @@ module Vedeu
         @position = Vedeu::Geometries::Position.coerce([y, x])
       end
 
-      # Show a named cursor, or without a name, the cursor of the
-      # currently focussed interface.
-      #
-      # @example
-      #   Vedeu.trigger(:_show_cursor_, name)
-      #   Vedeu.trigger(:_show_cursor_, Vedeu.focus)
-      #   Vedeu.trigger(:_show_cursor_)
-      #   Vedeu.show_cursor(name)
-      #   Vedeu.show_cursor(Vedeu.focus)
-      #   Vedeu.show_cursor
-      #
+      # {include:file:docs/events/by_name/show_cursor.md}
       # @return [Vedeu::Cells::Cursor]
       def show
         super

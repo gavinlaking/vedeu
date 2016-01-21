@@ -167,7 +167,6 @@ module Vedeu
             else
               s  = Vedeu::Views::Stream.new(attrs)
               ss = Vedeu::Views::Streams.coerce([s])
-
               Vedeu::Views::Line.new(attrs.merge!(value: ss))
 
             end

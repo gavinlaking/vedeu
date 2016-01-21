@@ -6,6 +6,12 @@ module Vedeu
 
     # Provides the ability to log anything to the Vedeu log file.
     #
+    # @!macro [new] vedeu_logging_log_param_message
+    #    @param message [String] The message you wish to emit, useful
+    #      for debugging.
+    #
+    # @api public
+    #
     class Log
 
       class << self
@@ -16,8 +22,7 @@ module Vedeu
         #   Vedeu.log(type:    :debug,
         #             message: 'A useful debugging message: Error!')
         #
-        # @param message [String] The message you wish to emit to the
-        #   log file, useful for debugging.
+        # @macro vedeu_logging_log_param_message
         # @param force [Boolean] When evaluates to true will attempt
         #   to write to the log file regardless of the Configuration
         #   setting.
@@ -33,29 +38,25 @@ module Vedeu
           end
         end
 
-        # Write a message to STDOUT.
-        #
-        # @example
-        #   Vedeu.log_stdout
-        #
+        # {include:file:docs/dsl/by_method/log_stdout.md}
+        # @macro vedeu_logging_log_param_message
+        # @param type [Symbol] See {Vedeu::Logging::Log.message_types}
+        #   for valid values.
         # @return [String]
         def log_stdout(type: :info, message:)
           $stdout.puts log_entry(type, message)
         end
 
-        # Write a message to STDERR.
-        #
-        # @example
-        #   Vedeu.log_stderr
-        #
+        # {include:file:docs/dsl/by_method/log_stderr.md}
+        # @macro vedeu_logging_log_param_message
+        # @param type [Symbol] See {Vedeu::Logging::Log.message_types}
+        #   for valid values.
         # @return [String]
         def log_stderr(type: :info, message:)
           $stderr.puts log_entry(type, message)
         end
 
-        # Returns a formatted timestamp.
-        # eg. [137.7824]
-        #
+        # {include:file:docs/dsl/by_method/log_timestamp.md}
         # @return [String]
         def timestamp
           @now  = Vedeu.clock_time
@@ -82,12 +83,8 @@ module Vedeu
           end
         end
 
-        # Returns the message with timestamp.
-        #
-        #    [ 0.0987] [debug]  Something happened.
-        #
-        # @param message [String] The message type and message
-        #   coloured and combined.
+        # {include:file:docs/api/by_method/log_timestamp.md}
+        # @macro vedeu_logging_log_param_message
         # @return [String]
         def formatted_message(message)
           "#{timestamp}#{message}\n" if message
@@ -98,8 +95,7 @@ module Vedeu
         #     [type] message
         #
         # @param type [Symbol] The type of log message.
-        # @param message [String] The message you wish to emit to the
-        #   log file, useful for debugging.
+        # @macro vedeu_logging_log_param_message
         # @return [String]
         def log_entry(type, message)
           colours = message_types.fetch(type, [:default, :default])

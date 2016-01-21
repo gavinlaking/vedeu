@@ -139,10 +139,6 @@ module Vedeu
       #     # ... some code
       #   end
       #
-      # @note
-      #   Vedeu.width in the example above will set the width to the
-      #   default width of the terminal, this can be substituted for
-      #   your own positive integer.
       # @param height [Fixnum] The number of lines/rows.
       # @return [Vedeu::Geometries::Geometry]
       def align_bottom(height = nil)
@@ -166,10 +162,6 @@ module Vedeu
       #
       #   # Also allows `align_center` if preferred.
       #
-      # @note
-      #   Vedeu.height in the example above will set the height to the
-      #   default height of the terminal, this can be substituted for
-      #   your own positive integer.
       # @param width [Fixnum] The number of characters/columns.
       # @return [Vedeu::Geometries::Geometry]
       def align_centre(width = nil)
@@ -192,10 +184,6 @@ module Vedeu
       #     # ... some code
       #   end
       #
-      # @note
-      #   Vedeu.height in the example above will set the height to the
-      #   default height of the terminal, this can be substituted for
-      #   your own positive integer.
       # @param width [Fixnum] The number of characters/columns.
       # @return [Vedeu::Geometries::Geometry]
       def align_left(width = nil)
@@ -218,10 +206,6 @@ module Vedeu
       #     # ... some code
       #   end
       #
-      # @note
-      #   Vedeu.width in the example above will set the width to the
-      #   default width of the terminal, this can be substituted for
-      #   your own positive integer.
       # @param height [Fixnum] The number of lines/rows.
       # @return [Vedeu::Geometries::Geometry]
       def align_middle(height = nil)
@@ -243,10 +227,6 @@ module Vedeu
       #     # ... some code
       #   end
       #
-      # @note
-      #   Vedeu.height in the example above will set the height to the
-      #   default height of the terminal, this can be substituted for
-      #   your own positive integer.
       # @param width [Fixnum] The number of characters/columns.
       # @return [Vedeu::Geometries::Geometry]
       def align_right(width = nil)
@@ -269,10 +249,6 @@ module Vedeu
       #     # ... some code
       #   end
       #
-      # @note
-      #   Vedeu.width in the example above will set the width to the
-      #   default width of the terminal, this can be substituted for
-      #   your own positive integer.
       # @param height [Fixnum] The number of lines/rows.
       # @return [Vedeu::Geometries::Geometry]
       def align_top(height = nil)
@@ -291,8 +267,7 @@ module Vedeu
       #   end
       #
       # @param value [Fixnum]
-      # @raise [Vedeu::Error::OutOfRange] When the value parameter is
-      #   not between 1 and 12 inclusive.
+      # @macro raise_out_of_range
       # @return [Fixnum|Vedeu::Error::OutOfRange]
       def columns(value)
         Vedeu::Geometries::Grid.columns(value)
@@ -325,8 +300,7 @@ module Vedeu
       #   end
       #
       # @param value [Fixnum]
-      # @raise [Vedeu::Error::OutOfRange] When the value parameter is
-      #   not between 1 and 12 inclusive.
+      # @macro raise_out_of_range
       # @return [Fixnum]
       def rows(value)
         Vedeu::Geometries::Grid.rows(value)

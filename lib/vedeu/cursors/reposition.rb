@@ -67,8 +67,8 @@ module Vedeu
 
       # Determine correct x and y related coordinates.
       #
-      # @param offset []
-      # @param type []
+      # @param offset [Fixnum]
+      # @param type [Symbol]
       # @return [Vedeu::Cursors::Coordinate]
       def coordinate(offset, type)
         Vedeu::Cursors::Coordinate.new(name:   name,

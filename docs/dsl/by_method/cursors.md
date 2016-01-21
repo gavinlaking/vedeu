@@ -1,1 +1,3 @@
-@todo Add more documentation.
+Manipulate the repository of cursors.
+
+    Vedeu.cursors

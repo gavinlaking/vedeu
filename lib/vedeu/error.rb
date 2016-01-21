@@ -24,11 +24,18 @@ module Vedeu
     end # ControllerNotFound
 
     # Raised when Vedeu encounters an error it cannot recover from.
-    # This would happen if there was not interfaces, or specifically
-    # if there were no entries in {Vedeu::Models::Focus}, since the
-    # fallback for most of the system when a name is not given or
-    # cannot be found is to use the name of the currently focussed
-    # interface.
+    # Generally, all Vedeu exceptions are fatal- however, fatal here
+    # means that it is not known how to recover from an error.
+    #
+    # If you encounter a `Vedeu::Error::Fatal` error and the error
+    # message is insufficient to help you, please raise an issue so
+    # that we can attempt to accommodate your intentions.
+    #
+    # An example of this would happen if there was no interfaces, or
+    # specifically if there were no entries in {Vedeu::Models::Focus},
+    # since the fallback for most of the system when a name is not
+    # given or cannot be found is to use the name of the currently
+    # focussed interface.
     #
     class Fatal < StandardError
 
@@ -104,6 +111,11 @@ module Vedeu
     # the time being.
     #
     # @see Vedeu::Geometries::Grid
+    #
+    # @!macro [new] raise_out_of_range
+    #   @raise [Vedeu::Error::OutOfRange] When the value given for
+    #     an argument or parameter cannot be used because it is
+    #     outside the allowed range.
     #
     class OutOfRange < StandardError
 
