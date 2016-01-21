@@ -323,7 +323,7 @@ module Vedeu
 
   # See {file:docs/cursors.md}
   Vedeu.bind(:_cursor_position_) do |name|
-    Vedeu.cursors.by_name(name).to_a
+    Vedeu.cursors.by_name(name).inspect
   end
 
   # See {file:docs/cursors.md}
