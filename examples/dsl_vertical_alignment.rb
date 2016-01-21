@@ -38,7 +38,7 @@ class VerticalAlignmentApp
         end
       end
 
-      Vedeu.trigger(:_refresh_view, :middle_interface)
+      Vedeu.trigger(:_refresh_view_, :middle_interface)
     end
 
     def gc

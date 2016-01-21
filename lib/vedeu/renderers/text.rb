@@ -12,13 +12,6 @@ module Vedeu
 
       include Vedeu::Renderers::Options
 
-      # Render a cleared output.
-      #
-      # @return [String]
-      def clear
-        render('')
-      end
-
       private
 
       # Combine all characters in a row to produce a line, then all

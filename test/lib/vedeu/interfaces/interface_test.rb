@@ -39,105 +39,103 @@ module Vedeu
       let(:zindex)         { 1 }
 
       describe '#initialize' do
-        subject { instance }
-
-        it { subject.must_be_instance_of(described) }
-        it { subject.instance_variable_get('@client').must_equal(client) }
+        it { instance.must_be_instance_of(described) }
+        it { instance.instance_variable_get('@client').must_equal(client) }
         it do
-          subject.instance_variable_get('@cursor_visible').
+          instance.instance_variable_get('@cursor_visible').
             must_equal(cursor_visible)
         end
-        it { subject.instance_variable_get('@delay').must_equal(delay) }
-        it { subject.instance_variable_get('@editable').must_equal(editable) }
-        it { subject.instance_variable_get('@group').must_equal(group) }
-        it { subject.instance_variable_get('@name').must_equal(_name) }
-        it { subject.instance_variable_get('@parent').must_equal(parent) }
+        it { instance.instance_variable_get('@delay').must_equal(delay) }
+        it { instance.instance_variable_get('@editable').must_equal(editable) }
+        it { instance.instance_variable_get('@group').must_equal(group) }
+        it { instance.instance_variable_get('@name').must_equal(_name) }
+        it { instance.instance_variable_get('@parent').must_equal(parent) }
         it do
-          subject.instance_variable_get('@repository').must_equal(repository)
+          instance.instance_variable_get('@repository').must_equal(repository)
         end
-        it { subject.instance_variable_get('@visible').must_equal(visible) }
-        it { subject.instance_variable_get('@zindex').must_equal(zindex) }
+        it { instance.instance_variable_get('@visible').must_equal(visible) }
+        it { instance.instance_variable_get('@zindex').must_equal(zindex) }
       end
 
-          describe '#client' do
-it { instance.must_respond_to(:client) }
-end
+      describe '#client' do
+        it { instance.must_respond_to(:client) }
+      end
 
-          describe '#client=' do
-it { instance.must_respond_to(:client=) }
-end
+      describe '#client=' do
+        it { instance.must_respond_to(:client=) }
+      end
 
-          describe '#cursor_visible' do
-it { instance.must_respond_to(:cursor_visible) }
-end
+      describe '#cursor_visible' do
+        it { instance.must_respond_to(:cursor_visible) }
+      end
 
-          describe '#cursor_visible=' do
-it { instance.must_respond_to(:cursor_visible=) }
-end
+      describe '#cursor_visible=' do
+        it { instance.must_respond_to(:cursor_visible=) }
+      end
 
-          describe '#delay' do
-it { instance.must_respond_to(:delay) }
-end
+      describe '#delay' do
+        it { instance.must_respond_to(:delay) }
+      end
 
-          describe '#delay=' do
-it { instance.must_respond_to(:delay=) }
-end
+      describe '#delay=' do
+        it { instance.must_respond_to(:delay=) }
+      end
 
-          describe '#editable' do
-it { instance.must_respond_to(:editable) }
-end
+      describe '#editable' do
+        it { instance.must_respond_to(:editable) }
+      end
 
-          describe '#editable=' do
-it { instance.must_respond_to(:editable=) }
-end
+      describe '#editable=' do
+        it { instance.must_respond_to(:editable=) }
+      end
 
-          describe '#editable?' do
-it { instance.must_respond_to(:editable?) }
-end
+      describe '#editable?' do
+        it { instance.must_respond_to(:editable?) }
+      end
 
-          describe '#group' do
-it { instance.must_respond_to(:group) }
-end
+      describe '#group' do
+        it { instance.must_respond_to(:group) }
+      end
 
-          describe '#group=' do
-it { instance.must_respond_to(:group=) }
-end
+      describe '#group=' do
+        it { instance.must_respond_to(:group=) }
+      end
 
-          describe '#name' do
-it { instance.must_respond_to(:name) }
-end
+      describe '#name' do
+        it { instance.must_respond_to(:name) }
+      end
 
-          describe '#name=' do
-it { instance.must_respond_to(:name=) }
-end
+      describe '#name=' do
+        it { instance.must_respond_to(:name=) }
+      end
 
-          describe '#parent' do
-it { instance.must_respond_to(:parent) }
-end
+      describe '#parent' do
+        it { instance.must_respond_to(:parent) }
+      end
 
-          describe '#parent=' do
-it { instance.must_respond_to(:parent=) }
-end
+      describe '#parent=' do
+        it { instance.must_respond_to(:parent=) }
+      end
 
-          describe '#zindex' do
-it { instance.must_respond_to(:zindex) }
-end
+      describe '#zindex' do
+        it { instance.must_respond_to(:zindex) }
+      end
 
-          describe '#zindex=' do
-it { instance.must_respond_to(:zindex=) }
-end
+      describe '#zindex=' do
+        it { instance.must_respond_to(:zindex=) }
+      end
 
-          describe '#visible' do
-it { instance.must_respond_to(:visible) }
-end
+      describe '#visible' do
+        it { instance.must_respond_to(:visible) }
+      end
 
-          describe '#visible=' do
-it { instance.must_respond_to(:visible=) }
-end
+      describe '#visible=' do
+        it { instance.must_respond_to(:visible=) }
+      end
 
-          describe '#visible?' do
-it { instance.must_respond_to(:visible?) }
-end
+      describe '#visible?' do
+        it { instance.must_respond_to(:visible?) }
+      end
 
       describe '#attributes' do
         subject { instance.attributes }

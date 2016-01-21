@@ -89,41 +89,28 @@ module Vedeu
 
       # @return [String]
       def inspect
-        "<#{self.class.name} name:'#{name}', x:#{x}, y:#{y}, ox:#{ox}, " \
-        "oy:#{oy}, visible:#{visible}>"
+        "name:'#{name}' x:#{x} y:#{y} ox:#{ox} oy:#{oy} visible:#{visible}"
       end
 
-      # Moves the cursor down by one row.
-      #
-      #   Vedeu.trigger(:_cursor_down_, name)
-      #   Vedeu.trigger(:_cursor_down_, Vedeu.focus)
-      #
+      # {include:file:docs/events/by_name/cursor_down.md}
       # @return [Vedeu::Cursors::Cursor]
-      def move_down
-        @oy += 1
+      def move_down(offset = 1)
+        @oy += offset || 1
         @y = coordinate(oy, :y).y
 
         self
       end
 
-      # Moves the cursor left by one column.
-      #
-      #   Vedeu.trigger(:_cursor_left_, name)
-      #   Vedeu.trigger(:_cursor_left_, Vedeu.focus)
-      #
+      # {include:file:docs/events/by_name/cursor_left.md}
       # @return [Vedeu::Cursors::Cursor]
-      def move_left
-        @ox -= 1
+      def move_left(offset = 1)
+        @ox -= offset || 1
         @x = coordinate(ox, :x).x
 
         self
       end
 
-      # Moves the cursor to the top left of the named interface.
-      #
-      #   Vedeu.trigger(:_cursor_origin_, name)
-      #   Vedeu.trigger(:_cursor_origin_, Vedeu.focus)
-      #
+      # {include:file:docs/events/by_name/cursor_origin.md}
       # @return [Vedeu::Cursors::Cursor]
       def move_origin
         @x = bx
@@ -134,27 +121,19 @@ module Vedeu
         store
       end
 
-      # Moves the cursor right by one column.
-      #
-      #   Vedeu.trigger(:_cursor_right_, name)
-      #   Vedeu.trigger(:_cursor_right_, Vedeu.focus)
-      #
+      # {include:file:docs/events/by_name/cursor_right.md}
       # @return [Vedeu::Cursors::Cursor]
-      def move_right
-        @ox += 1
+      def move_right(offset = 1)
+        @ox += offset || 1
         @x = coordinate(ox, :x).x
 
         self
       end
 
-      # Moves the cursor up by one row.
-      #
-      #   Vedeu.trigger(:_cursor_up_, name)
-      #   Vedeu.trigger(:_cursor_up_, Vedeu.focus)
-      #
+      # {include:file:docs/events/by_name/cursor_up.md}
       # @return [Vedeu::Cursors::Cursor]
-      def move_up
-        @oy -= 1
+      def move_up(offset = 1)
+        @oy -= offset || 1
         @y = coordinate(oy, :y).y
 
         self
@@ -185,17 +164,7 @@ module Vedeu
       end
       alias to_str to_s
 
-      # Hide a named cursor, or without a name, the cursor of the
-      # currently focussed interface.
-      #
-      # @example
-      #   Vedeu.trigger(:_hide_cursor_, name)
-      #   Vedeu.trigger(:_hide_cursor_, Vedeu.focus)
-      #   Vedeu.trigger(:_hide_cursor_)
-      #   Vedeu.hide_cursor(name)
-      #   Vedeu.hide_cursor(Vedeu.focus)
-      #   Vedeu.hide_cursor
-      #
+      # {include:file:docs/events/by_name/hide_cursor.md}
       # @return [Vedeu::Cells::Cursor]
       def hide
         super
@@ -222,17 +191,7 @@ module Vedeu
         @position = Vedeu::Geometries::Position.coerce([y, x])
       end
 
-      # Show a named cursor, or without a name, the cursor of the
-      # currently focussed interface.
-      #
-      # @example
-      #   Vedeu.trigger(:_show_cursor_, name)
-      #   Vedeu.trigger(:_show_cursor_, Vedeu.focus)
-      #   Vedeu.trigger(:_show_cursor_)
-      #   Vedeu.show_cursor(name)
-      #   Vedeu.show_cursor(Vedeu.focus)
-      #   Vedeu.show_cursor
-      #
+      # {include:file:docs/events/by_name/show_cursor.md}
       # @return [Vedeu::Cells::Cursor]
       def show
         super
@@ -334,24 +293,24 @@ module Vedeu
   # See {file:docs/cursors.md#vedeutoggle_cursor__}
   Vedeu.bind(:_toggle_cursor_) { |name| Vedeu.toggle_cursor(name) }
 
-  # See {file:docs/cursors.md}
-  Vedeu.bind(:_cursor_left_) do |name|
-    Vedeu::Cursors::Move.move(name, :move_left)
+  # See {file:docs/events/by_name/cursor_left.md}
+  Vedeu.bind(:_cursor_left_) do |name, offset|
+    Vedeu::Cursors::Move.move(name, :move_left, offset)
   end
 
-  # See {file:docs/cursors.md}
-  Vedeu.bind(:_cursor_down_) do |name|
-    Vedeu::Cursors::Move.move(name, :move_down)
+  # See {file:docs/events/by_name/cursor_down.md}
+  Vedeu.bind(:_cursor_down_) do |name, offset|
+    Vedeu::Cursors::Move.move(name, :move_down, offset)
   end
 
-  # See {file:docs/cursors.md}
-  Vedeu.bind(:_cursor_up_) do |name|
-    Vedeu::Cursors::Move.move(name, :move_up)
+  # See {file:docs/events/by_name/cursor_up.md}
+  Vedeu.bind(:_cursor_up_) do |name, offset|
+    Vedeu::Cursors::Move.move(name, :move_up, offset)
   end
 
-  # See {file:docs/cursors.md}
-  Vedeu.bind(:_cursor_right_) do |name|
-    Vedeu::Cursors::Move.move(name, :move_right)
+  # See {file:docs/events/by_name/cursor_right.md}
+  Vedeu.bind(:_cursor_right_) do |name, offset|
+    Vedeu::Cursors::Move.move(name, :move_right, offset)
   end
 
   # See {file:docs/cursors.md}
@@ -364,7 +323,7 @@ module Vedeu
 
   # See {file:docs/cursors.md}
   Vedeu.bind(:_cursor_position_) do |name|
-    Vedeu.cursors.by_name(name).to_a
+    Vedeu.cursors.by_name(name).inspect
   end
 
   # See {file:docs/cursors.md}

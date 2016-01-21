@@ -41,7 +41,7 @@ module Vedeu
 
         Vedeu::Geometries::Geometry.store(new_attributes) do
           update_cursor!
-          refresh!
+          Vedeu.trigger(:_movement_refresh_, name)
         end
       end
 
@@ -87,7 +87,7 @@ module Vedeu
       end
 
       # @return [Hash<Symbol => Symbol>]
-      def event
+      def cursor_event
         {
           down:   :_cursor_down_,
           left:   :_cursor_left_,
@@ -129,13 +129,6 @@ module Vedeu
         }
       end
 
-      # Refresh the screen after moving.
-      #
-      # @return [void]
-      def refresh!
-        Vedeu.trigger(:_movement_refresh_, name)
-      end
-
       # Moves the geometry right by the offset.
       #
       # @return [Hash<Symbol => Fixnum]
@@ -169,7 +162,13 @@ module Vedeu
       #
       # @return [void]
       def update_cursor!
-        Vedeu.trigger(event, name)
+        if direction == :origin
+          Vedeu.trigger(cursor_event, name)
+
+        else
+          Vedeu.trigger(cursor_event, name, 0)
+
+        end
       end
 
       # @return [Boolean]
@@ -206,5 +205,41 @@ module Vedeu
     end # Move
 
   end # Geometries
+
+  # :nocov:
+
+  # {include:file:docs/events/by_name/movement_refresh.md}
+  Vedeu.bind(:_movement_refresh_) do |name|
+    Vedeu.trigger(:_clear_)
+    Vedeu.trigger(:_refresh_)
+    Vedeu.trigger(:_clear_view_, name)
+    Vedeu.trigger(:_refresh_view_, name)
+  end
+
+  # {include:file:docs/events/by_name/view_down.md}
+  Vedeu.bind(:_view_down_) do |name, offset|
+    Vedeu::Geometries::Move.move(name: name, offset: offset, direction: :down)
+  end
+
+  # {include:file:docs/events/by_name/view_left.md}
+  Vedeu.bind(:_view_left_) do |name, offset|
+    Vedeu::Geometries::Move.move(name: name, offset: offset, direction: :left)
+  end
+
+  # {include:file:docs/events/by_name/view_right.md}
+  Vedeu.bind(:_view_right_) do |name, offset|
+    Vedeu::Geometries::Move.move(name: name, offset: offset, direction: :right)
+  end
+
+  # {include:file:docs/events/by_name/view_up.md}
+  Vedeu.bind(:_view_up_) do |name, offset|
+    Vedeu::Geometries::Move.move(name: name, offset: offset, direction: :up)
+  end
+
+  [:down, :left, :right, :up].each do |direction|
+    Vedeu.bind_alias(:"_geometry_#{direction}_", :"_view_#{direction}_")
+  end
+
+  # :nocov:
 
 end # Vedeu

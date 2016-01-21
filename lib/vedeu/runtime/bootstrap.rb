@@ -82,7 +82,7 @@ module Vedeu
           Vedeu.trigger(:_goto_, *Vedeu.config.root)
 
         else
-          Vedeu.log_stderr(type: :debug, message: client_initialize_error)
+          Vedeu.log_stderr(message: client_initialize_error)
 
         end
       end

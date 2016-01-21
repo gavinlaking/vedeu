@@ -61,18 +61,16 @@ module Vedeu
       end
 
       describe '#initialize' do
-        subject { instance }
-
-        it { subject.must_be_instance_of(described) }
-        it { subject.instance_variable_get('@name').must_equal( _name) }
-        it { subject.instance_variable_get('@ox').must_equal(ox) }
-        it { subject.instance_variable_get('@oy').must_equal(oy) }
+        it { instance.must_be_instance_of(described) }
+        it { instance.instance_variable_get('@name').must_equal( _name) }
+        it { instance.instance_variable_get('@ox').must_equal(ox) }
+        it { instance.instance_variable_get('@oy').must_equal(oy) }
         it do
-          subject.instance_variable_get('@repository').must_equal(repository)
+          instance.instance_variable_get('@repository').must_equal(repository)
         end
-        it { subject.instance_variable_get('@visible').must_equal(true) }
-        it { subject.instance_variable_get('@x').must_equal(x) }
-        it { subject.instance_variable_get('@y').must_equal(y) }
+        it { instance.instance_variable_get('@visible').must_equal(true) }
+        it { instance.instance_variable_get('@x').must_equal(x) }
+        it { instance.instance_variable_get('@y').must_equal(y) }
       end
 
       describe '#attributes' do
@@ -147,8 +145,7 @@ module Vedeu
 
       describe '#inspect' do
         let(:expected) {
-          "<Vedeu::Cursors::Cursor name:'vedeu_cursors_cursor', x:19, y:8, ox:3, oy:2, " \
-          "visible:true>"
+          "name:'vedeu_cursors_cursor' x:19 y:8 ox:3 oy:2 visible:true"
         }
 
         subject { instance.inspect }

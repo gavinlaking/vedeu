@@ -1,1 +1,3 @@
-@todo Add more documentation.
+Fetch the cursor of the currently focussed interface/view.
+
+    Vedeu.cursor

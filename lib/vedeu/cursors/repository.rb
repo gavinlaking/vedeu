@@ -12,11 +12,7 @@ module Vedeu
 
       class << self
 
-        # Fetch the cursor of the currently focussed interface/view.
-        #
-        # @example
-        #   Vedeu.cursor
-        #
+        # {include:file:docs/dsl/by_method/cursor.md}
         # @return [NilClass|Vedeu::Cursors::Cursor]
         def cursor
           cursors.by_name
@@ -37,17 +33,16 @@ module Vedeu
 
   end # Cursors
 
-  # Manipulate the repository of cursors.
-  #
-  # @example
-  #   Vedeu.cursors
-  #
+  # {include:file:docs/dsl/by_method/cursors.md}
   # @!method cursors
   #   @return [Vedeu::Cursors::Repository]
+  def_delegators Vedeu::Cursors::Repository,
+                 :cursors
+
+  # {include:file:docs/dsl/by_method/cursor.md}
   # @!method cursor
   #   @see Vedeu::Cursors::Repository.cursor
   def_delegators Vedeu::Cursors::Repository,
-                 :cursor,
-                 :cursors
+                 :cursor
 
 end # Vedeu

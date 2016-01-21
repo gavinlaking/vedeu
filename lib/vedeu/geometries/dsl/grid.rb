@@ -33,6 +33,7 @@ module Vedeu
         @value = value
       end
 
+      # @macro raise_out_of_range
       # @see Vedeu::Geometries::DSL#columns
       def columns
         fail Vedeu::Error::OutOfRange if out_of_range?
@@ -40,6 +41,7 @@ module Vedeu
         column * value
       end
 
+      # @macro raise_out_of_range
       # @see Vedeu::Geometries::DSL#rows
       def rows
         fail Vedeu::Error::OutOfRange if out_of_range?

@@ -12,7 +12,7 @@ module Vedeu
       let(:instance)   { described.new(attributes) }
       let(:direction)  {}
       let(:_name)      { :vedeu_geometries_move }
-      let(:offset)     {}
+      let(:offset)     { 1 }
       let(:attributes) {
         {
           direction: direction,
@@ -24,14 +24,7 @@ module Vedeu
         Vedeu::Geometries::Geometry.new(name: _name, x: 2, xn: 8, y: 2, yn: 8)
       }
 
-      before do
-        Vedeu.stubs(:trigger).with(:_movement_refresh_, _name)
-        Vedeu.stubs(:trigger).with(:_cursor_down_, _name)
-        Vedeu.stubs(:trigger).with(:_cursor_left_, _name)
-        Vedeu.stubs(:trigger).with(:_cursor_origin_, _name)
-        Vedeu.stubs(:trigger).with(:_cursor_right_, _name)
-        Vedeu.stubs(:trigger).with(:_cursor_up_, _name)
-      end
+      before { Vedeu.stubs(:trigger).with(:_movement_refresh_, _name) }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -81,6 +74,10 @@ module Vedeu
         context 'when the direction is :down' do
           let(:direction) { :down }
 
+          before do
+            Vedeu.stubs(:trigger).with(:_cursor_down_, _name, 0)
+          end
+
           context 'when y + offset > terminal height' do
             let(:offset) { 3 }
 
@@ -98,6 +95,10 @@ module Vedeu
 
         context 'when the direction is :left' do
           let(:direction) { :left }
+
+          before do
+            Vedeu.stubs(:trigger).with(:_cursor_left_, _name, 0)
+          end
 
           context 'when x - offset < 1' do
             let(:offset) { 3 }
@@ -124,6 +125,10 @@ module Vedeu
         context 'when the direction is :origin' do
           let(:direction) { :origin }
 
+          before do
+            Vedeu.stubs(:trigger).with(:_cursor_origin_, _name)
+          end
+
           it { subject.must_be_instance_of(Vedeu::Geometries::Geometry) }
           it { subject.x.must_equal(1) }
           it { subject.xn.must_equal(7) }
@@ -133,6 +138,10 @@ module Vedeu
 
         context 'when the direction is :right' do
           let(:direction) { :right }
+
+          before do
+            Vedeu.stubs(:trigger).with(:_cursor_right_, _name, 0)
+          end
 
           context 'when xn + offset > terminal width' do
             let(:offset) { 3 }
@@ -151,6 +160,10 @@ module Vedeu
 
         context 'when the direction is :up' do
           let(:direction) { :up }
+
+          before do
+            Vedeu.stubs(:trigger).with(:_cursor_up_, _name, 0)
+          end
 
           context 'when y - offset < 1' do
             let(:offset) { 3 }

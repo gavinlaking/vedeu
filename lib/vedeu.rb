@@ -38,7 +38,8 @@ module Vedeu
 
   rescue Gem::LoadError
     raise Vedeu::Error::Fatal,
-          "Vedeu requires '#{gem_name}' for this functionality."
+          "Vedeu requires '#{gem_name}' for this functionality. " \
+          "Please add this to your project 'Gemfile' or '*.gemspec'."
   end
 
 end # Vedeu

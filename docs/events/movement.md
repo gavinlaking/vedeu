@@ -2,7 +2,8 @@
 
 ## Movement Events
 
-Note: 'name' is a Symbol unless mentioned otherwise.
+Note: `name` is a Symbol unless mentioned otherwise, and can be
+substituted for `Vedeu.focus` to use the interface currently in focus.
 
 For cursor related movement events, please refer to
 {file:docs/cursors.md} Cursors.

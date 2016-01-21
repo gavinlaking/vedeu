@@ -18,11 +18,7 @@ module Vedeu
 
   end # Borders
 
-  # Manipulate the repository of borders.
-  #
-  # @example
-  #   Vedeu.borders
-  #
+  # {include:file:docs/dsl/by_method/borders.md}
   # @!method borders
   # @return [Vedeu::Borders::Repository]
   def_delegators Vedeu::Borders::Repository,

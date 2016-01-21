@@ -12,7 +12,7 @@ module Vedeu
 
       # Render a cleared output.
       #
-      # @return [void]
+      # @return [Hash]
       def clear
         render({})
       end

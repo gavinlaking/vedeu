@@ -27,6 +27,20 @@ class VedeuMaterialColoursApp
               Vedeu::Renderers::File.new(filename: '/tmp/material_colours.out'))
   end
 
+  class CursorView
+    def render
+      Vedeu.render do
+        view('cursor') do
+          line "#{cursor_position}"
+        end
+      end
+    end
+
+    def cursor_position
+      Vedeu.trigger(:_cursor_position_, Vedeu.focus)
+    end
+  end
+
   # Borders can be defined as standalone declarations.
   Vedeu.border 'no_bottom' do
     background  '#000000'
@@ -270,11 +284,32 @@ class VedeuMaterialColoursApp
     zindex(0)
   end
 
+  Vedeu.interface 'cursor' do
+    geometry do
+      x      2
+      y      36
+      height 1
+      width  80
+    end
+  end
+
   Vedeu.keymap('_global_') do
-    key(:up)    { Vedeu.trigger(:_cursor_up_)     }
-    key(:right) { Vedeu.trigger(:_cursor_right_)  }
-    key(:down)  { Vedeu.trigger(:_cursor_down_)   }
-    key(:left)  { Vedeu.trigger(:_cursor_left_)   }
+    key(:up)    do
+      Vedeu.trigger(:_cursor_up_);
+      CursorView.new.render
+    end
+    key(:right) do
+      Vedeu.trigger(:_cursor_right_)
+      CursorView.new.render
+    end
+    key(:down) do
+      Vedeu.trigger(:_cursor_down_)
+      CursorView.new.render
+    end
+    key(:left) do
+      Vedeu.trigger(:_cursor_left_)
+      CursorView.new.render
+    end
     key(:home)  { Vedeu.trigger(:_cursor_top_)    }
     key(:end)   { Vedeu.trigger(:_cursor_bottom_) }
 
@@ -298,10 +333,26 @@ class VedeuMaterialColoursApp
     key('3') { Vedeu.trigger(:_hide_interface_, 'other_interface') }
     key('4') { Vedeu.trigger(:_show_interface_, 'other_interface') }
 
-    key('a') { Vedeu.trigger(:_view_left_, 'main_interface')  }
-    key('s') { Vedeu.trigger(:_view_down_, 'main_interface')  }
-    key('d') { Vedeu.trigger(:_view_up_, 'main_interface')    }
-    key('f') { Vedeu.trigger(:_view_right_, 'main_interface') }
+    key('a') do
+      Vedeu.trigger(:_view_left_, 'main_interface')
+
+      CursorView.new.render
+    end
+    key('s') do
+      Vedeu.trigger(:_view_down_, 'main_interface')
+
+      CursorView.new.render
+    end
+    key('d') do
+      Vedeu.trigger(:_view_up_, 'main_interface')
+
+      CursorView.new.render
+    end
+    key('f') do
+      Vedeu.trigger(:_view_right_, 'main_interface')
+
+      CursorView.new.render
+    end
 
     key('w') { Vedeu.trigger(:_toggle_group_, :my_group) }
     key('e') { Vedeu.trigger(:_hide_group_, :my_group) }

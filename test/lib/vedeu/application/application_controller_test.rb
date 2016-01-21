@@ -11,10 +11,8 @@ module Vedeu
     let(:params)    { {} }
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(described) }
-      it { subject.instance_variable_get('@params').must_equal(params) }
+      it { instance.must_be_instance_of(described) }
+      it { instance.instance_variable_get('@params').must_equal(params) }
     end
 
     describe '#redirect_to' do
