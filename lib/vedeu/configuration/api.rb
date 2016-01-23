@@ -525,6 +525,16 @@ module Vedeu
       end
       alias terminal_mode= terminal_mode
 
+      # Instructs Vedeu to use threads to perform certain actions.
+      # This can have a performance impact.
+      #
+      # @param boolean [Boolean]
+      # @return [Boolean]
+      def threaded(boolean)
+        options[:threaded] = boolean
+      end
+      alias threaded= threaded
+
       # Sets the width of the terminal.
       #
       #   Vedeu.configure do

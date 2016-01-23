@@ -25,6 +25,7 @@ class VedeuMaterialColoursApp
     # width  20
     renderers(Vedeu::Renderers::Terminal.new,
               Vedeu::Renderers::File.new(filename: '/tmp/material_colours.out'))
+    threaded false
   end
 
   class CursorView
