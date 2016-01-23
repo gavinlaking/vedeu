@@ -6,6 +6,8 @@ module Vedeu
 
     # Home of various runtime flags which Vedeu uses.
     #
+    # @api public
+    #
     class Flags
 
       include Singleton
