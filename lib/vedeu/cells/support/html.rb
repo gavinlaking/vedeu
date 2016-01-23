@@ -39,13 +39,9 @@ module Vedeu
 
       # @return [String]
       def background
-        if cell.respond_to?(:background)
-          cell.background.to_html
+        return '' unless cell.respond_to?(:background)
 
-        else
-          ''
-
-        end
+        cell.background.to_html
       end
 
       # @return [String]
@@ -55,13 +51,9 @@ module Vedeu
 
       # @return [String]
       def foreground
-        if cell.respond_to?(:foreground)
-          cell.foreground.to_html
+        return '' unless cell.respond_to?(:foreground)
 
-        else
-          ''
-
-        end
+        cell.foreground.to_html
       end
 
       # @return [String]
@@ -71,13 +63,9 @@ module Vedeu
 
       # @return [String]
       def style_attribute
-        if absent?(background) && absent?(foreground)
-          ''
+        return '' if absent?(background) && absent?(foreground)
 
-        else
-          " style='#{background}#{foreground}'"
-
-        end
+        " style='#{background}#{foreground}'"
       end
 
       # @return [String]
