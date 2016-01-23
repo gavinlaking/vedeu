@@ -10,39 +10,7 @@ module Vedeu
     #
     module Border
 
-      # When {Vedeu::DSL::Border} is included in a class, the
-      # methods within this module are included as class methods on
-      # that class.
-      #
-      module ClassMethods
-
-        # Specify the border of an interface or view with a simple
-        # DSL.
-        #
-        #   # Standalone (preferred):
-        #   Vedeu.border :my_interface do
-        #     # ... see {Vedeu::Borders::DSL}
-        #   end
-        #
-        # @param name [String|Symbol] The name of the interface or
-        #   view to which this border belongs.
-        # @param block [Proc]
-        # @macro raise_requires_block
-        # @macro raise_missing_required
-        # @return [Vedeu::Borders::Border]
-        # @see Vedeu::Borders::DSL
-        def border(name, &block)
-          fail Vedeu::Error::MissingRequired unless name
-          fail Vedeu::Error::RequiresBlock unless block_given?
-
-          Vedeu::Borders::Border.build(enabled: true, name: name, &block).store
-        end
-
-      end # ClassMethods
-
-      # When {Vedeu::DSL::Border} is included in a class, the
-      # methods within this module are included as instance methods on
-      # that class.
+      # Provide additional behaviour as instance methods.
       #
       module InstanceMethods
 
@@ -112,7 +80,6 @@ module Vedeu
 
       # @macro included_module
       def self.included(klass)
-        klass.extend(Vedeu::DSL::Border::ClassMethods)
         klass.include(Vedeu::DSL::Border::InstanceMethods)
       end
 
