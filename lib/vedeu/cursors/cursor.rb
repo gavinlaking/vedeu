@@ -188,7 +188,7 @@ module Vedeu
       #
       # @return [Vedeu::Geometries::Position]
       def position
-        @position = Vedeu::Geometries::Position.coerce([y, x])
+        @position = Vedeu::Geometries::Position.new(y, x)
       end
 
       # {include:file:docs/events/by_name/show_cursor.md}

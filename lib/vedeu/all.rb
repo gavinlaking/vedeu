@@ -7,6 +7,8 @@ require 'vedeu/sentence'
 require 'vedeu/version'
 
 require 'vedeu/support/point'
+require 'vedeu/support/x_coordinate'
+require 'vedeu/support/y_coordinate'
 
 require 'vedeu/configuration/all'
 require 'vedeu/esc/all'

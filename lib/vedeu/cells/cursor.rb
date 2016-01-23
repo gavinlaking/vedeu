@@ -58,7 +58,7 @@ module Vedeu
 
       # @return [Hash]
       def defaults
-        super.merge!(position: [1, 1])
+        super.merge!(position: Vedeu::Geometries::Position.new(1, 1))
       end
 
     end # Cursor

@@ -45,8 +45,9 @@ module Vedeu
 
         visible.each_with_index do |line, iy|
           line.chars.each_with_index do |char, ix|
+            position = Vedeu::Geometries::Position.new((by + iy), (bx + ix))
             out << Vedeu::Cells::Char.new(name:     name,
-                                          position: [(by + iy), (bx + ix)],
+                                          position: position,
                                           value:    char)
           end
         end

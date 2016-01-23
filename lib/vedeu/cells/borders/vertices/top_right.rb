@@ -25,7 +25,7 @@ module Vedeu
 
       # @return [Hash<Symbol => String>]
       def defaults
-        super.merge!(position: Vedeu::Geometries::Position.coerce([y, xn]),
+        super.merge!(position: Vedeu::Geometries::Position.new(y, xn),
                      value:    Vedeu.esc.top_right)
       end
 
