@@ -110,11 +110,7 @@ module Vedeu
 
       end # InstanceMethods
 
-      # When this module is included in a class, provide ClassMethods
-      # as class methods for the class.
-      #
-      # @param klass [Class]
-      # @return [void]
+      # @macro included_module
       def self.included(klass)
         klass.extend(Vedeu::DSL::Border::ClassMethods)
         klass.include(Vedeu::DSL::Border::InstanceMethods)
