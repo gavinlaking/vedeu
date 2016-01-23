@@ -10,10 +10,18 @@ module Vedeu
     #
     class Coordinate
 
+      extend Forwardable
+
+      def_delegators :coordinate,
+                     :d,
+                     :bd,
+                     :bdn,
+                     :d_dn
+
       # Return a new instance of Vedeu::Cursors::Coordinate.
       #
       # @param attributes [Hash<Symbol => Fixnum|String|Symbol>]
-      # @option attributes name [String|Symbol]
+      # @option attributes geometry [Vedeu::Geometries::Geometry]
       # @option attributes type [Symbol]
       # @option attributes offset [Fixnum]
       # @return [Vedeu::Cursors::Coordinate]
@@ -50,27 +58,16 @@ module Vedeu
       #
       # @return [Fixnum]
       def d_position
-        pos = if offset <= 0
-                d
-
-              elsif offset > dn_index
-                dn_position
-
-              else
-                d_range[offset]
-
-              end
-
-        Vedeu::Point.coerce(value: pos, min: bd, max: bdn).value
+        Vedeu::Point.coerce(value: position, min: bd, max: bdn).value
       end
       alias x d_position
       alias y d_position
 
       protected
 
-      # @!attribute [r] name
-      # @return [String|Symbol]
-      attr_reader :name
+      # @!attribute [r] geometry
+      # @return [Vedeu::Geometries::Geometry]
+      attr_reader :geometry
 
       # @!attribute [r] offset
       # @return [Fixnum]
@@ -82,54 +79,16 @@ module Vedeu
 
       private
 
-      # Returns the geometry for the interface.
-      #
-      # @return (see Vedeu::Geometries::Repository#by_name)
-      def geometry
-        @geometry ||= Vedeu.geometries.by_name(name)
-      end
-
-      # Return the :x or :y value from the geometry.
-      #
-      # @return [Fixnum]
-      def d
-        geometry.send(coordinate_type[0])
-      end
-
-      # Return the :bx or :by value from the geometry.
-      #
-      # @return [Fixnum]
-      def bd
-        geometry.send(coordinate_type[1])
-      end
-
-      # Return the :bxn or :byn value from the geometry.
-      #
-      # @return [Fixnum]
-      def bdn
-        geometry.send(coordinate_type[2])
-      end
-
-      # Return the :width or :height value from the geometry.
-      #
-      # @return [Fixnum]
-      def d_dn
-        geometry.send(coordinate_type[3])
-      end
-
-      # Ascertain the correct methods to use for determining the
-      # coordinates.
-      #
       # @macro raise_invalid_syntax
-      # @return [Fixnum]
-      def coordinate_type
-        @_type ||= case type
-                   when :x then [:x, :bx, :bxn, :bordered_width]
-                   when :y then [:y, :by, :byn, :bordered_height]
-                   else
-                     fail Vedeu::Error::InvalidSyntax,
-                          'Coordinate type not given, cannot continue.'
-                   end
+      # @return [Vedeu::XCoordinate|Vedeu::YCoordinate]
+      def coordinate
+        @_coordinate ||= case type
+                         when :x then Vedeu::XCoordinate.new(geometry)
+                         when :y then Vedeu::YCoordinate.new(geometry)
+                         else
+                           fail Vedeu::Error::InvalidSyntax,
+                                'Coordinate type not given, cannot continue.'
+                         end
       end
 
       # Returns the maximum index for an area.
@@ -163,10 +122,26 @@ module Vedeu
       # @return [Hash<Symbol => Fixnum|String|Symbol>]
       def defaults
         {
-          name:   '',
-          offset: nil,
-          type:   :x,
+          geometry: nil,
+          offset:   nil,
+          type:     :x,
         }
+      end
+
+      # Return the position respective of the offset.
+      #
+      # @return [Fixnum]
+      def position
+        if offset <= 0
+          d
+
+        elsif offset > dn_index
+          dn_position
+
+        else
+          d_range[offset]
+
+        end
       end
 
     end # Coordinate

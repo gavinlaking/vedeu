@@ -71,9 +71,9 @@ module Vedeu
       # @param type [Symbol]
       # @return [Vedeu::Cursors::Coordinate]
       def coordinate(offset, type)
-        Vedeu::Cursors::Coordinate.new(name:   name,
-                                       offset: offset,
-                                       type:   type)
+        Vedeu::Cursors::Coordinate.new(geometry: geometry,
+                                       offset:   offset,
+                                       type:     type)
       end
 
       # @return [Vedeu::Cursors::Cursor]

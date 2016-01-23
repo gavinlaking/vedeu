@@ -224,9 +224,9 @@ module Vedeu
       #
       # @return [Vedeu::Cursors::Coordinate]
       def coordinate(offset, type)
-        Vedeu::Cursors::Coordinate.new(name:   name,
-                                       offset: offset,
-                                       type:   type)
+        Vedeu::Cursors::Coordinate.new(geometry: geometry,
+                                       offset:   offset,
+                                       type:     type)
       end
 
       # The default values for a new instance of this class.
