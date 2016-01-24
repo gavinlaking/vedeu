@@ -25,7 +25,7 @@ module Vedeu
       #
       # @param input [NilClass|String]
       # @param options [Hash<Symbol => Symbol]
-      # @option mode [Symbol] Either :cooked (default) or :raw
+      # @option mode [Symbol] Either :cooked (default), :raw or :fake.
       # @return [Vedeu::Input::Read]
       def initialize(input = nil, options = {})
         @input   = input
@@ -76,16 +76,6 @@ module Vedeu
       # @return [Boolean]
       def fake?
         mode == :fake
-      end
-
-      # @return [String]
-      def mouse_off
-        Vedeu.esc.mouse_x10_off
-      end
-
-      # @return [String]
-      def show_cursor
-        Vedeu.esc.show_cursor
       end
 
       # @return [String]

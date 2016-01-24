@@ -40,7 +40,7 @@ module Vedeu
 
         subject { described.read }
 
-        it 'appends "Waiting for user input..." to the log' do
+        it 'writes to the log file' do
           Vedeu.expects(:log)
           subject
         end
