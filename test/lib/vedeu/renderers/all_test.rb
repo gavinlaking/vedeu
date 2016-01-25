@@ -27,6 +27,12 @@ module Vedeu
     }
     after  { Vedeu::Renderers.reset }
 
+    describe '.clear' do
+      subject { described.clear }
+
+      it { described.must_respond_to(:clear) }
+    end
+
     describe '.renderers' do
       subject { described.renderers }
 

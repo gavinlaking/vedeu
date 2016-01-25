@@ -10,9 +10,7 @@ module Vedeu
     #
     module Value
 
-      # Provides view model class methods for Vedeu::Views.
-      #
-      # @api private
+      # Provide additional behaviour as class methods.
       #
       module ClassMethods
 
@@ -58,9 +56,7 @@ module Vedeu
 
       end # ClassMethods
 
-      # Provides view model instance methods for Vedeu::Views.
-      #
-      # @api private
+      # Provide additional behaviour as instance methods.
       #
       module InstanceMethods
 
@@ -128,12 +124,7 @@ module Vedeu
 
       end # InstanceMethods
 
-      # When this module is included in a class, provide ClassMethods
-      # as class methods and InstanceMethods as instance methods for
-      # the given class.
-      #
-      # @param klass [Class]
-      # @return [void]
+      # @macro included_module
       def self.included(klass)
         klass.extend(Vedeu::Views::Value::ClassMethods)
         klass.include(Vedeu::Views::Value::InstanceMethods)

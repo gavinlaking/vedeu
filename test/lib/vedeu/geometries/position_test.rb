@@ -60,82 +60,38 @@ module Vedeu
       describe '.[]' do
         subject { described.[](y, x) }
 
-        it { instance.must_be_instance_of(described) }
+        it { subject.must_be_instance_of(described) }
 
         context 'when the x and y coordinates are given' do
-          it { instance.y.must_equal(12) }
-          it { instance.x.must_equal(19) }
+          it { subject.y.must_equal(12) }
+          it { subject.x.must_equal(19) }
         end
 
         context 'when the x coordinate is not given' do
           let(:x) {}
 
-          it { instance.y.must_equal(12) }
-          it { instance.x.must_equal(1) }
+          it { subject.y.must_equal(12) }
+          it { subject.x.must_equal(1) }
         end
 
         context 'when the y coordinate is not given' do
           let(:y) {}
 
-          it { instance.y.must_equal(1) }
-          it { instance.x.must_equal(19) }
+          it { subject.y.must_equal(1) }
+          it { subject.x.must_equal(19) }
         end
 
         context 'when the x and y coordinates are not given' do
           let(:x) {}
           let(:y) {}
 
-          it { instance.y.must_equal(1) }
-          it { instance.x.must_equal(1) }
+          it { subject.y.must_equal(1) }
+          it { subject.x.must_equal(1) }
         end
       end
 
       describe '.coerce' do
-        let(:_value) {}
-
-        subject { described.coerce(_value) }
-
-        context 'when the value is already a Position' do
-          let(:_value) { instance }
-
-          it { subject.must_equal(instance) }
-        end
-
-        context 'when the value is an Array' do
-          let(:_value) { [2, 8] }
-
-          it { subject.must_be_instance_of(described) }
-          it { subject.y.must_equal(2) }
-          it { subject.x.must_equal(8) }
-        end
-
-        context 'when the value is an Fixnum' do
-          let(:_value) { 2 }
-
-          it { subject.must_be_instance_of(described) }
-          it { subject.y.must_equal(2) }
-          it { subject.x.must_equal(1) }
-        end
-
-        context 'when the value is a Hash' do
-          let(:_value) { { y: 3, x: 9 } }
-
-          it { subject.must_be_instance_of(described) }
-          it { subject.y.must_equal(3) }
-          it { subject.x.must_equal(9) }
-        end
-
-        context 'when the value is a NilClass' do
-          let(:_value) {}
-
-          it { subject.must_be_instance_of(NilClass) }
-        end
-
-        context 'when the value is something unhandled' do
-          let(:_value) { :invalid }
-
-          it { subject.must_be_instance_of(NilClass) }
-        end
+        it { described.must_respond_to(:coerce) }
       end
 
       describe '#<=>' do

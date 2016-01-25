@@ -21,34 +21,21 @@ module Vedeu
       attr_reader :x
       alias last x
 
-      # Convenience constructor for Vedeu::Geometries::Position.
-      #
-      # @param (see #initialize)
-      def self.[](y = 1, x = 1)
-        new(y, x)
-      end
+      class << self
 
-      # @param value [Array<Fixnum>|Fixnum|Hash|
-      #   Vedeu::Geometries::Position]
-      # @return [Vedeu::Geometries::Position]
-      def self.coerce(value)
-        if value.is_a?(self)
-          value
+        extend Forwardable
 
-        elsif value.is_a?(Array)
-          new(*value)
+        def_delegators Vedeu::Coercers::Position,
+                       :coerce
 
-        elsif value.is_a?(Fixnum)
-          new(value, 1)
-
-        elsif value.is_a?(Hash)
-          new(value.fetch(:y, 1), value.fetch(:x, 1))
-
-        elsif value.is_a?(NilClass)
-          nil
-
+        # Convenience constructor for Vedeu::Geometries::Position.
+        #
+        # @param (see #initialize)
+        def [](y = 1, x = 1)
+          new(y, x)
         end
-      end
+
+      end # Eigenclass
 
       # Initializes a new instance of Vedeu::Geometries::Position.
       #
@@ -67,10 +54,10 @@ module Vedeu
       #
       # @return [Array<Fixnum>]
       def as_indices
-        xi = ((x - 1) <= 1) ? 0 : (x - 1)
-        yi = ((y - 1) <= 1) ? 0 : (y - 1)
+        ix = Vedeu::Point.coerce(value: (x - 1), min: 0).value
+        iy = Vedeu::Point.coerce(value: (y - 1), min: 0).value
 
-        [yi, xi]
+        [iy, ix]
       end
 
       # @param other [Vedeu::Geometries::Position]

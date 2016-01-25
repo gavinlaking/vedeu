@@ -16,9 +16,7 @@ module Vedeu
       # @return [Vedeu::Repositories::Repository]
       attr_accessor :repository
 
-      # When {Vedeu::Repositories::Model} is included in a class, the
-      # methods within this module are included as class methods on
-      # that class.
+      # Provide additional behaviour as class methods.
       #
       module ClassMethods
 
@@ -68,11 +66,7 @@ module Vedeu
 
       end # ClassMethods
 
-      # When this module is included in a class, provide ClassMethods
-      # as class methods for the class.
-      #
-      # @param klass [Class]
-      # @return [void]
+      # @macro included_module
       def self.included(klass)
         klass.extend(Vedeu::Repositories::Model::ClassMethods)
       end

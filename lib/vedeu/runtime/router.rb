@@ -7,6 +7,8 @@ module Vedeu
     # Stores all client application controllers with their respective
     # actions.
     #
+    # @api public
+    #
     module Router
 
       include Vedeu::Common

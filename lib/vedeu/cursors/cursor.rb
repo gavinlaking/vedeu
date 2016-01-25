@@ -188,7 +188,7 @@ module Vedeu
       #
       # @return [Vedeu::Geometries::Position]
       def position
-        @position = Vedeu::Geometries::Position.coerce([y, x])
+        @position = Vedeu::Geometries::Position.new(y, x)
       end
 
       # {include:file:docs/events/by_name/show_cursor.md}
@@ -224,9 +224,9 @@ module Vedeu
       #
       # @return [Vedeu::Cursors::Coordinate]
       def coordinate(offset, type)
-        Vedeu::Cursors::Coordinate.new(name:   name,
-                                       offset: offset,
-                                       type:   type)
+        Vedeu::Cursors::Coordinate.new(geometry: geometry,
+                                       offset:   offset,
+                                       type:     type)
       end
 
       # The default values for a new instance of this class.

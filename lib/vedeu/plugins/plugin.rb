@@ -37,6 +37,7 @@ module Vedeu
 
     # Load the plugin (require the gem).
     #
+    # @macro raise_fatal
     # @return [void]
     def load!
       begin

@@ -16,13 +16,9 @@ module Vedeu
 
       # @return [String]
       def as_html
-        if present?(value)
-          value
+        return value if present?(value)
 
-        else
-          super
-
-        end
+        super
       end
 
       # @return [Boolean]

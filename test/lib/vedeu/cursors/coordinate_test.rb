@@ -12,25 +12,24 @@ module Vedeu
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
-          name:   _name,
-          offset: offset,
-          type:   type,
+          geometry: geometry,
+          offset:   offset,
+          type:     type,
         }
       }
-      let(:_name)      {}
+      let(:geometry)   {
+        Vedeu::Geometries::Geometry.new(name: :vedeu_cursors_coordinate,
+                                        x:    2,
+                                        y:    3,
+                                        xn:   10,
+                                        yn:   6)
+      }
       let(:offset)     {}
       let(:type)       {}
-      let(:geometry)   {
-        Vedeu::Geometries::Geometry.new(name: _name, x: 2, y: 3, xn: 10, yn: 6)
-      }
-
-      before do
-        Vedeu.geometries.stubs(:by_name).returns(geometry)
-      end
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
-        it { instance.instance_variable_get('@name').must_equal(_name) }
+        it { instance.instance_variable_get('@geometry').must_equal(geometry) }
         it { instance.instance_variable_get('@offset').must_equal(offset) }
         it { instance.instance_variable_get('@type').must_equal(type) }
       end

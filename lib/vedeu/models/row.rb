@@ -15,23 +15,14 @@ module Vedeu
       # @return [Array<NilClass|void>]
       attr_reader :cells
 
-      # @param value [Vedeu::Models::Row|Array<void>|void]
-      # @return [Vedeu::Models::Row]
-      def self.coerce(value)
-        if value.is_a?(self)
-          value
+      class << self
 
-        elsif value.is_a?(Array)
-          new(value.compact)
+        extend Forwardable
 
-        elsif value.nil?
-          new
+        def_delegators Vedeu::Coercers::Row,
+                       :coerce
 
-        else
-          new([value])
-
-        end
-      end
+      end # Eigenclass
 
       # Returns a new instance of Vedeu::Models::Row.
       #

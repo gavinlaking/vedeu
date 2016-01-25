@@ -44,4 +44,16 @@ module Vedeu
 
 end # Vedeu
 
+# Define some Yard macros used throughout the project.
+#
+# @!macro [new] included_module
+#   Provide additional behaviour to a class or module.
+#
+#   When a ClassMethods submodule and/or an InstanceMethods submodule
+#   is defined within this module, then provide these methods as
+#   class or instance methods to the including class or module.
+#
+#   @param klass [Class]
+#   @return [void]
+
 require 'vedeu/all'

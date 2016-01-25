@@ -2,7 +2,10 @@
 
 module Vedeu
 
-  # Provides a mechanism to coerce values within Vedeu.
+  # Provides a mechanism to coerce values within Vedeu in to expected
+  # objects.
+  #
+  # @api private
   #
   module Coercers
 
@@ -10,9 +13,23 @@ module Vedeu
 
 end # Vedeu
 
+require 'vedeu/coercers/coercer'
+
 require 'vedeu/coercers/alignment'
 require 'vedeu/coercers/horizontal_alignment'
 require 'vedeu/coercers/vertical_alignment'
 
+require 'vedeu/coercers/chars'
+
 require 'vedeu/coercers/colour'
 require 'vedeu/coercers/colour_attributes'
+
+require 'vedeu/coercers/editor_line'
+require 'vedeu/coercers/editor_lines'
+
+require 'vedeu/coercers/lines'
+require 'vedeu/coercers/page'
+require 'vedeu/coercers/position'
+require 'vedeu/coercers/row'
+require 'vedeu/coercers/streams'
+require 'vedeu/coercers/style'

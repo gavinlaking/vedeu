@@ -87,7 +87,7 @@ module Vedeu
           end
         end
 
-        # {include:file:docs/api/by_method/log_timestamp.md}
+        # {include:file:docs/dsl/by_method/log_timestamp.md}
         # @macro vedeu_logging_log_param_message
         # @return [String]
         def formatted_message(message)

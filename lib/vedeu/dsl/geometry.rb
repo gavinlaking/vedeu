@@ -10,9 +10,7 @@ module Vedeu
     #
     module Geometry
 
-      # When {Vedeu::DSL::Geometry} is included in a class, the
-      # methods within this module are included as class methods on
-      # that class.
+      # Provide additional behaviour as class methods.
       #
       module ClassMethods
 
@@ -44,9 +42,7 @@ module Vedeu
 
       end # ClassMethods
 
-      # When {Vedeu::DSL::Geometry} is included in a class, the
-      # methods within this module are included as instance methods on
-      # that class.
+      # Provide additional behaviour as instance methods.
       #
       module InstanceMethods
 
@@ -70,12 +66,7 @@ module Vedeu
 
       end # InstanceMethods
 
-      # When this module is included in a class, provide ClassMethods
-      # as class methods and InstanceMethods as instance methods for
-      # the given class.
-      #
-      # @param klass [Class]
-      # @return [void]
+      # @macro included_module
       def self.included(klass)
         klass.extend(Vedeu::DSL::Geometry::ClassMethods)
         klass.include(Vedeu::DSL::Geometry::InstanceMethods)

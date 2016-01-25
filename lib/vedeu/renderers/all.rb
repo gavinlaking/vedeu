@@ -21,9 +21,10 @@ module Vedeu
     # @return [Array<void>]
     def clear
       storage.map do |renderer|
-        log('Clearing', renderer)
+        Vedeu.log(type:    :render,
+                  message: "Clearing via #{renderer.class.name}")
 
-        threaded(renderer) { renderer.clear }
+        perform(renderer) { renderer.clear }
       end.each(&:join) if Vedeu.ready?
 
       ''
@@ -49,9 +50,10 @@ module Vedeu
     # @return [Array<void>]
     def render(output)
       storage.map do |renderer|
-        log('Rendering', renderer)
+        Vedeu.log(type:    :render,
+                  message: "Rendering via #{renderer.class.name}")
 
-        threaded(renderer) { renderer.render(output) }
+        perform(renderer) { renderer.render(output) }
       end.each(&:join) if Vedeu.ready?
 
       output
@@ -70,12 +72,16 @@ module Vedeu
       end
     end
 
-    # @param message [String]
-    # @param renderer [Class]
-    # @return [void]
-    def log(message, renderer)
-      Vedeu.log(type:    :render,
-                message: "#{message} via #{renderer.class.name}")
+    # @param renderer [void]
+    # @param block [Proc]
+    def perform(renderer, &block)
+      if Vedeu.config.threaded?
+        threaded(renderer) { yield }
+
+      else
+        unthreaded { yield }
+
+      end
     end
 
     # @return [Mutex]
@@ -103,6 +109,14 @@ module Vedeu
       yield
 
       Vedeu.trigger(:_show_cursor_)
+    end
+
+    # @param block [Proc]
+    # @return [void]
+    def unthreaded(&block)
+      toggle_cursor do
+        yield
+      end
     end
 
   end # Renderers

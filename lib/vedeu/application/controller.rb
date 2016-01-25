@@ -6,7 +6,7 @@ module Vedeu
   #
   module Controller
 
-    # When included, provide these methods as class methods.
+    # Provide additional behaviour as class methods.
     #
     module ClassMethods
 
@@ -75,11 +75,7 @@ module Vedeu
 
     end # ClassMethods
 
-    # When this module is included in a class, provide ClassMethods as
-    # class methods for the class.
-    #
-    # @param klass [Class]
-    # @return [void]
+    # @macro included_module
     def self.included(klass)
       klass.extend(Vedeu::Controller::ClassMethods)
     end

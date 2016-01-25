@@ -43,8 +43,7 @@ module Vedeu
       show
     end
 
-    # Provide class methods to models to allow the visibility to be
-    # changed.
+    # Provide additional behaviour as class methods.
     #
     module ClassMethods
 
@@ -146,11 +145,7 @@ module Vedeu
 
     end # ClassMethods
 
-    # When this module is included in a class, provide ClassMethods as
-    # class methods for the class.
-    #
-    # @param klass [Class]
-    # @return [void]
+    # @macro included_module
     def self.included(klass)
       klass.extend(Vedeu::Toggleable::ClassMethods)
     end

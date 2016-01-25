@@ -9,7 +9,8 @@ module Vedeu
     #
     module Registerable
 
-      # These class methods are mixed into the repository.
+      # Provide additional behaviour as class methods.
+      #
       module ClassMethods
 
         # The null model is used when the repository cannot be found.
@@ -64,9 +65,7 @@ module Vedeu
 
       end # ClassMethods
 
-      # When {Vedeu::Repositories::Registerable} is included in a
-      # class, the methods within this module are included as instance
-      # methods on that class.
+      # Provide additional behaviour as instance methods.
       #
       module InstanceMethods
 
@@ -77,11 +76,7 @@ module Vedeu
 
       end # InstanceMethods
 
-      # When this module is included in a class, provide ClassMethods
-      # as class methods for the class.
-      #
-      # @param klass [Class]
-      # @return [void]
+      # @macro included_module
       def self.included(klass)
         klass.extend(Vedeu::Repositories::Registerable::ClassMethods)
         klass.include(Vedeu::Repositories::Registerable::InstanceMethods)

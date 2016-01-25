@@ -65,21 +65,30 @@ module Vedeu
         mouse[0]
       end
 
-      # @return [Array<Fixnum>]
-      def mouse
-        @_input ||= input.chars[3..-1].map { |character| character.ord - 32 }
-      end
-
+      # Returns a boolean indicating the mouse interaction was
+      # recognised as a left click.
+      #
       # @return [Boolean]
       def left_click?
         button == 0
       end
 
+      # @return [Array<Fixnum>]
+      def mouse
+        @_input ||= input.chars[3..-1].map { |character| character.ord - 32 }
+      end
+
+      # Returns a boolean indicating the mouse interaction was
+      # recognised as the scroll wheel moving up.
+      #
       # @return [Boolean]
       def wheel_up?
         button == 64
       end
 
+      # Returns a boolean indicating the mouse interaction was
+      # recognised as the scroll wheel moving down.
+      #
       # @return [Boolean]
       def wheel_down?
         button == 65

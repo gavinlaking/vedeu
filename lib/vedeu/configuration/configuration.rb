@@ -269,6 +269,16 @@ module Vedeu
         instance.options[:terminal_mode]
       end
 
+      # Returns a boolean indicating whether Vedeu should use threads
+      # to perform certain actions. This can have a performance
+      # impact.
+      #
+      # @return [Boolean]
+      def threaded?
+        instance.options[:threaded]
+      end
+      alias threaded threaded?
+
       # Returns the client defined width for the terminal.
       #
       # {include:file:docs/dsl/by_method/width.md}
@@ -371,6 +381,7 @@ module Vedeu
         stdout:        nil,
         stderr:        nil,
         terminal_mode: :raw,
+        threaded:      true,
         width:         nil,
       }
     end

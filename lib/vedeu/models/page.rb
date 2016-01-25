@@ -14,32 +14,14 @@ module Vedeu
       # @return [Array<NilClass|Vedeu::Models::Row>]
       attr_reader :rows
 
-      # @param value
-      #   [Vedeu::Models::Page|Vedeu::Models::Row|Array<void>|void]
-      # @macro raise_invalid_syntax
-      # @return [Vedeu::Models::Page]
-      def self.coerce(value)
-        if value.is_a?(Vedeu::Models::Page)
-          value
+      class << self
 
-        elsif value.is_a?(Vedeu::Models::Row)
-          Vedeu::Models::Page.new([value])
+        extend Forwardable
 
-        elsif value.is_a?(Array) && value.empty?
-          Vedeu::Models::Page.new([Vedeu::Models::Row.coerce(value)])
+        def_delegators Vedeu::Coercers::Page,
+                       :coerce
 
-        elsif value.is_a?(Array) || value.is_a?(Vedeu::Buffers::View)
-          values = value.map { |v| Vedeu::Models::Row.coerce(v) }
-
-          Vedeu::Models::Page.new(values)
-
-        else
-          fail Vedeu::Error::InvalidSyntax,
-               'Cannot coerce as value is not an Array, Vedeu::Models::Page ' \
-               "or Vedeu::Models::Row. Is a '#{value.class.name}'."
-
-        end
-      end
+      end # Eigenclass
 
       # Returns a new instance of Vedeu::Models::Page.
       #

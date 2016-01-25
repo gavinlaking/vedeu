@@ -162,9 +162,10 @@ module Vedeu
         Vedeu.timer("Clearing #{clearing}: '#{name}'") do
           @clear ||= Array.new(height) do |iy|
             Array.new(width) do |ix|
+              position = Vedeu::Geometries::Position.new((y + iy), (x + ix))
               Vedeu::Cells::Clear.new(colour:   colour,
                                       name:     name,
-                                      position: [y + iy, x + ix])
+                                      position: position)
             end
           end
         end
