@@ -26,7 +26,19 @@ module Vedeu
         it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
       end
 
-      context 'when :max is not a Fixnum' do
+      context 'when :min is not given' do
+        subject { described.coerce(value: _value, max: max) }
+
+        it { subject.must_be_instance_of(Vedeu::Point) }
+      end
+
+      context 'when :max is not given' do
+        subject { described.coerce(value: _value, min: min) }
+
+        it { subject.must_be_instance_of(Vedeu::Point) }
+      end
+
+      context 'when :max is not a Fixnum or Float::INFINITY' do
         let(:max) { :invalid }
 
         it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }

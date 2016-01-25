@@ -54,10 +54,10 @@ module Vedeu
       #
       # @return [Array<Fixnum>]
       def as_indices
-        xi = ((x - 1) <= 1) ? 0 : (x - 1)
-        yi = ((y - 1) <= 1) ? 0 : (y - 1)
+        ix = Vedeu::Point.coerce(value: (x - 1), min: 0).value
+        iy = Vedeu::Point.coerce(value: (y - 1), min: 0).value
 
-        [yi, xi]
+        [iy, ix]
       end
 
       # @param other [Vedeu::Geometries::Position]
