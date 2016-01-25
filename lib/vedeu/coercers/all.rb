@@ -26,8 +26,10 @@ require 'vedeu/coercers/colour_attributes'
 
 require 'vedeu/coercers/editor_line'
 require 'vedeu/coercers/editor_lines'
+
 require 'vedeu/coercers/lines'
 require 'vedeu/coercers/page'
 require 'vedeu/coercers/position'
 require 'vedeu/coercers/row'
 require 'vedeu/coercers/streams'
+require 'vedeu/coercers/style'
