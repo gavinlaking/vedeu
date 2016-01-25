@@ -11,6 +11,7 @@ module Vedeu
       let(:described) { Vedeu::Coercers::Colour }
       let(:instance)  { described.new(_value) }
       let(:_value)    {}
+      let(:klass)     { Vedeu::Colours::Colour }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -21,7 +22,7 @@ module Vedeu
         subject { described.coerce(_value) }
 
         context 'when the value is nil' do
-          it { subject.must_be_instance_of(Vedeu::Colours::Colour) }
+          it { subject.must_be_instance_of(klass) }
         end
 
         context 'when the value is a Hash' do
@@ -32,7 +33,7 @@ module Vedeu
             }
           }
 
-          it { subject.must_be_instance_of(Vedeu::Colours::Colour) }
+          it { subject.must_be_instance_of(klass) }
           it do
             subject.background.must_be_instance_of(Vedeu::Colours::Background)
           end
@@ -44,19 +45,20 @@ module Vedeu
         context 'when the value is a Vedeu::Colours::Background' do
           let(:_value)   { Vedeu::Colours::Background.new('#aadd00') }
 
-          it { subject.must_be_instance_of(Vedeu::Colours::Colour) }
+          it { subject.must_be_instance_of(klass) }
         end
 
-        context 'when the value is a Vedeu::Colours::Colour' do
-          let(:_value) { Vedeu::Colours::Colour.new }
+        context 'when the value is already the target class' do
+          let(:_value) { klass.new }
 
-          it { subject.must_be_instance_of(Vedeu::Colours::Colour) }
+          it { subject.must_be_instance_of(klass) }
+          it { subject.must_equal(_value) }
         end
 
         context 'when the value is a Vedeu::Colours::Foreground' do
           let(:_value) { Vedeu::Colours::Foreground.new('#448822') }
 
-          it { subject.must_be_instance_of(Vedeu::Colours::Colour) }
+          it { subject.must_be_instance_of(klass) }
         end
 
         context 'when the value is invalid or unsupported' do

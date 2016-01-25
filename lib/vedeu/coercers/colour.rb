@@ -9,52 +9,34 @@ module Vedeu
     #
     # @api private
     #
-    class Colour
+    class Colour < Vedeu::Coercers::Coercer
 
       include Vedeu::Common
-
-      # @param (see #initialize)
-      # @return (see #coerce)
-      def self.coerce(value)
-        new(value).coerce
-      end
-
-      # @param value [void]
-      # @return [Vedeu::Coercers::Colour]
-      def initialize(value)
-        @value = value
-      end
 
       # @macro raise_fatal
       # @return [void]
       def coerce
-        if absent?(value)
-          Vedeu::Colours::Colour.new
-
-        elsif background?
-          Vedeu::Colours::Colour.new(background: value)
-
-        elsif colour?
+        if coerced?
           value
 
+        elsif absent?(value)
+          klass.new
+
+        elsif background?
+          klass.new(background: value)
+
         elsif foreground?
-          Vedeu::Colours::Colour.new(foreground: value)
+          klass.new(foreground: value)
 
         elsif hash?(value)
           attributes = Vedeu::Coercers::ColourAttributes.coerce(value)
-          Vedeu::Colours::Colour.new(attributes)
+          klass.new(attributes)
 
         else
           fail Vedeu::Error::Fatal, 'Vedeu cannot coerce this colour.'
 
         end
       end
-
-      protected
-
-      # @!attribute [r] value
-      # @return [void]
-      attr_reader :value
 
       private
 
@@ -64,13 +46,13 @@ module Vedeu
       end
 
       # @return [Boolean]
-      def colour?
-        value.is_a?(Vedeu::Colours::Colour)
-      end
-
-      # @return [Boolean]
       def foreground?
         value.is_a?(Vedeu::Colours::Foreground)
+      end
+
+      # @return [Class]
+      def klass
+        Vedeu::Colours::Colour
       end
 
     end # Colour
