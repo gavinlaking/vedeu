@@ -9,22 +9,7 @@ module Vedeu
     #
     # @api private
     #
-    class Position
-
-      # @param (see #initialize)
-      # @return (see #coerce)
-      def self.coerce(value)
-        new(value).coerce
-      end
-
-      # Returns a new instance of Vedeu::Coercers::Position.
-      #
-      # @param value [Array<Fixnum>|Fixnum|Hash|
-      #   Vedeu::Geometries::Position] The value to be coerced.
-      # @return [Vedeu::Coercers::Position]
-      def initialize(value)
-        @value = value
-      end
+    class Position < Vedeu::Coercers::Coercer
 
       # @macro raise_fatal
       # @return [NilClass|Vedeu::Geometries::Position]
@@ -49,16 +34,7 @@ module Vedeu
         end
       end
 
-      protected
-
-      # @!attribute [r] value
-      # @return [void]
-      attr_reader :value
-
-      # @return [Boolean]
-      def coerced?
-        value.is_a?(klass)
-      end
+      private
 
       # @return [Boolean]
       def fixnum?

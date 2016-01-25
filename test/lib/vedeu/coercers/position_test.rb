@@ -19,14 +19,17 @@ module Vedeu
       end
 
       describe '.coerce' do
-        let(:_value) {}
+        it { described.must_respond_to(:coerce) }
+      end
 
-        subject { described.coerce(_value) }
+      describe '#coerce' do
+        subject { instance.coerce }
 
-        context 'when the value is already a Vedeu::Geometries::Position' do
+        context 'when the value is already the target class' do
           let(:_value) { klass.new }
 
           it { subject.must_be_instance_of(klass) }
+          it { subject.must_equal(_value) }
         end
 
         context 'when the value is an Array' do
