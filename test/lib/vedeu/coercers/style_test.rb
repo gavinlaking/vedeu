@@ -31,6 +31,28 @@ module Vedeu
           it { subject.must_be_instance_of(klass) }
           it { subject.must_equal(_value) }
         end
+
+        context 'when the value is nil' do
+          let(:_value) { nil }
+
+          it { subject.must_be_instance_of(klass) }
+        end
+
+        context 'when the value is an Array' do
+          let(:_value)  { [:bold, :blink] }
+
+          it { subject.value.must_equal([:bold, :blink]) }
+        end
+
+        context 'when the value is a Hash' do
+          let(:_value) {
+            {
+              style: [:bold, :blink]
+            }
+          }
+
+          it { subject.value.must_equal([:bold, :blink]) }
+        end
       end
 
     end # Style

@@ -19,26 +19,10 @@ module Vedeu
 
       class << self
 
-        include Vedeu::Common
+        extend Forwardable
 
-        # Produces new objects of the correct class from the value,
-        # ignores objects that have already been coerced.
-        #
-        # @param value [Object|NilClass]
-        # @return [Object]
-        def coerce(value)
-          return value if value.is_a?(Vedeu::Presentation::Style)
-          return new(value) unless value.is_a?(Hash)
-          return new unless present?(value[:style])
-
-          if value[:style].is_a?(Vedeu::Presentation::Style)
-            value[:style]
-
-          else
-            new(value[:style])
-
-          end
-        end
+        def_delegators Vedeu::Coercers::Style,
+                       :coerce
 
       end # Eigenclass
 

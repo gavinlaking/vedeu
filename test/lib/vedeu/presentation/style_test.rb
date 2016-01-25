@@ -17,6 +17,10 @@ module Vedeu
         it { instance.instance_variable_get('@value').must_equal('bold') }
       end
 
+      describe '.coerce' do
+        it { described.must_respond_to(:coerce) }
+      end
+
       describe '#escape_sequences' do
         it { instance.must_respond_to(:escape_sequences) }
       end
@@ -27,44 +31,6 @@ module Vedeu
 
       describe '#value=' do
         it { instance.must_respond_to(:value=) }
-      end
-
-      describe '.coerce' do
-        let(:_value) { 'bold' }
-
-        subject { described.coerce(_value) }
-
-        it { subject.must_be_instance_of(described) }
-
-        context 'when the value is nil' do
-          let(:_value) { nil }
-
-          it { subject.must_be_instance_of(described) }
-        end
-
-        context 'when the value is a Style already' do
-          let(:_value) { Vedeu::Presentation::Style.new('bold') }
-
-          it 'returns the value' do
-            subject.must_equal(_value)
-          end
-        end
-
-        context 'when the value is an Array' do
-          let(:_value)  { [:bold, :blink] }
-
-          it { subject.value.must_equal([:bold, :blink]) }
-        end
-
-        context 'when the value is a Hash' do
-          let(:_value) {
-            {
-              style: [:bold, :blink]
-            }
-          }
-
-          it { subject.value.must_equal([:bold, :blink]) }
-        end
       end
 
       describe '#attributes' do

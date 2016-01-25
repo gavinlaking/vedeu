@@ -11,13 +11,31 @@ module Vedeu
     #
     class Style < Vedeu::Coercers::Coercer
 
-      # @return [void]
+      # Produces new objects of the correct class from the value,
+      # ignores objects that have already been coerced.
+      #
+      # @return [Vedeu::Presentation::Style]
       def coerce
         if coerced?
           value
 
-        else
+        elsif value.is_a?(Hash)
+          if present?(value[:style])
+            if value[:style].is_a?(klass)
+              value[:style]
 
+            else
+              Vedeu::Coercers::Style.coerce(value[:style])
+
+            end
+
+          else
+            klass.new
+
+          end
+
+        else
+          klass.new(value)
 
         end
       end

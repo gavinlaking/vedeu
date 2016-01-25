@@ -10,6 +10,8 @@ module Vedeu
     #
     class Coercer
 
+      include Vedeu::Common
+
       # @param (see #initialize)
       # @return (see #coerce)
       def self.coerce(value)
