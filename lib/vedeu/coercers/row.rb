@@ -11,13 +11,20 @@ module Vedeu
     #
     class Row < Vedeu::Coercers::Coercer
 
-      # @return [void]
+      # @param value [Vedeu::Models::Row|Array<void>|void]
+      # @return [Vedeu::Models::Row]
       def coerce
         if coerced?
           value
 
-        else
+        elsif value.is_a?(Array)
+          klass.new(value.compact)
 
+        elsif value.nil?
+          klass.new
+
+        else
+          klass.new([value])
 
         end
       end

@@ -31,6 +31,30 @@ module Vedeu
           it { subject.must_be_instance_of(klass) }
           it { subject.must_equal(_value) }
         end
+
+        context 'when the value is an Array' do
+          let(:_value) { [:hydrogen, :helium, :lithium] }
+
+          it { subject.must_equal(klass.new(_value)) }
+        end
+
+        context 'when the value is an Array containing nil objects' do
+          let(:_value) { [:hydrogen, nil, :lithium] }
+
+          it { subject.must_equal(klass.new([:hydrogen, :lithium])) }
+        end
+
+        context 'when the value is nil' do
+          let(:_value) {}
+
+          it { subject.must_equal(klass.new) }
+        end
+
+        context 'when the value is anything else' do
+          let(:_value) { :beryllium }
+
+          it { subject.must_equal(klass.new([_value])) }
+        end
       end
 
     end # Row
