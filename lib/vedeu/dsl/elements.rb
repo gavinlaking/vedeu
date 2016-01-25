@@ -61,7 +61,7 @@ module Vedeu
       #
       # @param block [Proc]
       # @macro raise_requires_block
-      # @raise [Vedeu::Error::Fatal]
+      # @macro raise_fatal
       # @return [void]
       def lines(opts = {}, &block)
         requires_block!(&block)
@@ -113,7 +113,7 @@ module Vedeu
       # @param opts [Hash]
       # @option opts ... [void]
       # @param block [Proc]
-      # @raise [Vedeu::Error::Fatal]
+      # @macro raise_fatal
       # @return [void]
       def line(value = '', opts = {}, &block)
         requires_model!
@@ -148,7 +148,7 @@ module Vedeu
       # @param opts [Hash]
       # @option opts ... [void]
       # @param block [Proc]
-      # @raise [Vedeu::Error::Fatal]
+      # @macro raise_fatal
       # @return [void]
       def stream(value = '', opts = {}, &block)
         requires_model!
@@ -241,7 +241,7 @@ module Vedeu
       # @option opts :pad [String] The character to use to pad the
       #   width, by default uses an empty space (0x20). Only when the
       #   string is shorter than the specified width.
-      # @raise [Vedeu::Error::Fatal]
+      # @macro raise_fatal
       # @return [void]
       def text(value = '', opts = {})
         requires_model!
@@ -302,8 +302,7 @@ module Vedeu
         fail Vedeu::Error::RequiresBlock unless block_given?
       end
 
-      # @raise [Vedeu::Error::Fatal] When the model cannot be
-      #   determined.
+      # @macro raise_fatal
       # @return [NilClass]
       def requires_model!
         fail Vedeu::Error::Fatal,

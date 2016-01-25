@@ -37,6 +37,10 @@ module Vedeu
     # given or cannot be found is to use the name of the currently
     # focussed interface.
     #
+    # @!macro [new] raise_fatal
+    #   @raise [Vedeu::Error::Fatal] When Vedeu does not understand
+    #     that which the client application is attempting to achieve.
+    #
     class Fatal < StandardError
 
     end # Fatal

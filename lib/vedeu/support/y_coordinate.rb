@@ -1,5 +1,11 @@
+# frozen_string_literal: true
+
 module Vedeu
 
+  # Provide delegation methods for Vedeu::Geometries::Geometry.
+  #
+  # @api private
+  #
   class YCoordinate
 
     # @param geometry [Vedeu::Geometries::Geometry]

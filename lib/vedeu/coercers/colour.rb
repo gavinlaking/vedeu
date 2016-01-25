@@ -25,7 +25,7 @@ module Vedeu
         @value = value
       end
 
-      # @raise [Vedeu::Error::Fatal] When the value cannot be coerced.
+      # @macro raise_fatal
       # @return [void]
       def coerce
         if absent?(value)

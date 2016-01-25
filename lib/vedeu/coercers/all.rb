@@ -2,7 +2,10 @@
 
 module Vedeu
 
-  # Provides a mechanism to coerce values within Vedeu.
+  # Provides a mechanism to coerce values within Vedeu in to expected
+  # objects.
+  #
+  # @api private
   #
   module Coercers
 
