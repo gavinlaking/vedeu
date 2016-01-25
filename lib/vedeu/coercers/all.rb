@@ -24,4 +24,5 @@ require 'vedeu/coercers/chars'
 require 'vedeu/coercers/colour'
 require 'vedeu/coercers/colour_attributes'
 
+require 'vedeu/coercers/editor_line'
 require 'vedeu/coercers/position'
