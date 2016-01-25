@@ -33,7 +33,7 @@ module Vedeu
         if colour? && hash?(colour)
           Vedeu::Coercers::ColourAttributes.coerce(colour)
 
-        elsif colour? && already_coerced?(colour)
+        elsif colour? && coerced?(colour)
           colour.attributes
 
         else
@@ -52,8 +52,8 @@ module Vedeu
 
       # @param colour [void]
       # @return [Boolean]
-      def already_coerced?(colour)
-        colour.is_a?(Vedeu::Colours::Colour)
+      def coerced?(colour)
+        colour.is_a?(klass)
       end
 
       # @return [Hash]
@@ -102,6 +102,11 @@ module Vedeu
       # @return [Boolean]
       def foreground?
         valid?(foreground)
+      end
+
+      # @return [Class]
+      def klass
+        Vedeu::Colours::Colour
       end
 
       # @param colour [void]
