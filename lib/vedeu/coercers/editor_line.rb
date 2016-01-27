@@ -17,7 +17,7 @@ module Vedeu
           value
 
         elsif string?(value)
-          klass.new(value)
+          klass.new(value.chomp)
 
         else
           klass.new

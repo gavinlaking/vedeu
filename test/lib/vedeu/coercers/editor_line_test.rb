@@ -35,18 +35,25 @@ module Vedeu
         end
 
         context 'when the value is a String' do
-          context 'when the value is empty' do
-            let(:_value) { '' }
+          let(:_value) { '' }
 
-            it { subject.must_be_instance_of(klass) }
+          it { subject.must_be_instance_of(klass) }
+
+          context 'when the value is empty' do
             it { subject.collection.must_equal('') }
           end
 
-          context 'when the value is an String' do
+          context 'when the value is not empty' do
             let(:_value) { 'some value...' }
 
-            it { subject.must_be_instance_of(klass) }
             it { subject.collection.must_equal(_value) }
+          end
+
+          context 'when the value contains a line feed' do
+            let(:_value)   { "some value...\n" }
+            let(:expected) { 'some value...' }
+
+            it { subject.collection.must_equal(expected) }
           end
         end
 
