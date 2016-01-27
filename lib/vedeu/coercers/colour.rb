@@ -27,7 +27,6 @@ module Vedeu
           klass.new(foreground: value)
 
         elsif hash?(value)
-          attributes = Vedeu::Coercers::ColourAttributes.coerce(value)
           klass.new(attributes)
 
         else
@@ -37,6 +36,11 @@ module Vedeu
       end
 
       private
+
+      # @return [Hash]
+      def attributes
+        Vedeu::Coercers::ColourAttributes.coerce(value)
+      end
 
       # @return [Boolean]
       def background?
