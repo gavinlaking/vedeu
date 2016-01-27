@@ -31,7 +31,7 @@ module Vedeu
           klass.new(attributes)
 
         else
-          fail Vedeu::Error::Fatal, 'Vedeu cannot coerce this colour.'
+          incoercible!
 
         end
       end

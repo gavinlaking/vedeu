@@ -27,9 +27,7 @@ module Vedeu
           klass.new(value, 1)
 
         else
-          fail Vedeu::Error::Fatal,
-               "Vedeu cannot coerce a '#{value.class.name}' into a " \
-               "'#{klass}'."
+          incoercible!
 
         end
       end

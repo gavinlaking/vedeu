@@ -11,13 +11,14 @@ module Vedeu
     #
     class Lines < Vedeu::Coercers::Coercer
 
+      # @macro raise_fatal
       # @return [void]
       def coerce
         if coerced?
           value
 
         else
-
+          incoercible!
 
         end
       end
