@@ -11,8 +11,6 @@ module Vedeu
     #
     class Colour < Vedeu::Coercers::Coercer
 
-      include Vedeu::Common
-
       # @macro raise_fatal
       # @return [void]
       def coerce
