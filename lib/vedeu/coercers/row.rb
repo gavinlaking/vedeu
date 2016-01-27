@@ -11,7 +11,6 @@ module Vedeu
     #
     class Row < Vedeu::Coercers::Coercer
 
-      # @param value [Vedeu::Models::Row|Array<void>|void]
       # @return [Vedeu::Models::Row]
       def coerce
         if coerced?
