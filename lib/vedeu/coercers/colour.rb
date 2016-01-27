@@ -27,7 +27,7 @@ module Vedeu
           klass.new(foreground: value)
 
         elsif hash?(value)
-          klass.new(attributes)
+          klass.new(colour_attributes)
 
         else
           incoercible!
@@ -38,7 +38,7 @@ module Vedeu
       private
 
       # @return [Hash]
-      def attributes
+      def colour_attributes
         Vedeu::Coercers::ColourAttributes.coerce(value)
       end
 
