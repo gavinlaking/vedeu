@@ -31,6 +31,27 @@ module Vedeu
           it { subject.must_be_instance_of(klass) }
           it { subject.must_equal(_value) }
         end
+
+        context 'when the value is a String' do
+          context 'when the value is empty' do
+            let(:_value) { '' }
+
+            it { subject.must_be_instance_of(klass) }
+            it { subject.collection.must_equal('') }
+          end
+
+          context 'when the value is an String' do
+            let(:_value) { 'some value...' }
+
+            it { subject.must_be_instance_of(klass) }
+            it { subject.collection.must_equal(_value) }
+          end
+        end
+
+        context 'when the value is not already the target class or ' \
+                'a string' do
+          it { subject.must_be_instance_of(klass) }
+        end
       end
 
     end # EditorLine

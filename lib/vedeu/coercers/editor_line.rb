@@ -16,8 +16,11 @@ module Vedeu
         if coerced?
           value
 
-        else
+        elsif string?(value)
+          klass.new(value)
 
+        else
+          klass.new
 
         end
       end

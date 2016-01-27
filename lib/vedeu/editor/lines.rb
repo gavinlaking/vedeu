@@ -20,36 +20,10 @@ module Vedeu
 
       class << self
 
-        include Vedeu::Common
+        extend Forwardable
 
-        # Coerce a document into a new instance of
-        # Vedeu::Editor::Lines.
-        #
-        # @param document [Array<String>|Vedeu::Editor::Lines]
-        # @return (see #initialize)
-        def coerce(document)
-          if document.is_a?(self)
-            new(document.lines)
-
-          elsif document.is_a?(Array)
-            collection = document.map do |line|
-              Vedeu::Editor::Line.coerce(line)
-            end
-
-            new(collection)
-
-          elsif string?(document)
-            collection = document.lines.map(&:chomp).map do |line|
-              Vedeu::Editor::Line.coerce(line)
-            end
-
-            new(collection)
-
-          else
-            new
-
-          end
-        end
+        def_delegators Vedeu::Coercers::EditorLines,
+                       :coerce
 
       end # Eigenclass
 

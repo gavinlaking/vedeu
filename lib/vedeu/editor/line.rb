@@ -20,18 +20,10 @@ module Vedeu
 
       class << self
 
-        include Vedeu::Common
+        extend Forwardable
 
-        # Coerce a line into a new instance of Vedeu::Editor::Line.
-        #
-        # @param collection [String|Vedeu::Editor::Line]
-        # @return (see #initialize)
-        def coerce(collection)
-          return collection      if collection.is_a?(self)
-          return new(collection) if string?(collection)
-
-          new
-        end
+        def_delegators Vedeu::Coercers::EditorLine,
+                       :coerce
 
       end # Eigenclass
 
