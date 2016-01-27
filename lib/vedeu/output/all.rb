@@ -2,6 +2,9 @@
 
 module Vedeu
 
+  # Classes within the Output namespace handle various aspects of
+  # rendering content.
+  #
   module Output
 
   end # Output

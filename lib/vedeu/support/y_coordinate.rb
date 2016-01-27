@@ -9,7 +9,7 @@ module Vedeu
   class YCoordinate
 
     # @param geometry [Vedeu::Geometries::Geometry]
-    # @return [Vedeu::XCoordinate]
+    # @return [Vedeu::YCoordinate]
     def initialize(geometry)
       @geometry = geometry
     end
