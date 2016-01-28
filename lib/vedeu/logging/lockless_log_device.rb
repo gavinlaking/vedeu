@@ -16,10 +16,10 @@ module Vedeu
       # @param log [void]
       # @return [Vedeu::Logging::LocklessLogDevice]
       def initialize(log = nil)
-        @dev      = nil
         @filename = nil
+        @log      = log
 
-        if log.respond_to?(:write) && log.respond_to?(:close)
+        if writable? && closeable?
           @dev = log
 
         else
@@ -46,7 +46,18 @@ module Vedeu
         nil
       end
 
+      protected
+
+      # @!attribute [r] log
+      # @return [String]
+      attr_reader :log
+
       private
+
+      # @return [Boolean]
+      def closable?
+        log.respond_to?(:close)
+      end
 
       # @param log [String]
       # @return [void]
@@ -60,6 +71,11 @@ module Vedeu
           logdev
 
         end
+      end
+
+      # @return [Boolean]
+      def writable?
+        log.respond_to?(:write)
       end
 
     end # LocklessLogDevice
