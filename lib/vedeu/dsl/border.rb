@@ -77,7 +77,7 @@ module Vedeu
 
       end # InstanceMethods
 
-      # @macro included_module
+      # @macro module_included
       def self.included(klass)
         klass.include(Vedeu::DSL::Border::InstanceMethods)
       end

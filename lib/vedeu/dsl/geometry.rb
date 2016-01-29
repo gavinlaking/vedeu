@@ -65,7 +65,7 @@ module Vedeu
 
       end # InstanceMethods
 
-      # @macro included_module
+      # @macro module_included
       def self.included(klass)
         klass.extend(Vedeu::DSL::Geometry::SingletonMethods)
         klass.include(Vedeu::DSL::Geometry::InstanceMethods)

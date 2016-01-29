@@ -122,7 +122,7 @@ module Vedeu
 
       end # InstanceMethods
 
-      # @macro included_module
+      # @macro module_included
       def self.included(klass)
         klass.extend(Vedeu::Views::Value::SingletonMethods)
         klass.include(Vedeu::Views::Value::InstanceMethods)

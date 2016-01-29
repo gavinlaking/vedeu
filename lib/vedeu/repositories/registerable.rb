@@ -74,7 +74,7 @@ module Vedeu
 
       end # InstanceMethods
 
-      # @macro included_module
+      # @macro module_included
       def self.included(klass)
         klass.extend(Vedeu::Repositories::Registerable::SingletonMethods)
         klass.include(Vedeu::Repositories::Registerable::InstanceMethods)

@@ -46,7 +46,7 @@ end # Vedeu
 
 # Define some Yard macros used throughout the project.
 #
-# @!macro [new] included_module
+# @!macro [new] module_included
 #   Provide additional behaviour to a class or module.
 #
 #   @param klass [Class]
