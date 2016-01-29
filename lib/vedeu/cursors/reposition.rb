@@ -81,7 +81,7 @@ module Vedeu
         Vedeu.cursors.by_name(name)
       end
 
-      # @return [Hash<Symbol => Fixnum|Symbol|String]
+      # @macro defaults_method
       def defaults
         {
           mode: :relative,

@@ -55,7 +55,7 @@ module Vedeu
 
       private
 
-      # @return [Hash]
+      # @macro defaults_method
       def defaults
         {
           ready: false,

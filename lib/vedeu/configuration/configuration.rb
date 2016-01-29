@@ -350,10 +350,7 @@ module Vedeu
 
     private
 
-    # The Vedeu default options, which of course are influenced by
-    # environment variables also.
-    #
-    # @return [Hash<Symbol => void>]
+    # @macro defaults_method
     def defaults
       {
         background:    :default,

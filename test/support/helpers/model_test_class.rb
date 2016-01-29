@@ -56,8 +56,7 @@ module Vedeu
 
       private
 
-      # Returns the default options/attributes for this class.
-      #
+      # @macro defaults_method
       def defaults
         {
           client:     nil,

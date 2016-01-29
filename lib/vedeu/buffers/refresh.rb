@@ -71,7 +71,7 @@ module Vedeu
         defaults.merge!(@options)
       end
 
-      # @return [Hash<Symbol => Boolean>]
+      # @macro defaults_method
       def defaults
         {
           content_only: false,

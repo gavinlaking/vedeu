@@ -229,10 +229,7 @@ module Vedeu
                                        type:     type)
       end
 
-      # The default values for a new instance of this class.
-      #
-      # @return [Hash<Symbol => Boolean|Fixnum|String|
-      #   Vedeu::Cursors::Repository>]
+      # @macro defaults_method
       def defaults
         {
           name:       '',

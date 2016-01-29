@@ -56,7 +56,7 @@ module Vedeu
 
       private
 
-      # @return [Hash<Symbol => Hash<void>>]
+      # @macro defaults_method
       def defaults
         super
       end

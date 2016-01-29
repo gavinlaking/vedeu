@@ -60,7 +60,7 @@ module Vedeu
         mode == :cooked
       end
 
-      # @return [Hash<Symbol => Symbol>]
+      # @macro defaults_method
       def defaults
         {
           mode: :cooked,

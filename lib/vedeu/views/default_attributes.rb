@@ -52,9 +52,7 @@ module Vedeu
 
       private
 
-      # The default values for a new instance of this class.
-      #
-      # @return [Hash<Symbol => Array<void>|NilClass>]
+      # @macro defaults_method
       def defaults
         {
           align:    nil,

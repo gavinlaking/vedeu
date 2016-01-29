@@ -174,9 +174,7 @@ module Vedeu
 
       private
 
-      # Returns the default options/attributes for this class.
-      #
-      # @return [Hash<Symbol => NilClass, String>]
+      # @macro defaults_method
       def defaults
         {
           back:       nil,

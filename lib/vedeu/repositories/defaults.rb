@@ -32,7 +32,7 @@ module Vedeu
 
       private
 
-      # @return [Hash<void>]
+      # @macro defaults_method
       def defaults
         {}
       end

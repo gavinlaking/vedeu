@@ -12,7 +12,7 @@ module Vedeu
 
       private
 
-      # @see Vedeu::Geometries::Dimension#defaults
+      # @macro defaults_method
       def defaults
         super.merge!(default: Vedeu.width)
       end

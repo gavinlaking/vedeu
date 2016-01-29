@@ -41,9 +41,7 @@ module Vedeu
 
       private
 
-      # Returns the default options/attributes for this class.
-      #
-      # @return [Hash<Symbol => Fixnum|NilClass|String|Symbol>]
+      # @macro defaults_method
       def defaults
         {
           height: Vedeu.height,

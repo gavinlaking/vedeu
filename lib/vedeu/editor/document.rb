@@ -216,9 +216,7 @@ module Vedeu
         @cursor ||= Vedeu::Editor::Cursor.new(name: name)
       end
 
-      # Returns the default options/attributes for this class.
-      #
-      # @return [Hash<Symbol => void|Symbol]
+      # @macro defaults_method
       def defaults
         {
           data:       Vedeu::Editor::Lines.new([Vedeu::Editor::Line.new]),

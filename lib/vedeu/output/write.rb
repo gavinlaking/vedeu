@@ -64,7 +64,7 @@ module Vedeu
 
       private
 
-      # @return [Hash<Symbol => Fixnum>]
+      # @macro defaults_method
       def defaults
         {
           x: 1,

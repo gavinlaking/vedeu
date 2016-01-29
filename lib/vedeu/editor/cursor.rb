@@ -172,9 +172,7 @@ module Vedeu
         @geometry ||= Vedeu.geometries.by_name(name)
       end
 
-      # Returns the default options/attributes for this class.
-      #
-      # @return [Hash<Symbol => Fixnum|NilClass|String|Symbol>]
+      # @macro defaults_method
       def defaults
         {
           name: '',

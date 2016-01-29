@@ -93,9 +93,7 @@ module Vedeu
       File.dirname(__FILE__) + '/templates/default_application.vedeu'
     end
 
-    # @todo Don't like all this file reading.
-    #
-    # @return [Hash<Symbol => String>]
+    # @macro defaults_method
     def defaults
       {
         borders:       read('default_borders.vedeu'),

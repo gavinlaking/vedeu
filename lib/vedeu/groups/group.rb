@@ -158,10 +158,7 @@ module Vedeu
 
       private
 
-      # Returns the default options/attributes for this class.
-      #
-      # @return [Hash<Symbol => Boolean|Set|String|
-      #   Vedeu::Groups::Repository]
+      # @macro defaults_method
       def defaults
         {
           members:    Set.new,

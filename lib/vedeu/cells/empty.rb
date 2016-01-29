@@ -96,7 +96,7 @@ module Vedeu
 
       private
 
-      # @return [Hash<Symbol => Hash<void>|NilClass|String>]
+      # @macro defaults_method
       def defaults
         {
           colour:   {},

@@ -196,10 +196,7 @@ module Vedeu
         }
       end
 
-      # Returns the default options/attributes for this class.
-      #
-      # @return [Hash<Symbol => Boolean|Fixnum|NilClass|String|Symbol|
-      #   Vedeu::Geometries::Repository]
+      # @macro defaults_method
       def defaults
         {
           client:               nil,

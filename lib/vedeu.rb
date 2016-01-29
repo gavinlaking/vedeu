@@ -55,5 +55,10 @@ end # Vedeu
 #
 #   @param klass [Class]
 #   @return [void]
+#
+# @!macro [new] defaults_method
+#   The default options/attributes for a new instance of this class.
+#
+#   @return [Hash<Symbol => void>]
 
 require 'vedeu/all'
