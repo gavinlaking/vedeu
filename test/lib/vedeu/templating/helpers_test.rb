@@ -14,8 +14,9 @@ module Vedeu
 
     describe Helpers do
 
-      let(:described) { Vedeu::Templating::Helpers }
-      let(:instance)  { Vedeu::Templating::HelpersTestClass.new }
+      let(:described)          { Vedeu::Templating::Helpers }
+      let(:included_described) { Vedeu::Templating::HelpersTestClass }
+      let(:included_instance)  { included_described.new }
 
       describe '#background' do
         # let(:expected) {
@@ -26,19 +27,19 @@ module Vedeu
         #   "w4tjb4NO3gG3z2TbI=}}"
         # }
 
-        subject { instance.background('#000000') { 'background text' } }
+        subject { included_instance.background('#000000') { 'background text' } }
 
         # it { subject.must_equal(expected) }
       end
 
       describe '#bg' do
-        it { instance.must_respond_to(:bg) }
+        it { included_instance.must_respond_to(:bg) }
       end
 
       describe '#colour' do
         let(:attributes) { {} }
 
-        subject { instance.colour(attributes) { 'colour text' } }
+        subject { included_instance.colour(attributes) { 'colour text' } }
 
         context 'with no attributes' do
           it { subject.must_be_instance_of(String) }
@@ -115,13 +116,13 @@ module Vedeu
         #   "Bh/MMXxlpNtQ==}}"
         # }
 
-        subject { instance.foreground('#000000') { 'foreground text' } }
+        subject { included_instance.foreground('#000000') { 'foreground text' } }
 
         # it { subject.must_equal(expected) }
       end
 
       describe '#fg' do
-        it { instance.must_respond_to(:fg) }
+        it { included_instance.must_respond_to(:fg) }
       end
 
       # describe '#style' do
@@ -133,7 +134,7 @@ module Vedeu
       #     "/CoCWuDT6NxbwBBzVXlA==}}"
       #   }
 
-      #   subject { instance.style(:bold) { 'style text' } }
+      #   subject { included_instance.style(:bold) { 'style text' } }
 
       #   it { subject.must_equal(expected) }
       # end

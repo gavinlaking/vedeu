@@ -6,9 +6,6 @@ module Vedeu
 
   module Output
 
-    # class CompressorCacheTestClass
-    # end
-
     describe CompressorCache do
 
       let(:described) { Vedeu::Output::CompressorCache }

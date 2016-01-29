@@ -15,10 +15,8 @@ module Vedeu
     describe Options do
 
       let(:described) { Vedeu::Renderers::Options }
-      let(:instance)  {}
-
-      let(:including_described) { Vedeu::Renderers::RenderersTestClass }
-      let(:including_instance)  { including_described.new(options) }
+      let(:included_described) { Vedeu::Renderers::RenderersTestClass }
+      let(:included_instance)  { included_described.new(options) }
       let(:options)   {
         {
           compression:   compression,
@@ -47,38 +45,38 @@ module Vedeu
       let(:write_file)    { false }
 
       describe '#initialize' do
-        it { including_instance.must_be_instance_of(including_described) }
-        it { including_instance.instance_variable_get('@options').must_equal(options) }
+        it { included_instance.must_be_instance_of(included_described) }
+        it { included_instance.instance_variable_get('@options').must_equal(options) }
       end
 
       describe '#clear' do
-        subject { including_instance.clear }
+        subject { included_instance.clear }
 
         it { proc { subject }.must_raise(Vedeu::Error::NotImplemented) }
       end
 
       describe '#options' do
-        it { including_instance.must_respond_to(:options) }
+        it { included_instance.must_respond_to(:options) }
       end
 
       describe '#options=' do
-        it { including_instance.must_respond_to(:options=) }
+        it { included_instance.must_respond_to(:options=) }
       end
 
       describe '#render' do
-        subject { including_instance.render }
+        subject { included_instance.render }
 
         it { proc { subject }.must_raise(Vedeu::Error::NotImplemented) }
       end
 
       describe '#write' do
-        subject { including_instance.write }
+        subject { included_instance.write }
 
         it { proc { subject }.must_raise(Vedeu::Error::NotImplemented) }
       end
 
       # describe '#compression?' do
-      #   subject { including_instance.compression? }
+      #   subject { included_instance.compression? }
 
       #   context 'when the option is not set or is set to false' do
       #     before { options.tap { |o| o.delete(:compression) } }

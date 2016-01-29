@@ -124,7 +124,7 @@ module Vedeu
         context 'when there something in focus' do
           before { Vedeu.stubs(:focus).returns('zinc') }
 
-          it { subject.must_be_instance_of(Vedeu::Repositories::TestModel) }
+          it { subject.must_be_instance_of(model) }
         end
       end
 
@@ -169,7 +169,7 @@ module Vedeu
       end
 
       describe '#find_or_create' do
-        let(:model_instance) { Vedeu::Repositories::TestModel.new('niobium') }
+        let(:model_instance) { model.new('niobium') }
 
         before { Vedeu.stubs(:log) }
 
@@ -187,7 +187,7 @@ module Vedeu
           let(:model_name) { 'zinc'}
 
           it 'creates and stores a new instance of the model' do
-            subject.must_be_instance_of(Vedeu::Repositories::TestModel)
+            subject.must_be_instance_of(model)
           end
         end
       end
@@ -232,7 +232,7 @@ module Vedeu
         context 'when the model is not registered' do
           before {
             instance.reset
-            instance.store(Vedeu::Repositories::TestModel.new('zinc'))
+            instance.store(model.new('zinc'))
           }
 
           it { subject.must_be_instance_of(FalseClass) }
@@ -241,8 +241,8 @@ module Vedeu
         context 'when the model is registered' do
           before {
             instance.reset
-            instance.store(Vedeu::Repositories::TestModel.new('gadolinium'))
-            instance.store(Vedeu::Repositories::TestModel.new('francium'))
+            instance.store(model.new('gadolinium'))
+            instance.store(model.new('francium'))
           }
 
           it 'returns the storage with the model removed' do
@@ -269,7 +269,7 @@ module Vedeu
         context 'when a name attributes is provided' do
           let(:model_name) { 'hydrogen' }
 
-          it { subject.must_be_instance_of(Vedeu::Repositories::TestModel) }
+          it { subject.must_be_instance_of(model) }
         end
       end
 

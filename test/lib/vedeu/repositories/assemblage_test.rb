@@ -21,13 +21,14 @@ module Vedeu
     describe Assemblage do
 
       let(:described)  { Vedeu::Repositories::Assemblage }
-      let(:instance)   { Vedeu::Repositories::CollectionTestClass.new(collection) }
+      let(:included_described) { Vedeu::Repositories::CollectionTestClass }
+      let(:included_instance)  { included_described.new(collection) }
       let(:collection) { 'Some text...'.chars }
 
       describe '#[]' do
         let(:collection) { [:hydrogen, :helium, :lithium, :beryllium] }
 
-        subject { instance[index] }
+        subject { included_instance[index] }
 
         context 'when the index is a range' do
           let(:index) { 1..2 }
@@ -45,7 +46,7 @@ module Vedeu
       end
 
       describe '#any?' do
-        subject { instance.any? }
+        subject { included_instance.any? }
 
         context 'when the collection is empty' do
           let(:collection) { [] }
@@ -59,7 +60,7 @@ module Vedeu
       end
 
       describe '#empty?' do
-        subject { instance.empty? }
+        subject { included_instance.empty? }
 
         context 'when the collection is empty' do
           let(:collection) { [] }
@@ -73,18 +74,18 @@ module Vedeu
       end
 
       describe '#eql?' do
-        let(:other) { instance }
+        let(:other) { included_instance }
 
-        subject { instance.eql?(other) }
+        subject { included_instance.eql?(other) }
 
         it { subject.must_equal(true) }
 
         context 'when different to other' do
           let(:some_collection)  {
-            Vedeu::Repositories::CollectionTestClass.new('Some text...'.chars)
+            included_described.new('Some text...'.chars)
           }
           let(:other_collection) {
-            Vedeu::Repositories::CollectionTestClass.new('Other text...'.chars)
+            included_described.new('Other text...'.chars)
           }
 
           it { (some_collection == other_collection).must_equal(false) }
@@ -92,11 +93,11 @@ module Vedeu
       end
 
       describe '#==' do
-        it { instance.must_respond_to(:==) }
+        it { included_instance.must_respond_to(:==) }
       end
 
       describe '#size' do
-        subject { instance.size }
+        subject { included_instance.size }
 
         context 'when the collection is empty' do
           let(:collection) { [] }

@@ -23,13 +23,14 @@ module Vedeu
   describe DSL do
 
     let(:described) { Vedeu::DSL }
-    let(:instance)  { Vedeu::DSLModuleTestClass.new(model, client) }
+    let(:included_described) { Vedeu::DSLModuleTestClass }
+    let(:included_instance)  { included_described.new(model, client) }
     let(:model)     { Vedeu::DSLModelTestClass.new(_name) }
     let(:client)    {}
     let(:_name)     {}
 
     describe '#name' do
-      subject { instance.name }
+      subject { included_instance.name }
 
       context 'when the model is nil' do
         let(:model) {}

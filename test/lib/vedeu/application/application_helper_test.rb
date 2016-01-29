@@ -12,8 +12,9 @@ module Vedeu
 
   describe ApplicationHelper do
 
-    let(:described) { Vedeu::ApplicationHelper }
-    let(:instance)  { Vedeu::ApplicationHelperTestClass.new }
+    let(:described)          { Vedeu::ApplicationHelper }
+    let(:included_described) { Vedeu::ApplicationHelperTestClass }
+    let(:included_instance)  { included_described.new }
 
     # @todo Add more tests.
 

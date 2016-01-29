@@ -21,14 +21,15 @@ module Vedeu
 
     describe Collection do
 
-      let(:described)  { Vedeu::Editor::Collection }
-      let(:instance)   { Vedeu::Editor::CollectionTestClass.new(collection) }
-      let(:collection) { 'Some text...'.chars }
+      let(:described)          { Vedeu::Editor::Collection }
+      let(:included_described) { Vedeu::Editor::CollectionTestClass }
+      let(:included_instance)  { included_described.new(collection) }
+      let(:collection)         { 'Some text...'.chars }
 
       describe '#by_index' do
         let(:index) { 0 }
 
-        subject { instance.by_index(index) }
+        subject { included_instance.by_index(index) }
 
         it { subject.must_be_instance_of(String) }
       end

@@ -12,8 +12,9 @@ module Vedeu
 
   describe Helper do
 
-    let(:described) { Vedeu::HelperTestClass }
-    let(:instance)  { described.new }
+    let(:described)          { Vedeu::Helper }
+    let(:included_described) { Vedeu::HelperTestClass }
+    let(:included_instance)  { included_described.new }
 
     # @todo Add more tests.
 

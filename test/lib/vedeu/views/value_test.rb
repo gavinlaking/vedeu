@@ -15,7 +15,6 @@ module Vedeu
     describe Value do
 
       let(:described) { Vedeu::Views::Value }
-
       let(:included_described) { Vedeu::Views::ValueTestClass }
       let(:included_instance)  { included_described.new }
 

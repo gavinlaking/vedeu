@@ -22,9 +22,9 @@ module Vedeu
 
     describe Defaults do
 
-      let(:described)  { Vedeu::Repositories::Defaults }
-      let(:includer)   { Vedeu::Repositories::DefaultsTestClass }
-      let(:instance)   { includer.new(attributes) }
+      let(:described)          { Vedeu::Repositories::Defaults }
+      let(:included_described) { Vedeu::Repositories::DefaultsTestClass }
+      let(:included_instance)  { included_described.new(attributes) }
       let(:attributes) {
         {
           invalid_attribute: :invalid_value
@@ -32,20 +32,22 @@ module Vedeu
       }
 
       describe '#initialize' do
-        it { instance.must_be_instance_of(includer) }
+        it { included_instance.must_be_instance_of(included_described) }
         it do
-          instance.instance_variable_get('@some_attribute').
+          included_instance.instance_variable_get('@some_attribute').
             must_equal(:some_value)
         end
         it do
-          instance.instance_variables.
+          included_instance.instance_variables.
             must_equal([:@some_attribute])
         end
 
         context 'when the attributes is not a Hash' do
           let(:attributes) { :invalid }
 
-          it { proc { instance }.must_raise(Vedeu::Error::InvalidSyntax) }
+          it do
+            proc { included_instance }.must_raise(Vedeu::Error::InvalidSyntax)
+          end
         end
       end
 
