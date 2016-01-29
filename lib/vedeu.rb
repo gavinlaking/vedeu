@@ -46,23 +46,24 @@ end # Vedeu
 
 # Define some Yard macros used throughout the project.
 #
+# @!macro [new] defaults_method
+#   The default options/attributes for a new instance of this class.
+#
+#   @return [Hash<Symbol => void>]
+#
 # @!macro [new] module_included
 #   Provide additional behaviour to a class or module.
 #
 #   @param klass [Class]
 #   @return [void]
 #
-# @!macro [new] module_singleton_methods
-#   Provide additional behaviour as singleton methods to the including
-#   class or module.
-#
 # @!macro [new] module_instance_methods
 #   Provide additional behaviour as instance methods to the including
 #   class or module.
 #
-# @!macro [new] defaults_method
-#   The default options/attributes for a new instance of this class.
+# @!macro [new] module_singleton_methods
+#   Provide additional behaviour as singleton methods to the including
+#   class or module.
 #
-#   @return [Hash<Symbol => void>]
 
 require 'vedeu/all'
