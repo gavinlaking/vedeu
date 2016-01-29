@@ -48,12 +48,6 @@ module Vedeu
         input
       end
 
-      protected
-
-      # @!attribute [r] input
-      # @return [NilClass|String]
-      attr_reader :input
-
       private
 
       # @return [IO]
