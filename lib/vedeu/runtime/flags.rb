@@ -6,7 +6,7 @@ module Vedeu
 
     # Home of various runtime flags which Vedeu uses.
     #
-    # @api public
+    # @api private
     #
     class Flags
 
