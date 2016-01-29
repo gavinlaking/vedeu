@@ -49,12 +49,16 @@ end # Vedeu
 # @!macro [new] included_module
 #   Provide additional behaviour to a class or module.
 #
-#   When a ClassMethods submodule and/or an InstanceMethods submodule
-#   is defined within this module, then provide these methods as
-#   class or instance methods to the including class or module.
-#
 #   @param klass [Class]
 #   @return [void]
+#
+# @!macro [new] module_singleton_methods
+#   Provide additional behaviour as singleton methods to the including
+#   class or module.
+#
+# @!macro [new] module_instance_methods
+#   Provide additional behaviour as instance methods to the including
+#   class or module.
 #
 # @!macro [new] defaults_method
 #   The default options/attributes for a new instance of this class.

@@ -170,11 +170,11 @@ module Vedeu
   end # Interfaces
 
   # @!method hide_interface
-  #   @see Vedeu::Toggleable::ClassMethods#hide
+  #   @see Vedeu::Toggleable::SingletonMethods#hide
   # @!method show_interface
-  #   @see Vedeu::Toggleable::ClassMethods#show
+  #   @see Vedeu::Toggleable::SingletonMethods#show
   # @!method toggle_interface
-  #   @see Vedeu::Toggleable::ClassMethods#toggle
+  #   @see Vedeu::Toggleable::SingletonMethods#toggle
   def_delegators Vedeu::Interfaces::Interface,
                  :hide_interface,
                  :show_interface,

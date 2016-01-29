@@ -16,9 +16,8 @@ module Vedeu
       # @return [Vedeu::Repositories::Repository]
       attr_accessor :repository
 
-      # Provide additional behaviour as class methods.
-      #
-      module ClassMethods
+      # @macro module_singleton_methods
+      module SingletonMethods
 
         # @!attribute [r] repository
         # @return [Vedeu::Repositories::Repository]
@@ -64,11 +63,11 @@ module Vedeu
           new(attributes).store(&block)
         end
 
-      end # ClassMethods
+      end # SingletonMethods
 
       # @macro included_module
       def self.included(klass)
-        klass.extend(Vedeu::Repositories::Model::ClassMethods)
+        klass.extend(Vedeu::Repositories::Model::SingletonMethods)
       end
 
       # @note If a block is given, store the model, return the model

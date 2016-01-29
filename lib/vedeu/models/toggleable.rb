@@ -43,9 +43,8 @@ module Vedeu
       show
     end
 
-    # Provide additional behaviour as class methods.
-    #
-    module ClassMethods
+    # @macro module_singleton_methods
+    module SingletonMethods
 
       # Hides the named model, or without a name, the model with same
       # name as the currently focussed interface.
@@ -143,11 +142,11 @@ module Vedeu
         Vedeu.buffers.by_name(name)
       end
 
-    end # ClassMethods
+    end # SingletonMethods
 
     # @macro included_module
     def self.included(klass)
-      klass.extend(Vedeu::Toggleable::ClassMethods)
+      klass.extend(Vedeu::Toggleable::SingletonMethods)
     end
 
   end # Toggleable
