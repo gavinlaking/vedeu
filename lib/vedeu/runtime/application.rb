@@ -82,9 +82,13 @@ module Vedeu
       # @param block [Proc]
       # @return [void]
       def runner(&block)
-        return yield if Vedeu.config.once?
+        if Vedeu.config.once?
+          run_once { yield }
 
-        run_many { yield }
+        else
+          run_many { yield }
+
+        end
       end
 
       # For an interactive application we capture input, (usually from
@@ -118,6 +122,14 @@ module Vedeu
 
       rescue Vedeu::Error::ModeSwitch
         Vedeu::Runtime::Application.restart
+      end
+
+      # @param block [Proc]
+      # @return [void]
+      def run_once(&block)
+        yield.tap do
+          # Vedeu.debug(binding)
+        end
       end
 
       # :nocov:
