@@ -59,8 +59,6 @@ module Vedeu
       # @return [Fixnum]
       attr_accessor :zindex
 
-
-
       # Return a new instance of Vedeu::Views::View.
       #
       # @param attributes [Hash]
