@@ -229,10 +229,7 @@ module Vedeu
                                        type:     type)
       end
 
-      # The default values for a new instance of this class.
-      #
-      # @return [Hash<Symbol => Boolean|Fixnum|String|
-      #   Vedeu::Cursors::Repository>]
+      # @macro defaults_method
       def defaults
         {
           name:       '',
@@ -270,11 +267,11 @@ module Vedeu
   end # Cursors
 
   # @!method hide_cursor
-  #   @see Vedeu::Toggleable::ClassMethods.hide
+  #   @see Vedeu::Toggleable::SingletonMethods.hide
   # @!method show_cursor
-  #   @see Vedeu::Toggleable::ClassMethods#show
+  #   @see Vedeu::Toggleable::SingletonMethods#show
   # @!method toggle_cursor
-  #   @see Vedeu::Toggleable::ClassMethods#toggle
+  #   @see Vedeu::Toggleable::SingletonMethods#toggle
   def_delegators Vedeu::Cursors::Cursor,
                  :hide_cursor,
                  :show_cursor,

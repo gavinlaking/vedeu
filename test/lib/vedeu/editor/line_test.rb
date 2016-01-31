@@ -23,39 +23,16 @@ module Vedeu
         end
       end
 
+      describe '.coerce' do
+        it { described.must_respond_to(:coerce) }
+      end
+
       describe '#collection' do
         it { instance.must_respond_to(:collection) }
       end
 
       describe '#collection=' do
         it { instance.must_respond_to(:collection=) }
-      end
-
-      describe '.coerce' do
-        let(:_value) {}
-
-        subject { described.coerce(_value) }
-
-        it { subject.must_be_instance_of(Vedeu::Editor::Line) }
-
-        context 'when the value is already a Vedeu::Editor::Line object' do
-          let(:_value) { Vedeu::Editor::Line.new(collection) }
-
-          it { subject.must_equal(_value) }
-          it { subject.collection.must_equal(collection) }
-        end
-
-        context 'when the value is an empty String' do
-          let(:_value) { '' }
-
-          it { subject.collection.must_equal('') }
-        end
-
-        context 'when the value is an String' do
-          let(:_value) { collection }
-
-          it { subject.collection.must_equal(collection) }
-        end
       end
 
       describe '#character' do

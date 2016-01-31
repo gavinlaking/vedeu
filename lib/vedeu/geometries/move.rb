@@ -62,7 +62,7 @@ module Vedeu
 
       private
 
-      # @return [Hash<Symbol => Fixnum|String|Symbol>]
+      # @macro defaults_method
       def defaults
         {
           direction: :none,

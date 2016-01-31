@@ -94,6 +94,13 @@ module Vedeu
       end
       alias colour= colour
 
+      # Instruct the view to not use wordwrapping. (Default)
+      #
+      # @return [Boolean]
+      def no_wordwrap!
+        wordwrap(false)
+      end
+
       # Define a style or styles for an interface, line or a stream.
       #
       # @param value [Array<Symbol>|Array<String>|Symbol|String]
@@ -121,6 +128,17 @@ module Vedeu
       alias style= style
       alias styles style
       alias styles= style
+
+      # Specify whether the view should use wordwrapping (default).
+      #
+      # @param value [Boolean]
+      # @return [Boolean]
+      def wordwrap(value = true)
+        boolean = value ? true : false
+
+        model.wordwrap = boolean
+      end
+      alias wordwrap! wordwrap
 
       private
 

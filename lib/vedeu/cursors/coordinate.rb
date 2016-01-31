@@ -117,9 +117,7 @@ module Vedeu
         (d...dn_position).to_a
       end
 
-      # The default values for a new instance of this class.
-      #
-      # @return [Hash<Symbol => Fixnum|String|Symbol>]
+      # @macro defaults_method
       def defaults
         {
           geometry: nil,

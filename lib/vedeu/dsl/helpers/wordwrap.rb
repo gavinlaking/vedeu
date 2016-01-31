@@ -193,9 +193,7 @@ module Vedeu
              'or there is no geometry registered with that name.'
       end
 
-      # Returns the default options/attributes for this class.
-      #
-      # @return [Hash<Symbol => NilClass, String, Symbol>]
+      # @macro defaults_method
       def defaults
         {
           ellipsis: '...',

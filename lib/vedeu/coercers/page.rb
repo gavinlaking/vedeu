@@ -11,9 +11,7 @@ module Vedeu
     #
     class Page < Vedeu::Coercers::Coercer
 
-      # @param value
-      #   [Vedeu::Models::Page|Vedeu::Models::Row|Array<void>|void]
-      # @macro raise_invalid_syntax
+      # @macro raise_fatal
       # @return [Vedeu::Models::Page]
       def coerce
         if coerced?
@@ -31,9 +29,7 @@ module Vedeu
           klass.new(values)
 
         else
-          fail Vedeu::Error::InvalidSyntax,
-               "Cannot coerce as value is not an Array, #{klass} " \
-               "or Vedeu::Models::Row. Is a '#{value.class.name}'."
+          incoercible!
 
         end
       end

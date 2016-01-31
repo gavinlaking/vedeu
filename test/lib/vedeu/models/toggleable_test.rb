@@ -5,6 +5,7 @@ require 'test_helper'
 module Vedeu
 
   class ToggleableTestClass
+
     include Vedeu::Toggleable
 
     def initialize(boolean)
@@ -14,79 +15,80 @@ module Vedeu
     def store
       self
     end
-  end
+
+  end # ToggleableTestClass
 
   describe Toggleable do
 
     let(:described)          { Vedeu::Toggleable }
-    let(:described_included) { Vedeu::ToggleableTestClass }
-    let(:instance)           { described_included.new(visible) }
+    let(:included_described) { Vedeu::ToggleableTestClass }
+    let(:included_instance)  { included_described.new(visible) }
     let(:visible)            { false }
 
     describe '#visible' do
-      it { instance.must_respond_to(:visible) }
+      it { included_instance.must_respond_to(:visible) }
     end
 
     describe '#visible=' do
-      it { instance.must_respond_to(:visible=) }
+      it { included_instance.must_respond_to(:visible=) }
     end
 
     describe '#visible?' do
-      it { instance.must_respond_to(:visible?) }
+      it { included_instance.must_respond_to(:visible?) }
     end
 
     describe '#hide' do
-      subject { instance.hide }
+      subject { included_instance.hide }
 
       it do
         subject
-        instance.instance_variable_get('@visible').must_equal(false)
+        included_instance.instance_variable_get('@visible').must_equal(false)
       end
 
-      it { Vedeu::ToggleableTestClass.must_respond_to(:hide_cursor) }
-      it { Vedeu::ToggleableTestClass.must_respond_to(:hide_group) }
-      it { Vedeu::ToggleableTestClass.must_respond_to(:hide_interface) }
+      it { included_described.must_respond_to(:hide_cursor) }
+      it { included_described.must_respond_to(:hide_group) }
+      it { included_described.must_respond_to(:hide_interface) }
     end
 
     describe '#show' do
-      subject { instance.show }
+      subject { included_instance.show }
 
       it do
         subject
-        instance.instance_variable_get('@visible').must_equal(true)
+        included_instance.instance_variable_get('@visible').must_equal(true)
       end
 
-      it { Vedeu::ToggleableTestClass.must_respond_to(:show_cursor) }
-      it { Vedeu::ToggleableTestClass.must_respond_to(:show_group) }
-      it { Vedeu::ToggleableTestClass.must_respond_to(:show_interface) }
+      it { included_described.must_respond_to(:show_cursor) }
+      it { included_described.must_respond_to(:show_group) }
+      it { included_described.must_respond_to(:show_interface) }
     end
 
     describe '#toggle' do
-      subject { instance.toggle }
+      subject { included_instance.toggle }
 
-      it { Vedeu::ToggleableTestClass.must_respond_to(:toggle_cursor) }
-      it { Vedeu::ToggleableTestClass.must_respond_to(:toggle_group) }
-      it { Vedeu::ToggleableTestClass.must_respond_to(:toggle_interface) }
+      it { included_described.must_respond_to(:toggle_cursor) }
+      it { included_described.must_respond_to(:toggle_group) }
+      it { included_described.must_respond_to(:toggle_interface) }
 
       context 'when the model is visible' do
         let(:visible) { true }
 
         it do
           subject
-          instance.instance_variable_get('@visible').must_equal(false)
+          included_instance.instance_variable_get('@visible').must_equal(false)
         end
       end
 
       context 'when the model is not visible' do
         it do
           subject
-          instance.instance_variable_get('@visible').must_equal(true)
+          included_instance.instance_variable_get('@visible').must_equal(true)
         end
       end
     end
 
     describe '.hide_cursor' do
-      subject { described_included.hide_cursor }
+      subject { included_described.hide_cursor }
 
       context 'when the cursor is visible' do
         # @todo Add more tests.
@@ -98,7 +100,7 @@ module Vedeu
     end
 
     describe '.show_cursor' do
-      subject { described_included.show_cursor }
+      subject { included_described.show_cursor }
 
       context 'when the cursor is visible' do
         # @todo Add more tests.
@@ -110,7 +112,7 @@ module Vedeu
     end
 
     describe '.toggle_cursor' do
-      subject { described_included.toggle_cursor }
+      subject { included_described.toggle_cursor }
 
       context 'when the cursor is visible' do
         # @todo Add more tests.

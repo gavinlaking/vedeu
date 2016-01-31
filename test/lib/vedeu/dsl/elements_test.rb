@@ -20,12 +20,10 @@ module Vedeu
 
     describe Elements do
 
-      let(:described) { Vedeu::DSL::Elements }
-      let(:instance)  {}
-
-      let(:including_described) { Vedeu::DSL::ElementsTest }
-      let(:including_instance)  { including_described.new(model) }
-      let(:model)               {}
+      let(:described)          { Vedeu::DSL::Elements }
+      let(:included_described) { Vedeu::DSL::ElementsTest }
+      let(:included_instance)  { included_described.new(model) }
+      let(:model)              {}
 
       describe '#centre' do
         let(:_value) {}
@@ -35,7 +33,7 @@ module Vedeu
           }
         }
 
-        subject { including_instance.centre(_value, opts) }
+        subject { included_instance.centre(_value, opts) }
 
         context 'when a model exists' do
         end
@@ -46,7 +44,7 @@ module Vedeu
       end
 
       describe '#center' do
-        it { including_instance.must_respond_to(:center) }
+        it { included_instance.must_respond_to(:center) }
       end
 
       describe '#left' do
@@ -57,7 +55,7 @@ module Vedeu
           }
         }
 
-        subject { including_instance.left(_value, opts) }
+        subject { included_instance.left(_value, opts) }
 
         context 'when a model exists' do
         end
@@ -75,7 +73,7 @@ module Vedeu
           }
         }
 
-        subject { including_instance.right(_value, opts) }
+        subject { included_instance.right(_value, opts) }
 
         context 'when a model exists' do
         end
@@ -88,7 +86,7 @@ module Vedeu
       describe '#lines' do
         let(:opts) { {} }
 
-        subject { including_instance.lines(opts) { } }
+        subject { included_instance.lines(opts) { } }
 
         context 'when the block is given' do
           context 'when a model exists' do
@@ -101,20 +99,20 @@ module Vedeu
         end
 
         context 'when the block is not given' do
-          subject { including_instance.lines }
+          subject { included_instance.lines }
 
           it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
         end
 
         context 'when the opts parameter is not given' do
-          subject { including_instance.lines { } }
+          subject { included_instance.lines { } }
 
           # @todo Add more tests.
         end
       end
 
       describe '#line' do
-        subject { including_instance.line { } }
+        subject { included_instance.line { } }
 
         context 'when a model exists' do
           let(:model) { Vedeu::Views::View.new }
@@ -124,7 +122,7 @@ module Vedeu
           end
 
           context 'when the block is not given' do
-            subject { including_instance.line }
+            subject { included_instance.line }
 
             # @todo Add more tests.
           end
@@ -138,7 +136,7 @@ module Vedeu
       describe '#streams' do
         let(:opts) { {} }
 
-        subject { including_instance.streams(opts) { } }
+        subject { included_instance.streams(opts) { } }
 
         context 'when the block is given' do
           context 'when a model exists' do
@@ -153,20 +151,20 @@ module Vedeu
         end
 
         context 'when the block is not given' do
-          subject { including_instance.streams }
+          subject { included_instance.streams }
 
           it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
         end
 
         context 'when the opts parameter is not given' do
-          subject { including_instance.streams { } }
+          subject { included_instance.streams { } }
 
           # @todo Add more tests.
         end
       end
 
       describe '#stream' do
-        subject { including_instance.stream { } }
+        subject { included_instance.stream { } }
 
         context 'when a model exists' do
           let(:model) { Vedeu::Views::View.new }
@@ -176,7 +174,7 @@ module Vedeu
           end
 
           context 'when the block is not given' do
-            subject { including_instance.stream }
+            subject { included_instance.stream }
 
             # @todo Add more tests.
           end
@@ -195,7 +193,7 @@ module Vedeu
           }
         }
 
-        subject { including_instance.text(_value, opts) }
+        subject { included_instance.text(_value, opts) }
 
         context 'when a model exists' do
         end

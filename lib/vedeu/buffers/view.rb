@@ -70,7 +70,7 @@ module Vedeu
                                                y:      by).buffer
       end
 
-      # @return [Hash<Symbol => NilClass|String|Symbol]
+      # @macro defaults_method
       def defaults
         {
           name: nil,

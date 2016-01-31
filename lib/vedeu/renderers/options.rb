@@ -84,9 +84,7 @@ module Vedeu
         fail Vedeu::Error::NotImplemented, 'Including classes implement this.'
       end
 
-      # The default values for a new instance of this class.
-      #
-      # @return [Hash<Symbol => void>]
+      # @macro defaults_method
       def defaults
         {
           compression:   Vedeu.config.compression?,

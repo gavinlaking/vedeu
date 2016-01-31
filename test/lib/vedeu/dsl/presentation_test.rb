@@ -118,6 +118,12 @@ module Vedeu
         it { instance.must_respond_to(:colour=) }
       end
 
+      describe '#no_wordwrap!' do
+        it { instance.must_respond_to(:no_wordwrap!) }
+
+        # @todo Add more tests.
+      end
+
       describe '#style' do
         let(:args) { :bold }
 
@@ -136,6 +142,42 @@ module Vedeu
 
       describe '#styles=' do
         it { instance.must_respond_to(:styles=) }
+      end
+
+      describe '#wordwrap' do
+        context 'when the value is not given' do
+          subject { instance.wordwrap }
+
+          it { subject.must_equal(true) }
+        end
+
+        context 'when the value is given' do
+          subject { instance.wordwrap(_value) }
+
+          context 'when the value is nil' do
+            let(:_value) { nil }
+
+            it { subject.must_equal(false) }
+          end
+
+          context 'when the value is false' do
+            let(:_value) { false }
+
+            it { subject.must_equal(false) }
+          end
+
+          context 'when the value evaluates as true' do
+            let(:_value) { :a_true_value }
+
+            it { subject.must_equal(true) }
+          end
+        end
+
+        it { instance.must_respond_to(:wordwrap) }
+      end
+
+      describe '#wordwrap!' do
+        it { instance.must_respond_to(:wordwrap!) }
       end
 
     end # Presentation

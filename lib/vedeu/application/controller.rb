@@ -6,9 +6,8 @@ module Vedeu
   #
   module Controller
 
-    # Provide additional behaviour as class methods.
-    #
-    module ClassMethods
+    # @macro module_singleton_methods
+    module SingletonMethods
 
       attr_writer :controller_name
 
@@ -73,11 +72,11 @@ module Vedeu
       alias action_name action
       alias actions action
 
-    end # ClassMethods
+    end # SingletonMethods
 
-    # @macro included_module
+    # @macro module_included
     def self.included(klass)
-      klass.extend(Vedeu::Controller::ClassMethods)
+      klass.extend(Vedeu::Controller::SingletonMethods)
     end
 
   end # Controller

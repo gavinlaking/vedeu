@@ -226,9 +226,7 @@ module Vedeu
         end
       end
 
-      # Returns the default options/attributes for this class.
-      #
-      # @return [Hash<Symbol => Boolean,Fixnum,NilClass,Symbol>]
+      # @macro defaults_method
       def defaults
         {
           alignment: :none,

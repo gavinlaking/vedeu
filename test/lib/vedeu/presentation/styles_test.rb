@@ -34,7 +34,9 @@ module Vedeu
 
     describe Styles do
 
-      let(:includer) { Vedeu::PresentationStyleTestClass.new(attributes) }
+      let(:described)          { Vedeu::Presentation::Styles }
+      let(:included_described) { Vedeu::PresentationStyleTestClass }
+      let(:included_instance)  { included_described.new(attributes) }
       let(:attributes) {
         {
           parent: parent,
@@ -45,7 +47,7 @@ module Vedeu
       let(:style)  { ['bold'] }
 
       describe '#style' do
-        subject { includer.style }
+        subject { included_instance.style }
 
         it { subject.must_be_instance_of(Vedeu::Presentation::Style) }
 
@@ -71,7 +73,7 @@ module Vedeu
       describe '#style=' do
         let(:style) { Vedeu::Presentation::Style.new('normal') }
 
-        subject { includer.style = (style) }
+        subject { included_instance.style = (style) }
 
         it { subject.must_be_instance_of(Vedeu::Presentation::Style) }
       end

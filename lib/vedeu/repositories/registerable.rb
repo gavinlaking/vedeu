@@ -9,9 +9,8 @@ module Vedeu
     #
     module Registerable
 
-      # Provide additional behaviour as class methods.
-      #
-      module ClassMethods
+      # @macro module_singleton_methods
+      module SingletonMethods
 
         # The null model is used when the repository cannot be found.
         #
@@ -63,10 +62,9 @@ module Vedeu
         end
         alias reset reset!
 
-      end # ClassMethods
+      end # SingletonMethods
 
-      # Provide additional behaviour as instance methods.
-      #
+      # @macro module_instance_methods
       module InstanceMethods
 
         # @return [Boolean]
@@ -76,9 +74,9 @@ module Vedeu
 
       end # InstanceMethods
 
-      # @macro included_module
+      # @macro module_included
       def self.included(klass)
-        klass.extend(Vedeu::Repositories::Registerable::ClassMethods)
+        klass.extend(Vedeu::Repositories::Registerable::SingletonMethods)
         klass.include(Vedeu::Repositories::Registerable::InstanceMethods)
       end
 

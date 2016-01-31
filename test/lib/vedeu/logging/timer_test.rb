@@ -51,7 +51,17 @@ module Vedeu
         context 'when the block is not given' do
           subject { instance.measure }
 
-          it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
+          context 'when debugging is enabled' do
+            before { Vedeu.config.stubs(:debug?).returns(true) }
+
+            it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
+          end
+
+          context 'when debugging is disabled' do
+            before { Vedeu.config.stubs(:debug?).returns(false) }
+
+            it { subject.must_equal(nil) }
+          end
         end
       end
 

@@ -29,6 +29,10 @@ module Vedeu
         end
       end
 
+      describe '.coerce' do
+        it { described.must_respond_to(:coerce) }
+      end
+
       describe '#collection' do
         it { instance.must_respond_to(:collection) }
       end
@@ -39,60 +43,6 @@ module Vedeu
 
       describe '#lines' do
         it { instance.must_respond_to(:lines) }
-      end
-
-      describe '.coerce' do
-        let(:document) {}
-
-        subject { described.coerce(document) }
-
-        it { subject.must_be_instance_of(described) }
-
-        context 'when the document is already a Vedeu::Editor::Lines object' do
-          let(:document) { Vedeu::Editor::Lines.new(collection) }
-
-          it { subject.must_equal(document) }
-          it { subject.collection.must_equal(collection) }
-        end
-
-        context 'when the document is an empty Array' do
-          let(:document) { [] }
-
-          it { subject.collection.must_equal([]) }
-        end
-
-        context 'when the document is an Array' do
-          let(:document) {
-            [
-              Vedeu::Editor::Line.new('Some text...'),
-              :more_text,
-              'Other text...',
-            ]
-          }
-          let(:expected) {
-            [
-              Vedeu::Editor::Line.new('Some text...'),
-              Vedeu::Editor::Line.new(''),
-              Vedeu::Editor::Line.new('Other text...'),
-            ]
-          }
-
-          it { subject.collection.must_equal(expected) }
-        end
-
-        context 'when the document is a String' do
-          let(:document) { "Some text...\nMore text..." }
-
-          context 'but it is empty' do
-            let(:document) { '' }
-
-            it { subject.must_equal(Vedeu::Editor::Lines.new) }
-          end
-
-          context 'but it has no line breaks' do
-
-          end
-        end
       end
 
       describe '#delete_character' do

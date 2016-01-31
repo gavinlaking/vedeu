@@ -10,9 +10,8 @@ module Vedeu
     #
     module Geometry
 
-      # Provide additional behaviour as class methods.
-      #
-      module ClassMethods
+      # @macro module_singleton_methods
+      module SingletonMethods
 
         # {include:file:docs/dsl/by_method/geometry.md}
         # @param name [String|Symbol] The name of the interface or
@@ -40,7 +39,7 @@ module Vedeu
           Vedeu::Geometries::Geometry.build(name: name, &block).store
         end
 
-      end # ClassMethods
+      end # SingletonMethods
 
       # Provide additional behaviour as instance methods.
       #
@@ -50,7 +49,7 @@ module Vedeu
         # @param name [String|Symbol] The name of the interface; this
         #   is already provided when we define the interface or view,
         #   setting it here is just mirroring functionality of
-        #   {Vedeu::DSL::Geometry::ClassMethods#geometry}.
+        #   {Vedeu::DSL::Geometry::SingletonMethods#geometry}.
         # @param block [Proc]
         # @macro raise_requires_block
         # @macro raise_missing_required
@@ -66,9 +65,9 @@ module Vedeu
 
       end # InstanceMethods
 
-      # @macro included_module
+      # @macro module_included
       def self.included(klass)
-        klass.extend(Vedeu::DSL::Geometry::ClassMethods)
+        klass.extend(Vedeu::DSL::Geometry::SingletonMethods)
         klass.include(Vedeu::DSL::Geometry::InstanceMethods)
       end
 

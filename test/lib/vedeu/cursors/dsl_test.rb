@@ -24,27 +24,28 @@ module Vedeu
 
     describe DSL do
 
-      let(:described) { Vedeu::Cursors::DSL }
-      let(:instance)  { Vedeu::Cursors::DSLTestClass.new }
+      let(:described)          { Vedeu::Cursors::DSL }
+      let(:included_described) { Vedeu::Cursors::DSLTestClass }
+      let(:included_instance)  { included_described.new }
 
       describe '#cursor' do
-        it { instance.must_respond_to(:cursor) }
+        it { included_instance.must_respond_to(:cursor) }
       end
 
       describe '#cursor!' do
-        it { instance.must_respond_to(:cursor!) }
+        it { included_instance.must_respond_to(:cursor!) }
       end
 
       describe '#show_cursor!' do
-        it { instance.must_respond_to(:show_cursor!) }
+        it { included_instance.must_respond_to(:show_cursor!) }
       end
 
       describe '#no_cursor!' do
-        it { instance.must_respond_to(:no_cursor!) }
+        it { included_instance.must_respond_to(:no_cursor!) }
       end
 
       describe '#hide_cursor!' do
-        it { instance.must_respond_to(:hide_cursor!) }
+        it { included_instance.must_respond_to(:hide_cursor!) }
       end
 
       # describe '#cursor' do
@@ -56,7 +57,7 @@ module Vedeu
       #     Vedeu.cursors.stubs(:by_name).returns(cursor)
       #   end
 
-      #   subject { instance.cursor(_value) }
+      #   subject { included_instance.cursor(_value) }
 
       #   it do
       #     subject
@@ -110,7 +111,7 @@ module Vedeu
       # end
 
       describe '#cursor!' do
-        subject { instance.cursor! }
+        subject { included_instance.cursor! }
 
         it do
           subject
@@ -119,7 +120,7 @@ module Vedeu
       end
 
       describe '#no_cursor!' do
-        subject { instance.no_cursor! }
+        subject { included_instance.no_cursor! }
 
         it do
           subject

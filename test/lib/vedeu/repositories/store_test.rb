@@ -25,27 +25,28 @@ module Vedeu
 
     describe Store do
 
-      let(:described) { Vedeu::Repositories::Store }
-      let(:instance)  { Vedeu::Repositories::StoreTestClass.new(model, storage) }
-      let(:model)     {}
-      let(:storage)   {}
+      let(:described)          { Vedeu::Repositories::Store }
+      let(:included_described) { Vedeu::Repositories::StoreTestClass }
+      let(:included_instance)  { included_described.new(model, storage) }
+      let(:model)              {}
+      let(:storage)            {}
 
       describe '#all' do
-        it { instance.must_respond_to(:all) }
+        it { included_instance.must_respond_to(:all) }
       end
 
       describe '#clear' do
-        it { instance.must_respond_to(:clear) }
+        it { included_instance.must_respond_to(:clear) }
       end
 
       describe '#each' do
-        subject { instance.each }
+        subject { included_instance.each }
 
         it { subject.must_be_instance_of(Enumerator) }
       end
 
       describe '#empty?' do
-        subject { instance.empty? }
+        subject { included_instance.empty? }
 
         context 'when empty' do
           it { subject.must_equal(true) }
@@ -61,7 +62,7 @@ module Vedeu
       describe '#exists?' do
         let(:_name) {}
 
-        subject { instance.exists?(_name) }
+        subject { included_instance.exists?(_name) }
 
         context 'when the store is empty' do
           let(:_name) { :vedeu_repositories_store }
@@ -95,11 +96,11 @@ module Vedeu
       end
 
       describe '#registered?' do
-        it { instance.must_respond_to(:registered?) }
+        it { included_instance.must_respond_to(:registered?) }
       end
 
       describe '#registered' do
-        subject { instance.registered }
+        subject { included_instance.registered }
 
         it { subject.must_be_instance_of(Array) }
 
@@ -139,7 +140,7 @@ module Vedeu
       end
 
       describe '#size' do
-        subject { instance.size }
+        subject { included_instance.size }
 
         context 'when empty' do
           it { subject.must_equal(0) }
@@ -153,7 +154,7 @@ module Vedeu
       end
 
       describe '#all' do
-        it { instance.must_respond_to(:all) }
+        it { included_instance.must_respond_to(:all) }
       end
 
     end # Store

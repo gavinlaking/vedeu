@@ -39,25 +39,7 @@ module Vedeu
           .log(Vedeu.esc.green { '[api]' }, options)
       end
 
-      # Sets boolean to allow user input. The default behaviour of
-      # Vedeu is to be interactive.
-      #
-      #   Vedeu.configure do
-      #     interactive! # => same as `interactive true` or
-      #                  #    `standalone false`
-      #     # ...
-      #   end
-      #
-      #   Vedeu.configure do
-      #     interactive true # => Allow user input.
-      #     # ...
-      #   end
-      #
-      #   Vedeu.configure do
-      #     interactive false # => Disallow user input.
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/interactive.md}
       # @param value [Boolean]
       # @return [Boolean]
       def interactive!(value = true)
@@ -65,25 +47,7 @@ module Vedeu
       end
       alias interactive interactive!
 
-      # Sets boolean to prevent user intervention. This is the same as
-      # setting {include:Vedeu::Config::API#interactive!} to false.
-      #
-      #   Vedeu.configure do
-      #     standalone! # => same as `standalone true` or
-      #                 #    `interactive false`
-      #     # ...
-      #   end
-      #
-      #   Vedeu.configure do
-      #     standalone true # => Disallow user input.
-      #     # ...
-      #   end
-      #
-      #   Vedeu.configure do
-      #     standalone false # => Allow user input.
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/standalone.md}
       # @param value [Boolean]
       # @return [Boolean]
       def standalone!(value = true)
@@ -91,16 +55,7 @@ module Vedeu
       end
       alias standalone standalone!
 
-      # Sets boolean to run the Vedeu main application loop once. In
-      # effect, using `run_once!` or setting `run_once` to true will
-      # allow Vedeu to initialize, run any client application code,
-      # cleanup, then terminate.
-      #
-      #   Vedeu.configure do
-      #     run_once!
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/run_once.md}
       # @param value [Boolean]
       # @return [Boolean]
       def run_once!(value = true)
@@ -108,13 +63,7 @@ module Vedeu
       end
       alias run_once run_once!
 
-      # Sets boolean to run a DRb server.
-      #
-      #   Vedeu.configure do
-      #     drb!
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/drb.md}
       # @param value [Boolean]
       # @return [Boolean]
       def drb!(value = true)
@@ -122,26 +71,14 @@ module Vedeu
       end
       alias drb drb!
 
-      # Sets the hostname or IP address of the DRb server.
-      #
-      #   Vedeu.configure do
-      #     drb_host 'localhost'
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/drb_host.md}
       # @param hostname [String]
       # @return [String]
       def drb_host(hostname = '')
         options[:drb_host] = hostname
       end
 
-      # Sets the port of the DRb server.
-      #
-      #   Vedeu.configure do
-      #     drb_port 12345
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/drb_port.md}
       # @param port [Fixnum|String]
       # @return [String]
       def drb_port(port = '')

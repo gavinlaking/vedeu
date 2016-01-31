@@ -98,7 +98,7 @@ module Vedeu
         options[:content_only]
       end
 
-      # @return [Hash<Symbol => Boolean>]
+      # @macro defaults_method
       def defaults
         {
           content_only: false,

@@ -6,6 +6,8 @@ module Vedeu
 
     # Rudimentary support for mouse interactions.
     #
+    # @api private
+    #
     class Mouse
 
       # Trigger an event depending on which button was pressed.

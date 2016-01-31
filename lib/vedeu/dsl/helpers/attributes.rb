@@ -113,7 +113,7 @@ module Vedeu
         Vedeu::Colours::Colour.coerce(new_colour_options)
       end
 
-      # @return [Hash]
+      # @macro defaults_method
       def defaults
         {
           align:      :none,
@@ -124,7 +124,7 @@ module Vedeu
           style:      nil,
           truncate:   false,
           width:      nil,
-          wordwrap:   false,
+          wordwrap:   true,
         }
       end
 

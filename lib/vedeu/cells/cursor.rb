@@ -56,7 +56,7 @@ module Vedeu
 
       private
 
-      # @return [Hash]
+      # @macro defaults_method
       def defaults
         super.merge!(position: Vedeu::Geometries::Position.new(1, 1))
       end

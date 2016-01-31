@@ -46,6 +46,14 @@ module Vedeu
         value.is_a?(klass)
       end
 
+      # @macro raise_fatal
+      # @return [void]
+      def incoercible!
+        fail Vedeu::Error::Fatal,
+             "Vedeu cannot coerce a '#{value.class.name}' into a " \
+             "'#{klass}'."
+      end
+
       # @macro raise_not_implemented
       # @return [Class]
       def klass

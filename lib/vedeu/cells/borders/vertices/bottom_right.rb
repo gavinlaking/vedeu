@@ -23,7 +23,7 @@ module Vedeu
 
       private
 
-      # @return [Hash<Symbol => String>]
+      # @macro defaults_method
       def defaults
         super.merge!(position: Vedeu::Geometries::Position.new(yn, xn),
                      value:    Vedeu.esc.bottom_right)

@@ -38,7 +38,7 @@ module Vedeu
 
         subject { described.coerce(_value) }
 
-        it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+        it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
 
         context 'when the value is a Vedeu::Models::Row' do
           let(:_value)   { Vedeu::Models::Row.new }

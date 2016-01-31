@@ -11,13 +11,28 @@ module Vedeu
     #
     class EditorLines < Vedeu::Coercers::Coercer
 
-      # @return [void]
+      # @macro raise_fatal
+      # @return [Vedeu::Editor::Lines]
       def coerce
         if coerced?
-          value
+          klass.new(value.lines)
+
+        elsif value.is_a?(Array)
+          collection = value.map do |line|
+            Vedeu::Editor::Line.coerce(line)
+          end
+
+          klass.new(collection)
+
+        elsif string?(value)
+          collection = value.lines.map(&:chomp).map do |line|
+            Vedeu::Editor::Line.coerce(line)
+          end
+
+          klass.new(collection)
 
         else
-
+          klass.new
 
         end
       end

@@ -7,7 +7,7 @@ module Vedeu
     # @see Vedeu::Bindings::System#refresh!
     class Refresh
 
-      # @see #all
+      # @return (see #all)
       def self.all
         new.all
       end

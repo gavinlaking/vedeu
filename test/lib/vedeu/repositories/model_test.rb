@@ -8,8 +8,9 @@ module Vedeu
 
     describe Model do
 
-      let(:described)  { Vedeu::Repositories::ModelTestClass }
-      let(:instance)   { described.new(attributes) }
+      let(:described)          { Vedeu::Repositories::Model }
+      let(:included_described) { Vedeu::Repositories::ModelTestClass }
+      let(:included_instance)  { included_described.new(attributes) }
       let(:attributes) {
         {
           name: 'hydrogen'
@@ -17,17 +18,17 @@ module Vedeu
       }
 
       describe '#repository' do
-        it { instance.must_respond_to(:repository) }
+        it { included_instance.must_respond_to(:repository) }
       end
 
       describe '#repository=' do
-        it { instance.must_respond_to(:repository=) }
+        it { included_instance.must_respond_to(:repository=) }
       end
 
       describe '.build' do
         let(:attributes) {}
 
-        subject { described.build(attributes) { } }
+        subject { included_described.build(attributes) { } }
 
         # @todo Add more tests.
         # it { skip }
@@ -36,7 +37,7 @@ module Vedeu
       describe '.repository' do
         let(:klass) {}
 
-        subject { described.repository(klass) }
+        subject { included_described.repository(klass) }
 
         # @todo Add more tests.
         # it { skip }
@@ -46,11 +47,11 @@ module Vedeu
         let(:klass) {}
 
         context 'when a block is given' do
-          subject { described.store(klass) }
+          subject { included_described.store(klass) }
         end
 
         context 'when a block is not given' do
-          subject { described.store(klass) { :some_proc } }
+          subject { included_described.store(klass) { :some_proc } }
         end
 
         # @todo Add more tests.
@@ -58,7 +59,7 @@ module Vedeu
       end
 
       describe '#store' do
-        subject { instance.store }
+        subject { included_instance.store }
 
         it 'returns the model' do
           subject.must_be_instance_of(Vedeu::Repositories::ModelTestClass)

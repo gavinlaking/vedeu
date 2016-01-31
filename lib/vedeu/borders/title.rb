@@ -52,7 +52,7 @@ module Vedeu
       def render
         return horizontal if empty?
 
-        horizontal[start_index..(start_index + (size - 1))] = chars
+        horizontal[start_index..end_index] = chars
 
         horizontal
       end
@@ -119,6 +119,11 @@ module Vedeu
       # @return [Boolean]
       def empty?
         value.empty?
+      end
+
+      # @return [Fixnum]
+      def end_index
+        start_index + (size - 1)
       end
 
       # @return [Vedeu::Geometries::Geometry]

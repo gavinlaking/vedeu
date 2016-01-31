@@ -4,7 +4,7 @@ require 'test_helper'
 
 module Vedeu
 
-  class ControllerTestKlass
+  class ControllerTestClass
 
     include Vedeu::Controller
 
@@ -15,21 +15,20 @@ module Vedeu
 
   describe Controller do
 
-    let(:described) { Vedeu::Controller }
-    let(:described_model) { Vedeu::ControllerTestKlass }
-    let(:instance_model)  { described.new }
+    let(:described)          { Vedeu::Controller }
+    let(:included_described) { Vedeu::ControllerTestClass }
 
-    it { described_model.must_respond_to(:controller_name) }
-    it { described_model.must_respond_to(:action_name) }
-    it { described_model.must_respond_to(:controller) }
-    it { described_model.must_respond_to(:action) }
+    it { included_described.must_respond_to(:controller_name) }
+    it { included_described.must_respond_to(:action_name) }
+    it { included_described.must_respond_to(:controller) }
+    it { included_described.must_respond_to(:action) }
 
     describe '.controller' do
-      subject { described_model.controller(:some_controller) }
+      subject { included_described.controller(:some_controller) }
 
       it do
         Vedeu::Runtime::Router.expects(:add_controller).
-          with(:some_controller, 'Vedeu::ControllerTestKlass')
+          with(:some_controller, 'Vedeu::ControllerTestClass')
         subject
       end
 
@@ -37,7 +36,7 @@ module Vedeu
     end
 
     describe '.action' do
-      subject { described_model.action(:some_action, :other_action) }
+      subject { included_described.action(:some_action, :other_action) }
 
       it do
         Vedeu::Runtime::Router.expects(:add_action).

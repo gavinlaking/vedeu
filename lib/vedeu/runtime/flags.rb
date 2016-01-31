@@ -6,7 +6,7 @@ module Vedeu
 
     # Home of various runtime flags which Vedeu uses.
     #
-    # @api public
+    # @api private
     #
     class Flags
 
@@ -55,7 +55,7 @@ module Vedeu
 
       private
 
-      # @return [Hash]
+      # @macro defaults_method
       def defaults
         {
           ready: false,

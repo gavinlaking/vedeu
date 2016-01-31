@@ -6,6 +6,8 @@ module Vedeu
 
     # A collection of {Vedeu::Input::Key} instances.
     #
+    # @api private
+    #
     class Keys < Vedeu::Repositories::Collection
 
     end # Keys

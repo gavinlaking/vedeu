@@ -3,5 +3,6 @@ ratings:
     - lib/**
 exclude_paths:
   - "examples/*"
+  - "integrations/*"
   - "test/*"
   - "vendor/*"

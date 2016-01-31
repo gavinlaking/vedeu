@@ -17,7 +17,7 @@ module Vedeu
       include Vedeu::Renderers::Options
 
       # @param (see #initialize)
-      # @return [String]
+      # @return (see #render)
       def self.render(output, options = {})
         new(output, options).render
       end

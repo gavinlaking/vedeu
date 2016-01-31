@@ -50,8 +50,7 @@ module Vedeu
 
       private
 
-      # @return [Hash<Symbol => Boolean|Fixnum|NilClass|String|
-      #   Symbol]
+      # @macro defaults_method
       def defaults
         {
           name:     nil,

@@ -304,11 +304,7 @@ module Vedeu
         }
       end
 
-      # The default values for a new instance of this class.
-      #
-      # @return [Hash<Symbol => Boolean|Hash|NilClass|String|Symbol|
-      #   Vedeu::Borders::Repository|Vedeu::Presentation::Style>]
-      # @see Vedeu::EscapeSequences::Borders
+      # @macro defaults_method
       def defaults
         {
           bottom_horizontal: nil,

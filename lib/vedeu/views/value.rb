@@ -10,9 +10,8 @@ module Vedeu
     #
     module Value
 
-      # Provide additional behaviour as class methods.
-      #
-      module ClassMethods
+      # @macro module_singleton_methods
+      module SingletonMethods
 
         # @!attribute [w] collection_klass
         # @return [void]
@@ -54,10 +53,9 @@ module Vedeu
           @parent_klass = model
         end
 
-      end # ClassMethods
+      end # SingletonMethods
 
-      # Provide additional behaviour as instance methods.
-      #
+      # @macro module_instance_methods
       module InstanceMethods
 
         include Vedeu::Common
@@ -124,9 +122,9 @@ module Vedeu
 
       end # InstanceMethods
 
-      # @macro included_module
+      # @macro module_included
       def self.included(klass)
-        klass.extend(Vedeu::Views::Value::ClassMethods)
+        klass.extend(Vedeu::Views::Value::SingletonMethods)
         klass.include(Vedeu::Views::Value::InstanceMethods)
       end
 

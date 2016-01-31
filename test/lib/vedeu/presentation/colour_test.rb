@@ -8,8 +8,9 @@ module Vedeu
 
     describe Colour do
 
-      let(:described)  { Vedeu::Presentation::Colour }
-      let(:includer)   { Vedeu::PresentationColourTestClass.new(attributes) }
+      let(:described)          { Vedeu::Presentation::Colour }
+      let(:included_described) { Vedeu::PresentationColourTestClass }
+      let(:included_instance)  { included_described.new(attributes) }
       let(:attributes) {
         {
           colour: colour,
@@ -27,7 +28,7 @@ module Vedeu
       let(:parent)     { Vedeu::ParentPresentationColourTestClass.new }
 
       describe '#background' do
-        subject { includer.background }
+        subject { included_instance.background }
 
         it { subject.must_be_instance_of(Vedeu::Colours::Background) }
 
@@ -53,19 +54,19 @@ module Vedeu
       end
 
       describe '#background=' do
-        subject { includer.background = '#987654' }
+        subject { included_instance.background = '#987654' }
 
         it do
-          includer.colour.background.colour.must_equal('#000033')
+          included_instance.colour.background.colour.must_equal('#000033')
           subject
-          includer.colour.background.colour.must_equal('#987654')
+          included_instance.colour.background.colour.must_equal('#987654')
         end
 
         it { subject.must_equal('#987654') }
       end
 
       describe '#colour' do
-        subject { includer.colour }
+        subject { included_instance.colour }
 
         it { subject.must_be_instance_of(Vedeu::Colours::Colour) }
 
@@ -96,13 +97,13 @@ module Vedeu
           Vedeu::Colours::Colour.new(foreground: '#00ff00', background: '#000000')
         }
 
-        subject { includer.colour=(colour) }
+        subject { included_instance.colour=(colour) }
 
         it { subject.must_be_instance_of(Vedeu::Colours::Colour) }
       end
 
       describe '#foreground' do
-        subject { includer.foreground }
+        subject { included_instance.foreground }
 
         it { subject.must_be_instance_of(Vedeu::Colours::Foreground) }
         it { subject.colour.must_equal('#aadd00') }
@@ -129,12 +130,12 @@ module Vedeu
       end
 
       describe '#foreground=' do
-        subject { includer.foreground = '#123456' }
+        subject { included_instance.foreground = '#123456' }
 
         it do
-          includer.colour.foreground.colour.must_equal('#aadd00')
+          included_instance.colour.foreground.colour.must_equal('#aadd00')
           subject
-          includer.colour.foreground.colour.must_equal('#123456')
+          included_instance.colour.foreground.colour.must_equal('#123456')
         end
 
         it { subject.must_equal('#123456') }

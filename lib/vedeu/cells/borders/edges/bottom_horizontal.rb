@@ -18,7 +18,7 @@ module Vedeu
 
       private
 
-      # @return [Hash<Symbol => String>]
+      # @macro defaults_method
       def defaults
         super.merge!(value: Vedeu.esc.horizontal)
       end

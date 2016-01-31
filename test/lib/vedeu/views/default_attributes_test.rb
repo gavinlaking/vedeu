@@ -26,56 +26,56 @@ module Vedeu
       let(:described) { Vedeu::Views::DefaultAttributes }
       let(:instance)  {}
 
-      let(:including_described) { Vedeu::Views::DefaultAttributesTest }
-      let(:including_instance)  { including_described.new }
-      let(:model)               {}
+      let(:included_described) { Vedeu::Views::DefaultAttributesTest }
+      let(:included_instance)  { included_described.new }
+      let(:model)              {}
 
       describe '#align' do
-        it { including_instance.must_respond_to(:align) }
+        it { included_instance.must_respond_to(:align) }
       end
 
       describe '#client' do
-        it { including_instance.must_respond_to(:client) }
+        it { included_instance.must_respond_to(:client) }
       end
 
       describe '#colour' do
-        it { including_instance.must_respond_to(:colour) }
+        it { included_instance.must_respond_to(:colour) }
       end
 
       describe '#name' do
-        it { including_instance.must_respond_to(:name) }
+        it { included_instance.must_respond_to(:name) }
       end
 
       describe '#pad' do
-        it { including_instance.must_respond_to(:pad) }
+        it { included_instance.must_respond_to(:pad) }
       end
 
       describe '#parent' do
-        it { including_instance.must_respond_to(:parent) }
+        it { included_instance.must_respond_to(:parent) }
       end
 
       describe '#style' do
-        it { including_instance.must_respond_to(:style) }
+        it { included_instance.must_respond_to(:style) }
       end
 
       describe '#truncate' do
-        it { including_instance.must_respond_to(:truncate) }
+        it { included_instance.must_respond_to(:truncate) }
       end
 
       describe '#truncate?' do
-        it { including_instance.must_respond_to(:truncate?) }
+        it { included_instance.must_respond_to(:truncate?) }
       end
 
       describe '#width' do
-        it { including_instance.must_respond_to(:width) }
+        it { included_instance.must_respond_to(:width) }
       end
 
       describe '#wordwrap' do
-        it { including_instance.must_respond_to(:wordwrap) }
+        it { included_instance.must_respond_to(:wordwrap) }
       end
 
       describe '#wordwrap?' do
-        it { including_instance.must_respond_to(:wordwrap?) }
+        it { included_instance.must_respond_to(:wordwrap?) }
       end
 
       describe '#attributes' do
@@ -90,11 +90,11 @@ module Vedeu
             style:    nil,
             truncate: false,
             width:    nil,
-            wordwrap: false,
+            wordwrap: true,
           }
         }
 
-        subject { including_instance.attributes }
+        subject { included_instance.attributes }
 
         it { subject.must_be_instance_of(Hash) }
         it { subject.must_equal(expected) }

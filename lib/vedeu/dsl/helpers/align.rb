@@ -76,7 +76,7 @@ module Vedeu
       end
       alias center centre
 
-      # @return [Hash]
+      # @macro defaults_method
       def defaults
         {
           align: :left,

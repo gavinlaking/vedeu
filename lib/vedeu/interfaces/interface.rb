@@ -43,6 +43,10 @@ module Vedeu
       # @return [Vedeu::Views::Composition]
       attr_accessor :parent
 
+      # @!attribute [rw] wordwrap
+      # @return [Boolean]
+      attr_accessor :wordwrap
+
       # @!attribute [rw] zindex
       # @return [Fixnum]
       attr_accessor :zindex
@@ -60,6 +64,7 @@ module Vedeu
       # @option attributes repository [Vedeu::Interfaces::Repository]
       # @option attributes style [Vedeu::Presentation::Style]
       # @option attributes visible [Boolean]
+      # @option attributes wordwrap [Boolean]
       # @option attributes zindex [Fixnum]
       # @return [Vedeu::Interfaces::Interface]
       def initialize(attributes = {})
@@ -82,6 +87,7 @@ module Vedeu
           repository:     repository,
           style:          style,
           visible:        visible,
+          wordwrap:       wordwrap,
           zindex:         zindex,
         }
       end
@@ -140,9 +146,7 @@ module Vedeu
 
       private
 
-      # The default values for a new instance of this class.
-      #
-      # @return [Hash<Symbol => void>]
+      # @macro defaults_method
       def defaults
         {
           client:         nil,
@@ -156,6 +160,7 @@ module Vedeu
           repository:     Vedeu.interfaces,
           style:          :normal,
           visible:        true,
+          wordwrap:       true,
           zindex:         0,
         }
       end
@@ -165,11 +170,11 @@ module Vedeu
   end # Interfaces
 
   # @!method hide_interface
-  #   @see Vedeu::Toggleable::ClassMethods#hide
+  #   @see Vedeu::Toggleable::SingletonMethods#hide
   # @!method show_interface
-  #   @see Vedeu::Toggleable::ClassMethods#show
+  #   @see Vedeu::Toggleable::SingletonMethods#show
   # @!method toggle_interface
-  #   @see Vedeu::Toggleable::ClassMethods#toggle
+  #   @see Vedeu::Toggleable::SingletonMethods#toggle
   def_delegators Vedeu::Interfaces::Interface,
                  :hide_interface,
                  :show_interface,

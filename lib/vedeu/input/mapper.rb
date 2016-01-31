@@ -6,6 +6,8 @@ module Vedeu
 
     # Maps keys to keymaps.
     #
+    # @api private
+    #
     class Mapper
 
       class << self

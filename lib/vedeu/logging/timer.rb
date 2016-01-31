@@ -33,24 +33,30 @@ module Vedeu
       end
 
       # Write an entry to the log file stating how long a section of
-      # code took in milliseconds. Useful for debugging performance.
+      # code took in milliseconds when debugging is enabled and a
+      # block was Useful for debugging performance.
       #
       # @param block [Proc]
       # @macro raise_requires_block
-      # @return [void] The return value of the executed block.
+      # @return [void|NilClass] The return value of the executed
+      #   block if given, or nil if debugging is disabled.
       def measure(&block)
-        fail Vedeu::Error::RequiresBlock unless block_given?
+        if block_given?
+          if Vedeu.config.debug?
+            work = yield
 
-        if Vedeu.config.debug?
-          work = yield
+            Vedeu.log(type:    :timer,
+                      message: "#{message} took #{elapsed}ms.")
 
-          Vedeu.log(type:    :timer,
-                    message: "#{message} took #{elapsed}ms.")
+            work
 
-          work
+          else
+            yield
+
+          end
 
         else
-          yield
+          fail Vedeu::Error::RequiresBlock if Vedeu.config.debug?
 
         end
       end
@@ -64,6 +70,8 @@ module Vedeu
       # @!attribute [r] message
       # @return [String]
       attr_reader :message
+
+      private
 
       # Returns the elapsed time in milliseconds with 3 decimal
       # places.

@@ -158,10 +158,7 @@ module Vedeu
 
       private
 
-      # Returns the default options/attributes for this class.
-      #
-      # @return [Hash<Symbol => Boolean|Set|String|
-      #   Vedeu::Groups::Repository]
+      # @macro defaults_method
       def defaults
         {
           members:    Set.new,
@@ -183,11 +180,11 @@ module Vedeu
   end # Groups
 
   # @!method hide_group
-  #   @see Vedeu::Toggleable::ClassMethods#hide
+  #   @see Vedeu::Toggleable::SingletonMethods#hide
   # @!method show_group
-  #   @see Vedeu::Toggleable::ClassMethods#show
+  #   @see Vedeu::Toggleable::SingletonMethods#show
   # @!method toggle_group
-  #   @see Vedeu::Toggleable::ClassMethods#toggle
+  #   @see Vedeu::Toggleable::SingletonMethods#toggle
   def_delegators Vedeu::Groups::Group,
                  :hide_group,
                  :show_group,

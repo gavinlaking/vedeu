@@ -48,12 +48,6 @@ module Vedeu
         input
       end
 
-      protected
-
-      # @!attribute [r] input
-      # @return [NilClass|String]
-      attr_reader :input
-
       private
 
       # @return [IO]
@@ -66,7 +60,7 @@ module Vedeu
         mode == :cooked
       end
 
-      # @return [Hash<Symbol => Symbol>]
+      # @macro defaults_method
       def defaults
         {
           mode: :cooked,

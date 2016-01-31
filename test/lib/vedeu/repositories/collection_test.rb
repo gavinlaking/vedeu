@@ -59,7 +59,7 @@ module Vedeu
       describe '#add' do
         subject { instance.add(:hydrogen) }
 
-        it { subject.must_be_instance_of(Vedeu::Repositories::Collection) }
+        it { subject.must_be_instance_of(described) }
         it { subject.all.must_equal([:hydrogen]) }
       end
 

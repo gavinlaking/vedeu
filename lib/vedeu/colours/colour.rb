@@ -134,8 +134,7 @@ module Vedeu
 
       private
 
-      # @return [Hash<Symbol => Vedeu::Colours::Background|
-      #   Vedeu::Colours:Foreground]
+      # @macro defaults_method
       def defaults
         {
           background: Vedeu::Colours::Background.new,

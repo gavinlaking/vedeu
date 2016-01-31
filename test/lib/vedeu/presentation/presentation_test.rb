@@ -36,7 +36,9 @@ module Vedeu
 
   describe Presentation do
 
-    let(:includer) { Vedeu::PresentationTestClass.new(attributes) }
+    let(:described)          { Vedeu::Presentation }
+    let(:included_described) { Vedeu::PresentationTestClass }
+    let(:included_instance)  { included_described.new(attributes) }
     let(:attributes) {
       {
         colour: { background: background, foreground: foreground },
@@ -80,7 +82,7 @@ module Vedeu
         "\e[38;2;255;0;0m\e[48;2;0;0;0m\e[4mt"
       }
 
-      it { includer.must_respond_to(:to_str) }
+      it { included_instance.must_respond_to(:to_str) }
 
       it 'returns output' do
         stream.to_s.must_equal(expected)

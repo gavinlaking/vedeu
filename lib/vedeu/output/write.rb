@@ -16,7 +16,8 @@ module Vedeu
       include Vedeu::Presentation
 
       # @api public
-      # @see Vedeu::Output::Write#initialize
+      # @param (see #initialize)
+      # @return (see #write)
       def self.write(output = nil, options = {})
         new(output, options).write
       end
@@ -63,7 +64,7 @@ module Vedeu
 
       private
 
-      # @return [Hash<Symbol => Fixnum>]
+      # @macro defaults_method
       def defaults
         {
           x: 1,

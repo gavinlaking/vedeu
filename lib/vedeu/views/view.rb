@@ -50,6 +50,11 @@ module Vedeu
       # @return [String|Symbol]
       attr_accessor :name
 
+      # @!attribute [rw] wordwrap
+      # @return [Boolean]
+      attr_accessor :wordwrap
+      alias_method :wordwrap?, :wordwrap
+
       # @!attribute [rw] zindex
       # @return [Fixnum]
       attr_accessor :zindex
@@ -64,6 +69,7 @@ module Vedeu
       # @option attributes name [String|Symbol]
       # @option attributes parent [Vedeu::Views::Composition]
       # @option attributes style [Vedeu::Presentation::Style]
+      # @option attributes wordwrap [Boolean]
       # @option attributes zindex [Fixnum]
       # @return [Vedeu::Views::View]
       def initialize(attributes = {})
@@ -89,6 +95,7 @@ module Vedeu
           parent:         parent,
           style:          style,
           value:          value,
+          wordwrap:       wordwrap,
           zindex:         zindex,
         }
       end
@@ -142,9 +149,7 @@ module Vedeu
         Vedeu.buffers.by_name(name)
       end
 
-      # The default values for a new instance of this class.
-      #
-      # @return [Hash]
+      # @macro defaults_method
       def defaults
         {
           client:         nil,
@@ -154,6 +159,7 @@ module Vedeu
           parent:         nil,
           style:          :normal,
           value:          [],
+          wordwrap:       true,
           zindex:         0,
         }
       end

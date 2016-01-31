@@ -195,9 +195,7 @@ module Vedeu
 
       private
 
-      # The default values for a new instance of this class.
-      #
-      # @return [Hash]
+      # @macro defaults_method
       def defaults
         {
           client:     nil,

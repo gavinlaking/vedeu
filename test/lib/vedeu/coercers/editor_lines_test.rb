@@ -31,6 +31,47 @@ module Vedeu
           it { subject.must_be_instance_of(klass) }
           it { subject.must_equal(_value) }
         end
+
+        context 'when the value is an Array' do
+          context 'when the value is empty' do
+            let(:_value) { [] }
+
+            it { subject.collection.must_equal([]) }
+          end
+
+          context 'when the value is not empty' do
+            let(:_value) {
+              [
+                Vedeu::Editor::Line.new('Some text...'),
+                :more_text,
+                'Other text...',
+              ]
+            }
+            let(:expected) {
+              [
+                Vedeu::Editor::Line.new('Some text...'),
+                Vedeu::Editor::Line.new(''),
+                Vedeu::Editor::Line.new('Other text...'),
+              ]
+            }
+
+            it { subject.collection.must_equal(expected) }
+          end
+        end
+
+        context 'when the value is a String' do
+          let(:_value) { "Some text...\nMore text..." }
+
+          context 'but it is empty' do
+            let(:_value) { '' }
+
+            it { subject.must_equal(Vedeu::Editor::Lines.new) }
+          end
+
+          context 'but it has no line breaks' do
+            # @todo Add more tests.
+          end
+        end
       end
 
     end # EditorLines
