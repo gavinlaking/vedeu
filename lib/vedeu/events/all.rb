@@ -10,7 +10,7 @@ module Vedeu
 
 end # Vedeu
 
-require 'vedeu/events/collection'
+require 'vedeu/events/events'
 require 'vedeu/events/aliases'
 require 'vedeu/events/trigger'
 require 'vedeu/events/repository'

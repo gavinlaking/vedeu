@@ -19,7 +19,7 @@ module Vedeu
         #
         # @return [Vedeu::Events::Repository]
         def reset!
-          @events = new(Vedeu::Events::Collection)
+          @events = new(Vedeu::Events::Events)
         end
         alias reset reset!
 

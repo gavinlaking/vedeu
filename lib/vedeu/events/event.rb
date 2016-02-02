@@ -142,7 +142,7 @@ module Vedeu
                            repository.find(name).add(self)
 
                          else
-                           Vedeu::Events::Collection.new([self], nil, name)
+                           Vedeu::Events::Events.new([self], nil, name)
 
                          end
 

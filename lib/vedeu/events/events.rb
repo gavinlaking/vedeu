@@ -7,9 +7,9 @@ module Vedeu
     # A collection of {Vedeu::Events::Event} instances.
     #
     # @api private
-    class Collection < Vedeu::Repositories::Collection
+    class Events < Vedeu::Repositories::Collection
 
-    end # Collection
+    end # Events
 
   end # Events
 

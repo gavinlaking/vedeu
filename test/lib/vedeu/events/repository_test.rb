@@ -18,7 +18,7 @@ module Vedeu
         it { described.must_respond_to(:reset) }
 
         it do
-          described.expects(:new).with(Vedeu::Events::Collection)
+          described.expects(:new).with(Vedeu::Events::Events)
           subject
         end
       end
