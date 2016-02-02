@@ -22,6 +22,7 @@ module Vedeu
   # @example
   #   Vedeu.documents
   #
+  # @api public
   # @!method documents
   # @return [Vedeu::Editor::Repository]
   def_delegators Vedeu::Editor::Repository,

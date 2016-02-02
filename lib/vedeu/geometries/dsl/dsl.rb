@@ -411,6 +411,7 @@ module Vedeu
 
   end # Geometries
 
+  # @api public
   # @!method geometry
   #   @see Vedeu::Geometries::DSL.geometry
   def_delegators Vedeu::Geometries::DSL,

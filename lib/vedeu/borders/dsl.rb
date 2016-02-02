@@ -332,6 +332,7 @@ module Vedeu
 
   end # DSL
 
+  # @api public
   # @!method border
   #   @see Vedeu::Borders::DSL.border
   def_delegators Vedeu::Borders::DSL,

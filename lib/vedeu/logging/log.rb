@@ -166,12 +166,16 @@ module Vedeu
 
   end # Logging
 
+  # @api public
   # @!method log
   #   @see Vedeu::Logging::Log.log
+  # @api public
   # @!method log_stdout
   #   @see Vedeu::Logging::Log.log_stdout
+  # @api public
   # @!method log_stderr
   #   @see Vedeu::Logging::Log.log_stderr
+  # @api public
   # @!method log_timestamp
   #   @see Vedeu::Logging::Log.log_timestamp
   def_delegators Vedeu::Logging::Log,

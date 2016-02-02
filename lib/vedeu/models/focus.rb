@@ -246,16 +246,22 @@ module Vedeu
 
   end # Models
 
+  # @api public
   # @!method focus
   #   @see Vedeu::Models::Focus#focus
+  # @api public
   # @!method focus?
   #   @see Vedeu::Models::Focus#focus?
+  # @api public
   # @!method focus_by_name
   #   @see Vedeu::Models::Focus#focus_by_name
+  # @api public
   # @!method focussed?
   #   @see Vedeu::Models::Focus#focussed?
+  # @api public
   # @!method focus_next
   #   @see Vedeu::Models::Focus#focus_next
+  # @api public
   # @!method focus_previous
   #   @see Vedeu::Models::Focus#focus_previous
   def_delegators Vedeu::Models::Focus,

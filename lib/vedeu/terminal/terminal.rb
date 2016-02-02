@@ -163,6 +163,7 @@ module Vedeu
 
   end # Terminal
 
+  # @api public
   # @!method resize
   #   @see Vedeu::Terminal#resize
   def_delegators Vedeu::Terminal,

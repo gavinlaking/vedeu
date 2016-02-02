@@ -142,10 +142,13 @@ module Vedeu
 
   end # DSL
 
+  # @api public
   # @!method render
   #   @see Vedeu::DSL::Views.render
+  # @api public
   # @!method renders
   #   @see Vedeu::DSL::Views.renders
+  # @api public
   # @!method views
   #   @see Vedeu::DSL::Views.views
   def_delegators Vedeu::DSL::Views,

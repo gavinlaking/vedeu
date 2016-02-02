@@ -138,6 +138,7 @@ module Vedeu
 
   end # Runtime
 
+  # @api public
   # @!method exit
   #   @see Vedeu::Runtime::Application.stop
   def_delegators Vedeu::Runtime::Application,

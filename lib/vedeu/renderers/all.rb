@@ -124,6 +124,7 @@ module Vedeu
   # @example
   #   Vedeu.renderers
   #
+  # @api public
   # @!method renderers
   #   @see Vedeu::Renderers#renderers
   def_delegators Vedeu::Renderers,

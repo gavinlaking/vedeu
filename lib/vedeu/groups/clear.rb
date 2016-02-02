@@ -61,6 +61,7 @@ module Vedeu
 
   end # Groups
 
+  # @api public
   # @!method clear_by_group
   #   @see Vedeu::Groups::Clear.render
   def_delegators Vedeu::Groups::Clear,

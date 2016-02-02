@@ -39,6 +39,7 @@ module Vedeu
   # @example
   #   Vedeu.interfaces
   #
+  # @api public
   # @!method interfaces
   # @return [Vedeu::Interfaces::Repository]
   def_delegators Vedeu::Interfaces::Repository,

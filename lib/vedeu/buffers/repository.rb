@@ -28,6 +28,7 @@ module Vedeu
   # @example
   #   Vedeu.buffers
   #
+  # @api public
   # @!method buffers
   # @return [Vedeu::Buffers::Repository]
   def_delegators Vedeu::Buffers::Repository,

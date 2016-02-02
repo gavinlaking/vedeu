@@ -28,6 +28,7 @@ module Vedeu
   # @example
   #   Vedeu.groups
   #
+  # @api public
   # @!method groups
   # @return [Vedeu::Groups::Repository]
   def_delegators Vedeu::Groups::Repository,

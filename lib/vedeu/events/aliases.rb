@@ -85,8 +85,10 @@ module Vedeu
 
   end # Events
 
+  # @api public
   # @!method bind_alias
   #   @see Vedeu::Events::Aliases#bind_alias
+  # @api public
   # @!method unbind_alias
   #   @see Vedeu::Events::Aliases#unbind_alias
   def_delegators Vedeu::Events::Aliases,

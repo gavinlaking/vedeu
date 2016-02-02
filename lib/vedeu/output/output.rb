@@ -102,6 +102,7 @@ module Vedeu
   #   Vedeu.direct_write(output)
   #   Vedeu.render_output(output)
   #
+  # @api public
   # @!method render_output
   # @return (see Vedeu::Output::Output#render_output)
   def_delegators Vedeu::Output::Output,

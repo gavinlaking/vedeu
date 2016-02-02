@@ -90,8 +90,10 @@ module Vedeu
 
   end # Buffers
 
+  # @api public
   # @!method clear
   #   @see Vedeu::Buffers::Terminal#clear
+  # @api public
   # @!method refresh
   #   @see Vedeu::Buffers::Terminal#refresh
   def_delegators Vedeu::Buffers::Terminal,

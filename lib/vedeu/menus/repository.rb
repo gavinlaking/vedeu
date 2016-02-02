@@ -22,6 +22,7 @@ module Vedeu
   # @example
   #   Vedeu.menus
   #
+  # @api public
   # @!method menus
   # @return [Vedeu::Menus::Repository]
   def_delegators Vedeu::Menus::Repository,

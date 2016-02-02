@@ -63,16 +63,22 @@ module Vedeu
 
   end # Input
 
+  # @api public
   # @!method add_command
   #   @see Vedeu::Input::Store.add_command
+  # @api public
   # @!method add_keypress
   #   @see Vedeu::Input::Store.add_keypress
+  # @api public
   # @!method all_commands
   #   @see Vedeu::Input::Store.all_commands
+  # @api public
   # @!method all_keypresses
   #   @see Vedeu::Input::Store.all_keypresses
+  # @api public
   # @!method last_command
   #   @see Vedeu::Input::Store.last_command
+  # @api public
   # @!method last_keypress
   #   @see Vedeu::Input::Store.last_keypress
   def_delegators Vedeu::Input::Store,

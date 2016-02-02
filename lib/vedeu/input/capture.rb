@@ -2,7 +2,7 @@
 
 module Vedeu
 
-  # \e
+  # Produces ASCII character 27 which is ESC
   ESCAPE_KEY_CODE = 27
 
   module Input

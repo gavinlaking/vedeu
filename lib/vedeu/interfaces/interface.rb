@@ -169,10 +169,13 @@ module Vedeu
 
   end # Interfaces
 
+  # @api public
   # @!method hide_interface
   #   @see Vedeu::Toggleable::SingletonMethods#hide
+  # @api public
   # @!method show_interface
   #   @see Vedeu::Toggleable::SingletonMethods#show
+  # @api public
   # @!method toggle_interface
   #   @see Vedeu::Toggleable::SingletonMethods#toggle
   def_delegators Vedeu::Interfaces::Interface,

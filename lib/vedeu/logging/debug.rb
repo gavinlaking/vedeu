@@ -117,12 +117,14 @@ module Vedeu
   end # Logging
 
   # {include:file:docs/dsl/by_method/profile.md}
+  # @api public
   # @!method profile
   # @return [Vedeu::Logging::Debug]
   def_delegators Vedeu::Logging::Debug,
                  :profile
 
   # {include:file:docs/dsl/by_method/debug.md}
+  # @api public
   # @!method debug
   # @return [void]
   def_delegators Vedeu::Logging::Debug,

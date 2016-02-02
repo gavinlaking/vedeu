@@ -227,8 +227,10 @@ module Vedeu
 
   end # Interfaces
 
+  # @api public
   # @!method clear_by_name
   #   @see Vedeu::Interfaces::Clear.clear_by_name
+  # @api public
   # @!method clear_content_by_name
   #   @see Vedeu::Interfaces.Clear.clear_content_by_name
   def_delegators Vedeu::Interfaces::Clear,

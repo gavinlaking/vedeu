@@ -406,14 +406,19 @@ module Vedeu
 
   end # Configuration
 
+  # @api public
   # @!method config
   #   @see Vedeu::Configuration.config
+  # @api public
   # @!method configure
   #   @see Vedeu::Configuration.configure
+  # @api public
   # @!method configuration
   #   @see Vedeu::Configuration.configuration
+  # @api public
   # @!method height
   #   @see Vedeu::Configuration.height
+  # @api public
   # @!method width
   #   @see Vedeu::Configuration.width
   def_delegators Vedeu::Configuration,

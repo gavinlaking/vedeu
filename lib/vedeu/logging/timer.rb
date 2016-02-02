@@ -86,6 +86,7 @@ module Vedeu
   end # Logging
 
   # {include:file:docs/dsl/by_method/timer.md}
+  # @api public
   # @!method timer
   #   @see Vedeu::Logging::Timer.timer
   def_delegators Vedeu::Logging::Timer,
