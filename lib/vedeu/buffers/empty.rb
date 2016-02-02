@@ -8,6 +8,7 @@ module Vedeu
     # height and width.
     #
     # @api private
+    #
     class Empty
 
       include Vedeu::Repositories::Defaults

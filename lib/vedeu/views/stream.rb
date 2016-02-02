@@ -64,6 +64,8 @@ module Vedeu
         end
       end
 
+      # Adds the child to the collection.
+      #
       # @param child [Vedeu::Views::Stream]
       # @return [Vedeu::Views::Streams]
       def add(child)

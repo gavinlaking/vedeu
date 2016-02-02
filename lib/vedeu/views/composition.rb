@@ -24,9 +24,11 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Views::Composition.
       #
-      # @param attributes [Hash]
+      # @param attributes [Hash<Symbol => void>]
       # @option attributes client [void]
       # @option attributes colour [Vedeu::Colours::Colour]
+      # @option attributes parent [NilClass] The parent of a
+      #   Vedeu::Views::Composition should be nil.
       # @option attributes style [Vedeu::Presentation::Style]
       # @option attributes value [Vedeu::Views::Views]
       # @return [Vedeu::Views::Composition]
@@ -36,6 +38,8 @@ module Vedeu
         end
       end
 
+      # Adds the child to the collection.
+      #
       # @param child [Vedeu::Views::View]
       # @return [Vedeu::Views::Views]
       def add(child)

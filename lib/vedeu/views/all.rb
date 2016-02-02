@@ -4,6 +4,8 @@ module Vedeu
 
   # View related models.
   #
+  # @api mixed
+  #
   module Views
 
   end # Views
