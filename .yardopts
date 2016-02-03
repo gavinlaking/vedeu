@@ -1,6 +1,5 @@
 --private
 --protected
---embed-mixins
 --tag api_method:"API Method"
 --tag api_event:"API Event"
 -
