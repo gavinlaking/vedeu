@@ -39,6 +39,7 @@ module Vedeu
       #   - Takes approximately ~6ms for 2100 chars. (2015-11-25)
       #   - Takes approximately ~25ms for 2100 chars. (2015-07-25)
       # @return [String]
+      # @return [Array<void>|String]
       def render
         return cached if compression?
 

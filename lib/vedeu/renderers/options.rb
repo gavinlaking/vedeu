@@ -134,7 +134,7 @@ module Vedeu
         options[:start_row_tag]
       end
 
-      # @return [void]
+      # @return [Array<void>]
       def output
         options[:output]
       end
