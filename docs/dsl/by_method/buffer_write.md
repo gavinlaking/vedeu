@@ -1,3 +1,5 @@
-Write the given output to the configured or default renderers.
+Write the given output to the terminal buffer. Once written, the
+terminal buffer is then refreshed- sending its contents to the
+configured or default renderers.
 
     Vedeu.buffer_write(output)
