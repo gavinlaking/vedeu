@@ -67,7 +67,7 @@ module Vedeu
         if direct?
           Vedeu.direct_write(optimised_output)
 
-          Vedeu::Buffers::Terminal.update(output)
+          Vedeu.buffer_update(output)
 
         else
           Vedeu.render_output(output)

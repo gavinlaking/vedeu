@@ -70,7 +70,7 @@ module Vedeu
       # @param value_or_values [Array<Array<Vedeu::Cells::Char>>]
       # @return [Array<Array<Vedeu::Cells::Char>>]
       def write(value_or_values)
-        buffer.update(value_or_values)
+        update(value_or_values)
 
         refresh
       end
