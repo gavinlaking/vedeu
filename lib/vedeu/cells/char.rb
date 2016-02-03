@@ -21,11 +21,6 @@ module Vedeu
         super
       end
 
-      # @return [Boolean]
-      def cell?
-        false
-      end
-
       # @return [String]
       def text
         @value || ' '

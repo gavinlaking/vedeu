@@ -33,11 +33,6 @@ module Vedeu
         '&nbsp;'
       end
 
-      # @return [Boolean]
-      def cell?
-        true
-      end
-
       # An object is equal when its values are the same.
       #
       # @param other [void]

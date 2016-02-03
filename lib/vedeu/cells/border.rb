@@ -29,11 +29,6 @@ module Vedeu
         }
       end
 
-      # @return [Boolean]
-      def cell?
-        false
-      end
-
       # @param value [String|Symbol]
       # @return [Vedeu::Cells::Border]
       def name=(value)
