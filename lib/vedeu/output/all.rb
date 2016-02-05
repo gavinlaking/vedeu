@@ -11,9 +11,7 @@ module Vedeu
 
 end # Vedeu
 
-require 'vedeu/output/compressors/simple'
-require 'vedeu/output/compressors/character'
-
+require 'vedeu/output/compressors/all'
 require 'vedeu/output/compressor_cache'
 require 'vedeu/output/compressor'
 require 'vedeu/output/output'
