@@ -1,3 +1,4 @@
+### Vedeu.buffers
 Repository method. Access registered borders.
 
     Vedeu.buffers # [Vedeu::Buffers::Repository]

@@ -6,6 +6,8 @@ module Vedeu
   # application controllers. The client application's
   # ApplicationController will inherit from this class.
   #
+  # @api public
+  #
   class ApplicationController
 
     include Vedeu::Controller

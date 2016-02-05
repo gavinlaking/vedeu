@@ -6,6 +6,8 @@ module Vedeu
   # The client application's ApplicationView will inherit from this
   # class.
   #
+  # @api public
+  #
   class ApplicationView
 
     include Vedeu::View

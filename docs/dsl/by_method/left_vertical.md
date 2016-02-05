@@ -1,3 +1,4 @@
+### `left_vertical`
 Set the character to be used to draw the left vertical part of
 the border.
 

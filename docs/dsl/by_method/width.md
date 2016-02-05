@@ -1,3 +1,4 @@
+### Vedeu.width
 Returns the total width (number of columns/characters) of the
 current terminal.
 

@@ -6,6 +6,8 @@ module Vedeu
 
     # Provides foreground colour related escape sequences.
     #
+    # @api public
+    # See {file:docs/dsl/by_method/esc.md}
     module Foreground
 
       extend self

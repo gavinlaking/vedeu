@@ -6,6 +6,8 @@ module Vedeu
 
     # Provides background colour related escape sequences.
     #
+    # @api public
+    # See {file:docs/dsl/by_method/esc.md}
     module Background
 
       extend self
