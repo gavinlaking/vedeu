@@ -53,7 +53,7 @@ module Vedeu
       # @!attribute [rw] wordwrap
       # @return [Boolean]
       attr_accessor :wordwrap
-      alias_method :wordwrap?, :wordwrap
+      alias wordwrap? wordwrap
 
       # @!attribute [rw] zindex
       # @return [Fixnum]
