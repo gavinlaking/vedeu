@@ -60,12 +60,9 @@ module Vedeu
         output.content.reject do |cell|
           cell.class == Vedeu::Cells::Empty
         end.tap do |cells|
-          cells_size = cells.size
-
           Vedeu.log(type:    :compress,
                     message: "Orignal size: #{content_size} / " \
-                             "New size: #{cells_size}")
-
+                             "New size: #{cells.size}")
         end
       end
 
