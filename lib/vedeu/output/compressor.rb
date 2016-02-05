@@ -31,8 +31,6 @@ module Vedeu
       def initialize(output, options = {})
         @output  = output
         @options = options
-        @colour  = ''
-        @style   = ''
       end
 
       # @note
