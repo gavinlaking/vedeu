@@ -13,7 +13,7 @@ class AlignmentApp
     debug!
     log '/tmp/alignment.log'
     renderers(Vedeu::Renderers::Terminal.new,
-              Vedeu::Renderers::File.new(filename: '/tmp/alignment.out'))
+              Vedeu::Renderers::Text.new(filename: '/tmp/alignment.out'))
     run_once!
     standalone!
   end

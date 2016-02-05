@@ -25,8 +25,11 @@ class VedeuMaterialColoursApp
     log_except [:cursor, :update, :render]
     # height 11
     # width  20
-    renderers(Vedeu::Renderers::Terminal.new,
-              Vedeu::Renderers::File.new(filename: '/tmp/material_colours.out'))
+    renderers [
+                Vedeu::Renderers::Terminal.new,
+                Vedeu::Renderers::Text.new(
+                  filename: '/tmp/material_colours.out'),
+              ]
     threaded false
   end
 

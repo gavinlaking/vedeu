@@ -13,7 +13,7 @@ class EditorApp
     debug!
     log '/tmp/editor.log'
     renderers(Vedeu::Renderers::Terminal.new,
-              Vedeu::Renderers::File.new(filename: '/tmp/editor.out'))
+              Vedeu::Renderers::Text.new(filename: '/tmp/editor.out'))
     fake!
   end
 
