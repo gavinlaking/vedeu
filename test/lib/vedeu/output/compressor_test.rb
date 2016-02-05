@@ -32,7 +32,9 @@ module Vedeu
 
         subject { described.render(output) }
 
-        it { subject.must_be_instance_of(String) }
+        context 'when there is no output' do
+          it { subject.must_be_instance_of(Array) }
+        end
 
         context 'when compression is enabled' do
           before { Vedeu.configure { compression(true) } }
@@ -60,6 +62,9 @@ module Vedeu
               "\e[1;2H\e[38;2;255;0;0me\e[0m" \
               "\e[1;3H\e[38;2;255;0;0ms\e[0m"
             }
+
+            it { subject.must_be_instance_of(String) }
+
             it 'converts the non-Vedeu::Cells::Char elements into String ' \
                'elements' do
               subject.must_equal(expected)
@@ -93,6 +98,9 @@ module Vedeu
               "\e[1;3H\e[38;2;0;0;255mc\e[0m" \
               "\e[1;4H\e[38;2;0;0;255md\e[0m"
             }
+
+            it { subject.must_be_instance_of(String) }
+
             it 'compresses multiple colours and styles where possible' do
               subject.must_equal(expected)
             end
@@ -100,13 +108,21 @@ module Vedeu
 
           context 'when the output is not all Vedeu::Cells::Char elements' do
             let(:output) {
-              Vedeu::Models::Page.coerce(Vedeu::Models::Row.coerce([
-                Vedeu::Cells::Char.new(name: _name, value: 'A', position: [1, 1]),
-                Vedeu::Cells::Escape.new(value: "\e[?25l"),
-                Vedeu::Cells::Char.new(name: _name, value: 'B', position: [1, 3]),
-              ]))
+              Vedeu::Models::Page.coerce(
+                Vedeu::Models::Row.coerce([
+                  Vedeu::Cells::Char.new(name: _name,
+                                         value: 'A',
+                                         position: [1, 1]),
+                  Vedeu::Cells::Escape.new(value: "\e[?25l"),
+                  Vedeu::Cells::Char.new(name: _name,
+                                         value: 'B',
+                                         position: [1, 3]),
+                ])
+              )
             }
             let(:expected) { "\e[1;1HA\e[?25l\e[1;3HB\e[0m" }
+
+            it { subject.must_be_instance_of(String) }
 
             it 'converts the non-Vedeu::Cells::Char elements into String ' \
                'elements' do
@@ -137,6 +153,9 @@ module Vedeu
               "\e[38;2;255;0;0me\e[0m" \
               "\e[38;2;255;0;0ms\e[0m"
             }
+
+            it { subject.must_be_instance_of(String) }
+
             it 'converts the non-Vedeu::Cells::Char elements into String ' \
                'elements' do
               subject.must_equal(expected)
@@ -166,6 +185,9 @@ module Vedeu
               "\e[38;2;0;0;255mc\e[0m" \
               "\e[38;2;0;0;255md\e[0m"
             }
+
+            it { subject.must_be_instance_of(String) }
+
             it 'compresses multiple colours and styles where possible' do
               subject.must_equal(expected)
             end
@@ -181,6 +203,9 @@ module Vedeu
                 ])
               )
             }
+
+            it { subject.must_be_instance_of(String) }
+
             it 'converts the non-Vedeu::Cells::Char elements into String ' \
                'elements' do
               subject.must_equal("A\e[?25lB\e[0m")

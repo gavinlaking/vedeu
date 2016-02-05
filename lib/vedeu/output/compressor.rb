@@ -39,9 +39,9 @@ module Vedeu
       # @return [String]
       # @return [Array<void>|String]
       def render
-        return cached if compression?
+        return [] unless output?
 
-        uncompress
+        Vedeu::Output::CompressorCache.cache(content, compression?)
       end
 
       protected
@@ -52,114 +52,31 @@ module Vedeu
 
       private
 
+      # Returns the output with all of the empty cells removed to make
+      # compression faster.
+      #
       # @return [Array]
       def content
-        @content ||= if present?(output)
-                       output.content.reject(&:cell?)
-
-                     else
-                       []
-
-                     end
-      end
-
-      # @return [Array<void>|String]
-      def cached
-        cached_original   = Vedeu::Output::CompressorCache.read(:original)
-        cached_compressed = Vedeu::Output::CompressorCache.read(:compressed)
-
-        if content.size == cached_original.size && content == cached_original
-          cached_compressed
-
-        else
-          Vedeu::Output::CompressorCache.write(:original, content)
-          Vedeu::Output::CompressorCache.write(:compressed, compress)
-          compress
-
-        end
-      end
-
-      # @return [String]
-      def compress
-        message = "Compression for #{content.size} objects"
-
-        @same = ''
-        @compress ||= Vedeu.timer(message) do
-          out = content.map do |cell|
-            rendered = [
-              # position_for(cell),
-              cell.position.to_s,
-              colour_for(cell),
-              style_for(cell),
-              cell.value,
-            ].join
-
-            if @same == rendered
-              next
-
-            else
-              @same = rendered
-              @same
-
-            end
-          end.join
+        output.content.reject do |cell|
+          cell.class == Vedeu::Cells::Empty
+        end.tap do |cells|
+          cells_size = cells.size
 
           Vedeu.log(type:    :compress,
-                    message: "#{message} -> #{out.size} characters")
+                    message: "Orignal size: #{content_size} / " \
+                             "New size: #{cells_size}")
 
-          out
         end
       end
 
-      # @return [String]
-      def uncompress
-        out = content.map(&:to_s).join
-
-        Vedeu.log(type:    :compress,
-                  message: "No compression: #{content.size} objects -> " \
-                           "#{out.size} characters")
-
-        out
+      # @return [Fixnum]
+      def content_size
+        output.content.size
       end
 
-      # Compress by not repeatedly sending a position when only the x
-      # coordinate has changed; i.e. we are on the same line, just
-      # advancing a character.
-      #
-      # @param char [Vedeu::Cells::Char]
-      # @return [String]
-      def position_for(char)
-        return '' unless char.position
-        return '' if char.position.y == @y
-
-        @y = char.position.y
-        char.position.to_s
-      end
-
-      # Compress by not repeatedly sending the same colours for each
-      # character which has the same colours as the last character
-      # output.
-      #
-      # @param char [Vedeu::Cells::Char]
-      # @return [String]
-      def colour_for(char)
-        return '' if char.colour == @colour
-
-        @colour = char.colour
-        @colour.to_s
-      end
-
-      # Compress by not repeatedly sending the same style(s) for each
-      # character which has the same style(s) as the last character
-      # output.
-      #
-      # @param char [Vedeu::Cells::Char]
-      # @return [String]
-      def style_for(char)
-        return '' if char.style == @style
-
-        @style = char.style
-        @style.to_s
+      # @return [Boolean]
+      def output?
+        present?(output)
       end
 
     end # Compressor
