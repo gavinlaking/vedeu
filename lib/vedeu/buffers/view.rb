@@ -88,19 +88,9 @@ module Vedeu
       # @param value [void]
       # @return [Boolean]
       def valid?(value)
-        valid_value?(value)        &&
+        positionable?(value)       &&
         valid_y?(value.position.y) &&
         valid_x?(value.position.x)
-      end
-
-      # Returns a boolean indicating the value has a position
-      # attribute.
-      #
-      # @param value [void]
-      # @return [Boolean]
-      def valid_value?(value)
-        value.respond_to?(:position) &&
-          value.position.is_a?(Vedeu::Geometries::Position)
       end
 
       # Returns a boolean indicating whether the x position of the
