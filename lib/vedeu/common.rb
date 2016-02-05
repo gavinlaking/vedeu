@@ -82,6 +82,13 @@ module Vedeu
       value.is_a?(Fixnum)
     end
 
+    # @param value [void]
+    # @return [Boolean]
+    def positionable?(value)
+      value.respond_to?(:position) &&
+        value.position.is_a?(Vedeu::Geometries::Position)
+    end
+
     # Returns a boolean indicating whether a variable has a useful
     # value.
     #

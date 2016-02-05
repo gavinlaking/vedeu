@@ -219,6 +219,31 @@ module Vedeu
       end
     end
 
+    describe '#positionable?' do
+      subject { instance.positionable?(_value) }
+
+      context 'when it does not respond to position' do
+        let(:_value) { '' }
+
+        it { subject.must_equal(false) }
+      end
+
+      context 'when it responds to position' do
+        let(:_value)   { Vedeu::Cells::Empty.new(position: position) }
+        let(:position) { false }
+
+        context 'when the position is a Vedeu::Geometries::Position' do
+          let(:position) { Vedeu::Geometries::Position.new }
+
+          it { subject.must_equal(true) }
+        end
+
+        context 'when the position is not a Vedeu::Geometries::Position' do
+          it { subject.must_equal(false) }
+        end
+      end
+    end
+
     describe '#present?' do
       subject { instance.defined_value_test(_value) }
 
