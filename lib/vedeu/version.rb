@@ -3,6 +3,6 @@
 module Vedeu
 
   # The current version of Vedeu.
-  VERSION = '0.8.10'.freeze
+  VERSION = '0.8.12'.freeze
 
 end
