@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   # A `Vedeu::Point` represents part of a coordinate within the 2D

@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# frozen_string_literal: true
+
 # Find all methods which don't have corresponding test method, or all test
 # methods without corresponding method. Produces quite a few false positives,
 # but useful for a quick check.
