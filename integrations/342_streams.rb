@@ -10,7 +10,7 @@ class DSLApp
   Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   Vedeu.configure do
-    height 5
+    height 10
     debug!
     log '/tmp/vedeu_views_dsl.log'
     renderers(Vedeu::Renderers::Terminal.new(
