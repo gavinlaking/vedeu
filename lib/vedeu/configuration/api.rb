@@ -10,6 +10,8 @@ module Vedeu
     #
     class API
 
+      include Vedeu::Common
+
       # @param (see #initialize)
       def self.configure(&block)
         new(&block).configuration
@@ -576,7 +578,7 @@ module Vedeu
       # @param value [Fixnum]
       # @return [Boolean]
       def valid_colour_mode?(value)
-        value.is_a?(Fixnum) && [8, 16, 256, 16_777_216].include?(value)
+        numeric?(value) && [8, 16, 256, 16_777_216].include?(value)
       end
 
       # Checks that the mode provided is valid.

@@ -208,6 +208,8 @@ module Vedeu
 
       subject { instance.numeric?(_value) }
 
+      it { instance.must_respond_to(:fixnum?) }
+
       context 'when the value is numeric' do
         let(:_value) { 16 }
 

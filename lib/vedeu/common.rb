@@ -81,7 +81,11 @@ module Vedeu
     def numeric?(value)
       value.is_a?(Fixnum)
     end
+    alias fixnum? numeric?
 
+    # Returns a boolean indicating the value has a position
+    # attribute.
+    #
     # @param value [void]
     # @return [Boolean]
     def positionable?(value)

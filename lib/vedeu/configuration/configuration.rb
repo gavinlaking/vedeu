@@ -149,7 +149,7 @@ module Vedeu
 
       # @return [Boolean]
       def height?
-        instance.options[:height].is_a?(Fixnum)
+        numeric?(instance.options[:height])
       end
 
       # Returns whether the application is interactive (required user
@@ -299,7 +299,7 @@ module Vedeu
 
       # @return [Boolean]
       def width?
-        instance.options[:width].is_a?(Fixnum)
+        numeric?(instance.options[:width])
       end
 
       # @param value [void]

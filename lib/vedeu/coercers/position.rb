@@ -23,7 +23,7 @@ module Vedeu
         elsif hash?
           klass.new(value.fetch(:y, 1), value.fetch(:x, 1))
 
-        elsif fixnum?
+        elsif numeric?(value)
           klass.new(value, 1)
 
         else
@@ -33,11 +33,6 @@ module Vedeu
       end
 
       private
-
-      # @return [Boolean]
-      def fixnum?
-        value.is_a?(Fixnum)
-      end
 
       # @return [Boolean]
       def hash?

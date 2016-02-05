@@ -11,6 +11,8 @@ module Vedeu
   #
   class Point
 
+    include Vedeu::Common
+
     # @param (see #initialize)
     # @macro raise_invalid_syntax
     # @return (see #initialize)
@@ -54,7 +56,7 @@ module Vedeu
 
     # @return [Boolean]
     def valid?
-      @value.is_a?(Fixnum) && @value >= min && @value <= max
+      numeric?(@value) && @value >= min && @value <= max
     end
 
     # @return [Fixnum]
@@ -67,7 +69,7 @@ module Vedeu
     # @macro raise_invalid_syntax
     # @return [Fixnum]
     def min
-      return @min if @min.is_a?(Fixnum)
+      return @min if numeric?(@min)
 
       fail Vedeu::Error::InvalidSyntax,
            "Expecting 'min' to be a Fixnum."
@@ -76,7 +78,7 @@ module Vedeu
     # @macro raise_invalid_syntax
     # @return [Fixnum]
     def max
-      return @max if @max.is_a?(Fixnum) || @max == Float::INFINITY
+      return @max if numeric?(@max) || @max == Float::INFINITY
 
       fail Vedeu::Error::InvalidSyntax,
            "Expecting 'max' to be a Fixnum or Float::INFINITY."
