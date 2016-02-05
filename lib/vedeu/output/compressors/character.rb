@@ -33,7 +33,6 @@ module Vedeu
           @compress ||= Vedeu.timer(message) do
             content.map do |cell|
               rendered = [
-                # position_for(cell),
                 cell.position.to_s,
                 colour_for(cell),
                 style_for(cell),
@@ -82,20 +81,6 @@ module Vedeu
         # @return [Fixnum]
         def original_size
           content.size
-        end
-
-        # Compress by not repeatedly sending a position when only the x
-        # coordinate has changed; i.e. we are on the same line, just
-        # advancing a character.
-        #
-        # @param char [Vedeu::Cells::Char]
-        # @return [String]
-        def position_for(char)
-          return '' unless char.position
-          return '' if char.position.y == @y
-
-          @y = char.position.y
-          char.position.to_s
         end
 
         # Compress by not repeatedly sending the same style(s) for each
