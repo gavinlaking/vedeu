@@ -1,3 +1,4 @@
+### Vedeu.log_timestamp
 Returns a formatted timestamp indicating the number of seconds the
 client application has been running.
 

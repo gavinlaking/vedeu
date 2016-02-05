@@ -34,12 +34,14 @@ module Vedeu
   end # Cursors
 
   # {include:file:docs/dsl/by_method/cursors.md}
+  # @api public
   # @!method cursors
   #   @return [Vedeu::Cursors::Repository]
   def_delegators Vedeu::Cursors::Repository,
                  :cursors
 
   # {include:file:docs/dsl/by_method/cursor.md}
+  # @api public
   # @!method cursor
   #   @see Vedeu::Cursors::Repository.cursor
   def_delegators Vedeu::Cursors::Repository,

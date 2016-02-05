@@ -13,7 +13,7 @@ class DSLApp
     run_once!
     standalone!
     renderers(Vedeu::Renderers::Terminal.new,
-              Vedeu::Renderers::File.new(filename: '/tmp/misc_view.out'))
+              Vedeu::Renderers::Text.new(filename: '/tmp/misc_view.out'))
     height 40
   end
 

@@ -19,6 +19,7 @@ module Vedeu
 
   end # Colours
 
+  # @api public
   # @!method background_colours
   # @return [Vedeu::Colours::Backgrounds]
   def_delegators Vedeu::Colours::Backgrounds,

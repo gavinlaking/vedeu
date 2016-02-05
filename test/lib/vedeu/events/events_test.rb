@@ -6,9 +6,9 @@ module Vedeu
 
   module Events
 
-    describe Collection do
+    describe Events do
 
-      let(:described) { Vedeu::Events::Collection }
+      let(:described) { Vedeu::Events::Events }
       let(:instance)  { described.new }
 
       it { described.superclass.must_equal(Vedeu::Repositories::Collection) }
@@ -17,7 +17,7 @@ module Vedeu
         it { instance.must_be_instance_of(described) }
       end
 
-    end # Collection
+    end # Events
 
   end # Events
 

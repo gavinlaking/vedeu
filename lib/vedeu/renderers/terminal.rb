@@ -24,13 +24,7 @@ module Vedeu
       #
       # @return [String]
       def write
-        if write_file?
-          Vedeu::Terminal.output(write_file)
-
-        else
-          Vedeu::Terminal.output(content)
-
-        end
+        Vedeu.direct_write(writable_data)
       end
 
       private
@@ -41,6 +35,13 @@ module Vedeu
       # @return [String]
       def content
         compression
+      end
+
+      # @return [String]
+      def writable_data
+        return write_file if write_file?
+
+        content
       end
 
     end # Terminal

@@ -1,3 +1,4 @@
+### `right_vertical`
 Set the character to be used to draw the right vertical part
 of the border.
 

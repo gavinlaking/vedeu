@@ -23,6 +23,7 @@ module Vedeu
   # @example
   #   Vedeu.geometries
   #
+  # @api public
   # @!method geometries
   # @return [Vedeu::Geometries::Repository]
   def_delegators Vedeu::Geometries::Repository,

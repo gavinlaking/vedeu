@@ -21,6 +21,7 @@ module Vedeu
   # @example
   #   Vedeu.keymaps
   #
+  # @api public
   # @!method keymaps
   # @return [Vedeu::Input::Repository]
   def_delegators Vedeu::Input::Repository,

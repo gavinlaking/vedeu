@@ -16,41 +16,64 @@ module Vedeu
       extend self
       extend Vedeu::Repositories::Storage
 
+      # @param content [Array<void>]
+      # @return [String]
+      def cache(content, compression = false)
+        write(content, compression) unless empty?(content) || cached?(content)
+
+        compression ? read(:compress) : read(:uncompress)
+      end
+
+      private
+
+      # @param content [Array<void>]
+      # @return [Boolean]
+      def cached?(content)
+        content.size == read(:original).size && content == read(:original)
+      end
+
+      # @param content [Array<void>]
+      # @return [String]
+      def compress(content)
+        Vedeu::Output::Compressors::Character.with(content)
+      end
+
+      # @param content [Array<void>]
+      # @return [Boolean]
+      def empty?(content)
+        content.nil? || content.empty?
+      end
+
+      # @return [Hash<Symbol => Array<void>, String>]
+      def in_memory
+        {
+          compress:   '',
+          original:   [],
+          uncompress: '',
+        }
+      end
+
       # @param key [NilClass|Symbol]
       # @return [Array<void>]
       def read(key)
         storage.fetch(key, [])
       end
 
-      # @param key [NilClass|Symbol]
-      # @param value [Array|NilClass]
+      # @param content [Array<void>]
+      # @return [String]
+      def uncompress(content)
+        Vedeu::Output::Compressors::Simple.with(content)
+      end
+
+      # @param content [Array<void>]
+      # @param compression [Boolean]
       # @return [Hash<Symbol => Array<void>>]
-      def write(key, value)
-        return storage if invalid_key?(key) || invalid_value?(value)
+      def write(content, compression = false)
+        storage[:original] = content
 
-        storage.merge!(key => value)
-      end
+        storage[:uncompress] = uncompress(content)
 
-      private
-
-      # @return [Hash<Symbol => Array<void>>]
-      def in_memory
-        {
-          compressed: '',
-          original:   [],
-        }
-      end
-
-      # @param key [NilClass|Symbol]
-      # @return [Boolean]
-      def invalid_key?(key)
-        key.nil? || !in_memory.keys.include?(key)
-      end
-
-      # @param value [Array|NilClass]
-      # @return [Boolean]
-      def invalid_value?(value)
-        value.nil? || value.empty?
+        storage[:compress] = compress(content)
       end
 
     end # CompressorCache

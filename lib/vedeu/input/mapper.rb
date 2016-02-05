@@ -166,6 +166,7 @@ module Vedeu
 
   end # Input
 
+  # @api public
   # @!method keypress
   #   @see Vedeu::Input::Mapper.keypress
   def_delegators Vedeu::Input::Mapper,

@@ -27,6 +27,7 @@ module Vedeu
 
   end # Logging
 
+  # @api public
   # @!method clock_time
   # {include:file:docs/dsl/by_method/clock_time.md}
   def_delegators Vedeu::Logging::ClockTime,

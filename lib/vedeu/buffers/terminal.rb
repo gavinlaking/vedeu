@@ -70,7 +70,7 @@ module Vedeu
       # @param value_or_values [Array<Array<Vedeu::Cells::Char>>]
       # @return [Array<Array<Vedeu::Cells::Char>>]
       def write(value_or_values)
-        buffer.update(value_or_values)
+        update(value_or_values)
 
         refresh
       end
@@ -90,8 +90,10 @@ module Vedeu
 
   end # Buffers
 
+  # @api public
   # @!method clear
   #   @see Vedeu::Buffers::Terminal#clear
+  # @api public
   # @!method refresh
   #   @see Vedeu::Buffers::Terminal#refresh
   def_delegators Vedeu::Buffers::Terminal,

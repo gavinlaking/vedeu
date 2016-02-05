@@ -68,8 +68,12 @@ module Vedeu
 
   # Manipulate the internal flags.
   #
+  # @api public
   # @!method ready?
+  #   @see Vedeu::Runtime::Flags#ready?
+  # @api public
   # @!method ready!
+  #   @see Vedeu::Runtime::Flags#ready!
   # @return [Boolean]
   def_delegators Vedeu::Runtime::Flags,
                  :ready?,

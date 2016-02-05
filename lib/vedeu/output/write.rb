@@ -109,6 +109,7 @@ module Vedeu
 
   end # Output
 
+  # @api public
   # @!method write
   #   @see Vedeu::Output::Write#write
   def_delegators Vedeu::Output::Write,

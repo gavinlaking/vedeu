@@ -143,7 +143,7 @@ Repository method. Access registered events.
 
     Vedeu.events # [Vedeu::Events::Repository]
 
-    Vedeu.events.all # [Array<Vedeu::Events::Collection>]
+    Vedeu.events.all # [Array<Vedeu::Events::Events>]
 
 ### Vedeu.foreground_colours
 

@@ -23,12 +23,6 @@ module Vedeu
         end
       end
 
-      describe '#cell?' do
-        subject { instance.cell? }
-
-        it { subject.must_equal(false) }
-      end
-
       describe '#text' do
         subject { instance.text }
 

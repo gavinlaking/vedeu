@@ -17,15 +17,6 @@ module Vedeu
       !present?(variable)
     end
 
-    # Converts one class into another.
-    #
-    # @param klass [Class] The class to become an instance of.
-    # @param attributes [Hash] The attributes of klass.
-    # @return [Class] Returns a new instance of klass.
-    def become(klass, attributes)
-      klass.new(attributes)
-    end
-
     # Returns a boolean indicating the value was a boolean.
     #
     # @param value [void]

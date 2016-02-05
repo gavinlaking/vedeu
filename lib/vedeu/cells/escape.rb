@@ -19,11 +19,6 @@ module Vedeu
     #
     class Escape < Vedeu::Cells::Empty
 
-      # @return [Boolean]
-      def cell?
-        false
-      end
-
       # @return [NilClass]
       def null
         nil

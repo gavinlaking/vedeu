@@ -1,3 +1,4 @@
+### `right`
 Enable/disable the right border.
 
     Vedeu.border :border_demo do

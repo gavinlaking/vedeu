@@ -22,6 +22,9 @@ module Vedeu
         new(context, model, value, options, &block).attributes
       end
 
+      # @param context [NilClass]
+      # @param model [NilClass]
+      # @param value [NilClass|String]
       # @param options [Hash]
       # @option options align [Symbol] One of :center, :centre, :left,
       #   :none (default) or :right.
@@ -41,6 +44,7 @@ module Vedeu
       #   value.
       # @option options wordwrap [Boolean] Whether the value should be
       #   wordwrapped.
+      # @param block [Proc]
       # @return [Vedeu::DSL::Attributes]
       def initialize(context = nil,
                      model   = nil,

@@ -53,7 +53,7 @@ module Vedeu
       # @!attribute [rw] wordwrap
       # @return [Boolean]
       attr_accessor :wordwrap
-      alias_method :wordwrap?, :wordwrap
+      alias wordwrap? wordwrap
 
       # @!attribute [rw] zindex
       # @return [Fixnum]
@@ -78,6 +78,8 @@ module Vedeu
         end
       end
 
+      # Adds the child to the collection.
+      #
       # @param child [Vedeu::Views::Line]
       # @return [Vedeu::Views::Lines]
       def add(child)

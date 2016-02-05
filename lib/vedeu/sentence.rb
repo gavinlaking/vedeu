@@ -6,6 +6,8 @@ module Vedeu
   # sentence with the penultimate and ultimate elements separated with
   # the word 'and'.
   #
+  # @api public
+  #
   class Sentence
 
     # @param (see #initialize)

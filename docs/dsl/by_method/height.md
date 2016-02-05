@@ -1,3 +1,4 @@
+### Vedeu.height
 Returns the total height (number of rows/lines) of the current
 terminal.
 

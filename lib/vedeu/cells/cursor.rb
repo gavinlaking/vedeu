@@ -11,11 +11,6 @@ module Vedeu
     #
     class Cursor < Vedeu::Cells::Empty
 
-      # @return [Boolean]
-      def cell?
-        false
-      end
-
       # @return [NilClass]
       def null
         nil

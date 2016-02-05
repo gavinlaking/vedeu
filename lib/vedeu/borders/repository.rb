@@ -19,6 +19,7 @@ module Vedeu
   end # Borders
 
   # {include:file:docs/dsl/by_method/borders.md}
+  # @api public
   # @!method borders
   # @return [Vedeu::Borders::Repository]
   def_delegators Vedeu::Borders::Repository,

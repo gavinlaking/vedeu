@@ -1,3 +1,4 @@
+### `bottom_right`
 Set the character to be used to draw the bottom right corner
 of the border.
 

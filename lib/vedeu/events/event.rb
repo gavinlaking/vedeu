@@ -142,7 +142,7 @@ module Vedeu
                            repository.find(name).add(self)
 
                          else
-                           Vedeu::Events::Collection.new([self], nil, name)
+                           Vedeu::Events::Events.new([self], nil, name)
 
                          end
 
@@ -292,10 +292,13 @@ module Vedeu
 
   end # Events
 
+  # @api public
   # @!method bind
   #   @see Vedeu::Events::Event.bind
+  # @api public
   # @!method bound?
   #   @see Vedeu::Events::Event.bound?
+  # @api public
   # @!method unbind
   #   @see Vedeu::Events::Event.unbind
   def_delegators Vedeu::Events::Event,

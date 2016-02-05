@@ -170,6 +170,7 @@ module Vedeu
 
   end # Runtime
 
+  # @api public
   # @!method goto
   #   @see Vedeu::Runtime::Router#goto
   def_delegators Vedeu::Runtime::Router,

@@ -14,11 +14,6 @@ module Vedeu
     #
     class Clear < Vedeu::Cells::Empty
 
-      # @return [Boolean]
-      def cell?
-        false
-      end
-
       # @return [Symbol]
       def type
         :clear

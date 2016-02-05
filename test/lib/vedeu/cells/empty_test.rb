@@ -39,12 +39,6 @@ module Vedeu
         it { instance.must_respond_to(:value) }
       end
 
-      describe '#cell?' do
-        subject { instance.cell? }
-
-        it { subject.must_equal(true) }
-      end
-
       describe '#eql?' do
         let(:other) { instance }
 

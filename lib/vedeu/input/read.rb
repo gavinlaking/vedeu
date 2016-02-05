@@ -137,6 +137,7 @@ module Vedeu
 
   end # Input
 
+  # @api public
   # @!method read
   #   @see Vedeu::Input::Read#read
   def_delegators Vedeu::Input::Read,

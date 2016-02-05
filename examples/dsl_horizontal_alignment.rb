@@ -52,7 +52,7 @@ class HorizontalAlignmentApp
     debug!
     log '/tmp/vedeu_horizontal.log'
     renderers(Vedeu::Renderers::Terminal.new,
-              Vedeu::Renderers::File.new(filename: '/tmp/vedeu_horizontal.out'))
+              Vedeu::Renderers::Text.new(filename: '/tmp/vedeu_horizontal.out'))
   end
 
   Vedeu.interface :left_interface do

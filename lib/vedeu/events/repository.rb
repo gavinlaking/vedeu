@@ -6,6 +6,8 @@ module Vedeu
 
     # Allows the storing of events.
     #
+    # @api private
+    #
     class Repository < Vedeu::Repositories::Repository
 
       singleton_class.send(:alias_method, :events, :repository)
@@ -19,7 +21,7 @@ module Vedeu
         #
         # @return [Vedeu::Events::Repository]
         def reset!
-          @events = new(Vedeu::Events::Collection)
+          @events = new(Vedeu::Events::Events)
         end
         alias reset reset!
 
@@ -34,6 +36,7 @@ module Vedeu
   # @example
   #   Vedeu.events
   #
+  # @api public
   # @!method events
   # @return [Vedeu::Events::Repository]
   def_delegators Vedeu::Events::Repository,

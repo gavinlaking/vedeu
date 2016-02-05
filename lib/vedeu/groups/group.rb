@@ -179,10 +179,13 @@ module Vedeu
 
   end # Groups
 
+  # @api public
   # @!method hide_group
   #   @see Vedeu::Toggleable::SingletonMethods#hide
+  # @api public
   # @!method show_group
   #   @see Vedeu::Toggleable::SingletonMethods#show
+  # @api public
   # @!method toggle_group
   #   @see Vedeu::Toggleable::SingletonMethods#toggle
   def_delegators Vedeu::Groups::Group,

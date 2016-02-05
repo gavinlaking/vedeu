@@ -52,7 +52,7 @@ class VerticalAlignmentApp
     debug!
     log '/tmp/vedeu_vertical.log'
     renderers(Vedeu::Renderers::Terminal.new,
-              Vedeu::Renderers::File.new(filename: '/tmp/vedeu_vertical.out'))
+              Vedeu::Renderers::Text.new(filename: '/tmp/vedeu_vertical.out'))
   end
 
   Vedeu.interface :top_interface do

@@ -67,7 +67,7 @@ module Vedeu
         if direct?
           Vedeu.direct_write(optimised_output)
 
-          Vedeu::Buffers::Terminal.update(output)
+          Vedeu.buffer_update(output)
 
         else
           Vedeu.render_output(output)
@@ -227,8 +227,10 @@ module Vedeu
 
   end # Interfaces
 
+  # @api public
   # @!method clear_by_name
   #   @see Vedeu::Interfaces::Clear.clear_by_name
+  # @api public
   # @!method clear_content_by_name
   #   @see Vedeu::Interfaces.Clear.clear_content_by_name
   def_delegators Vedeu::Interfaces::Clear,

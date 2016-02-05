@@ -106,6 +106,7 @@ module Vedeu
 
   end # Input
 
+  # @api public
   # @!method keymap
   #   @see Vedeu::Input::DSL.keymap
   def_delegators Vedeu::Input::DSL,

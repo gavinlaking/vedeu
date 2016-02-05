@@ -1,3 +1,4 @@
+### `bottom`
 Enable/disable the bottom border.
 
     Vedeu.border :border_demo do

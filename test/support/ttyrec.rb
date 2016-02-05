@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# frozen_string_literal: true
+
 #
 #     ttyrec -a -e ./material_colours_app.rb /tmp/ttyrecord
 #

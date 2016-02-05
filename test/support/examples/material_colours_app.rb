@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# frozen_string_literal: true
+
 require 'bundler/setup'
 require 'vedeu'
 
@@ -12,8 +14,6 @@ require 'vedeu'
 #
 class VedeuMaterialColoursApp
 
-  Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
-
   # Be aware that running an application with debugging enabled will affect
   # performance.
   Vedeu.configure do
@@ -23,8 +23,11 @@ class VedeuMaterialColoursApp
     log_except [:cursor, :update, :render]
     # height 11
     # width  20
-    renderers(Vedeu::Renderers::Terminal.new,
-              Vedeu::Renderers::File.new(filename: '/tmp/material_colours.out'))
+    renderers [
+                Vedeu::Renderers::Terminal.new,
+                Vedeu::Renderers::Text.new(
+                  filename: '/tmp/material_colours.out'),
+              ]
     threaded false
   end
 

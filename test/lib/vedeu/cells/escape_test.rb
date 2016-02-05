@@ -25,10 +25,6 @@ module Vedeu
         it { instance.instance_variable_get('@value').must_equal(_value) }
       end
 
-      describe '#cell?' do
-        it { instance.cell?.must_equal(false) }
-      end
-
       describe '#null' do
         it { instance.null.must_equal(nil) }
         it { instance.background.must_equal(nil) }

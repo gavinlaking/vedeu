@@ -9,6 +9,8 @@ module Vedeu
     # events are registered for a name, then the result of each event
     # will be returned as part of a collection.
     #
+    # @api private
+    #
     class Trigger
 
       # Trigger an event by name.
@@ -88,6 +90,7 @@ module Vedeu
 
   end # Events
 
+  # @api public
   # @!method trigger
   #   @see Vedeu::Events::Trigger.trigger
   def_delegators Vedeu::Events::Trigger,

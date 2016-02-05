@@ -328,6 +328,7 @@ module Vedeu
 
   end # Interfaces
 
+  # @api public
   # @!method interface
   #   @see Vedeu::Interfaces::DSL.interface
   def_delegators Vedeu::Interfaces::DSL,
