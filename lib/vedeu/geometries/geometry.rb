@@ -39,26 +39,30 @@ module Vedeu
                      :y,
                      :yn
 
-      # @!attribute [rw] horizontal_alignment
-      # @return [Symbol]
-      attr_accessor :horizontal_alignment
-
-      # @!attribute [rw] vertical_alignment
-      # @return [Symbol]
-      attr_accessor :vertical_alignment
-
-      # @!attribute [rw] name
-      # @return [String|Symbol]
-      attr_accessor :name
+      # @!attribute [rw] client
+      # @return [Object]
+      attr_accessor :client
 
       # @!attribute [w] height
       # @return [Fixnum]
       attr_writer :height
 
+      # @!attribute [rw] horizontal_alignment
+      # @return [Symbol]
+      attr_accessor :horizontal_alignment
+
       # @!attribute [rw] maximised
       # @return [Boolean]
       attr_accessor :maximised
       alias maximised? maximised
+
+      # @!attribute [rw] name
+      # @return [String|Symbol]
+      attr_accessor :name
+
+      # @!attribute [rw] vertical_alignment
+      # @return [Symbol]
+      attr_accessor :vertical_alignment
 
       # @!attribute [w] width
       # @return [Fixnum]
@@ -80,20 +84,17 @@ module Vedeu
       # @return [Fixnum]
       attr_writer :yn
 
-      # @!attribute [rw] client
-      # @return [Object]
-      attr_accessor :client
-
       # Returns a new instance of Vedeu::Geometries::Geometry.
       #
       # @param attributes [Hash<Symbol => Boolean|Fixnum|String|
       #   Symbol|Vedeu::Geometries::Repository]
-      # @option attributes horizontal_alignment [Symbol]
-      # @option attributes vertical_alignment [Symbol]
-      # @option attributes maximised [Boolean]
+      # @option attributes client [void]
       # @option attributes height [Fixnum]
+      # @option attributes horizontal_alignment [Symbol]
+      # @option attributes maximised [Boolean]
       # @option attributes name [String|Symbol]
       # @option attributes repository [Vedeu::Geometries::Repository]
+      # @option attributes vertical_alignment [Symbol]
       # @option attributes width [Fixnum]
       # @option attributes x [Fixnum]
       # @option attributes xn [Fixnum]
@@ -183,16 +184,16 @@ module Vedeu
       # @return [Hash<Symbol => Boolean|Fixnum>]
       def area_attributes
         {
+          height:               @height.is_a?(Proc) ? @height.call : @height,
           horizontal_alignment: horizontal_alignment,
           maximised:            maximised,
           name:                 name,
           vertical_alignment:   vertical_alignment,
+          width:                @width.is_a?(Proc)  ? @width.call  : @width,
           x:                    @x.is_a?(Proc)      ? @x.call      : @x,
           xn:                   @xn.is_a?(Proc)     ? @xn.call     : @xn,
-          width:                @width.is_a?(Proc)  ? @width.call  : @width,
           y:                    @y.is_a?(Proc)      ? @y.call      : @y,
           yn:                   @yn.is_a?(Proc)     ? @yn.call     : @yn,
-          height:               @height.is_a?(Proc) ? @height.call : @height,
         }
       end
 
