@@ -89,7 +89,8 @@ module Vedeu
 
       # @return [String]
       def inspect
-        "name:'#{name}' x:#{x} y:#{y} ox:#{ox} oy:#{oy} visible:#{visible}"
+        "name: #{name.inspect} x: #{x} y: #{y} ox: #{ox} oy: #{oy} " \
+        "visible: #{visible}"
       end
 
       # {include:file:docs/events/by_name/cursor_down.md}
