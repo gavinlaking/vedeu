@@ -76,31 +76,37 @@ module Vedeu
 
       # Define keypress(es) to perform an action.
       #
-      # @param values [Array<String>|Array<Symbol>|String|Symbol]
+      # @param keys [Array<String>|Array<Symbol>|String|Symbol]
       #   The key(s) pressed. Special keys can be found in
       #   {Vedeu::Input::Input#specials}. When more than one key is
       #   defined, then the extras are treated as aliases.
       # @param block [Proc] The action to perform when this key is
       #   pressed. Can be a method call or event triggered.
       # @macro raise_invalid_syntax
-      # @return [Array] A collection containing the keypress(es).
-      def key(*values, &block)
-        fail Vedeu::Error::InvalidSyntax,
-             'No action defined for `key`.' unless block_given?
+      # @return [Array] A collection containing the keys minus any
+      #   invalid or nil keys.
+      def key(*keys, &block)
+        raise Vedeu::Error::InvalidSyntax,
+              'No action defined for `key`.' unless block_given?
 
-        fail Vedeu::Error::InvalidSyntax,
-             'No keypress(es) defined for `key`.' unless present?(values)
+        raise Vedeu::Error::InvalidSyntax,
+              'No keypresses defined for `key`.' unless present?(keys)
 
-        values.each do |value|
-          unless present?(value)
-            fail Vedeu::Error::InvalidSyntax,
-                 'An invalid value for `key` was encountered.'
-          end
-
-          model.add(Vedeu::Input::Key.new(value, &block))
+        valid_keys(keys).each do |key|
+          model.add(Vedeu::Input::Key.new(key, &block))
         end
       end
       alias key= key
+
+      private
+
+      # @param keys [Array<void>]
+      # @return [Array<String|Symbol>]
+      def valid_keys(keys)
+        keys.compact.keep_if do |key|
+          symbol?(key) || (string?(key) && present?(key))
+        end
+      end
 
     end # DSL
 

@@ -44,32 +44,32 @@ module Vedeu
       end
 
       describe '#key' do
-        let(:value_or_values) { ['j', :down] }
+        let(:keys) { ['j', :down] }
 
-        subject { instance.key(*value_or_values) { :some_action } }
+        subject { instance.key(*keys) { :some_action } }
 
         context 'when a block was not given' do
-          subject { instance.key(value_or_values) }
+          subject { instance.key(keys) }
 
           it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
         end
 
         context 'when a key was not given' do
-          let(:value_or_values) {}
+          let(:keys) {}
 
           it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
         end
 
         context 'when an invalid key was given (nil)' do
-          let(:value_or_values) { ['v', nil] }
+          let(:keys) { ['a', nil] }
 
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+          it { subject.must_equal(['a']) }
         end
 
         context 'when an invalid key was given (empty)' do
-          let(:value_or_values) { ['v', ''] }
+          let(:keys) { ['b', ''] }
 
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+          it { subject.must_equal(['b']) }
         end
 
         context 'when the key is valid (not already defined)' do

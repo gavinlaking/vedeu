@@ -90,7 +90,7 @@ module Vedeu
           compression:   Vedeu.config.compression?,
           end_tag:       '</td>',
           end_row_tag:   '</tr>',
-          filename:      'out',
+          filename:      '/tmp/vedeu_out',
           output:        '',
           start_tag:     '<td',
           start_row_tag: '<tr>',
