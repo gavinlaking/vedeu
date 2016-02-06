@@ -167,7 +167,7 @@ module Vedeu
 
       # @return [Boolean]
       def valid_type?
-        present?(value) && value.is_a?(Symbol)
+        present?(value) && symbol?(value)
       end
 
       # @return [Array<Symbol>]

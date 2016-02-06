@@ -12,6 +12,7 @@ module Vedeu
     #
     class Capture
 
+      include Vedeu::Common
       extend Forwardable
 
       def_delegators Vedeu::Terminal::Mode,
@@ -116,7 +117,7 @@ module Vedeu
       # @param keys [NilClass|String|Symbol|Vedeu::Cursors::Cursor]
       # @return [Boolean]
       def click?(keys)
-        return false if keys.nil? || keys.is_a?(Symbol)
+        return false if keys.nil? || symbol?(keys)
 
         keys.is_a?(Vedeu::Cursors::Cursor) || keys.start_with?("\e[M")
       end
