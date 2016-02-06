@@ -177,6 +177,7 @@ module Vedeu
           down:   valid_down?,
           left:   valid_left?,
           origin: true,
+          none:   false,
           right:  valid_right?,
           up:     valid_up?,
         }.fetch(direction, false)
@@ -184,22 +185,22 @@ module Vedeu
 
       # @return [Boolean]
       def valid_down?
-        yn + offset <= Vedeu.height
+        Vedeu::Point.valid?(value: yn + offset, max: Vedeu.height)
       end
 
       # @return [Boolean]
       def valid_left?
-        x - offset >= 1
+        Vedeu::Point.valid?(value: x - offset, min: 1)
       end
 
       # @return [Boolean]
       def valid_right?
-        xn + offset <= Vedeu.width
+        Vedeu::Point.valid?(value: xn + offset, max: Vedeu.width)
       end
 
       # @return [Boolean]
       def valid_up?
-        y - offset >= 1
+        Vedeu::Point.valid?(value: y - offset, min: 1)
       end
 
     end # Move
