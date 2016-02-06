@@ -146,12 +146,20 @@ module Vedeu
       end
     end
 
-    # Returns a boolean indicating whether the value is a Fixnum.
+    # Returns a boolean indicating whether the value is a String.
     #
     # @param value [String|void]
     # @return [Boolean]
     def string?(value)
       value.is_a?(String)
+    end
+
+    # Returns a boolean indicating whether the value is a Symbol.
+    #
+    # @param value [Symbol|void]
+    # @return [Boolean]
+    def symbol?(value)
+      value.is_a?(Symbol)
     end
 
     # Returns a boolean indicating whether the value should be

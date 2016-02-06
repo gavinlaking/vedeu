@@ -355,6 +355,22 @@ module Vedeu
       end
     end
 
+    describe '#symbol?' do
+      let(:_value) {}
+
+      subject { instance.symbol?(_value) }
+
+      context 'when the value is a Symbol' do
+        let(:_value) { :test }
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when the value is not a Symbol' do
+        it { subject.must_equal(false) }
+      end
+    end
+
     describe '#truthy?' do
       subject { instance.truthy?(_value) }
 
