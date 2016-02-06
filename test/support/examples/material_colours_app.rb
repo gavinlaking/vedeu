@@ -35,7 +35,10 @@ class VedeuMaterialColoursApp
     def render
       Vedeu.render do
         view('cursor') do
-          line "#{cursor_position}"
+          line do
+            stream 'Cursor: ', foreground: '#ff8800'
+            stream "#{cursor_position}"
+          end
         end
       end
     end
@@ -291,7 +294,7 @@ class VedeuMaterialColoursApp
   Vedeu.interface 'cursor' do
     geometry do
       x      2
-      y      36
+      y      37
       height 1
       width  80
     end
@@ -337,27 +340,6 @@ class VedeuMaterialColoursApp
     key('3') { Vedeu.trigger(:_hide_interface_, 'other_interface') }
     key('4') { Vedeu.trigger(:_show_interface_, 'other_interface') }
 
-    key('a') do
-      Vedeu.trigger(:_view_left_, 'main_interface')
-
-      CursorView.new.render
-    end
-    key('s') do
-      Vedeu.trigger(:_view_down_, 'main_interface')
-
-      CursorView.new.render
-    end
-    key('d') do
-      Vedeu.trigger(:_view_up_, 'main_interface')
-
-      CursorView.new.render
-    end
-    key('f') do
-      Vedeu.trigger(:_view_right_, 'main_interface')
-
-      CursorView.new.render
-    end
-
     key('w') { Vedeu.trigger(:_toggle_group_, :my_group) }
     key('e') { Vedeu.trigger(:_hide_group_, :my_group) }
     key('r') { Vedeu.trigger(:_show_group_, :my_group) }
@@ -366,15 +348,25 @@ class VedeuMaterialColoursApp
       Vedeu.trigger(:_toggle_interface_, 'other_interface')
     end
 
-    key('h') { Vedeu.trigger(:_view_left_, 'other_interface')  }
-    key('j') { Vedeu.trigger(:_view_down_, 'other_interface')  }
-    key('k') { Vedeu.trigger(:_view_up_, 'other_interface')    }
-    key('l') { Vedeu.trigger(:_view_right_, 'other_interface') }
+    key('h') do
+      Vedeu.trigger(:_view_left_, Vedeu.focus)
+      CursorView.new.render
+    end
+    key('j') do
+      Vedeu.trigger(:_view_down_, Vedeu.focus)
+      CursorView.new.render
+    end
+    key('k') do
+      Vedeu.trigger(:_view_up_, Vedeu.focus)
+      CursorView.new.render
+    end
+    key('l') do
+      Vedeu.trigger(:_view_right_, Vedeu.focus)
+      CursorView.new.render
+    end
 
-    key('m') { Vedeu.trigger(:_maximise_, 'main_interface') }
-    key('n') { Vedeu.trigger(:_unmaximise_, 'main_interface') }
-    key('b') { Vedeu.trigger(:_maximise_, 'other_interface') }
-    key('v') { Vedeu.trigger(:_unmaximise_, 'other_interface') }
+    key('m') { Vedeu.trigger(:_maximise_, Vedeu.focus) }
+    key('n') { Vedeu.trigger(:_unmaximise_, Vedeu.focus) }
 
     key('x') { Vedeu.trigger(:_set_border_caption_, Vedeu.focus, 'Amazing!') }
     key('z') { Vedeu.trigger(:_set_border_title_, Vedeu.focus, 'Surprise!') }
@@ -451,17 +443,10 @@ class VedeuMaterialColoursApp
       line {}
       line {
         stream {
-          left 'a, s, d, f',
-          foreground: '#ffff00', width: 15
-        }
-        stream { left "Move Rainbow! (\u2190 \u2193 \u2191 \u2192)" }
-      }
-      line {
-        stream {
           left 'h, j, k, l',
           foreground: '#ffff00', width: 15
         }
-        stream { left "Move Wow! (\u2190 \u2193 \u2191 \u2192)" }
+        stream { left "Move focussed view (\u2190 \u2193 \u2191 \u2192)" }
       }
       line {}
       line {
@@ -489,16 +474,9 @@ class VedeuMaterialColoursApp
       line {
         stream {
           left 'n, m',
-          foreground: '#ffff00', width: 15
+               foreground: '#ffff00', width: 15
         }
         stream { left 'Un/Maximise Rainbow!' }
-      }
-      line {
-        stream {
-          left 'v, b',
-          foreground: '#ffff00', width: 15
-        }
-        stream { left 'Un/Maximise Wow!' }
       }
       line {}
       line {
@@ -511,14 +489,14 @@ class VedeuMaterialColoursApp
       line {
         stream {
           left 'shift+tab',
-          foreground: '#ffff00', width: 15
+               foreground: '#ffff00', width: 15
         }
         stream { left 'Focus previous view' }
       }
       line {
         stream {
           left 'tab',
-          foreground: '#ffff00', width: 15
+               foreground: '#ffff00', width: 15
         }
         stream { left 'Focus next view' }
       }
@@ -645,6 +623,7 @@ class VedeuMaterialColoursApp
         line 'style'
       end
     end
+    CursorView.new.render
   end
 
   Vedeu.focus_by_name 'main_interface'
