@@ -156,7 +156,6 @@ module Vedeu
         @maximised = true
 
         store do
-          Vedeu.trigger(:_clear_)
           Vedeu.trigger(:_refresh_view_, name)
         end
       end
