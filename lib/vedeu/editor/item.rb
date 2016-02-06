@@ -28,16 +28,16 @@ module Vedeu
 
       # @return [String|Vedeu::Editor::Line]
       def by_index
-        return nil unless size > 0
+        return nil unless collection
 
-        if index.nil? || index > size
-          collection[-1]
+        if index.nil? || index > collection.size
+          last_item
 
-        elsif index > 0 && index <= size
-          collection[index]
+        elsif index > 0 && index <= collection.size
+          nth_item
 
         else
-          collection[0]
+          first_item
 
         end
       end
@@ -54,17 +54,19 @@ module Vedeu
 
       private
 
-      # Returns the size of the collection or 0.
-      #
-      # @return [Fixnum]
-      def size
-        if collection
-          collection.size
+      # @return [String|Vedeu::Editor::Line]
+      def first_item
+        collection[0]
+      end
 
-        else
-          0
+      # @return [String|Vedeu::Editor::Line]
+      def last_item
+        collection[-1]
+      end
 
-        end
+      # @return [String|Vedeu::Editor::Line]
+      def nth_item
+        collection[index]
       end
 
     end # Item
