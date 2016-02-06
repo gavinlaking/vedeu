@@ -13,6 +13,10 @@ module Vedeu
 
     include Vedeu::Common
 
+    # @!attribute [r] value
+    # @return [Fixnum]
+    attr_reader :value
+
     # @param (see #initialize)
     # @macro raise_invalid_syntax
     # @return (see #initialize)
@@ -33,7 +37,9 @@ module Vedeu
     def initialize(value: nil, min: 1, max: Float::INFINITY)
       @min   = min
       @max   = max
-      @value = value
+      @value = value || @min
+
+      freeze
     end
 
     # @macro raise_invalid_syntax
@@ -56,12 +62,7 @@ module Vedeu
 
     # @return [Boolean]
     def valid?
-      numeric?(@value) && @value >= min && @value <= max
-    end
-
-    # @return [Fixnum]
-    def value
-      @value ||= min
+      numeric?(value) && value >= min && value <= max
     end
 
     private
