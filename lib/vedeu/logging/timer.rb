@@ -41,22 +41,19 @@ module Vedeu
       # @return [void|NilClass] The return value of the executed
       #   block if given, or nil if debugging is disabled.
       def measure(&block)
-        if block_given?
-          if Vedeu.config.debug?
-            work = yield
+        raise Vedeu::Error::RequiresBlock unless block_given?
 
-            Vedeu.log(type:    :timer,
-                      message: "#{message} took #{elapsed}ms.")
+        if Vedeu.config.debug?
+          work = yield
 
-            work
+          Vedeu.log(type:    :timer,
+                    message: "#{message} took #{elapsed}ms. " \
+                             "(Started at: #{started})")
 
-          else
-            yield
-
-          end
+          work
 
         else
-          fail Vedeu::Error::RequiresBlock if Vedeu.config.debug?
+          yield
 
         end
       end

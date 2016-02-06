@@ -35,8 +35,9 @@ module Vedeu
             before { Vedeu.config.stubs(:debug?).returns(true) }
 
             it do
-              Vedeu.expects(:log).with(type:    :timer,
-                                       message: "Testing took 0.0ms.")
+              Vedeu.expects(:log)
+                .with(type:    :timer,
+                      message: "Testing took 0.0ms. (Started at: #{_time})")
               subject
             end
           end
@@ -51,17 +52,7 @@ module Vedeu
         context 'when the block is not given' do
           subject { instance.measure }
 
-          context 'when debugging is enabled' do
-            before { Vedeu.config.stubs(:debug?).returns(true) }
-
-            it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
-          end
-
-          context 'when debugging is disabled' do
-            before { Vedeu.config.stubs(:debug?).returns(false) }
-
-            it { subject.must_equal(nil) }
-          end
+          it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
         end
       end
 

@@ -127,9 +127,9 @@ module Vedeu
       # @param block [Proc]
       # @return [void]
       def run_once(&block)
-        yield.tap do
-          # Vedeu.debug(binding)
-        end
+        # Vedeu.debug(binding)
+
+        yield
       end
 
       # :nocov:
