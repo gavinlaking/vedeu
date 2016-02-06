@@ -38,8 +38,8 @@ module Vedeu
         # @macro raise_missing_required
         # @return [API::Menu]
         def menu(name, &block)
-          fail Vedeu::Error::MissingRequired unless name
-          fail Vedeu::Error::RequiresBlock unless block_given?
+          raise Vedeu::Error::MissingRequired unless name
+          raise Vedeu::Error::RequiresBlock unless block_given?
 
           attributes = { client: client(&block), name: name }
 

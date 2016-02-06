@@ -45,8 +45,8 @@ module Vedeu
     # @macro raise_invalid_syntax
     # @return [Vedeu::Point]
     def coerce
-      fail Vedeu::Error::InvalidSyntax,
-           "Expecting 'min' to be less than 'max'." if min > max
+      raise Vedeu::Error::InvalidSyntax,
+            "Expecting 'min' to be less than 'max'." if min > max
 
       if value < min
         Vedeu::Point.coerce(value: min, min: min, max: max)
@@ -72,8 +72,8 @@ module Vedeu
     def min
       return @min if numeric?(@min)
 
-      fail Vedeu::Error::InvalidSyntax,
-           "Expecting 'min' to be a Fixnum."
+      raise Vedeu::Error::InvalidSyntax,
+            "Expecting 'min' to be a Fixnum."
     end
 
     # @macro raise_invalid_syntax
@@ -81,8 +81,8 @@ module Vedeu
     def max
       return @max if numeric?(@max) || @max == Float::INFINITY
 
-      fail Vedeu::Error::InvalidSyntax,
-           "Expecting 'max' to be a Fixnum or Float::INFINITY."
+      raise Vedeu::Error::InvalidSyntax,
+            "Expecting 'max' to be a Fixnum or Float::INFINITY."
     end
 
   end # Point

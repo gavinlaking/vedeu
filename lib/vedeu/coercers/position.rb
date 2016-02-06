@@ -50,9 +50,9 @@ module Vedeu
         return false unless value.is_a?(Array)
         return true  if value.size == 2
 
-        fail Vedeu::Error::Fatal,
-             "A '#{klass}' is made up of two elements. (Provided " \
-             "#{value.size}.)"
+        raise Vedeu::Error::Fatal,
+              "A '#{klass}' is made up of two elements. (Provided " \
+              "#{value.size}.)"
       end
 
     end # Position

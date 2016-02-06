@@ -33,8 +33,8 @@ module Vedeu
           #
           # end
 
-          fail Vedeu::Error::MissingRequired unless name
-          fail Vedeu::Error::RequiresBlock unless block_given?
+          raise Vedeu::Error::MissingRequired unless name
+          raise Vedeu::Error::RequiresBlock unless block_given?
 
           Vedeu::Geometries::Geometry.build(name: name, &block).store
         end
@@ -56,7 +56,7 @@ module Vedeu
         # @return [Vedeu::Geometries::Geometry]
         # @see Vedeu::Geometries::DSL
         def geometry(name = nil, &block)
-          fail Vedeu::Error::RequiresBlock unless block_given?
+          raise Vedeu::Error::RequiresBlock unless block_given?
 
           model_name = name ? name : model.name
 

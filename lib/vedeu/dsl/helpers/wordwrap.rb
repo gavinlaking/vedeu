@@ -187,10 +187,10 @@ module Vedeu
         return options[:width] if present?(options[:width])
         return geometry.width if registered?
 
-        fail Vedeu::Error::MissingRequired,
-             'The text provided cannot be wrapped or pruned because a :width ' \
-             'option was not given, or a :name option was either not given ' \
-             'or there is no geometry registered with that name.'
+        raise Vedeu::Error::MissingRequired,
+              'The text provided cannot be wrapped or pruned because a ' \
+              ':width option was not given, or a :name option was either not ' \
+              'given or there is no geometry registered with that name.'
       end
 
       # @macro defaults_method

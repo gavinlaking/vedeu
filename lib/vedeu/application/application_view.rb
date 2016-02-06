@@ -34,9 +34,9 @@ module Vedeu
 
     # @macro raise_not_implemented
     def render
-      fail Vedeu::Error::NotImplemented,
-           'The subclass of Vedeu::ApplicationView must implement the #render' \
-           'method.'
+      raise Vedeu::Error::NotImplemented,
+            'The subclass of Vedeu::ApplicationView must implement the ' \
+            '#render method.'
     end
 
     protected

@@ -52,12 +52,12 @@ module Vedeu
       # @macro raise_missing_required
       # @return [String]
       def path
-        fail Vedeu::Error::MissingRequired,
-             'No path to template specified.' if @path.empty?
+        raise Vedeu::Error::MissingRequired,
+              'No path to template specified.' if @path.empty?
 
         unless File.exist?(@path)
-          fail Vedeu::Error::MissingRequired,
-               "Template file cannot be found. (#{@path})"
+          raise Vedeu::Error::MissingRequired,
+                "Template file cannot be found. (#{@path})"
         end
 
         @path

@@ -28,7 +28,7 @@ module Vedeu
       # @macro raise_invalid_syntax
       # @return [Hash]
       def coerce
-        fail Vedeu::Error::InvalidSyntax unless hash?(value)
+        raise Vedeu::Error::InvalidSyntax unless hash?(value)
 
         if colour? && hash?(colour)
           Vedeu::Coercers::ColourAttributes.coerce(colour)

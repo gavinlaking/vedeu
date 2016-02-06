@@ -86,8 +86,8 @@ module Vedeu
                          when :x then Vedeu::XCoordinate.new(geometry)
                          when :y then Vedeu::YCoordinate.new(geometry)
                          else
-                           fail Vedeu::Error::InvalidSyntax,
-                                'Coordinate type not given, cannot continue.'
+                           raise Vedeu::Error::InvalidSyntax,
+                                 'Coordinate type not given, cannot continue.'
                          end
       end
 

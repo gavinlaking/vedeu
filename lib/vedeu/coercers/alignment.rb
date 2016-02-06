@@ -132,9 +132,9 @@ module Vedeu
       def validate
         return coerce if valid_horizontal? || valid_vertical?
 
-        fail Vedeu::Error::InvalidSyntax,
-             'Missing or invalid alignment value. ' \
-             "Valid values are: #{to_sentence}"
+        raise Vedeu::Error::InvalidSyntax,
+              'Missing or invalid alignment value. ' \
+              "Valid values are: #{to_sentence}"
       end
 
       # @return [Boolean]

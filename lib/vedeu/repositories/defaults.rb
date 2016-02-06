@@ -41,8 +41,8 @@ module Vedeu
       # @macro raise_invalid_syntax
       # @return [Hash]
       def validate(attributes)
-        fail Vedeu::Error::InvalidSyntax,
-             'Argument :attributes is not a Hash.' unless hash?(attributes)
+        raise Vedeu::Error::InvalidSyntax,
+              'Argument :attributes is not a Hash.' unless hash?(attributes)
 
         attributes.keep_if { |key, _| defaults.key?(key) }
       end

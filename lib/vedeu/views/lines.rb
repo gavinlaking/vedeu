@@ -36,9 +36,9 @@ module Vedeu
           new([collection], parent, name)
 
         else
-          fail Vedeu::Error::InvalidSyntax,
-               'Cannot coerce for Vedeu::View::Lines, as collection ' \
-               'unrecognised.'
+          raise Vedeu::Error::InvalidSyntax,
+                'Cannot coerce for Vedeu::View::Lines, as collection ' \
+                'unrecognised.'
 
         end
       end

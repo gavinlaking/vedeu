@@ -58,8 +58,8 @@ module Vedeu
         return name if present?(name)
         return group_from_interface if present?(group_from_interface)
 
-        fail Vedeu::Error::MissingRequired,
-             'Cannot refresh group with an empty group name.'
+        raise Vedeu::Error::MissingRequired,
+              'Cannot refresh group with an empty group name.'
       end
 
       # @return [String|Symbol]

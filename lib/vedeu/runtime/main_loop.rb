@@ -25,7 +25,7 @@ module Vedeu
 
           Vedeu.trigger(:_drb_restart_)
 
-          fail Vedeu::Error::ModeSwitch
+          raise Vedeu::Error::ModeSwitch
         end
 
         # Start the main loop.
@@ -64,7 +64,7 @@ module Vedeu
         #   the running application.
         # @return [void]
         def safe_exit_point!
-          fail Vedeu::Error::Interrupt if @started && !@loop
+          raise Vedeu::Error::Interrupt if @started && !@loop
         end
 
         # :nocov:

@@ -30,7 +30,7 @@ module Vedeu
       # @macro raise_not_implemented
       # @return [void]
       def coerce
-        fail Vedeu::Error::NotImplemented, 'Subclasses implement this.'
+        raise Vedeu::Error::NotImplemented, 'Subclasses implement this.'
       end
 
       protected
@@ -49,15 +49,14 @@ module Vedeu
       # @macro raise_fatal
       # @return [void]
       def incoercible!
-        fail Vedeu::Error::Fatal,
-             "Vedeu cannot coerce a '#{value.class.name}' into a " \
-             "'#{klass}'."
+        raise Vedeu::Error::Fatal,
+              "Vedeu cannot coerce a '#{value.class.name}' into a '#{klass}'."
       end
 
       # @macro raise_not_implemented
       # @return [Class]
       def klass
-        fail Vedeu::Error::NotImplemented, 'Subclasses implement this.'
+        raise Vedeu::Error::NotImplemented, 'Subclasses implement this.'
       end
 
     end # Coercer

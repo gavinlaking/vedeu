@@ -25,8 +25,8 @@ module Vedeu
       # @return [void]
       def add_controller(controller, klass)
         unless present?(controller)
-          fail Vedeu::Error::MissingRequired,
-               'Cannot store controller without a name attribute.'
+          raise Vedeu::Error::MissingRequired,
+                'Cannot store controller without a name attribute.'
         end
 
         Vedeu.log(type:    :create,
@@ -68,9 +68,9 @@ module Vedeu
           storage
 
         else
-          fail Vedeu::Error::MissingRequired,
-               'Cannot store action without a controller or name ' \
-               'attribute.'
+          raise Vedeu::Error::MissingRequired,
+                'Cannot store action without a controller or name ' \
+                'attribute.'
 
         end
       end
@@ -111,12 +111,12 @@ module Vedeu
         if registered?(controller)
           return true if storage[controller][:actions].include?(action)
 
-          fail Vedeu::Error::ActionNotFound,
-               "#{action} is not registered for #{controller}."
+          raise Vedeu::Error::ActionNotFound,
+                "#{action} is not registered for #{controller}."
 
         else
-          fail Vedeu::Error::ControllerNotFound,
-               "#{controller} is not registered."
+          raise Vedeu::Error::ControllerNotFound,
+                "#{controller} is not registered."
 
         end
       end
@@ -143,8 +143,8 @@ module Vedeu
           storage[controller][:klass]
 
         else
-          fail Vedeu::Error::MissingRequired,
-               "Cannot route to #{controller} as no class defined."
+          raise Vedeu::Error::MissingRequired,
+                "Cannot route to #{controller} as no class defined."
 
         end
       end

@@ -202,8 +202,8 @@ module Vedeu
       # @return [Boolean]
       def colour_mode(value = nil)
         unless valid_colour_mode?(value)
-          fail Vedeu::Error::InvalidSyntax,
-               '`colour_mode` must be `8`, `16`, `256`, `16777216`.'
+          raise Vedeu::Error::InvalidSyntax,
+                '`colour_mode` must be `8`, `16`, `256`, `16777216`.'
         end
 
         options[:colour_mode] = value
@@ -561,8 +561,8 @@ module Vedeu
 
       # @macro raise_invalid_syntax
       def invalid_mode!
-        fail Vedeu::Error::InvalidSyntax,
-             'Terminal mode can be set to either :cooked, :fake or :raw'
+        raise Vedeu::Error::InvalidSyntax,
+              'Terminal mode can be set to either :cooked, :fake or :raw'
       end
 
       # Returns the options set via the configuration API DSL or an

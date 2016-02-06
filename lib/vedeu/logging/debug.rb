@@ -42,7 +42,7 @@ module Vedeu
       # @return [void]
       # @yieldreturn [void] The section of the application to profile.
       def profile(filename = '/tmp/profile.html', &block)
-        fail Vedeu::Error::RequiresBlock unless block_given?
+        raise Vedeu::Error::RequiresBlock unless block_given?
 
         Vedeu.requires_gem!('ruby-prof')
 

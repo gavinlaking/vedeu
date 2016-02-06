@@ -55,9 +55,9 @@ module Vedeu
       # @return [Vedeu::Views::Views<Vedeu::Views::View>]
       # @todo More documentation required.
       def view(name, &block)
-        fail Vedeu::Error::RequiresBlock unless block_given?
-        fail Vedeu::Error::MissingRequired,
-             'Cannot add view without a name.' unless present?(name)
+        raise Vedeu::Error::RequiresBlock unless block_given?
+        raise Vedeu::Error::MissingRequired,
+              'Cannot add view without a name.' unless present?(name)
 
         new_model = Vedeu::Views::View.build(new_attributes(name), &block)
 
@@ -87,12 +87,12 @@ module Vedeu
       # @macro raise_missing_required
       # @return [Vedeu::Views::Views<Vedeu::Views::View>]
       def template_for(name, filename, object = nil, options = {})
-        fail Vedeu::Error::MissingRequired,
-             'Cannot render template without the name of the ' \
-             'view.' unless present?(name)
-        fail Vedeu::Error::MissingRequired,
-             'Cannot render template without a ' \
-             'filename.' unless present?(filename)
+        raise Vedeu::Error::MissingRequired,
+              'Cannot render template without the name of the ' \
+              'view.' unless present?(name)
+        raise Vedeu::Error::MissingRequired,
+              'Cannot render template without a ' \
+              'filename.' unless present?(filename)
 
         options[:name] = name
 

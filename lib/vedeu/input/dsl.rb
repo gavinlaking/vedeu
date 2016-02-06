@@ -64,8 +64,8 @@ module Vedeu
       # @macro raise_missing_required
       # @return [Vedeu::Input::Keymap]
       def self.keymap(name, &block)
-        fail Vedeu::Error::MissingRequired unless name
-        fail Vedeu::Error::RequiresBlock unless block_given?
+        raise Vedeu::Error::MissingRequired unless name
+        raise Vedeu::Error::RequiresBlock unless block_given?
 
         unless Vedeu.keymaps.registered?(name)
           Vedeu::Input::Keymap.new(name: name).store

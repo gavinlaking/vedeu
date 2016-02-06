@@ -28,7 +28,7 @@ module Vedeu
     # @macro raise_requires_block
     # @return [Array]
     def open(&block)
-      fail Vedeu::Error::RequiresBlock unless block_given?
+      raise Vedeu::Error::RequiresBlock unless block_given?
 
       if raw_mode? || fake_mode?
         console.raw    { initialize_screen(mode) { yield } }

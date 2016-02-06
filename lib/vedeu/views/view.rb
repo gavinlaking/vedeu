@@ -129,8 +129,8 @@ module Vedeu
           buffer.add(self, refresh)
 
         else
-          fail Vedeu::Error::MissingRequired,
-               'Cannot store a view without a name.'
+          raise Vedeu::Error::MissingRequired,
+                'Cannot store a view without a name.'
 
         end
 
