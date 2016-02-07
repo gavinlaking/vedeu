@@ -284,7 +284,7 @@ module Vedeu
       # setting is for profiling to be disabled. Using `profile!` or
       # setting `profile` to true will enable profiling.
       #
-      # Profile uses 'ruby-prof' to write a 'profile.html' file to
+      # Profile uses 'ruby-prof' to write a 'vedeu_profile' file to
       # the /tmp directory which contains a call trace of the running
       # application. Upon exit, this file can be examined to ascertain
       # certain behaviours of Vedeu.

@@ -41,10 +41,10 @@ module Vedeu
       # @macro raise_requires_block
       # @return [void]
       # @yieldreturn [void] The section of the application to profile.
-      def profile(filename = '/tmp/profile.html', &block)
-        raise Vedeu::Error::RequiresBlock unless block_given?
-
+      def profile(filename = '/tmp/vedeu_profile', &block)
         Vedeu.requires_gem!('ruby-prof')
+
+        raise Vedeu::Error::RequiresBlock unless block_given?
 
         # ::RubyProf.measure_mode = ::RubyProf::WALL_TIME
         # ::RubyProf.measure_mode = ::RubyProf::PROCESS_TIME
@@ -69,28 +69,28 @@ module Vedeu
           # ::RubyProf::CallTreePrinter.new(result).print(file)
 
           # Creates a flat report in text format
-          # ::RubyProf::FlatPrinter
+          # ::RubyProf::FlatPrinter.new(result).print(file)
 
           # - same as above but more verbose
-          # ::RubyProf::FlatPrinterWithLineNumbers
+          # ::RubyProf::FlatPrinterWithLineNumbers.new(result).print(file)
 
           # - Creates a call graph report in text format
-          # ::RubyProf::GraphPrinter
+          # ::RubyProf::GraphPrinter.new(result).print(file)
 
           # - Creates a call graph report in HTML (separate files per
           #   thread)
-          # ::RubyProf::GraphHtmlPrinter
+          # ::RubyProf::GraphHtmlPrinter.new(result).print(file)
 
           # - Creates a call graph report in GraphViz's DOT format
           #   which can be converted to an image
-          # ::RubyProf::DotPrinter
+          # ::RubyProf::DotPrinter.new(result).print(file)
 
           # - Creates a call tree report compatible with KCachegrind.
-          # ::RubyProf::CallTreePrinter
+          # ::RubyProf::CallTreePrinter.new(result).print(file)
 
           # - Uses the other printers to create several reports in one
           #   profiling run
-          # ::RubyProf::MultiPrinter
+          # ::RubyProf::MultiPrinter.new(result).print(file)
         end
 
         work
