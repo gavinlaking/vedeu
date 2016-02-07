@@ -50,6 +50,16 @@ module Vedeu
         position.y if position?
       end
 
+      private
+
+      # @param block [Proc]
+      # @return [String]
+      def render_position(&block)
+        return position.to_s { yield } if position?
+
+        yield
+      end
+
     end # Position
 
   end # Presentation

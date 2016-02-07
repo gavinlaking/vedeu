@@ -18,34 +18,6 @@ module Vedeu
     end
     alias to_str to_s
 
-    private
-
-    # Renders the colour attributes of the receiver and yields (to
-    # then render the styles).
-    #
-    # @param block [Proc]
-    # @return [String]
-    def render_colour(&block)
-      "#{colour}#{yield}"
-    end
-
-    # @param block [Proc]
-    # @return [String]
-    def render_position(&block)
-      return position.to_s { yield } if position?
-
-      yield
-    end
-
-    # Renders the style attributes of the receiver and yields (to
-    # then render the next model, or finally, the content).
-    #
-    # @param block [Proc]
-    # @return [String]
-    def render_style(&block)
-      "#{style}#{yield}"
-    end
-
   end # Presentation
 
 end # Vedeu
