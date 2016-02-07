@@ -107,22 +107,20 @@ module Vedeu
         end
       end
 
-      # @return [Hash<Symbol => Boolean|Fixnum|String|Symbol|
-      #   Vedeu::Geometries::Repository]
+      # @return [Hash<Symbol => Boolean|Fixnum|String|Symbol>]
       def attributes
         {
           client:               client,
-          height:               height,
+          height:               @height.is_a?(Proc) ? @height.call : @height,
           horizontal_alignment: horizontal_alignment,
           maximised:            maximised,
           name:                 name,
-          repository:           repository,
           vertical_alignment:   vertical_alignment,
-          width:                width,
-          x:                    x,
-          xn:                   xn,
-          y:                    y,
-          yn:                   yn,
+          width:                @width.is_a?(Proc)  ? @width.call  : @width,
+          x:                    @x.is_a?(Proc)      ? @x.call      : @x,
+          xn:                   @xn.is_a?(Proc)     ? @xn.call     : @xn,
+          y:                    @y.is_a?(Proc)      ? @y.call      : @y,
+          yn:                   @yn.is_a?(Proc)     ? @yn.call     : @yn,
         }
       end
 
@@ -154,6 +152,7 @@ module Vedeu
         return self if maximised?
 
         @maximised = true
+        @_area     = nil
 
         store do
           Vedeu.trigger(:_refresh_view_, name)
@@ -166,6 +165,7 @@ module Vedeu
         return self unless maximised?
 
         @maximised = false
+        @_area     = nil
 
         store do
           Vedeu.trigger(:_clear_)
@@ -173,27 +173,16 @@ module Vedeu
         end
       end
 
+      # @return [Vedeu::Geometries::Repository]
+      def repository
+        Vedeu.geometries
+      end
+
       private
 
       # @return [Vedeu::Geometries::Area]
       def area
-        Vedeu::Geometries::Area.from_attributes(area_attributes)
-      end
-
-      # @return [Hash<Symbol => Boolean|Fixnum>]
-      def area_attributes
-        {
-          height:               @height.is_a?(Proc) ? @height.call : @height,
-          horizontal_alignment: horizontal_alignment,
-          maximised:            maximised,
-          name:                 name,
-          vertical_alignment:   vertical_alignment,
-          width:                @width.is_a?(Proc)  ? @width.call  : @width,
-          x:                    @x.is_a?(Proc)      ? @x.call      : @x,
-          xn:                   @xn.is_a?(Proc)     ? @xn.call     : @xn,
-          y:                    @y.is_a?(Proc)      ? @y.call      : @y,
-          yn:                   @yn.is_a?(Proc)     ? @yn.call     : @yn,
-        }
+        @_area ||= Vedeu::Geometries::Area.from_attributes(attributes)
       end
 
       # @macro defaults_method
@@ -204,7 +193,6 @@ module Vedeu
           horizontal_alignment: :none,
           maximised:            false,
           name:                 nil,
-          repository:           Vedeu.geometries,
           vertical_alignment:   :none,
           width:                nil,
           x:                    nil,
