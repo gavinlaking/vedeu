@@ -37,7 +37,7 @@ module Vedeu
             it do
               Vedeu.expects(:log)
                 .with(type:    :timer,
-                      message: "Testing took 0.0ms. (Started at: #{_time})")
+                      message: "Testing took 0.0ms.")
               subject
             end
           end

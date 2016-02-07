@@ -47,8 +47,7 @@ module Vedeu
           work = yield
 
           Vedeu.log(type:    :timer,
-                    message: "#{message} took #{elapsed}ms. " \
-                             "(Started at: #{started})")
+                    message: "#{message} took #{elapsed}ms.")
 
           work
 
