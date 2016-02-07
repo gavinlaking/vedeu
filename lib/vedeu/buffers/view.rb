@@ -48,7 +48,9 @@ module Vedeu
       #   Vedeu::Cells::Char]
       # @return [Vedeu::Buffers::View]
       def update(value_or_values)
-        Array(value_or_values).flatten.each { |value| write(value) }
+        Array(value_or_values).flatten.each do |value|
+          write(value) if positionable?(value)
+        end
 
         self
       end
@@ -60,6 +62,12 @@ module Vedeu
       attr_reader :name
 
       private
+
+      # @param value [void]
+      # @return [Fixnum]
+      def column(value)
+        Vedeu::Point.coerce(value: value.position.x, min: bx, max: bxn).value
+      end
 
       # @return [Array<Vedeu::Cells::Empty>]
       def current
@@ -82,31 +90,10 @@ module Vedeu
         @_geometry ||= Vedeu.geometries.by_name(name)
       end
 
-      # Returns a boolean indicating the value has a position
-      # attribute and is within the terminal boundary.
-      #
       # @param value [void]
-      # @return [Boolean]
-      def valid?(value)
-        positionable?(value)       &&
-        valid_y?(value.position.y) &&
-        valid_x?(value.position.x)
-      end
-
-      # Returns a boolean indicating whether the x position of the
-      # value object is valid for this geometry.
-      #
-      # @return [Boolean]
-      def valid_x?(x)
-        Vedeu::Point.valid?(value: x, min: bx, max: bxn)
-      end
-
-      # Returns a boolean indicating whether the y position of the
-      # value object is valid for this geometry.
-      #
-      # @return [Boolean]
-      def valid_y?(y)
-        Vedeu::Point.valid?(value: y, min: by, max: byn)
+      # @return [Fixnum]
+      def row(value)
+        Vedeu::Point.coerce(value: value.position.y, min: by, max: byn).value
       end
 
       # Write the value into the respective cell as defined by the
@@ -115,7 +102,7 @@ module Vedeu
       # @param value [void]
       # @return [NilClass|void]
       def write(value)
-        current[value.position.y][value.position.x] = value if valid?(value)
+        current[row(value)][column(value)] = value
       end
 
     end # View
