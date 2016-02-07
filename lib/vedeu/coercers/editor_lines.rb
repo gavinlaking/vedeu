@@ -17,7 +17,7 @@ module Vedeu
         if coerced?
           klass.new(value.lines)
 
-        elsif value.is_a?(Array)
+        elsif array?(value)
           collection = value.map do |line|
             Vedeu::Editor::Line.coerce(line)
           end

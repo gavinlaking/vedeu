@@ -20,7 +20,7 @@ module Vedeu
         elsif tuple?
           klass.new(*value)
 
-        elsif hash?
+        elsif hash?(value)
           klass.new(value.fetch(:y, 1), value.fetch(:x, 1))
 
         elsif numeric?(value)
@@ -34,11 +34,6 @@ module Vedeu
 
       private
 
-      # @return [Boolean]
-      def hash?
-        value.is_a?(Hash)
-      end
-
       # @return [Class]
       def klass
         Vedeu::Geometries::Position
@@ -47,7 +42,7 @@ module Vedeu
       # @macro raise_fatal
       # @return [Boolean]
       def tuple?
-        return false unless value.is_a?(Array)
+        return false unless array?(value)
         return true  if value.size == 2
 
         raise Vedeu::Error::Fatal,

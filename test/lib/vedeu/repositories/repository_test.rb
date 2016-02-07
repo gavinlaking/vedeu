@@ -16,7 +16,7 @@ module Vedeu
       end
 
       def add(model)
-        if storage.is_a?(Hash)
+        if hash?(storage)
           @storage = in_memory.merge!(model)
 
         else
