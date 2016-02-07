@@ -89,7 +89,6 @@ module Vedeu
         }
       end
 
-
       # @return [Array<Symbol>]
       def valid_codes
         @_valid_codes ||= foreground_codes.keys.map do |name|
