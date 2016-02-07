@@ -38,9 +38,9 @@ module Vedeu
       # @param other [void]
       # @return [Boolean]
       def eql?(other)
-        self.class == other.class    &&
+        self.class.equal?(other.class) &&
           position == other.position &&
-          value    == other.value    &&
+          value    == other.value &&
           colour   == other.colour
       end
       alias == eql?

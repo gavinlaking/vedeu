@@ -83,7 +83,7 @@ module Vedeu
       # @param other [Vedeu::Cursors::Cursor]
       # @return [Boolean]
       def eql?(other)
-        self.class == other.class && name == other.name
+        self.class.equal?(other.class) && name == other.name
       end
       alias == eql?
 

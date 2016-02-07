@@ -64,7 +64,7 @@ module Vedeu
       # @param other [Vedeu::Models::Page]
       # @return [Boolean]
       def eql?(other)
-        self.class == other.class && rows == other.rows
+        self.class.equal?(other.class) && rows == other.rows
       end
       alias == eql?
 

@@ -101,8 +101,12 @@ module Vedeu
       # @param other [Vedeu::Geometries::Area]
       # @return [Boolean]
       def eql?(other)
-        self.class == other.class && y == other.y && yn == other.yn &&
-          x == other.x && xn == other.xn
+        self.class.equal?(other.class) &&
+          name == other.name &&
+          y == other.y &&
+          yn == other.yn &&
+          x == other.x &&
+          xn == other.xn
       end
       alias == eql?
 
