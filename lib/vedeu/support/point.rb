@@ -11,6 +11,12 @@ module Vedeu
   #
   class Point
 
+    include Vedeu::Common
+
+    # @!attribute [r] value
+    # @return [Fixnum]
+    attr_reader :value
+
     # @param (see #initialize)
     # @macro raise_invalid_syntax
     # @return (see #initialize)
@@ -31,14 +37,16 @@ module Vedeu
     def initialize(value: nil, min: 1, max: Float::INFINITY)
       @min   = min
       @max   = max
-      @value = value
+      @value = value || @min
+
+      freeze
     end
 
     # @macro raise_invalid_syntax
     # @return [Vedeu::Point]
     def coerce
-      fail Vedeu::Error::InvalidSyntax,
-           "Expecting 'min' to be less than 'max'." if min > max
+      raise Vedeu::Error::InvalidSyntax,
+            "Expecting 'min' to be less than 'max'." if min > max
 
       if value < min
         Vedeu::Point.coerce(value: min, min: min, max: max)
@@ -54,12 +62,7 @@ module Vedeu
 
     # @return [Boolean]
     def valid?
-      @value.is_a?(Fixnum) && @value >= min && @value <= max
-    end
-
-    # @return [Fixnum]
-    def value
-      @value ||= min
+      numeric?(value) && value >= min && value <= max
     end
 
     private
@@ -67,19 +70,19 @@ module Vedeu
     # @macro raise_invalid_syntax
     # @return [Fixnum]
     def min
-      return @min if @min.is_a?(Fixnum)
+      return @min if numeric?(@min)
 
-      fail Vedeu::Error::InvalidSyntax,
-           "Expecting 'min' to be a Fixnum."
+      raise Vedeu::Error::InvalidSyntax,
+            "Expecting 'min' to be a Fixnum."
     end
 
     # @macro raise_invalid_syntax
     # @return [Fixnum]
     def max
-      return @max if @max.is_a?(Fixnum) || @max == Float::INFINITY
+      return @max if numeric?(@max) || @max == Float::INFINITY
 
-      fail Vedeu::Error::InvalidSyntax,
-           "Expecting 'max' to be a Fixnum or Float::INFINITY."
+      raise Vedeu::Error::InvalidSyntax,
+            "Expecting 'max' to be a Fixnum or Float::INFINITY."
     end
 
   end # Point

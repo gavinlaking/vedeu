@@ -47,9 +47,9 @@ module Vedeu
           new([Vedeu::Views::Stream.new(value: collection)], parent, name)
 
         else
-          fail Vedeu::Error::InvalidSyntax,
-               'Cannot coerce for Vedeu::View::Streams, as collection ' \
-               "unrecognised. (#{collection.class.name})"
+          raise Vedeu::Error::InvalidSyntax,
+                'Cannot coerce for Vedeu::View::Streams, as collection ' \
+                "unrecognised. (#{collection.class.name})"
 
         end
       end

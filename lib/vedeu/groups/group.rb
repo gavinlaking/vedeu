@@ -86,7 +86,7 @@ module Vedeu
       # @param other [Vedeu::Groups::Group]
       # @return [Boolean]
       def eql?(other)
-        self.class == other.class && name == other.name &&
+        self.class.equal?(other.class) && name == other.name &&
           members == other.members
       end
       alias == eql?

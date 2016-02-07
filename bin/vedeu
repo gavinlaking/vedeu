@@ -9,7 +9,7 @@ rescue LoadError
   STDERR.puts bundler_message
 end
 
-fail bundler_message unless defined?(Bundler)
+raise bundler_message unless defined?(Bundler)
 
 require 'vedeu'
 require 'vedeu_cli'

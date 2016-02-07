@@ -42,7 +42,7 @@ module Vedeu
         # @return [Vedeu::Borders::Border]
         # @see Vedeu::Borders::DSL
         def border(name = nil, &block)
-          fail Vedeu::Error::RequiresBlock unless block_given?
+          raise Vedeu::Error::RequiresBlock unless block_given?
 
           model_name = name ? name : model.name
 

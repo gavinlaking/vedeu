@@ -23,7 +23,7 @@ module Vedeu
         elsif hash?
           klass.new(value.fetch(:y, 1), value.fetch(:x, 1))
 
-        elsif fixnum?
+        elsif numeric?(value)
           klass.new(value, 1)
 
         else
@@ -33,11 +33,6 @@ module Vedeu
       end
 
       private
-
-      # @return [Boolean]
-      def fixnum?
-        value.is_a?(Fixnum)
-      end
 
       # @return [Boolean]
       def hash?
@@ -55,9 +50,9 @@ module Vedeu
         return false unless value.is_a?(Array)
         return true  if value.size == 2
 
-        fail Vedeu::Error::Fatal,
-             "A '#{klass}' is made up of two elements. (Provided " \
-             "#{value.size}.)"
+        raise Vedeu::Error::Fatal,
+              "A '#{klass}' is made up of two elements. (Provided " \
+              "#{value.size}.)"
       end
 
     end # Position

@@ -74,7 +74,7 @@ module Vedeu
       # @param other [void]
       # @return [Boolean]
       def eql?(other)
-        self.class == other.class && colour == other.colour
+        self.class.equal?(other.class) && colour == other.colour
       end
       alias == eql?
 
@@ -217,7 +217,7 @@ module Vedeu
 
       # @macro raise_not_implemented
       def not_implemented
-        fail Vedeu::Error::NotImplemented, 'Subclasses implement this.'
+        raise Vedeu::Error::NotImplemented, 'Subclasses implement this.'
       end
       alias named not_implemented
       alias repository not_implemented

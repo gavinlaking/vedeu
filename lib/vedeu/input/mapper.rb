@@ -32,12 +32,12 @@ module Vedeu
         # @macro raise_missing_required
         # @return [Boolean]
         def registered?(key = nil, name = nil)
-          fail Vedeu::Error::MissingRequired,
-               'Cannot check whether a key is registered to a keymap without ' \
-               'the key.' if absent?(key)
-          fail Vedeu::Error::MissingRequired,
-               'Cannot check whether a key is registered to a keymap without ' \
-               'the keymap name.' if absent?(name)
+          raise Vedeu::Error::MissingRequired,
+                'Cannot check whether a key is registered to a keymap ' \
+                'without the key.' if absent?(key)
+          raise Vedeu::Error::MissingRequired,
+                'Cannot check whether a key is registered to a keymap ' \
+                'without the keymap name.' if absent?(name)
 
           new(key, name).registered?
         end

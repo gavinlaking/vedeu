@@ -45,9 +45,9 @@ module Vedeu
           end
 
         else
-          fail Vedeu::Error::InvalidSyntax,
-               'Cannot coerce for Vedeu::View::Chars, as collection is ' \
-               'unrecognised.'
+          raise Vedeu::Error::InvalidSyntax,
+                'Cannot coerce for Vedeu::View::Chars, as collection is ' \
+                'unrecognised.'
 
         end
       end

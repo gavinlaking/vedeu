@@ -39,8 +39,8 @@ module Vedeu
         # @return [Vedeu::Interfaces::Interface]
         # @todo More documentation required.
         def interface(name, &block)
-          fail Vedeu::Error::MissingRequired unless name
-          fail Vedeu::Error::RequiresBlock unless block_given?
+          raise Vedeu::Error::MissingRequired unless name
+          raise Vedeu::Error::RequiresBlock unless block_given?
 
           attributes = { client: client(&block), name: name }
 

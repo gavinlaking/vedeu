@@ -95,8 +95,8 @@ module Vedeu
       #   found with this name.
       # @return [Hash<String => Object>]
       def find!(name)
-        find(name) || fail(Vedeu::Error::ModelNotFound,
-                           "Cannot find model by name: '#{name}'")
+        find(name) || raise(Vedeu::Error::ModelNotFound,
+                            "Cannot find model by name: '#{name}'")
       end
 
       # Find a model by name, registers the model by name when not
@@ -182,9 +182,9 @@ module Vedeu
       # @macro raise_missing_required
       # @return [Boolean]
       def valid_model?(model)
-        fail Vedeu::Error::MissingRequired,
-             "Cannot store model '#{model.class}' without a name " \
-             'attribute.' unless present?(model.name)
+        raise Vedeu::Error::MissingRequired,
+              "Cannot store model '#{model.class}' without a name " \
+              'attribute.' unless present?(model.name)
       end
 
     end # Repository

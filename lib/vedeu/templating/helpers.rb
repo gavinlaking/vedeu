@@ -51,7 +51,7 @@ module Vedeu
 
       # @see Vedeu::Templating::Helpers#colour
       def define_stream(attributes = {}, &block)
-        fail Vedeu::Error::RequiresBlock unless block_given?
+        raise Vedeu::Error::RequiresBlock unless block_given?
 
         value = yield
 

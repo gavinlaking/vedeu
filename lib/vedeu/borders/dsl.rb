@@ -21,8 +21,8 @@ module Vedeu
       # @macro raise_missing_required
       # @return [Vedeu::Borders::Border]
       def self.border(name, &block)
-        fail Vedeu::Error::MissingRequired unless name
-        fail Vedeu::Error::RequiresBlock unless block_given?
+        raise Vedeu::Error::MissingRequired unless name
+        raise Vedeu::Error::RequiresBlock unless block_given?
 
         Vedeu::Borders::Border.build(enabled: true, name: name, &block).store
       end

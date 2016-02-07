@@ -102,8 +102,8 @@ module Vedeu
       # @return [Symbol]
       def mode
         unless valid_mode?
-          fail Vedeu::Error::InvalidSyntax,
-               ':mode must be `:raw`, `:fake` or `:cooked`.'
+          raise Vedeu::Error::InvalidSyntax,
+                ':mode must be `:raw`, `:fake` or `:cooked`.'
         end
 
         options[:mode]

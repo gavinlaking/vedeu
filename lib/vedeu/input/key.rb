@@ -21,7 +21,7 @@ module Vedeu
       # @macro raise_requires_block
       # @return [Vedeu::Input::Key]
       def initialize(input = nil, &block)
-        fail Vedeu::Error::RequiresBlock unless block_given?
+        raise Vedeu::Error::RequiresBlock unless block_given?
 
         @input  = input
         @output = block

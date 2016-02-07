@@ -8,6 +8,7 @@ module Vedeu
     #
     module Colours
 
+      include Vedeu::Common
       extend self
 
       # Produces the background named colour escape sequence hash from
@@ -20,6 +21,25 @@ module Vedeu
           h
         end
       end
+
+      # @param named_colour [Symbol]
+      # @param block [Proc]
+      # @return [String]
+      def background_colour(named_colour, &block)
+        return '' unless valid_name?(named_colour)
+
+        colour(named_colour.to_s.prepend('on_').to_sym, &block)
+      end
+
+      # @param named_colour [Symbol]
+      # @param block [Proc]
+      # @return [String]
+      def colour(named_colour, &block)
+        return '' unless valid_name?(named_colour)
+
+        public_send(named_colour, &block)
+      end
+      alias foreground_colour colour
 
       # Produces the foreground named colour escape sequence hash. The
       # background escape sequences are also generated from this by
@@ -69,25 +89,6 @@ module Vedeu
         }
       end
 
-      # @param named_colour [Symbol]
-      # @param block [Proc]
-      # @return [String]
-      def background_colour(named_colour, &block)
-        return '' unless valid_name?(named_colour)
-
-        colour(named_colour.to_s.prepend('on_').to_sym, &block)
-      end
-
-      # @param named_colour [Symbol]
-      # @param block [Proc]
-      # @return [String]
-      def colour(named_colour, &block)
-        return '' unless valid_name?(named_colour)
-
-        public_send(named_colour, &block)
-      end
-      alias foreground_colour colour
-
       # @return [Array<Symbol>]
       def valid_codes
         @_valid_codes ||= foreground_codes.keys.map do |name|
@@ -101,7 +102,7 @@ module Vedeu
       # @param named_colour [Symbol]
       # @return [Boolean]
       def valid_name?(named_colour)
-        return false unless named_colour.is_a?(Symbol)
+        return false unless symbol?(named_colour)
 
         valid_codes.include?(named_colour)
       end

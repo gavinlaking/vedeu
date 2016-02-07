@@ -37,6 +37,14 @@ module Vedeu
         it { described.background_codes.must_equal(expected) }
       end
 
+      describe '.background_colour' do
+        subject { described.background_colour }
+      end
+
+      describe '.colour' do
+        subject { described.colour }
+      end
+
       describe '.foreground_codes' do
         let(:expected) {
           {
@@ -62,6 +70,40 @@ module Vedeu
 
         it { described.foreground_codes.must_be_instance_of(Hash) }
         it { described.foreground_codes.must_equal(expected) }
+      end
+
+      describe '.foreground_colour' do
+        it { described.must_respond_to(:foreground_colour) }
+      end
+
+      describe '.valid_codes' do
+        subject { described.valid_codes }
+
+        it { subject.must_be_instance_of(Array) }
+      end
+
+      describe '.valid_name?' do
+        let(:named_colour) {}
+
+        subject { described.valid_name?(named_colour) }
+
+        context 'when the named_colour is a Symbol' do
+          context 'and the named_colour is valid' do
+            let(:named_colour) { :on_light_green }
+
+            it { subject.must_equal(true) }
+          end
+
+          context 'and the named_colour is invalid' do
+            let(:named_colour) { :beige }
+
+            it { subject.must_equal(false) }
+          end
+        end
+
+        context 'when the named_colour is not a Symbol' do
+          it { subject.must_equal(false) }
+        end
       end
 
     end # Colours

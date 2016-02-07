@@ -92,7 +92,7 @@ module Vedeu
       # @param character [String|Symbol]
       # @return [Vedeu::Editor::Document]
       def insert_character(character)
-        return self if character.is_a?(Symbol)
+        return self if symbol?(character)
 
         @lines = lines.insert_character(character, y, x)
 

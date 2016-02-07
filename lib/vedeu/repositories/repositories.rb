@@ -38,11 +38,22 @@ module Vedeu
       end
     end
 
+    # Access all the repositories stored.
+    #
+    # @return [Array]
+    def repositories
+      self
+    end
+
     # Remove all stored models from the repository.
     #
     # @return [Boolean]
     def reset!
-      all.map { |repository| repository.send(:reset) }
+      storage.map do |repository|
+        Vedeu.log(type:    :red,
+                  message: "Resetting: #{repository.name}")
+        repository.reset!
+      end
 
       true
     end
@@ -58,5 +69,10 @@ module Vedeu
     end
 
   end # Repositories
+
+  # @!method repositories
+  #   @see Vedeu::Repositories
+  def_delegators Vedeu::Repositories,
+                 :repositories
 
 end # Vedeu

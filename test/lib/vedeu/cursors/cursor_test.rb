@@ -145,7 +145,7 @@ module Vedeu
 
       describe '#inspect' do
         let(:expected) {
-          "name:'vedeu_cursors_cursor' x:19 y:8 ox:3 oy:2 visible:true"
+          "name: :vedeu_cursors_cursor x: 19 y: 8 ox: 3 oy: 2 visible: true"
         }
 
         subject { instance.inspect }

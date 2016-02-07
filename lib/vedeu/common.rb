@@ -81,6 +81,17 @@ module Vedeu
     def numeric?(value)
       value.is_a?(Fixnum)
     end
+    alias fixnum? numeric?
+
+    # Returns a boolean indicating the value has a position
+    # attribute.
+    #
+    # @param value [void]
+    # @return [Boolean]
+    def positionable?(value)
+      value.respond_to?(:position) &&
+        value.position.is_a?(Vedeu::Geometries::Position)
+    end
 
     # Returns a boolean indicating whether a variable has a useful
     # value.
@@ -135,12 +146,20 @@ module Vedeu
       end
     end
 
-    # Returns a boolean indicating whether the value is a Fixnum.
+    # Returns a boolean indicating whether the value is a String.
     #
     # @param value [String|void]
     # @return [Boolean]
     def string?(value)
       value.is_a?(String)
+    end
+
+    # Returns a boolean indicating whether the value is a Symbol.
+    #
+    # @param value [Symbol|void]
+    # @return [Boolean]
+    def symbol?(value)
+      value.is_a?(Symbol)
     end
 
     # Returns a boolean indicating whether the value should be

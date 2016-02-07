@@ -11,7 +11,7 @@ module Vedeu
       let(:described) { Vedeu::Logging::Debug }
 
       before do
-        File.stubs(:open).with('/tmp/profile.html', 'w').returns(:some_code)
+        File.stubs(:open).with('/tmp/vedeu_profile', 'w').returns(:some_code)
       end
 
       describe '.debug' do
@@ -32,7 +32,7 @@ module Vedeu
       end
 
       describe '.profile' do
-        let(:filename)  { 'profile.html' }
+        let(:filename)  { 'vedeu_profile' }
         let(:some_code) { :some_code }
 
         subject { described.profile(filename) { some_code } }

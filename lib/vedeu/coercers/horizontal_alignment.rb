@@ -15,9 +15,9 @@ module Vedeu
       def validate
         return coerce if valid_horizontal?
 
-        fail Vedeu::Error::InvalidSyntax,
-             'Missing or invalid horizontal alignment value. ' \
-             "Valid values are: #{to_sentence}"
+        raise Vedeu::Error::InvalidSyntax,
+              'Missing or invalid horizontal alignment value. ' \
+              "Valid values are: #{to_sentence}"
       end
 
       private

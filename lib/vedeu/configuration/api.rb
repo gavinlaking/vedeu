@@ -10,6 +10,8 @@ module Vedeu
     #
     class API
 
+      include Vedeu::Common
+
       # @param (see #initialize)
       def self.configure(&block)
         new(&block).configuration
@@ -200,8 +202,8 @@ module Vedeu
       # @return [Boolean]
       def colour_mode(value = nil)
         unless valid_colour_mode?(value)
-          fail Vedeu::Error::InvalidSyntax,
-               '`colour_mode` must be `8`, `16`, `256`, `16777216`.'
+          raise Vedeu::Error::InvalidSyntax,
+                '`colour_mode` must be `8`, `16`, `256`, `16777216`.'
         end
 
         options[:colour_mode] = value
@@ -282,7 +284,7 @@ module Vedeu
       # setting is for profiling to be disabled. Using `profile!` or
       # setting `profile` to true will enable profiling.
       #
-      # Profile uses 'ruby-prof' to write a 'profile.html' file to
+      # Profile uses 'ruby-prof' to write a 'vedeu_profile' file to
       # the /tmp directory which contains a call trace of the running
       # application. Upon exit, this file can be examined to ascertain
       # certain behaviours of Vedeu.
@@ -559,8 +561,8 @@ module Vedeu
 
       # @macro raise_invalid_syntax
       def invalid_mode!
-        fail Vedeu::Error::InvalidSyntax,
-             'Terminal mode can be set to either :cooked, :fake or :raw'
+        raise Vedeu::Error::InvalidSyntax,
+              'Terminal mode can be set to either :cooked, :fake or :raw'
       end
 
       # Returns the options set via the configuration API DSL or an
@@ -576,7 +578,7 @@ module Vedeu
       # @param value [Fixnum]
       # @return [Boolean]
       def valid_colour_mode?(value)
-        value.is_a?(Fixnum) && [8, 16, 256, 16_777_216].include?(value)
+        numeric?(value) && [8, 16, 256, 16_777_216].include?(value)
       end
 
       # Checks that the mode provided is valid.

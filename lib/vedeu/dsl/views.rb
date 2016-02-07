@@ -100,7 +100,7 @@ module Vedeu
         # @macro raise_requires_block
         # @return [Vedeu::Views::Composition]
         def renders(&block)
-          fail Vedeu::Error::RequiresBlock unless block_given?
+          raise Vedeu::Error::RequiresBlock unless block_given?
 
           composition(eval('self', block.binding), true, &block)
         end
@@ -113,7 +113,7 @@ module Vedeu
         # @macro raise_requires_block
         # @return [Vedeu::Views::Composition]
         def views(&block)
-          fail Vedeu::Error::RequiresBlock unless block_given?
+          raise Vedeu::Error::RequiresBlock unless block_given?
 
           composition(eval('self', block.binding), false, &block)
         end

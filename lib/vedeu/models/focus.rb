@@ -209,9 +209,9 @@ module Vedeu
 
       # @raise [Vedeu::Error::ModelNotFound]
       def not_registered!(name)
-        fail Vedeu::Error::ModelNotFound,
-             "Cannot focus '#{name}' as this interface has not been " \
-             'registered.'
+        raise Vedeu::Error::ModelNotFound,
+              "Cannot focus '#{name}' as this interface has not been " \
+              'registered.'
       end
 
       # Return the name of the interface in focus after triggering the

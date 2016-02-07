@@ -77,7 +77,7 @@ module Vedeu
       # @param other [Vedeu::Geometries::Position]
       # @return [Boolean]
       def eql?(other)
-        self.class == other.class && x == other.x && y == other.y
+        self.class.equal?(other.class) && x == other.x && y == other.y
       end
       alias == eql?
 

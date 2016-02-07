@@ -76,7 +76,7 @@ module Vedeu
       # @param other [void]
       # @return [Boolean]
       def eql?(other)
-        self.class == other.class && value == other.value
+        self.class.equal?(other.class) && value == other.value
       end
       alias == eql?
 
@@ -132,9 +132,9 @@ module Vedeu
       def validate
         return coerce if valid_horizontal? || valid_vertical?
 
-        fail Vedeu::Error::InvalidSyntax,
-             'Missing or invalid alignment value. ' \
-             "Valid values are: #{to_sentence}"
+        raise Vedeu::Error::InvalidSyntax,
+              'Missing or invalid alignment value. ' \
+              "Valid values are: #{to_sentence}"
       end
 
       # @return [Boolean]
@@ -167,7 +167,7 @@ module Vedeu
 
       # @return [Boolean]
       def valid_type?
-        present?(value) && value.is_a?(Symbol)
+        present?(value) && symbol?(value)
       end
 
       # @return [Array<Symbol>]

@@ -39,26 +39,30 @@ module Vedeu
                      :y,
                      :yn
 
-      # @!attribute [rw] horizontal_alignment
-      # @return [Symbol]
-      attr_accessor :horizontal_alignment
-
-      # @!attribute [rw] vertical_alignment
-      # @return [Symbol]
-      attr_accessor :vertical_alignment
-
-      # @!attribute [rw] name
-      # @return [String|Symbol]
-      attr_accessor :name
+      # @!attribute [rw] client
+      # @return [Object]
+      attr_accessor :client
 
       # @!attribute [w] height
       # @return [Fixnum]
       attr_writer :height
 
+      # @!attribute [rw] horizontal_alignment
+      # @return [Symbol]
+      attr_accessor :horizontal_alignment
+
       # @!attribute [rw] maximised
       # @return [Boolean]
       attr_accessor :maximised
       alias maximised? maximised
+
+      # @!attribute [rw] name
+      # @return [String|Symbol]
+      attr_accessor :name
+
+      # @!attribute [rw] vertical_alignment
+      # @return [Symbol]
+      attr_accessor :vertical_alignment
 
       # @!attribute [w] width
       # @return [Fixnum]
@@ -80,20 +84,17 @@ module Vedeu
       # @return [Fixnum]
       attr_writer :yn
 
-      # @!attribute [rw] client
-      # @return [Object]
-      attr_accessor :client
-
       # Returns a new instance of Vedeu::Geometries::Geometry.
       #
       # @param attributes [Hash<Symbol => Boolean|Fixnum|String|
       #   Symbol|Vedeu::Geometries::Repository]
-      # @option attributes horizontal_alignment [Symbol]
-      # @option attributes vertical_alignment [Symbol]
-      # @option attributes maximised [Boolean]
+      # @option attributes client [void]
       # @option attributes height [Fixnum]
+      # @option attributes horizontal_alignment [Symbol]
+      # @option attributes maximised [Boolean]
       # @option attributes name [String|Symbol]
       # @option attributes repository [Vedeu::Geometries::Repository]
+      # @option attributes vertical_alignment [Symbol]
       # @option attributes width [Fixnum]
       # @option attributes x [Fixnum]
       # @option attributes xn [Fixnum]
@@ -106,22 +107,20 @@ module Vedeu
         end
       end
 
-      # @return [Hash<Symbol => Boolean|Fixnum|String|Symbol|
-      #   Vedeu::Geometries::Repository]
+      # @return [Hash<Symbol => Boolean|Fixnum|String|Symbol>]
       def attributes
         {
           client:               client,
-          height:               height,
+          height:               @height.is_a?(Proc) ? @height.call : @height,
           horizontal_alignment: horizontal_alignment,
           maximised:            maximised,
           name:                 name,
-          repository:           repository,
           vertical_alignment:   vertical_alignment,
-          width:                width,
-          x:                    x,
-          xn:                   xn,
-          y:                    y,
-          yn:                   yn,
+          width:                @width.is_a?(Proc)  ? @width.call  : @width,
+          x:                    @x.is_a?(Proc)      ? @x.call      : @x,
+          xn:                   @xn.is_a?(Proc)     ? @xn.call     : @xn,
+          y:                    @y.is_a?(Proc)      ? @y.call      : @y,
+          yn:                   @yn.is_a?(Proc)     ? @yn.call     : @yn,
         }
       end
 
@@ -143,7 +142,7 @@ module Vedeu
       # @param other [Vedeu::Geometries::Geometry]
       # @return [Boolean]
       def eql?(other)
-        self.class == other.class && name == other.name
+        self.class.equal?(other.class) && name == other.name
       end
       alias == eql?
 
@@ -153,9 +152,9 @@ module Vedeu
         return self if maximised?
 
         @maximised = true
+        @_area     = nil
 
         store do
-          Vedeu.trigger(:_clear_)
           Vedeu.trigger(:_refresh_view_, name)
         end
       end
@@ -166,6 +165,7 @@ module Vedeu
         return self unless maximised?
 
         @maximised = false
+        @_area     = nil
 
         store do
           Vedeu.trigger(:_clear_)
@@ -173,27 +173,16 @@ module Vedeu
         end
       end
 
+      # @return [Vedeu::Geometries::Repository]
+      def repository
+        Vedeu.geometries
+      end
+
       private
 
       # @return [Vedeu::Geometries::Area]
       def area
-        Vedeu::Geometries::Area.from_attributes(area_attributes)
-      end
-
-      # @return [Hash<Symbol => Boolean|Fixnum>]
-      def area_attributes
-        {
-          horizontal_alignment: horizontal_alignment,
-          maximised:            maximised,
-          name:                 name,
-          vertical_alignment:   vertical_alignment,
-          x:                    @x.is_a?(Proc)      ? @x.call      : @x,
-          xn:                   @xn.is_a?(Proc)     ? @xn.call     : @xn,
-          width:                @width.is_a?(Proc)  ? @width.call  : @width,
-          y:                    @y.is_a?(Proc)      ? @y.call      : @y,
-          yn:                   @yn.is_a?(Proc)     ? @yn.call     : @yn,
-          height:               @height.is_a?(Proc) ? @height.call : @height,
-        }
+        @_area ||= Vedeu::Geometries::Area.from_attributes(attributes)
       end
 
       # @macro defaults_method
@@ -204,7 +193,6 @@ module Vedeu
           horizontal_alignment: :none,
           maximised:            false,
           name:                 nil,
-          repository:           Vedeu.geometries,
           vertical_alignment:   :none,
           width:                nil,
           x:                    nil,

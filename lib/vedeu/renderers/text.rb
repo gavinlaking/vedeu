@@ -45,12 +45,6 @@ module Vedeu
         empty
       end
 
-      # @return [Boolean]
-      def positionable?(char)
-        char.respond_to?(:position) &&
-        char.position.is_a?(Vedeu::Geometries::Position)
-      end
-
       # @return [Array<Class>]
       def renderables
         [

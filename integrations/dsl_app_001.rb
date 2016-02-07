@@ -11,6 +11,7 @@ class DSLApp
 
   Vedeu.configure do
     debug!
+    height 10
     log '/tmp/vedeu_views_dsl.log'
     renderers [
                 Vedeu::Renderers::Terminal.new(

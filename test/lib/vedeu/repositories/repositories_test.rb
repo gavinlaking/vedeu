@@ -42,6 +42,12 @@ module Vedeu
       # it { skip }
     end
 
+    describe '.repositories' do
+      it { described.must_respond_to(:repositories) }
+
+      it { Vedeu.must_respond_to(:repositories) }
+    end
+
     describe '.reset!' do
       subject { described.reset! }
 

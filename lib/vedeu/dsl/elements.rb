@@ -137,8 +137,8 @@ module Vedeu
           model.add(l.value)
 
         else
-          fail Vedeu::Error::Fatal,
-               "Cannot add line to '#{model.class.name}' model."
+          raise Vedeu::Error::Fatal,
+                "Cannot add line to '#{model.class.name}' model."
 
         end
       end
@@ -178,8 +178,8 @@ module Vedeu
           model.add([l])
 
         else
-          fail Vedeu::Error::Fatal,
-               "Cannot add stream to '#{model.class.name}' model."
+          raise Vedeu::Error::Fatal,
+                "Cannot add stream to '#{model.class.name}' model."
 
         end
       end
@@ -262,8 +262,8 @@ module Vedeu
           model.add(stream.value)
 
         else
-          fail Vedeu::Error::Fatal,
-               "Cannot add text to '#{model.class.name}' model."
+          raise Vedeu::Error::Fatal,
+                "Cannot add text to '#{model.class.name}' model."
 
         end
       end
@@ -299,14 +299,14 @@ module Vedeu
       # @macro raise_requires_block
       # @return [NilClass]
       def requires_block!(&block)
-        fail Vedeu::Error::RequiresBlock unless block_given?
+        raise Vedeu::Error::RequiresBlock unless block_given?
       end
 
       # @macro raise_fatal
       # @return [NilClass]
       def requires_model!
-        fail Vedeu::Error::Fatal,
-             'No model, cannot continue.' unless present?(model)
+        raise Vedeu::Error::Fatal,
+              'No model, cannot continue.' unless present?(model)
       end
 
     end # Elements

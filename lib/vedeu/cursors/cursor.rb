@@ -83,13 +83,14 @@ module Vedeu
       # @param other [Vedeu::Cursors::Cursor]
       # @return [Boolean]
       def eql?(other)
-        self.class == other.class && name == other.name
+        self.class.equal?(other.class) && name == other.name
       end
       alias == eql?
 
       # @return [String]
       def inspect
-        "name:'#{name}' x:#{x} y:#{y} ox:#{ox} oy:#{oy} visible:#{visible}"
+        "name: #{name.inspect} x: #{x} y: #{y} ox: #{ox} oy: #{oy} " \
+        "visible: #{visible}"
       end
 
       # {include:file:docs/events/by_name/cursor_down.md}

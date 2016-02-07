@@ -208,6 +208,8 @@ module Vedeu
 
       subject { instance.numeric?(_value) }
 
+      it { instance.must_respond_to(:fixnum?) }
+
       context 'when the value is numeric' do
         let(:_value) { 16 }
 
@@ -216,6 +218,31 @@ module Vedeu
 
       context 'when the value is not numeric' do
         it { subject.must_equal(false) }
+      end
+    end
+
+    describe '#positionable?' do
+      subject { instance.positionable?(_value) }
+
+      context 'when it does not respond to position' do
+        let(:_value) { '' }
+
+        it { subject.must_equal(false) }
+      end
+
+      context 'when it responds to position' do
+        let(:_value)   { Vedeu::Cells::Empty.new(position: position) }
+        let(:position) { false }
+
+        context 'when the position is a Vedeu::Geometries::Position' do
+          let(:position) { Vedeu::Geometries::Position.new }
+
+          it { subject.must_equal(true) }
+        end
+
+        context 'when the position is not a Vedeu::Geometries::Position' do
+          it { subject.must_equal(false) }
+        end
       end
     end
 
@@ -324,6 +351,22 @@ module Vedeu
       end
 
       context 'when the value is not string' do
+        it { subject.must_equal(false) }
+      end
+    end
+
+    describe '#symbol?' do
+      let(:_value) {}
+
+      subject { instance.symbol?(_value) }
+
+      context 'when the value is a Symbol' do
+        let(:_value) { :test }
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when the value is not a Symbol' do
         it { subject.must_equal(false) }
       end
     end

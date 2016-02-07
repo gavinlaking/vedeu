@@ -50,7 +50,7 @@ module Vedeu
       # @param other [void]
       # @return [Boolean]
       def eql?(other)
-        self.class == other.class && collection == other.collection
+        self.class.equal?(other.class) && collection == other.collection
       end
       alias == eql?
 

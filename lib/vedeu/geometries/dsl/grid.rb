@@ -36,7 +36,7 @@ module Vedeu
       # @macro raise_out_of_range
       # @see Vedeu::Geometries::DSL#columns
       def columns
-        fail Vedeu::Error::OutOfRange if out_of_range?
+        raise Vedeu::Error::OutOfRange if out_of_range?
 
         column * value
       end
@@ -44,7 +44,7 @@ module Vedeu
       # @macro raise_out_of_range
       # @see Vedeu::Geometries::DSL#rows
       def rows
-        fail Vedeu::Error::OutOfRange if out_of_range?
+        raise Vedeu::Error::OutOfRange if out_of_range?
 
         row * value
       end
