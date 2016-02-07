@@ -57,8 +57,7 @@ module Vedeu
       def empty
         Array.new(height) do |h|
           Array.new(width) do |w|
-            position = Vedeu::Geometries::Position.new((y + h), (x + w))
-            Vedeu::Cells::Empty.new(name: name, position: position)
+            Vedeu::Cells::Empty.new(name: name, position: [(y + h), (x + w)])
           end
         end
       end
