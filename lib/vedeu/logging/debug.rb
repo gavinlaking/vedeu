@@ -65,7 +65,7 @@ module Vedeu
           # - Creates a HTML visualization of the Ruby stack
           ::RubyProf::CallStackPrinter.new(result).print(file)
 
-          # Used with QTCacheGrind to analyse performance.
+          # Used with KCachegrind to analyse performance.
           # ::RubyProf::CallTreePrinter.new(result).print(file)
 
           # Creates a flat report in text format
