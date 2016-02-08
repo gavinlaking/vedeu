@@ -12,7 +12,6 @@ module Vedeu
     class Border < Vedeu::Cells::Empty
 
       extend Forwardable
-      include Vedeu::Presentation
 
       def_delegators :geometry,
                      :x,
