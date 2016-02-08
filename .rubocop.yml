@@ -41,6 +41,9 @@ Style/EmptyLinesAroundClassBody:
 Style/EmptyLinesAroundModuleBody:
   EnforcedStyle: empty_lines
 
+Style/ExtraSpacing:
+  Enabled: false
+
 # Style/GlobalVars:
 #   AllowedVariables: [$LIB_DIR]
 
