@@ -1,4 +1,5 @@
 # coding: utf-8
+# frozen_string_literal: true
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
@@ -26,7 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'minitest',           '5.8.4'
   spec.add_development_dependency 'minitest-reporters', '1.1.7'
   spec.add_development_dependency 'mocha',              '1.1.0'
-  spec.add_development_dependency 'rubocop',            '0.37.0'
+  spec.add_development_dependency 'rubocop',            '0.37.1'
   spec.add_development_dependency 'simplecov',          '0.11.2'
   spec.add_development_dependency 'simplecov-console',  '0.3.0'
   spec.add_development_dependency 'yard',               '0.8.7.6'

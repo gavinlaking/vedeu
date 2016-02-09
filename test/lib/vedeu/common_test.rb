@@ -43,6 +43,12 @@ module Vedeu
         it { subject.must_equal(false) }
       end
 
+      context 'when the variable is false' do
+        let(:_value) { false }
+
+        it { subject.must_equal(true) }
+      end
+
       context 'when the variable is not nil or empty' do
         let(:_value) { 'not empty' }
 
@@ -104,6 +110,38 @@ module Vedeu
         let(:_value) { 'anything' }
 
         it { subject.must_equal(true) }
+      end
+    end
+
+    describe '#empty_value?' do
+      let(:_value) {}
+
+      subject { instance.empty_value?(_value) }
+
+      context 'when the value does not respond to :empty?' do
+        context 'when the value is nil' do
+          it { subject.must_equal(true) }
+        end
+
+        context 'whent the value is not nil' do
+          let(:_value) { :some_value }
+
+          it { subject.must_equal(false) }
+        end
+      end
+
+      context 'when the value responds to :empty?' do
+        context 'when the value is not empty' do
+          let(:_value) { [:some_value] }
+
+          it { subject.must_equal(false) }
+        end
+
+        context 'when the value is empty' do
+          let(:_value) { [] }
+
+          it { subject.must_equal(true) }
+        end
       end
     end
 
@@ -275,6 +313,12 @@ module Vedeu
         let(:_value) { :some_value }
 
         it { subject.must_equal(true) }
+      end
+
+      context 'when the variable is false' do
+        let(:_value) { false }
+
+        it { subject.must_equal(false) }
       end
 
       context 'when the variable is not nil or empty' do

@@ -18,9 +18,7 @@ module Vedeu
 
       include Vedeu::Common
 
-      # Return the configured background colour for the client
-      # application.
-      #
+      # {include:file:docs/configuration/background.md}
       # @return [String|Symbol]
       def background
         instance.options[:background]
@@ -121,9 +119,7 @@ module Vedeu
         instance.options[:drb_width]
       end
 
-      # Return the configured foreground colour for the client
-      # application.
-      #
+      # {include:file:docs/configuration/foreground.md}
       # @return [String|Symbol]
       def foreground
         instance.options[:foreground]
@@ -175,7 +171,9 @@ module Vedeu
       #
       # @return [Boolean]
       def log?
-        present?(log)
+        return false if log == false || log.nil?
+
+        true
       end
 
       # @return [Array<Symbol>]
@@ -372,6 +370,8 @@ module Vedeu
 
     end # Eigenclass
 
+    include Vedeu::Common
+
     # @!attribute [r] options
     # @return [Hash<Symbol => void>]
     attr_reader :options
@@ -391,7 +391,7 @@ module Vedeu
     def configure(opts = {}, &block)
       @options.merge!(opts)
 
-      @options.merge!(Config::API.configure(&block)) if block_given?
+      @options.merge!(Config::API.configure(defaults, &block)) if block_given?
 
       Vedeu::Configuration
     end
@@ -421,7 +421,7 @@ module Vedeu
         foreground:    :default,
         height:        nil,
         interactive:   true,
-        log:           nil,
+        log:           '/tmp/vedeu_bootstrap.log',
         log_except:    [],
         log_only:      [],
         mouse:         true,

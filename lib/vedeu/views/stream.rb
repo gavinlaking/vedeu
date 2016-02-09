@@ -1,7 +1,7 @@
+# frozen_string_literal: true
+
 require 'vedeu/dsl/all'
 require 'vedeu/cells/all'
-
-# frozen_string_literal: true
 
 module Vedeu
 

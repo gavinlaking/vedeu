@@ -14,14 +14,15 @@ module Vedeu
 
       let(:described) { Vedeu::Logging::Log }
       let(:_message)  { 'Some message...' }
-      let(:force)     { false }
       let(:type)      { :info }
 
       describe '.log' do
-        subject { described.log(message: _message, force: force, type: type) }
+        before { Vedeu.config.stubs(:log?).returns(enabled) }
 
-        context 'when :force is true' do
-          let(:force) { true }
+        subject { described.log(message: _message, type: type) }
+
+        context 'when the log is enabled' do
+          let(:enabled)  { true }
           let(:expected) {
             "\e[97m[info]     \e[39m\e[37mSome message...\e[39m"
           }
@@ -29,8 +30,8 @@ module Vedeu
           it { subject.must_equal(expected) }
         end
 
-        context 'when :force is false' do
-          let(:force) { false }
+        context 'when the log is disabled' do
+          let(:enabled)  { false }
 
           it { subject.must_equal(nil) }
         end

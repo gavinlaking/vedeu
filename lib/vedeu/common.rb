@@ -8,13 +8,14 @@ module Vedeu
   #
   module Common
 
-    # Returns a boolean indicating whether a variable is nil or empty.
+    # Returns a boolean indicating whether a variable is nil, false or
+    # empty.
     #
     # @param variable [String|Symbol|Array|Fixnum] The variable to
     #   check.
     # @return [Boolean]
     def absent?(variable)
-      !present?(variable)
+      variable == false || !present?(variable)
     end
 
     # Returns a boolean indicating whether the value is an Array.
@@ -25,7 +26,7 @@ module Vedeu
       value.is_a?(Array)
     end
 
-    # Returns a boolean indicating the value was a boolean.
+    # Returns a boolean indicating the value is a boolean.
     #
     # @param value [void]
     # @return [Boolean]
@@ -41,6 +42,17 @@ module Vedeu
     # @return [Boolean]
     def boolean?(value)
       value.is_a?(TrueClass) || value.is_a?(FalseClass)
+    end
+
+    # Returns a boolean indicating the value is empty.
+    #
+    # @param value [void]
+    # @return [Boolean]
+    def empty_value?(value)
+      return true if value.respond_to?(:empty?) && value.empty?
+      return true if value.nil?
+
+      false
     end
 
     # Returns a boolean indicating whether the value is an escape
@@ -109,8 +121,8 @@ module Vedeu
     # @return [Boolean]
     def present?(variable)
       return true  if numeric?(variable)
-      return false if variable.nil?
-      return false if variable.respond_to?(:empty?) && variable.empty?
+      return false if variable.nil? || variable == false
+      return false if empty_value?(variable)
 
       true
     end

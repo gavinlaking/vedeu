@@ -109,7 +109,7 @@ module Vedeu
     #
     # @return [void]
     def terminate!
-      Vedeu.log(message: 'Exiting gracefully.')
+      Vedeu.log(message: "Exiting gracefully.\n")
 
       $stdin  = STDIN
       $stdout = STDOUT

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if ENV['RUBOCOP'].to_i == 1
   guard :rubocop do
     watch(/.+\.rb$/)
