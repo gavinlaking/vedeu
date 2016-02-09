@@ -243,7 +243,7 @@ module Vedeu
 
       # Log specific message types except those given. A complete list
       # of message types can be found at
-      # {Vedeu::Logging::Log.message_types}.
+      # {Vedeu::Configuration.log_types}.
       #
       #   Vedeu.configure do
       #     log_except :debug, :event
@@ -262,7 +262,7 @@ module Vedeu
       end
 
       # Only log specific message types. A complete list of message
-      # types can be found at {Vedeu::Logging::Log.message_types}.
+      # types can be found at {Vedeu::Configuration.log_types}.
       #
       #   Vedeu.configure do
       #     log_only :debug, :event

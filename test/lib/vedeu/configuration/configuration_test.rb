@@ -107,7 +107,8 @@ module Vedeu
           end
         end
 
-        it { described.log_except.must_equal([:timer, :event]) }
+        it { described.log_except.must_include(:timer) }
+        it { described.log_except.must_include(:event) }
       end
     end
 
@@ -123,49 +124,76 @@ module Vedeu
           end
         end
 
-        it { described.log_only.must_equal([:timer, :event]) }
+        it { described.log_only.must_include(:timer) }
+        it { described.log_only.must_include(:event) }
       end
     end
 
-    describe '.loggable?' do
-      let(:type) { :hydrogen }
+    describe '.log_types' do
+      subject { described.log_types }
 
+      it { subject.must_be_instance_of(Hash) }
+    end
+
+    describe '.loggable?' do
       subject { described.loggable?(type) }
 
-      context 'when the type exists in log_only and log_except' do
-        before do
-          described.stubs(:log_only).returns([:hydrogen])
-          described.stubs(:log_except).returns([:hydrogen])
-        end
-
-        it { subject.must_equal(true) }
-      end
-
-      context 'when the type exists in log_only' do
-        before do
-          described.stubs(:log_only).returns([:hydrogen])
-          described.stubs(:log_except).returns([])
-        end
-
-        it { subject.must_equal(true) }
-      end
-
-      context 'when the type exists in log_except' do
-        before do
-          described.stubs(:log_only).returns([])
-          described.stubs(:log_except).returns([:hydrogen])
-        end
+      context 'when the type is invalid' do
+        let(:type) { :hydrogen }
 
         it { subject.must_equal(false) }
       end
 
-      context 'when the type does not exist in either' do
-        before do
-          described.stubs(:log_only).returns([])
-          described.stubs(:log_except).returns([])
+      context 'when the type is valid' do
+        let(:type) { :debug }
+
+        context 'when log_only and log_except are both empty' do
+          it { subject.must_equal(true) }
         end
 
-        it { subject.must_equal(true) }
+        context 'when log_only contains entries' do
+          context 'when log_only includes the type' do
+            before do
+              Vedeu.configure do
+                log_only [:info, :debug, :error]
+              end
+            end
+
+            it { subject.must_equal(true) }
+          end
+
+          context 'when log_only does not include the type' do
+            before do
+              Vedeu.configure do
+                log_only [:info, :error]
+              end
+            end
+
+            it { subject.must_equal(false) }
+          end
+        end
+
+        context 'when log_except contains entries' do
+          context 'when log_except includes the type' do
+            before do
+              Vedeu.configure do
+                log_except [:info, :debug, :error]
+              end
+            end
+
+            it { subject.must_equal(false) }
+          end
+
+          context 'when log_except does not include the type' do
+            before do
+              Vedeu.configure do
+                log_only [:info, :error]
+              end
+            end
+
+            it { subject.must_equal(false) }
+          end
+        end
       end
     end
 
