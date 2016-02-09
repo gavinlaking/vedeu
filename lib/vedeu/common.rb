@@ -43,6 +43,17 @@ module Vedeu
       value.is_a?(TrueClass) || value.is_a?(FalseClass)
     end
 
+    # Returns a boolean indicating the value is empty.
+    #
+    # @param value [void]
+    # @return [Boolean]
+    def empty_value?(value)
+      return true if value.respond_to?(:empty?) && value.empty?
+      return true if value.nil?
+
+      false
+    end
+
     # Returns a boolean indicating whether the value is an escape
     # sequence object (e.g. {Vedeu::Cells::Escape}.)
     #
