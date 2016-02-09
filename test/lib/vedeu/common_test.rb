@@ -63,6 +63,22 @@ module Vedeu
       end
     end
 
+    describe '#array?' do
+      let(:_value) {}
+
+      subject { instance.array?(_value) }
+
+      context 'when the value is an Array' do
+        let(:_value) { [:hydrogen] }
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when the value is not an Array' do
+        it { subject.must_equal(false) }
+      end
+    end
+
     describe '#boolean' do
       subject { instance.boolean(_value) }
 

@@ -47,7 +47,7 @@ module Vedeu
       #
       # @return [Array<void>] An array containing each stored model.
       def all
-        return storage.values if storage.is_a?(Hash)
+        return storage.values if hash?(storage)
 
         registered
       end

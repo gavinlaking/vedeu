@@ -132,8 +132,9 @@ module Vedeu
 
 end # Vedeu
 
-require 'vedeu/renderers/options'
-require 'vedeu/renderers/file'
+require 'vedeu/renderers/support/options'
+require 'vedeu/renderers/support/file'
+
 require 'vedeu/renderers/escape'
 require 'vedeu/renderers/html'
 require 'vedeu/renderers/json'

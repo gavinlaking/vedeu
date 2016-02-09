@@ -17,6 +17,14 @@ module Vedeu
       !present?(variable)
     end
 
+    # Returns a boolean indicating whether the value is an Array.
+    #
+    # @param value [Array|void]
+    # @return [Boolean]
+    def array?(value)
+      value.is_a?(Array)
+    end
+
     # Returns a boolean indicating the value was a boolean.
     #
     # @param value [void]

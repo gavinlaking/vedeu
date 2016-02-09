@@ -11,6 +11,7 @@ module Vedeu
     #
     class Collection
 
+      include Vedeu::Common
       include Vedeu::Repositories::Assemblage
 
       # @!attribute [r] collection

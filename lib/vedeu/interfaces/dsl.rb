@@ -322,7 +322,7 @@ module Vedeu
         model.zindex = value
       end
       alias z_index zindex
-      alias z zindex
+      alias z       zindex
 
     end # DSL
 

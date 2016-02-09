@@ -52,6 +52,17 @@ module Vedeu
         @_style = @style = Vedeu::Presentation::Style.coerce(value)
       end
 
+      private
+
+      # Renders the style attributes of the receiver and yields (to
+      # then render the next model, or finally, the content).
+      #
+      # @param block [Proc]
+      # @return [String]
+      def render_style(&block)
+        "#{style}#{yield}"
+      end
+
     end # Style
 
   end # Presentation

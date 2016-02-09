@@ -70,7 +70,7 @@ module Vedeu
       #
       # @return [Boolean]
       def lines?
-        collection.is_a?(Array)
+        array?(collection)
       end
 
       # Returns a boolean indicating whether the index was given or

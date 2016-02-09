@@ -27,7 +27,8 @@ module Vedeu
         #   to write to the log file regardless of the Configuration
         #   setting.
         # @param type [Symbol] Colour code messages in the log file
-        #   depending on their source. See {message_types}
+        #   depending on their source. See
+        #   {Vedeu::Configuration.log_types}
         #
         # @return [String]
         def log(message:, force: false, type: :info)
@@ -40,7 +41,7 @@ module Vedeu
 
         # {include:file:docs/dsl/by_method/log_stdout.md}
         # @macro vedeu_logging_log_param_message
-        # @param type [Symbol] See {Vedeu::Logging::Log.message_types}
+        # @param type [Symbol] See {Vedeu::Configuration.log_types}
         #   for valid values.
         # @return [String]
         def log_stdout(message:, type: :info)
@@ -51,7 +52,7 @@ module Vedeu
 
         # {include:file:docs/dsl/by_method/log_stderr.md}
         # @macro vedeu_logging_log_param_message
-        # @param type [Symbol] See {Vedeu::Logging::Log.message_types}
+        # @param type [Symbol] See {Vedeu::Logging::Log.types}
         #   for valid values.
         # @return [String]
         def log_stderr(message:, type: :error)
@@ -102,62 +103,12 @@ module Vedeu
         # @macro vedeu_logging_log_param_message
         # @return [String]
         def log_entry(type, message)
-          colours = message_types.fetch(type, [:default, :default])
+          colours = Vedeu.config.log_types.fetch(type, [:default, :default])
 
           [
             Vedeu.esc.colour(colours[0]) { "[#{type}]".ljust(11) },
             Vedeu.esc.colour(colours[1]) { message },
           ].join
-        end
-
-        # The defined message types for Vedeu with their respective
-        # colours. When used, produces a log entry of the format:
-        #
-        #     [type] message
-        #
-        # The 'type' will be shown as the first colour defined in the
-        # value array, whilst the 'message' will be shown using the
-        # last colour.
-        #
-        # @return [Hash<Symbol => Array<Symbol>>]
-        def message_types
-          {
-            create:   [:light_cyan, :cyan],
-            store:    [:light_cyan, :cyan],
-            update:   [:light_cyan, :cyan],
-            reset:    [:light_cyan, :cyan],
-
-            event:    [:light_magenta, :magenta],
-
-            timer:    [:light_blue, :blue],
-
-            info:     [:white, :light_grey],
-            test:     [:white, :light_grey],
-            debug:    [:white, :light_grey],
-            compress: [:white, :light_grey],
-
-            input:    [:light_yellow, :yellow],
-            output:   [:light_yellow, :yellow],
-
-            cursor:   [:light_green, :green],
-            buffer:   [:light_green, :green],
-            render:   [:light_green, :green],
-
-            error:    [:light_red, :red],
-
-            config:   [:light_blue, :blue],
-            dsl:      [:light_blue, :blue],
-            editor:   [:light_blue, :blue],
-            drb:      [:light_blue, :blue],
-
-            blue:     [:light_blue,    :blue],
-            cyan:     [:light_cyan,    :cyan],
-            green:    [:light_green,   :green],
-            magenta:  [:light_magenta, :magenta],
-            red:      [:light_red,     :red],
-            white:    [:white,         :light_grey],
-            yellow:   [:light_yellow,  :yellow],
-          }
         end
 
       end # Eigenclass

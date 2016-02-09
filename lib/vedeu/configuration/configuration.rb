@@ -180,12 +180,54 @@ module Vedeu
 
       # @return [Array<Symbol>]
       def log_except
-        instance.options[:log_except] || []
+        instance.options[:log_except]
       end
 
       # @return [Array<Symbol>]
       def log_only
-        instance.options[:log_only] || []
+        instance.options[:log_only]
+      end
+
+      # The defined message types for Vedeu with their respective
+      # colours. When used, produces a log entry of the format:
+      #
+      #     [type] message
+      #
+      # The 'type' will be shown as the first colour defined in the
+      # value array, whilst the 'message' will be shown using the
+      # last colour.
+      #
+      # @return [Hash<Symbol => Array<Symbol>>]
+      def log_types
+        {
+          blue:     [:light_blue,    :blue],
+          buffer:   [:light_green,   :green],
+          compress: [:white,         :light_grey],
+          config:   [:light_blue,    :blue],
+          create:   [:light_cyan,    :cyan],
+          cursor:   [:light_green,   :green],
+          cyan:     [:light_cyan,    :cyan],
+          debug:    [:white,         :light_grey],
+          drb:      [:light_blue,    :blue],
+          dsl:      [:light_blue,    :blue],
+          editor:   [:light_blue,    :blue],
+          error:    [:light_red,     :red],
+          event:    [:light_magenta, :magenta],
+          green:    [:light_green,   :green],
+          info:     [:white,         :light_grey],
+          input:    [:light_yellow,  :yellow],
+          magenta:  [:light_magenta, :magenta],
+          output:   [:light_yellow,  :yellow],
+          red:      [:light_red,     :red],
+          render:   [:light_green,   :green],
+          reset:    [:light_cyan,    :cyan],
+          store:    [:light_cyan,    :cyan],
+          test:     [:white,         :light_grey],
+          timer:    [:light_blue,    :blue],
+          update:   [:light_cyan,    :cyan],
+          white:    [:white,         :light_grey],
+          yellow:   [:light_yellow,  :yellow],
+        }
       end
 
       # Returns true if the given type was included in the :log_only
@@ -195,7 +237,20 @@ module Vedeu
       # @param type [Symbol]
       # @return [Boolean]
       def loggable?(type)
-        log_only.include?(type) || !log_except.include?(type)
+        return false unless log_types.keys.include?(type)
+        return true if log_only.empty? && log_except.empty?
+
+        types = if log_except.any?
+                  log_types.keys - log_except
+                else
+                  log_types.keys
+                end
+
+        if log_only.any?
+          log_only.include?(type)
+        else
+          types.include?(type) ? true : false
+        end
       end
 
       # Returns whether mouse support was enabled or disabled.

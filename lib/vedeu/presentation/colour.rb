@@ -140,6 +140,15 @@ module Vedeu
         present?(parent) && parent.respond_to?(:colour?)
       end
 
+      # Renders the colour attributes of the receiver and yields (to
+      # then render the styles).
+      #
+      # @param block [Proc]
+      # @return [String]
+      def render_colour(&block)
+        "#{colour}#{yield}"
+      end
+
     end # Colour
 
   end # Presentation

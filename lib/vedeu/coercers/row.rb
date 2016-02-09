@@ -16,7 +16,7 @@ module Vedeu
         if coerced?
           value
 
-        elsif value.is_a?(Array)
+        elsif array?(value)
           klass.new(value.compact)
 
         elsif value.nil?

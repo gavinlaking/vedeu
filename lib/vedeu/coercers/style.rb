@@ -19,7 +19,7 @@ module Vedeu
         if coerced?
           value
 
-        elsif value.is_a?(Hash)
+        elsif hash?(value)
           if present?(value[:style])
             if value[:style].is_a?(klass)
               value[:style]
