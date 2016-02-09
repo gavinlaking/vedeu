@@ -21,7 +21,7 @@ module Vedeu
       }
       let(:colour)   { {} }
       let(:_name)    { '' }
-      let(:position) {}
+      let(:position) { Vedeu::Geometries::Position.new(1, 1) }
       let(:style)    { '' }
       let(:_value)   { '' }
 
@@ -47,7 +47,9 @@ module Vedeu
         it { subject.must_equal(true) }
 
         context 'when different to other' do
-          let(:other) { described.new(value: 'b') }
+          let(:other) {
+            described.new(position: Vedeu::Geometries::Position.new(1, 2))
+          }
 
           it { subject.must_equal(false) }
         end
@@ -64,7 +66,6 @@ module Vedeu
       end
 
       describe '#to_h' do
-        let(:position) { Vedeu::Geometries::Position.new(1, 1) }
         let(:colour)   { Vedeu::Colours::Colour.new(background: '#000000') }
         let(:expected) {
           {
@@ -101,7 +102,8 @@ module Vedeu
       end
 
       describe '#to_s' do
-        let(:_value) { 'a' }
+        let(:position) {}
+        let(:_value)   { 'a' }
 
         subject { instance.to_s }
 
