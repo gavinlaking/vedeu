@@ -23,7 +23,8 @@ module Vedeu
     describe API do
 
       let(:described) { Vedeu::Config::API }
-      let(:instance)  { described.new }
+      let(:instance)  { described.new(default) }
+      let(:default)   { {} }
 
       after  { test_configuration }
 

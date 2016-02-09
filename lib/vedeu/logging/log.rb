@@ -23,16 +23,13 @@ module Vedeu
         #             message: 'A useful debugging message: Error!')
         #
         # @macro vedeu_logging_log_param_message
-        # @param force [Boolean] When evaluates to true will attempt
-        #   to write to the log file regardless of the Configuration
-        #   setting.
         # @param type [Symbol] Colour code messages in the log file
         #   depending on their source. See
         #   {Vedeu::Configuration.log_types}
         #
         # @return [String]
-        def log(message:, force: false, type: :info)
-          if (Vedeu.config.log? || force) && Vedeu.config.loggable?(type)
+        def log(message:, type: :info)
+          if Vedeu.config.log? && Vedeu.config.loggable?(type)
             output = log_entry(type, message)
             logger.debug(output)
             output

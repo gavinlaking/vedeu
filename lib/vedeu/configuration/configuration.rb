@@ -171,7 +171,9 @@ module Vedeu
       #
       # @return [Boolean]
       def log?
-        present?(log)
+        return false if log == false || log.nil?
+
+        true
       end
 
       # @return [Array<Symbol>]
@@ -368,6 +370,8 @@ module Vedeu
 
     end # Eigenclass
 
+    include Vedeu::Common
+
     # @!attribute [r] options
     # @return [Hash<Symbol => void>]
     attr_reader :options
@@ -387,7 +391,7 @@ module Vedeu
     def configure(opts = {}, &block)
       @options.merge!(opts)
 
-      @options.merge!(Config::API.configure(&block)) if block_given?
+      @options.merge!(Config::API.configure(defaults, &block)) if block_given?
 
       Vedeu::Configuration
     end
@@ -417,7 +421,7 @@ module Vedeu
         foreground:    :default,
         height:        nil,
         interactive:   true,
-        log:           nil,
+        log:           '/tmp/vedeu_bootstrap.log',
         log_except:    [],
         log_only:      [],
         mouse:         true,

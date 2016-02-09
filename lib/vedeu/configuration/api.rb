@@ -13,8 +13,8 @@ module Vedeu
       include Vedeu::Common
 
       # @param (see #initialize)
-      def self.configure(&block)
-        new(&block).configuration
+      def self.configure(default, &block)
+        new(default, &block).configuration
       end
 
       # Returns a new instance of Vedeu::Config::API.
@@ -27,9 +27,12 @@ module Vedeu
       #     # ...
       #   end
       #
+      # @param default [Hash]
       # @param block [Proc]
       # @return [Vedeu::Configuration::API]
-      def initialize(&block)
+      def initialize(default, &block)
+        @default = default
+
         instance_eval(&block) if block_given?
       end
 
@@ -37,8 +40,22 @@ module Vedeu
       #
       # @return [Hash<Symbol => Boolean, Fixnum, String>]
       def configuration
-        Vedeu::Config
-          .log(Vedeu.esc.green { '[api]' }, options)
+        if options[:log].nil?          ||
+           options[:log] == false      ||
+           empty_value?(options[:log])
+          Vedeu.log(type:    :config,
+                    message: 'Logging has been disabled.')
+
+          return options
+        end
+
+        log_options!
+
+        if options[:log] != default[:log]
+          Vedeu.log(message: "Switching to '#{options[:log]}' for logging.\n")
+        end
+
+        options
       end
 
       # {include:file:docs/configuration/interactive.md}
@@ -228,17 +245,33 @@ module Vedeu
       end
       alias height= height
 
-      # Sets the location of the log file.
+      # Sets the location of the log file, or disables the log.
+      # By default, the log file is set to '/tmp/vedeu_bootstrap.log'.
       #
+      #   # Log messages will be sent to the path given.
       #   Vedeu.configure do
       #     log '/var/log/vedeu.log'
       #     # ...
       #   end
       #
-      # @param filename [String]
-      # @return [String]
-      def log(filename = '')
-        options[:log] = filename
+      #   # Log messages will be silently dropped.
+      #   Vedeu.configure do
+      #     log false
+      #     # ...
+      #   end
+      #
+      # @param filename_or_false [FalseClass|String]
+      # @return [NilClass|String]
+      def log(filename_or_false = false)
+        if filename_or_false.nil? ||
+           filename_or_false == false ||
+           empty_value?(filename_or_false)
+          options[:log] = nil
+
+        else
+          options[:log] = filename_or_false
+
+        end
       end
 
       # Log specific message types except those given. A complete list
@@ -545,12 +578,26 @@ module Vedeu
       end
       alias mouse mouse!
 
+      protected
+
+      # @!attribute [r] default
+      # @return [Hash]
+      attr_reader :default
+
       private
 
       # @macro raise_invalid_syntax
       def invalid_mode!
         raise Vedeu::Error::InvalidSyntax,
               'Terminal mode can be set to either :cooked, :fake or :raw'
+      end
+
+      # @return [Hash]
+      def log_options!
+        options.each do |option, value|
+          Vedeu.log(type:    :config,
+                    message: "#{option}: #{value.inspect}")
+        end
       end
 
       # Returns the options set via the configuration API DSL or an
