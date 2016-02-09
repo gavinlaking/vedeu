@@ -493,13 +493,7 @@ module Vedeu
       end
       alias width= width
 
-      # Sets the background of the terminal.
-      #
-      #   Vedeu.configure do
-      #     background '#ff0000'
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/background.md}
       # @param value [String]
       # @return [Vedeu::Colours::Background]
       def background(value = nil)
@@ -508,13 +502,7 @@ module Vedeu
         options[:background] = value
       end
 
-      # Sets the foreground of the terminal.
-      #
-      #   Vedeu.configure do
-      #     foreground '#ffff00'
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/foreground.md}
       # @param value [String]
       # @return [Vedeu::Colours::Foreground]
       def foreground(value = nil)

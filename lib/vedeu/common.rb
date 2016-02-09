@@ -25,7 +25,7 @@ module Vedeu
       value.is_a?(Array)
     end
 
-    # Returns a boolean indicating the value was a boolean.
+    # Returns a boolean indicating the value is a boolean.
     #
     # @param value [void]
     # @return [Boolean]

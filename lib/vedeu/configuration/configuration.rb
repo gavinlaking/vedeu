@@ -18,9 +18,7 @@ module Vedeu
 
       include Vedeu::Common
 
-      # Return the configured background colour for the client
-      # application.
-      #
+      # {include:file:docs/configuration/background.md}
       # @return [String|Symbol]
       def background
         instance.options[:background]
@@ -121,9 +119,7 @@ module Vedeu
         instance.options[:drb_width]
       end
 
-      # Return the configured foreground colour for the client
-      # application.
-      #
+      # {include:file:docs/configuration/foreground.md}
       # @return [String|Symbol]
       def foreground
         instance.options[:foreground]
