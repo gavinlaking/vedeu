@@ -8,13 +8,14 @@ module Vedeu
   #
   module Common
 
-    # Returns a boolean indicating whether a variable is nil or empty.
+    # Returns a boolean indicating whether a variable is nil, false or
+    # empty.
     #
     # @param variable [String|Symbol|Array|Fixnum] The variable to
     #   check.
     # @return [Boolean]
     def absent?(variable)
-      !present?(variable)
+      variable == false || !present?(variable)
     end
 
     # Returns a boolean indicating whether the value is an Array.
@@ -120,8 +121,8 @@ module Vedeu
     # @return [Boolean]
     def present?(variable)
       return true  if numeric?(variable)
-      return false if variable.nil?
-      return false if variable.respond_to?(:empty?) && variable.empty?
+      return false if variable.nil? || variable == false
+      return false if empty_value?(variable)#.respond_to?(:empty?) && variable.empty?
 
       true
     end
