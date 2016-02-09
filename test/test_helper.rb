@@ -118,14 +118,12 @@ def test_configuration
 
   Vedeu.configure do
     colour_mode 16_777_216
-    # adds ~40ms to test run speed
-    # debug!
-    # profile!
 
-    # if debug! above is commented out, then only
-    # `Vedeu.log(type: <any type>, message: '...', force: true)`
-    # will be logged, otherwise every `Vedeu.log` will be logged.
+    # debug! # adds ~40ms to test run speed
+
     # log '/tmp/vedeu_test_helper.log'
+
+    # profile!
   end
 
   # Vedeu::Repositories.reset!
