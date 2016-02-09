@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'vedeu/application/controller'
 require 'vedeu/application/helper'
 require 'vedeu/application/view'

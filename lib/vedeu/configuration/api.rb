@@ -263,15 +263,15 @@ module Vedeu
       # @param filename_or_false [FalseClass|String]
       # @return [NilClass|String]
       def log(filename_or_false = false)
-        if filename_or_false.nil? ||
-           filename_or_false == false ||
-           empty_value?(filename_or_false)
-          options[:log] = nil
+        options[:log] = if filename_or_false.nil? ||
+                           filename_or_false == false ||
+                           empty_value?(filename_or_false)
+                          nil
 
-        else
-          options[:log] = filename_or_false
+                        else
+                          filename_or_false
 
-        end
+                        end
       end
 
       # Log specific message types except those given. A complete list

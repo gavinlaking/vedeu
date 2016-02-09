@@ -122,7 +122,7 @@ module Vedeu
     def present?(variable)
       return true  if numeric?(variable)
       return false if variable.nil? || variable == false
-      return false if empty_value?(variable)#.respond_to?(:empty?) && variable.empty?
+      return false if empty_value?(variable)
 
       true
     end
