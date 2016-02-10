@@ -1,11 +1,10 @@
 #!/bin/bash
 
+set -euo pipefail
+
 # Notes:
 # At the moment, the terminal must be set to width 135 x height 34 for
 # these tests to pass.
-
-# die on error
-set -e
 
 # change to directory that contains this script
 cd "$(dirname "$0")"
