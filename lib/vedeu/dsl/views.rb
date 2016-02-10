@@ -102,7 +102,7 @@ module Vedeu
         def renders(&block)
           raise Vedeu::Error::RequiresBlock unless block_given?
 
-          composition(eval('self', block.binding), true, &block)
+          composition(true, &block)
         end
         alias render renders
 
@@ -115,23 +115,39 @@ module Vedeu
         def views(&block)
           raise Vedeu::Error::RequiresBlock unless block_given?
 
-          composition(eval('self', block.binding), false, &block)
+          composition(false, &block)
         end
 
         private
 
+        # @param block [Proc] The directives you wish to send to
+        #   render. Typically includes `view` with associated
+        #   sub-directives. The binding of the block is also accessed
+        #   so that we can ascertain the calling client application
+        #   class, this is so that if there methods being called
+        #   inside your views, Vedeu will redirect that call to the
+        #   client class instance instead. (This actually occurs
+        #   when Vedeu rescues from method_missing. See {Vedeu::DSL}.)
+        def client_binding(&block)
+          eval('self', block.binding).tap do |client|
+            Vedeu.log(type:    :debug,
+                      message: "Client binding: #{client.class.name}")
+          end
+        end
+
         # Creates a new Vedeu::Views::Composition which may contain
         # one or more view {Vedeu::Views::View} objects.
         #
-        # @param client [Object] The client class which called the DSL
-        #   object.
         # @param refresh [Boolean]
         # @param block [Proc] The directives you wish to send to
         #   render. Typically includes `view` with associated
         #   sub-directives.
         # # @return [Vedeu::Views::Composition]
-        def composition(client, refresh = false, &block)
-          attrs = { client: client, colour: Vedeu.config.colour }
+        def composition(refresh = false, &block)
+          attrs = {
+            client: client_binding(&block),
+            colour: Vedeu.config.colour
+          }
 
           Vedeu::Views::Composition.build(attrs, &block).update_buffers(refresh)
         end
