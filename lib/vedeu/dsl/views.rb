@@ -146,7 +146,7 @@ module Vedeu
         def composition(refresh = false, &block)
           attrs = {
             client: client_binding(&block),
-            colour: Vedeu.config.colour
+            colour: Vedeu.config.colour,
           }
 
           Vedeu::Views::Composition.build(attrs, &block).update_buffers(refresh)

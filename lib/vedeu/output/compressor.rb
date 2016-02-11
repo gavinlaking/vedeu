@@ -24,7 +24,7 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Output::Compressor.
       #
-      # @param output [Array<Array<Vedeu::Cells::Char>>]
+      # @param output [Vedeu::Models::Page]
       # @param options [Hash]
       # @option options compression [Boolean]
       # @return [Vedeu::Output::Compressor]
