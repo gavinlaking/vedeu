@@ -11,7 +11,7 @@ module Vedeu
     #
     class Chars < Vedeu::Coercers::Coercer
 
-      # @return [void]
+      # @return [Vedeu::Views::Chars]
       def coerce
       end
 

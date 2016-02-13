@@ -34,6 +34,12 @@ module Vedeu
         # it { skip }
       end
 
+      describe '.included' do
+        subject { described.included(included_described) }
+
+        it { subject.must_be_instance_of(Class) }
+      end
+
       describe '.repository' do
         let(:klass) {}
 

@@ -73,12 +73,12 @@ module Vedeu
       elements[0...-1].join(', ')
     end
 
-    # @return [void]
+    # @return [Object]
     def first
       elements.first
     end
 
-    # @return [void]
+    # @return [Object]
     def last
       elements[-1]
     end

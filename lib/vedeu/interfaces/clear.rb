@@ -12,12 +12,7 @@ module Vedeu
 
       class << self
 
-        # Clear the interface with the given name.
-        #
-        # @example
-        #   Vedeu.trigger(:_clear_view_, name)
-        #   Vedeu.clear_by_name(name)
-        #
+        # {include:file:docs/dsl/by_method/clear_by_name.md}
         # @return [Array<Array<Vedeu::Cells::Char>>]
         # @see #initialize
         def render(name = Vedeu.focus)
@@ -28,12 +23,7 @@ module Vedeu
         alias clear_by_name render
         alias by_name render
 
-        # Clear the content of the interface with the given name.
-        #
-        # @example
-        #   Vedeu.trigger(:_clear_view_content_, name)
-        #   Vedeu.clear_content_by_name(name)
-        #
+        # {include:file:docs/dsl/by_method/clear_content_by_name.md}
         # @return [Array<Array<Vedeu::Cells::Char>>]
         # @see #initialize
         def clear_content_by_name(name = Vedeu.focus)

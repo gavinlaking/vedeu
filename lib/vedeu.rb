@@ -55,7 +55,7 @@ end # Vedeu
 #   Provide additional behaviour to a class or module.
 #
 #   @param klass [Class]
-#   @return [void]
+#   @return [Class] Returns the klass parameter.
 #
 # @!macro [new] module_instance_methods
 #   Provide additional behaviour as instance methods to the including

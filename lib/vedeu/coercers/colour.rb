@@ -12,7 +12,7 @@ module Vedeu
     class Colour < Vedeu::Coercers::Coercer
 
       # @macro raise_fatal
-      # @return [void]
+      # @return [Vedeu::Colours::Colour]
       def coerce
         if coerced?
           value

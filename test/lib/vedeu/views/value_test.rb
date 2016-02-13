@@ -30,6 +30,12 @@ module Vedeu
         it { included_described.must_respond_to(:entity) }
       end
 
+      describe '.included' do
+        subject { described.included(included_described) }
+
+        it { subject.must_be_instance_of(Class) }
+      end
+
       describe '.parent' do
         it { included_described.must_respond_to(:parent) }
       end

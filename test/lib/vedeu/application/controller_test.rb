@@ -49,6 +49,12 @@ module Vedeu
       it { subject.must_be_instance_of(Array) }
     end
 
+    describe '.included' do
+      subject { described.included(included_described) }
+
+      it { subject.must_be_instance_of(Class) }
+    end
+
   end # Controller
 
 end # Vedeu

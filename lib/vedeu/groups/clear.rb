@@ -10,12 +10,7 @@ module Vedeu
 
       class << self
 
-        # Clears the group of interfaces belonging to the given name.
-        #
-        # @example
-        #   Vedeu.trigger(:_clear_group_, name)
-        #   Vedeu.clear_by_group(name)
-        #
+        # {include:file:docs/dsl/by_method/clear_by_group.md}
         # @param name [String|Symbol]
         # @return [void]
         def render(name)

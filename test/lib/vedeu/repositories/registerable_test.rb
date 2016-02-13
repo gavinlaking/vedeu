@@ -23,6 +23,12 @@ module Vedeu
       it { included_described.must_respond_to(:repository) }
       it { included_described.must_respond_to(:register) }
 
+      describe '.included' do
+        subject { described.included(included_described) }
+
+        it { subject.must_be_instance_of(Class) }
+      end
+
       describe '.null' do
         subject { included_described.new }
 

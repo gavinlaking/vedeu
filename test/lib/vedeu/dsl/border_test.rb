@@ -4,13 +4,26 @@ require 'test_helper'
 
 module Vedeu
 
+  class DSLBorderTestClass
+
+    include Vedeu::DSL::Border
+
+  end # DSLBorderTestClass
+
   module DSL
 
     describe Border do
 
       let(:described) { Vedeu::DSL::Border }
+      let(:included_described) { Vedeu::DSLBorderTestClass }
       let(:instance)  { Class.include(described).new }
       let(:_name)     { :vedeu_dsl_border }
+
+      describe '.included' do
+        subject { described.included(included_described) }
+
+        it { subject.must_be_instance_of(Class) }
+      end
 
       describe '#border' do
         subject { instance.border(_name) {} }

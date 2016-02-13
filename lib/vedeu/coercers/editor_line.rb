@@ -11,7 +11,7 @@ module Vedeu
     #
     class EditorLine < Vedeu::Coercers::Coercer
 
-      # @return [void]
+      # @return [Vedeu::Editor::Line]
       def coerce
         if coerced?
           value
