@@ -21,7 +21,7 @@ module Vedeu
       # @return [Array<String|Symbol>]
       # @see Vedeu::Interfaces::DSL#zindex
       def zindexed
-        all.sort_by(&:zindex).map { |interface| interface.name }
+        all.sort_by(&:zindex).map(&:name)
       end
 
     end # Interfaces
