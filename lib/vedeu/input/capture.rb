@@ -50,7 +50,7 @@ module Vedeu
       #
       # @return [Array|String|Symbol]
       def read
-        Vedeu.log(type: :input, message: 'Waiting for user input...')
+        Vedeu.log(type: :input, message: "Waiting for user input...\n")
 
         if raw_mode?
           Vedeu.trigger(:_keypress_, keypress)
