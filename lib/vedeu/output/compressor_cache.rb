@@ -19,7 +19,7 @@ module Vedeu
       # @param content [Array<void>]
       # @return [String]
       def cache(content, compression = false)
-        write(content, compression) unless empty?(content) || cached?(content)
+        write(content) unless empty?(content) || cached?(content)
 
         compression ? read(:compress) : read(:uncompress)
       end
@@ -29,7 +29,19 @@ module Vedeu
       # @param content [Array<void>]
       # @return [Boolean]
       def cached?(content)
-        content.size == read(:original).size && content == read(:original)
+        size?(content) && same?(content)
+      end
+
+      # @param content [Array<void>]
+      # @return [Boolean]
+      def size?(content)
+        content.size == read(:original).size
+      end
+
+      # @param content [Array<void>]
+      # @return [Boolean]
+      def same?(content)
+        content == read(:original)
       end
 
       # @param content [Array<void>]
@@ -66,9 +78,8 @@ module Vedeu
       end
 
       # @param content [Array<void>]
-      # @param compression [Boolean]
       # @return [Hash<Symbol => Array<void>>]
-      def write(content, compression = false)
+      def write(content)
         storage[:original] = content
 
         storage[:uncompress] = uncompress(content)
