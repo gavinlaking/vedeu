@@ -30,8 +30,7 @@ module Vedeu
 
       # Return a new instance of Vedeu::Buffers::Refresh.
       #
-      # @param name [String|Symbol] The name of the interface/view to
-      #   be refreshed. Defaults to `Vedeu.focus`.
+      # @macro param_name
       # @param options [Hash<Symbol => Boolean>]
       # @option options content_only [Boolean]
       # @return [Vedeu::Buffers::Refresh]

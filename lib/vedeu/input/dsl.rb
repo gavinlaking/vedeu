@@ -57,8 +57,7 @@ module Vedeu
       #
       #   This is also used when defining the '_global_' keymap.
       #
-      # @param name [String|Symbol] The name of the interface which
-      #   this keymap relates to.
+      # @macro param_name
       # @param block [Proc]
       # @macro raise_requires_block
       # @macro raise_missing_required

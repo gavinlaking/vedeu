@@ -36,8 +36,7 @@ module Vedeu
 
       # Return a new instance of Vedeu::Interfaces::Clear.
       #
-      # @param name [String|Symbol] The name of the interface to
-      #   clear.
+      # @macro param_name
       # @param options [Hash]
       # @option options content_only [Boolean] Only clear the content
       #   not the border as well. Defaults to false.

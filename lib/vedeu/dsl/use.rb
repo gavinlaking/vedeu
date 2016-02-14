@@ -29,8 +29,7 @@ module Vedeu
       #     exception may be raised, or the request for an attribute
       #     may raise a NoMethodError exception.
       #
-      # @param name [String|Symbol] The name of the model with the
-      #   value you wish to use.
+      # @macro param_name
       # @raise
       #   [Vedeu::Error::ModelNotFound|Vedeu::Error::NoMethodError]
       #   The model or attribute cannot be found.

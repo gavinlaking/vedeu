@@ -62,8 +62,7 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Borders::Refresh.
       #
-      # @param name [String|Symbol] The name of the interface/view
-      #   border to be refreshed. Defaults to `Vedeu.focus`.
+      # @macro param_name
       # @return [Vedeu::Borders::Refresh]
       def initialize(name = Vedeu.focus)
         @name = present?(name) ? name : Vedeu.focus

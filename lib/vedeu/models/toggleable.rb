@@ -53,7 +53,7 @@ module Vedeu
       #   Vedeu.hide_group(name)
       #   Vedeu.hide_interface(name)
       #
-      # @param name [String|Symbol]
+      # @macro param_name
       # @return [void]
       def hide(name = Vedeu.focus)
         repository.by_name(name).hide
@@ -68,7 +68,7 @@ module Vedeu
       #   Vedeu.show_group(name)
       #   Vedeu.show_interface(name)
       #
-      # @param name [String|Symbol]
+      # @macro param_name
       # @return [void]
       def show(name = Vedeu.focus)
         repository.by_name(name).show
@@ -83,7 +83,7 @@ module Vedeu
       #   Vedeu.toggle_group(name)
       #   Vedeu.toggle_interface(name)
       #
-      # @param name [String|Symbol]
+      # @macro param_name
       # @return [void]
       def toggle(name = Vedeu.focus)
         repository.by_name(name).toggle
@@ -96,7 +96,7 @@ module Vedeu
       # @example
       #   Vedeu.hide_cursor(name)
       #
-      # @param name [String|Symbol]
+      # @macro param_name
       # @return [void]
       # @see Vedeu::Toggleable#hide
       def hide_cursor(name = Vedeu.focus)
@@ -108,7 +108,7 @@ module Vedeu
       # @example
       #   Vedeu.show_cursor(name)
       #
-      # @param name [String|Symbol]
+      # @macro param_name
       # @return [void]
       # @see Vedeu::Toggleable#show
       def show_cursor(name = Vedeu.focus)
@@ -120,7 +120,7 @@ module Vedeu
       # @example
       #   Vedeu.toggle_cursor(name)
       #
-      # @param name [String|Symbol]
+      # @macro param_name
       # @return [void]
       # @see Vedeu::Toggleable#toggle
       def toggle_cursor(name = Vedeu.focus)
@@ -131,12 +131,13 @@ module Vedeu
 
       # Returns a boolean indicating whether the cursor is visible.
       #
-      # @param name [String|Symbol]
+      # @macro param_name
       # @return [Boolean]
       def cursor_visible?(name)
         buffer(name).cursor_visible?
       end
 
+      # @macro param_name
       # @return [Vedeu::Buffers::Buffer]
       def buffer(name)
         Vedeu.buffers.by_name(name)

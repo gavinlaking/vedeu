@@ -39,8 +39,7 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Cursors::Refresh.
       #
-      # @param name [String|Symbol] The name of the interface/view
-      #   cursor to be refreshed. Defaults to `Vedeu.focus`.
+      # @macro param_name
       # @return [Vedeu::Cursors::Refresh]
       def initialize(name)
         @name = name

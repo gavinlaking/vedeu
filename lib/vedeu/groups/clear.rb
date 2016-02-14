@@ -11,7 +11,7 @@ module Vedeu
       class << self
 
         # {include:file:docs/dsl/by_method/clear_by_group.md}
-        # @param name [String|Symbol]
+        # @macro param_name
         # @return [void]
         def render(name)
           new(name).render
@@ -23,7 +23,7 @@ module Vedeu
 
       # Return a new instance of Vedeu::Groups::Clear.
       #
-      # @param name [String|Symbol]
+      # @macro param_name
       # @return [Vedeu::Groups::Clear]
       def initialize(name)
         @name = name

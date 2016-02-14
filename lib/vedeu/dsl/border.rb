@@ -32,10 +32,7 @@ module Vedeu
         #     end
         #   end
         #
-        # @param name [String|Symbol] The name of the interface; this
-        #   is already provided when we define the interface or view,
-        #   setting it here is just mirroring functionality of
-        #   {Vedeu::DSL::Border::SingletonMethods.border}.
+        # @macro param_name
         # @param block [Proc]
         # @macro raise_requires_block
         # @macro raise_missing_required

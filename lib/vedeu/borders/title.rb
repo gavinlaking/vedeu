@@ -24,7 +24,7 @@ module Vedeu
       # Returns a new instance of Vedeu::Borders::Title or
       # Vedeu::Borders::Caption.
       #
-      # @param name [String|Symbol]
+      # @macro param_name
       # @param value [String|Vedeu::Borders::Title|
       # @param horizontal [Array<Vedeu::Cells::Horizontal>]
       #   Vedeu::Borders::Caption]

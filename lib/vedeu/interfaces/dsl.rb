@@ -29,9 +29,7 @@ module Vedeu
         #     # ... some code
         #   end
         #
-        # @param name [String|Symbol] The name of the interface. Used
-        #   to reference the interface throughout your application's
-        #   execution lifetime.
+        # @macro param_name
         # @param block [Proc] A set of attributes which define the
         #   features of the interface.
         # @macro raise_requires_block
@@ -63,7 +61,7 @@ module Vedeu
         # registered, and also adds interface's name to list of
         # focussable interfaces.
         #
-        # @param name [String|Symbol]
+        # @macro param_name
         # @see Vedeu::Buffers::Buffer
         # @return [Vedeu::Buffers::Buffer]
         def add_buffers!(name)
@@ -73,7 +71,7 @@ module Vedeu
         # Registers a new cursor for the interface unless already
         # registered.
         #
-        # @param name [String|Symbol]
+        # @macro param_name
         # @return [Vedeu::Cursors::Cursor]
         def add_cursor!(name)
           Vedeu::Cursors::Cursor.store(name: name)
@@ -81,7 +79,7 @@ module Vedeu
 
         # Registers a new document with the interface.
         #
-        # @param name [String|Symbol]
+        # @macro param_name
         def add_editor!(name)
           Vedeu::Editor::Document.store(name: name)
         end
@@ -89,7 +87,7 @@ module Vedeu
         # Registers interface name in focus list unless already
         # registered.
         #
-        # @param name [String|Symbol]
+        # @macro param_name
         # @return [Array<String|Symbol>]
         def add_focusable!(name)
           Vedeu::Models::Focus.add(name)
@@ -98,7 +96,7 @@ module Vedeu
         # Registers a new keymap for the interface unless already
         # registered.
         #
-        # @param name [String|Symbol]
+        # @macro param_name
         # @return [NilClass|Vedeu::Input::Keymap]
         def add_keymap!(name)
           Vedeu::Input::Keymap.store(name: name) unless keymap?(name)
@@ -114,7 +112,7 @@ module Vedeu
 
         private
 
-        # @param name [String|Symbol]
+        # @macro param_name
         # @return [Boolean]
         def keymap?(name)
           Vedeu.keymaps.registered?(name)
@@ -214,8 +212,7 @@ module Vedeu
       #     # ...
       #   end
       #
-      # @param name [String|Symbol] The name of the group to which
-      #   this interface should belong.
+      # @macro param_name
       # @return [Vedeu::Groups::Group]
       def group(name)
         return false unless present?(name)
@@ -225,8 +222,7 @@ module Vedeu
         Vedeu.groups.by_name(name).add(model.name)
       end
 
-      # @param name [String|Symbol] The name of the interface to which
-      #   this keymap should belong.
+      # @macro param_name
       # @see Vedeu::Input::DSL.keymap
       def keymap(name = model.name, &block)
         Vedeu.keymap(name, &block)
@@ -262,8 +258,7 @@ module Vedeu
 
       # Use a value from another model.
       #
-      # @param name [String|Symbol] The name of the interface model
-      #   you wish to use a value from.
+      # @macro param_name
       # @return [Vedeu::Interfaces::Interface]
       def use(name)
         model.repository.by_name(name)

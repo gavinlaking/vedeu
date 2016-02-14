@@ -35,7 +35,7 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Editor::Editor.
       #
-      # @param name [String|Symbol]
+      # @macro param_name
       # @param input [String|Symbol]
       # @return [Vedeu::Editor::Editor]
       def initialize(input:, name:)

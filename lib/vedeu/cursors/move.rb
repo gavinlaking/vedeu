@@ -22,7 +22,7 @@ module Vedeu
         new(name, direction, offset).move
       end
 
-      # @param name [String|Symbol]
+      # @macro param_name
       # @param direction [Symbol]
       # @param offset [Fixnum]
       # @return [Vedeu::Cursors::Move]

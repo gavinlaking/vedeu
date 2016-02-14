@@ -22,7 +22,7 @@ module Vedeu
 
     # Register plugin with name in an internal array.
     #
-    # @param name [String]
+    # @macro param_name
     # @param plugin [Vedeu::Plugin]
     # @return [Array<void>]
     def register(name, plugin = false)
@@ -70,7 +70,7 @@ module Vedeu
 
     # Returns a boolean indicating whether a plugin is already loaded.
     #
-    # @param name [String]
+    # @macro param_name
     # @return [Boolean]
     def not_loaded?(name)
       plugins.empty? || plugins.any? { |plugin| plugin.gem_name != name }

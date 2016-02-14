@@ -16,7 +16,7 @@ module Vedeu
 
         # @param collection [void]
         # @param parent [Vedeu::Views::Stream]
-        # @param name [NilClass|Symbol|String]
+        # @macro param_name
         # @macro raise_invalid_syntax
         # @return [Vedeu::Views::Chars]
         def coerce(collection = [], parent = nil, name = nil)

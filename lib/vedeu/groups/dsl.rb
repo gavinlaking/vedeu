@@ -54,7 +54,7 @@ module Vedeu
       #     # ... some code
       #   end
       #
-      # @param name [String|Symbol] The name of this group.
+      # @macro param_name
       # @param block [Proc]
       # @macro raise_requires_block
       # @return [Vedeu::Groups::Group]
@@ -71,7 +71,7 @@ module Vedeu
       #     add :editor_interface
       #   end
       #
-      # @param name [String|Symbol]
+      # @macro param_name
       # @return [Vedeu::Groups::Group]
       def add(name)
         model.add(name)
