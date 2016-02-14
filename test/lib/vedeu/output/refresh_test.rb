@@ -14,6 +14,7 @@ module Vedeu
 
       let(:described) { Vedeu::Output::Refresh }
       let(:instance)  { described.new }
+      let(:_name)     { :vedeu_output_refresh }
 
       describe '.all' do
         before { Vedeu.stubs(:trigger) }
@@ -30,19 +31,18 @@ module Vedeu
 
         context 'when there are registered interfaces' do
           let(:interface)  {
-            Vedeu::Interfaces::Interface.new(name: 'Vedeu::Output::Refresh')
+            Vedeu::Interfaces::Interface.new(name: _name)
           }
-          let(:interfaces) { [interface] }
+          let(:names) { [_name] }
 
-          before { Vedeu.interfaces.stubs(:zindexed).returns(interfaces) }
+          before { Vedeu.interfaces.stubs(:zindexed).returns(names) }
 
           it do
-            Vedeu.expects(:trigger).with(:_refresh_view_,
-                                         'Vedeu::Output::Refresh')
+            Vedeu.expects(:trigger).with(:_refresh_view_, _name)
             subject
           end
 
-          it { subject.must_equal([interface]) }
+          it { subject.must_equal(names) }
         end
       end
 
