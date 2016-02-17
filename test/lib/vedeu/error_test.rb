@@ -7,31 +7,41 @@ module Vedeu
   module Error
 
     describe ActionNotFound do
-    end
+    end # ActionNotFound
 
     describe ControllerNotFound do
-    end
+    end # ControllerNotFound
 
     describe Fatal do
-    end
+    end # Fatal
 
     describe Interrupt do
-    end
+    end # Interrupt
 
     describe InvalidSyntax do
-    end
+    end # InvalidSyntax
 
     describe MissingRequired do
-    end
+    end # MissingRequired
 
     describe ModelNotFound do
-    end
+    end # ModelNotFound
 
     describe ModeSwitch do
-    end
+    end # ModeSwitch
 
     describe NotImplemented do
-    end
+
+      let(:described) { Vedeu::Error::NotImplemented }
+      let(:instance)  { described.new }
+
+      describe '#message' do
+        subject { instance.message }
+
+        it { subject.must_be_instance_of(String) }
+      end
+
+    end # NotImplemented
 
     describe OutOfRange do
 

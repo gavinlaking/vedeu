@@ -31,7 +31,7 @@ module Vedeu
 
       # @macro raise_not_implemented
       def coerce
-        raise Vedeu::Error::NotImplemented, 'Subclasses implement this.'
+        raise Vedeu::Error::NotImplemented
       end
 
       protected
@@ -48,7 +48,7 @@ module Vedeu
 
       # @macro raise_not_implemented
       def child_klass
-        raise Vedeu::Error::NotImplemented, 'Subclasses implement this.'
+        raise Vedeu::Error::NotImplemented
       end
 
       # @return [Boolean]
@@ -64,7 +64,7 @@ module Vedeu
 
       # @macro raise_not_implemented
       def klass
-        raise Vedeu::Error::NotImplemented, 'Subclasses implement this.'
+        raise Vedeu::Error::NotImplemented
       end
 
     end # Coercer

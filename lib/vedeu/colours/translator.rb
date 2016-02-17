@@ -216,11 +216,14 @@ module Vedeu
       end
 
       # @macro raise_not_implemented
-      def not_implemented
-        raise Vedeu::Error::NotImplemented, 'Subclasses implement this.'
+      def named
+        raise Vedeu::Error::NotImplemented
       end
-      alias named not_implemented
-      alias repository not_implemented
+
+      # @macro raise_not_implemented
+      def repository
+        raise Vedeu::Error::NotImplemented
+      end
 
       # @return [Vedeu::Colours::Validator]
       def validator
