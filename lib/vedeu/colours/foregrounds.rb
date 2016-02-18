@@ -6,6 +6,8 @@ module Vedeu
 
     # Store foreground colour escape sequences by HTML/CSS code.
     #
+    # @api private
+    #
     class Foregrounds < Vedeu::Colours::Repository
 
       # {include:file:docs/dsl/by_method/foreground_colours.md}

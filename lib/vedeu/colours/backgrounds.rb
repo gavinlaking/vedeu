@@ -6,6 +6,8 @@ module Vedeu
 
     # Store background colour escape sequences by HTML/CSS code.
     #
+    # @api private
+    #
     class Backgrounds < Vedeu::Colours::Repository
 
       # {include:file:docs/dsl/by_method/background_colours.md}
