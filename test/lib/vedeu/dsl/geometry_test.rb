@@ -4,9 +4,18 @@ require 'test_helper'
 
 module Vedeu
 
+  class DSLGeometryTestClass
+
+    include Vedeu::DSL::Geometry
+
+  end # DSLGeometryTestClass
+
   module DSL
 
     describe Geometry do
+
+      let(:described)          { Vedeu::DSL::Geometry }
+      let(:included_described) { Vedeu::DSLGeometryTestClass }
 
       # describe '#geometry' do
       #   context 'when the required block is not given' do
@@ -29,6 +38,12 @@ module Vedeu
       #     end
       #   end
       # end
+
+      describe '.included' do
+        subject { described.included(included_described) }
+
+        it { subject.must_be_instance_of(Class) }
+      end
 
     end # Geometry
 

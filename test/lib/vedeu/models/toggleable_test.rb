@@ -99,6 +99,12 @@ module Vedeu
       end
     end
 
+    describe '.included' do
+      subject { described.included(included_described) }
+
+      it { subject.must_be_instance_of(Class) }
+    end
+
     describe '.show_cursor' do
       subject { included_described.show_cursor }
 

@@ -19,11 +19,11 @@ module Vedeu
 
       # Refresh all registered interfaces.
       #
-      # @return [Array<Vedeu::Interfaces::Interface>]
+      # @return [Array<String|Symbol>]
       def all
         Vedeu.timer('Refreshing all') do
-          Vedeu.interfaces.zindexed.each do |interface|
-            Vedeu.trigger(:_refresh_view_, interface.name)
+          Vedeu.interfaces.zindexed.each do |name|
+            Vedeu.trigger(:_refresh_view_, name)
           end
         end
       end

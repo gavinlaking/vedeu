@@ -14,8 +14,7 @@ module Vedeu
       module SingletonMethods
 
         # {include:file:docs/dsl/by_method/geometry.md}
-        # @param name [String|Symbol] The name of the interface or
-        #   view to which this geometry belongs.
+        # @macro param_name
         # @param block [Proc]
         # @macro raise_requires_block
         # @macro raise_missing_required
@@ -46,10 +45,7 @@ module Vedeu
       module InstanceMethods
 
         # {include:file:docs/dsl/by_method/geometry.md}
-        # @param name [String|Symbol] The name of the interface; this
-        #   is already provided when we define the interface or view,
-        #   setting it here is just mirroring functionality of
-        #   {Vedeu::DSL::Geometry::SingletonMethods#geometry}.
+        # @macro param_name
         # @param block [Proc]
         # @macro raise_requires_block
         # @macro raise_missing_required

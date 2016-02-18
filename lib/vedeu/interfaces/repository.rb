@@ -13,15 +13,15 @@ module Vedeu
       null Vedeu::Interfaces::Null
       real Vedeu::Interfaces::Interface
 
-      # Returns the interfaces in zindex order.
+      # Returns the interface names in zindex order.
       #
       # @example
       #   Vedeu.interfaces.zindexed
       #
-      # @return [Array<Vedeu::Interfaces::Interface>]
+      # @return [Array<String|Symbol>]
       # @see Vedeu::Interfaces::DSL#zindex
       def zindexed
-        all.sort_by(&:zindex)
+        all.sort_by(&:zindex).map(&:name)
       end
 
     end # Interfaces

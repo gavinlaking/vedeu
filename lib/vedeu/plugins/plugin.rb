@@ -25,7 +25,7 @@ module Vedeu
 
     # Returns a new instance of Vedeu::Plugin.
     #
-    # @param name [String] The plugin name.
+    # @macro param_name
     # @param gem [Gem::Specification] The RubyGems gem.
     # @return [Vedeu::Plugin]
     def initialize(name, gem)

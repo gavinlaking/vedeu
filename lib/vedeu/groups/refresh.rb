@@ -18,8 +18,7 @@ module Vedeu
 
       include Vedeu::Common
 
-      # @param name [String|Symbol] The name of the group to be
-      #   refreshed.
+      # @macro param_name
       # @return [Array|Vedeu::Error::ModelNotFound] A collection of
       #   the names of interfaces refreshed, or an exception when the
       #   group was not found.
@@ -29,7 +28,7 @@ module Vedeu
 
       # Return a new instance of Vedeu::Groups::Refresh.
       #
-      # @param name [String|Symbol]
+      # @macro param_name
       # @return [Vedeu::Groups::Refresh]
       def initialize(name)
         @name = name

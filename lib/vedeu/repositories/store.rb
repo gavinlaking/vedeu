@@ -33,7 +33,7 @@ module Vedeu
       # Returns a boolean indicating whether the named model is
       # registered.
       #
-      # @param name [String|Symbol]
+      # @macro param_name
       # @return [Boolean]
       def exists?(name)
         return false if empty? || absent?(name)

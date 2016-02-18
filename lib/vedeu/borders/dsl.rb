@@ -14,8 +14,7 @@ module Vedeu
       include Vedeu::DSL::Use
 
       # {include:file:docs/dsl/by_method/border.md}
-      # @param name [String|Symbol] The name of the interface or view
-      #   to which this border belongs.
+      # @macro param_name
       # @param block [Proc]
       # @macro raise_requires_block
       # @macro raise_missing_required

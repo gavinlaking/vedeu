@@ -30,7 +30,7 @@ module Vedeu
       protected
 
       # @!attribute [r] cell
-      # @return [void]
+      # @return [Vedeu::Cells]
       attr_reader :cell
 
       # @!attribute [r] options

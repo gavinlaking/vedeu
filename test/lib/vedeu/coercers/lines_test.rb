@@ -31,6 +31,10 @@ module Vedeu
           it { subject.must_be_instance_of(klass) }
           it { subject.must_equal(_value) }
         end
+
+        context 'when the value is not already the target class' do
+          it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
+        end
       end
 
     end # Lines

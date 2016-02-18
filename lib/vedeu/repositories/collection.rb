@@ -30,7 +30,7 @@ module Vedeu
 
       # @param collection [Array|Vedeu::Repositories::Collection]
       # @param parent [void]
-      # @param name [String|Symbol|NilClass]
+      # @macro param_name
       # @return [Vedeu::Repositories::Collection]
       def self.coerce(collection = [], parent = nil, name = nil)
         if collection.is_a?(Vedeu::Repositories::Collection)
@@ -46,7 +46,7 @@ module Vedeu
       #
       # @param collection [void]
       # @param parent [void]
-      # @param name [String|Symbol|NilClass]
+      # @macro param_name
       # @return [Vedeu::Repositories::Collection]
       def initialize(collection = [], parent = nil, name = nil)
         @collection = collection

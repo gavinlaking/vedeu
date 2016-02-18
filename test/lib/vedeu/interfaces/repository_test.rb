@@ -30,7 +30,7 @@ module Vedeu
 
         subject { Vedeu.interfaces.zindexed }
 
-        it { subject.must_equal([@lithium, @hydrogen, @helium]) }
+        it { subject.must_equal(['lithium', 'hydrogen', 'helium']) }
       end
 
     end # Repository

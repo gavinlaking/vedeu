@@ -82,7 +82,7 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Area.
       #
-      # @param name [Symbol|String]
+      # @macro param_name
       # @param y [Fixnum] The starting row/line position.
       # @param yn [Fixnum] The ending row/line position.
       # @param x [Fixnum] The starting column/character position.

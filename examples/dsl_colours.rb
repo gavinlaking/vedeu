@@ -25,7 +25,7 @@ class ColoursApp
       title 'Interface Colours'
     end
     geometry do
-      align(:top, :left, 50, 20)
+      align vertical: :top, horizontal: :left, width: 50, height: 20
     end
   end
 

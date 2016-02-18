@@ -26,8 +26,7 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Events::Trigger.
       #
-      # @param name [Symbol] The name of the event you wish to
-      #   trigger. The event does not have to exist.
+      # @macro param_name
       # @param args [Array] Any arguments the event needs to execute
       #   correctly.
       # @return [Vedeu::Events::Trigger]

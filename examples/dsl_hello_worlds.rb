@@ -31,7 +31,7 @@ class HelloWorldsApp
     background '#000000'
     foreground '#00ff00'
     geometry do
-      align(:middle, :centre, 24, 5)
+      align vertical: :middle, horizontal: :centre, width: 24, height: 5
     end
     keymap do
       key('q') { Vedeu.exit }
@@ -61,7 +61,7 @@ class HelloWorldsApp
     Vedeu.render do
       view :hello do
         geometry do
-          align(:middle, :centre, (24 + 2), (5 + 2))
+          align vertical: :middle, horizontal: :centre, width: (24 + 2), height: (5 + 2)
         end
         border do
           colour foreground: ["#00ff00", "#000033", "#cddc39", "#03a9f4"].sample

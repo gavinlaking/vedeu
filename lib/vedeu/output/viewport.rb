@@ -100,19 +100,19 @@ module Vedeu
       # @return [Vedeu::Cursors::Cursor]
       # @see Vedeu::Cursors::Repository#by_name
       def cursor
-        @cursor ||= Vedeu.cursors.by_name(name)
+        Vedeu.cursors.by_name(name)
       end
 
       # Returns the geometry for the interface.
       #
       # @return (see Vedeu::Geometries::Repository#by_name)
       def geometry
-        @geometry ||= Vedeu.geometries.by_name(name)
+        Vedeu.geometries.by_name(name)
       end
 
       # @return [Fixnum]
       def left
-        @left ||= content_offset(ox, bordered_width)
+        content_offset(ox, bordered_width)
       end
 
       # @return [Array<Array<Vedeu::Cells::Char>>]
@@ -161,7 +161,7 @@ module Vedeu
 
       # @return [Fixnum]
       def top
-        @top ||= content_offset(oy, bordered_height)
+        content_offset(oy, bordered_height)
       end
 
     end # Viewport

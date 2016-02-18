@@ -41,8 +41,7 @@ module Vedeu
         # which when triggered will execute the code contained within
         # the passed block.
         #
-        # @param name [Symbol] The name of the event to be triggered
-        #   later.
+        # @macro param_name
         # @param options [Hash<Symbol => void>] The options to
         #   register the event with.
         # @option options :delay [Fixnum|Float] Limits the execution
@@ -94,7 +93,7 @@ module Vedeu
         alias register bind
 
         # {include:file:docs/dsl/by_method/bound.md}
-        # @param name [Symbol]
+        # @macro param_name
         # @return [Boolean]
         def bound?(name)
           Vedeu.events.registered?(name) ||
@@ -102,7 +101,7 @@ module Vedeu
         end
 
         # {include:file:docs/dsl/by_method/unbind.md}
-        # @param name [Symbol]
+        # @macro param_name
         # @return [Boolean]
         def unbind(name)
           return false unless Vedeu.bound?(name)

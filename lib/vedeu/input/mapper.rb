@@ -28,7 +28,7 @@ module Vedeu
         end
 
         # @param key [String|Symbol] The keypress.
-        # @param name [String|Symbol] The keymap name.
+        # @macro param_name
         # @macro raise_missing_required
         # @return [Boolean]
         def registered?(key = nil, name = nil)
@@ -59,7 +59,7 @@ module Vedeu
       # Returns a new instance of Vedeu::Input::Mapper.
       #
       # @param key [NilClass|String|Symbol]
-      # @param name [NilClass|String]
+      # @macro param_name
       # @param repository [NilClass|Vedeu::Repositories::Repository]
       # @return [Vedeu::Input::Mapper]
       def initialize(key = nil, name = nil, repository = nil)

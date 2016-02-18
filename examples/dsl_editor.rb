@@ -23,7 +23,7 @@ class EditorApp
     end
     editable!
     geometry do
-      align(:top, :left, 40, 8)
+      align vertical: :top, horizontal: :left, width: 40, height: 8
     end
   end
 

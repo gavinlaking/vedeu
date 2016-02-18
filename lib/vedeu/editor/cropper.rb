@@ -25,7 +25,7 @@ module Vedeu
       # Returns a new instance of Vedeu::Editor::Cropper.
       #
       # @param lines [Vedeu::Editor::Lines]
-      # @param name [String|Symbol]
+      # @macro param_name
       # @param ox [Fixnum]
       # @param oy [Fixnum]
       # @return [Vedeu::Editor::Cropper]

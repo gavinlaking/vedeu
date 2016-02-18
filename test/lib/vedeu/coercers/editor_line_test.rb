@@ -25,6 +25,8 @@ module Vedeu
       describe '#coerce' do
         subject { instance.coerce }
 
+        it { subject.must_be_instance_of(klass) }
+
         context 'when the value is already the target class' do
           let(:_value) { klass.new }
 

@@ -62,7 +62,7 @@ module Vedeu
       #   # Fetch the names of the interfaces belonging to this group.
       #   Vedeu.groups.by_name(name)
       #
-      # @param name [String|Symbol] The name of the stored model.
+      # @macro param_name
       # @return [void]
       def by_name(name = nil)
         name = present?(name) ? name : Vedeu.focus
@@ -81,7 +81,7 @@ module Vedeu
 
       # Find the model by name.
       #
-      # @param name [String|Symbol]
+      # @macro param_name
       # @return [Hash<String => Object>|NilClass]
       def find(name)
         storage[name]
@@ -90,7 +90,7 @@ module Vedeu
       # Find the model attributes by name, raises an exception when
       # the model cannot be found.
       #
-      # @param name [String|Symbol]
+      # @macro param_name
       # @raise [Vedeu::Error::ModelNotFound] When the model cannot be
       #   found with this name.
       # @return [Hash<String => Object>]
@@ -102,7 +102,7 @@ module Vedeu
       # Find a model by name, registers the model by name when not
       # found.
       #
-      # @param name [String|Symbol]
+      # @macro param_name
       # @return [void]
       def find_or_create(name)
         return find(name) if registered?(name)
@@ -122,7 +122,7 @@ module Vedeu
       # Returns a boolean indicating whether the named model is
       # registered.
       #
-      # @param name [String|Symbol]
+      # @macro param_name
       # @return [Boolean]
       def registered?(name)
         return false if absent?(name)
@@ -134,7 +134,7 @@ module Vedeu
       # Returns the storage with the named model removed, or false
       # when the model does not exist.
       #
-      # @param name [String|Symbol]
+      # @macro param_name
       # @return [Hash|Boolean]
       def remove(name)
         return false if empty?

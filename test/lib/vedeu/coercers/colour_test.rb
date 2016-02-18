@@ -69,7 +69,9 @@ module Vedeu
       end
 
       describe '#coerce' do
-        it { instance.must_respond_to(:coerce) }
+        subject { instance.coerce }
+
+        it { subject.must_be_instance_of(klass) }
       end
 
     end # Colour

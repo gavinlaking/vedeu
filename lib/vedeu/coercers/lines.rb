@@ -12,7 +12,7 @@ module Vedeu
     class Lines < Vedeu::Coercers::Coercer
 
       # @macro raise_fatal
-      # @return [void]
+      # @return [Vedeu::Views::Lines]
       def coerce
         if coerced?
           value

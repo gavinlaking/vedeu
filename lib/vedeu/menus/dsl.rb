@@ -17,8 +17,7 @@ module Vedeu
         # items for your users to select; and provide interactivity
         # within your application.
         #
-        # @param name [String|Symbol] The name of the interface or
-        #   view to which this menu belongs.
+        # @macro param_name
         # @param block [Proc] A set of attributes which define the
         #   features of the menu.
         #

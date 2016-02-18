@@ -46,8 +46,7 @@ module Vedeu
       include Vedeu::DSL
 
       # {include:file:docs/dsl/by_method/view.md}
-      # @param name [String|Symbol] The name of the interface you are
-      #   targetting for this view.
+      # @macro param_name
       # @param block [Proc] The directives you wish to send to this
       #   view.
       # @macro raise_requires_block
@@ -75,8 +74,7 @@ module Vedeu
       #
       # @todo More documentation required.
       #
-      # @param name [String|Symbol] The name of interface for which this
-      #   template's content belongs to.
+      # @macro param_name
       # @param filename [String] The filename (including path) to the
       #   template to be used. Yoy can use `File.dirname(__FILE__)` to
       #   use relative paths.
@@ -109,7 +107,7 @@ module Vedeu
 
       private
 
-      # @param name [String|Symbol]
+      # @macro param_name
       # @param lines [Vedeu::Views::Lines]
       # @return [Hash<Symbol => void>]
       def template_attributes(name, lines)
@@ -119,7 +117,7 @@ module Vedeu
       # Return the current attributes combined with the existing
       # interface attributes defined by the interface.
       #
-      # @param name [String|Symbol] The name of the interface.
+      # @macro param_name
       # @return [Hash<Symbol => void>]
       def new_attributes(name)
         existing_attributes(name).merge!(attributes)
@@ -127,7 +125,7 @@ module Vedeu
 
       # Retrieve the attributes of the interface by name.
       #
-      # @param name [String|Symbol] The name of the interface.
+      # @macro param_name
       # @return [Hash<Symbol => void>]
       def existing_attributes(name)
         interface(name).attributes
