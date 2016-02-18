@@ -55,7 +55,7 @@ class VedeuViewTemplateApp
   end
 
   Vedeu.geometry('prune') do
-    align(:middle, :centre, 25, 6)
+    align vertical: :middle, horizontal: :centre, width: 25, height: 6
   end
 
   Vedeu.geometry 'default' do

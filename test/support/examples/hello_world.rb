@@ -27,7 +27,7 @@ class HelloWorldApp
     background '#000000'
     foreground '#00ff00'
     geometry do
-      align(:middle, :centre, 20, 5)
+      align vertical: :middle, horizontal: :centre, width: 20, height: 5
     end
     keymap do
       key('q') { Vedeu.exit }

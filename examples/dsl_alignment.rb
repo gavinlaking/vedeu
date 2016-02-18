@@ -23,7 +23,7 @@ class AlignmentApp
       title 'Top Left'
     end
     geometry do
-      align(:top, :left, 20, 4)
+      align vertical: :top, horizontal: :left, width: 20, height: 4
     end
   end
 
@@ -32,7 +32,7 @@ class AlignmentApp
       title 'Top Centre'
     end
     geometry do
-      align(:top, :centre, 20, 4)
+      align vertical: :top, horizontal: :centre, width: 20, height: 4
     end
   end
 
@@ -41,7 +41,7 @@ class AlignmentApp
       title 'Top Right'
     end
     geometry do
-      align(:top, :right, 20, 4)
+      align vertical: :top, horizontal: :right, width: 20, height: 4
     end
   end
 
@@ -50,7 +50,7 @@ class AlignmentApp
       title 'Middle Left'
     end
     geometry do
-      align(:middle, :left, 20, 4)
+      align vertical: :middle, horizontal: :left, width: 20, height: 4
     end
   end
 
@@ -59,7 +59,7 @@ class AlignmentApp
       title 'Middle Centre'
     end
     geometry do
-      align(:middle, :centre, 20, 4)
+      align vertical: :middle, horizontal: :centre, width: 20, height: 4
     end
   end
 
@@ -68,7 +68,7 @@ class AlignmentApp
       title 'Middle Right'
     end
     geometry do
-      align(:middle, :right, 20, 4)
+      align vertical: :middle, horizontal: :right, width: 20, height: 4
     end
   end
 
@@ -77,7 +77,7 @@ class AlignmentApp
       title 'Bottom Left'
     end
     geometry do
-      align(:bottom, :left, 20, 4)
+      align vertical: :bottom, horizontal: :left, width: 20, height: 4
     end
   end
 
@@ -86,7 +86,7 @@ class AlignmentApp
       title 'Bottom Centre'
     end
     geometry do
-      align(:bottom, :centre, 20, 4)
+      align vertical: :bottom, horizontal: :centre, width: 20, height: 4
     end
   end
 
@@ -95,7 +95,7 @@ class AlignmentApp
       title 'Bottom Right'
     end
     geometry do
-      align(:bottom, :right, 20, 4)
+      align vertical: :bottom, horizontal: :right, width: 20, height: 4
     end
   end
 
