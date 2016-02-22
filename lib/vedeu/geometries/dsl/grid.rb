@@ -33,29 +33,32 @@ module Vedeu
         @value = value
       end
 
-      # @macro raise_out_of_range
       # @see Vedeu::Geometries::DSL#columns
       def columns
-        raise Vedeu::Error::OutOfRange if out_of_range?
-
         column * value
       end
 
-      # @macro raise_out_of_range
       # @see Vedeu::Geometries::DSL#rows
       def rows
-        raise Vedeu::Error::OutOfRange if out_of_range?
-
         row * value
       end
 
-      protected
-
-      # @!attribute [r] value
-      # @return [Fixnum]
-      attr_reader :value
-
       private
+
+      # Returns the width of a single column in characters.
+      #
+      # @return [Fixnum]
+      def column
+        Vedeu.width / 12
+      end
+
+      # Returns a boolean indicating whether the value is out of
+      # range.
+      #
+      # @return [Boolean]
+      def out_of_range?(v)
+        v < 1 || v > 12
+      end
 
       # Returns the height of a single row in characters.
       #
@@ -64,19 +67,12 @@ module Vedeu
         Vedeu.height / 12
       end
 
-      # Returns a boolean indicating whether the value is out of
-      # range.
-      #
-      # @return [Boolean]
-      def out_of_range?
-        value < 1 || value > 12
-      end
-
-      # Returns the width of a single column in characters.
-      #
+      # @macro raise_out_of_range
       # @return [Fixnum]
-      def column
-        Vedeu.width / 12
+      def value
+        raise Vedeu::Error::OutOfRange if out_of_range?(@value)
+
+        @value
       end
 
     end # Grid
