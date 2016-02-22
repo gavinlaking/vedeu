@@ -154,6 +154,10 @@ module Vedeu
         pad.size
       end
 
+      # Provides the index on the horizontal border for where the
+      # title (or caption) should start. The title will appear
+      # top-left, whilst the caption will be justified bottom-right.
+      #
       # @return [Fixnum]
       def start_index
         1
@@ -189,6 +193,8 @@ module Vedeu
         geometry.bx + start_index
       end
 
+      # Return the vertical position for the title (or caption).
+      #
       # @return [Fixnum]
       def y
         geometry.y
