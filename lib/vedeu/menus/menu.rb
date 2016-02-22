@@ -11,9 +11,9 @@ module Vedeu
 
       include Vedeu::Repositories::Model
 
-      # @!attribute [rw] collection
+      # @!attribute [w] collection
       # @return [Array]
-      attr_accessor :collection
+      attr_writer :collection
 
       # Returns the index of the value in the collection which is
       # current.
@@ -50,12 +50,17 @@ module Vedeu
         end
       end
 
+      # @return [Array]
+      def collection
+        @collection || []
+      end
+
       # Returns the item from the collection which shares the same
       # index as the value of {Vedeu::Menus::Menu#current}.
       #
       # @return [void]
       def current_item
-        @collection[@current]
+        collection[@current]
       end
 
       # Returns a DSL instance responsible for defining the DSL
@@ -77,7 +82,7 @@ module Vedeu
       def selected_item
         return nil unless @selected
 
-        @collection[@selected]
+        collection[@selected]
       end
 
       # Returns a new collection of items.
@@ -94,7 +99,7 @@ module Vedeu
       # @return [Array]
       def items
         items = []
-        @collection.each_with_index do |item, index|
+        collection.each_with_index do |item, index|
           items << if index == @current && index == @selected
                      [true, true, item]
 
@@ -116,7 +121,7 @@ module Vedeu
       #
       # @return [Array]
       def view
-        items[@current, @collection.size]
+        items[@current, collection.size]
       end
 
       # Sets the value of current to be the first item of the
@@ -183,14 +188,14 @@ module Vedeu
       #
       # @return [Fixnum]
       def last
-        @collection.size - 1
+        collection.size - 1
       end
 
       # Returns the size of the collection.
       #
       # @return [Fixnum]
       def size
-        @collection.size
+        collection.size
       end
 
       private
