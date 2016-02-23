@@ -41,6 +41,10 @@ module Vedeu
       def render
         return [] unless output?
 
+        Vedeu.log(type:    :compress,
+                  message: "Original size: #{original_size} / " \
+                           "New size: #{content_size}")
+
         Vedeu::Output::CompressorCache.cache(content, compression?)
       end
 
@@ -57,17 +61,18 @@ module Vedeu
       #
       # @return [Array]
       def content
-        output.content.reject do |cell|
+        @content ||= output.content.reject do |cell|
           cell.class == Vedeu::Cells::Empty
-        end.tap do |cells|
-          Vedeu.log(type:    :compress,
-                    message: "Orignal size: #{content_size} / " \
-                             "New size: #{cells.size}")
         end
       end
 
       # @return [Fixnum]
       def content_size
+        content.size
+      end
+
+      # @return [Fixnum]
+      def original_size
         output.content.size
       end
 
