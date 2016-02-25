@@ -63,7 +63,7 @@ module Vedeu
 
       private
 
-      # @return [String|Symbol]
+      # @macro return_name
       def name
         present?(@name) ? @name : Vedeu.focus
       end

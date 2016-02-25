@@ -53,7 +53,7 @@ module Vedeu
       attr_reader :direction
 
       # @!attribute [r] name
-      # @return [String|Symbol] The name of the interface/view.
+      # @macro return_name
       attr_reader :name
 
       # @!attribute [r] offset

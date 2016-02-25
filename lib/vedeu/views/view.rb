@@ -47,7 +47,7 @@ module Vedeu
       alias cursor_visible? cursor_visible
 
       # @!attribute [rw] name
-      # @return [String|Symbol]
+      # @macro return_name
       attr_accessor :name
 
       # @!attribute [rw] wordwrap

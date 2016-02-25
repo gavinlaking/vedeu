@@ -135,7 +135,7 @@ module Vedeu
         console.gets.chomp
       end
 
-      # @return [String|Symbol]
+      # @macro return_name
       def name
         Vedeu.focus
       end

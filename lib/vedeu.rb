@@ -70,6 +70,7 @@ end # Vedeu
 #     target model to act upon. May default to `Vedeu.focus`.
 #
 # @!macro [new] return_name
-#   @return [NilClass|Symbol|String]
+#   @return [NilClass|Symbol|String] The name of the model, the target
+#     model or the name of the associated model.
 
 require 'vedeu/all'

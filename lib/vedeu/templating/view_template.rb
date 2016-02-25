@@ -80,7 +80,7 @@ module Vedeu
       end
       alias interface? interface
 
-      # @return [String|Symbol]
+      # @macro return_name
       def name
         options[:name]
       end

@@ -22,7 +22,7 @@ module Vedeu
                      :byn
 
       # @!attribute [r] name
-      # @return [String|Symbol]
+      # @macro return_name
       attr_reader :name
 
       # @!attribute [w] ox

@@ -30,7 +30,7 @@ module Vedeu
       attr_accessor :data
 
       # @!attribute [rw] name
-      # @return [String|Symbol]
+      # @macro return_name
       attr_accessor :name
 
       # Returns the document as a string with line breaks if there is

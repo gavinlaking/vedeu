@@ -18,8 +18,7 @@ module Vedeu
       include Vedeu::Repositories::Defaults
 
       # @!attribute [r] name
-      # @return [String|Symbol] The name of the interface/view this
-      #   cell belongs to.
+      # @macro return_name
       attr_reader :name
 
       # @!attribute [r] value

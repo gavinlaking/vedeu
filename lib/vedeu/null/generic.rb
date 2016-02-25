@@ -13,7 +13,7 @@ module Vedeu
       attr_reader :attributes
 
       # @!attribute [r] name
-      # @return [String|Symbol]
+      # @macro return_name
       attr_reader :name
 
       # Returns a new instance of the Vedeu::Null::Generic class.
