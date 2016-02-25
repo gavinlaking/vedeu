@@ -100,11 +100,9 @@ module Vedeu
         line[ox...(ox + bordered_width)] || ''
       end
 
-      # Returns the border for the interface.
-      #
-      # @return (see Vedeu::Geometries::Repository#by_name)
+      # @macro geometry_by_name
       def geometry
-        @geometry ||= Vedeu.geometries.by_name(name)
+        @_geometry ||= Vedeu.geometries.by_name(name)
       end
 
     end # Editor

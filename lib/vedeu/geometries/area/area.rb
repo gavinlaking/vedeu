@@ -286,7 +286,7 @@ module Vedeu
 
       private
 
-      # @return [Vedeu::Borders::Border]
+      # @macro border_by_name
       def border
         @_border ||= Vedeu.borders.by_name(name)
       end

@@ -95,7 +95,7 @@ module Vedeu
                                 value:    char)
       end
 
-      # @return [Vedeu::Borders::Border]
+      # @macro border_by_name
       def border
         @_border ||= Vedeu.borders.by_name(name)
       end
@@ -126,7 +126,7 @@ module Vedeu
         start_index + (size - 1)
       end
 
-      # @return [Vedeu::Geometries::Geometry]
+      # @macro geometry_by_name
       def geometry
         @_geometry ||= Vedeu.geometries.by_name(name)
       end

@@ -138,7 +138,7 @@ module Vedeu
       end
 
       # @macro param_name
-      # @return [Vedeu::Buffers::Buffer]
+      # @macro buffer_by_name
       def buffer(name)
         Vedeu.buffers.by_name(name)
       end

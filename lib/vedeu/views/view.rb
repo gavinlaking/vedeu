@@ -146,7 +146,7 @@ module Vedeu
 
       private
 
-      # @return [Vedeu::Buffers::Buffer]
+      # @macro buffer_by_name
       def buffer
         Vedeu.buffers.by_name(name)
       end
@@ -166,7 +166,7 @@ module Vedeu
         }
       end
 
-      # @return [Vedeu::Interfaces::Interface]
+      # @macro interface_by_name
       def interface
         Vedeu.interfaces.by_name(name)
       end

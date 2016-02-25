@@ -50,7 +50,7 @@ module Vedeu
 
       private
 
-      # @return [Vedeu::Buffers::Buffer]
+      # @macro buffer_by_name
       def buffer
         Vedeu.buffers.by_name(name)
       end

@@ -66,7 +66,7 @@ module Vedeu
         @_group_name ||= interface.group
       end
 
-      # @return [Vedeu::Interfaces::Interface]
+      # @macro interface_by_name
       def interface
         Vedeu.interfaces.by_name(name)
       end

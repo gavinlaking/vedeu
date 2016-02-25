@@ -97,15 +97,12 @@ module Vedeu
         offset - dimension
       end
 
-      # @return [Vedeu::Cursors::Cursor]
-      # @see Vedeu::Cursors::Repository#by_name
+      # @macro cursor_by_name
       def cursor
         Vedeu.cursors.by_name(name)
       end
 
-      # Returns the geometry for the interface.
-      #
-      # @return (see Vedeu::Geometries::Repository#by_name)
+      # @macro geometry_by_name
       def geometry
         Vedeu.geometries.by_name(name)
       end

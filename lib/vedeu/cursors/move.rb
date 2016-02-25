@@ -58,7 +58,7 @@ module Vedeu
 
       private
 
-      # @return [Vedeu::Cursors::Cursor]
+      # @macro cursor_by_name
       def cursor
         @_cursor ||= Vedeu.cursors.by_name(name)
       end

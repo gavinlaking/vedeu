@@ -165,9 +165,7 @@ module Vedeu
 
       private
 
-      # Returns the geometry for the interface.
-      #
-      # @return (see Vedeu::Geometries::Repository#by_name)
+      # @macro geometry_by_name
       def geometry
         @geometry ||= Vedeu.geometries.by_name(name)
       end

@@ -91,9 +91,7 @@ module Vedeu
         }
       end
 
-      # Returns the border for the interface.
-      #
-      # @return (see Vedeu::Borders::Repository#by_name)
+      # @macro border_by_name
       def border
         @border ||= Vedeu.borders.by_name(name)
       end
@@ -122,9 +120,7 @@ module Vedeu
         [(bottom_left if left?), captionbar, (bottom_right if right?)].compact
       end
 
-      # Returns the geometry for the interface.
-      #
-      # @return (see Vedeu::Geometries::Repository#by_name)
+      # @macro geometry_by_name
       def geometry
         Vedeu.geometries.by_name(name)
       end

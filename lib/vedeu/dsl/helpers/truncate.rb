@@ -59,7 +59,7 @@ module Vedeu
         }
       end
 
-      # @return [Vedeu::Geometries::Geometry]
+      # @macro geometry_by_name
       def geometry
         @_geometry ||= Vedeu.geometries.by_name(options[:name])
       end

@@ -132,7 +132,7 @@ module Vedeu
         }
       end
 
-      # @return [NilClass|Vedeu::Geometries::Geometry]
+      # @macro geometry_by_name
       def geometry
         @_geometry ||= Vedeu.geometries.by_name(name)
       end
