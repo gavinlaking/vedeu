@@ -4,25 +4,23 @@ module Vedeu
 
   module Buffers
 
-    # Refreshes the given named interface.
+    # Refreshes only the content of the given named interface.
     #
-    # @api private
-    #
-    class Refresh
+    class RefreshContent
 
       include Vedeu::Common
 
-      # {include:file:docs/events/by_name/refresh_view.md}
+      # {include:file:docs/events/by_name/refresh_view_content.md}
       # @param (see #initialize)
       # @return (see #by_name)
       def self.by_name(name = Vedeu.focus)
         new(name).by_name
       end
 
-      # Return a new instance of Vedeu::Buffers::Refresh.
+      # Return a new instance of Vedeu::Buffers::RefreshContent.
       #
       # @macro param_name
-      # @return [Vedeu::Buffers::Refresh]
+      # @return [Vedeu::Buffers::RefreshContent]
       def initialize(name = Vedeu.focus)
         @name = name || Vedeu.focus
       end
@@ -32,8 +30,6 @@ module Vedeu
         Vedeu.clear_content_by_name(name)
 
         buffer.render
-
-        Vedeu.trigger(:_refresh_border_, name)
       end
 
       protected
@@ -44,12 +40,12 @@ module Vedeu
 
       private
 
-      # @macro buffer_by_name
+      # @return [Vedeu::Buffers::Buffer]
       def buffer
         Vedeu.buffers.by_name(name)
       end
 
-    end # Refresh
+    end # RefreshContent
 
   end # Buffers
 
