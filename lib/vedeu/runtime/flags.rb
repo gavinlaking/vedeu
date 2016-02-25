@@ -79,11 +79,4 @@ module Vedeu
                  :ready?,
                  :ready!
 
-  # :nocov:
-
-  # See {file:docs/events/system.md#\_initialize_}
-  Vedeu.bind(:_initialize_) { Vedeu.ready! }
-
-  # :nocov:
-
 end # Vedeu

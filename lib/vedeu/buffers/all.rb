@@ -18,6 +18,31 @@ module Vedeu
 
   end # Buffers
 
+  # :nocov:
+
+  # @see Vedeu::Buffers::Terminal#clear
+  Vedeu.bind(:_clear_) { Vedeu.clear }
+
+  # @see Vedeu::Buffers::Terminal#output
+  Vedeu.bind(:_drb_retrieve_output_) { Vedeu::Buffers::Terminal.output }
+
+  # @see Vedeu::Buffers::Terminal#write
+  Vedeu.bind(:_drb_store_output_) do |data|
+    Vedeu::Buffers::Terminal.write(data)
+  end
+
+  # See {file:docs/events/by_name/refresh_view.md}
+  Vedeu.bind(:_refresh_view_) do |name|
+    Vedeu::Buffers::Refresh.by_name(name) if Vedeu.ready?
+  end
+
+  # See {file:docs/events/by_name/refresh_view_content.md}
+  Vedeu.bind(:_refresh_view_content_) do |name|
+    Vedeu::Buffers::Refresh.refresh_content_by_name(name) if Vedeu.ready?
+  end
+
+  # :nocov:
+
 end # Vedeu
 
 require 'vedeu/buffers/empty'

@@ -218,13 +218,4 @@ module Vedeu
 
   end # Borders
 
-  # :nocov:
-
-  # {include:file:docs/events/by_name/refresh_border.md}
-  Vedeu.bind(:_refresh_border_) do |name|
-    Vedeu::Borders::Refresh.by_name(name) if Vedeu.ready?
-  end
-
-  # :nocov:
-
 end # Vedeu

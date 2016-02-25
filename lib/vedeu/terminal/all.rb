@@ -9,6 +9,13 @@ module Vedeu
 
   end # Terminal
 
+  # :nocov:
+
+  # See {file:docs/events/view.md#\_resize_}
+  Vedeu.bind(:_resize_, delay: 0.25) { Vedeu.resize }
+
+  # :nocov:
+
 end # Vedeu
 
 require 'vedeu/terminal/mode'

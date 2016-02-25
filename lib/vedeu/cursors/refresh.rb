@@ -95,13 +95,4 @@ module Vedeu
 
   end # Cursors
 
-  # :nocov:
-
-  # See {file:docs/events/refresh.md#\_refresh_cursor_}
-  Vedeu.bind(:_refresh_cursor_) do |name|
-    Vedeu::Cursors::Refresh.by_name(name) if Vedeu.ready?
-  end
-
-  # :nocov:
-
 end # Vedeu

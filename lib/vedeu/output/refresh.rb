@@ -32,11 +32,4 @@ module Vedeu
 
   end # Output
 
-  # :nocov:
-
-  # See {file:docs/events/refresh.md}
-  Vedeu.bind(:_refresh_) { Vedeu::Output::Refresh.all if Vedeu.ready? }
-
-  # :nocov:
-
 end # Vedeu

@@ -88,17 +88,4 @@ module Vedeu
 
   end # Editor
 
-  # :nocov:
-
-  # See {file:docs/events/system.md#\_editor_}
-  Vedeu.bind(:_editor_) do |key|
-    Vedeu.timer('Executing editor keypress') do
-      Vedeu.trigger(:key, key)
-
-      Vedeu::Editor::Editor.keypress(name: Vedeu.focus, input: key)
-    end
-  end
-
-  # :nocov:
-
 end # Vedeu
