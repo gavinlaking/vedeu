@@ -29,16 +29,16 @@ module Vedeu
       def initialize(name, direction, offset)
         @name      = name
         @direction = direction
-        @offset    = offset
+        @offset    = offset || 1
       end
 
       # @return [NilClass|Vedeu::Cursors::Cursor]
       def move
-        return nil unless visible? && valid_direction?
-
-        cursor.public_send(direction, offset)
-        cursor.store { Vedeu.trigger(:_refresh_cursor_, name) }
-        cursor
+        if visible? && valid?
+          cursor.public_send(direction, offset)
+          cursor.store { Vedeu.trigger(:_refresh_cursor_, name) }
+          cursor
+        end
       end
 
       protected
@@ -63,14 +63,44 @@ module Vedeu
         @_cursor ||= Vedeu.cursors.by_name(name)
       end
 
+      # @return [Hash<Symbol => Proc>]
+      def directions
+        {
+          move_down:  proc { valid_down? },
+          move_left:  proc { valid_left? },
+          move_right: proc { valid_right? },
+          move_up:    proc { valid_up? },
+        }
+      end
+
+      # @return [Boolean]
+      def valid?
+        valid_direction? && directions.fetch(direction).call
+      end
+
       # @return [Boolean]
       def valid_direction?
-        [
-          :move_down,
-          :move_left,
-          :move_right,
-          :move_up,
-        ].include?(direction)
+        directions.keys.include?(direction)
+      end
+
+      # @return [Boolean]
+      def valid_down?
+        true
+      end
+
+      # @return [Boolean]
+      def valid_left?
+        (cursor.ox - offset) > 0
+      end
+
+      # @return [Boolean]
+      def valid_right?
+        true
+      end
+
+      # @return [Boolean]
+      def valid_up?
+        (cursor.oy - offset) > 0
       end
 
     end # Move

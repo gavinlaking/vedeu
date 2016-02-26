@@ -177,12 +177,12 @@ module Vedeu
 
       # @return [Fixnum]
       def ox
-        @ox = @ox < 0 ? 0 : @ox
+        @ox = @ox < 1 ? 1 : @ox
       end
 
       # @return [Fixnum]
       def oy
-        @oy = @oy < 0 ? 0 : @oy
+        @oy = @oy < 1 ? 1 : @oy
       end
 
       # Return the position of this cursor.
@@ -232,8 +232,8 @@ module Vedeu
       def defaults
         {
           name:       '',
-          ox:         0,
-          oy:         0,
+          ox:         1,
+          oy:         1,
           repository: Vedeu.cursors,
           visible:    false,
           x:          1,

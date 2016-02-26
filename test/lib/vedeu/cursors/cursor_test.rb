@@ -198,8 +198,8 @@ module Vedeu
 
         it { subject.x.must_equal(6) }
         it { subject.y.must_equal(6) }
-        it { subject.ox.must_equal(0) }
-        it { subject.oy.must_equal(0) }
+        it { subject.ox.must_equal(1) }
+        it { subject.oy.must_equal(1) }
       end
 
       describe '#move_right' do
@@ -242,7 +242,7 @@ module Vedeu
         context 'when < 0' do
           let(:ox) { -2 }
 
-          it { subject.must_equal(0) }
+          it { subject.must_equal(1) }
         end
       end
 
@@ -254,7 +254,7 @@ module Vedeu
         context 'when < 0' do
           let(:oy) { -4 }
 
-          it { subject.must_equal(0) }
+          it { subject.must_equal(1) }
         end
       end
 
