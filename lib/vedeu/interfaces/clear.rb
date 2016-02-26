@@ -67,19 +67,19 @@ module Vedeu
       protected
 
       # @!attribute [r] name
-      # @return [String|Symbol]
+      # @macro return_name
       attr_reader :name
 
       private
 
       # @return [String] A string of blank characters.
       def chars
-        @chars ||= (' ' * width)
+        @_chars ||= (' ' * width)
       end
 
       # @return [Vedeu::Colours::Colour]
       def colour
-        @colour ||= interface.colour
+        @_colour ||= interface.colour
       end
 
       # @return [Boolean]
@@ -100,25 +100,23 @@ module Vedeu
         options[:direct]
       end
 
-      # Returns the geometry for the interface.
-      #
-      # @return (see Vedeu::Geometries::Repository#by_name)
+      # @macro geometry_by_name
       def geometry
-        @geometry ||= Vedeu.geometries.by_name(name)
+        @_geometry ||= Vedeu.geometries.by_name(name)
       end
 
       # @return [Fixnum]
       def height
-        @height ||= if content_only?
-                      geometry.bordered_height
+        @_height ||= if content_only?
+                       geometry.bordered_height
 
-                    else
-                      geometry.height
+                     else
+                       geometry.height
 
-                    end
+                     end
       end
 
-      # @return [Vedeu::Interfaces::Interface]
+      # @macro interface_by_name
       def interface
         Vedeu.interfaces.by_name(name)
       end
@@ -149,7 +147,7 @@ module Vedeu
       # @return [Array<Array<Vedeu::Cells::Char>>]
       def output
         Vedeu.timer("Clearing #{clearing}: '#{name}'") do
-          @clear ||= Array.new(height) do |iy|
+          @_clear ||= Array.new(height) do |iy|
             Array.new(width) do |ix|
               position = Vedeu::Geometries::Position.new((y + iy), (x + ix))
               Vedeu::Cells::Clear.new(colour:   colour,
@@ -162,13 +160,13 @@ module Vedeu
 
       # @return [String]
       def clearing
-        @clearing ||= if content_only?
-                        'content'
+        @_clearing ||= if content_only?
+                         'content'
 
-                      else
-                        'interface'
+                       else
+                         'interface'
 
-                      end
+                       end
       end
 
       # @param pos_y [Fixnum]
@@ -181,35 +179,35 @@ module Vedeu
 
       # @return [Fixnum]
       def width
-        @width ||= if content_only?
-                     geometry.bordered_width
+        @_width ||= if content_only?
+                      geometry.bordered_width
 
-                   else
-                     geometry.width
+                    else
+                      geometry.width
 
-                   end
+                    end
       end
 
       # @return [Fixnum]
       def y
-        @y ||= if content_only?
-                 geometry.by
+        @_y ||= if content_only?
+                  geometry.by
 
-               else
-                 geometry.y
+                else
+                  geometry.y
 
-               end
+                end
       end
 
       # @return [Fixnum]
       def x
-        @x ||= if content_only?
-                 geometry.bx
+        @_x ||= if content_only?
+                  geometry.bx
 
-               else
-                 geometry.x
+                else
+                  geometry.x
 
-               end
+                end
       end
 
     end # Clear
@@ -225,17 +223,5 @@ module Vedeu
   def_delegators Vedeu::Interfaces::Clear,
                  :clear_by_name,
                  :clear_content_by_name
-
-  # :nocov:
-
-  # See {file:docs/events/visibility.md#\_clear_view_}
-  Vedeu.bind(:_clear_view_) { |name| Vedeu.clear_by_name(name) if Vedeu.ready? }
-
-  # See {file:docs/events/visibility.md#\_clear_view_content_}
-  Vedeu.bind(:_clear_view_content_) do |name|
-    Vedeu.clear_content_by_name(name) if Vedeu.ready?
-  end
-
-  # :nocov:
 
 end # Vedeu

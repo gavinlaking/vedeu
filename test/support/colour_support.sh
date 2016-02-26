@@ -1,5 +1,7 @@
 #!/bin/bash
-#
+
+set -euo pipefail
+
 #   Vedeu can use 24-bit color codes. To test whether your terminal supports
 #   this colour mode, running this file should output lots of beautiful colours.
 #   If the output is 'patchy' and not many colours show, then it is unlikely

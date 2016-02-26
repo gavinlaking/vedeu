@@ -44,13 +44,13 @@ module Vedeu
 
           context 'when the cursor is visible' do
             context 'when a valid direction is given' do
-              let(:direction) { :move_left }
+              let(:direction) { :move_right }
 
               it { subject.must_be_instance_of(Vedeu::Cursors::Cursor) }
             end
 
             context 'when an invalid direction is given' do
-              let(:direction) { :invalid }
+              let(:direction) { :move_left }
 
               it { subject.must_equal(nil) }
             end

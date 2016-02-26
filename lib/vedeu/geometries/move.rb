@@ -53,7 +53,7 @@ module Vedeu
       attr_reader :direction
 
       # @!attribute [r] name
-      # @return [String|Symbol] The name of the interface/view.
+      # @macro return_name
       attr_reader :name
 
       # @!attribute [r] offset
@@ -97,7 +97,7 @@ module Vedeu
         }[direction]
       end
 
-      # @return [Vedeu::Geometries::Geometry]
+      # @macro geometry_by_name
       def geometry
         @geometry ||= Vedeu.geometries.by_name(name)
       end
@@ -206,41 +206,5 @@ module Vedeu
     end # Move
 
   end # Geometries
-
-  # :nocov:
-
-  # {include:file:docs/events/by_name/movement_refresh.md}
-  Vedeu.bind(:_movement_refresh_) do |name|
-    Vedeu.trigger(:_clear_)
-    Vedeu.trigger(:_refresh_)
-    Vedeu.trigger(:_clear_view_, name)
-    Vedeu.trigger(:_refresh_view_, name)
-  end
-
-  # {include:file:docs/events/by_name/view_down.md}
-  Vedeu.bind(:_view_down_) do |name, offset|
-    Vedeu::Geometries::Move.move(name: name, offset: offset, direction: :down)
-  end
-
-  # {include:file:docs/events/by_name/view_left.md}
-  Vedeu.bind(:_view_left_) do |name, offset|
-    Vedeu::Geometries::Move.move(name: name, offset: offset, direction: :left)
-  end
-
-  # {include:file:docs/events/by_name/view_right.md}
-  Vedeu.bind(:_view_right_) do |name, offset|
-    Vedeu::Geometries::Move.move(name: name, offset: offset, direction: :right)
-  end
-
-  # {include:file:docs/events/by_name/view_up.md}
-  Vedeu.bind(:_view_up_) do |name, offset|
-    Vedeu::Geometries::Move.move(name: name, offset: offset, direction: :up)
-  end
-
-  [:down, :left, :right, :up].each do |direction|
-    Vedeu.bind_alias(:"_geometry_#{direction}_", :"_view_#{direction}_")
-  end
-
-  # :nocov:
 
 end # Vedeu

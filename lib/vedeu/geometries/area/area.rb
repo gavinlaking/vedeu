@@ -281,12 +281,12 @@ module Vedeu
       protected
 
       # @!attribute [r] name
-      # @return [String|Symbol]
+      # @macro return_name
       attr_reader :name
 
       private
 
-      # @return [Vedeu::Borders::Border]
+      # @macro border_by_name
       def border
         @_border ||= Vedeu.borders.by_name(name)
       end

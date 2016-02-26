@@ -9,6 +9,7 @@ module Vedeu
     module Traps
 
       # :nocov:
+
       Signal.trap('INT') do
         exit(1)
       end
@@ -22,6 +23,7 @@ module Vedeu
       Signal.trap('USR2') {}
 
       Signal.trap('SIGWINCH') { Vedeu.trigger(:_resize_) }
+
       # :nocov:
 
     end # Traps

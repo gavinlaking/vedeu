@@ -193,17 +193,5 @@ module Vedeu
                  :show_group,
                  :toggle_group
 
-  # :nocov:
-
-  # See {file:docs/events/visibility.md#\_hide_group_}
-  Vedeu.bind(:_hide_group_) { |name| Vedeu.hide_group(name) }
-
-  # See {file:docs/events/visibility.md#\_show_group_}
-  Vedeu.bind(:_show_group_) { |name| Vedeu.show_group(name) }
-
-  # See {file:docs/events/visibility.md#\_toggle_group_}
-  Vedeu.bind(:_toggle_group_) { |name| Vedeu.toggle_group(name) }
-
-  # :nocov:
 
 end # Vedeu

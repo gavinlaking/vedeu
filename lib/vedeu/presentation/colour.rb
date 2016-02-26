@@ -118,9 +118,14 @@ module Vedeu
 
       private
 
+      # @macro interface_by_name
+      def interface
+        Vedeu.interfaces.by_name(name)
+      end
+
       # @return [Vedeu::Colours::Colour]
       def named_colour
-        Vedeu.interfaces.by_name(name).colour
+        interface.colour
       end
 
       # @return [Boolean]

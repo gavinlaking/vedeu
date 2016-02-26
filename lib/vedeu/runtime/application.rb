@@ -144,22 +144,4 @@ module Vedeu
   def_delegators Vedeu::Runtime::Application,
                  :exit
 
-  # :nocov:
-
-  # See {file:docs/events/system.md#\_exit_}
-  Vedeu.bind(:_exit_) { Vedeu.exit }
-
-  # See {file:docs/events/system.md#\_mode_switch_}
-  Vedeu.bind(:_mode_switch_) do |mode|
-    Vedeu::Runtime::MainLoop.mode_switch!(mode)
-  end
-
-  # See {file:docs/events/system.md#\_cleanup_}
-  Vedeu.bind(:_cleanup_) do
-    Vedeu.trigger(:_drb_stop_)
-    Vedeu.trigger(:cleanup)
-  end
-
-  # :nocov:
-
 end # Vedeu

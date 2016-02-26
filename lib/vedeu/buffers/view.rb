@@ -58,7 +58,7 @@ module Vedeu
       protected
 
       # @!attribute [r] name
-      # @return [String|Symbol]
+      # @macro return_name
       attr_reader :name
 
       private
@@ -85,7 +85,7 @@ module Vedeu
         }
       end
 
-      # @return [Vedeu::Geometries::Geometry]
+      # @macro geometry_by_name
       def geometry
         @_geometry ||= Vedeu.geometries.by_name(name)
       end

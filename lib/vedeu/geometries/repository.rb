@@ -29,18 +29,4 @@ module Vedeu
   def_delegators Vedeu::Geometries::Repository,
                  :geometries
 
-  # :nocov:
-
-  # See {file:docs/events/view.md#\_maximise_}
-  Vedeu.bind(:_maximise_) do |name|
-    Vedeu.geometries.by_name(name).maximise
-  end
-
-  # See {file:docs/events/view.md#\_unmaximise_}
-  Vedeu.bind(:_unmaximise_) do |name|
-    Vedeu.geometries.by_name(name).unmaximise
-  end
-
-  # :nocov:
-
 end # Vedeu

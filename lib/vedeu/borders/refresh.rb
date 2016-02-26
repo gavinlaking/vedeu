@@ -77,7 +77,7 @@ module Vedeu
       protected
 
       # @!attribute [r] name
-      # @return [String|Symbol]
+      # @macro return_name
       attr_reader :name
 
       private
@@ -91,9 +91,7 @@ module Vedeu
         }
       end
 
-      # Returns the border for the interface.
-      #
-      # @return (see Vedeu::Borders::Repository#by_name)
+      # @macro border_by_name
       def border
         @border ||= Vedeu.borders.by_name(name)
       end
@@ -122,9 +120,7 @@ module Vedeu
         [(bottom_left if left?), captionbar, (bottom_right if right?)].compact
       end
 
-      # Returns the geometry for the interface.
-      #
-      # @return (see Vedeu::Geometries::Repository#by_name)
+      # @macro geometry_by_name
       def geometry
         Vedeu.geometries.by_name(name)
       end
@@ -136,7 +132,7 @@ module Vedeu
       #
       # @return (see Vedeu::Interfaces::Repository#by_name)
       def interface
-        @interface ||= Vedeu.interfaces.by_name(name)
+        @_interface ||= Vedeu.interfaces.by_name(name)
       end
       alias parent interface
 
@@ -217,14 +213,5 @@ module Vedeu
     end # Refresh
 
   end # Borders
-
-  # :nocov:
-
-  # {include:file:docs/events/by_name/refresh_border.md}
-  Vedeu.bind(:_refresh_border_) do |name|
-    Vedeu::Borders::Refresh.by_name(name) if Vedeu.ready?
-  end
-
-  # :nocov:
 
 end # Vedeu

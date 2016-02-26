@@ -72,15 +72,13 @@ module Vedeu
         }
       end
 
-      # Returns the interface by name.
-      #
-      # @return (see Vedeu::Interfaces::Repository#by_name)
+      # @macro interface_by_name
       def interface
         Vedeu.interfaces.by_name(name)
       end
       alias interface? interface
 
-      # @return [String|Symbol]
+      # @macro return_name
       def name
         options[:name]
       end

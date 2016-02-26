@@ -63,7 +63,7 @@ module Vedeu
 
       private
 
-      # @return [String|Symbol]
+      # @macro return_name
       def name
         present?(@name) ? @name : Vedeu.focus
       end
@@ -78,30 +78,18 @@ module Vedeu
         visible? && (ox >= bordered_width || oy >= bordered_height)
       end
 
-      # @return [Vedeu::Cursors::Cursor]
-      # @see Vedeu::Cursors::Repository#by_name
+      # @macro cursor_by_name
       def cursor
-        @cursor ||= Vedeu.cursors.by_name(name)
+        @_cursor ||= Vedeu.cursors.by_name(name)
       end
 
-      # Fetch the geometry by name.
-      #
-      # @return (see Vedeu::Geometries::Repository#by_name)
+      # @macro geometry_by_name
       def geometry
-        @geometry ||= Vedeu.geometries.by_name(name)
+        @_geometry ||= Vedeu.geometries.by_name(name)
       end
 
     end # Refresh
 
   end # Cursors
-
-  # :nocov:
-
-  # See {file:docs/events/refresh.md#\_refresh_cursor_}
-  Vedeu.bind(:_refresh_cursor_) do |name|
-    Vedeu::Cursors::Refresh.by_name(name) if Vedeu.ready?
-  end
-
-  # :nocov:
 
 end # Vedeu

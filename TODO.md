@@ -1,3 +1,11 @@
+## 2016-02-25
+
+- In Vedeu::XCoordinate and Vedeu::YCoordinate, rename #d_dn to
+  #bd_bdn
+- Add new #d_dn to Vedeu::XCoordinate and Vedeu::YCoordinate.
+- Rename all private instance variables used for memoization from
+  '@...' to '@_...'.
+
 ## 2016-01-16
 
 - Add Vedeu::Index which converts a Vedeu::Point to an array index.

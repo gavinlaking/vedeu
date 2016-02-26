@@ -57,7 +57,7 @@ module Vedeu
       alias maximised? maximised
 
       # @!attribute [rw] name
-      # @return [String|Symbol]
+      # @macro return_name
       attr_accessor :name
 
       # @!attribute [rw] vertical_alignment

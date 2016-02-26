@@ -166,7 +166,7 @@ module Vedeu
       # geometry is registered with this name, the width of the
       # geometry is used if the :width option was not given.
       #
-      # @return [String|Symbol]
+      # @macro return_name
       def name
         options[:name]
       end

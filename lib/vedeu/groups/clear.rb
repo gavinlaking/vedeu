@@ -37,7 +37,7 @@ module Vedeu
       protected
 
       # @!attribute [r] name
-      # @return [String|Symbol]
+      # @macro return_name
       attr_reader :name
 
       private
@@ -61,14 +61,5 @@ module Vedeu
   #   @see Vedeu::Groups::Clear.render
   def_delegators Vedeu::Groups::Clear,
                  :clear_by_group
-
-  # :nocov:
-
-  # See {file:docs/events/visibility.md#\_clear_group_}
-  Vedeu.bind(:_clear_group_) do |name|
-    Vedeu.clear_by_group(name) if Vedeu.ready?
-  end
-
-  # :nocov:
 
 end # Vedeu

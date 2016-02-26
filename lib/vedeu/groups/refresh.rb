@@ -46,7 +46,7 @@ module Vedeu
       protected
 
       # @!attribute [r] name
-      # @return [String|Symbol]
+      # @macro return_name
       attr_reader :name
 
       private
@@ -66,7 +66,7 @@ module Vedeu
         @_group_name ||= interface.group
       end
 
-      # @return [Vedeu::Interfaces::Interface]
+      # @macro interface_by_name
       def interface
         Vedeu.interfaces.by_name(name)
       end
@@ -74,14 +74,5 @@ module Vedeu
     end # Refresh
 
   end # Groups
-
-  # :nocov:
-
-  # See {file:docs/events/refresh.md}
-  Vedeu.bind(:_refresh_group_) do |name|
-    Vedeu::Groups::Refresh.by_name(name) if Vedeu.ready?
-  end
-
-  # :nocov:
 
 end # Vedeu

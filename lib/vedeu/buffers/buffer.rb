@@ -33,7 +33,7 @@ module Vedeu
       attr_accessor :previous
 
       # @!attribute [r] name
-      # @return [String|Symbol]
+      # @macro return_name
       attr_reader :name
 
       # Return a new instance of Buffer. Generally a Buffer is
@@ -185,7 +185,7 @@ module Vedeu
         }
       end
 
-      # @return [Vedeu::Interfaces::Interface]
+      # @macro interface_by_name
       def interface
         Vedeu.interfaces.by_name(name)
       end

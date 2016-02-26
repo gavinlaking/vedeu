@@ -131,7 +131,7 @@ module Vedeu
         interface(name).attributes
       end
 
-      # @return [Vedeu::Interfaces::Interface]
+      # @macro interface_by_name
       def interface(name)
         Vedeu.interfaces.by_name(name)
       end

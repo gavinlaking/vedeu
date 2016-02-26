@@ -100,19 +100,4 @@ module Vedeu
                  :clear,
                  :refresh
 
-  # :nocov:
-
-  # @see Vedeu::Buffers::Terminal#clear
-  Vedeu.bind(:_clear_) { Vedeu.clear }
-
-  # @see Vedeu::Buffers::Terminal#output
-  Vedeu.bind(:_drb_retrieve_output_) { Vedeu::Buffers::Terminal.output }
-
-  # @see Vedeu::Buffers::Terminal#write
-  Vedeu.bind(:_drb_store_output_) do |data|
-    Vedeu::Buffers::Terminal.write(data)
-  end
-
-  # :nocov:
-
 end # Vedeu

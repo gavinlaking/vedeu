@@ -86,7 +86,7 @@ module Vedeu
 
     # @return [Mutex]
     def mutex
-      @mutex ||= Mutex.new
+      @_mutex ||= Mutex.new
     end
 
     # @param block [Proc]

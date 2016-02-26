@@ -47,7 +47,7 @@ module Vedeu
       alias cursor_visible? cursor_visible
 
       # @!attribute [rw] name
-      # @return [String|Symbol]
+      # @macro return_name
       attr_accessor :name
 
       # @!attribute [rw] wordwrap
@@ -146,7 +146,7 @@ module Vedeu
 
       private
 
-      # @return [Vedeu::Buffers::Buffer]
+      # @macro buffer_by_name
       def buffer
         Vedeu.buffers.by_name(name)
       end
@@ -166,7 +166,7 @@ module Vedeu
         }
       end
 
-      # @return [Vedeu::Interfaces::Interface]
+      # @macro interface_by_name
       def interface
         Vedeu.interfaces.by_name(name)
       end

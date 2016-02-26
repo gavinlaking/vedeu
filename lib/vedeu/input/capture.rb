@@ -106,7 +106,7 @@ module Vedeu
         end
       end
 
-      # @return [Vedeu::Interfaces::Interface]
+      # @macro interface_by_name
       def interface
         Vedeu.interfaces.by_name(name)
       end
@@ -135,7 +135,7 @@ module Vedeu
         console.gets.chomp
       end
 
-      # @return [String|Symbol]
+      # @macro return_name
       def name
         Vedeu.focus
       end

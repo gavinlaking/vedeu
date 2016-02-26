@@ -82,7 +82,7 @@ module Vedeu
       attr_reader :horizontal
 
       # @!attribute [r] name
-      # @return [String|Symbol]
+      # @macro return_name
       attr_reader :name
 
       private
@@ -95,7 +95,7 @@ module Vedeu
                                 value:    char)
       end
 
-      # @return [Vedeu::Borders::Border]
+      # @macro border_by_name
       def border
         @_border ||= Vedeu.borders.by_name(name)
       end
@@ -126,7 +126,7 @@ module Vedeu
         start_index + (size - 1)
       end
 
-      # @return [Vedeu::Geometries::Geometry]
+      # @macro geometry_by_name
       def geometry
         @_geometry ||= Vedeu.geometries.by_name(name)
       end
@@ -154,6 +154,10 @@ module Vedeu
         pad.size
       end
 
+      # Provides the index on the horizontal border for where the
+      # title (or caption) should start. The title will appear
+      # top-left, whilst the caption will be justified bottom-right.
+      #
       # @return [Fixnum]
       def start_index
         1
@@ -189,6 +193,8 @@ module Vedeu
         geometry.bx + start_index
       end
 
+      # Return the vertical position for the title (or caption).
+      #
       # @return [Fixnum]
       def y
         geometry.y

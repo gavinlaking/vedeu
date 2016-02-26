@@ -70,6 +70,36 @@ end # Vedeu
 #     target model to act upon. May default to `Vedeu.focus`.
 #
 # @!macro [new] return_name
-#   @return [NilClass|Symbol|String]
+#   @return [NilClass|Symbol|String] The name of the model, the target
+#     model or the name of the associated model.
+#
+# @!macro [new] border_by_name
+#   Returns the named border from the borders repository.
+#   @return [Vedeu::Borders::Border]
+#
+# @!macro [new] buffer_by_name
+#   Returns the named buffer from the buffer repository.
+#   @return [Vedeu::Buffers::Buffer]
+#
+# @!macro [new] cursor_by_name
+#   Returns the named cursor from the cursors repository.
+#   @return [Vedeu::Cursors::Cursor]
+#
+# @!macro [new] document_by_name
+#   Returns the named document from the documents repository.
+#   @return [Vedeu::Editor::Document]
+#
+# @!macro [new] geometry_by_name
+#   Returns the named geometry from the geometries repository.
+#   @return [Vedeu::Geometries::Geometry]
+
+# @!macro [new] group_by_name
+#   Returns the named group from the groups repository.
+#   @return [Vedeu::Groups::Group]
+#
+# @!macro [new] interface_by_name
+#   Returns the named interface/view from the interfaces repository.
+#   @return [Vedeu::Interfaces::Interface]
+#
 
 require 'vedeu/all'

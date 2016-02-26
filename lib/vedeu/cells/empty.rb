@@ -18,8 +18,7 @@ module Vedeu
       include Vedeu::Repositories::Defaults
 
       # @!attribute [r] name
-      # @return [String|Symbol] The name of the interface/view this
-      #   cell belongs to.
+      # @macro return_name
       attr_reader :name
 
       # @!attribute [r] value
@@ -99,17 +98,17 @@ module Vedeu
         }
       end
 
-      # @return [Vedeu::Borders::Border]
+      # @macro border_by_name
       def border
         Vedeu.borders.by_name(name)
       end
 
-      # @return [Vedeu::Geometries::Geometry]
+      # @macro geometry_by_name
       def geometry
         Vedeu.geometries.by_name(name)
       end
 
-      # @return [Vedeu::Interfaces::Interface]
+      # @macro interface_by_name
       def interface
         Vedeu.interfaces.by_name(name)
       end

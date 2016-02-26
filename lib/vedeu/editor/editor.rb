@@ -72,14 +72,12 @@ module Vedeu
       attr_reader :input
 
       # @!attribute [r] name
-      # @return [String|Symbol]
+      # @macro return_name
       attr_reader :name
 
       private
 
-      # Return the document by name from the documents repository.
-      #
-      # @return [Vedeu::Editor::Document]
+      # @macro document_by_name
       def document
         @document ||= Vedeu.documents.by_name(name)
       end
@@ -87,18 +85,5 @@ module Vedeu
     end # Editor
 
   end # Editor
-
-  # :nocov:
-
-  # See {file:docs/events/system.md#\_editor_}
-  Vedeu.bind(:_editor_) do |key|
-    Vedeu.timer('Executing editor keypress') do
-      Vedeu.trigger(:key, key)
-
-      Vedeu::Editor::Editor.keypress(name: Vedeu.focus, input: key)
-    end
-  end
-
-  # :nocov:
 
 end # Vedeu

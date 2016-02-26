@@ -52,7 +52,7 @@ module Vedeu
 
       # @return [IO]
       def console
-        @console ||= Vedeu::Terminal.console
+        @_console ||= Vedeu::Terminal.console
       end
 
       # @return [Boolean]

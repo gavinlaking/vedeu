@@ -3,7 +3,7 @@
 # Displays the number of lines of Vedeu application code and the corresponding
 # number of lines of Vedeu test code per commit.
 
-set -e
+set -euo pipefail
 
 function main {
   for rev in `revisions`; do
