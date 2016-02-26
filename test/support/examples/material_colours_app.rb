@@ -31,23 +31,6 @@ class VedeuMaterialColoursApp
     threaded false
   end
 
-  class CursorView
-    def render
-      Vedeu.render do
-        view('cursor') do
-          line do
-            stream 'Cursor: ', foreground: '#ff8800'
-            stream "#{cursor_position}"
-          end
-        end
-      end
-    end
-
-    def cursor_position
-      Vedeu.trigger(:_cursor_position_, Vedeu.focus)
-    end
-  end
-
   # Borders can be defined as standalone declarations.
   Vedeu.border 'no_bottom' do
     background  '#000000'
@@ -230,7 +213,7 @@ class VedeuMaterialColoursApp
   Vedeu.interface 'only_left' do
     colour  foreground: '#000000', background: '#cddc39'
     border do
-      foreground  '#000000'
+      foreground  '#ffffff'
       show_top    false
       show_bottom false
       show_right  false
@@ -301,21 +284,17 @@ class VedeuMaterialColoursApp
   end
 
   Vedeu.keymap('_global_') do
-    key(:up)    do
+    key(:up) do
       Vedeu.trigger(:_cursor_up_);
-      CursorView.new.render
     end
     key(:right) do
       Vedeu.trigger(:_cursor_right_)
-      CursorView.new.render
     end
     key(:down) do
       Vedeu.trigger(:_cursor_down_)
-      CursorView.new.render
     end
     key(:left) do
       Vedeu.trigger(:_cursor_left_)
-      CursorView.new.render
     end
     key(:home)  { Vedeu.trigger(:_cursor_top_)    }
     key(:end)   { Vedeu.trigger(:_cursor_bottom_) }
@@ -350,19 +329,15 @@ class VedeuMaterialColoursApp
 
     key('h') do
       Vedeu.trigger(:_view_left_, Vedeu.focus)
-      CursorView.new.render
     end
     key('j') do
       Vedeu.trigger(:_view_down_, Vedeu.focus)
-      CursorView.new.render
     end
     key('k') do
       Vedeu.trigger(:_view_up_, Vedeu.focus)
-      CursorView.new.render
     end
     key('l') do
       Vedeu.trigger(:_view_right_, Vedeu.focus)
-      CursorView.new.render
     end
 
     key('m') { Vedeu.trigger(:_maximise_, Vedeu.focus) }
@@ -623,7 +598,6 @@ class VedeuMaterialColoursApp
         line 'style'
       end
     end
-    CursorView.new.render
   end
 
   Vedeu.focus_by_name 'main_interface'
