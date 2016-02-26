@@ -60,6 +60,8 @@ module Vedeu
         # @return [void]
         attr_reader :content
 
+        private
+
         # Compress by not repeatedly sending the same colours for each
         # character which has the same colours as the last character
         # output.

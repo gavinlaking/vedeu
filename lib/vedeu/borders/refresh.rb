@@ -132,7 +132,7 @@ module Vedeu
       #
       # @return (see Vedeu::Interfaces::Repository#by_name)
       def interface
-        @interface ||= Vedeu.interfaces.by_name(name)
+        @_interface ||= Vedeu.interfaces.by_name(name)
       end
       alias parent interface
 

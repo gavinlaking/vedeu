@@ -3,6 +3,8 @@
 - In Vedeu::XCoordinate and Vedeu::YCoordinate, rename #d_dn to
   #bd_bdn
 - Add new #d_dn to Vedeu::XCoordinate and Vedeu::YCoordinate.
+- Rename all private instance variables used for memoization from
+  '@...' to '@_...'.
 
 ## 2016-01-16
 

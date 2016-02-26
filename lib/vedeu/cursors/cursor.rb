@@ -216,7 +216,7 @@ module Vedeu
 
       # @macro geometry_by_name
       def geometry
-        @geometry ||= Vedeu.geometries.by_name(name)
+        @_geometry ||= Vedeu.geometries.by_name(name)
       end
 
       # Determine correct x and y related coordinates.

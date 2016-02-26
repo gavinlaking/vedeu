@@ -61,7 +61,7 @@ module Vedeu
       #
       # @return [Array]
       def content
-        @content ||= output.content.reject do |cell|
+        @_content ||= output.content.reject do |cell|
           cell.class == Vedeu::Cells::Empty
         end
       end

@@ -65,7 +65,7 @@ module Vedeu
     #
     # @return [Array]
     def storage
-      @storage ||= Set.new
+      @_storage ||= Set.new
     end
 
   end # Repositories
