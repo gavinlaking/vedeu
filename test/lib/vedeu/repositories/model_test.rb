@@ -6,6 +6,20 @@ module Vedeu
 
   module Repositories
 
+    class ModelTestClass
+
+      include Vedeu::Repositories::Model
+
+      def initialize(attributes)
+        @attributes = attributes
+      end
+
+      def store
+        self
+      end
+
+    end # ModelTestClass
+
     describe Model do
 
       let(:described)          { Vedeu::Repositories::Model }
@@ -13,7 +27,7 @@ module Vedeu
       let(:included_instance)  { included_described.new(attributes) }
       let(:attributes) {
         {
-          name: 'hydrogen'
+          name: :vedeu_repositories_model
         }
       }
 
@@ -68,7 +82,7 @@ module Vedeu
         subject { included_instance.store }
 
         it 'returns the model' do
-          subject.must_be_instance_of(Vedeu::Repositories::ModelTestClass)
+          subject.must_be_instance_of(included_described)
         end
       end
 

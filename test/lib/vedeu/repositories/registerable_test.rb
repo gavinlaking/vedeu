@@ -6,6 +6,9 @@ module Vedeu
 
   module Repositories
 
+    class ModelTestClass
+    end # ModelTestClass
+
     class RegisterableTestClass
 
       include Vedeu::Repositories::Registerable
@@ -13,7 +16,7 @@ module Vedeu
       null Vedeu::Repositories::ModelTestClass
       real Vedeu::Repositories::ModelTestClass
 
-    end
+    end # RegisterableTestClass
 
     describe Registerable do
 
@@ -36,7 +39,9 @@ module Vedeu
 
         it { subject.must_respond_to(:null_model) }
         it { subject.must_respond_to(:null_attributes) }
-        it { subject.null_model.must_equal(Vedeu::Repositories::ModelTestClass) }
+        it {
+          subject.null_model.must_equal(Vedeu::Repositories::ModelTestClass)
+        }
         it { subject.null_attributes.must_equal({}) }
       end
 
