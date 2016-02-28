@@ -57,3 +57,11 @@ tasks_to_run << :rubocop if ENV['RUBOCOP'].to_i == 1
 tasks_to_run << :yard if ENV['YARD'].to_i == 1
 
 task default: tasks_to_run
+
+# task :mutant do
+#   sh "bundle exec mutant --use minitest 'Vedeu'"
+# end
+
+task :mutant do
+  sh "bundle exec mutant -r ./lib/vedeu -I lib -I test --require test_helper --use minitest 'Vedeu'"
+end
