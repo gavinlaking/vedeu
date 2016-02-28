@@ -3,8 +3,9 @@ for debugging to be disabled. Using `debug!` or setting `debug` to
 true will enable debugging.
 
 Enabling debugging will:
-- Enable `Vedeu::Logging::Timer` meaning various timing
-  information is output to the log file.
+- Log when an event is triggered which has no action registered.
+- Enable `Vedeu::Logging::Timer` meaning various timing information is
+  output to the log file.
 - Produce a full a backtrace to STDOUT and the log file upon
   unrecoverable error or unhandled exception.
 
