@@ -193,5 +193,4 @@ module Vedeu
                  :show_group,
                  :toggle_group
 
-
 end # Vedeu
