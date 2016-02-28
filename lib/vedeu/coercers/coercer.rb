@@ -46,6 +46,11 @@ module Vedeu
 
       private
 
+      # @macro raise_not_implemented
+      def child_klass
+        raise Vedeu::Error::NotImplemented, 'Subclasses implement this.'
+      end
+
       # @return [Boolean]
       def coerced?
         value.is_a?(klass)
