@@ -27,7 +27,7 @@ class DSLApp
     width 100
   end
 
-  load './support/test_interface_021.rb'
+  load File.dirname(__FILE__) + '/support/test_interface_021.rb'
 
   Vedeu.render do
     view(:test_interface) do
