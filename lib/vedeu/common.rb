@@ -99,7 +99,7 @@ module Vedeu
     # @param value [Fixnum|void]
     # @return [Boolean]
     def numeric?(value)
-      value.is_a?(Fixnum)
+      value.is_a?(Fixnum) || value == Float::INFINITY
     end
     alias fixnum? numeric?
 

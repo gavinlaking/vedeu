@@ -270,6 +270,12 @@ module Vedeu
         it { subject.must_equal(true) }
       end
 
+      context 'when the value is a Float::INFINITY' do
+        let(:_value) { Float::INFINITY }
+
+        it { subject.must_equal(true) }
+      end
+
       context 'when the value is not numeric' do
         it { subject.must_equal(false) }
       end
