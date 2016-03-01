@@ -79,7 +79,7 @@ module Vedeu
     # @macro raise_invalid_syntax
     # @return [Fixnum]
     def max
-      return @max if numeric?(@max) || @max == Float::INFINITY
+      return @max if numeric?(@max)
 
       raise Vedeu::Error::InvalidSyntax,
             "Expecting 'max' to be a Fixnum or Float::INFINITY."
