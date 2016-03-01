@@ -24,12 +24,11 @@ module Vedeu
         #
         # @macro vedeu_logging_log_param_message
         # @param type [Symbol] Colour code messages in the log file
-        #   depending on their source. See
-        #   {Vedeu::Configuration.log_types}
+        #   depending on their source. See {Vedeu::LOG_TYPES}
         #
         # @return [String]
         def log(message:, type: :info)
-          if Vedeu.config.log? && Vedeu.config.loggable?(type)
+          if Vedeu.config.loggable?(type)
             output = log_entry(type, message)
             logger.debug(output)
             output
@@ -38,8 +37,8 @@ module Vedeu
 
         # {include:file:docs/dsl/by_method/log_stdout.md}
         # @macro vedeu_logging_log_param_message
-        # @param type [Symbol] See {Vedeu::Configuration.log_types}
-        #   for valid values.
+        # @param type [Symbol] See {Vedeu::LOG_TYPES} for valid
+        #   values.
         # @return [String]
         def log_stdout(message:, type: :info)
           log(message: message, type: type)
@@ -49,8 +48,8 @@ module Vedeu
 
         # {include:file:docs/dsl/by_method/log_stderr.md}
         # @macro vedeu_logging_log_param_message
-        # @param type [Symbol] See {Vedeu::Logging::Log.types}
-        #   for valid values.
+        # @param type [Symbol] See {Vedeu::LOG_TYPES} for valid
+        #   values.
         # @return [String]
         def log_stderr(message:, type: :error)
           log(message: message, type: type)
@@ -100,7 +99,7 @@ module Vedeu
         # @macro vedeu_logging_log_param_message
         # @return [String]
         def log_entry(type, message)
-          colours = Vedeu.config.log_types.fetch(type, [:default, :default])
+          colours = Vedeu::LOG_TYPES.fetch(type, [:default, :default])
 
           [
             Vedeu.esc.colour(colours[0]) { "[#{type}]".ljust(11) },

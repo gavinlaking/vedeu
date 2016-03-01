@@ -141,12 +141,6 @@ module Vedeu
       end
     end
 
-    describe '.log_types' do
-      subject { described.log_types }
-
-      it { subject.must_be_instance_of(Hash) }
-    end
-
     describe '.loggable?' do
       subject { described.loggable?(type) }
 
