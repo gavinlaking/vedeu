@@ -25,7 +25,7 @@ class DSLApp
     standalone!
   end
 
-  load './support/test_interface.rb'
+  load File.dirname(__FILE__) + '/support/test_interface.rb'
 
   Vedeu.render do
     view(:test_interface) do

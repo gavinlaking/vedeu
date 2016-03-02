@@ -6,7 +6,7 @@ module Vedeu
 
   module Repositories
 
-    class CollectionTestClass
+    class AssemblageTestClass
 
       include Vedeu::Repositories::Assemblage
 
@@ -21,7 +21,7 @@ module Vedeu
     describe Assemblage do
 
       let(:described)  { Vedeu::Repositories::Assemblage }
-      let(:included_described) { Vedeu::Repositories::CollectionTestClass }
+      let(:included_described) { Vedeu::Repositories::AssemblageTestClass }
       let(:included_instance)  { included_described.new(collection) }
       let(:collection) { 'Some text...'.chars }
 

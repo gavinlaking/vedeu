@@ -8,13 +8,19 @@ module Vedeu
 
     describe Coercer do
 
-      let(:described) { Vedeu::Coercers::Coercer }
-      let(:instance)  { described.new(_value) }
-      let(:_value)    {}
+      let(:described)  { Vedeu::Coercers::Coercer }
+      let(:instance)   { described.new(_value, attributes) }
+      let(:_value)     {}
+      let(:attributes) {
+        {}
+      }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@value').must_equal(_value) }
+        it do
+          instance.instance_variable_get('@attributes').must_equal(attributes)
+        end
       end
 
       describe '.coerce' do

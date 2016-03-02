@@ -98,15 +98,20 @@ module Vedeu
     # Raised to remind me (or client application developers) that the
     # subclass implements the functionality sought.
     #
-    # @see Vedeu::Colours::Translator
-    #
     # @!macro [new] raise_not_implemented
-    #    @raise [Vedeu::Error::NotImplemented] When a subclass of the
-    #      current class actually implements the method. Usually an
-    #      indicator that the subclass should be used instead of the
-    #      current class.
+    #    @raise [Vedeu::Error::NotImplemented] When the method called
+    #      should be handled by a subclass of the current class, or
+    #      by the class including or extending the current module.
     #
     class NotImplemented < StandardError
+
+      # Returns an error message.
+      #
+      # @return [String]
+      def message
+        'Subclasses of this class or classes including/extending ' \
+        'this module should implement this method.'
+      end
 
     end # NotImplemented
 

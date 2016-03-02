@@ -104,95 +104,42 @@ module Vedeu
         options[:drb_port] = port
       end
 
-      # Sets the height of the fake terminal in the DRb server.
-      #
-      #   Vedeu.configure do
-      #     drb_height 25
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/drb_height.md}
       # @param height [Fixnum]
       # @return [Fixnum]
       def drb_height(height = 25)
         options[:drb_height] = height
       end
 
-      # Sets the width of the fake terminal in the DRb server.
-      #
-      #   Vedeu.configure do
-      #     drb_width 80
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/drb_width.md}
       # @param width [Fixnum]
       # @return [Fixnum]
       def drb_width(width = 80)
         options[:drb_width] = width
       end
 
-      # Sets the terminal mode to `cooked`. Default terminal mode is
-      # `raw`. Also, see {Vedeu::Config::API#raw!}
-      #
-      #   Vedeu.configure do
-      #     cooked!
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/cooked.md}
       # @return [Boolean]
       def cooked!
         options[:terminal_mode] = :cooked
       end
       alias cooked cooked!
 
-      # Sets the terminal mode to `fake`. Default terminal mode is
-      # `raw`.
-      #
-      # @example
-      #   Vedeu.configure do
-      #     fake!
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/fake.md}
       # @return [Boolean]
       def fake!
         options[:terminal_mode] = :fake
       end
       alias fake fake!
 
-      # Sets the terminal mode to `raw`. Default terminal mode is
-      # `raw`. Also, see {Vedeu::Config::API#cooked!}
-      #
-      #   Vedeu.configure do
-      #     raw!
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/raw.md}
       # @return [Boolean]
       def raw!
         options[:terminal_mode] = :raw
       end
       alias raw raw!
 
-      # Sets boolean to enable/disable debugging. Vedeu's default
-      # setting is for debugging to be disabled. Using `debug!` or
-      # setting `debug` to true will enable debugging.
-      #
-      # Enabling debugging will:
-      # - Enable `Vedeu::Logging::Timer` meaning various timing
-      #   information is output to the log file.
-      # - Produce a full a backtrace to STDOUT and the log file upon
-      #   unrecoverable error or unhandled exception.
-      #
-      #   Vedeu.configure do
-      #     debug!
-      #     # ...
-      #   end
-      #
-      #   Vedeu.configure do
-      #     debug false
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/debug.md}
       # @param value [Boolean]
       # @return [Boolean]
       def debug!(value = true)
@@ -200,20 +147,7 @@ module Vedeu
       end
       alias debug debug!
 
-      # Sets the colour mode of the terminal.
-      #
-      #   Vedeu.configure do
-      #     colour_mode 256
-      #     # ...
-      #   end
-      #
-      # @note
-      #   iTerm 2 on Mac OSX will handle the true colour setting
-      #   (16777216), whereas Terminator on Linux will not display
-      #   colours correctly. For compatibility across platforms, it is
-      #   recommended to either not set the colour mode at all and
-      #   allow it to be detected, or use 256 here.
-      #
+      # {include:file:docs/configuration/colour_mode.md}
       # @param value [Fixnum]
       # @macro raise_invalid_syntax
       # @return [Boolean]
@@ -226,18 +160,7 @@ module Vedeu
         options[:colour_mode] = value
       end
 
-      # Sets the height of the terminal.
-      #
-      #   Vedeu.configure do
-      #     height 25
-      #
-      #     # or...
-      #
-      #     height = 25
-      #
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/height.md}
       # @param height [Fixnum]
       # @return [Fixnum]
       def height(height = 25)
@@ -245,21 +168,7 @@ module Vedeu
       end
       alias height= height
 
-      # Sets the location of the log file, or disables the log.
-      # By default, the log file is set to '/tmp/vedeu_bootstrap.log'.
-      #
-      #   # Log messages will be sent to the path given.
-      #   Vedeu.configure do
-      #     log '/var/log/vedeu.log'
-      #     # ...
-      #   end
-      #
-      #   # Log messages will be silently dropped.
-      #   Vedeu.configure do
-      #     log false
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/log.md}
       # @param filename_or_false [FalseClass|String]
       # @return [NilClass|String]
       def log(filename_or_false = false)
@@ -274,19 +183,7 @@ module Vedeu
                         end
       end
 
-      # Log specific message types except those given. A complete list
-      # of message types can be found at
-      # {Vedeu::Configuration.log_types}.
-      #
-      #   Vedeu.configure do
-      #     log_except :debug, :event
-      #
-      #     # or
-      #     log_except [:debug, :info]
-      #
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/log_except.md}
       # @param types [Array<Symbol>] The message types which should
       #   not be logged.
       # @return [Array<Symbol>]
@@ -294,18 +191,7 @@ module Vedeu
         options[:log_except] = types.flatten
       end
 
-      # Only log specific message types. A complete list of message
-      # types can be found at {Vedeu::Configuration.log_types}.
-      #
-      #   Vedeu.configure do
-      #     log_only :debug, :event
-      #
-      #     # or
-      #     log_only [:debug, :info]
-      #
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/log_only.md}
       # @param types [Array<Symbol>] The message types which should be
       #   logged.
       # @return [Array<Symbol>]
@@ -313,29 +199,7 @@ module Vedeu
         options[:log_only] = types.flatten
       end
 
-      # Sets boolean to enable/disable profiling. Vedeu's default
-      # setting is for profiling to be disabled. Using `profile!` or
-      # setting `profile` to true will enable profiling.
-      #
-      # Profile uses 'ruby-prof' to write a 'vedeu_profile' file to
-      # the /tmp directory which contains a call trace of the running
-      # application. Upon exit, this file can be examined to ascertain
-      # certain behaviours of Vedeu.
-      #
-      # @note
-      #   Be aware that running an application with profiling enabled
-      #   will affect performance.
-      #
-      #   Vedeu.configure do
-      #     profile!
-      #     # ...
-      #   end
-      #
-      #   Vedeu.configure do
-      #     profile false
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/profile.md}
       # @param value [Boolean]
       # @return [Boolean]
       def profile!(value = true)
@@ -343,20 +207,7 @@ module Vedeu
       end
       alias profile profile!
 
-      # Sets the renderers for Vedeu. Each renderer added must have
-      # the class method '.render' defined as this will be called when
-      # rendering content.
-      #
-      #   Vedeu.configure do
-      #     renderer MyRenderer
-      #     # ...
-      #   end
-      #
-      #   Vedeu.configure do
-      #     renderers MyRenderer, MyOtherRenderer
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/renderer.md}
       # @param renderer [Array<Class>|Class]
       # @return [Array<Class>]
       def renderer(*renderer)
@@ -364,96 +215,42 @@ module Vedeu
       end
       alias renderers renderer
 
-      # Override the base path for the application (for locating
-      # templates and other resources). By default the base path is
-      # just cwd but this will not work for many applications.
-      #
-      #   Vedeu.configure do
-      #     base_path '/path/to/application'
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/base_path.md}
       # @param path [String]
       # @return [String]
       def base_path(path = nil)
         options[:base_path] = path
       end
 
-      # Sets the root of the client application. Vedeu will execute
-      # this controller with action and optional arguments first.
-      #
-      #   Vedeu.configure do
-      #     root :controller, :action, args
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/root.md}
       # @param args [Array<Symbol|void>]
       # @return [Class]
       def root(*args)
         options[:root] = args
       end
 
-      # Sets the value of STDIN.
-      #
-      #   Vedeu.configure do
-      #     stdin IO.console
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/stdin.md}
       # @param io [File|IO]
       # @return [File|IO]
       def stdin(io)
         options[:stdin] = io
       end
 
-      # Sets the value of STDOUT.
-      #
-      #   Vedeu.configure do
-      #     stdout IO.console
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/stdout.md}
       # @param io [File|IO]
       # @return [File|IO]
       def stdout(io)
         options[:stdout] = io
       end
 
-      # Sets the value of STDERR.
-      #
-      #   Vedeu.configure do
-      #     stderr IO.console
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/stderr.md}
       # @param io [File|IO]
       # @return [File|IO]
       def stderr(io)
         options[:stderr] = io
       end
 
-      # Compression reduces the number of escape sequences being sent
-      # to the terminal which improves redraw/render/refresh rate. By
-      # default it is enabled.
-      #
-      # Sets boolean to enable/disable compression. Vedeu's default
-      # setting is for compression to be enabled. Setting
-      # `compression` to false will disable compression.
-      #
-      #   Vedeu.configure do
-      #     compression! # enabled (default)
-      #     # ...
-      #   end
-      #
-      #   Vedeu.configure do
-      #     compression false
-      #     # ...
-      #   end
-      #
-      # @note
-      # - Be aware that running an application without compression
-      #   will affect performance.
-      #
+      # {include:file:docs/configuration/compression.md}
       # @param value [Boolean]
       # @return [Boolean]
       def compression(value = true)
@@ -461,29 +258,7 @@ module Vedeu
       end
       alias compression! compression
 
-      # Sets the terminal mode. Valid values can be either ':cooked',
-      # ':fake' or :raw'.
-      #
-      #   Vedeu.configure do
-      #     terminal_mode :cooked
-      #
-      #     # or...
-      #
-      #     terminal_mode :fake
-      #
-      #     # or...
-      #
-      #     terminal_mode :raw
-      #
-      #     # or...
-      #
-      #     terminal_mode = :raw
-      #     terminal_mode = :fake
-      #     terminal_mode = :cooked
-      #
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/configuration/terminal_mode.md}
       # @param mode [Symbol] Either ':cooked', ':fake' or ':raw'.
       # @macro raise_invalid_syntax
       # @return [Symbol]
@@ -497,9 +272,7 @@ module Vedeu
       end
       alias terminal_mode= terminal_mode
 
-      # Instructs Vedeu to use threads to perform certain actions.
-      # This can have a performance impact.
-      #
+      # {include:file:docs/configuration/threaded.md}
       # @param boolean [Boolean]
       # @return [Boolean]
       def threaded(boolean)
@@ -507,18 +280,7 @@ module Vedeu
       end
       alias threaded= threaded
 
-      # Sets the width of the terminal.
-      #
-      #   Vedeu.configure do
-      #     width 80
-      #
-      #     # or...
-      #
-      #     width = 80
-      #
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/width.md}
       # @param width [Fixnum]
       # @return [Fixnum]
       def width(width = 80)
@@ -544,13 +306,7 @@ module Vedeu
         options[:foreground] = value
       end
 
-      # Sets the background and foreground of the terminal.
-      #
-      #   Vedeu.configure do
-      #     colour background: '#ff0000', foreground: '#ffff00'
-      #     # ...
-      #   end
-      #
+      # {include:file:docs/configuration/colour.md}
       # @param attrs [Hash<Symbol => String>]
       # @return [Hash<Symbol => void>]
       def colour(attrs = {})
@@ -559,18 +315,7 @@ module Vedeu
         options
       end
 
-      # Sets boolean to enable/disable mouse support.
-      #
-      #   Vedeu.configure do
-      #     mouse! # => same as `mouse true`
-      #
-      #     # or...
-      #     mouse true
-      #
-      #     mouse false
-      #
-      #   end
-      #
+      # {include:file:docs/configuration/mouse.md}
       # @param value [Boolean]
       # @return [Boolean]
       def mouse!(value = true)

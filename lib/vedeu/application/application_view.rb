@@ -32,11 +32,11 @@ module Vedeu
       end
     end
 
+    # @note Client applications should implement this method.
+    #
     # @macro raise_not_implemented
     def render
-      raise Vedeu::Error::NotImplemented,
-            'The subclass of Vedeu::ApplicationView must implement the ' \
-            '#render method.'
+      raise Vedeu::Error::NotImplemented
     end
 
     protected

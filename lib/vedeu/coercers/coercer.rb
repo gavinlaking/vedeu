@@ -14,31 +14,42 @@ module Vedeu
 
       # @param (see #initialize)
       # @return (see #coerce)
-      def self.coerce(value)
-        new(value).coerce
+      def self.coerce(value, attributes = {})
+        new(value, attributes).coerce
       end
 
       # Returns a new instance of the Vedeu::Coercers::Coercer
       # subclass.
       #
       # @param value [void]
+      # @param attributes [Hash<Symbol => void>]
       # @return [Vedeu::Coercers::Coercer]
-      def initialize(value)
-        @value = value
+      def initialize(value, attributes = {})
+        @value      = value
+        @attributes = attributes
       end
 
       # @macro raise_not_implemented
       def coerce
-        raise Vedeu::Error::NotImplemented, 'Subclasses implement this.'
+        raise Vedeu::Error::NotImplemented
       end
 
       protected
+
+      # @!attribute [r] attributes
+      # @return [void]
+      attr_reader :attributes
 
       # @!attribute [r] value
       # @return [void]
       attr_reader :value
 
       private
+
+      # @macro raise_not_implemented
+      def child_klass
+        raise Vedeu::Error::NotImplemented
+      end
 
       # @return [Boolean]
       def coerced?
@@ -53,7 +64,7 @@ module Vedeu
 
       # @macro raise_not_implemented
       def klass
-        raise Vedeu::Error::NotImplemented, 'Subclasses implement this.'
+        raise Vedeu::Error::NotImplemented
       end
 
     end # Coercer

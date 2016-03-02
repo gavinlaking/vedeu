@@ -46,6 +46,12 @@ module Vedeu
         it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
       end
 
+      context 'when :max is a Float::INFINITY' do
+        let(:max) { Float::INFINITY }
+
+        it { subject.must_be_instance_of(Vedeu::Point) }
+      end
+
       context 'when :min > :max' do
         let(:max) { 4 }
         let(:min) { 7 }

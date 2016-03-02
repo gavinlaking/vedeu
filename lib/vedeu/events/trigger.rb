@@ -41,7 +41,7 @@ module Vedeu
       #
       # @return [Array]
       def trigger
-        if results.empty?
+        if Vedeu.config.debug? && results.empty?
           Vedeu.log(type:    :event,
                     message: "No action for: '#{name.inspect}'")
         end

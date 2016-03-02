@@ -53,7 +53,7 @@ module Vedeu
 
       # @macro raise_not_implemented
       def write
-        raise Vedeu::Error::NotImplemented, 'Including classes implement this.'
+        raise Vedeu::Error::NotImplemented
       end
 
       private
@@ -81,7 +81,7 @@ module Vedeu
 
       # @macro raise_not_implemented
       def content
-        raise Vedeu::Error::NotImplemented, 'Including classes implement this.'
+        raise Vedeu::Error::NotImplemented
       end
 
       # @macro defaults_method

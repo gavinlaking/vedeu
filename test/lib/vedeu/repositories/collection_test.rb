@@ -6,13 +6,16 @@ module Vedeu
 
   module Repositories
 
+    class CollectionTestClass
+    end # CollectionTestClass
+
     describe Collection do
 
       let(:described)  { Vedeu::Repositories::Collection }
       let(:instance)   { described.new(collection, parent, model_name) }
       let(:collection) { [] }
-      let(:model_name) { 'elements' }
-      let(:parent)     { Vedeu::Repositories::ModelTestClass.new }
+      let(:model_name) { :vedeu_repositories_collection }
+      let(:parent)     { Vedeu::Repositories::CollectionTestClass.new() }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }

@@ -95,7 +95,6 @@ end # MiniTest
 
 require 'mocha/setup'
 require 'vedeu'
-require 'support/helpers/model_test_class'
 
 if ENV['PERFORMANCE'].to_i == 1
   require 'minitest/reporters'

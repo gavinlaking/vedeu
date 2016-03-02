@@ -4,8 +4,7 @@ module Vedeu
 
   module Distributed
 
-    # @example
-    #   Vedeu::TestApplication.build
+    # Creates a subprocess of the DRb server.
     #
     class Subprocess
 
@@ -16,7 +15,7 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Distributed::Subprocess.
       #
-      # @param application [Vedeu::TestApplication]
+      # @param application [void]
       # @return [Vedeu::Distributed::Subprocess]
       def initialize(application)
         @application = application
@@ -50,7 +49,7 @@ module Vedeu
       protected
 
       # @!attribute [r] application
-      # @return [Vedeu::TestApplication]
+      # @return [void]
       attr_reader :application
 
       # @!attribute [r] pid
