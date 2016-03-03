@@ -5,7 +5,8 @@ module Vedeu
   module Repositories
 
     # Convert an Array into an object which has some meaning in the
-    # context it is being used.
+    # context it is being used. Various classes throughout Vedeu
+    # subclass this class.
     #
     # @api private
     #
