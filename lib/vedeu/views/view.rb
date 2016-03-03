@@ -125,14 +125,10 @@ module Vedeu
       # @macro raise_missing_required
       # @return [Vedeu::Views::View]
       def update_buffer(refresh = false)
-        if present?(name)
-          buffer.add(self, refresh)
+        raise Vedeu::Error::MissingRequired,
+              'Cannot store a view without a name.' unless present?(name)
 
-        else
-          raise Vedeu::Error::MissingRequired,
-                'Cannot store a view without a name.'
-
-        end
+        buffer.add(self, refresh)
 
         self
       end
