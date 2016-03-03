@@ -19,10 +19,7 @@ module Vedeu
                      :ox,
                      :oy,
                      :render,
-                     :visible,
-                     :visible?,
-                     :x,
-                     :y
+                     :visible?
 
       def_delegators :geometry,
                      :bordered_height,
