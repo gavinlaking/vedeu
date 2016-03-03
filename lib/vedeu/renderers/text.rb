@@ -34,46 +34,13 @@ module Vedeu
 
         output.each do |row|
           row.each do |char|
-            next unless renderable?(char) &&
-                        positionable?(char) &&
-                        textual?(char)
+            next unless positionable?(char)
 
             empty[char.position.y - 1][char.position.x - 1] = char.text
           end
         end
 
         empty
-      end
-
-      # @return [Array<Class>]
-      def renderables
-        [
-          Vedeu::Cells::Border,
-          Vedeu::Cells::BottomHorizontal,
-          Vedeu::Cells::BottomLeft,
-          Vedeu::Cells::BottomRight,
-          Vedeu::Cells::Corner,
-          Vedeu::Cells::Char,
-          Vedeu::Cells::Clear,
-          Vedeu::Cells::Empty,
-          Vedeu::Cells::Horizontal,
-          Vedeu::Cells::LeftVertical,
-          Vedeu::Cells::RightVertical,
-          Vedeu::Cells::TopHorizontal,
-          Vedeu::Cells::TopLeft,
-          Vedeu::Cells::TopRight,
-          Vedeu::Cells::Vertical,
-        ]
-      end
-
-      # @return [Boolean]
-      def renderable?(char)
-        renderables.include?(char.class)
-      end
-
-      # @return [Boolean]
-      def textual?(char)
-        char.respond_to?(:text)
       end
 
     end # Text

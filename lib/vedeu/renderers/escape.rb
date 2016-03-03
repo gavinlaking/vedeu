@@ -39,48 +39,13 @@ module Vedeu
 
         output.each do |row|
           row.each do |char|
-            next unless renderable?(char) &&
-                        positionable?(char) &&
-                        escapable?(char)
+            next unless positionable?(char)
 
             empty[char.position.y - 1][char.position.x - 1] = char.to_ast
           end
         end
 
         empty
-      end
-
-      # @return [Array<Class>]
-      def renderables
-        [
-          Vedeu::Cells::Border,
-          Vedeu::Cells::BottomHorizontal,
-          Vedeu::Cells::BottomLeft,
-          Vedeu::Cells::BottomRight,
-          Vedeu::Cells::Corner,
-          Vedeu::Cells::Char,
-          Vedeu::Cells::Clear,
-          Vedeu::Cells::Cursor,
-          Vedeu::Cells::Empty,
-          Vedeu::Cells::Escape,
-          Vedeu::Cells::Horizontal,
-          Vedeu::Cells::LeftVertical,
-          Vedeu::Cells::RightVertical,
-          Vedeu::Cells::TopHorizontal,
-          Vedeu::Cells::TopLeft,
-          Vedeu::Cells::TopRight,
-          Vedeu::Cells::Vertical,
-        ]
-      end
-
-      # @return [Boolean]
-      def renderable?(char)
-        renderables.include?(char.class)
-      end
-
-      # @return [Boolean]
-      def escapable?(char)
-        char.respond_to?(:to_ast)
       end
 
     end # Escape
