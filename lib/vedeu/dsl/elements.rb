@@ -171,11 +171,8 @@ module Vedeu
 
             end
 
-        if view_model?
+        if view_model? || line_model? || stream_model?
           model.add(l)
-
-        elsif line_model? || stream_model?
-          model.add([l])
 
         else
           raise Vedeu::Error::Fatal,
