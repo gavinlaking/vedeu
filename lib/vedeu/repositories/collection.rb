@@ -61,10 +61,10 @@ module Vedeu
       # @return [Vedeu::Repositories::Collection]
       def add(other)
         if other.is_a?(Vedeu::Repositories::Collection)
-          return self.class.coerce(other, parent, name) if empty?
+          return klass.coerce(other, parent, name) if empty?
 
         else
-          self.class.new(@collection += Array(other), parent, name)
+          klass.new(@collection += Array(other), parent, name)
 
         end
       end
@@ -77,6 +77,15 @@ module Vedeu
         collection.map(&:to_s).join
       end
       alias to_str to_s
+
+      private
+
+      # Return the inheriting class.
+      #
+      # @return [void]
+      def klass
+        self.class
+      end
 
     end # Collection
 
