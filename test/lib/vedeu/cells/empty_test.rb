@@ -20,7 +20,7 @@ module Vedeu
         }
       }
       let(:colour)   { {} }
-      let(:_name)    { '' }
+      let(:_name)    { nil }
       let(:position) { Vedeu::Geometries::Position.new(1, 1) }
       let(:style)    { '' }
       let(:_value)   { '' }

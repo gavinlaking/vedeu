@@ -173,7 +173,7 @@ module Vedeu
       # @macro defaults_method
       def defaults
         {
-          name: '',
+          name: nil,
           ox:   0,
           oy:   0,
           x:    0,

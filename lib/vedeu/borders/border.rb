@@ -315,7 +315,7 @@ module Vedeu
           enabled:           false,
           horizontal:        Vedeu.esc.horizontal,
           left_vertical:     nil,
-          name:              '',
+          name:              nil,
           parent:            nil,
           repository:        Vedeu.borders,
           right_vertical:    nil,

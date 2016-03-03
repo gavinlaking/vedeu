@@ -179,7 +179,7 @@ module Vedeu
         {
           back:       nil,
           front:      nil,
-          name:       '',
+          name:       nil,
           previous:   nil,
           repository: Vedeu.buffers,
         }

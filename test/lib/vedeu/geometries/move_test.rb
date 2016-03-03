@@ -48,7 +48,7 @@ module Vedeu
         context 'when a name is not given' do
           let(:_name) {}
 
-          it { instance.instance_variable_get('@name').must_equal('') }
+          it { instance.instance_variable_get('@name').must_equal(nil) }
         end
 
         context 'when an offset is given' do

@@ -206,7 +206,7 @@ module Vedeu
           client:     nil,
           collection: [],
           current:    0,
-          name:       '',
+          name:       nil,
           repository: Vedeu.menus,
           selected:   nil,
         }

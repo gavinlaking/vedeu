@@ -231,7 +231,7 @@ module Vedeu
       # @macro defaults_method
       def defaults
         {
-          name:       '',
+          name:       nil,
           ox:         1,
           oy:         1,
           repository: Vedeu.cursors,

@@ -155,7 +155,7 @@ module Vedeu
           delay:          0.0,
           editable:       false,
           group:          '',
-          name:           '',
+          name:           nil,
           parent:         nil,
           repository:     Vedeu.interfaces,
           style:          :normal,
