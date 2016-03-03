@@ -55,7 +55,13 @@ module Vedeu
 
         subject { described.render(view) }
 
-        context 'when the interface is visible' do
+        context 'when the view is empty or nil' do
+          let(:view) {}
+
+          it { subject.must_equal(nil) }
+        end
+
+        context 'when the view is visible' do
           context 'and Vedeu is ready' do
             it do
               Vedeu.expects(:render_output)
