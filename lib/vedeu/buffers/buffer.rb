@@ -136,20 +136,7 @@ module Vedeu
       #
       # @return [Array<Array<Array<Vedeu::Cells::Char>>>]
       def render
-        current = if back?
-                    swap
-
-                    front
-
-                  elsif front?
-                    front
-
-                  elsif previous?
-                    previous
-
-                  end
-
-        Vedeu::Output::Viewport.render(current) unless current.nil?
+        Vedeu::Output::Viewport.render(current)
       end
 
       # Returns the number of lines of content for the buffer or 0 if
@@ -174,12 +161,28 @@ module Vedeu
 
       private
 
+      # @return [Vedeu::Views::View|NilClass]
+      def current
+        if back?
+          swap
+
+          front
+
+        elsif front?
+          front
+
+        elsif previous?
+          previous
+
+        end
+      end
+
       # @macro defaults_method
       def defaults
         {
           back:       nil,
           front:      nil,
-          name:       '',
+          name:       nil,
           previous:   nil,
           repository: Vedeu.buffers,
         }

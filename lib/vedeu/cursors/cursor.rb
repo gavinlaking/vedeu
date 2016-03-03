@@ -231,7 +231,7 @@ module Vedeu
       # @macro defaults_method
       def defaults
         {
-          name:       '',
+          name:       nil,
           ox:         1,
           oy:         1,
           repository: Vedeu.cursors,
@@ -244,11 +244,6 @@ module Vedeu
       # @return [Vedeu::Cells::Cursor]
       def escape_sequence
         Vedeu::Cells::Cursor.new(position: position, value: visibility)
-      end
-
-      # @return [Hash<Symbol => Fixnum>]
-      def new_attributes(new_y = y, new_x = x, new_oy = oy, new_ox = ox)
-        attributes.merge!(x: new_x, y: new_y, ox: new_ox, oy: new_oy)
       end
 
       # Returns the escape sequence for setting the visibility of the

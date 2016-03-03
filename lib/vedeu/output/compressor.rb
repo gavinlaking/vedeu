@@ -61,8 +61,10 @@ module Vedeu
       #
       # @return [Array]
       def content
-        @_content ||= output.content.reject do |cell|
-          cell.class == Vedeu::Cells::Empty
+        @_content ||= Vedeu.timer('Removing empty cells...') do
+          output.content.reject do |cell|
+            cell.class == Vedeu::Cells::Empty
+          end
         end
       end
 

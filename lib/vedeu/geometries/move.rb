@@ -66,7 +66,7 @@ module Vedeu
       def defaults
         {
           direction: :none,
-          name:      '',
+          name:      nil,
           offset:    1,
         }
       end

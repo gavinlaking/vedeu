@@ -20,6 +20,11 @@ module Vedeu
       alias foreground null
       alias style null
 
+      # @return [String]
+      def to_ast
+        ''
+      end
+
       # Return an empty hash as most escape sequences won't make
       # sense as JSON.
       #
@@ -43,6 +48,11 @@ module Vedeu
         "#{position}#{value}"
       end
       alias to_str to_s
+
+      # @return [String]
+      def text
+        ''
+      end
 
       # @return [Symbol]
       def type

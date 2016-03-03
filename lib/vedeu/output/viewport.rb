@@ -35,7 +35,7 @@ module Vedeu
       # @param (see #initialize)
       # @return (see #render)
       def self.render(view)
-        new(view).render
+        new(view).render if view
       end
 
       # Returns a new instance of Vedeu::Output::Viewport.

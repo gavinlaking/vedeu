@@ -62,7 +62,7 @@ module Vedeu
         #     Vedeu::Views::Stream.new(
         #       client: nil,
         #       colour: Vedeu::Colours::Colour.coerce(attributes),
-        #       name:   '',
+        #       name:   nil,
         #       parent: nil,
         #       style:  Vedeu::Presentation::Style.new,
         #       value: 'colour text')

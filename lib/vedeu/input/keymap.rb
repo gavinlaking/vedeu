@@ -88,7 +88,7 @@ module Vedeu
       # @macro defaults_method
       def defaults
         {
-          name:       '',
+          name:       nil,
           keys:       [],
           repository: Vedeu.keymaps,
         }

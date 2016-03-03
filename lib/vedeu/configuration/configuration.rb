@@ -30,6 +30,7 @@ module Vedeu
     info:     [:white,         :light_grey],
     input:    [:light_yellow,  :yellow],
     magenta:  [:light_magenta, :magenta],
+    nonevent: [:magenta,       :light_magenta],
     output:   [:light_yellow,  :yellow],
     red:      [:light_red,     :red],
     render:   [:light_green,   :green],

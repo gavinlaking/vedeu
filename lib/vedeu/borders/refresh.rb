@@ -120,6 +120,13 @@ module Vedeu
         [(bottom_left if left?), captionbar, (bottom_right if right?)].compact
       end
 
+      # @return [Array<void>]
+      def bottom_border
+        build_collection(bordered_width) do |ix|
+          bottom_horizontal.dup.tap { |cell| cell.position = [yn, bx + ix] }
+        end
+      end
+
       # @macro geometry_by_name
       def geometry
         Vedeu.geometries.by_name(name)
@@ -141,9 +148,7 @@ module Vedeu
       # @return [Array<void>]
       def left
         build_collection(bordered_height) do |iy|
-          cell = left_vertical.dup
-          cell.position = [by + iy, x]
-          cell
+          left_vertical.dup.tap { |cell| cell.position = [by + iy, x] }
         end
       end
 
@@ -152,9 +157,7 @@ module Vedeu
       # @return [Array<void>]
       def right
         build_collection(bordered_height) do |iy|
-          cell = right_vertical.dup
-          cell.position = [by + iy, xn]
-          cell
+          right_vertical.dup.tap { |cell| cell.position = [by + iy, xn] }
         end
       end
 
@@ -170,34 +173,29 @@ module Vedeu
         [(top_left if left?), titlebar, (top_right if right?)].compact
       end
 
+      # @return [Array<void>]
+      def top_border
+        build_collection(bordered_width) do |ix|
+          top_horizontal.dup.tap { |cell| cell.position = [y, bx + ix] }
+        end
+      end
+
       # An optional caption for when the bottom border is to be shown.
       #
       # @return (see Vedeu::Borders::Caption#render)
       def captionbar
-        characters = build_collection(bordered_width) do |ix|
-          cell = bottom_horizontal.dup
-          cell.position = [yn, bx + ix]
-          cell
-        end
+        return bottom_border unless present?(caption)
 
-        return characters unless present?(caption)
-
-        Vedeu::Borders::Caption.render(name, caption, characters)
+        Vedeu::Borders::Caption.render(name, caption, bottom_border)
       end
 
       # An optional title for when the top border is to be shown.
       #
       # @return (see Vedeu::Borders::Title#render)
       def titlebar
-        characters = build_collection(bordered_width) do |ix|
-          cell = top_horizontal.dup
-          cell.position = [y, bx + ix]
-          cell
-        end
+        return top_border unless present?(title)
 
-        return characters unless present?(title)
-
-        Vedeu::Borders::Title.render(name, title, characters)
+        Vedeu::Borders::Title.render(name, title, top_border)
       end
 
       # Build a collection with the given size of objects given within

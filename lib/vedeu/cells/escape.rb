@@ -28,6 +28,11 @@ module Vedeu
       alias foreground null
       alias style null
 
+      # @return [String]
+      def text
+        ''
+      end
+
       # Return an empty hash as most escape sequences won't make
       # sense as JSON.
       #

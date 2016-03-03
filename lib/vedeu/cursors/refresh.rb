@@ -19,10 +19,7 @@ module Vedeu
                      :ox,
                      :oy,
                      :render,
-                     :visible,
-                     :visible?,
-                     :x,
-                     :y
+                     :visible?
 
       def_delegators :geometry,
                      :bordered_height,
@@ -52,13 +49,12 @@ module Vedeu
       #
       # @return [Array]
       def by_name
-        Vedeu.trigger(:_refresh_view_content_, name) if refresh_view?
-
         Vedeu.log(type:    :cursor,
-                  message: "Refreshing cursor: '#{name}' (x:#{x}, y:#{y}, " \
-                           "ox:#{ox}, oy:#{oy}, visible:#{visible})")
+                  message: "Refreshing cursor: (#{cursor.inspect})")
 
         render
+
+        Vedeu.trigger(:_refresh_view_content_, name) if refresh_view?
       end
 
       private

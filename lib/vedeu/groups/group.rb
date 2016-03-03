@@ -162,7 +162,7 @@ module Vedeu
       def defaults
         {
           members:    Set.new,
-          name:       '',
+          name:       nil,
           repository: Vedeu.groups,
           visible:    true,
         }

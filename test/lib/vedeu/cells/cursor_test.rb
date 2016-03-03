@@ -58,6 +58,12 @@ module Vedeu
         it { subject.must_equal("\e[?25h") }
       end
 
+      describe '#to_ast' do
+        subject { instance.to_ast }
+
+        it { subject.must_equal('') }
+      end
+
       describe '#to_h' do
         let(:expected) {
           {
@@ -94,6 +100,12 @@ module Vedeu
 
       describe '#to_str' do
         it { instance.must_respond_to(:to_str) }
+      end
+
+      describe '#text' do
+        subject { instance.text }
+
+        it { subject.must_equal('') }
       end
 
       describe '#type' do

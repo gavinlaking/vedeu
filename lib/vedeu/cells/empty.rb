@@ -91,7 +91,7 @@ module Vedeu
       def defaults
         {
           colour:   {},
-          name:     '',
+          name:     nil,
           position: nil,
           style:    '',
           value:    '',
