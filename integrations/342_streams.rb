@@ -5,6 +5,8 @@
 require 'bundler/setup'
 require 'vedeu'
 
+TESTCASE = '342_streams'
+
 class DSLApp
 
   Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
@@ -14,7 +16,7 @@ class DSLApp
     debug!
     log '/tmp/vedeu_views_dsl.log'
     renderers(Vedeu::Renderers::Terminal.new(
-                filename: '/tmp/342_streams.out',
+                filename: "/tmp/#{TESTCASE}.out",
                 write_file: true))
     run_once!
     standalone!
@@ -49,14 +51,6 @@ class DSLApp
     end
   end
 
-  def self.actual
-    File.read('/tmp/342_streams.out')
-  end
-
-  def self.expected
-    File.read(File.expand_path('../expected/342_streams.out', __FILE__))
-  end
-
   def self.start(argv = ARGV)
     Vedeu::Launcher.execute!(argv)
   end
@@ -65,10 +59,5 @@ end # DSLApp
 
 DSLApp.start
 
-if DSLApp.expected == DSLApp.actual
-  puts "#{__FILE__} \e[32mPassed.\e[39m"
-  exit 0;
-else
-  puts "#{__FILE__} \e[31mFailed.\e[39m"
-  exit 1;
-end
+load File.dirname(__FILE__) + '/test_runner.rb'
+TestRunner.result(TESTCASE, __FILE__)

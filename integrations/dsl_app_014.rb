@@ -5,6 +5,8 @@
 require 'bundler/setup'
 require 'vedeu'
 
+TESTCASE = 'dsl_app_014'
+
 class DSLApp
 
   Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
@@ -15,11 +17,11 @@ class DSLApp
     log '/tmp/vedeu_views_dsl.log'
     renderers [
                 Vedeu::Renderers::Terminal.new(
-                  filename:   '/tmp/dsl_app_014.out',
+                  filename: "/tmp/#{TESTCASE}.out",
                   write_file: true),
-                # Vedeu::Renderers::JSON.new(filename: '/tmp/dsl_app_014.json'),
-                # Vedeu::Renderers::HTML.new(filename: '/tmp/dsl_app_014.html'),
-                # Vedeu::Renderers::Text.new(filename: '/tmp/dsl_app_014.txt'),
+                # Vedeu::Renderers::JSON.new(filename: "/tmp/#{TESTCASE}.json"),
+                # Vedeu::Renderers::HTML.new(filename: "/tmp/#{TESTCASE}.html"),
+                # Vedeu::Renderers::Text.new(filename: "/tmp/#{TESTCASE}.txt"),
               ]
     run_once!
     standalone!
@@ -36,14 +38,6 @@ class DSLApp
     end
   end
 
-  def self.actual
-    File.read('/tmp/dsl_app_014.out')
-  end
-
-  def self.expected
-    File.read(File.expand_path('../expected/dsl_app_014.out', __FILE__))
-  end
-
   def self.start(argv = ARGV)
     Vedeu::Launcher.execute!(argv)
   end
@@ -52,10 +46,5 @@ end # DSLApp
 
 DSLApp.start
 
-if DSLApp.expected == DSLApp.actual
-  puts "#{__FILE__} \e[32mPassed.\e[39m"
-  exit 0;
-else
-  puts "#{__FILE__} \e[31mFailed.\e[39m"
-  exit 1;
-end
+load File.dirname(__FILE__) + '/test_runner.rb'
+TestRunner.result(TESTCASE, __FILE__)
