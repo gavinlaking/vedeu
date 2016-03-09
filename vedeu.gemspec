@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'minitest',           '5.8.4'
   spec.add_development_dependency 'minitest-reporters', '1.1.8'
   spec.add_development_dependency 'mocha',              '1.1.0'
-  spec.add_development_dependency 'rubocop',            '0.37.2'
+  spec.add_development_dependency 'rubocop',            '0.38.0'
   spec.add_development_dependency 'simplecov',          '0.11.2'
   spec.add_development_dependency 'simplecov-console',  '0.3.0'
   spec.add_development_dependency 'yard',               '0.8.7.6'
