@@ -5,7 +5,7 @@
 require 'bundler/setup'
 require 'vedeu'
 
-TESTCASE = 'dsl_app_013'
+TESTCASE = 'dsl_app_border_006'
 
 class DSLApp
 
@@ -29,11 +29,19 @@ class DSLApp
 
   load File.dirname(__FILE__) + '/support/test_interface.rb'
 
+  Vedeu.border :test_interface do
+    foreground   '#ff5722'
+    top_left     'A', colour: { background: '#ff0000' }
+    top_right    'B', colour: { background: '#0000ff', foreground: '#ffffff' }
+    bottom_left  'C', colour: { background: '#ffff00', foreground: '#000000' }
+    bottom_right 'D', colour: { background: '#ffffff' }
+  end
+
   Vedeu.render do
     view(:test_interface) do
       lines do
-        left 'view->lines->left 1', { foreground: '#ff0000' }
-        left 'view->lines->left 2', { background: '#ff0000', foreground: '#000000' }
+        line 'custom'
+        line 'vertices'
       end
     end
   end

@@ -15,24 +15,30 @@ describe Vedeu do
   it { Vedeu.must_respond_to(:borders) }
   it { Vedeu.must_respond_to(:bound?) }
   it { Vedeu.must_respond_to(:buffers) }
+  it { Vedeu.must_respond_to(:buffer_update) }
   it { Vedeu.must_respond_to(:buffer_write) }
   it { Vedeu.must_respond_to(:clear) }
   it { Vedeu.must_respond_to(:clear_by_group) }
   it { Vedeu.must_respond_to(:clear_by_name) }
   it { Vedeu.must_respond_to(:clear_content_by_name) }
+  it { Vedeu.must_respond_to(:clock_time) }
+  it { Vedeu.must_respond_to(:config) }
   it { Vedeu.must_respond_to(:configuration) }
   it { Vedeu.must_respond_to(:configure) }
   it { Vedeu.must_respond_to(:cursor) }
   it { Vedeu.must_respond_to(:cursors) }
+  it { Vedeu.must_respond_to(:debug) }
   it { Vedeu.must_respond_to(:direct_write) }
   it { Vedeu.must_respond_to(:documents) }
   it { Vedeu.must_respond_to(:drb_restart) }
   it { Vedeu.must_respond_to(:drb_start) }
   it { Vedeu.must_respond_to(:drb_status) }
   it { Vedeu.must_respond_to(:drb_stop) }
+  it { Vedeu.must_respond_to(:esc) }
   it { Vedeu.must_respond_to(:events) }
   it { Vedeu.must_respond_to(:exit) }
   it { Vedeu.must_respond_to(:focus) }
+  it { Vedeu.must_respond_to(:focus?) }
   it { Vedeu.must_respond_to(:focus_by_name) }
   it { Vedeu.must_respond_to(:focus_next) }
   it { Vedeu.must_respond_to(:focus_previous) }
@@ -64,11 +70,14 @@ describe Vedeu do
   it { Vedeu.must_respond_to(:log) }
   it { Vedeu.must_respond_to(:log_stderr) }
   it { Vedeu.must_respond_to(:log_stdout) }
+  it { Vedeu.must_respond_to(:log_timestamp) }
   it { Vedeu.must_respond_to(:menu) }
   it { Vedeu.must_respond_to(:menus) }
   it { Vedeu.must_respond_to(:profile) }
+  it { Vedeu.must_respond_to(:read) }
   it { Vedeu.must_respond_to(:ready!) }
   it { Vedeu.must_respond_to(:ready?) }
+  it { Vedeu.must_respond_to(:refresh) }
   it { Vedeu.must_respond_to(:render) }
   it { Vedeu.must_respond_to(:render_output) }
   it { Vedeu.must_respond_to(:renders) }
@@ -90,6 +99,7 @@ describe Vedeu do
     end
   end
 
+  it { Vedeu.must_respond_to(:repositories) }
   it { Vedeu.must_respond_to(:resize) }
   it { Vedeu.must_respond_to(:show_cursor) }
   it { Vedeu.must_respond_to(:show_group) }
@@ -109,5 +119,7 @@ describe Vedeu do
     it { Vedeu.must_respond_to(:width) }
     it { Vedeu.width.must_equal(40) }
   end
+
+  it { Vedeu.must_respond_to(:write) }
 
 end # Vedeu

@@ -31,28 +31,6 @@ class VedeuMaterialColoursApp
     threaded false
   end
 
-  # Borders can be defined as standalone declarations.
-  Vedeu.border 'no_bottom' do
-    background  '#000000'
-    foreground  '#ffffff'
-    show_bottom false
-  end
-  Vedeu.border 'no_left' do
-    background  '#000000'
-    foreground  '#ffffff'
-    show_left false
-  end
-  Vedeu.border 'no_right' do
-    background  '#000000'
-    foreground  '#ffffff'
-    show_right false
-  end
-  Vedeu.border 'no_top' do
-    background  '#000000'
-    foreground  '#ffffff'
-    show_top false
-  end
-
   Vedeu.interface 'main_interface' do
     border 'main_interface' do
       colour foreground: '#ffffff', background: :default
@@ -115,66 +93,6 @@ class VedeuMaterialColoursApp
       width  10
     end
     colour  foreground: '#ffffff', background: '#e91e63'
-  end
-
-  Vedeu.interface 'no_top' do
-    geometry do
-      x      50
-      y      7
-      height 4
-      width  10
-    end
-    colour  foreground: '#ffffff', background: '#9c27b0'
-  end
-
-  Vedeu.interface 'no_bottom' do
-    geometry do
-      x      62
-      y      7
-      height 4
-      width  10
-    end
-    colour  foreground: '#ffffff', background: '#673ab7'
-  end
-
-  Vedeu.interface 'no_left' do
-    geometry do
-      x      50
-      y      12
-      height 4
-      width  10
-    end
-    colour  foreground: '#ffffff', background: '#3f51b5'
-  end
-
-  Vedeu.interface 'no_right' do
-    geometry do
-      x      62
-      y      12
-      height 4
-      width  10
-    end
-    colour  foreground: '#ffffff', background: '#2196f3'
-  end
-
-  Vedeu.interface 'custom_corners' do
-    geometry do
-      x      50
-      y      17
-      height 4
-      width  10
-    end
-    colour  foreground: '#ffffff', background: '#03a9f4'
-  end
-
-  Vedeu.interface 'custom_sides' do
-    geometry do
-      x      62
-      y      17
-      height 4
-      width  10
-    end
-    colour  foreground: '#000000', background: '#00bcd4'
   end
 
   # Borders can be defined as part of the interface definition.
@@ -498,58 +416,6 @@ class VedeuMaterialColoursApp
         line 'border'
         line 'off'
         line '4, 10'
-      end
-    end
-    view('no_top') do
-      lines do
-        line 'no top'
-        line '4, 10'
-      end
-    end
-    view('no_bottom') do
-      lines do
-        line 'no'
-        line 'bottom'
-        line '4, 10'
-      end
-    end
-    view('no_left') do
-      lines do
-        line 'no left'
-        line '4, 10'
-      end
-    end
-    view('no_right') do
-      lines do
-        line 'no right'
-        line '4, 10'
-      end
-    end
-    view('custom_corners') do
-      border do
-        foreground   '#000000'
-        top_left     'A', colour: { background: '#ff5722' }
-        top_right    'B', colour: { background: '#0000ff', foreground: '#ffffff' }
-        bottom_left  'C', colour: { background: '#ffff00', foreground: '#000000' }
-        bottom_right 'D', colour: { background: '#ffffff' }
-      end
-      lines do
-        line 'custom'
-        line 'corners'
-      end
-    end
-    view('custom_sides') do
-      border do
-        background '#ff5722'
-
-        top_horizontal    '*', colour: { background: '#000000', foreground: '#ffffff' }
-        left_vertical     '$', colour: { background: '#0000ff', foreground: '#ffffff' }
-        right_vertical    '%', colour: { background: '#ffff00', foreground: '#000000' }
-        bottom_horizontal '&', colour: { background: '#ffffff' }
-      end
-      lines do
-        line 'custom'
-        line 'sides'
       end
     end
     view('only_top') do

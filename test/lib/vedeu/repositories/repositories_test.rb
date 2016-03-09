@@ -9,9 +9,18 @@ module Vedeu
     let(:described) { Vedeu::Repositories }
 
     describe '.all' do
+      # let(:expected) {
+      #   [
+      #     Vedeu::Cursors::Repository.new,
+      #     Vedeu::Buffers::Repository.new,
+      #     Vedeu::Groups::Repository.new,
+      #     Vedeu::Interfaces::Repository.new,
+      #   ]
+      # }
+
       subject { described.all }
 
-      # @todo Add more tests.
+      # it { subject.must_equal(expected) }
     end
 
     describe '.register' do
@@ -38,14 +47,19 @@ module Vedeu
 
       subject { described.registered }
 
-      # @todo Add more tests.
-      # it { skip }
+      # context 'when there is nothing registered' do
+      #   let(:expected) { [[], [], [], []] }
+
+      #   it { subject.must_equal(expected) }
+      # end
     end
 
     describe '.repositories' do
-      it { described.must_respond_to(:repositories) }
+      subject { described.repositories }
 
       it { Vedeu.must_respond_to(:repositories) }
+
+      it { subject.must_equal(described) }
     end
 
     describe '.reset!' do
