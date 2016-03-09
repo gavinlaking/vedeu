@@ -21,7 +21,7 @@ class TestRunner
 
   # @return [void]
   def result
-    puts "\e36m#{file}:"
+    puts "\e[36m#{file}:"
     if expected == actual
       puts "\e[32mPassed.\e[39m"
       exit 0;
