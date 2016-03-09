@@ -38,3 +38,9 @@ cd "$(dirname "$0")"
 ./dsl_app_border_003.rb # no right
 ./dsl_app_border_004.rb # no bottom
 ./dsl_app_border_005.rb # no left
+./dsl_app_border_006.rb # custom vertices
+./dsl_app_border_007.rb # custom edges
+./dsl_app_border_008.rb # only top
+./dsl_app_border_009.rb # only right
+./dsl_app_border_010.rb # only bottom
+./dsl_app_border_011.rb # only left
