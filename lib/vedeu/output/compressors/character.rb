@@ -31,17 +31,26 @@ module Vedeu
         def with
           @same = ''
           @compress ||= Vedeu.timer(message) do
-            out = content.map do |cell|
-              "#{cell.position}"    \
-              "#{colour_for(cell)}" \
-              "#{style_for(cell)}"  \
-              "#{cell.value}"
-            end.join
+            content.map do |cell|
+              rendered = [
+                cell.position.to_s,
+                colour_for(cell),
+                style_for(cell),
+                cell.value,
+              ].join
 
-            Vedeu.log(type:    :compress,
-                      message: "#{message} -> #{out.size} characters")
+              if @same == rendered
+                next
 
-            out
+              else
+                @same = rendered
+                @same
+
+              end
+            end.join.tap do |out|
+              Vedeu.log(type:    :compress,
+                        message: "#{message} -> #{out.size} characters")
+            end
           end
         end
 
