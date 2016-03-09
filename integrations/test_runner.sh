@@ -33,8 +33,8 @@ cd "$(dirname "$0")"
 ./dsl_app_022.rb
 
 # Test some border functionality
-./dsl_app_border_001.rb
-./dsl_app_border_002.rb
-./dsl_app_border_003.rb
-./dsl_app_border_004.rb
-./dsl_app_border_005.rb
+./dsl_app_border_001.rb # border off
+./dsl_app_border_002.rb # no top
+./dsl_app_border_003.rb # no right
+./dsl_app_border_004.rb # no bottom
+./dsl_app_border_005.rb # no left
