@@ -21,12 +21,12 @@ class TestRunner
 
   # @return [void]
   def result
-    puts "\e[36m#{file}:"
+    print "\e[36m#{file}: "
     if expected == actual
-      puts "\e[32mPassed.\e[39m"
+      print "\e[32mPassed.\e[39m\n"
       exit 0;
     else
-      puts "\e[31mFailed.\e[39m"
+      print "\e[31mFailed.\e[39m\n"
       puts "\e[33mExpected:\e[39m"
       puts expected.inspect
       puts "\e[34mActual:\e[39m"
