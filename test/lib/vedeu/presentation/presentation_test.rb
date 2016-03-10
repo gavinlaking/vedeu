@@ -5,7 +5,11 @@ require 'test_helper'
 module Vedeu
 
   class ParentPresentationTestClass
+
     include Vedeu::Presentation
+    include Vedeu::Presentation::Colour
+    include Vedeu::Presentation::Position
+    include Vedeu::Presentation::Styles
 
     def parent
       nil
@@ -17,10 +21,15 @@ module Vedeu
         style:  ['bold']
       }
     end
-  end
+
+  end # ParentPresentationTestClass
 
   class PresentationTestClass
+
     include Vedeu::Presentation
+    include Vedeu::Presentation::Colour
+    include Vedeu::Presentation::Position
+    include Vedeu::Presentation::Styles
 
     attr_reader :attributes
 

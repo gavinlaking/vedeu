@@ -9,6 +9,9 @@ module Vedeu
     class Null < Vedeu::Null::Generic
 
       include Vedeu::Presentation
+      include Vedeu::Presentation::Colour
+      include Vedeu::Presentation::Position
+      include Vedeu::Presentation::Styles
 
       # @!attribute [r] attributes
       # @return [String]

@@ -9,6 +9,7 @@ module Vedeu
     #
     class Buffer
 
+      include Vedeu::Common
       include Vedeu::Repositories::Model
 
       # The next buffer to be displayed; contains the content which

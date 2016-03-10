@@ -21,6 +21,9 @@ module Vedeu
       extend Forwardable
       include Vedeu::Repositories::Model
       include Vedeu::Presentation
+      include Vedeu::Presentation::Colour
+      include Vedeu::Presentation::Position
+      include Vedeu::Presentation::Styles
 
       # @!attribute [w] bottom_left
       # @return [String] The character to be used for the bottom left

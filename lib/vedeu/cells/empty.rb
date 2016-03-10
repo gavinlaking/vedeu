@@ -15,6 +15,9 @@ module Vedeu
     class Empty
 
       include Vedeu::Presentation
+      include Vedeu::Presentation::Colour
+      include Vedeu::Presentation::Position
+      include Vedeu::Presentation::Styles
       include Vedeu::Repositories::Defaults
 
       # @!attribute [r] name

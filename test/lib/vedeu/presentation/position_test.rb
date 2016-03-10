@@ -8,6 +8,8 @@ module Vedeu
 
     describe Position do
 
+      let(:described) { Vedeu::Presentation::Position }
+
       # describe '#position' do
       #   subject { instance.position }
 

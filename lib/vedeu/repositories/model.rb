@@ -9,9 +9,6 @@ module Vedeu
     #
     module Model
 
-      # This is used by including classes.
-      include Vedeu::Common
-
       # @!attribute [rw] repository
       # @return [Vedeu::Repositories::Repository]
       attr_accessor :repository

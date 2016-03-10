@@ -10,9 +10,9 @@ module Vedeu
     #
     class View
 
-      include Vedeu::Repositories::Defaults
-      include Enumerable
       extend Forwardable
+      include Enumerable
+      include Vedeu::Repositories::Defaults
 
       def_delegators :geometry,
                      :bordered_height,
