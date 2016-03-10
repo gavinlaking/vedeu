@@ -17,9 +17,10 @@ module Vedeu
       extend Vedeu::Repositories::Storage
 
       # @param content [Array<void>]
+      # @param compression [Boolean]
       # @return [String]
       def cache(content, compression = false)
-        write(content) unless empty?(content) || cached?(content)
+        write(content, compression) unless empty?(content) || cached?(content)
 
         compression ? read(:compress) : read(:uncompress)
       end
@@ -78,13 +79,18 @@ module Vedeu
       end
 
       # @param content [Array<void>]
+      # @param compression [Boolean]
       # @return [Hash<Symbol => Array<void>>]
-      def write(content)
+      def write(content, compression)
         storage[:original] = content
 
-        storage[:uncompress] = uncompress(content)
+        if compression
+          storage[:compress] = compress(content)
 
-        storage[:compress] = compress(content)
+        else
+          storage[:uncompress] = uncompress(content)
+
+        end
       end
 
     end # CompressorCache
