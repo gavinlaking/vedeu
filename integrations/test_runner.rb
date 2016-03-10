@@ -7,21 +7,21 @@ class TestRunner
 
   # @param (see #initialize)
   # @return [void]
-  def self.result(testcase, file)
-    new(testcase, file).result
+  def self.result(testcase, filename)
+    new(testcase, filename).result
   end
 
   # @param testcase [String]
-  # @param file [String]
+  # @param filename [String]
   # @return [TestRunner]
-  def initialize(testcase, file)
+  def initialize(testcase, filename)
     @testcase = testcase
-    @file     = file
+    @filename     = filename
   end
 
   # @return [void]
   def result
-    print "\e[36m#{file}: "
+    print "\e[36m#{filename}: "
     if expected == actual
       print "\e[32mPassed.\e[39m\n"
       exit 0;
@@ -41,20 +41,30 @@ class TestRunner
   # @return [String]
   attr_reader :testcase
 
-  # @!attribute [r] file
+  # @!attribute [r] filename
   # @return [String]
-  attr_reader :file
+  attr_reader :filename
 
   private
 
   # @return [String]
   def actual
-    File.read("/tmp/#{testcase}.out")
+    @_actual ||= File.read(actual_path)
   end
 
   # @return [String]
   def expected
-    File.read(File.expand_path("../expected/#{testcase}.out", file))
+    @_expected ||= File.read(File.expand_path(expected_path, filename))
+  end
+
+  # @return [String]
+  def actual_path
+    "/tmp/#{testcase}.out"
+  end
+
+  # @return [String]
+  def expected_path
+    "../expected/#{testcase}.out"
   end
 
 end # TestRunner
