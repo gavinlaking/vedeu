@@ -8,8 +8,6 @@ module Vedeu
     #
     class Repository < Vedeu::Repositories::Repository
 
-      singleton_class.send(:alias_method, :groups, :repository)
-
       null Vedeu::Groups::Group
       real Vedeu::Groups::Group
 

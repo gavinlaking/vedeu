@@ -23,8 +23,18 @@ module Vedeu
       let(:described)          { Vedeu::Repositories::Registerable }
       let(:included_described) { Vedeu::Repositories::RegisterableTestClass }
 
-      it { included_described.must_respond_to(:repository) }
+      it { included_described.must_respond_to(:borders) }
+      it { included_described.must_respond_to(:buffers) }
+      it { included_described.must_respond_to(:cursors) }
+      it { included_described.must_respond_to(:documents) }
+      it { included_described.must_respond_to(:events) }
+      it { included_described.must_respond_to(:geometries) }
+      it { included_described.must_respond_to(:groups) }
+      it { included_described.must_respond_to(:interfaces) }
+      it { included_described.must_respond_to(:keymaps) }
+      it { included_described.must_respond_to(:menus) }
       it { included_described.must_respond_to(:register) }
+      it { included_described.must_respond_to(:repository) }
 
       describe '.included' do
         subject { described.included(included_described) }

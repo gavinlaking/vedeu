@@ -8,8 +8,6 @@ module Vedeu
     #
     class Repository < Vedeu::Repositories::Repository
 
-      singleton_class.send(:alias_method, :keymaps, :repository)
-
       real Vedeu::Input::Keymap
 
     end # Repository

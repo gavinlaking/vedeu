@@ -8,8 +8,6 @@ module Vedeu
     #
     class Repository < Vedeu::Repositories::Repository
 
-      singleton_class.send(:alias_method, :cursors, :repository)
-
       class << self
 
         # {include:file:docs/dsl/by_method/cursor.md}

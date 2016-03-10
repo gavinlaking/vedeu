@@ -10,8 +10,6 @@ module Vedeu
 
       let(:described) { Vedeu::Interfaces::Repository }
 
-      it { described.must_respond_to(:interfaces) }
-
       describe '#zindexed' do
         before do
           Vedeu.interfaces.reset

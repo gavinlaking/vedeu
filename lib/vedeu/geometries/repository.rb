@@ -9,8 +9,6 @@ module Vedeu
     #
     class Repository < Vedeu::Repositories::Repository
 
-      singleton_class.send(:alias_method, :geometries, :repository)
-
       null Vedeu::Geometries::Geometry
       real Vedeu::Geometries::Geometry
 

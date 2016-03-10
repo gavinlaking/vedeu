@@ -53,6 +53,16 @@ module Vedeu
         def repository
           @models ||= reset!
         end
+        alias borders    repository
+        alias buffers    repository
+        alias cursors    repository
+        alias documents  repository
+        alias events     repository
+        alias geometries repository
+        alias groups     repository
+        alias interfaces repository
+        alias keymaps    repository
+        alias menus      repository
 
         # Remove all stored models from the repository.
         #

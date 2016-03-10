@@ -22,8 +22,6 @@ module Vedeu
 
       let(:described) { Vedeu::Editor::Repository }
 
-      it { described.must_respond_to(:documents) }
-
     end # Repository
 
   end # Editor

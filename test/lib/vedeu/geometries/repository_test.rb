@@ -23,10 +23,6 @@ module Vedeu
 
       let(:described) { Vedeu::Geometries::Repository }
 
-      after { Vedeu.geometries.reset }
-
-      it { described.must_respond_to(:geometries) }
-
     end # Repository
 
   end # Geometries

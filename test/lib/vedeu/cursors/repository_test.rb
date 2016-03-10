@@ -10,8 +10,6 @@ module Vedeu
 
       let(:described) { Vedeu::Cursors::Repository }
 
-      it { described.must_respond_to(:cursors) }
-
       describe '.cursor' do
         before { Vedeu::Models::Focus.reset }
 
