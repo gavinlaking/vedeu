@@ -48,7 +48,7 @@ module Vedeu
 
       # Provides iteration over the collection.
       #
-      # @param block [Proc]
+      # @macro param_block
       # @return [Enumerator]
       def each(&block)
         rows.each(&block)

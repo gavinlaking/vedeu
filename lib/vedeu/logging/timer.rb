@@ -14,7 +14,7 @@ module Vedeu
 
         # {include:file:docs/dsl/by_method/timer.md}
         # @param message [String]
-        # @param block [Proc]
+        # @macro param_block
         # @macro raise_requires_block
         # @return [void] The return value of the executed block.
         def timer(message = '', &block)
@@ -36,7 +36,7 @@ module Vedeu
       # code took in milliseconds when debugging is enabled and a
       # block was Useful for debugging performance.
       #
-      # @param block [Proc]
+      # @macro param_block
       # @macro raise_requires_block
       # @return [void|NilClass] The return value of the executed
       #   block if given, or nil if debugging is disabled.

@@ -18,8 +18,7 @@ module Vedeu
         # within your application.
         #
         # @macro param_name
-        # @param block [Proc] A set of attributes which define the
-        #   features of the menu.
+        # @macro param_block
         #
         # @example
         #   Vedeu.menu :my_interface do
@@ -49,7 +48,7 @@ module Vedeu
 
         # Returns the client object which called the DSL method.
         #
-        # @param block [Proc]
+        # @macro param_block
         # @return [Object]
         def client(&block)
           eval('self', block.binding)

@@ -91,7 +91,7 @@ module Vedeu
 
     private
 
-    # @param block [Proc]
+    # @macro param_block
     # @return [void]
     def optionally_profile(&block)
       if Vedeu.config.profile?

@@ -52,9 +52,7 @@ module Vedeu
         #   execution of the triggered event to only execute once the
         #   debounce has expired. Subsequent triggers before debounce
         #   expiry are ignored.
-        # @param block [Proc] The event to be executed when triggered.
-        #   This block could be a method call, or the triggering of
-        #   another event, or sequence of either/both.
+        # @macro param_block
         #
         # @example
         #   Vedeu.bind :my_event do |some, args|

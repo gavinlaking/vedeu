@@ -11,7 +11,7 @@ module Vedeu
       include Vedeu::View
 
       # @param value [String] The HTML/CSS colour.
-      # @param block [Proc]
+      # @macro param_block
       # @macro raise_requires_block
       # @return [Vedeu::Views::Stream]
       def background(value, &block)
@@ -24,7 +24,7 @@ module Vedeu
       #   colour.
       # @option attributes background [String] The HTML/CSS background
       #   colour.
-      # @param block [Proc]
+      # @macro param_block
       # @macro raise_requires_block
       # @return [Vedeu::Views::Stream]
       def colour(attributes = {}, &block)
@@ -32,7 +32,7 @@ module Vedeu
       end
 
       # @param value [String] The HTML/CSS colour.
-      # @param block [Proc]
+      # @macro param_block
       # @macro raise_requires_block
       # @return [Vedeu::Views::Stream]
       def foreground(value, &block)
@@ -41,7 +41,7 @@ module Vedeu
       alias fg foreground
 
       # @param value [Symbol]
-      # @param block [Proc]
+      # @macro param_block
       # @return [Vedeu::Views::Stream]
       def style(value, &block)
         define_stream(style: value, &block)

@@ -17,7 +17,7 @@ module Vedeu
       alias all storage
       alias clear reset!
 
-      # @param block [Proc]
+      # @macro param_block
       # @return [Enumerator]
       def each(&block)
         storage.each(&block)

@@ -3,6 +3,9 @@
 Providing the optional 'width' will set the interface width,
 overriding any previous or calculated value for 'width'.
 
+Aliases:
+- align_center
+
 Aligning the view centrally within the terminal:
 
     # Vedeu.geometry :my_interface do

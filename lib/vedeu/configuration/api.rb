@@ -28,7 +28,7 @@ module Vedeu
       #   end
       #
       # @param default [Hash]
-      # @param block [Proc]
+      # @macro param_block
       # @return [Vedeu::Configuration::API]
       def initialize(default, &block)
         @default = default

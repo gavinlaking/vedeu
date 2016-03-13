@@ -31,7 +31,7 @@ module Vedeu
 
       # Provides iteration over the buffer.
       #
-      # @param block [Proc]
+      # @macro param_block
       # @return [Enumerator]
       def each(&block)
         current.each(&block)

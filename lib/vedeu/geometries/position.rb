@@ -111,7 +111,7 @@ module Vedeu
       # the aforementioned, call the block and then reposition to this
       # location.
       #
-      # @param block [Proc]
+      # @macro param_block
       # @return [String]
       # @yieldreturn [String] Returns the block wrapped in position
       #   escape sequences.

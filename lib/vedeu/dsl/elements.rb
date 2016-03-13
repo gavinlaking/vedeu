@@ -59,7 +59,7 @@ module Vedeu
       #     end
       #   end
       #
-      # @param block [Proc]
+      # @macro param_block
       # @macro raise_requires_block
       # @macro raise_fatal
       # @return [void]
@@ -112,7 +112,7 @@ module Vedeu
       #   block is given.
       # @param opts [Hash]
       # @option opts ... [void]
-      # @param block [Proc]
+      # @macro param_block
       # @macro raise_fatal
       # @return [void]
       def line(value = '', opts = {}, &block)
@@ -147,7 +147,7 @@ module Vedeu
       #   block is given.
       # @param opts [Hash]
       # @option opts ... [void]
-      # @param block [Proc]
+      # @macro param_block
       # @macro raise_fatal
       # @return [void]
       def stream(value = '', opts = {}, &block)
@@ -292,7 +292,7 @@ module Vedeu
 
       private
 
-      # @param block [Proc]
+      # @macro param_block
       # @macro raise_requires_block
       # @return [NilClass]
       def requires_block!(&block)

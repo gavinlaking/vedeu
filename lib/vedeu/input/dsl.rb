@@ -58,7 +58,7 @@ module Vedeu
       #   This is also used when defining the '_global_' keymap.
       #
       # @macro param_name
-      # @param block [Proc]
+      # @macro param_block
       # @macro raise_requires_block
       # @macro raise_missing_required
       # @return [Vedeu::Input::Keymap]
@@ -79,8 +79,7 @@ module Vedeu
       #   The key(s) pressed. Special keys can be found in
       #   {Vedeu::Input::Input#specials}. When more than one key is
       #   defined, then the extras are treated as aliases.
-      # @param block [Proc] The action to perform when this key is
-      #   pressed. Can be a method call or event triggered.
+      # @macro param_block
       # @macro raise_invalid_syntax
       # @return [Array] A collection containing the keys minus any
       #   invalid or nil keys.

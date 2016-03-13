@@ -23,7 +23,7 @@ module Vedeu
       end
 
       # @param named_colour [Symbol]
-      # @param block [Proc]
+      # @macro param_block
       # @return [String]
       def background_colour(named_colour, &block)
         return '' unless valid_name?(named_colour)
@@ -32,7 +32,7 @@ module Vedeu
       end
 
       # @param named_colour [Symbol]
-      # @param block [Proc]
+      # @macro param_block
       # @return [String]
       def colour(named_colour, &block)
         return '' unless valid_name?(named_colour)
