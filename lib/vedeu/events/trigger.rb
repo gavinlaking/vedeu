@@ -85,7 +85,11 @@ module Vedeu
       #
       # @return [Array<void>|void]
       def results
-        @results ||= registered_events.map { |event| event.trigger(*args) }
+        @results ||= registered_events.map do |event|
+          Vedeu.log(type: :event, message: message)
+
+          event.trigger(*args)
+        end
       end
 
       # Return all of the registered events for this name.

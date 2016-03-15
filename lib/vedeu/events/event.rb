@@ -184,19 +184,6 @@ module Vedeu
         @executed_at = @now # set execution time to now
         @now         = 0    # reset now
 
-        message = if args.size > 1
-                    "Triggering: '#{name.inspect}' with #{args.inspect}"
-
-                  elsif args.one?
-                    "Triggering: '#{name.inspect}' for #{args.first.inspect}"
-
-                  else
-                    "Triggering: '#{name.inspect}'"
-
-                  end
-
-        Vedeu.log(type: :event, message: message)
-
         closure.call(*args)
       end
 
