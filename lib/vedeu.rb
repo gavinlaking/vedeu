@@ -65,6 +65,9 @@ end # Vedeu
 #   Provide additional behaviour as singleton methods to the including
 #   class or module.
 #
+# @!macro [new] param_block
+#   @param block [Proc]
+#
 # @!macro [new] param_name
 #   @param name [NilClass|Symbol|String] The name of the model or
 #     target model to act upon. May default to `Vedeu.focus`.

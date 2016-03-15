@@ -10,8 +10,6 @@ module Vedeu
 
       let(:described) { Vedeu::Input::Repository }
 
-      it { described.must_respond_to(:keymaps) }
-
     end # Repository
 
   end # Input

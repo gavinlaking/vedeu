@@ -7,6 +7,9 @@ module Vedeu
   class ParentPresentationStyleTestClass
 
     include Vedeu::Presentation
+    include Vedeu::Presentation::Colour
+    include Vedeu::Presentation::Position
+    include Vedeu::Presentation::Styles
 
     attr_reader :style
 
@@ -20,6 +23,9 @@ module Vedeu
   class PresentationStyleTestClass
 
     include Vedeu::Presentation
+    include Vedeu::Presentation::Colour
+    include Vedeu::Presentation::Position
+    include Vedeu::Presentation::Styles
 
     attr_reader :parent
 

@@ -123,45 +123,14 @@ module Vedeu
         model
       end
 
-      # Vertically align the interface/view to the bottom of the
-      # terminal.
-      #
-      #   Vedeu.geometry :some_interface do
-      #     # `height` is a positive integer, e.g. 30
-      #     align_bottom 30
-      #
-      #     # this is the same as:
-      #     # vertical_alignment(:bottom, 30)
-      #
-      #     # or you can use: (see notes)
-      #     # align(vertical: :bottom, height: 30)
-      #
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/geometry/align_bottom.md}
       # @param height [Fixnum] The number of lines/rows.
       # @return [Vedeu::Geometries::Geometry]
       def align_bottom(height = nil)
         vertical_alignment(:bottom, height)
       end
 
-      # Horizontally align the interface/view centrally.
-      #
-      #   Vedeu.geometry :some_interface do
-      #     # `width` is a positive integer, e.g. 30
-      #     align_centre 30
-      #
-      #     # this is the same as:
-      #     # horizontal_alignment(:centre, 30)
-      #
-      #     # or you can use: (see notes)
-      #     # align(horizontal: :centre, width: 30)
-      #
-      #     # ... some code
-      #   end
-      #
-      #   # Also allows `align_center` if preferred.
-      #
+      # {include:file:docs/dsl/by_method/geometry/align_centre.md}
       # @param width [Fixnum] The number of characters/columns.
       # @return [Vedeu::Geometries::Geometry]
       def align_centre(width = nil)
@@ -169,103 +138,35 @@ module Vedeu
       end
       alias align_center align_centre
 
-      # Horizontally align the interface/view to the left.
-      #
-      #   Vedeu.geometry :some_interface do
-      #     # `width` is a positive integer, e.g. 30
-      #     align_left 30
-      #
-      #     # this is the same as:
-      #     # horizontal_alignment(:left, 30)
-      #
-      #     # or you can use: (see notes)
-      #     # align(horizontal: :left, width: 30)
-      #
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/geometry/align_left.md}
       # @param width [Fixnum] The number of characters/columns.
       # @return [Vedeu::Geometries::Geometry]
       def align_left(width = nil)
         horizontal_alignment(:left, width)
       end
 
-      # Vertically align the interface/view to the middle of the
-      # terminal.
-      #
-      #   Vedeu.geometry :some_interface do
-      #     # `height` is a positive integer, e.g. 30
-      #     align_middle 30
-      #
-      #     # this is the same as:
-      #     # vertical_alignment(:middle, 30)
-      #
-      #     # or you can use: (see notes)
-      #     # align(vertical: :middle, height: 30)
-      #
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/geometry/align_middle.md}
       # @param height [Fixnum] The number of lines/rows.
       # @return [Vedeu::Geometries::Geometry]
       def align_middle(height = nil)
         vertical_alignment(:middle, height)
       end
 
-      # Align the interface/view to the right.
-      #
-      #   Vedeu.geometry :some_interface do
-      #     # `width` is a positive integer, e.g. 30
-      #     align_right 30
-      #
-      #     # this is the same as:
-      #     # horizontal_alignment(:right, 30)
-      #
-      #     # or you can use: (see notes)
-      #     # align(horizontal: :right, width: 30)
-      #
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/geometry/align_right.md}
       # @param width [Fixnum] The number of characters/columns.
       # @return [Vedeu::Geometries::Geometry]
       def align_right(width = nil)
         horizontal_alignment(:right, width)
       end
 
-      # Vertically align the interface/view to the top of the
-      # terminal.
-      #
-      #   Vedeu.geometry :some_interface do
-      #     # `height` is a positive integer, e.g. 30
-      #     align_top 30
-      #
-      #     # this is the same as:
-      #     # vertical_alignment(:top, 30)
-      #
-      #     # or you can use: (see notes)
-      #     # align(vertical: :top, height: 30)
-      #
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/geometry/align_top.md}
       # @param height [Fixnum] The number of lines/rows.
       # @return [Vedeu::Geometries::Geometry]
       def align_top(height = nil)
         vertical_alignment(:top, height)
       end
 
-      # Returns the width in characters for the number of columns
-      # specified.
-      #
-      #   Vedeu.geometry :main_interface do
-      #     # ... some code
-      #     width columns(9) # Vedeu.width # => 92 (for example)
-      #                      # 92 / 12 = 7
-      #                      # 7 * 9 = 63
-      #                      # Therefore, width is 63 characters.
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/geometry/columns.md}
       # @param value [Fixnum]
       # @macro raise_out_of_range
       # @return [Fixnum|Vedeu::Error::OutOfRange]
@@ -273,14 +174,7 @@ module Vedeu
         Vedeu::Geometries::Grid.columns(value)
       end
 
-      # Specify the number of characters/rows/lines tall the interface
-      # will be. This value will be ignored when `y` and `yn` are set.
-      #
-      #   Vedeu.geometry :some_interface do
-      #     height 8
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/geometry/height.md}
       # @param value [Fixnum]
       # @return [Fixnum]
       def height(value)
@@ -288,17 +182,7 @@ module Vedeu
       end
       alias height= height
 
-      # Returns the height in characters for the number of rows
-      # specified.
-      #
-      #   Vedeu.geometry :main_interface do
-      #     # ... some code
-      #     height rows(3)  # Vedeu.height # => 38 (for example)
-      #                     # 38 / 12 = 3
-      #                     # 3 * 3 = 9
-      #                     # Therefore, height is 9 characters.
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/geometry/rows.md}
       # @param value [Fixnum]
       # @macro raise_out_of_range
       # @return [Fixnum]
@@ -306,14 +190,7 @@ module Vedeu
         Vedeu::Geometries::Grid.rows(value)
       end
 
-      # Specify the number of characters/columns wide the interface
-      # will be. This value will be ignored when `x` and `xn` are set.
-      #
-      #   Vedeu.geometry :some_interface do
-      #     width 25
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/geometry/width.md}
       # @param value [Fixnum] The number of characters/columns.
       # @return [Fixnum]
       def width(value)
@@ -321,19 +198,9 @@ module Vedeu
       end
       alias width= width
 
-      # Specify the starting x position (column) of the interface.
-      #
-      #   Vedeu.geometry :some_interface do
-      #     x 7 # start on column 7.
-      #
-      #     # start on column 8, if :other_interface changes position
-      #     # then :some_interface will too.
-      #     x { use(:other_interface).east }
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/geometry/x.md}
       # @param value [Fixnum]
-      # @param block [Proc]
+      # @macro param_block
       # @return [Fixnum]
       def x(value = 1, &block)
         return model.x = block if block_given?
@@ -342,20 +209,9 @@ module Vedeu
       end
       alias x= x
 
-      # Specify the ending x position (column) of the interface.
-      # This value will override `width`.
-      #
-      #   Vedeu.geometry :some_interface do
-      #     xn 37 # end at column 37.
-      #
-      #     # when :other_interface changes position,
-      #     # :some_interface will too.
-      #     xn  { use(:other_interface).right }
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/geometry/xn.md}
       # @param value [Fixnum]
-      # @param block [Proc]
+      # @macro param_block
       # @return [Fixnum]
       def xn(value = 1, &block)
         return model.xn = block if block_given?
@@ -364,19 +220,9 @@ module Vedeu
       end
       alias xn= xn
 
-      # Specify the starting y position (row/line) of the interface.
-      #
-      #   Vedeu.geometry :some_interface do
-      #     y  4 # start at row 4
-      #
-      #     # start on row/line 3, when :other_interface changes
-      #     # position, :some_interface will too.
-      #     y  { use(:other_interface).north }
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/geometry/y.md}
       # @param value [Fixnum]
-      # @param block [Proc]
+      # @macro param_block
       # @return [Fixnum]
       def y(value = 1, &block)
         return model.y = block if block_given?
@@ -385,20 +231,9 @@ module Vedeu
       end
       alias y= y
 
-      # Specify the ending y position (row/line) of the interface.
-      # This value will override `height`.
-      #
-      #   Vedeu.geometry :some_interface do
-      #     yn 24 # end at row 24.
-      #
-      #     # if :other_interface changes position, :some_interface
-      #     # will too.
-      #     yn { use(:other_interface).bottom }
-      #     # ... some code
-      #   end
-      #
+      # {include:file:docs/dsl/by_method/geometry/yn.md}
       # @param value [Fixnum]
-      # @param block [Proc]
+      # @macro param_block
       # @return [Fixnum]
       def yn(value = 1, &block)
         return model.yn = block if block_given?

@@ -28,9 +28,7 @@ module Vedeu
 
         # @return [String]
         def with
-          Vedeu.log(type:    :compress,
-                    message: "No compression for #{original_size} objects -> " \
-                             "#{compress_size} characters")
+          Vedeu.log(type: :compress, message: message)
 
           compress
         end
@@ -51,6 +49,12 @@ module Vedeu
         # @return [Fixnum]
         def compress_size
           compress.size
+        end
+
+        # @return [String]
+        def message
+          "No compression for #{original_size} objects " \
+          "-> #{compress_size} characters"
         end
 
         # @return [Fixnum]

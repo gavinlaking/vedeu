@@ -79,7 +79,7 @@ module Vedeu
       # Runs the application loop either once, or forever (exceptions
       # and signals permitting).
       #
-      # @param block [Proc]
+      # @macro param_block
       # @return [void]
       def runner(&block)
         if Vedeu.config.once?
@@ -115,7 +115,7 @@ module Vedeu
       # stopped when an uncaught exception occurs or when either the
       # `:_mode_switch_` or `:_exit_` event is triggered.
       #
-      # @param block [Proc]
+      # @macro param_block
       # @return [void]
       def run_many(&block)
         Vedeu::Runtime::MainLoop.start! { yield }
@@ -124,7 +124,7 @@ module Vedeu
         Vedeu::Runtime::Application.restart
       end
 
-      # @param block [Proc]
+      # @macro param_block
       # @return [void]
       def run_once(&block)
         # Vedeu.debug(binding)

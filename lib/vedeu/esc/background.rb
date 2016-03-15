@@ -12,7 +12,7 @@ module Vedeu
 
       extend self
 
-      # @param block [Proc]
+      # @macro param_block
       # @return [String]
       def on_black(&block)
         if block_given?
@@ -24,7 +24,7 @@ module Vedeu
         end
       end
 
-      # @param block [Proc]
+      # @macro param_block
       # @return [String]
       def on_red(&block)
         if block_given?
@@ -36,7 +36,7 @@ module Vedeu
         end
       end
 
-      # @param block [Proc]
+      # @macro param_block
       # @return [String]
       def on_green(&block)
         if block_given?
@@ -48,7 +48,7 @@ module Vedeu
         end
       end
 
-      # @param block [Proc]
+      # @macro param_block
       # @return [String]
       def on_yellow(&block)
         if block_given?
@@ -60,7 +60,7 @@ module Vedeu
         end
       end
 
-      # @param block [Proc]
+      # @macro param_block
       # @return [String]
       def on_blue(&block)
         if block_given?
@@ -72,7 +72,7 @@ module Vedeu
         end
       end
 
-      # @param block [Proc]
+      # @macro param_block
       # @return [String]
       def on_magenta(&block)
         if block_given?
@@ -84,7 +84,7 @@ module Vedeu
         end
       end
 
-      # @param block [Proc]
+      # @macro param_block
       # @return [String]
       def on_cyan(&block)
         if block_given?
@@ -96,7 +96,7 @@ module Vedeu
         end
       end
 
-      # @param block [Proc]
+      # @macro param_block
       # @return [String]
       def on_light_grey(&block)
         if block_given?
@@ -108,7 +108,7 @@ module Vedeu
         end
       end
 
-      # @param block [Proc]
+      # @macro param_block
       # @return [String]
       def on_default(&block)
         if block_given?
@@ -120,7 +120,7 @@ module Vedeu
         end
       end
 
-      # @param block [Proc]
+      # @macro param_block
       # @return [String]
       def on_dark_grey(&block)
         if block_given?
@@ -132,7 +132,7 @@ module Vedeu
         end
       end
 
-      # @param block [Proc]
+      # @macro param_block
       # @return [String]
       def on_light_red(&block)
         if block_given?
@@ -144,7 +144,7 @@ module Vedeu
         end
       end
 
-      # @param block [Proc]
+      # @macro param_block
       # @return [String]
       def on_light_green(&block)
         if block_given?
@@ -156,7 +156,7 @@ module Vedeu
         end
       end
 
-      # @param block [Proc]
+      # @macro param_block
       # @return [String]
       def on_light_yellow(&block)
         if block_given?
@@ -168,7 +168,7 @@ module Vedeu
         end
       end
 
-      # @param block [Proc]
+      # @macro param_block
       # @return [String]
       def on_light_blue(&block)
         if block_given?
@@ -180,7 +180,7 @@ module Vedeu
         end
       end
 
-      # @param block [Proc]
+      # @macro param_block
       # @return [String]
       def on_light_magenta(&block)
         if block_given?
@@ -192,7 +192,7 @@ module Vedeu
         end
       end
 
-      # @param block [Proc]
+      # @macro param_block
       # @return [String]
       def on_light_cyan(&block)
         if block_given?
@@ -204,7 +204,7 @@ module Vedeu
         end
       end
 
-      # @param block [Proc]
+      # @macro param_block
       # @return [String]
       def on_white(&block)
         if block_given?

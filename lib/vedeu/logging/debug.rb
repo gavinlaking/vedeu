@@ -37,7 +37,7 @@ module Vedeu
       # {include:file:docs/dsl/by_method/profile.md}
       # @param filename [String] Optional, and defaults to being
       #   written to the /tmp directory.
-      # @param block [Proc]
+      # @macro param_block
       # @macro raise_requires_block
       # @return [void]
       # @yieldreturn [void] The section of the application to profile.

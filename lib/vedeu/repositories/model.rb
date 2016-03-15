@@ -9,9 +9,6 @@ module Vedeu
     #
     module Model
 
-      # This is used by including classes.
-      include Vedeu::Common
-
       # @!attribute [rw] repository
       # @return [Vedeu::Repositories::Repository]
       attr_accessor :repository
@@ -29,7 +26,7 @@ module Vedeu
         #
         # @param attributes [Hash] A collection of attributes specific
         #   to the model.
-        # @param block [Proc] The block passed to the build method.
+        # @macro param_block
         # @return [Object] An instance of the model.
         def build(attributes = {}, &block)
           model = new(attributes)
@@ -56,8 +53,7 @@ module Vedeu
         #
         # @param attributes [Hash] A collection of attributes specific
         #   to the model.
-        # @param block [Proc] A block of code to be executing whilst
-        #   storing.
+        # @macro param_block
         # @return [Object] An instance of the model.
         def store(attributes = {}, &block)
           new(attributes).store(&block)

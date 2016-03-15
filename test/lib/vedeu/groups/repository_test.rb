@@ -10,8 +10,6 @@ module Vedeu
 
       let(:described) { Vedeu::Groups::Repository }
 
-      it { described.must_respond_to(:groups) }
-
       describe '#by_name' do
         let(:_name) { 'carbon' }
 

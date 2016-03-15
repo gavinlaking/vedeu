@@ -29,6 +29,9 @@ module Vedeu
       extend Forwardable
       include Vedeu::Repositories::Model
       include Vedeu::Presentation
+      include Vedeu::Presentation::Colour
+      include Vedeu::Presentation::Position
+      include Vedeu::Presentation::Styles
       include Vedeu::Views::Value
 
       collection Vedeu::Views::Lines

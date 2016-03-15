@@ -43,6 +43,7 @@ module Vedeu
     yellow:   [:light_yellow,  :yellow],
   }.freeze
 
+  # @return [Array<Symbol>]
   LOG_TYPES_KEYS = Vedeu::LOG_TYPES.keys.freeze
 
   # Allows the customisation of Vedeu's behaviour through the
@@ -87,7 +88,7 @@ module Vedeu
       # @option opts stdin [File|IO]
       # @option opts stdout [File|IO]
       # @option opts stderr [File|IO]
-      # @param block [Proc]
+      # @macro param_block
       # @return [Hash<Symbol => void>]
       def configure(opts = {}, &block)
         instance.configure(opts, &block)
@@ -387,7 +388,7 @@ module Vedeu
     # Set up default configuration and then allow the client
     # application to modify it via the configuration API.
     #
-    # @param block [Proc]
+    # @macro param_block
     # @return [Hash<Symbol => void>]
     def configure(opts = {}, &block)
       @options.merge!(opts)

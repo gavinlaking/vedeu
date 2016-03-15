@@ -49,7 +49,9 @@ class DSLApp
 
 end # DSLApp
 
-DSLApp.start
+Vedeu.timer('Test') do
+  DSLApp.start
+end
 
 load File.dirname(__FILE__) + '/test_runner.rb'
 TestRunner.result(TESTCASE, __FILE__)

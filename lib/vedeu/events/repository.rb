@@ -10,8 +10,6 @@ module Vedeu
     #
     class Repository < Vedeu::Repositories::Repository
 
-      singleton_class.send(:alias_method, :events, :repository)
-
       class << self
 
         # Remove all stored models from the repository.

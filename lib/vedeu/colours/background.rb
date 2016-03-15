@@ -19,15 +19,10 @@ module Vedeu
 
       # @return [String]
       def to_ast
-        return '' unless background?
+        return ''    unless background?
+        return ':bg' unless rgb?
 
-        if rgb?
-          ":bg_#{colour.to_s.slice(1..-1)}"
-
-        else
-          ':bg'
-
-        end
+        ":bg_#{colour.to_s.slice(1..-1)}"
       end
 
       # @return [Hash<Symbol => String>]

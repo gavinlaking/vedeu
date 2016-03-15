@@ -33,7 +33,7 @@ module Vedeu
         #   end
         #
         # @macro param_name
-        # @param block [Proc]
+        # @macro param_block
         # @macro raise_requires_block
         # @macro raise_missing_required
         # @return [Vedeu::Borders::Border]

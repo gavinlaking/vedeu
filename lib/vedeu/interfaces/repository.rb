@@ -8,8 +8,6 @@ module Vedeu
     #
     class Repository < Vedeu::Repositories::Repository
 
-      singleton_class.send(:alias_method, :interfaces, :repository)
-
       null Vedeu::Interfaces::Null
       real Vedeu::Interfaces::Interface
 

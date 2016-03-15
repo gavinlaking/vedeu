@@ -11,8 +11,6 @@ module Vedeu
       let(:described) { Vedeu::Buffers::Repository }
       let(:instance)  { described.buffers }
 
-      it { described.must_respond_to(:buffers) }
-
     end # Repository
 
   end # Buffers

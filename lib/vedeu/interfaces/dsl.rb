@@ -30,8 +30,7 @@ module Vedeu
         #   end
         #
         # @macro param_name
-        # @param block [Proc] A set of attributes which define the
-        #   features of the interface.
+        # @macro param_block
         # @macro raise_requires_block
         # @macro raise_missing_required
         # @return [Vedeu::Interfaces::Interface]
@@ -104,7 +103,7 @@ module Vedeu
 
         # Returns the client object which called the DSL method.
         #
-        # @param block [Proc]
+        # @macro param_block
         # @return [Object]
         def client(&block)
           eval('self', block.binding) if block_given?

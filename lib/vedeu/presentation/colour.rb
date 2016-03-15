@@ -148,7 +148,7 @@ module Vedeu
       # Renders the colour attributes of the receiver and yields (to
       # then render the styles).
       #
-      # @param block [Proc]
+      # @macro param_block
       # @return [String]
       def render_colour(&block)
         "#{colour}#{yield}"

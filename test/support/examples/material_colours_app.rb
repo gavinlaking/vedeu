@@ -95,71 +95,6 @@ class VedeuMaterialColoursApp
     colour  foreground: '#ffffff', background: '#e91e63'
   end
 
-  # Borders can be defined as part of the interface definition.
-  Vedeu.interface 'only_top' do
-    colour  foreground: '#ffffff', background: '#009688'
-    border do
-      foreground  '#ffffff'
-      show_right  false
-      show_bottom false
-      show_left   false
-    end
-    geometry do
-      x      50
-      y      22
-      height 4
-      width  10
-    end
-  end
-
-  Vedeu.interface 'only_bottom' do
-    colour  foreground: '#000000', background: '#8bc34a'
-    border do
-      foreground  '#000000'
-      show_top   false
-      show_right false
-      show_left  false
-    end
-    geometry do
-      x      62
-      y      22
-      height 4
-      width  10
-    end
-  end
-
-  Vedeu.interface 'only_left' do
-    colour  foreground: '#000000', background: '#cddc39'
-    border do
-      foreground  '#ffffff'
-      show_top    false
-      show_bottom false
-      show_right  false
-    end
-    geometry do
-      x      50
-      y      27
-      height 4
-      width  10
-    end
-  end
-
-  Vedeu.interface 'only_right' do
-    colour  foreground: '#000000', background: '#ffeb3b'
-    border do
-      foreground  '#000000'
-      show_top    false
-      show_bottom false
-      show_left   false
-    end
-    geometry do
-      x      62
-      y      27
-      height 4
-      width  10
-    end
-  end
-
   Vedeu.interface 'custom_colour' do
     geometry do
       x      50
@@ -415,34 +350,6 @@ class VedeuMaterialColoursApp
       lines do
         line 'border'
         line 'off'
-        line '4, 10'
-      end
-    end
-    view('only_top') do
-      lines do
-        line 'only'
-        line 'top'
-        line '4, 10'
-      end
-    end
-    view('only_bottom') do
-      lines do
-        line 'only'
-        line 'bottom'
-        line '4, 10'
-      end
-    end
-    view('only_left') do
-      lines do
-        line 'only'
-        line 'left'
-        line '4, 10'
-      end
-    end
-    view('only_right') do
-      lines do
-        line 'only'
-        line 'right'
         line '4, 10'
       end
     end

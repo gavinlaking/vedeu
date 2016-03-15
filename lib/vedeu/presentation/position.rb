@@ -52,7 +52,7 @@ module Vedeu
 
       private
 
-      # @param block [Proc]
+      # @macro param_block
       # @return [String]
       def render_position(&block)
         return position.to_s { yield } if position?

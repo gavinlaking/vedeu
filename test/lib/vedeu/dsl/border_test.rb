@@ -8,6 +8,14 @@ module Vedeu
 
     include Vedeu::DSL::Border
 
+    def model
+      self
+    end
+
+    def name
+      :vedeu_dsl_border_test_class
+    end
+
   end # DSLBorderTestClass
 
   module DSL
@@ -16,7 +24,7 @@ module Vedeu
 
       let(:described) { Vedeu::DSL::Border }
       let(:included_described) { Vedeu::DSLBorderTestClass }
-      let(:instance)  { Class.include(described).new }
+      let(:instance)  { included_described.new }
       let(:_name)     { :vedeu_dsl_border }
 
       describe '.included' do
@@ -28,18 +36,6 @@ module Vedeu
       describe '#border' do
         subject { instance.border(_name) {} }
 
-        context 'when the name is not given' do
-          let(:_name) {}
-
-          it 'uses the name of the model' do
-            # @todo Add more tests.
-          end
-        end
-
-        context 'when the name is given' do
-          # @todo Add more tests.
-        end
-
         context 'when the block is not given' do
           subject { instance.border(_name) }
 
@@ -47,16 +43,30 @@ module Vedeu
         end
 
         context 'when the block is given' do
-          subject { instance.border { } }
+          context 'when the name is not given' do
+            let(:_name) {}
 
-          # @todo Add more tests.
+            it 'uses the name of the model' do
+              subject.must_be_instance_of(Vedeu::Borders::Border)
+              subject.name.must_equal(:vedeu_dsl_border_test_class)
+            end
+          end
+
+          context 'when the name is given' do
+            it 'uses the given name' do
+              subject.must_be_instance_of(Vedeu::Borders::Border)
+              subject.name.must_equal(:vedeu_dsl_border)
+            end
+          end
         end
       end
 
       describe '#border!' do
         subject { instance.border! }
 
-        # @todo Add more tests.
+        it 'builds and stores a default border' do
+          subject.must_be_instance_of(Vedeu::Borders::Border)
+        end
       end
 
     end # Border

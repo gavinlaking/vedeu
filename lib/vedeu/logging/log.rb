@@ -99,12 +99,26 @@ module Vedeu
         # @macro vedeu_logging_log_param_message
         # @return [String]
         def log_entry(type, message)
-          colours = Vedeu::LOG_TYPES.fetch(type, [:default, :default])
+          log_type(type) + log_message(type, message)
+        end
 
-          [
-            Vedeu.esc.colour(colours[0]) { "[#{type}]".ljust(11) },
-            Vedeu.esc.colour(colours[1]) { message },
-          ].join
+        # @param type [Symbol] The type of log message.
+        # @return [String]
+        def log_type(type)
+          Vedeu.esc.colour(colours(type)[0]) { "[#{type}]".ljust(11) }
+        end
+
+        # @param type [Symbol] The type of log message.
+        # @macro vedeu_logging_log_param_message
+        # @return [String]
+        def log_message(type, message)
+          Vedeu.esc.colour(colours(type)[1]) { message }
+        end
+
+        # @param type [Symbol] The type of log message.
+        # @return [Array<Symbol>]
+        def colours(type)
+          Vedeu::LOG_TYPES.fetch(type, [:default, :default])
         end
 
       end # Eigenclass

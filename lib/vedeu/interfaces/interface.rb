@@ -11,6 +11,9 @@ module Vedeu
 
       include Vedeu::Repositories::Model
       include Vedeu::Presentation
+      include Vedeu::Presentation::Colour
+      include Vedeu::Presentation::Position
+      include Vedeu::Presentation::Styles
       include Vedeu::Toggleable
 
       # @!attribute [rw] client

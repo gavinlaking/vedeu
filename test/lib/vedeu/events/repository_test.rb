@@ -10,8 +10,6 @@ module Vedeu
 
       let(:described) { Vedeu::Events::Repository }
 
-      it { described.must_respond_to(:events) }
-
       describe '.reset!' do
         subject { described.reset! }
 

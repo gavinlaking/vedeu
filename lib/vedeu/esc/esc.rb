@@ -53,7 +53,7 @@ module Vedeu
 
       # Return the escape sequence to render a border character.
       #
-      # @param block [Proc]
+      # @macro param_block
       # @return [String]
       # @yieldreturn [void] The border character to wrap with border
       #   on and off escape sequences.

@@ -94,9 +94,7 @@ module Vedeu
       class << self
 
         # {include:file:docs/dsl/by_method/renders.md}
-        # @param block [Proc] The directives you wish to send to
-        #   render. Typically includes `view` with associated
-        #   sub-directives.
+        # @macro param_block
         # @macro raise_requires_block
         # @return [Vedeu::Views::Composition]
         def renders(&block)
@@ -107,9 +105,7 @@ module Vedeu
         alias render renders
 
         # {include:file:docs/dsl/by_method/views.md}
-        # @param block [Proc] The directives you wish to send to
-        #   render. Typically includes `view` with associated
-        #   sub-directives.
+        # @macro param_block
         # @macro raise_requires_block
         # @return [Vedeu::Views::Composition]
         def views(&block)
@@ -120,14 +116,17 @@ module Vedeu
 
         private
 
-        # @param block [Proc] The directives you wish to send to
-        #   render. Typically includes `view` with associated
-        #   sub-directives. The binding of the block is also accessed
-        #   so that we can ascertain the calling client application
-        #   class, this is so that if there methods being called
-        #   inside your views, Vedeu will redirect that call to the
-        #   client class instance instead. (This actually occurs
-        #   when Vedeu rescues from method_missing. See {Vedeu::DSL}.)
+        # Handles the directives you wish to send to render. Typically
+        # includes `view` with associated sub-directives. The binding
+        # of the block is also accessed so that we can ascertain the
+        # calling client application class, this is so that if there
+        # methods being called inside your views, Vedeu will redirect
+        # that call to the client class instance instead. (This
+        # actually occurs when Vedeu rescues from method_missing. See
+        # {Vedeu::DSL}.)
+        #
+        # @macro param_block
+        # @return [void]
         def client_binding(&block)
           eval('self', block.binding).tap do |client|
             Vedeu.log(type:    :debug,
@@ -139,10 +138,8 @@ module Vedeu
         # one or more view {Vedeu::Views::View} objects.
         #
         # @param refresh [Boolean]
-        # @param block [Proc] The directives you wish to send to
-        #   render. Typically includes `view` with associated
-        #   sub-directives.
-        # # @return [Vedeu::Views::Composition]
+        # @macro param_block
+        # @return [Vedeu::Views::Composition]
         def composition(refresh = false, &block)
           attrs = {
             client: client_binding(&block),

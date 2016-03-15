@@ -17,7 +17,7 @@ module Vedeu
       # Returns a new instance of Vedeu::Input::Key.
       #
       # @param input [String|Symbol]
-      # @param block [Proc]
+      # @macro param_block
       # @macro raise_requires_block
       # @return [Vedeu::Input::Key]
       def initialize(input = nil, &block)

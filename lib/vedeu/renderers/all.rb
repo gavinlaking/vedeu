@@ -73,7 +73,7 @@ module Vedeu
     end
 
     # @param renderer [void]
-    # @param block [Proc]
+    # @macro param_block
     def perform(renderer, &block)
       if Vedeu.config.threaded?
         threaded(renderer) { yield }
@@ -89,7 +89,7 @@ module Vedeu
       @_mutex ||= Mutex.new
     end
 
-    # @param block [Proc]
+    # @macro param_block
     # @return [void]
     def threaded(renderer, &block)
       Thread.new(renderer) do
@@ -101,7 +101,7 @@ module Vedeu
       end
     end
 
-    # @param block [Proc]
+    # @macro param_block
     # @return [void]
     def toggle_cursor(&block)
       Vedeu.trigger(:_hide_cursor_)
@@ -111,7 +111,7 @@ module Vedeu
       Vedeu.trigger(:_show_cursor_)
     end
 
-    # @param block [Proc]
+    # @macro param_block
     # @return [void]
     def unthreaded(&block)
       toggle_cursor do

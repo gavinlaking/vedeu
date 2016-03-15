@@ -55,7 +55,7 @@ module Vedeu
       #   end
       #
       # @macro param_name
-      # @param block [Proc]
+      # @macro param_block
       # @macro raise_requires_block
       # @return [Vedeu::Groups::Group]
       def self.group(name, &block)

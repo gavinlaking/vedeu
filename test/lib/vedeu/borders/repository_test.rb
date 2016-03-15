@@ -10,8 +10,6 @@ module Vedeu
 
       let(:described) { Vedeu::Borders::Repository }
 
-      it { described.must_respond_to(:borders) }
-
     end # Repository
 
   end # Borders

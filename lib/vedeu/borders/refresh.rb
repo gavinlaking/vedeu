@@ -202,7 +202,7 @@ module Vedeu
       # the block.
       #
       # @param size [Fixnum]
-      # @param block [Proc]
+      # @macro param_block
       # @return [Array<void>]
       def build_collection(size, &block)
         Array.new(size) { |e| yield(e) }

@@ -47,8 +47,7 @@ module Vedeu
 
       # {include:file:docs/dsl/by_method/view.md}
       # @macro param_name
-      # @param block [Proc] The directives you wish to send to this
-      #   view.
+      # @macro param_block
       # @macro raise_requires_block
       # @macro raise_missing_required
       # @return [Vedeu::Views::Views<Vedeu::Views::View>]
@@ -63,17 +62,7 @@ module Vedeu
         model.add(new_model)
       end
 
-      # Load content from an ERb template.
-      #
-      # @example
-      #   Vedeu.renders do
-      #     template_for(:my_interface,
-      #                  '/path/to/template.erb',
-      #                  @some_object, options)
-      #   end
-      #
-      # @todo More documentation required.
-      #
+      # {include:file:docs/dsl/by_method/template_for.md}
       # @macro param_name
       # @param filename [String] The filename (including path) to the
       #   template to be used. Yoy can use `File.dirname(__FILE__)` to
@@ -84,6 +73,7 @@ module Vedeu
       #   {Vedeu::DSL::Wordwrap}
       # @macro raise_missing_required
       # @return [Vedeu::Views::Views<Vedeu::Views::View>]
+      # @todo More documentation required.
       def template_for(name, filename, object = nil, options = {})
         raise Vedeu::Error::MissingRequired,
               'Cannot render template without the name of the ' \

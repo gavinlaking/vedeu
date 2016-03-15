@@ -23,8 +23,6 @@ module Vedeu
 
       let(:described) { Vedeu::Menus::Repository }
 
-      it { described.must_respond_to(:menus) }
-
     end # Repository
 
   end # Menus

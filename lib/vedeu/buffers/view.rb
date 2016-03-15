@@ -10,9 +10,9 @@ module Vedeu
     #
     class View
 
-      include Vedeu::Repositories::Defaults
-      include Enumerable
       extend Forwardable
+      include Enumerable
+      include Vedeu::Repositories::Defaults
 
       def_delegators :geometry,
                      :bordered_height,
@@ -31,7 +31,7 @@ module Vedeu
 
       # Provides iteration over the buffer.
       #
-      # @param block [Proc]
+      # @macro param_block
       # @return [Enumerator]
       def each(&block)
         current.each(&block)

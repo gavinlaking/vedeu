@@ -24,7 +24,7 @@ module Vedeu
       # Returns a boolean indicating whether the collection is not
       # empty.
       #
-      # @param block [Proc]
+      # @macro param_block
       # @return [Boolean]
       def any?(&block)
         collection.any?(&block)
@@ -32,7 +32,7 @@ module Vedeu
 
       # Provides iteration over the collection.
       #
-      # @param block [Proc]
+      # @macro param_block
       # @return [Enumerator]
       def each(&block)
         collection.each(&block)

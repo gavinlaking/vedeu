@@ -14,6 +14,9 @@ module Vedeu
     class Write
 
       include Vedeu::Presentation
+      include Vedeu::Presentation::Colour
+      include Vedeu::Presentation::Position
+      include Vedeu::Presentation::Styles
 
       # @api public
       # @param (see #initialize)

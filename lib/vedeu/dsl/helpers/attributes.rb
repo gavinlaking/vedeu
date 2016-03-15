@@ -44,7 +44,7 @@ module Vedeu
       #   value.
       # @option options wordwrap [Boolean] Whether the value should be
       #   wordwrapped.
-      # @param block [Proc]
+      # @macro param_block
       # @return [Vedeu::DSL::Attributes]
       def initialize(context = nil,
                      model   = nil,

@@ -15,7 +15,7 @@ module Vedeu
 
         # {include:file:docs/dsl/by_method/geometry.md}
         # @macro param_name
-        # @param block [Proc]
+        # @macro param_block
         # @macro raise_requires_block
         # @macro raise_missing_required
         # @return [Vedeu::Geometries::Geometry]
@@ -46,7 +46,7 @@ module Vedeu
 
         # {include:file:docs/dsl/by_method/geometry.md}
         # @macro param_name
-        # @param block [Proc]
+        # @macro param_block
         # @macro raise_requires_block
         # @macro raise_missing_required
         # @return [Vedeu::Geometries::Geometry]

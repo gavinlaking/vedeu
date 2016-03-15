@@ -24,7 +24,7 @@ module Vedeu
     # exit, attempts to restore the screen. See
     # {Vedeu::Terminal#restore_screen}.
     #
-    # @param block [Proc]
+    # @macro param_block
     # @macro raise_requires_block
     # @return [Array]
     def open(&block)
@@ -65,7 +65,7 @@ module Vedeu
       true
     end
 
-    # @param block [Proc]
+    # @macro param_block
     # @param mode [Symbol]
     # @return [void]
     def initialize_screen(mode, &block)
