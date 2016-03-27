@@ -23,7 +23,7 @@ class HelloWorldsApp
   # Add specific configuration for the client application.
   #
   # Vedeu.configure do
-  #   log '/tmp/hello_worlds.log'
+  #   log Dir.tmpdir + '/hello_worlds.log'
   # end
 
   Vedeu.interface :hello do

@@ -19,7 +19,7 @@ class DSLMenus
 
   Vedeu.configure do
     debug!
-    log '/tmp/dsl_menus.log'
+    log Dir.tmpdir + '/dsl_menus.log'
   end
 
   Vedeu.interface :files do

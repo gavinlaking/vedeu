@@ -29,7 +29,7 @@ module Vedeu
         end
 
         context 'when the path is does not exist' do
-          let(:path) { '/tmp/vedeu_does_not_exist' }
+          let(:path) { Dir.tmpdir + '/vedeu_does_not_exist' }
 
           before { File.stubs(:exist?).returns(false) }
 
@@ -37,7 +37,7 @@ module Vedeu
         end
 
         context 'when the path exists' do
-          let(:path) { '/tmp/vedeu_exists' }
+          let(:path) { Dir.tmpdir + '/vedeu_exists' }
           let(:expected) { "This is a test.\n" }
 
           before do

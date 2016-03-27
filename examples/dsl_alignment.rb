@@ -11,11 +11,11 @@ class AlignmentApp
 
   Vedeu.configure do
     debug!
-    log '/tmp/alignment.log'
+    log Dir.tmpdir + '/alignment.log'
     renderers [
                 Vedeu::Renderers::Terminal.new,
                 # Vedeu::Renderers::Text.new(
-                #   filename: '/tmp/alignment.out'),
+                #   filename: Dir.tmpdir + '/alignment.out'),
               ]
     run_once!
     standalone!

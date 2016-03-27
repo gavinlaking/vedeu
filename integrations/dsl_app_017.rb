@@ -14,14 +14,14 @@ class DSLApp
   Vedeu.configure do
     debug!
     height 10
-    log '/tmp/vedeu_views_dsl.log'
+    log Dir.tmpdir + '/vedeu_views_dsl.log'
     renderers [
                 Vedeu::Renderers::Terminal.new(
-                  filename: "/tmp/#{TESTCASE}.out",
+                  filename: Dir.tmpdir + "/#{TESTCASE}.out",
                   write_file: true),
-                # Vedeu::Renderers::JSON.new(filename: "/tmp/#{TESTCASE}.json"),
-                # Vedeu::Renderers::HTML.new(filename: "/tmp/#{TESTCASE}.html"),
-                # Vedeu::Renderers::Text.new(filename: "/tmp/#{TESTCASE}.txt"),
+                # Vedeu::Renderers::JSON.new(filename: Dir.tmpdir + "/#{TESTCASE}.json"),
+                # Vedeu::Renderers::HTML.new(filename: Dir.tmpdir + "/#{TESTCASE}.html"),
+                # Vedeu::Renderers::Text.new(filename: Dir.tmpdir + "/#{TESTCASE}.txt"),
               ]
     run_once!
     standalone!

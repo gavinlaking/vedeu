@@ -93,12 +93,7 @@ module Vedeu
       # @return [Vedeu::Editor::Cursor]
       # @todo Should ox/oy be 0; or set to @ox/@oy? (GL: 2015-10-02)
       def refresh
-        Vedeu::Cursors::Cursor.store(name:    name,
-                                     x:       real_x,
-                                     y:       real_y,
-                                     ox:      0,
-                                     oy:      0,
-                                     visible: true)
+        Vedeu::Cursors::Cursor.store(refresh_attributes)
 
         Vedeu.trigger(:_refresh_cursor_, name)
 
@@ -193,6 +188,18 @@ module Vedeu
       # @return [Fixnum]
       def real_x
         (bx + x) - ox
+      end
+
+      # @return [Hash<Symbol => Fixnum, String, Symbol>]
+      def refresh_attributes
+        {
+          name:    name,
+          x:       real_x,
+          y:       real_y,
+          ox:      0,
+          oy:      0,
+          visible: true
+        }
       end
 
     end # Cursor

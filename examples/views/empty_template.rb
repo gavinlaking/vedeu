@@ -11,16 +11,16 @@ class DSLApp
 
   Vedeu.configure do
     debug!
-    log '/tmp/vedeu_views_dsl.log'
+    log Dir.tmpdir + '/vedeu_views_dsl.log'
     renderers(Vedeu::Renderers::Terminal.new(
-                filename: '/tmp/vedeu_empty.out',
+                filename: Dir.tmpdir + '/vedeu_empty.out',
                 write_file: true),
               Vedeu::Renderers::JSON.new(
-                filename: '/tmp/vedeu_empty.json'),
+                filename: Dir.tmpdir + '/vedeu_empty.json'),
               Vedeu::Renderers::HTML.new(
-                filename: '/tmp/vedeu_empty.html'),
+                filename: Dir.tmpdir + '/vedeu_empty.html'),
               Vedeu::Renderers::Text.new(
-                filename: '/tmp/vedeu_empty.txt')
+                filename: Dir.tmpdir + '/vedeu_empty.txt')
               )
     run_once!
     standalone!

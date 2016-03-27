@@ -103,8 +103,8 @@ if ENV['PERFORMANCE'].to_i == 1
   Minitest::Reporters.use!(
     Minitest::Reporters::MeanTimeReporter.new({
       show_count: 20,
-      previous_runs_filename: "/tmp/durations",
-      report_filename:        "/tmp/durations_results"
+      previous_runs_filename: Dir.tmpdir + '/durations',
+      report_filename:        Dir.tmpdir + '/durations_results',
     })
   )
 end
@@ -119,7 +119,7 @@ def test_configuration
 
     # debug! # adds ~40ms to test run speed
 
-    # log '/tmp/vedeu_test_helper.log'
+    # log Dir.tmpdir + '/vedeu_test_helper.log'
     log false
 
     # profile!

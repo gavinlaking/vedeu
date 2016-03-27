@@ -1,5 +1,7 @@
 Sets the location of the log file, or disables the log. By default,
-the log file is set to '/tmp/vedeu_bootstrap.log'.
+the log file is set to '/tmp/vedeu_bootstrap.log'. Note: On Windows
+systems, the log directory is determined by the output from
+`Dir.tmpdir`.
 
     # Log messages will be sent to the path given.
     Vedeu.configure do

@@ -18,7 +18,7 @@ class DemoGroupsApp
 
   Vedeu.configure do
     debug!
-    log '/tmp/demo_groups.log'
+    log Dir.tmpdir + '/demo_groups.log'
   end
 
   Vedeu.interface :apple do

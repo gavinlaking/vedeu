@@ -19,14 +19,14 @@ class VedeuMaterialColoursApp
   Vedeu.configure do
     debug!
     # profile!
-    log '/tmp/vedeu_material_colours_app.log'
+    log Dir.tmpdir + '/vedeu_material_colours_app.log'
     # log_except [:cursor, :update, :render]
     # height 11
     # width  20
     renderers [
                 Vedeu::Renderers::Terminal.new,
                 # Vedeu::Renderers::Text.new(
-                #   filename: '/tmp/material_colours.out'),
+                #   filename: Dir.tmpdir + '/material_colours.out'),
               ]
     threaded false
   end

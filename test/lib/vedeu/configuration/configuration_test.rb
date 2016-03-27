@@ -66,18 +66,18 @@ module Vedeu
     describe '.log' do
       context 'when the log is not configured' do
         it 'sends messages to the default log' do
-          described.log.must_equal('/tmp/vedeu_bootstrap.log')
+          described.log.must_equal(Dir.tmpdir + '/vedeu_bootstrap.log')
         end
       end
 
       context 'when the log is configured with a filename' do
         before do
           Vedeu.configure do
-            log '/tmp/vedeu.log'
+            log Dir.tmpdir + '/vedeu.log'
           end
         end
 
-        it { described.log.must_equal('/tmp/vedeu.log') }
+        it { described.log.must_equal(Dir.tmpdir + '/vedeu.log') }
       end
 
       context 'when the log is configured with false' do

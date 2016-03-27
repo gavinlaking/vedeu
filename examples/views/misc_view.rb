@@ -8,12 +8,13 @@ class DSLApp
   Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   Vedeu.configure do
-    log '/tmp/vedeu_views_dsl.log'
+    log Dir.tmpdir + '/vedeu_views_dsl.log'
     debug!
     run_once!
     standalone!
     renderers(Vedeu::Renderers::Terminal.new,
-              Vedeu::Renderers::Text.new(filename: '/tmp/misc_view.out'))
+              Vedeu::Renderers::Text.new(
+                filename: Dir.tmpdir + '/misc_view.out'))
     height 40
   end
 

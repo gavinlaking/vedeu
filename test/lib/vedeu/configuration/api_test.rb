@@ -257,8 +257,8 @@ module Vedeu
 
       describe '#log' do
         it 'sets the options to the desired value' do
-          configuration = Vedeu.configure { log('/tmp/vedeu_api_test.log') }
-          configuration.log.must_equal('/tmp/vedeu_api_test.log')
+          configuration = Vedeu.configure { log(Dir.tmpdir + '/vedeu_api_test.log') }
+          configuration.log.must_equal(Dir.tmpdir + '/vedeu_api_test.log')
         end
       end
 

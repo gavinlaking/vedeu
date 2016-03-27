@@ -423,7 +423,7 @@ module Vedeu
         foreground:    :default,
         height:        nil,
         interactive:   true,
-        log:           '/tmp/vedeu_bootstrap.log',
+        log:           Dir.tmpdir + '/vedeu_bootstrap.log',
         log_except:    [],
         log_only:      [],
         mouse:         true,

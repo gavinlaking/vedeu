@@ -12,7 +12,7 @@ class VedeuTestApplication
 
   Vedeu.configure do
     colour_mode 16_777_216
-    log         '/tmp/vedeu_test_helper.log'
+    log         Dir.tmpdir + '/vedeu_test_helper.log'
     debug!
     profile!
     drb!
@@ -38,9 +38,9 @@ class VedeuTestApplication
     # mode_switch_key :escape
 
     # Not used yet
-    # stdin  File.open("/dev/tty", "r")
-    # stdout File.open("/dev/tty", "w")
-    # stderr File.open("/tmp/vedeu_error.log", "w+")
+    # stdin  File.open('/dev/tty', 'r')
+    # stdout File.open('/dev/tty', 'w')
+    # stderr File.open(Dir.tmpdir + '/vedeu_error.log', 'w+')
   end
 
   Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }

@@ -17,7 +17,7 @@ class VedeuTestApplication
   # Be aware that running an application with profiling enabled will affect
   # performance.
   Vedeu.configure do
-    log         '/tmp/vedeu_test_helper.log'
+    log         Dir.tmpdir + '/vedeu_test_helper.log'
     debug!
     # profile!
     drb!
@@ -45,7 +45,7 @@ class VedeuTestApplication
     # Not used yet
     # stdin  File.open("/dev/tty", "r")
     # stdout File.open("/dev/tty", "w")
-    # stderr File.open("/tmp/vedeu_error.log", "w+")
+    # stderr File.open(Dir.tmpdir + "/vedeu_error.log", "w+")
   end
 
   Vedeu.border 'test_interface' do

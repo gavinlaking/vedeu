@@ -1,6 +1,6 @@
 Vedeu.configure do
   # compression false
-  # log         '/tmp/your_app.log'
+  # log         Dir.tmpdir + '/your_app.log'
   # debug!
   # profile!
   # drb!
@@ -22,5 +22,5 @@ Vedeu.configure do
   # Not used yet
   # stdin  File.open("/dev/tty", "r")
   # stdout File.open("/dev/tty", "w")
-  # stderr File.open("/tmp/vedeu_error.log", "w+")
+  # stderr File.open(Dir.tmpdir + "/vedeu_error.log", "w+")
 end

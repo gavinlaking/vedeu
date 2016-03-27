@@ -11,7 +11,7 @@ class DSLApp
 
   Vedeu.configure do
     debug!
-    log '/tmp/vedeu_views_dsl.log'
+    log Dir.tmpdir + '/vedeu_views_dsl.log'
     run_once!
     standalone!
   end

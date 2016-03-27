@@ -30,10 +30,10 @@ module Vedeu
       def by_index
         return nil unless collection
 
-        if index.nil? || index > collection.size
+        if index_out_of_range?
           last_item
 
-        elsif index > 0 && index <= collection.size
+        elsif index_within_range?
           nth_item
 
         else
@@ -67,6 +67,16 @@ module Vedeu
       # @return [String|Vedeu::Editor::Line]
       def nth_item
         collection[index]
+      end
+
+      # @return [Boolean]
+      def index_out_of_range?
+        index.nil? || index > collection.size
+      end
+
+      # @return [Boolean]
+      def index_within_range?
+        index > 0 && index <= collection.size
       end
 
     end # Item

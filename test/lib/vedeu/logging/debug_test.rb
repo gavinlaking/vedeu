@@ -11,7 +11,7 @@ module Vedeu
       let(:described) { Vedeu::Logging::Debug }
 
       before do
-        File.stubs(:open).with('/tmp/vedeu_profile', 'w').returns(:some_code)
+        File.stubs(:open).with(Dir.tmpdir + '/vedeu_profile', 'w').returns(:some_code)
       end
 
       describe '.debug' do
