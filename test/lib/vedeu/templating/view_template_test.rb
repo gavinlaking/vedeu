@@ -11,7 +11,7 @@ module Vedeu
       let(:described) { Vedeu::Templating::ViewTemplate }
       let(:instance)  { described.new(object, path, options) }
       let(:object)    {}
-      let(:path)      { '/tmp/some_template.erb' }
+      let(:path)      { Dir.tmpdir + '/some_template.erb' }
       let(:options)   { {} }
       let(:content)   { '' }
 

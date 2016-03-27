@@ -112,7 +112,7 @@ module Vedeu
       # @return [void]
       def configure_log!
         Vedeu.configure do
-          log('/tmp/vedeu_bootstrap.log')
+          log(Dir.tmpdir + '/vedeu_bootstrap.log')
         end unless Vedeu.config.log?
       end
 

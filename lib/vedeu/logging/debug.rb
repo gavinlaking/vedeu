@@ -41,7 +41,7 @@ module Vedeu
       # @macro raise_requires_block
       # @return [void]
       # @yieldreturn [void] The section of the application to profile.
-      def profile(filename = '/tmp/vedeu_profile', &block)
+      def profile(filename = Dir.tmpdir + '/vedeu_profile', &block)
         Vedeu.requires_gem!('ruby-prof')
 
         raise Vedeu::Error::RequiresBlock unless block_given?

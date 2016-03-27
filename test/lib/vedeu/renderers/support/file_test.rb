@@ -55,7 +55,7 @@ module Vedeu
       #   context 'when the filename option is not set' do
       #     context 'when the timestamp option is not set' do
       #       # it do
-      #       #   ::File.expects(:write).with('/tmp/out', nil)
+      #       #   ::File.expects(:write).with(Dir.tmpdir + '/out', nil)
       #       #   subject
       #       # end
       #     end
@@ -66,7 +66,7 @@ module Vedeu
       #       before { Time.stubs(:now).returns(_time) }
 
       #       # it do
-      #       #   ::File.expects(:write).with('/tmp/out_1428865500.0', 'w')
+      #       #   ::File.expects(:write).with(Dir.tmpdir + '/out_1428865500.0', 'w')
       #       #   subject
       #       # end
       #     end
@@ -76,7 +76,7 @@ module Vedeu
       #     let(:filename) { 'some_name' }
 
       #     # it do
-      #     #   ::File.expects(:write).with('/tmp/some_name', 'w')
+      #     #   ::File.expects(:write).with(Dir.tmpdir + '/some_name', 'w')
       #     #   subject
       #     # end
       #   end

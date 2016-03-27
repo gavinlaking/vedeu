@@ -59,7 +59,7 @@ class TestRunner
 
   # @return [String]
   def actual_path
-    "/tmp/#{testcase}.out"
+    Dir.tmpdir + "/#{testcase}.out"
   end
 
   # @return [String]

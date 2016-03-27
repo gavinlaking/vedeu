@@ -50,11 +50,11 @@ class HorizontalAlignmentApp
 
   Vedeu.configure do
     debug!
-    log '/tmp/vedeu_horizontal.log'
+    log Dir.tmpdir + '/vedeu_horizontal.log'
     renderers [
                 Vedeu::Renderers::Terminal.new,
                 # Vedeu::Renderers::Text.new(
-                #   filename: '/tmp/vedeu_horizontal.out'),
+                #   filename: Dir.tmpdir + '/vedeu_horizontal.out'),
               ]
   end
 

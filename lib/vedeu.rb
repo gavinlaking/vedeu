@@ -14,6 +14,7 @@ require 'set'
 require 'singleton'
 require 'thread'
 require 'time'
+require 'tmpdir'
 require 'zlib'
 
 # Gem dependencies

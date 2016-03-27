@@ -5,7 +5,8 @@ true will enable profiling.
 Profile uses 'ruby-prof' to write a 'vedeu_profile' file to the /tmp
 directory which contains a call trace of the running application.
 Upon exit, this file can be examined to ascertain certain behaviours
-of Vedeu.
+of Vedeu. Note: On Windows systems, the log directory is determined by
+the output from `Dir.tmpdir`.
 
 Note:
 Be aware that running an application with profiling enabled will

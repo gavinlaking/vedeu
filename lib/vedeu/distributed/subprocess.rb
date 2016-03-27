@@ -27,9 +27,7 @@ module Vedeu
       def execute!
         file_open && file_write && file_close
 
-        @pid = fork do
-          exec(file_path)
-        end
+        @pid = fork { exec(file_path) }
 
         Process.detach(@pid)
 
@@ -91,7 +89,7 @@ module Vedeu
 
       # @return [String]
       def file_name
-        "/tmp/foo_#{timestamp}"
+        Dir.tmpdir + "/foo_#{timestamp}"
       end
 
       # return [Fixnum]

@@ -25,7 +25,7 @@ class VedeuFocusApp
   # performance.
   Vedeu.configure do
     debug!
-    log '/tmp/vedeu_focus_app.log'
+    log Dir.tmpdir + '/vedeu_focus_app.log'
     # profile!
   end
 
