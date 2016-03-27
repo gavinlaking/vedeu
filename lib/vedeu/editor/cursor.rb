@@ -198,7 +198,7 @@ module Vedeu
           y:       real_y,
           ox:      0,
           oy:      0,
-          visible: true
+          visible: true,
         }
       end
 
