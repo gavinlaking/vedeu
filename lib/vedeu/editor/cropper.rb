@@ -76,14 +76,15 @@ module Vedeu
 
       private
 
-      # Returns the visible lines.
+      # Returns the visible lines and their respective content,
+      # determined by the offsets 'ox' and 'oy'.
       #
       # @note If there are no lines of content, we return an empty
       # array. If there are any empty lines, then they are discarded.
       #
       # @return [Array<void>]
       def visible
-        lines.map { |line| columns(line) }
+        lines.map { |line| line[ox...(ox + bordered_width)] || '' }
       end
 
       # Return a range of visible lines.
@@ -91,13 +92,6 @@ module Vedeu
       # @return [Vedeu::Editor::Lines]
       def lines
         @lines[oy...(oy + bordered_height)] || []
-      end
-
-      # Return a range of visible characters from each line.
-      #
-      # @return [String]
-      def columns(line)
-        line[ox...(ox + bordered_width)] || ''
       end
 
       # @macro geometry_by_name
