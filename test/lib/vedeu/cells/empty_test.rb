@@ -35,10 +35,6 @@ module Vedeu
         it { instance.must_respond_to(:name) }
       end
 
-      describe '#value' do
-        it { instance.must_respond_to(:value) }
-      end
-
       describe '#eql?' do
         let(:other) { instance }
 
@@ -186,6 +182,24 @@ module Vedeu
         subject { instance.type }
 
         it { subject.must_equal(:empty) }
+      end
+
+      describe '#value' do
+        it { instance.must_respond_to(:value) }
+      end
+
+      describe '#value?' do
+        subject { instance.value? }
+
+        context 'when a value exists' do
+          let(:_value) { "\e[0m" }
+
+          it { subject.must_equal(true) }
+        end
+
+        context 'when a value does not exist' do
+          it { subject.must_equal(false) }
+        end
       end
 
     end # Empty

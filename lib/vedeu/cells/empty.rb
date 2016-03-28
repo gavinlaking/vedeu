@@ -88,6 +88,11 @@ module Vedeu
         :empty
       end
 
+      # @return [Boolean]
+      def value?
+        present?(value)
+      end
+
       private
 
       # @macro defaults_method
