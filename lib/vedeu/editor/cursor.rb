@@ -43,7 +43,7 @@ module Vedeu
       #
       # @param attributes [Hash<Symbol => Fixnum|String|Symbol>]
       # @option attributes y [Fixnum] The current line.
-      # @option attributes x [Fixnum] The current character with the
+      # @option attributes x [Fixnum] The current character within the
       #   line.
       # @option attributes name [String|Symbol]
       # @option attributes oy [Fixnum]
@@ -67,7 +67,9 @@ module Vedeu
 
       # Move the virtual cursor down by one line.
       #
-      # @param size [Fixnum]
+      # @param size [Fixnum] The number of characters on the next
+      #   line. The cursor is placed at the end of this next line if
+      #   the x coordinate is greater than the next line length.
       # @return [Vedeu::Editor::Cursor]
       def down(size = nil)
         @y += 1
@@ -93,7 +95,7 @@ module Vedeu
       # @return [Vedeu::Editor::Cursor]
       # @todo Should ox/oy be 0; or set to @ox/@oy? (GL: 2015-10-02)
       def refresh
-        Vedeu::Cursors::Cursor.store(refresh_attributes)
+        Vedeu::Cursors::Cursor.store(new_attributes)
 
         Vedeu.trigger(:_refresh_cursor_, name)
 
@@ -132,7 +134,9 @@ module Vedeu
 
       # Move the virtual cursor up by one line.
       #
-      # @param size [Fixnum]
+      # @param size [Fixnum] The number of characters on the next
+      #   line. The cursor is placed at the end of this next line if
+      #   the x coordinate is greater than the next line length.
       # @return [Vedeu::Editor::Cursor]
       def up(size = nil)
         @oy -= 1 unless @oy == 0
@@ -191,7 +195,7 @@ module Vedeu
       end
 
       # @return [Hash<Symbol => Fixnum, String, Symbol>]
-      def refresh_attributes
+      def new_attributes
         {
           name:    name,
           x:       real_x,
