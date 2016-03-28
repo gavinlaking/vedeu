@@ -16,15 +16,17 @@ class TestRunner
   # @return [TestRunner]
   def initialize(testcase, filename)
     @testcase = testcase
-    @filename     = filename
+    @filename = filename
   end
 
   # @return [void]
   def result
     print "\e[36m#{filename}: "
+
     if expected == actual
       print "\e[32mPassed.\e[39m\n"
       exit 0;
+
     else
       print "\e[31mFailed.\e[39m\n"
       puts "\e[33mExpected:\e[39m"
@@ -32,6 +34,7 @@ class TestRunner
       puts "\e[34mActual:\e[39m"
       puts actual.inspect
       exit 1;
+
     end
   end
 

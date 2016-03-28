@@ -10,7 +10,7 @@ module Vedeu
     #
     class Corner < Vedeu::Cells::Border
 
-      # @return [Vedeu::Geometries::Position]
+      # @return [NilClass|Vedeu::Geometries::Position]
       def position
         @position = defaults[:position]
       end

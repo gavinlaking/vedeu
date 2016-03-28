@@ -27,26 +27,22 @@ module Vedeu
           @style   = ''
         end
 
+        # Process the content as a stream; for each sequence with the
+        # same position take the first sequence and ignore the rest.
+        #
         # @return [String]
         def with
           @same = ''
           @compress ||= Vedeu.timer(message) do
             content.map do |cell|
-              rendered = [
-                cell.position.to_s,
+              character = [
+                position_for(cell),
                 colour_for(cell),
                 style_for(cell),
-                cell.value,
+                value_for(cell),
               ].join
 
-              if @same == rendered
-                next
-
-              else
-                @same = rendered
-                @same
-
-              end
+              character == @same ? next : @same = character
             end.join.tap do |out|
               Vedeu.log(type:    :compress,
                         message: "#{message} -> #{out.size} characters")
@@ -85,6 +81,14 @@ module Vedeu
           content.size
         end
 
+        # @param char [Vedeu::Cells::Char]
+        # @return [String]
+        def position_for(char)
+          return '' unless char.position?
+
+          char.position.to_s
+        end
+
         # Compress by not repeatedly sending the same style(s) for each
         # character which has the same style(s) as the last character
         # output.
@@ -96,6 +100,14 @@ module Vedeu
 
           @style = char.style
           @style.to_s
+        end
+
+        # @param char [Vedeu::Cells::Char]
+        # @return [String]
+        def value_for(char)
+          return '' unless char.value?
+
+          char.value
         end
 
       end # Character

@@ -46,7 +46,7 @@ module Vedeu
         nil
       end
 
-      # @return [Vedeu::Geometries::Position]
+      # @return [NilClass|Vedeu::Geometries::Position]
       def position(pos = position_start)
         Vedeu::Geometries::Position.coerce(pos)
       end

@@ -92,7 +92,6 @@ module Vedeu
 
         it { subject.size.must_equal(height + 1) }
         it { subject.first.size.must_equal(width + 1) }
-        it { subject.first.first.position.must_equal(position) }
       end
 
       describe '#height' do

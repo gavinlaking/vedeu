@@ -12,7 +12,7 @@ module Vedeu
 
       # Gets the position.
       #
-      # @return [Vedeu::Geometries::Position]
+      # @return [NilClass|Vedeu::Geometries::Position]
       def position
         Vedeu::Geometries::Position.coerce(@position)
       end
@@ -21,7 +21,7 @@ module Vedeu
       #
       # @param value [Array<void>|Hash<void>|
       #   Vedeu::Geometries::Position]
-      # @return [Vedeu::Geometries::Position]
+      # @return [NilClass|Vedeu::Geometries::Position]
       def position=(value)
         @position = Vedeu::Geometries::Position.coerce(value)
       end

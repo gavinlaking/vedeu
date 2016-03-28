@@ -36,6 +36,52 @@ module Vedeu
         instance_eval(&block) if block_given?
       end
 
+      # {include:file:docs/configuration/background.md}
+      # @param value [String]
+      # @return [Vedeu::Colours::Background]
+      def background(value = nil)
+        return options[:background] unless value
+
+        options[:background] = value
+      end
+
+      # {include:file:docs/configuration/base_path.md}
+      # @param path [String]
+      # @return [String]
+      def base_path(path = nil)
+        options[:base_path] = path
+      end
+
+      # {include:file:docs/configuration/colour.md}
+      # @param attrs [Hash<Symbol => String>]
+      # @return [Hash<Symbol => void>]
+      def colour(attrs = {})
+        options[:background] = attrs[:background] if attrs.key?(:background)
+        options[:foreground] = attrs[:foreground] if attrs.key?(:foreground)
+        options
+      end
+
+      # {include:file:docs/configuration/colour_mode.md}
+      # @param value [Fixnum]
+      # @macro raise_invalid_syntax
+      # @return [Boolean]
+      def colour_mode(value = nil)
+        unless valid_colour_mode?(value)
+          raise Vedeu::Error::InvalidSyntax,
+                '`colour_mode` must be `8`, `16`, `256`, `16777216`.'
+        end
+
+        options[:colour_mode] = value
+      end
+
+      # {include:file:docs/configuration/compression.md}
+      # @param value [Boolean]
+      # @return [Boolean]
+      def compression(value = true)
+        options[:compression] = value
+      end
+      alias compression! compression
+
       # Returns the configuration options set up by the API DSL.
       #
       # @return [Hash<Symbol => Boolean, Fixnum, String>]
@@ -58,29 +104,20 @@ module Vedeu
         options
       end
 
-      # {include:file:docs/configuration/interactive.md}
-      # @param value [Boolean]
+      # {include:file:docs/configuration/cooked.md}
       # @return [Boolean]
-      def interactive!(value = true)
-        options[:interactive] = value
+      def cooked!
+        options[:terminal_mode] = :cooked
       end
-      alias interactive interactive!
+      alias cooked cooked!
 
-      # {include:file:docs/configuration/standalone.md}
+      # {include:file:docs/configuration/debug.md}
       # @param value [Boolean]
       # @return [Boolean]
-      def standalone!(value = true)
-        options[:interactive] = !value
+      def debug!(value = true)
+        options[:debug] = value
       end
-      alias standalone standalone!
-
-      # {include:file:docs/configuration/run_once.md}
-      # @param value [Boolean]
-      # @return [Boolean]
-      def run_once!(value = true)
-        options[:once] = value
-      end
-      alias run_once run_once!
+      alias debug debug!
 
       # {include:file:docs/configuration/drb.md}
       # @param value [Boolean]
@@ -89,6 +126,13 @@ module Vedeu
         options[:drb] = value
       end
       alias drb drb!
+
+      # {include:file:docs/configuration/drb_height.md}
+      # @param height [Fixnum]
+      # @return [Fixnum]
+      def drb_height(height = 25)
+        options[:drb_height] = height
+      end
 
       # {include:file:docs/configuration/drb_host.md}
       # @param hostname [String]
@@ -104,26 +148,12 @@ module Vedeu
         options[:drb_port] = port
       end
 
-      # {include:file:docs/configuration/drb_height.md}
-      # @param height [Fixnum]
-      # @return [Fixnum]
-      def drb_height(height = 25)
-        options[:drb_height] = height
-      end
-
       # {include:file:docs/configuration/drb_width.md}
       # @param width [Fixnum]
       # @return [Fixnum]
       def drb_width(width = 80)
         options[:drb_width] = width
       end
-
-      # {include:file:docs/configuration/cooked.md}
-      # @return [Boolean]
-      def cooked!
-        options[:terminal_mode] = :cooked
-      end
-      alias cooked cooked!
 
       # {include:file:docs/configuration/fake.md}
       # @return [Boolean]
@@ -132,32 +162,13 @@ module Vedeu
       end
       alias fake fake!
 
-      # {include:file:docs/configuration/raw.md}
-      # @return [Boolean]
-      def raw!
-        options[:terminal_mode] = :raw
-      end
-      alias raw raw!
+      # {include:file:docs/configuration/foreground.md}
+      # @param value [String]
+      # @return [Vedeu::Colours::Foreground]
+      def foreground(value = nil)
+        return options[:foreground] unless value
 
-      # {include:file:docs/configuration/debug.md}
-      # @param value [Boolean]
-      # @return [Boolean]
-      def debug!(value = true)
-        options[:debug] = value
-      end
-      alias debug debug!
-
-      # {include:file:docs/configuration/colour_mode.md}
-      # @param value [Fixnum]
-      # @macro raise_invalid_syntax
-      # @return [Boolean]
-      def colour_mode(value = nil)
-        unless valid_colour_mode?(value)
-          raise Vedeu::Error::InvalidSyntax,
-                '`colour_mode` must be `8`, `16`, `256`, `16777216`.'
-        end
-
-        options[:colour_mode] = value
+        options[:foreground] = value
       end
 
       # {include:file:docs/configuration/height.md}
@@ -167,6 +178,14 @@ module Vedeu
         options[:height] = height
       end
       alias height= height
+
+      # {include:file:docs/configuration/interactive.md}
+      # @param value [Boolean]
+      # @return [Boolean]
+      def interactive!(value = true)
+        options[:interactive] = value
+      end
+      alias interactive interactive!
 
       # {include:file:docs/configuration/log.md}
       # @param filename_or_false [FalseClass|String]
@@ -199,6 +218,14 @@ module Vedeu
         options[:log_only] = types.flatten
       end
 
+      # {include:file:docs/configuration/mouse.md}
+      # @param value [Boolean]
+      # @return [Boolean]
+      def mouse!(value = true)
+        options[:mouse] = value
+      end
+      alias mouse mouse!
+
       # {include:file:docs/configuration/profile.md}
       # @param value [Boolean]
       # @return [Boolean]
@@ -206,6 +233,13 @@ module Vedeu
         options[:profile] = value
       end
       alias profile profile!
+
+      # {include:file:docs/configuration/raw.md}
+      # @return [Boolean]
+      def raw!
+        options[:terminal_mode] = :raw
+      end
+      alias raw raw!
 
       # {include:file:docs/configuration/renderer.md}
       # @param renderer [Array<Class>|Class]
@@ -215,19 +249,28 @@ module Vedeu
       end
       alias renderers renderer
 
-      # {include:file:docs/configuration/base_path.md}
-      # @param path [String]
-      # @return [String]
-      def base_path(path = nil)
-        options[:base_path] = path
-      end
-
       # {include:file:docs/configuration/root.md}
       # @param args [Array<Symbol|void>]
       # @return [Class]
       def root(*args)
         options[:root] = args
       end
+
+      # {include:file:docs/configuration/run_once.md}
+      # @param value [Boolean]
+      # @return [Boolean]
+      def run_once!(value = true)
+        options[:once] = value
+      end
+      alias run_once run_once!
+
+      # {include:file:docs/configuration/standalone.md}
+      # @param value [Boolean]
+      # @return [Boolean]
+      def standalone!(value = true)
+        options[:interactive] = !value
+      end
+      alias standalone standalone!
 
       # {include:file:docs/configuration/stdin.md}
       # @param io [File|IO]
@@ -249,14 +292,6 @@ module Vedeu
       def stderr(io)
         options[:stderr] = io
       end
-
-      # {include:file:docs/configuration/compression.md}
-      # @param value [Boolean]
-      # @return [Boolean]
-      def compression(value = true)
-        options[:compression] = value
-      end
-      alias compression! compression
 
       # {include:file:docs/configuration/terminal_mode.md}
       # @param mode [Symbol] Either ':cooked', ':fake' or ':raw'.
@@ -287,41 +322,6 @@ module Vedeu
         options[:width] = width
       end
       alias width= width
-
-      # {include:file:docs/configuration/background.md}
-      # @param value [String]
-      # @return [Vedeu::Colours::Background]
-      def background(value = nil)
-        return options[:background] unless value
-
-        options[:background] = value
-      end
-
-      # {include:file:docs/configuration/foreground.md}
-      # @param value [String]
-      # @return [Vedeu::Colours::Foreground]
-      def foreground(value = nil)
-        return options[:foreground] unless value
-
-        options[:foreground] = value
-      end
-
-      # {include:file:docs/configuration/colour.md}
-      # @param attrs [Hash<Symbol => String>]
-      # @return [Hash<Symbol => void>]
-      def colour(attrs = {})
-        options[:background] = attrs[:background] if attrs.key?(:background)
-        options[:foreground] = attrs[:foreground] if attrs.key?(:foreground)
-        options
-      end
-
-      # {include:file:docs/configuration/mouse.md}
-      # @param value [Boolean]
-      # @return [Boolean]
-      def mouse!(value = true)
-        options[:mouse] = value
-      end
-      alias mouse mouse!
 
       protected
 

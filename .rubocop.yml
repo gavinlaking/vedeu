@@ -62,6 +62,9 @@ Style/ExtraSpacing:
 #     - special_inside_parentheses
 #     - consistent
 
+Style/MultilineBlockChain:
+  Enabled: false
+
 Style/MultilineOperationIndentation:
   Enabled: false
 
