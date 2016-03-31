@@ -55,8 +55,8 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Cells::Empty>>]
       def empty
-        Array.new(height) do |h|
-          Array.new(width) do |w|
+        Array.new(height) do
+          Array.new(width) do
             Vedeu::Cells::Empty.new(name: name)
           end
         end

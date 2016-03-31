@@ -62,6 +62,17 @@ module Vedeu
 
       private
 
+      # @return [Hash<Symbol => Symbol>]
+      def cursor_event
+        {
+          down:   :_cursor_down_,
+          left:   :_cursor_left_,
+          origin: :_cursor_origin_,
+          right:  :_cursor_right_,
+          up:     :_cursor_up_,
+        }[direction]
+      end
+
       # @macro defaults_method
       def defaults
         {
@@ -76,52 +87,17 @@ module Vedeu
         direction != :none
       end
 
-      # Moves the geometry in the direction given by the offset also
-      # given.
-      #
-      # @return [Hash<Symbol => Hash<Symbol => Fixnum>>]
-      def movement
-        {
-          down: {
-            y: y  + offset,
-            yn: yn + offset,
-          },
-          left: {
-            x: x  - offset,
-            xn: xn - offset,
-          },
-          none: {},
-          origin: {
-            x: 1,
-            xn: (xn - x + 1),
-            y: 1,
-            yn: (yn - y + 1),
-          },
-          right: {
-            x: x  + offset,
-            xn: xn + offset,
-          },
-          up: {
-            y: y  - offset,
-            yn: yn - offset,
-          },
-        }
-      end
-
-      # @return [Hash<Symbol => Symbol>]
-      def cursor_event
-        {
-          down:   :_cursor_down_,
-          left:   :_cursor_left_,
-          origin: :_cursor_origin_,
-          right:  :_cursor_right_,
-          up:     :_cursor_up_,
-        }[direction]
-      end
-
       # @return [Hash<Symbol => Hash<Symbol => Fixnum>>]
       def directional_move
         movement.fetch(direction, {})
+      end
+
+      # @return [Hash<Symbol => Fixnum>]
+      def down
+        {
+          y:  y + offset,
+          yn: yn + offset,
+        }
       end
 
       # @macro geometry_by_name
@@ -129,9 +105,50 @@ module Vedeu
         @geometry ||= Vedeu.geometries.by_name(name)
       end
 
+      # @return [Hash<Symbol => Fixnum>]
+      def left
+        {
+          x:  x - offset,
+          xn: xn - offset,
+        }
+      end
+
+      # Moves the geometry in the direction given by the offset also
+      # given.
+      #
+      # @return [Hash<Symbol => Hash<Symbol => Fixnum>>]
+      def movement
+        {
+          down:   down,
+          left:   left,
+          none:   {},
+          origin: origin,
+          right:  right,
+          up:     up,
+        }
+      end
+
       # @return [Hash<Symbol => Boolean|String|Symbol>]
       def new_attributes
         geometry.attributes.merge!(unalign_unmaximise)
+      end
+
+      # @return [Hash<Symbol => Fixnum>]
+      def origin
+        {
+          x:  1,
+          xn: (xn - x + 1),
+          y:  1,
+          yn: (yn - y + 1),
+        }
+      end
+
+      # @return [Hash<Symbol => Fixnum>]
+      def right
+        {
+          x:  x + offset,
+          xn: xn + offset,
+        }
       end
 
       # @return [Hash<Symbol => Boolean|Symbol]
@@ -141,6 +158,14 @@ module Vedeu
           maximised:            false,
           vertical_alignment:   :none,
         }.merge(directional_move)
+      end
+
+      # @return [Hash<Symbol => Fixnum>]
+      def up
+        {
+          y:  y - offset,
+          yn: yn - offset,
+        }
       end
 
       # Refresh the cursor after moving.
