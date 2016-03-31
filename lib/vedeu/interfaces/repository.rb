@@ -6,6 +6,8 @@ module Vedeu
 
     # Allows the storing of interfaces and views.
     #
+    # @api private
+    #
     class Repository < Vedeu::Repositories::Repository
 
       null Vedeu::Interfaces::Null

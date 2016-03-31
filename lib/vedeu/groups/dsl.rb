@@ -15,6 +15,8 @@ module Vedeu
     # showing or hiding the group would of course, show or hide the
     # interfaces of that group.
     #
+    # @api public
+    #
     class DSL
 
       include Vedeu::DSL

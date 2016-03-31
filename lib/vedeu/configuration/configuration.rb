@@ -54,6 +54,8 @@ module Vedeu
   # overridden by client application settings (via the configuration
   # API).
   #
+  # @api private
+  #
   class Configuration
 
     include Singleton

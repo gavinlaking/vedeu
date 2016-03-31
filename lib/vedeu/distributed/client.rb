@@ -15,6 +15,9 @@ module Vedeu
     #              connect("druby://localhost:21420")
     #   client.input('a')
     #   client.output # => 'some content...'
+    #
+    # @api private
+    #
     class Client
 
       # @param (see #initialize)

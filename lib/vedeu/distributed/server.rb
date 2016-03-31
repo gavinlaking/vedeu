@@ -9,6 +9,9 @@ module Vedeu
 
     # A class for the server side of the DRb server/client
     # relationship.
+    #
+    # @api private
+    #
     class Server
 
       $SAFE = 1 # disable `eval` and related calls on strings passed

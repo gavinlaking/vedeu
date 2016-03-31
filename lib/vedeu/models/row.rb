@@ -6,6 +6,8 @@ module Vedeu
 
     # A Row represents an array of Vedeu::Cells::Empty objects.
     #
+    # @api private
+    #
     class Row
 
       include Enumerable

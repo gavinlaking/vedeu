@@ -15,6 +15,8 @@ module Vedeu
     #
     # @see Vedeu::EscapeSequences::Esc
     #
+    # @api private
+    #
     class Style
 
       class << self

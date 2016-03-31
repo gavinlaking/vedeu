@@ -6,6 +6,8 @@ module Vedeu
 
     # Refreshes the given named interface.
     #
+    # @api private
+    #
     class Refresh
 
       include Vedeu::Common

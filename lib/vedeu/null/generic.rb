@@ -6,6 +6,8 @@ module Vedeu
 
     # Provides a non-existent model to swallow messages.
     #
+    # @api private
+    #
     class Generic
 
       # @!attribute [r] attributes

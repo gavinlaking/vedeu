@@ -5,6 +5,9 @@ module Vedeu
   module Output
 
     # @see Vedeu::Bindings::System#refresh!
+    #
+    # @api private
+    #
     class Refresh
 
       # @return (see #all)

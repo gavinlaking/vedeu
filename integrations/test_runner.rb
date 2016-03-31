@@ -3,6 +3,7 @@
 # Provides the result of running an integration test.
 #
 # @api private
+#
 class TestRunner
 
   # @param (see #initialize)

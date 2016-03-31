@@ -37,6 +37,8 @@ module Vedeu
     #
     # @todo Fix colours in all terminals. (GL: 2015-04-13)
     #
+    # @api private
+    #
     class Colour
 
       class << self

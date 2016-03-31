@@ -12,7 +12,7 @@ module Vedeu
 
       # :nocov:
 
-      # @params keys [Array<Symbol>]
+      # @param keys [Array<Symbol>]
       # @macro param_block
       # @macro raise_requires_block
       # @return [Array<Symbol>]

@@ -14,6 +14,8 @@ module Vedeu
     # @example
     #   Vedeu.trigger(:_refresh_group_, group_name)
     #
+    # @api private
+    #
     class Refresh
 
       include Vedeu::Common

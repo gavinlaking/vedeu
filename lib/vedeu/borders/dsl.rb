@@ -6,6 +6,8 @@ module Vedeu
 
     # Provides a mechanism to help configure borders in Vedeu.
     #
+    # @api public
+    #
     class DSL
 
       include Vedeu::DSL

@@ -7,6 +7,8 @@ module Vedeu
     # Extend Template to provide client application view specific
     # parsing.
     #
+    # @api private
+    #
     class ViewTemplate < Vedeu::Templating::Template
 
       include Vedeu::Common

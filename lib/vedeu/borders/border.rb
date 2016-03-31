@@ -16,6 +16,8 @@ module Vedeu
     #   More details can be found at:
     #   http://en.wikipedia.org/wiki/Box-drawing_character
     #
+    # @api private
+    #
     class Border
 
       extend Forwardable

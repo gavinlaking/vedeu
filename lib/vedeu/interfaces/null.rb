@@ -6,6 +6,8 @@ module Vedeu
 
     # Provides a non-existent model to swallow messages.
     #
+    # @api private
+    #
     class Null < Vedeu::Null::Generic
 
       include Vedeu::Presentation

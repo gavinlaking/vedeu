@@ -7,6 +7,8 @@ module Vedeu
     # Handles keypresses for a named document whilst the terminal is
     # in fake mode.
     #
+    # @api private
+    #
     class Editor
 
       extend Forwardable

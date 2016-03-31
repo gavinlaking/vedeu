@@ -7,6 +7,8 @@ module Vedeu
     # An Interface represents a portion of the terminal defined by
     # {Vedeu::Geometries::Geometry}.
     #
+    # @api private
+    #
     class Interface
 
       include Vedeu::Repositories::Model

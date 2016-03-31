@@ -6,6 +6,8 @@ module Vedeu
 
     # Clear the named interface.
     #
+    # @api private
+    #
     class Clear
 
       include Vedeu::Common

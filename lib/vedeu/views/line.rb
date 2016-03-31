@@ -10,6 +10,8 @@ module Vedeu
     # {Vedeu::Views::Stream} objects. A line's width is determined by
     # the {Vedeu::Geometries::Geometry} it belongs to.
     #
+    # @api private
+    #
     class Line
 
       # Provides DSL methods for Vedeu::Views::Line objects.

@@ -6,6 +6,8 @@ module Vedeu
 
     # Creates a subprocess of the DRb server.
     #
+    # @api private
+    #
     class Subprocess
 
       # @param (see #initialize)

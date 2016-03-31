@@ -73,6 +73,8 @@ module Vedeu
     #     yn +--------------+           # south:  yn + 1
     #             south
     #
+    # @api public
+    #
     class DSL
 
       include Vedeu::Common

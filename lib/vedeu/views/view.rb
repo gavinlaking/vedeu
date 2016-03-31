@@ -9,6 +9,8 @@ module Vedeu
     # Represents a container for {Vedeu::Views::Line} and
     # {Vedeu::Views::Stream} objects.
     #
+    # @api private
+    #
     class View
 
       # Provides DSL methods for Vedeu::Views::View objects.

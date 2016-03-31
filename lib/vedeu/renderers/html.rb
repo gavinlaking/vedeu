@@ -7,6 +7,8 @@ module Vedeu
     # Renders a {Vedeu::Buffers::Terminal} as a HTML snippet; a table
     # by default.
     #
+    # @api private
+    #
     class HTML < Vedeu::Renderers::File
 
       include Vedeu::Renderers::Options
