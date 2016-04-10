@@ -8,10 +8,20 @@ module Vedeu
   #
   class Boolean
 
+    # @return [Boolean]
+    def self.coerce(value = nil)
+      new(value).coerce
+    end
+
     # @param value [void]
     # @return [Vedeu::Boolean]
     def initialize(value = nil)
       @value = value
+    end
+
+    # @return [Boolean]
+    def coerce
+      value ? true : false
     end
 
     # @return [Boolean]

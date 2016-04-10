@@ -170,11 +170,9 @@ module Vedeu
       #
       # @return [Boolean]
       def editable(value = true)
-        boolean = value ? true : false
+        cursor(true) if Vedeu::Boolean.coerce(value)
 
-        cursor(true) if boolean
-
-        model.editable = boolean
+        model.editable = Vedeu::Boolean.coerce(value)
       end
 
       # Set the interface to be editable.
@@ -292,9 +290,7 @@ module Vedeu
       #
       # @return [Boolean]
       def visible(value = true)
-        boolean = value ? true : false
-
-        model.visible = boolean
+        model.visible = Vedeu::Boolean.coerce(value)
       end
 
       # Set the zindex of the interface. This controls the render

@@ -134,9 +134,7 @@ module Vedeu
       # @param value [Boolean]
       # @return [Boolean]
       def wordwrap(value = true)
-        boolean = value ? true : false
-
-        model.wordwrap = boolean
+        model.wordwrap = Vedeu::Boolean.coerce(value)
       end
       alias wordwrap! wordwrap
 

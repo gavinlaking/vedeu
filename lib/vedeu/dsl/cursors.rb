@@ -16,11 +16,10 @@ module Vedeu
       #   evaluate to true.
       # @return [Vedeu::Cursors::Cursor]
       def cursor(value = true)
-        boolean = value ? true : false
+        model.cursor_visible = Vedeu::Boolean.coerce(value)
 
-        model.cursor_visible = boolean
-
-        Vedeu::Cursors::Cursor.store(name: name, visible: boolean)
+        Vedeu::Cursors::Cursor.store(name:    name,
+                                     visible: Vedeu::Boolean.coerce(value))
       end
 
       # Set the cursor to visible for the interface or view.

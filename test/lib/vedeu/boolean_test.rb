@@ -14,6 +14,24 @@ module Vedeu
       it { instance.must_be_instance_of(Vedeu::Boolean) }
     end
 
+    describe '.coerce' do
+      subject { described.coerce(_value) }
+
+      context 'when the value is falsy' do
+        it { subject.must_equal(false) }
+      end
+
+      context 'when the value is truthy' do
+        let(:_value) { 0 }
+
+        it { subject.must_equal(true) }
+      end
+    end
+
+    describe '#coerce' do
+      it { instance.must_respond_to(:coerce) }
+    end
+
     describe '#false?' do
       subject { instance.false? }
 

@@ -128,9 +128,7 @@ module Vedeu
       # and false.
       # @return [Boolean]
       def bottom(value)
-        boolean = value ? true : false
-
-        model.show_bottom = boolean
+        model.show_bottom = Vedeu::Boolean.coerce(value)
       end
       alias show_bottom bottom
       alias bottom= bottom
@@ -154,9 +152,7 @@ module Vedeu
       #   and false.
       # @return [Boolean]
       def left(value)
-        boolean = value ? true : false
-
-        model.show_left = boolean
+        model.show_left = Vedeu::Boolean.coerce(value)
       end
       alias show_left left
       alias left= left
@@ -180,9 +176,7 @@ module Vedeu
       #   and false.
       # @return [Boolean]
       def right(value)
-        boolean = value ? true : false
-
-        model.show_right = boolean
+        model.show_right = Vedeu::Boolean.coerce(value)
       end
       alias show_right right
       alias right= right
@@ -224,9 +218,7 @@ module Vedeu
       #   and false.
       # @return [Boolean]
       def top(value)
-        boolean = value ? true : false
-
-        model.show_top = boolean
+        model.show_top = Vedeu::Boolean.coerce(value)
       end
       alias show_top top
       alias top= top
