@@ -9,6 +9,8 @@ module Vedeu
     # of this definition will affect that interface. This allows you
     # to form context driven behaviour for your application.
     #
+    # @api private
+    #
     class DSL
 
       include Vedeu::Common

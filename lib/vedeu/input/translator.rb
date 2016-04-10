@@ -7,6 +7,8 @@ module Vedeu
     # Translates escape sequences provided by the terminal into
     # symbols which Vedeu can use for various behaviours.
     #
+    # @api private
+    #
     class Translator
 
       # @param (see #initialize)

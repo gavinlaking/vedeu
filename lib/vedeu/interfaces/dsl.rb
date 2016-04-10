@@ -6,6 +6,8 @@ module Vedeu
 
     # DSL for creating interfaces.
     #
+    # @api private
+    #
     class DSL
 
       include Vedeu::Common

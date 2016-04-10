@@ -8,6 +8,8 @@ module Vedeu
     # configuration into options used by Vedeu to affect certain
     # behaviours.
     #
+    # @api public
+    #
     class API
 
       include Vedeu::Common

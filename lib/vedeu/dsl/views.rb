@@ -82,6 +82,8 @@ module Vedeu
     #             |- streams/stream
     #                 |- char
     #
+    # @api public
+    #
     class Views
 
       include Vedeu::DSL

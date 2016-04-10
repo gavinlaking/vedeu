@@ -8,6 +8,8 @@ module Vedeu
     # {Vedeu::Cells::Char} objects into a stream of characters without
     # escape sequences.
     #
+    # @api private
+    #
     class Escape < Vedeu::Renderers::File
 
       include Vedeu::Renderers::Options

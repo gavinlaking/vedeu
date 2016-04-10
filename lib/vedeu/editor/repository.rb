@@ -6,6 +6,8 @@ module Vedeu
 
     # Allows the storing of documents.
     #
+    # @api private
+    #
     class Repository < Vedeu::Repositories::Repository
 
       real Vedeu::Editor::Document

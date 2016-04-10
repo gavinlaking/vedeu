@@ -8,6 +8,8 @@ module Vedeu
     # The configuration option 'debug' must be set to true to enable
     # this functionality.
     #
+    # @api private
+    #
     class Timer
 
       class << self

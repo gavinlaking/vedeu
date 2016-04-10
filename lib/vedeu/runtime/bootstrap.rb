@@ -10,6 +10,8 @@ module Vedeu
     # initializes Vedeu with this data, then starts the client
     # application.
     #
+    # @api private
+    #
     class Bootstrap
 
       # @param (see #initialize)

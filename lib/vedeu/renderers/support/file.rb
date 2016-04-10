@@ -6,6 +6,8 @@ module Vedeu
 
     # Writes the given output to a file.
     #
+    # @api private
+    #
     class File
 
       include Vedeu::Renderers::Options

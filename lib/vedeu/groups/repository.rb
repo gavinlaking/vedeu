@@ -6,6 +6,8 @@ module Vedeu
 
     # Allows the storing of view groups.
     #
+    # @api private
+    #
     class Repository < Vedeu::Repositories::Repository
 
       null Vedeu::Groups::Group

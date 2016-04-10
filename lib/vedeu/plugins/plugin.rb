@@ -4,6 +4,8 @@ module Vedeu
 
   # A class responsible for plugin loading.
   #
+  # @api private
+  #
   class Plugin
 
     # @!attribute [r] name

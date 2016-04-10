@@ -6,6 +6,8 @@ module Vedeu
 
     # A Page represents an array of Vedeu::Models::Row objects.
     #
+    # @api private
+    #
     class Page
 
       include Enumerable

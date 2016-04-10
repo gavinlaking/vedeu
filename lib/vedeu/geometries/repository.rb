@@ -7,6 +7,8 @@ module Vedeu
     # Allows the storing of interface/view geometry independent of the
     # interface instance.
     #
+    # @api private
+    #
     class Repository < Vedeu::Repositories::Repository
 
       null Vedeu::Geometries::Geometry

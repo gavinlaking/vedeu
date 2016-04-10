@@ -12,6 +12,8 @@ module Vedeu
     # the client's requirements and the terminal's current viewing
     # area.
     #
+    # @api private
+    #
     class Geometry
 
       extend Forwardable

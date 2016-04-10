@@ -4,6 +4,8 @@ module Vedeu
 
   # A class responsible for managing plugins installation.
   #
+  # @api private
+  #
   class Plugins
 
     # Returns a new instance of Vedeu::Plugins.

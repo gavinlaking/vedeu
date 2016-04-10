@@ -10,6 +10,8 @@ module Vedeu
     # Captures input from the user terminal via 'getch' and
     # translates special characters into symbols.
     #
+    # @api private
+    #
     class Capture
 
       include Vedeu::Common

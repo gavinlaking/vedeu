@@ -7,6 +7,8 @@ module Vedeu
     # Used by Vedeu internally to manage the buffers of each interface
     # defined.
     #
+    # @api private
+    #
     class Buffer
 
       include Vedeu::Common

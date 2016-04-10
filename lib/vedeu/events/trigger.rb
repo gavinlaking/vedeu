@@ -67,9 +67,29 @@ module Vedeu
 
       private
 
+      # @return [String]
+      def message
+        if args.size > 1
+          "Triggering: '#{name.inspect}' with #{args.inspect}"
+
+        elsif args.one?
+          "Triggering: '#{name.inspect}' for #{args.first.inspect}"
+
+        else
+          "Triggering: '#{name.inspect}'"
+
+        end
+      end
+
+      # Trigger each registered event for this name.
+      #
       # @return [Array<void>|void]
       def results
-        @results ||= registered_events.map { |event| event.trigger(*args) }
+        @results ||= registered_events.map do |event|
+          Vedeu.log(type: :event, message: message)
+
+          event.trigger(*args)
+        end
       end
 
       # Return all of the registered events for this name.

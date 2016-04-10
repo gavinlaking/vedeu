@@ -6,6 +6,8 @@ module Vedeu
 
     # Clear the interfaces belonging to the named group.
     #
+    # @api private
+    #
     class Clear
 
       class << self

@@ -6,6 +6,8 @@ module Vedeu
 
     # Renders a {Vedeu::Buffers::Terminal} as JSON.
     #
+    # @api private
+    #
     class JSON < Vedeu::Renderers::File
 
       include Vedeu::Renderers::Options

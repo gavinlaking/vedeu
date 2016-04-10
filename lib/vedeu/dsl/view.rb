@@ -40,6 +40,8 @@ module Vedeu
     #   be red.
     # - Styles are named. See the table below for supported styles.
     #
+    # @api public
+    #
     class View
 
       include Vedeu::Common

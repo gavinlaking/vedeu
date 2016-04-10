@@ -6,6 +6,8 @@ module Vedeu
 
     # Allows the storing of menus by name.
     #
+    # @api private
+    #
     class Repository < Vedeu::Repositories::Repository
 
       real Vedeu::Menus::Menu
