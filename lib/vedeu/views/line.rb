@@ -29,6 +29,7 @@ module Vedeu
       include Vedeu::Views::DefaultAttributes
       include Vedeu::Repositories::Model
       include Vedeu::Presentation
+      include Vedeu::Presentation::Parent
       include Vedeu::Presentation::Colour
       include Vedeu::Presentation::Position
       include Vedeu::Presentation::Styles
@@ -99,11 +100,6 @@ module Vedeu
           parent.name
 
         end
-      end
-
-      # @return [NilClass|void]
-      def parent
-        present?(@parent) ? @parent : nil
       end
 
       # Returns the size of the content in characters without

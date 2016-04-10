@@ -6,9 +6,12 @@ module Vedeu
 
     # Provides style related presentation behaviour.
     #
+    # @api private
+    #
     module Styles
 
       include Vedeu::Common
+      include Vedeu::Presentation::Parent
 
       # @return [NilClass|String|Symbol]
       def name
@@ -19,11 +22,6 @@ module Vedeu
           parent.name
 
         end
-      end
-
-      # @return [NilClass|void]
-      def parent
-        present?(@parent) ? @parent : nil
       end
 
       # When the style for the model exists, return it, otherwise
