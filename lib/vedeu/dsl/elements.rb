@@ -68,25 +68,23 @@ module Vedeu
         requires_model!
 
         attrs = Vedeu::DSL::Attributes.build(self, model, nil, opts, &block)
+        l = Vedeu::Views::Line.build(attrs, &block)
+        v = Vedeu::Views::View.build(attrs, &block)
 
         if view_model?
           if model.lines?
-            l = Vedeu::Views::Line.build(attrs, &block)
             model.add(l)
 
           else
-            l = Vedeu::Views::View.build(attrs, &block)
-            model.value = l.value
+            model.value = v.value
 
           end
 
         elsif line_model?
-          l = Vedeu::Views::Line.build(attrs, &block)
           model.value = l.value
 
         else
-          l = Vedeu::Views::View.build(attrs, &block)
-          model.value = l.value
+          model.value = v.value
 
         end
       end
