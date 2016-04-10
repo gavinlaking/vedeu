@@ -34,7 +34,7 @@ module Vedeu
       @parent = attributes[:parent]
     end
 
-  end # PresentationTestClass
+  end # PresentationColourTestClass
 
   module Presentation
 
