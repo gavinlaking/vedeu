@@ -48,5 +48,11 @@ cd "$(dirname "$0")"
 ./dsl_app_border_011.rb # only left
 ./dsl_app_border_012.rb # border on
 
+# Test some geometry functionality
+./dsl_app_geometry_001.rb
+./dsl_app_geometry_002.rb
+./dsl_app_geometry_003.rb
+./dsl_app_geometry_004.rb
+
 # Failing
 # ./dsl_app_017.rb
