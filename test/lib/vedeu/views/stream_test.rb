@@ -45,10 +45,6 @@ module Vedeu
         it { instance.instance_variable_get('@value').must_equal(_value) }
       end
 
-      describe '#parent' do
-        it { instance.must_respond_to(:parent) }
-      end
-
       describe '#parent=' do
         it { instance.must_respond_to(:parent=) }
       end

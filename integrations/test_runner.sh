@@ -31,6 +31,8 @@ cd "$(dirname "$0")"
 ./dsl_app_016.rb
 ./dsl_app_021.rb
 ./dsl_app_022.rb
+./dsl_app_030.rb
+./dsl_app_031.rb
 
 # Test some border functionality
 ./dsl_app_border_001.rb # border off
@@ -44,6 +46,7 @@ cd "$(dirname "$0")"
 ./dsl_app_border_009.rb # only right
 ./dsl_app_border_010.rb # only bottom
 ./dsl_app_border_011.rb # only left
+./dsl_app_border_012.rb # border on
 
 # Failing
 # ./dsl_app_017.rb

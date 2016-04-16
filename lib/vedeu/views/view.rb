@@ -31,6 +31,7 @@ module Vedeu
       extend Forwardable
       include Vedeu::Repositories::Model
       include Vedeu::Presentation
+      include Vedeu::Presentation::Parent
       include Vedeu::Presentation::Colour
       include Vedeu::Presentation::Position
       include Vedeu::Presentation::Styles
@@ -116,11 +117,6 @@ module Vedeu
           parent.name
 
         end
-      end
-
-      # @return [NilClass|void]
-      def parent
-        present?(@parent) ? @parent : nil
       end
 
       # Store the view in its respective buffer.

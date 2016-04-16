@@ -59,19 +59,15 @@ module Vedeu
       end
 
       describe '#client' do
-      it { instance.must_respond_to(:client) }
+        it { instance.must_respond_to(:client) }
       end
 
       describe '#client=' do
-      it { instance.must_respond_to(:client=) }
-      end
-
-      describe '#parent' do
-      it { instance.must_respond_to(:parent) }
+        it { instance.must_respond_to(:client=) }
       end
 
       describe '#parent=' do
-      it { instance.must_respond_to(:parent=) }
+        it { instance.must_respond_to(:parent=) }
       end
 
       describe '#add' do

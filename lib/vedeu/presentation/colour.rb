@@ -10,6 +10,8 @@ module Vedeu
     #
     module Colour
 
+      include Vedeu::Presentation::Parent
+
       # When the background colour for the model exists, return it,
       # otherwise returns the parent background colour, or an empty
       # Vedeu::Colours::Background.
@@ -98,11 +100,6 @@ module Vedeu
       def foreground=(value)
         @foreground = colour.foreground = value
         @_colour = @colour = colour
-      end
-
-      # @return [NilClass|void]
-      def parent
-        present?(@parent) ? @parent : nil
       end
 
       # @return [NilClass|String|Symbol]

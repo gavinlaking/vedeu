@@ -4,7 +4,7 @@ require 'test_helper'
 
 module Vedeu
 
-  class ParentPresentationStyleTestClass
+  class ParentPresentationStylesTestClass
 
     include Vedeu::Presentation
     include Vedeu::Presentation::Colour
@@ -18,9 +18,9 @@ module Vedeu
       @parent = nil
     end
 
-  end # ParentPresentationStyleTestClass
+  end # ParentPresentationStylesTestClass
 
-  class PresentationStyleTestClass
+  class PresentationStylesTestClass
 
     include Vedeu::Presentation
     include Vedeu::Presentation::Colour
@@ -34,14 +34,14 @@ module Vedeu
       @parent = attributes[:parent]
     end
 
-  end # PresentationTestClass
+  end # PresentationStylesTestClass
 
   module Presentation
 
     describe Styles do
 
       let(:described)          { Vedeu::Presentation::Styles }
-      let(:included_described) { Vedeu::PresentationStyleTestClass }
+      let(:included_described) { Vedeu::PresentationStylesTestClass }
       let(:included_instance)  { included_described.new(attributes) }
       let(:attributes) {
         {
@@ -49,7 +49,7 @@ module Vedeu
           style:  style,
         }
       }
-      let(:parent) { Vedeu::ParentPresentationStyleTestClass.new }
+      let(:parent) { Vedeu::ParentPresentationStylesTestClass.new }
       let(:style)  { ['bold'] }
 
       describe '#style' do
@@ -84,7 +84,7 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Presentation::Style) }
       end
 
-    end # Style
+    end # Styles
 
   end # Presentation
 

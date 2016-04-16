@@ -70,10 +70,6 @@ module Vedeu
         it { instance.must_respond_to(:name=) }
       end
 
-      describe '#parent' do
-        it { instance.must_respond_to(:parent) }
-      end
-
       describe '#parent=' do
         it { instance.must_respond_to(:parent=) }
       end

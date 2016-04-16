@@ -11,9 +11,9 @@ module Vedeu
 
   module Interfaces
 
-    describe Clear do
+    describe ClearContent do
 
-      let(:described) { Vedeu::Interfaces::Clear }
+      let(:described) { Vedeu::Interfaces::ClearContent }
       let(:instance)  { described.new(_name) }
       let(:_name)     { :vedeu_interfaces_clear }
 
@@ -22,10 +22,8 @@ module Vedeu
         it { instance.instance_variable_get('@name').must_equal(_name) }
       end
 
-      describe '.render' do
-        it { described.must_respond_to(:by_name) }
-        it { described.must_respond_to(:clear_by_name) }
-        it { described.must_respond_to(:render) }
+      describe '.clear_content_by_name' do
+        it { described.must_respond_to(:clear_content_by_name) }
       end
 
       describe '#render' do
@@ -60,20 +58,25 @@ module Vedeu
         before do
           Vedeu.interfaces.stubs(:by_name).returns(interface)
           Vedeu.geometries.stubs(:by_name).returns(geometry)
-          Vedeu.stubs(:render_output).returns(output)
+          Vedeu.stubs(:direct_write)
+          Vedeu.stubs(:buffer_update)
         end
 
         subject { instance.render }
 
-        it { subject.must_be_instance_of(Array) }
+        # it { subject.must_be_instance_of(Vedeu::Buffers::View) }
         it do
-          Vedeu.expects(:render_output).with(output)
+          Vedeu.expects(:direct_write)
           subject
         end
-        it { subject.must_equal(output) }
+        it do
+          Vedeu.expects(:buffer_update)
+          subject
+        end
+        # it { subject.must_equal(output) }
       end
 
-    end # Clear
+    end # ClearContent
 
   end # Interfaces
 
