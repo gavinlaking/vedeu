@@ -6,9 +6,9 @@ module Vedeu
 
   module Buffers
 
-    describe Refresh do
+    describe RefreshContent do
 
-      let(:described) { Vedeu::Buffers::Refresh }
+      let(:described) { Vedeu::Buffers::RefreshContent }
       let(:instance)  { described.new(_name) }
       let(:_name)     { :vedeu_buffers_refresh }
       let(:ready)     { true }
@@ -40,18 +40,13 @@ module Vedeu
           Vedeu.buffers.expects(:by_name).with(_name).returns(buffer)
           subject
         end
-
-        it do
-          Vedeu.expects(:trigger).with(:_refresh_border_, _name)
-          subject
-        end
       end
 
       describe '#by_name' do
         it { instance.must_respond_to(:by_name) }
       end
 
-    end # Refresh
+    end # RefreshContent
 
   end # Buffers
 

@@ -6,6 +6,8 @@ module Vedeu
 
     # Provides colour related escape sequences.
     #
+    # @api private
+    #
     module Colours
 
       include Vedeu::Common

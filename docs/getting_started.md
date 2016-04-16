@@ -72,10 +72,10 @@ it does much the same, minus the requests.
 
 ### app/helpers/
 
-Ruby on Rails has a concept of helpers which are not very
-object-oriented, but allow you to share functionality/behaviour across
-multiple views. Vedeu uses this concept as it will be familiar to many
-Rails developers and might be helpful to beginners.
+'Ruby on Rails' has a concept of helpers, which although not very
+object-oriented, allow you to share functionality/behaviour across
+multiple views. Vedeu uses this concept too, as it will be familiar to
+many Rails developers and might be helpful to beginners.
 
 ### app/models/
 

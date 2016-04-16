@@ -6,6 +6,8 @@ module Vedeu
 
     # Provides action related escape sequences.
     #
+    # @api public
+    #
     module Actions
 
       extend self

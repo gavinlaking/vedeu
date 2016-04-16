@@ -56,16 +56,17 @@ module Vedeu
       # @macro raise_missing_required
       # @return [String]
       def group_name
-        return name if present?(name)
-        return group_from_interface if present?(group_from_interface)
+        if present?(name)
+          name
 
-        raise Vedeu::Error::MissingRequired,
-              'Cannot refresh group with an empty group name.'
-      end
+        elsif present?(interface.group)
+          interface.group
 
-      # @return [String|Symbol]
-      def group_from_interface
-        @_group_name ||= interface.group
+        else
+          raise Vedeu::Error::MissingRequired,
+                'Cannot refresh group with an empty group name.'
+
+        end
       end
 
       # @macro interface_by_name

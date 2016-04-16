@@ -20,6 +20,8 @@ module Vedeu
     #   Using the '\uXXXX' variant produces gaps in the border, whilst
     #   the '\xXX' renders 'nicely'.
     #
+    # @api public
+    #
     module Borders
 
       extend self
