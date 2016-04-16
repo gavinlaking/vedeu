@@ -28,6 +28,8 @@ module Vedeu
     #
     # - From CONSOLE_CODES(4) (`man console_codes`)
     #
+    # @api public
+    #
     module Mouse
 
       extend self

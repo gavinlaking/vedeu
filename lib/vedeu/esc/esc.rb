@@ -7,6 +7,8 @@ module Vedeu
     # Provides escape sequence strings for setting the cursor position
     # and various display related functions.
     #
+    # @api public
+    #
     module Esc
 
       include Vedeu::Common
