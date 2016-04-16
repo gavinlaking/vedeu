@@ -37,7 +37,7 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Cells::Char>>]
       def render
-        Vedeu.render_output(output)
+        Vedeu.render_output(output) if Vedeu.ready?
       end
 
       protected

@@ -33,9 +33,11 @@ module Vedeu
 
       # @return [Vedeu::Buffers::View]
       def render
-        Vedeu.direct_write(optimised_output)
+        if Vedeu.ready?
+          Vedeu.direct_write(optimised_output)
 
-        Vedeu.buffer_update(output)
+          Vedeu.buffer_update(output)
+        end
       end
 
       protected
