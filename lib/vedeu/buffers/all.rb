@@ -38,7 +38,7 @@ module Vedeu
 
   # See {file:docs/events/by_name/refresh_view_content.md}
   Vedeu.bind(:_refresh_view_content_) do |name|
-    Vedeu::Buffers::Refresh.refresh_content_by_name(name) if Vedeu.ready?
+    Vedeu::Buffers::RefreshContent.by_name(name) if Vedeu.ready?
   end
 
   # :nocov:
