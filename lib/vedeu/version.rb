@@ -3,6 +3,6 @@
 module Vedeu
 
   # The current version of Vedeu.
-  VERSION = '0.8.24'
+  VERSION = '0.8.25'
 
 end # Vedeu
