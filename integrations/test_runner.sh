@@ -44,6 +44,7 @@ cd "$(dirname "$0")"
 ./dsl_app_border_009.rb # only right
 ./dsl_app_border_010.rb # only bottom
 ./dsl_app_border_011.rb # only left
+./dsl_app_border_012.rb # border on
 
 # Failing
 # ./dsl_app_017.rb
