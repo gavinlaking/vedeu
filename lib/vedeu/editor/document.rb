@@ -42,7 +42,7 @@ module Vedeu
 
         reset!
 
-        Vedeu.trigger(:_clear_view_content_, name)
+        Vedeu.clear_content_by_name(name) if Vedeu.ready?
 
         Vedeu.trigger(:_command_, command)
 
@@ -148,7 +148,7 @@ module Vedeu
       def refresh
         store
 
-        Vedeu.trigger(:_clear_view_content_, name)
+        Vedeu.clear_content_by_name(name) if Vedeu.ready?
 
         Vedeu.buffer_update(output)
 
