@@ -4,40 +4,38 @@ module Vedeu
 
   module Interfaces
 
-    # Clear the named interface.
+    # Clear the content of the named interface.
     #
     # @api private
     #
-    class Clear
+    class ClearContent
 
       include Vedeu::Common
 
       class << self
 
-        # {include:file:docs/dsl/by_method/clear_by_name.md}
-        # @return [Array<Array<Vedeu::Cells::Char>>]
+        # {include:file:docs/dsl/by_method/clear_content_by_name.md}
+        # @return [Vedeu::Buffers::View]
         # @see #initialize
-        def render(name = Vedeu.focus)
-          name || Vedeu.focus
-
+        def clear_content_by_name(name = Vedeu.focus)
           new(name).render
         end
-        alias clear_by_name render
-        alias by_name render
 
       end # Eigenclass
 
-      # Return a new instance of Vedeu::Interfaces::Clear.
+      # Return a new instance of Vedeu::Interfaces::ClearContent.
       #
       # @macro param_name
-      # @return [Vedeu::Interfaces::Clear]
+      # @return [Vedeu::Interfaces::ClearContent]
       def initialize(name = Vedeu.focus)
         @name = present?(name) ? name : Vedeu.focus
       end
 
-      # @return [Array<Array<Vedeu::Cells::Char>>]
+      # @return [Vedeu::Buffers::View]
       def render
-        Vedeu.render_output(output)
+        Vedeu.direct_write(optimised_output)
+
+        Vedeu.buffer_update(output)
       end
 
       protected
@@ -65,12 +63,25 @@ module Vedeu
 
       # @return [Fixnum]
       def height
-        @_height ||= geometry.height
+        @_height ||= geometry.bordered_height
       end
 
       # @macro interface_by_name
       def interface
         Vedeu.interfaces.by_name(name)
+      end
+
+      # @return [String]
+      def optimised_output
+        Vedeu.timer("Optimised clearing content: '#{name}'") do
+          Array.new(height) do |iy|
+            [
+              Vedeu::Geometries::Position.new(y + iy, x).to_s,
+              colour.to_s,
+              chars,
+            ].join
+          end.join + Vedeu::Geometries::Position.new(y, x).to_s
+        end
       end
 
       # For each visible line of the interface, set the foreground and
@@ -80,49 +91,41 @@ module Vedeu
       #
       # @return [Array<Array<Vedeu::Cells::Char>>]
       def output
-        Vedeu.timer("Clearing interface: '#{name}'") do
+        Vedeu.timer("Clearing content: '#{name}'") do
           @_clear ||= Array.new(height) do |iy|
             Array.new(width) do |ix|
-              Vedeu::Cells::Clear.new(output_attributes(iy, ix))
+              position = Vedeu::Geometries::Position.new((y + iy), (x + ix))
+              Vedeu::Cells::Clear.new(colour:   colour,
+                                      name:     name,
+                                      position: position)
             end
           end
         end
       end
 
-      # @param iy [Fixnum]
-      # @param ix [Fixnum]
-      # @return [Hash<Symbol => ]
-      def output_attributes(iy, ix)
-        {
-          colour:   colour,
-          name:     name,
-          position: Vedeu::Geometries::Position.new((y + iy), (x + ix)),
-        }
-      end
-
       # @return [Fixnum]
       def width
-        @_width ||= geometry.width
+        @_width ||= geometry.bordered_width
       end
 
       # @return [Fixnum]
       def y
-        @_y ||= geometry.y
+        @_y ||= geometry.by
       end
 
       # @return [Fixnum]
       def x
-        @_x ||= geometry.x
+        @_x ||= geometry.bx
       end
 
-    end # Clear
+    end # ClearContent
 
   end # Interfaces
 
   # @api public
-  # @!method clear_by_name
-  #   @see Vedeu::Interfaces::Clear.clear_by_name
-  def_delegators Vedeu::Interfaces::Clear,
-                 :clear_by_name
+  # @!method clear_content_by_name
+  #   @see Vedeu::Interfaces.ClearContent.clear_content_by_name
+  def_delegators Vedeu::Interfaces::ClearContent,
+                 :clear_content_by_name
 
 end # Vedeu
