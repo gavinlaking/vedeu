@@ -70,14 +70,6 @@ module Vedeu
         it { instance.must_respond_to(:parent=) }
       end
 
-      describe '#add' do
-        subject { instance.add(child) }
-      end
-
-      describe '#<<' do
-        it { instance.must_respond_to(:<<) }
-      end
-
       describe '#attributes' do
         subject { instance.attributes }
 

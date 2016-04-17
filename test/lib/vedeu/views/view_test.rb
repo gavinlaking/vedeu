@@ -78,15 +78,6 @@ module Vedeu
         it { instance.must_respond_to(:zindex=) }
       end
 
-      describe '#add' do
-        let(:child) {}
-
-        subject { instance.add(child) }
-
-        # @todo Add more tests.
-        # it { skip }
-      end
-
       describe '#attributes' do
         subject { instance.attributes }
 

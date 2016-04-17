@@ -62,15 +62,6 @@ module Vedeu
         end
       end
 
-      # Adds the child to the collection.
-      #
-      # @param child [Vedeu::Views::Stream]
-      # @return [Vedeu::Views::Stream]
-      def add(child)
-        @value = value.add(child)
-      end
-      alias << add
-
       # Returns an array of all the characters with formatting for
       # this line.
       #

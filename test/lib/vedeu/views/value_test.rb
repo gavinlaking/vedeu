@@ -40,6 +40,19 @@ module Vedeu
         it { included_described.must_respond_to(:parent) }
       end
 
+      describe '#add' do
+        let(:child) {}
+
+        subject { included_instance.add(child) }
+
+        # @todo Add more tests.
+        # it { skip }
+      end
+
+      describe '#<<' do
+        it { included_instance.must_respond_to(:<<) }
+      end
+
       describe '#client' do
         subject { included_instance.client }
 

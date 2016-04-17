@@ -56,18 +56,6 @@ module Vedeu
         it { instance.must_respond_to(:views) }
       end
 
-      describe '#add' do
-        let(:child) { Vedeu::Views::View.new }
-
-        subject { instance.add(child) }
-
-        it { subject.must_be_instance_of(Vedeu::Views::Views) }
-      end
-
-      describe '#<<' do
-        it { instance.must_respond_to(:<<) }
-      end
-
       describe '#attributes' do
         subject { instance.attributes }
 
