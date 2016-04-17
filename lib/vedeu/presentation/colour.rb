@@ -24,7 +24,7 @@ module Vedeu
                         elsif named_colour?
                           named_colour.background
 
-                        elsif parent && present?(parent.background)
+                        elsif parent? && present?(parent.background)
                           parent.background
 
                         else
@@ -84,7 +84,7 @@ module Vedeu
                         elsif named_colour?
                           named_colour.foreground
 
-                        elsif parent && present?(parent.foreground)
+                        elsif parent? && present?(parent.foreground)
                           parent.foreground
 
                         else
@@ -139,7 +139,7 @@ module Vedeu
 
       # @return [Boolean]
       def parent_colour?
-        present?(parent) && parent.respond_to?(:colour?)
+        parent? && parent.respond_to?(:colour?)
       end
 
       # Renders the colour attributes of the receiver and yields (to

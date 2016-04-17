@@ -80,18 +80,6 @@ module Vedeu
         end
       end
 
-      describe '#parent?' do
-        subject { included_instance.parent? }
-
-        context 'when the parent attribute is set' do
-          # it { subject.must_equal(true) }
-        end
-
-        context 'when the parent attribute is not set' do
-          it { subject.must_equal(false) }
-        end
-      end
-
       describe '#value' do
         subject { included_instance.value }
 

@@ -14,6 +14,11 @@ module Vedeu
         present?(@parent) ? @parent : nil
       end
 
+      # @return [Boolean]
+      def parent?
+        present?(parent)
+      end
+
     end # Parent
 
   end # Presentation

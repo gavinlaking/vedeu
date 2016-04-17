@@ -96,11 +96,6 @@ module Vedeu
           self.class.entity_klass
         end
 
-        # @return [Boolean]
-        def parent?
-          present?(parent)
-        end
-
         # @return [void]
         def value
           collection.coerce(@value || [], self)

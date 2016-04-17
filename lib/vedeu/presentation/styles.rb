@@ -33,7 +33,7 @@ module Vedeu
         @_style ||= if @style
                       Vedeu::Presentation::Style.coerce(@style)
 
-                    elsif parent && present?(parent.style)
+                    elsif parent? && present?(parent.style)
                       Vedeu::Presentation::Style.coerce(parent.style)
 
                     else
