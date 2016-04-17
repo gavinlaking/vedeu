@@ -118,20 +118,6 @@ module Vedeu
         it { instance.must_respond_to(:==) }
       end
 
-      describe '#name' do
-        subject { instance.name }
-
-        context 'when a parent is set' do
-          it { subject.must_equal('Vedeu::Line') }
-        end
-
-        context 'when a parent is not set' do
-          let(:parent) {}
-
-          it { subject.must_equal(nil) }
-        end
-      end
-
       describe '#size' do
         subject { instance.size }
 

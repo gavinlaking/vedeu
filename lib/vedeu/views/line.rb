@@ -91,17 +91,6 @@ module Vedeu
       end
       alias == eql?
 
-      # @return [NilClass|String|Symbol]
-      def name
-        if present?(@name)
-          @name
-
-        elsif parent && present?(parent.name)
-          parent.name
-
-        end
-      end
-
       # Returns the size of the content in characters without
       # formatting.
       #

@@ -9,6 +9,19 @@ module Vedeu
     #
     module Parent
 
+      include Vedeu::Common
+
+      # @return [NilClass|String|Symbol]
+      def name
+        if present?(@name)
+          @name
+
+        elsif parent? && present?(parent.name)
+          parent.name
+
+        end
+      end
+
       # @return [NilClass|void]
       def parent
         present?(@parent) ? @parent : nil

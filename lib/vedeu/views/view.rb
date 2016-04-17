@@ -108,17 +108,6 @@ module Vedeu
         }
       end
 
-      # @return [NilClass|String|Symbol]
-      def name
-        if present?(@name)
-          @name
-
-        elsif parent && present?(parent.name)
-          parent.name
-
-        end
-      end
-
       # Store the view in its respective buffer.
       #
       # @param refresh [Boolean] Should the buffer of the view be

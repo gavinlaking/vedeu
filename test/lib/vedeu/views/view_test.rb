@@ -62,10 +62,6 @@ module Vedeu
         it { instance.must_respond_to(:cursor_visible=) }
       end
 
-      describe '#name' do
-        it { instance.must_respond_to(:name) }
-      end
-
       describe '#name=' do
         it { instance.must_respond_to(:name=) }
       end

@@ -10,6 +10,7 @@ module Vedeu
 
     def initialize(attributes = {})
       @colour = attributes[:colour]
+      @name   = attributes[:name]
       @parent = attributes[:parent]
     end
 

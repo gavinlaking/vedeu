@@ -102,17 +102,6 @@ module Vedeu
         @_colour = @colour = colour
       end
 
-      # @return [NilClass|String|Symbol]
-      def name
-        if present?(@name)
-          @name
-
-        elsif parent && present?(parent.name)
-          parent.name
-
-        end
-      end
-
       private
 
       # @macro interface_by_name
