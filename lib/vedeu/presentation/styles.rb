@@ -19,7 +19,7 @@ module Vedeu
       #
       # @return [Vedeu::Presentation::Style]
       def style
-        @_style ||= if @style
+        @_style ||= if style?
                       Vedeu::Presentation::Style.coerce(@style)
 
                     elsif parent? && present?(parent.style)
@@ -37,6 +37,11 @@ module Vedeu
       # @return [Vedeu::Presentation::Style]
       def style=(value)
         @_style = @style = Vedeu::Presentation::Style.coerce(value)
+      end
+
+      # @return [Boolean]
+      def style?
+        present?(@style)
       end
 
       private

@@ -84,6 +84,20 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Presentation::Style) }
       end
 
+      describe '#style?' do
+        subject { included_instance.style? }
+
+        context 'when a style is set' do
+          it { subject.must_equal(true) }
+        end
+
+        context 'when a style is not set' do
+          let(:style) {}
+
+          it { subject.must_equal(false) }
+        end
+      end
+
     end # Styles
 
   end # Presentation
