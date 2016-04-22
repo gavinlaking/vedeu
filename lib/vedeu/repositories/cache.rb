@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vedeu
 
   module Repositories
@@ -26,9 +28,9 @@ module Vedeu
 
         @lock.synchronize do
           @cache[resource] = {
-                               value:      value,
-                               expires_at: (Time.now + expires)
-                             }
+            value:      value,
+            expires_at: (Time.now + expires),
+          }
         end
       end
 

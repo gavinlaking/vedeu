@@ -62,15 +62,6 @@ module Vedeu
         end
       end
 
-      # Adds the child to the collection.
-      #
-      # @param child [Vedeu::Views::Stream]
-      # @return [Vedeu::Views::Stream]
-      def add(child)
-        @value = value.add(child)
-      end
-      alias << add
-
       # Returns an array of all the characters with formatting for
       # this line.
       #
@@ -90,17 +81,6 @@ module Vedeu
         self.class.equal?(other.class) && value == other.value
       end
       alias == eql?
-
-      # @return [NilClass|String|Symbol]
-      def name
-        if present?(@name)
-          @name
-
-        elsif parent && present?(parent.name)
-          parent.name
-
-        end
-      end
 
       # Returns the size of the content in characters without
       # formatting.

@@ -68,23 +68,23 @@ module Vedeu
         requires_model!
 
         attrs = Vedeu::DSL::Attributes.build(self, model, nil, opts, &block)
-        l = Vedeu::Views::Line.build(attrs, &block)
-        v = Vedeu::Views::View.build(attrs, &block)
+        line  = build_line(attrs, &block)
+        view  = build_view(attrs, &block)
 
         if view_model?
           if model.lines?
-            model.add(l)
+            model.add(line)
 
           else
-            model.value = v.value
+            model.value = view.value
 
           end
 
         elsif line_model?
-          model.value = l.value
+          model.value = line.value
 
         else
-          model.value = v.value
+          model.value = view.value
 
         end
       end
@@ -119,12 +119,12 @@ module Vedeu
         attrs = Vedeu::DSL::Attributes.build(self, model, value, opts, &block)
 
         l = if block_given?
-              Vedeu::Views::Line.build(attrs, &block)
+              build_line(attrs, &block)
 
             else
-              s  = Vedeu::Views::Stream.new(attrs)
-              ss = Vedeu::Views::Streams.coerce([s])
-              Vedeu::Views::Line.new(attrs.merge!(value: ss))
+              stream  = new_stream(attrs)
+              streams = Vedeu::Views::Streams.coerce([stream])
+              Vedeu::Views::Line.new(attrs.merge!(value: streams))
 
             end
 
@@ -155,17 +155,17 @@ module Vedeu
 
         l = if block_given?
               if view_model?
-                Vedeu::Views::Line.build(attrs, &block)
+                build_line(attrs, &block)
 
               else
-                Vedeu::Views::Stream.build(attrs, &block)
+                build_stream(attrs, &block)
 
               end
 
             else
-              s  = Vedeu::Views::Stream.new(attrs)
-              ss = Vedeu::Views::Streams.coerce([s])
-              Vedeu::Views::Line.new(attrs.merge!(value: ss))
+              stream  = new_stream(attrs)
+              streams = Vedeu::Views::Streams.coerce([stream])
+              Vedeu::Views::Line.new(attrs.merge!(value: streams))
 
             end
 
@@ -241,14 +241,13 @@ module Vedeu
       def text(value = '', opts = {})
         requires_model!
 
-        attrs  = Vedeu::DSL::Attributes.build(self, model, value, opts)
-        stream = Vedeu::Views::Stream.new(attrs)
+        attrs   = Vedeu::DSL::Attributes.build(self, model, value, opts)
+        stream  = new_stream(attrs)
+        streams = Vedeu::Views::Streams.coerce([stream])
+        line    = Vedeu::Views::Line.new(attrs.merge!(value: streams))
 
         if view_model?
-          ss = Vedeu::Views::Streams.coerce([stream])
-          l  = Vedeu::Views::Line.new(attrs.merge!(value: ss))
-
-          model.add(l)
+          model.add(line)
 
         elsif line_model?
           model.add(stream)
@@ -289,6 +288,33 @@ module Vedeu
       end
 
       private
+
+      # @param attrs [Vedeu::DSL::Attributes]
+      # @macro param_block
+      # @return [Vedeu::Views::Line]
+      def build_line(attrs, &block)
+        Vedeu::Views::Line.build(attrs, &block)
+      end
+
+      # @param attrs [Vedeu::DSL::Attributes]
+      # @macro param_block
+      # @return [Vedeu::Views::Stream]
+      def build_stream(attrs, &block)
+        Vedeu::Views::Stream.build(attrs, &block)
+      end
+
+      # @param attrs [Vedeu::DSL::Attributes]
+      # @macro param_block
+      # @return [Vedeu::Views::View]
+      def build_view(attrs, &block)
+        Vedeu::Views::View.build(attrs, &block)
+      end
+
+      # @param attrs [Vedeu::DSL::Attributes]
+      # @return [Vedeu::Views::Stream]
+      def new_stream(attrs)
+        Vedeu::Views::Stream.new(attrs)
+      end
 
       # @macro param_block
       # @macro raise_requires_block

@@ -73,6 +73,15 @@ module Vedeu
         # @return [void]
         attr_accessor :parent
 
+        # Adds the child to the collection.
+        #
+        # @param child [Vedeu::Views]
+        # @return [Vedeu::Views]
+        def add(child)
+          @value = value.add(child)
+        end
+        alias << add
+
         # @return [Boolean]
         def client?
           present?(client)
@@ -94,11 +103,6 @@ module Vedeu
         # @return [void]
         def entity
           self.class.entity_klass
-        end
-
-        # @return [Boolean]
-        def parent?
-          present?(parent)
         end
 
         # @return [void]

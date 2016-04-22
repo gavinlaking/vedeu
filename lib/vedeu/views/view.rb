@@ -84,15 +84,6 @@ module Vedeu
         end
       end
 
-      # Adds the child to the collection.
-      #
-      # @param child [Vedeu::Views::Line]
-      # @return [Vedeu::Views::Lines]
-      def add(child)
-        @value = value.add(child)
-      end
-      alias << add
-
       # @return [Hash]
       def attributes
         {
@@ -106,17 +97,6 @@ module Vedeu
           wordwrap:       wordwrap,
           zindex:         zindex,
         }
-      end
-
-      # @return [NilClass|String|Symbol]
-      def name
-        if present?(@name)
-          @name
-
-        elsif parent && present?(parent.name)
-          parent.name
-
-        end
       end
 
       # Store the view in its respective buffer.

@@ -70,14 +70,6 @@ module Vedeu
         it { instance.must_respond_to(:parent=) }
       end
 
-      describe '#add' do
-        subject { instance.add(child) }
-      end
-
-      describe '#<<' do
-        it { instance.must_respond_to(:<<) }
-      end
-
       describe '#attributes' do
         subject { instance.attributes }
 
@@ -116,20 +108,6 @@ module Vedeu
 
       describe '#==' do
         it { instance.must_respond_to(:==) }
-      end
-
-      describe '#name' do
-        subject { instance.name }
-
-        context 'when a parent is set' do
-          it { subject.must_equal('Vedeu::Line') }
-        end
-
-        context 'when a parent is not set' do
-          let(:parent) {}
-
-          it { subject.must_equal(nil) }
-        end
       end
 
       describe '#size' do

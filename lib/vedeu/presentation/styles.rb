@@ -13,27 +13,16 @@ module Vedeu
       include Vedeu::Common
       include Vedeu::Presentation::Parent
 
-      # @return [NilClass|String|Symbol]
-      def name
-        if present?(@name)
-          @name
-
-        elsif parent && present?(parent.name)
-          parent.name
-
-        end
-      end
-
       # When the style for the model exists, return it, otherwise
       # returns the parent style, or an empty
       # {Vedeu::Presentation::Style}.
       #
       # @return [Vedeu::Presentation::Style]
       def style
-        @_style ||= if @style
+        @_style ||= if style?
                       Vedeu::Presentation::Style.coerce(@style)
 
-                    elsif parent && present?(parent.style)
+                    elsif parent? && present?(parent.style)
                       Vedeu::Presentation::Style.coerce(parent.style)
 
                     else
@@ -48,6 +37,11 @@ module Vedeu
       # @return [Vedeu::Presentation::Style]
       def style=(value)
         @_style = @style = Vedeu::Presentation::Style.coerce(value)
+      end
+
+      # @return [Boolean]
+      def style?
+        present?(@style)
       end
 
       private

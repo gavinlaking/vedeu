@@ -62,10 +62,6 @@ module Vedeu
         it { instance.must_respond_to(:cursor_visible=) }
       end
 
-      describe '#name' do
-        it { instance.must_respond_to(:name) }
-      end
-
       describe '#name=' do
         it { instance.must_respond_to(:name=) }
       end
@@ -80,15 +76,6 @@ module Vedeu
 
       describe '#zindex=' do
         it { instance.must_respond_to(:zindex=) }
-      end
-
-      describe '#add' do
-        let(:child) {}
-
-        subject { instance.add(child) }
-
-        # @todo Add more tests.
-        # it { skip }
       end
 
       describe '#attributes' do

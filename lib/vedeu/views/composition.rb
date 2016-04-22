@@ -43,15 +43,6 @@ module Vedeu
         end
       end
 
-      # Adds the child to the collection.
-      #
-      # @param child [Vedeu::Views::View]
-      # @return [Vedeu::Views::Views]
-      def add(child)
-        @value = value.add(child)
-      end
-      alias << add
-
       # @return [Hash<Symbol => void>]
       def attributes
         {
