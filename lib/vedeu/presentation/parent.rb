@@ -24,12 +24,12 @@ module Vedeu
 
       # @return [NilClass|void]
       def parent
-        present?(@parent) ? @parent : nil
+        return @parent if parent?
       end
 
       # @return [Boolean]
       def parent?
-        present?(parent)
+        present?(@parent)
       end
 
     end # Parent
