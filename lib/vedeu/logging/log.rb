@@ -16,6 +16,27 @@ module Vedeu
 
       class << self
 
+        # @api private
+        # @!attribute [rw] count
+        # @return [Fixnum] Used by tests to access the `count`
+        #   instance variable.
+        attr_accessor :count
+
+        # Used by {Vedeu::Events::Trigger} to indent log messages to
+        # show activity which occurs as part of that event triggering.
+        #
+        # @api private
+        # @macro param_block
+        # @return [NilClass|void]
+        def indent(&block)
+          @count ||= 0
+          @count += 1
+
+          yield if block_given?
+        ensure
+          outdent
+        end
+
         # Write a message to the Vedeu log file.
         #
         # @example
@@ -57,6 +78,25 @@ module Vedeu
           $stderr.puts log_entry(type, message)
         end
 
+        # Used by {Vedeu::Events::Trigger} to outdent log messages to
+        # show activity which occurs as part of the previous event
+        # triggering.
+        #
+        # @api private
+        # @macro param_block
+        # @return [void]
+        def outdent(&block)
+          result = yield if block_given?
+
+          if @count && @count > 0
+            @count -= 1
+          else
+            @count = 0
+          end
+
+          result
+        end
+
         # {include:file:docs/dsl/by_method/log_timestamp.md}
         # @return [String]
         def timestamp
@@ -75,13 +115,10 @@ module Vedeu
 
         private
 
-        # @return [Boolean]
-        def logger
-          MonoLogger.new(Vedeu.config.log).tap do |log|
-            log.formatter = proc do |_, _, _, message|
-              formatted_message(message)
-            end
-          end
+        # @param type [Symbol] The type of log message.
+        # @return [Array<Symbol>]
+        def colours(type)
+          Vedeu::LOG_TYPES.fetch(type, [:default, :default])
         end
 
         # {include:file:docs/dsl/by_method/log_timestamp.md}
@@ -89,6 +126,11 @@ module Vedeu
         # @return [String]
         def formatted_message(message)
           "#{timestamp}#{message}\n" if message
+        end
+
+        # @return [String]
+        def indentation
+          ' ' * (@count ||= 0) * 2
         end
 
         # Returns the message:
@@ -112,13 +154,16 @@ module Vedeu
         # @macro vedeu_logging_log_param_message
         # @return [String]
         def log_message(type, message)
-          Vedeu.esc.colour(colours(type)[1]) { message }
+          Vedeu.esc.colour(colours(type)[1]) { indentation + message }
         end
 
-        # @param type [Symbol] The type of log message.
-        # @return [Array<Symbol>]
-        def colours(type)
-          Vedeu::LOG_TYPES.fetch(type, [:default, :default])
+        # @return [Boolean]
+        def logger
+          MonoLogger.new(Vedeu.config.log).tap do |log|
+            log.formatter = proc do |_, _, _, message|
+              formatted_message(message)
+            end
+          end
         end
 
       end # Eigenclass
@@ -127,6 +172,9 @@ module Vedeu
 
   end # Logging
 
+  # @api public
+  # @!method indent
+  #   @see Vedeu::Logging::Log.indent
   # @api public
   # @!method log
   #   @see Vedeu::Logging::Log.log
@@ -139,10 +187,15 @@ module Vedeu
   # @api public
   # @!method log_timestamp
   #   @see Vedeu::Logging::Log.log_timestamp
+  # @api public
+  # @!method outdent
+  #   @see Vedeu::Logging::Log.outdent
   def_delegators Vedeu::Logging::Log,
+                 :indent,
                  :log,
                  :log_stdout,
                  :log_stderr,
-                 :log_timestamp
+                 :log_timestamp,
+                 :outdent
 
 end # Vedeu
