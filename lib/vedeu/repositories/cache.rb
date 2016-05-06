@@ -4,6 +4,12 @@ module Vedeu
 
   module Repositories
 
+    # Allow the storing of values for a finite period to save repeated
+    # computation.
+    #
+    # @note
+    #   This class is not currently used and will be used in future.
+    #
     # @api private
     #
     class Cache
