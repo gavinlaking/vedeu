@@ -13,7 +13,7 @@ class DSLApp
 
   Vedeu.configure do
     debug!
-    log '/tmp/vedeu_integrations.log'
+    log Dir.tmpdir + '/vedeu_views_dsl.log'
     renderers [
                 Vedeu::Renderers::Terminal.new(
                   filename:   Dir.tmpdir + "/#{TESTCASE}.out",

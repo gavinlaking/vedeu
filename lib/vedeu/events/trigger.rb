@@ -86,9 +86,13 @@ module Vedeu
       # @return [Array<void>|void]
       def results
         @results ||= registered_events.map do |event|
-          Vedeu.log(type: :event, message: message)
+          Vedeu.outdent do
+            Vedeu.log(type: :event, message: message)
 
-          event.trigger(*args)
+            Vedeu.indent do
+              event.trigger(*args)
+            end
+          end
         end
       end
 

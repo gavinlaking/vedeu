@@ -43,19 +43,19 @@ RUN tar -xzvf chruby-0.3.9.tar.gz && cd chruby-0.3.9/ && make install
 RUN wget -O ruby-install-0.5.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.5.0.tar.gz
 RUN tar -xzvf ruby-install-0.5.0.tar.gz && cd ruby-install-0.5.0/ && make install
 
-# Install Ruby 2.2.2
-RUN ruby-install ruby 2.2.2
+# Install Ruby 2.3.1
+RUN ruby-install ruby 2.3.1
 RUN chown -R vedeu:vedeu /opt/rubies
 
 # Setup Chruby
 RUN echo '[ -n "$BASH_VERSION" ] || [ -n "$ZSH_VERSION" ] || return' >> /etc/profile.d/chruby.sh
 RUN echo 'source /usr/local/share/chruby/chruby.sh' >> /etc/profile.d/chruby.sh
 RUN echo 'source /usr/local/share/chruby/auto.sh' >> $HOME/.bashrc
-RUN echo 'chruby ruby-2.2.2' >> $HOME/.bash_profile
+RUN echo 'chruby ruby-2.3.1' >> $HOME/.bash_profile
 RUN echo "---\n:benchmark: false\n:bulk_threshold: 1000\n:backtrace: false\n:verbose: true\ngem: --no-ri --no-rdoc" >> $HOME/.gemrc
 
 # Setup PATH
-ENV PATH /opt/rubies/ruby-2.2.2/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/vedeu/gem/bin
+ENV PATH /opt/rubies/ruby-2.3.1/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/vedeu/gem/bin
 
 RUN gem install bundler
 

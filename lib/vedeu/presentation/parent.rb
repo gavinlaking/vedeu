@@ -4,6 +4,8 @@ module Vedeu
 
   module Presentation
 
+    # Provide access to the parent class for a {Vedeu::Views}
+    # instance.
     #
     # @api private
     #

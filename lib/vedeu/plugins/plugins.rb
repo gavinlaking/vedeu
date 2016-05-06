@@ -64,7 +64,7 @@ module Vedeu
 
     protected
 
-    # @!attribute [r] input
+    # @!attribute [rw] plugins
     # @return [Array<String>]
     attr_accessor :plugins
 
