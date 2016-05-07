@@ -33,7 +33,10 @@ class HorizontalAlignmentApp
             line ""
             line "The 'h', 'j', 'k' and 'l' keys will"
             line "move this view left, down, up, and"
-            line "right respectively."
+            line "right respectively. The coordinates"
+            line "will not change in this example"
+            line "because they have not been"
+            line "instructed to do so."
           end
         end
       end
@@ -145,22 +148,7 @@ class HorizontalAlignmentApp
       end
     end
 
-    view(:centre_interface) do
-      lines do
-        line "x:#{gc.x}, xn:#{gc.xn} (w:#{gc.width})"
-        line "y:#{gc.y}, yn:#{gc.yn} (h:#{gc.height})"
-        line ""
-        line "bx:#{gc.bx}, bxn:#{gc.bxn} (bw:#{gc.width})"
-        line "by:#{gc.by}, byn:#{gc.byn} (bh:#{gc.height})"
-        line ""
-        line "The 'h', 'j', 'k' and 'l' keys will"
-        line "move this view left, down, up, and"
-        line "right respectively. The coordinates"
-        line "will not change in this example"
-        line "because they have not been"
-        line "instructed to do so."
-      end
-    end
+    HorizontalAlignmentApp::CentreHorizontalAlignmentView.new.render
 
     view(:right_interface) do
       lines do
