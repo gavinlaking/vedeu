@@ -102,7 +102,7 @@ module Vedeu
 
       # @return [String]
       def default_template
-        ::File.dirname(__FILE__) + '/./templates/html_renderer.vedeu'
+        ::File.dirname(__FILE__) + '/../templates/html_renderer.vedeu'
       end
 
       # @return [String]
