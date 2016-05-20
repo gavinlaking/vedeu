@@ -21,13 +21,13 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency 'guard',              '2.13.0'
+  spec.add_development_dependency 'guard',              '2.14.0'
   spec.add_development_dependency 'guard-minitest',     '2.4.4'
   spec.add_development_dependency 'guard-rubocop',      '1.2.0'
-  spec.add_development_dependency 'minitest',           '5.8.4'
+  spec.add_development_dependency 'minitest',           '5.9.0'
   spec.add_development_dependency 'minitest-reporters', '1.1.9'
   spec.add_development_dependency 'mocha',              '1.1.0'
-  spec.add_development_dependency 'rubocop',            '0.39.0'
+  spec.add_development_dependency 'rubocop',            '0.40.0'
   spec.add_development_dependency 'simplecov',          '0.11.2'
   spec.add_development_dependency 'simplecov-console',  '0.3.0'
   spec.add_development_dependency 'yard',               '0.8.7.6'
