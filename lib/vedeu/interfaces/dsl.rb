@@ -111,8 +111,6 @@ module Vedeu
           eval('self', block.binding) if block_given?
         end
 
-        private
-
         # @macro param_name
         # @return [Boolean]
         def keymap?(name)

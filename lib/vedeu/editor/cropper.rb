@@ -48,7 +48,8 @@ module Vedeu
             out << Vedeu::Cells::Char.new(
               name:     name,
               position: Vedeu::Geometries::Position.new((by + iy), (bx + ix)),
-              value:    char)
+              value:    char
+            )
           end
         end
 

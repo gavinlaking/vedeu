@@ -59,7 +59,9 @@ module Vedeu
           Vedeu::Views::Stream.build(
             colour: Vedeu::Colours::Colour.new(attributes),
             style:  Vedeu::Presentation::Style.new(attributes[:style]),
-            value:  value))
+            value:  value
+          )
+        )
       end
 
       # @param data [String]

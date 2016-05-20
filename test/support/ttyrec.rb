@@ -2,11 +2,26 @@
 
 # frozen_string_literal: true
 
+# Install 'ttyrec':
+#   sudo apt install ttyrec
 #
-#     ttyrec -a -e ./material_colours_app.rb /tmp/ttyrecord
+# Run 'ttyrec' against an example:
+#   ttyrec -a -e ./examples/material_colours_app.rb /tmp/ttyrecord
+#
+# Parse the recording:
+#   ./ttyrec.rb
+#
+# View the decoded recording:
+#   less /tmp/ttyrecord_decoded
+#
+# or
+#   cat /tmp/ttyrecord_decoded
 #
 
-ttyrecord = File.binread(Dir.tmpdir + '/ttyrecord')
+require 'tmpdir'
+
+tmpdir    = Dir.tmpdir
+ttyrecord = File.binread(tmpdir + '/ttyrecord')
 ttyrecord.force_encoding('BINARY') if ttyrecord.respond_to?(:force_encoding)
 
 offset = 0
@@ -30,7 +45,7 @@ while offset < ttyrecord.size
   offset = data_start + data_length
 end
 
-File.open(Dir.tmpdir + '/ttyrecord_decoded', 'w') do |file|
+File.open(tmpdir + '/ttyrecord_decoded', 'w') do |file|
   chunks.each do |chunk|
     file.write("---\n" + chunk[:data] + "\n")
   end

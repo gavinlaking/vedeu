@@ -85,7 +85,8 @@ module Vedeu
           Vedeu::Editor::Insert.into(collection,
                                      Vedeu::Editor::Line.new,
                                      index,
-                                     size))
+                                     size)
+        )
       end
 
       # Returns the line at the given index.
