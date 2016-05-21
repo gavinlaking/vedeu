@@ -17,6 +17,8 @@ describe Vedeu do
   it { Vedeu.must_respond_to(:buffers) }
   it { Vedeu.must_respond_to(:buffer_update) }
   it { Vedeu.must_respond_to(:buffer_write) }
+  it { Vedeu.must_respond_to(:centre_x) }
+  it { Vedeu.must_respond_to(:centre_y) }
   it { Vedeu.must_respond_to(:clear) }
   it { Vedeu.must_respond_to(:clear_by_group) }
   it { Vedeu.must_respond_to(:clear_by_name) }

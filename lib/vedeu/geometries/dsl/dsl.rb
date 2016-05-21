@@ -105,23 +105,27 @@ module Vedeu
       # @param value [Symbol] One of :center, :centre, :left, :none,
       #   :right.
       # @param width [Fixnum] The number of characters/columns.
+      # @param x [Fixnum] When given, sets the x coordinate.
       # @return [Vedeu::Geometries::Geometry]
-      def horizontal_alignment(value = :none, width = nil)
+      def horizontal_alignment(value = :none, width = nil, x = nil)
         alignment = Vedeu::Coercers::HorizontalAlignment.validate(value)
 
         model.width = width if width
         model.horizontal_alignment = alignment
+        model.x = x if x
         model
       end
 
       # @param value [Symbol] One of :bottom, :middle, :none, :top.
       # @param height [Fixnum] The number of lines/rows.
+      # @param y [Fixnum] When given, sets the y coordinate.
       # @return [Vedeu::Geometries::Geometry]
-      def vertical_alignment(value = :none, height = nil)
+      def vertical_alignment(value = :none, height = nil, y = nil)
         alignment = Vedeu::Coercers::VerticalAlignment.validate(value)
 
         model.height = height if height
         model.vertical_alignment = alignment
+        model.y = y if y
         model
       end
 
@@ -129,14 +133,26 @@ module Vedeu
       # @param height [Fixnum] The number of lines/rows.
       # @return [Vedeu::Geometries::Geometry]
       def align_bottom(height = nil)
-        vertical_alignment(:bottom, height)
+        y = if height
+              Vedeu.height - height
+            elsif model.height
+              Vedeu.height - model.height
+            end
+
+        vertical_alignment(:bottom, height, y)
       end
 
       # {include:file:docs/dsl/by_method/geometry/align_centre.md}
       # @param width [Fixnum] The number of characters/columns.
       # @return [Vedeu::Geometries::Geometry]
       def align_centre(width = nil)
-        horizontal_alignment(:centre, width)
+        x = if width
+              Vedeu.centre_x - (width / 2)
+            elsif model.width
+              Vedeu.centre_x - (model.width / 2)
+            end
+
+        horizontal_alignment(:centre, width, x)
       end
       alias align_center align_centre
 
@@ -151,14 +167,26 @@ module Vedeu
       # @param height [Fixnum] The number of lines/rows.
       # @return [Vedeu::Geometries::Geometry]
       def align_middle(height = nil)
-        vertical_alignment(:middle, height)
+        y = if height
+              Vedeu.centre_y - (height / 2)
+            elsif model.height
+              Vedeu.centre_y - (model.height / 2)
+            end
+
+        vertical_alignment(:middle, height, y)
       end
 
       # {include:file:docs/dsl/by_method/geometry/align_right.md}
       # @param width [Fixnum] The number of characters/columns.
       # @return [Vedeu::Geometries::Geometry]
       def align_right(width = nil)
-        horizontal_alignment(:right, width)
+        x = if width
+              Vedeu.width - width
+            elsif model.width
+              Vedeu.width - model.width
+            end
+
+        horizontal_alignment(:right, width, x)
       end
 
       # {include:file:docs/dsl/by_method/geometry/align_top.md}
