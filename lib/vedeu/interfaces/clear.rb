@@ -15,9 +15,7 @@ module Vedeu
 
       def_delegators :geometry,
                      :height,
-                     :width,
-                     :x,
-                     :y
+                     :width
 
       def_delegators :interface,
                      :colour
@@ -76,23 +74,12 @@ module Vedeu
       # @return [Array<Array<Vedeu::Cells::Char>>]
       def output
         Vedeu.timer("Clearing interface: '#{name}'") do
-          @_clear ||= Array.new(height) do |iy|
-            Array.new(width) do |ix|
-              Vedeu::Cells::Clear.new(output_attributes(iy, ix))
+          @_clear ||= Array.new(height) do
+            Array.new(width) do
+              Vedeu::Cells::Clear.new(colour: colour, name: name)
             end
           end
         end
-      end
-
-      # @param iy [Fixnum]
-      # @param ix [Fixnum]
-      # @return [Hash<Symbol => ]
-      def output_attributes(iy, ix)
-        {
-          colour:   colour,
-          name:     name,
-          position: Vedeu::Geometries::Position.new((y + iy), (x + ix)),
-        }
       end
 
     end # Clear

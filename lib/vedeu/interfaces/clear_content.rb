@@ -94,12 +94,9 @@ module Vedeu
       # @return [Array<Array<Vedeu::Cells::Char>>]
       def output
         Vedeu.timer("Clearing content: '#{name}'") do
-          @_clear ||= Array.new(bordered_height) do |iy|
-            Array.new(bordered_width) do |ix|
-              Vedeu::Cells::Clear.new(colour:   colour,
-                                      name:     name,
-                                      position: Vedeu::Geometries::Position
-                                                  .new((by + iy), (bx + ix)))
+          @_clear ||= Array.new(bordered_height) do
+            Array.new(bordered_width) do
+              Vedeu::Cells::Clear.new(colour: colour, name: name)
             end
           end
         end

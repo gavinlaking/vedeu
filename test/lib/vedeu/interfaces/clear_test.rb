@@ -40,19 +40,15 @@ module Vedeu
         let(:output) {
           [
             [
-              Vedeu::Cells::Clear.new(colour:   colour,
-                                      name:     _name,
-                                      position: [1, 1]),
-              Vedeu::Cells::Clear.new(colour:   colour,
-                                      name:     _name,
-                                      position: [1, 2]),
+              Vedeu::Cells::Clear.new(colour: colour,
+                                      name:   _name),
+              Vedeu::Cells::Clear.new(colour: colour,
+                                      name:   _name),
             ], [
-              Vedeu::Cells::Clear.new(colour:   colour,
-                                      name:     _name,
-                                      position: [2, 1]),
-              Vedeu::Cells::Clear.new(colour:   colour,
-                                      name:     _name,
-                                      position: [2, 2]),
+              Vedeu::Cells::Clear.new(colour: colour,
+                                      name:   _name),
+              Vedeu::Cells::Clear.new(colour: colour,
+                                      name:   _name),
             ]
           ]
         }
