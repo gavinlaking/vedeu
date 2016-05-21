@@ -53,7 +53,7 @@ class VerticalAlignmentApp
 
   Vedeu.configure do
     debug!
-    log Dir.tmpdir + '/vedeu_vertical.log'
+    log Dir.tmpdir + '/vedeu_views_dsl.log'
     renderers [
                 Vedeu::Renderers::Terminal.new,
                 # Vedeu::Renderers::Text.new(
