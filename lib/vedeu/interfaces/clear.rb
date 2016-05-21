@@ -71,14 +71,12 @@ module Vedeu
       # defined, then starting write space characters over the area
       # which the interface occupies.
       #
-      # @return [Array<Array<Vedeu::Cells::Char>>]
+      # @return [Array<Array<Vedeu::Cells::Clear>>]
       def output
         Vedeu.timer("Clearing interface: '#{name}'") do
-          @_clear ||= Array.new(height) do
-            Array.new(width) do
-              Vedeu::Cells::Clear.new(colour: colour, name: name)
-            end
-          end
+          @_clear ||= Vedeu::Buffers::Clear.new(height: height,
+                                                name:   name,
+                                                width:  width).buffer
         end
       end
 

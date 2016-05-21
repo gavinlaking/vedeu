@@ -73,13 +73,17 @@ module Vedeu
         @_interface ||= Vedeu.interfaces.by_name(name)
       end
 
+      # @param iy [Fixnum]
+      # @return [String]
+      def optimised_line(iy)
+        Vedeu::Geometries::Position.new(by + iy, bx).to_s + colour.to_s + chars
+      end
+
       # @return [String]
       def optimised_output
         Vedeu.timer("Optimised clearing content: '#{name}'") do
           Array.new(bordered_height) do |iy|
-            Vedeu::Geometries::Position.new(by + iy, bx).to_s +
-            colour.to_s +
-            chars
+            optimised_line(iy)
           end.join + Vedeu::Geometries::Position.new(by, bx)
         end
       end
@@ -89,14 +93,12 @@ module Vedeu
       # defined, then starting write space characters over the area
       # which the interface occupies.
       #
-      # @return [Array<Array<Vedeu::Cells::Char>>]
+      # @return [Array<Array<Vedeu::Cells::Clear>>]
       def output
         Vedeu.timer("Clearing content: '#{name}'") do
-          @_clear ||= Array.new(bordered_height) do
-            Array.new(bordered_width) do
-              Vedeu::Cells::Clear.new(colour: colour, name: name)
-            end
-          end
+          @_clear ||= Vedeu::Buffers::Clear.new(height: bordered_height,
+                                                name:   name,
+                                                width: bordered_width).buffer
         end
       end
 
