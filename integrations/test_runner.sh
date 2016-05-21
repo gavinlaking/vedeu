@@ -53,6 +53,7 @@ cd "$(dirname "$0")"
 ./dsl_app_geometry_002.rb
 ./dsl_app_geometry_003.rb
 ./dsl_app_geometry_004.rb
+./dsl_app_geometry_005.rb
 
 # Failing
 # ./dsl_app_017.rb
