@@ -82,8 +82,6 @@ module Vedeu
       end
 
       describe '#buffer' do
-        let(:position) { Vedeu::Geometries::Position.new(y, x) }
-
         subject { instance.buffer }
 
         it { subject.must_be_instance_of(Array) }
