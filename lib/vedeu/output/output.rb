@@ -52,17 +52,17 @@ module Vedeu
 
       # @return (see #render_output)
       def buffer_update
-        Vedeu::Buffers::Terminal.update(output) if present?(output)
+        Vedeu::Buffers::Terminal.update(output) if output?
       end
 
       # @return (see #render_output)
       def buffer_write
-        Vedeu::Buffers::Terminal.write(output) if present?(output)
+        Vedeu::Buffers::Terminal.write(output) if output?
       end
 
       # @return (see #render_output)
       def direct_write
-        Vedeu::Terminal.output(output.to_s) if present?(output)
+        Vedeu::Terminal.output(output.to_s) if output?
       end
 
       # Send the view to the renderers. If the output is a
@@ -91,6 +91,13 @@ module Vedeu
       # @return [Array<Array<Vedeu::Cells::Char>>|
       #   NilClass|Vedeu::Cells::Escape|Vedeu::Cells::Cursor]
       attr_reader :output
+
+      private
+
+      # @return [Boolean]
+      def output?
+        present?(output)
+      end
 
     end # Output
 
