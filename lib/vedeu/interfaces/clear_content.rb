@@ -77,11 +77,9 @@ module Vedeu
       def optimised_output
         Vedeu.timer("Optimised clearing content: '#{name}'") do
           Array.new(bordered_height) do |iy|
-            [
-              Vedeu::Geometries::Position.new(by + iy, bx),
-              colour.to_s,
-              chars,
-            ].join
+            Vedeu::Geometries::Position.new(by + iy, bx).to_s +
+            colour.to_s +
+            chars
           end.join + Vedeu::Geometries::Position.new(by, bx)
         end
       end
