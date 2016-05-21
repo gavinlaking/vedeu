@@ -18,6 +18,10 @@ module Vedeu
         it { instance.instance_variable_get('@output').must_equal(output) }
       end
 
+      describe '.buffer_update' do
+        it { described.must_respond_to(:buffer_update) }
+      end
+
       describe '.buffer_write' do
         subject { described.buffer_write(output) }
 
@@ -82,6 +86,10 @@ module Vedeu
             end
           end
         end
+      end
+
+      describe '#buffer_update' do
+        it { instance.must_respond_to(:buffer_update) }
       end
 
       describe '#buffer_write' do

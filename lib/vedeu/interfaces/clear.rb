@@ -11,6 +11,14 @@ module Vedeu
     class Clear
 
       include Vedeu::Common
+      extend Forwardable
+
+      def_delegators :geometry,
+                     :height,
+                     :width
+
+      def_delegators :interface,
+                     :colour
 
       class << self
 
@@ -48,29 +56,14 @@ module Vedeu
 
       private
 
-      # @return [String] A string of blank characters.
-      def chars
-        @_chars ||= (' ' * width)
-      end
-
-      # @return [Vedeu::Colours::Colour]
-      def colour
-        @_colour ||= interface.colour
-      end
-
       # @macro geometry_by_name
       def geometry
         @_geometry ||= Vedeu.geometries.by_name(name)
       end
 
-      # @return [Fixnum]
-      def height
-        @_height ||= geometry.height
-      end
-
       # @macro interface_by_name
       def interface
-        Vedeu.interfaces.by_name(name)
+        @_interface ||= Vedeu.interfaces.by_name(name)
       end
 
       # For each visible line of the interface, set the foreground and
@@ -81,38 +74,12 @@ module Vedeu
       # @return [Array<Array<Vedeu::Cells::Char>>]
       def output
         Vedeu.timer("Clearing interface: '#{name}'") do
-          @_clear ||= Array.new(height) do |iy|
-            Array.new(width) do |ix|
-              Vedeu::Cells::Clear.new(output_attributes(iy, ix))
+          @_clear ||= Array.new(height) do
+            Array.new(width) do
+              Vedeu::Cells::Clear.new(colour: colour, name: name)
             end
           end
         end
-      end
-
-      # @param iy [Fixnum]
-      # @param ix [Fixnum]
-      # @return [Hash<Symbol => ]
-      def output_attributes(iy, ix)
-        {
-          colour:   colour,
-          name:     name,
-          position: Vedeu::Geometries::Position.new((y + iy), (x + ix)),
-        }
-      end
-
-      # @return [Fixnum]
-      def width
-        @_width ||= geometry.width
-      end
-
-      # @return [Fixnum]
-      def y
-        @_y ||= geometry.y
-      end
-
-      # @return [Fixnum]
-      def x
-        @_x ||= geometry.x
       end
 
     end # Clear

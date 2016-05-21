@@ -60,20 +60,31 @@ module Vedeu
           Vedeu.geometries.stubs(:by_name).returns(geometry)
           Vedeu.stubs(:direct_write)
           Vedeu.stubs(:buffer_update)
+          Vedeu.stubs(:ready?).returns(ready)
         end
 
         subject { instance.render }
 
-        # it { subject.must_be_instance_of(Vedeu::Buffers::View) }
-        it do
-          Vedeu.expects(:direct_write)
-          subject
+        context 'when Vedeu is ready' do
+          let(:ready) { true }
+
+          # it { subject.must_be_instance_of(Vedeu::Buffers::View) }
+          it do
+            Vedeu.expects(:direct_write)
+            subject
+          end
+          it do
+            Vedeu.expects(:buffer_update)
+            subject
+          end
+          # it { subject.must_equal(output) }
         end
-        it do
-          Vedeu.expects(:buffer_update)
-          subject
+
+        context 'when Vedeu is not ready' do
+          let(:ready) { false }
+
+          it { subject.must_be_instance_of(NilClass) }
         end
-        # it { subject.must_equal(output) }
       end
 
     end # ClearContent

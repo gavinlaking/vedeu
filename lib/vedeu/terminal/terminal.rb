@@ -166,7 +166,13 @@ module Vedeu
   # @api public
   # @!method resize
   #   @see Vedeu::Terminal#resize
+  # @!method centre_x
+  #   @see Vedeu::Terminal#centre_x
+  # @!method centre_y
+  #   @see Vedeu::Terminal#centre_y
   def_delegators Vedeu::Terminal,
+                 :centre_x,
+                 :centre_y,
                  :resize
 
 end # Vedeu

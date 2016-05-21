@@ -11,6 +11,16 @@ module Vedeu
     class ClearContent
 
       include Vedeu::Common
+      extend Forwardable
+
+      def_delegators :geometry,
+                     :bordered_height,
+                     :bordered_width,
+                     :bx,
+                     :by
+
+      def_delegators :interface,
+                     :colour
 
       class << self
 
@@ -50,12 +60,7 @@ module Vedeu
 
       # @return [String] A string of blank characters.
       def chars
-        @_chars ||= (' ' * width)
-      end
-
-      # @return [Vedeu::Colours::Colour]
-      def colour
-        @_colour ||= interface.colour
+        @_chars ||= (' ' * bordered_width)
       end
 
       # @macro geometry_by_name
@@ -63,26 +68,19 @@ module Vedeu
         @_geometry ||= Vedeu.geometries.by_name(name)
       end
 
-      # @return [Fixnum]
-      def height
-        @_height ||= geometry.bordered_height
-      end
-
       # @macro interface_by_name
       def interface
-        Vedeu.interfaces.by_name(name)
+        @_interface ||= Vedeu.interfaces.by_name(name)
       end
 
       # @return [String]
       def optimised_output
         Vedeu.timer("Optimised clearing content: '#{name}'") do
-          Array.new(height) do |iy|
-            [
-              Vedeu::Geometries::Position.new(y + iy, x).to_s,
-              colour.to_s,
-              chars,
-            ].join
-          end.join + Vedeu::Geometries::Position.new(y, x).to_s
+          Array.new(bordered_height) do |iy|
+            Vedeu::Geometries::Position.new(by + iy, bx).to_s +
+            colour.to_s +
+            chars
+          end.join + Vedeu::Geometries::Position.new(by, bx)
         end
       end
 
@@ -94,30 +92,12 @@ module Vedeu
       # @return [Array<Array<Vedeu::Cells::Char>>]
       def output
         Vedeu.timer("Clearing content: '#{name}'") do
-          @_clear ||= Array.new(height) do |iy|
-            Array.new(width) do |ix|
-              position = Vedeu::Geometries::Position.new((y + iy), (x + ix))
-              Vedeu::Cells::Clear.new(colour:   colour,
-                                      name:     name,
-                                      position: position)
+          @_clear ||= Array.new(bordered_height) do
+            Array.new(bordered_width) do
+              Vedeu::Cells::Clear.new(colour: colour, name: name)
             end
           end
         end
-      end
-
-      # @return [Fixnum]
-      def width
-        @_width ||= geometry.bordered_width
-      end
-
-      # @return [Fixnum]
-      def y
-        @_y ||= geometry.by
-      end
-
-      # @return [Fixnum]
-      def x
-        @_x ||= geometry.bx
       end
 
     end # ClearContent

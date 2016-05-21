@@ -40,19 +40,15 @@ module Vedeu
         let(:output) {
           [
             [
-              Vedeu::Cells::Clear.new(colour:   colour,
-                                      name:     _name,
-                                      position: [1, 1]),
-              Vedeu::Cells::Clear.new(colour:   colour,
-                                      name:     _name,
-                                      position: [1, 2]),
+              Vedeu::Cells::Clear.new(colour: colour,
+                                      name:   _name),
+              Vedeu::Cells::Clear.new(colour: colour,
+                                      name:   _name),
             ], [
-              Vedeu::Cells::Clear.new(colour:   colour,
-                                      name:     _name,
-                                      position: [2, 1]),
-              Vedeu::Cells::Clear.new(colour:   colour,
-                                      name:     _name,
-                                      position: [2, 2]),
+              Vedeu::Cells::Clear.new(colour: colour,
+                                      name:   _name),
+              Vedeu::Cells::Clear.new(colour: colour,
+                                      name:   _name),
             ]
           ]
         }
@@ -61,16 +57,29 @@ module Vedeu
           Vedeu.interfaces.stubs(:by_name).returns(interface)
           Vedeu.geometries.stubs(:by_name).returns(geometry)
           Vedeu.stubs(:render_output).returns(output)
+          Vedeu.stubs(:ready?).returns(ready)
         end
 
         subject { instance.render }
 
-        it { subject.must_be_instance_of(Array) }
-        it do
-          Vedeu.expects(:render_output).with(output)
-          subject
+        context 'when Vedeu is ready' do
+          let(:ready) { true }
+
+          it { subject.must_be_instance_of(Array) }
+
+          it do
+            Vedeu.expects(:render_output).with(output)
+            subject
+          end
+
+          it { subject.must_equal(output) }
         end
-        it { subject.must_equal(output) }
+
+        context 'when Vedeu is not ready' do
+          let(:ready) { false }
+
+          it { subject.must_be_instance_of(NilClass) }
+        end
       end
 
     end # Clear
