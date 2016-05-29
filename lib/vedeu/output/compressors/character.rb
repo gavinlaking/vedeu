@@ -57,9 +57,9 @@ module Vedeu
         # @return [String]
         def character_for(char)
           position_for(char) +
-          colour_for(char) +
-          style_for(char) +
-          value_for(char)
+            colour_for(char) +
+            style_for(char) +
+            value_for(char)
         end
 
         # Compress by not repeatedly sending the same colours for each
