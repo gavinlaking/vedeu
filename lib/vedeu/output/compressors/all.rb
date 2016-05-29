@@ -23,4 +23,5 @@ module Vedeu
 end # Vedeu
 
 require 'vedeu/output/compressors/simple'
+require 'vedeu/output/compressors/empty'
 require 'vedeu/output/compressors/character'

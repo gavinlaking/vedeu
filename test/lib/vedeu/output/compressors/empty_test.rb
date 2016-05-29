@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'test_helper'
 
 module Vedeu
@@ -8,9 +6,9 @@ module Vedeu
 
     module Compressors
 
-      describe Simple do
+      describe Empty do
 
-        let(:described) { Vedeu::Output::Compressors::Simple }
+        let(:described) { Vedeu::Output::Compressors::Empty }
         let(:instance)  { described.new(content) }
         let(:content)   {}
 
@@ -31,7 +29,7 @@ module Vedeu
           # @todo Add more tests.
         end
 
-      end # Simple
+      end # Empty
 
     end # Compressors
 
