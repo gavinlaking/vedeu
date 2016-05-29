@@ -40,8 +40,6 @@ class VerticalAlignmentApp
           end
         end
       end
-
-      Vedeu.trigger(:_refresh_view_, :middle_interface)
     end
 
     def gc
@@ -76,6 +74,8 @@ class VerticalAlignmentApp
   end
 
   Vedeu.interface :middle_interface do
+    background '#000000'
+    foreground '#ffffff'
     border do
       title 'Align: Middle'
     end
@@ -87,6 +87,7 @@ class VerticalAlignmentApp
 
       width 40
     end
+    zindex 2
   end
 
   Vedeu.interface :bottom_interface do
