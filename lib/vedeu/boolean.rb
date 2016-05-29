@@ -24,17 +24,23 @@ module Vedeu
       value ? true : false
     end
 
+    # Returns a boolean indicating whether the value should be
+    # considered false.
+    #
     # @return [Boolean]
     def false?
       value.nil? || value == false
     end
+    alias falsy? false?
 
+    # Returns a boolean indicating whether the value should be
+    # considered true.
+    #
     # @return [Boolean]
     def true?
-      return false if false?
-
-      true
+      !false?
     end
+    alias truthy? true?
 
     private
 

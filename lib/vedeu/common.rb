@@ -69,7 +69,7 @@ module Vedeu
     # @param value [void]
     # @return [Boolean]
     def falsy?(value)
-      value.nil? || value.is_a?(FalseClass)
+      Vedeu::Boolean.new(value).false?
     end
 
     # Returns a boolean indicating whether the value is a Hash.
@@ -188,7 +188,7 @@ module Vedeu
     # @param value [void]
     # @return [Boolean]
     def truthy?(value)
-      !falsy?(value)
+      Vedeu::Boolean.new(value).true?
     end
 
     # Returns a boolean indicating the model is a
