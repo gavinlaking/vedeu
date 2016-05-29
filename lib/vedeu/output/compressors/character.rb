@@ -24,6 +24,7 @@ module Vedeu
         def initialize(content)
           @content = content
           @colour  = ''
+          @same    = ''
           @style   = ''
         end
 
@@ -32,7 +33,6 @@ module Vedeu
         #
         # @return [String]
         def with
-          @same = ''
           @compress ||= Vedeu.timer(message) do
             content.map do |cell|
               character = character_for(cell)
