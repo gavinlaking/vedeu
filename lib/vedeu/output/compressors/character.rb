@@ -35,12 +35,7 @@ module Vedeu
           @same = ''
           @compress ||= Vedeu.timer(message) do
             content.map do |cell|
-              character = [
-                position_for(cell),
-                colour_for(cell),
-                style_for(cell),
-                value_for(cell),
-              ].join
+              character = character_for(cell)
 
               character == @same ? next : @same = character
             end.join.tap do |out|
@@ -57,6 +52,15 @@ module Vedeu
         attr_reader :content
 
         private
+
+        # @param char [Vedeu::Cells::Char]
+        # @return [String]
+        def character_for(char)
+          position_for(char) +
+          colour_for(char) +
+          style_for(char) +
+          value_for(char)
+        end
 
         # Compress by not repeatedly sending the same colours for each
         # character which has the same colours as the last character
