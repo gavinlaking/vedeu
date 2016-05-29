@@ -9,6 +9,7 @@ Enabling debugging will:
 - Produce a full a backtrace to STDOUT and the log file upon
   unrecoverable error or unhandled exception.
 
+    # Set:
     Vedeu.configure do
       debug!
       # ...
@@ -18,3 +19,6 @@ Enabling debugging will:
       debug false
       # ...
     end
+
+    # Get:
+    Vedeu.config.debug?
