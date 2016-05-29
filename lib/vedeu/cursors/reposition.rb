@@ -98,10 +98,10 @@ module Vedeu
 
       # @return [Boolean]
       def inside_geometry?
-        x >= geometry.x  &&
-        x <= geometry.xn &&
-        y >= geometry.y  &&
-        y <= geometry.yn
+        x >= geometry.x &&
+          x <= geometry.xn &&
+          y >= geometry.y &&
+          y <= geometry.yn
       end
 
       # @return [Symbol]

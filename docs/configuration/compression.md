@@ -6,6 +6,7 @@ Sets boolean to enable/disable compression. Vedeu's default setting is
 for compression to be enabled. Setting `compression` to false will
 disable compression.
 
+    # Set:
     Vedeu.configure do
       compression! # enabled (default)
       # ...
@@ -15,6 +16,9 @@ disable compression.
       compression false
       # ...
     end
+
+    # Get:
+    Vedeu.config.compression
 
 Note:
 

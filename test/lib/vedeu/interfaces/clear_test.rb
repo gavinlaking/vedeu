@@ -68,7 +68,7 @@ module Vedeu
           it { subject.must_be_instance_of(Array) }
 
           it do
-            Vedeu.expects(:render_output).with(output)
+            Vedeu.expects(:render_output)
             subject
           end
 

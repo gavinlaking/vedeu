@@ -1,9 +1,13 @@
 Sets the colour mode of the terminal.
 
+    # Set:
     Vedeu.configure do
       colour_mode 256
       # ...
     end
+
+    # Get:
+    Vedeu.config.colour_mode
 
 Note
 - iTerm 2 on Mac OSX will handle the true colour setting

@@ -6,24 +6,20 @@ module Vedeu
 
   module Buffers
 
-    describe Empty do
+    describe Clear do
 
-      let(:described)  { Vedeu::Buffers::Empty }
+      let(:described)  { Vedeu::Buffers::Clear }
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
           height: height,
           name:   _name,
           width:  width,
-          x:      x,
-          y:      y,
         }
       }
       let(:height) { 4 }
       let(:_name)  { :vedeu_buffers_empty }
       let(:width)  { 9 }
-      let(:x)      { 3 }
-      let(:y)      { 2 }
 
       let(:term_height) { 8 }
       let(:term_width)  { 15 }
@@ -59,26 +55,6 @@ module Vedeu
 
           it { instance.instance_variable_get('@width').must_equal(term_width) }
         end
-
-        context 'when x is given' do
-          it { instance.instance_variable_get('@x').must_equal(x) }
-        end
-
-        context 'when x not is given' do
-          let(:x) {}
-
-          it { instance.instance_variable_get('@x').must_equal(1) }
-        end
-
-        context 'when y is given' do
-          it { instance.instance_variable_get('@y').must_equal(y) }
-        end
-
-        context 'when y not is given' do
-          let(:y) {}
-
-          it { instance.instance_variable_get('@y').must_equal(1) }
-        end
       end
 
       describe '#buffer' do
@@ -86,7 +62,7 @@ module Vedeu
 
         it { subject.must_be_instance_of(Array) }
         it { subject.first.must_be_instance_of(Array) }
-        it { subject.first.first.must_be_instance_of(Vedeu::Cells::Empty) }
+        it { subject.first.first.must_be_instance_of(Vedeu::Cells::Clear) }
 
         it { subject.size.must_equal(height + 1) }
         it { subject.first.size.must_equal(width + 1) }
@@ -104,15 +80,7 @@ module Vedeu
         it { instance.must_respond_to(:width) }
       end
 
-      describe '#x' do
-        it { instance.must_respond_to(:x) }
-      end
-
-      describe '#y' do
-        it { instance.must_respond_to(:y) }
-      end
-
-    end # Empty
+    end # Clear
 
   end # Buffers
 

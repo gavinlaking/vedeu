@@ -45,6 +45,7 @@ module Vedeu
 
 end # Vedeu
 
+require 'vedeu/buffers/clear'
 require 'vedeu/buffers/empty'
 require 'vedeu/buffers/view'
 require 'vedeu/buffers/buffer'

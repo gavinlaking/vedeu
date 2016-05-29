@@ -33,6 +33,9 @@ cd "$(dirname "$0")"
 ./dsl_app_022.rb
 ./dsl_app_030.rb
 ./dsl_app_031.rb
+./dsl_app_040.rb
+./dsl_app_041.rb
+./dsl_app_042.rb
 
 # Test some border functionality
 ./dsl_app_border_001.rb # border off
