@@ -19,7 +19,7 @@ class HelloWorldApp
   # performance.
   Vedeu.configure do
     debug!
-    log Dir.tmpdir + '/vedeu_hello_world.log'
+    log Dir.tmpdir + '/vedeu.log'
     # profile!
   end
 

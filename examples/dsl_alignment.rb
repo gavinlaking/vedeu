@@ -11,7 +11,7 @@ class AlignmentApp
 
   Vedeu.configure do
     debug!
-    log Dir.tmpdir + '/alignment.log'
+    log Dir.tmpdir + '/vedeu.log'
     renderers [
                 Vedeu::Renderers::Terminal.new,
                 # Vedeu::Renderers::Text.new(

@@ -19,7 +19,7 @@ class VedeuMaterialColoursApp
   Vedeu.configure do
     debug!
     # profile!
-    log Dir.tmpdir + '/vedeu_material_colours_app.log'
+    log Dir.tmpdir + '/vedeu.log'
     # log_except [:cursor, :update, :render]
     # height 11
     # width  20

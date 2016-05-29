@@ -11,7 +11,7 @@ class ColoursApp
 
   Vedeu.configure do
     debug!
-    log Dir.tmpdir + '/colours.log'
+    log Dir.tmpdir + '/vedeu.log'
     renderers(Vedeu::Renderers::Terminal.new,
               Vedeu::Renderers::Text.new(filename: Dir.tmpdir + '/colours.out'))
   end
