@@ -98,7 +98,7 @@ module Vedeu
         Vedeu.timer("Clearing content: '#{name}'") do
           @_clear ||= Vedeu::Buffers::Clear.new(height: bordered_height,
                                                 name:   name,
-                                                width: bordered_width).buffer
+                                                width:  bordered_width).buffer
         end
       end
 
