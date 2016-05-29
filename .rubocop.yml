@@ -1,6 +1,3 @@
-inherit_from:
-  - config/rubocop_enabled.yml
-
 AllCops:
   Include:
     - '**/*.gemspec'
@@ -29,7 +26,20 @@ AllCops:
   StyleGuideCopsOnly: false
   TargetRubyVersion: 2.3
 
+Lint/Eval:
+  Description: 'The use of eval represents a serious security risk.'
+  Enabled: false
+
 Lint/UnusedMethodArgument:
+  Enabled: false
+
+Style/AsciiComments:
+  Description: 'Use only ascii symbols in comments.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#english-comments'
+  Enabled: false
+
+Style/Documentation:
+  Description: 'Document classes and non-namespace modules.'
   Enabled: false
 
 Style/EmptyLinesAroundBlockBody:
@@ -41,60 +51,17 @@ Style/EmptyLinesAroundClassBody:
 Style/EmptyLinesAroundModuleBody:
   EnforcedStyle: empty_lines
 
-Style/ExtraSpacing:
-  Enabled: false
-
-# Style/GlobalVars:
-#   AllowedVariables: [$LIB_DIR]
-
-# Style/GuardClause:
-#   MinBodyLength: 1
-
-# Style/IfUnlessModifier:
-#   MaxLineLength: 80
-
-# Style/IndentationWidth:
-#   Width: 2
-
-# Style/IndentHash:
-#   EnforcedStyle: special_inside_parentheses
-#   SupportedStyles:
-#     - special_inside_parentheses
-#     - consistent
-
 Style/MultilineBlockChain:
-  Enabled: false
-
-Style/MultilineOperationIndentation:
   Enabled: false
 
 Style/ModuleFunction:
   Enabled: false
-
-# Style/Next:
-#   EnforcedStyle: skip_modifier_ifs
-#   MinBodyLength: 3
-#   SupportedStyles:
-#     - skip_modifier_ifs
-#     - always
 
 Style/RescueModifier:
   Enabled: false
 
 Style/SpaceAroundOperators:
   Enabled: false
-
-# Style/SpaceAroundEqualsInParameterDefault:
-#   EnforcedStyle: space
-
-# Style/SpaceBeforeBlockBraces:
-#   EnforcedStyle: space
-
-# Style/SpaceInsideBlockBraces:
-#   EnforcedStyle: space
-
-# Style/SpaceInsideHashLiteralBraces:
-#   EnforcedStyle: space
 
 Style/TrailingBlankLines:
   EnforcedStyle: final_newline
@@ -105,8 +72,9 @@ Style/TrailingCommaInLiteral:
 Metrics/AbcSize:
   Max: 25
 
-# Metrics/BlockNesting:
-#   Max: 3
+Metrics/ClassLength:
+  Description: 'Avoid classes longer than 100 lines of code.'
+  Enabled: false
 
 Metrics/CyclomaticComplexity:
   Max: 12
