@@ -1,20 +1,21 @@
 Sets boolean to prevent user intervention. This is the same as setting
 {Vedeu::Config::API#interactive} to false.
 
-    # Same as `standalone true` or `interactive false`.
+    # Set:
     Vedeu.configure do
-      standalone!
+      standalone! # Same as `standalone true` or `interactive false`.
       # ...
     end
 
-    # => Disallow user input.
     Vedeu.configure do
-      standalone true
+      standalone true # Disallow user input.
       # ...
     end
 
-    # => Allow user input.
     Vedeu.configure do
-      standalone false
+      standalone false # Allow user input.
       # ...
     end
+
+    # Get:
+    Vedeu.config.standalone

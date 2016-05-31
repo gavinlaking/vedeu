@@ -22,3 +22,4 @@ Enabling debugging will:
 
     # Get:
     Vedeu.config.debug?
+    Vedeu.config.debug

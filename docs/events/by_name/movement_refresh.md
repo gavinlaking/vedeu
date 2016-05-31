@@ -1,4 +1,5 @@
 ### `:_movement_refresh_`
+
 When triggered, triggers additional events which aid the updating of
 the output. Used when moving an interface/view.
 

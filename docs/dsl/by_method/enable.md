@@ -1,4 +1,5 @@
 ### `enable!`
+
 Enable the border:
 (Borders are enabled by default when defined for an interface).
 

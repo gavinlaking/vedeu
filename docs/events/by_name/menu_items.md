@@ -1,4 +1,5 @@
 ### `:_menu_items_`
+
 Returns all the menu items with respective `current` or `selected`
 boolean indicators.
 

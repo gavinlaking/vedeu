@@ -8,4 +8,4 @@ Also, see {Vedeu::Config::API#raw!}
     end
 
     # Get:
-    Vedeu.config.cooked?
+    Vedeu.config.terminal_mode

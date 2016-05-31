@@ -1,4 +1,5 @@
 ### `:_view_up_`
+
 Moves the view one row/line up, unless the top/first row/line for
 the terminal is reached.
 

@@ -1,4 +1,5 @@
 ### `:_refresh_`
+
 Refreshes all registered interfaces.
 
 The interfaces will be refreshed in z-index order, meaning that

@@ -1,4 +1,5 @@
 ### `bottom_horizontal`
+
 Set the character to be used to draw the bottom horizontal
 part of the border.
 

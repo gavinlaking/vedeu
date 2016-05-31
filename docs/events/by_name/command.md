@@ -1,4 +1,5 @@
 ### `:_command_`
+
 This event is used by Vedeu internally, though you can bind to it if
 you wish. It is preferred for you to bind to `:command` though.
 

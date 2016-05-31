@@ -12,6 +12,7 @@ Note:
 Be aware that running an application with profiling enabled will
 affect performance considerably.
 
+    # Set:
     Vedeu.configure do
       profile!
       # ...
@@ -21,3 +22,7 @@ affect performance considerably.
       profile false
       # ...
     end
+
+    # Get:
+    Vedeu.config.profile?
+    Vedeu.config.profile

@@ -1,4 +1,5 @@
 ### `:_cursor_down_`
+
 Moves the cursor one line down, unless the bottom-most position for
 the view or terminal is reached.
 

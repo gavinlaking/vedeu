@@ -1,4 +1,5 @@
 ### `:_view_down_`
+
 Moves the view one row/line down, unless the bottom/last row/line for
 the terminal is reached.
 

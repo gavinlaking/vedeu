@@ -1,4 +1,5 @@
 ### Vedeu.bind
+
 Register an event by name with optional delay (throttling)
 which when triggered will execute the code contained within
 the passed block.

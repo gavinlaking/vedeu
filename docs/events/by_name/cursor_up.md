@@ -1,4 +1,5 @@
 ### `:_cursor_up_`
+
 Moves the cursor one line up, unless the top-most position for the
 view or terminal is reached.
 

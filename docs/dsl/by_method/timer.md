@@ -1,4 +1,5 @@
 ### Vedeu.timer
+
 Measure the execution time of the code in the given block.
 
 The optional message provided will have ' took <time>ms.' appended and

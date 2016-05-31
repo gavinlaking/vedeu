@@ -1,4 +1,5 @@
 ### Vedeu.hide_cursor / `:_hide_cursor_`
+
 Hide a named cursor, or without a name, the cursor of the currently
 focussed interface.
 

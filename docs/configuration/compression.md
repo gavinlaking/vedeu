@@ -18,6 +18,7 @@ disable compression.
     end
 
     # Get:
+    Vedeu.config.compression?
     Vedeu.config.compression
 
 Note:

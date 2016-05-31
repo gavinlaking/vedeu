@@ -1,4 +1,5 @@
 ### `disable!`
+
 Disable the border:
 
     Vedeu.border :border_demo do

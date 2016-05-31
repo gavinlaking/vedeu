@@ -1,4 +1,5 @@
 ### Vedeu.focus_previous
+
 Instruct Vedeu to focus the previous visible view.
 
     Vedeu.focus_previous

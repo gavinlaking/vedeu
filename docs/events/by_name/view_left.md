@@ -1,4 +1,5 @@
 ### `:_view_left_`
+
 Moves the view one column/character left, unless the left-most
 column/character for the terminal is reached.
 

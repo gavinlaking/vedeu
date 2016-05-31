@@ -1,4 +1,5 @@
 ### Vedeu.focus_next
+
 Instruct Vedeu to focus the next visible view.
 
     Vedeu.focus_next

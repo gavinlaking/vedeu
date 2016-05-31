@@ -1,4 +1,5 @@
 ### Vedeu.clear
+
 Clears the whole terminal space.
 
     Vedeu.clear

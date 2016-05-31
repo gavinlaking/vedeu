@@ -1,4 +1,5 @@
 ### `:_cursor_right_`
+
 Moves the cursor one character to the right, unless the right-most
 position for the view or terminal is reached.
 
