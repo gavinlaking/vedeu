@@ -1,5 +1,6 @@
 Sets boolean to enable/disable mouse support.
 
+    # Set:
     Vedeu.configure do
       mouse! # => same as `mouse true`
 
@@ -8,4 +9,9 @@ Sets boolean to enable/disable mouse support.
 
       mouse false
 
+      # ...
     end
+
+    # Get:
+    Vedeu.config.mouse?
+    Vedeu.config.mouse

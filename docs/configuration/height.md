@@ -1,5 +1,6 @@
 Sets the height of the terminal.
 
+    # Set:
     Vedeu.configure do
       height 25
 
@@ -10,3 +11,5 @@ Sets the height of the terminal.
       # ...
     end
 
+    # Get:
+    Vedeu.config.height

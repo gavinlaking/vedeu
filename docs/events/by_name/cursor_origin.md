@@ -1,4 +1,5 @@
 ### `:_cursor_origin_`
+
 This event moves the cursor to the interface origin; the top left
 corner of the named interface.
 

@@ -1,4 +1,5 @@
 ### `:_focus_prev_`
+
 When triggered will focus the previous visible interface and restore
 the cursor position and visibility.
 

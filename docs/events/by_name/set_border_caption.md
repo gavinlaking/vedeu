@@ -1,4 +1,5 @@
 ### `:_set_border_caption_`
+
 This event changes the caption of the border of the named view to the
 value given.
 

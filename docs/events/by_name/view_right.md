@@ -1,4 +1,5 @@
 ### `:_view_right_`
+
 Moves the view one row/line right, unless the right-most row/line for
 the terminal is reached.
 

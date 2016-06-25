@@ -1,4 +1,5 @@
 ### `:_cursor_position_`
+
 To ascertain the position of a cursor in a named interface, use the
 following event (substituting 'name' for the interface name):
 

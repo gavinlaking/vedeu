@@ -1,4 +1,5 @@
 ### `:_set_border_title_`
+
 This event changes the title of the border of the named view to the
 value given.
 

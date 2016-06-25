@@ -1,5 +1,6 @@
 Sets the width of the terminal.
 
+    # Set:
     Vedeu.configure do
       width 80
 
@@ -9,3 +10,6 @@ Sets the width of the terminal.
 
       # ...
     end
+
+    # Get:
+    Vedeu.config.width

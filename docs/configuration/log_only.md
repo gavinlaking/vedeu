@@ -1,6 +1,7 @@
 Only log specific message types. A complete list of message types can
 be found at {Vedeu::LOG_TYPES}.
 
+    # Set:
     Vedeu.configure do
       log_only :debug, :event
 
@@ -9,3 +10,6 @@ be found at {Vedeu::LOG_TYPES}.
 
       # ...
     end
+
+    # Get:
+    Vedeu.config.log_only

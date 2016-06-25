@@ -8,3 +8,4 @@ Sets boolean to run a DRb server.
 
     # Get:
     Vedeu.config.drb?
+    Vedeu.config.drb

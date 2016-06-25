@@ -1,4 +1,5 @@
 ### `:_clear_group_`
+
 Clears the spaces occupied by the interfaces belonging to the named
 group.
 

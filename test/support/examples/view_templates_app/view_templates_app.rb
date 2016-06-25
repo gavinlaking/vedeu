@@ -10,7 +10,7 @@ class VedeuViewTemplateApp
 
   Vedeu.configure do
     debug!
-    log Dir.tmpdir + '/vedeu_view_templates_app.log'
+    log Dir.tmpdir + '/vedeu.log'
   end
 
   Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }

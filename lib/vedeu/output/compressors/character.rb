@@ -14,9 +14,9 @@ module Vedeu
       class Character
 
         # @param (see #initialize)
-        # @return (see #with)
+        # @return (see #compress)
         def self.with(content)
-          new(content).with
+          new(content).compress
         end
 
         # @param content [Array<void>]
@@ -24,6 +24,7 @@ module Vedeu
         def initialize(content)
           @content = content
           @colour  = ''
+          @same    = ''
           @style   = ''
         end
 
@@ -31,9 +32,8 @@ module Vedeu
         # same position take the first sequence and ignore the rest.
         #
         # @return [String]
-        def with
-          @same = ''
-          @compress ||= Vedeu.timer(message) do
+        def compress
+          Vedeu.timer('Removing duplicate cells...') do
             content.map do |cell|
               character = character_for(cell)
 
@@ -77,12 +77,7 @@ module Vedeu
 
         # @return [String]
         def message
-          "Compression for #{original_size} objects"
-        end
-
-        # @return [Fixnum]
-        def original_size
-          content.size
+          "Compression for #{content.size} objects"
         end
 
         # @param char [Vedeu::Cells::Char]

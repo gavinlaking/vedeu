@@ -8,7 +8,7 @@ require 'vedeu'
 class DSLApp
 
   Vedeu.configure do
-    log Dir.tmpdir + '/vedeu_views_dsl.log'
+    log Dir.tmpdir + '/vedeu.log'
     renderers(Vedeu::Renderers::Terminal.new(
                 filename: Dir.tmpdir + '/vedeu_full_screen.out',
                 write_file: true),

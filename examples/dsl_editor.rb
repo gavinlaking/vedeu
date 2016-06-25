@@ -11,7 +11,7 @@ class EditorApp
 
   Vedeu.configure do
     debug!
-    log Dir.tmpdir + '/editor.log'
+    log Dir.tmpdir + '/vedeu.log'
     renderers(Vedeu::Renderers::Terminal.new,
               Vedeu::Renderers::Text.new(filename: Dir.tmpdir + '/editor.out'))
     fake!

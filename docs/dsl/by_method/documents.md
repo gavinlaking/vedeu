@@ -1,4 +1,5 @@
 ### Vedeu.documents
+
 Repository method. Access registered documents.
 
     Vedeu.documents # [Vedeu::Editor::Repository]

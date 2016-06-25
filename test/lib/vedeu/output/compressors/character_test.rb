@@ -15,8 +15,6 @@ module Vedeu
         let(:content)   {}
 
         describe '.with' do
-          subject { described.with(content) }
-
           it { described.must_respond_to(:with) }
         end
 
@@ -25,10 +23,12 @@ module Vedeu
           it { instance.instance_variable_get('@content').must_equal(content) }
         end
 
-        describe '.with' do
-          subject { instance.with }
+        describe '#compress' do
+          subject { instance.compress }
 
-          it { instance.must_respond_to(:with) }
+          it { instance.must_respond_to(:compress) }
+
+          # @todo Add more tests.
         end
 
       end # Character

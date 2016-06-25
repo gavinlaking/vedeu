@@ -15,7 +15,7 @@ class DSLApp
     background '#003300'
     debug!
     height 10
-    log Dir.tmpdir + '/vedeu_views_dsl.log'
+    log Dir.tmpdir + '/vedeu.log'
     renderers [
                 Vedeu::Renderers::Terminal.new(
                   filename: Dir.tmpdir + "/#{TESTCASE}.out",

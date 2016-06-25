@@ -1,6 +1,7 @@
 Sets the terminal mode. Valid values can be either ':cooked', ':fake'
 or :raw'.
 
+    # Set:
     Vedeu.configure do
       terminal_mode :cooked
 
@@ -21,3 +22,5 @@ or :raw'.
       # ... some code
     end
 
+    # Get:
+    Vedeu.config.terminal_mode

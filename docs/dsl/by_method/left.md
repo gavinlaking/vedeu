@@ -1,4 +1,5 @@
 ### `left`
+
 Enable/disable the left border.
 
     Vedeu.border :border_demo do

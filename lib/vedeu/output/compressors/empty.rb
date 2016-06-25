@@ -6,13 +6,11 @@ module Vedeu
 
     module Compressors
 
-      # A simple compressor which does not compress- it converts each
-      # buffer object into a string and returns the resulting blob of
-      # text.
+      # The empty compressor removes all empty cells.
       #
       # @api private
       #
-      class Simple
+      class Empty
 
         # @param (see #initialize)
         # @return (see #compress)
@@ -21,18 +19,18 @@ module Vedeu
         end
 
         # @param content [Array<void>]
-        # @return [Vedeu::Output::Compressors::Simple]
+        # @return [Vedeu::Output::Compressors::Empty]
         def initialize(content)
           @content = content
         end
 
-        # @return [String]
+        # @return [Array]
         def compress
-          Vedeu.timer('Stringifying cells...') do
-            content.map(&:to_s).join
+          Vedeu.timer('Removing empty cells...') do
+            content.reject { |cell| cell.class == Vedeu::Cells::Empty }
           end.tap do |out|
             Vedeu.log(type:    :compress,
-                      message: "#{message} -> #{out.size} characters")
+                      message: "#{message} -> #{out.size} objects")
           end
         end
 
@@ -49,7 +47,7 @@ module Vedeu
           "Compression for #{content.size} objects"
         end
 
-      end # Simple
+      end # Empty
 
     end # Compressors
 

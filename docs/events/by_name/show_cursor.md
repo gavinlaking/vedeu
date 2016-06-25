@@ -1,4 +1,5 @@
 ### Vedeu.show_cursor / `:_show_cursor_`
+
 Show a named cursor, or without a name, the cursor of the currently
 focussed interface.
 

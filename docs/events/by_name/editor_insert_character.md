@@ -1,4 +1,5 @@
 ### `:_editor_insert_character_`
+
 This event attempts to insert the given character in the named
 document at the current virtual cursor position.
 

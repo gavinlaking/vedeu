@@ -1,4 +1,5 @@
 ### `top`
+
 Enable/disable the top border.
 
     Vedeu.border :border_demo do

@@ -41,10 +41,6 @@ module Vedeu
       def render
         return [] unless output?
 
-        Vedeu.log(type:    :compress,
-                  message: "Original size: #{original_size} / " \
-                           "New size: #{content_size}")
-
         Vedeu::Output::CompressorCache.cache(content, compression?)
       end
 
@@ -61,21 +57,7 @@ module Vedeu
       #
       # @return [Array]
       def content
-        @_content ||= Vedeu.timer('Removing empty cells...') do
-          output.content.reject do |cell|
-            cell.class == Vedeu::Cells::Empty
-          end
-        end
-      end
-
-      # @return [Fixnum]
-      def content_size
-        content.size
-      end
-
-      # @return [Fixnum]
-      def original_size
-        output.content.size
+        Vedeu::Output::Compressors::Empty.with(output.content)
       end
 
       # @return [Boolean]

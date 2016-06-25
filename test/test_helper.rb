@@ -119,7 +119,7 @@ def test_configuration
 
     # debug! # adds ~40ms to test run speed
 
-    # log Dir.tmpdir + '/vedeu_test_helper.log'
+    # log Dir.tmpdir + '/vedeu.log'
     log false
 
     # profile!

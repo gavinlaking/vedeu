@@ -1,4 +1,5 @@
 ### `:_drb_input_`
+
 Triggering this event will send input to the running application as
 long as it has the DRb server running.
 

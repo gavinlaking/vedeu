@@ -1,4 +1,5 @@
 ### `:_refresh_border_`
+
 This event refreshes the border of the named view.
 
 - If a name is not given, then the currently focussed view will be

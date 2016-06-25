@@ -40,8 +40,6 @@ class HorizontalAlignmentApp
           end
         end
       end
-
-      Vedeu.trigger(:_refresh_view_, :centre_interface)
     end
 
     def gc
@@ -53,7 +51,7 @@ class HorizontalAlignmentApp
 
   Vedeu.configure do
     debug!
-    log Dir.tmpdir + '/vedeu_views_dsl.log'
+    log Dir.tmpdir + '/vedeu.log'
     renderers [
                 Vedeu::Renderers::Terminal.new,
                 # Vedeu::Renderers::Text.new(
@@ -72,6 +70,8 @@ class HorizontalAlignmentApp
   end
 
   Vedeu.interface :centre_interface do
+    background '#000000'
+    foreground '#ffffff'
     border do
       title 'Align: Centre'
     end
@@ -79,6 +79,7 @@ class HorizontalAlignmentApp
       align_centre 40
       height 15
     end
+    zindex 2
   end
 
   Vedeu.interface :right_interface do

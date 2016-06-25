@@ -1,4 +1,5 @@
 ### Vedeu.esc
+
 Provides access to various escape sequences defined by Vedeu.
 
 #### Colour escape sequences

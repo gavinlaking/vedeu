@@ -14,7 +14,7 @@ class DSLApp
   Vedeu.configure do
     height 10
     debug!
-    log Dir.tmpdir + '/vedeu_views_dsl.log'
+    log Dir.tmpdir + '/vedeu.log'
     renderers(Vedeu::Renderers::Terminal.new(
                 filename: Dir.tmpdir + "/#{TESTCASE}.out",
                 write_file: true))
