@@ -56,7 +56,7 @@ module Vedeu
       def delete_character
         return self if document_start?
 
-        if first_char? && y > 0
+        if (first_char? && y).positive?
           delete_line
 
           return
@@ -227,12 +227,12 @@ module Vedeu
 
       # @return [Boolean]
       def first_char?
-        x - 1 < 0
+        (x - 1).negative?
       end
 
       # @return [Boolean]
       def first_line?
-        y - 1 < 0
+        (y - 1).negative?
       end
 
       # @return [Boolean]

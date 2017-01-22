@@ -82,7 +82,7 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Cursor]
       def left
-        @ox -= 1 unless @ox == 0
+        @ox -= 1 unless @ox.zero?
         @x -= 1
 
         self
@@ -139,7 +139,7 @@ module Vedeu
       #   the x coordinate is greater than the next line length.
       # @return [Vedeu::Editor::Cursor]
       def up(size = nil)
-        @oy -= 1 unless @oy == 0
+        @oy -= 1 unless @oy.zero?
         @y -= 1
         @x = size if size && x > size
 

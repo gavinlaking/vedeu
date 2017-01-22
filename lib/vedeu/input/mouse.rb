@@ -72,7 +72,7 @@ module Vedeu
       #
       # @return [Boolean]
       def left_click?
-        button == 0
+        button.zero?
       end
 
       # @return [Array<Integer>]

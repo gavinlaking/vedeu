@@ -195,7 +195,7 @@ module Vedeu
       def throttling?
         @now = Vedeu.clock_time
 
-        options[:delay] > 0
+        options[:delay].positive?
       end
 
       # Returns a boolean indicating whether the throttle has expired.
@@ -222,7 +222,7 @@ module Vedeu
 
         @deadline = @now + debounce unless deadline?
 
-        options[:debounce] > 0
+        options[:debounce].positive?
       end
 
       # Returns a boolean indicating whether the debounce has expired.
@@ -241,7 +241,7 @@ module Vedeu
       #
       # @return [Boolean]
       def deadline?
-        @deadline > 0
+        @deadline.positive?
       end
 
       # Return the amount of time in seconds to debounce the event by.

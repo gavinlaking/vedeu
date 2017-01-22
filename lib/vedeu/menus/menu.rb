@@ -161,7 +161,7 @@ module Vedeu
       #
       # @return [Array]
       def prev_item
-        @current -= 1 if @current > 0
+        @current -= 1 if @current.positive?
 
         items
       end

@@ -88,7 +88,7 @@ module Vedeu
         def outdent(&block)
           result = yield if block_given?
 
-          if @count && @count > 0
+          if @count && @count.positive?
             @count -= 1
           else
             @count = 0

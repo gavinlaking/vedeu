@@ -78,7 +78,7 @@ module Vedeu
       #
       # @return [Boolean]
       def negative_index?
-        index && index < 0
+        index && index.negative?
       end
 
     end # Delete

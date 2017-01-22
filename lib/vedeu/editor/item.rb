@@ -76,7 +76,7 @@ module Vedeu
 
       # @return [Boolean]
       def index_within_range?
-        index > 0 && index <= collection.size
+        index.positive? && index <= collection.size
       end
 
     end # Item

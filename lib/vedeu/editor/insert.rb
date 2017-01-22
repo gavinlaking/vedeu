@@ -74,7 +74,7 @@ module Vedeu
 
       # @return [Integer]
       def position
-        if index < 0
+        if index.negative?
           0
 
         elsif index > size
