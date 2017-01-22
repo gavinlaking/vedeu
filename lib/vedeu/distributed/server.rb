@@ -14,8 +14,6 @@ module Vedeu
     #
     class Server
 
-      $SAFE = 1 # disable `eval` and related calls on strings passed
-
       include Singleton
 
       class << self
