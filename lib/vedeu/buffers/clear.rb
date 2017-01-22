@@ -22,12 +22,12 @@ module Vedeu
         @buffer ||= clear
       end
 
-      # @return [Fixnum]
+      # @return [Integer]
       def height
         @height + 1
       end
 
-      # @return [Fixnum]
+      # @return [Integer]
       def width
         @width + 1
       end

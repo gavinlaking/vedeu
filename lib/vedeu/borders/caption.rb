@@ -17,13 +17,13 @@ module Vedeu
 
       private
 
-      # @return [Fixnum]
+      # @return [Integer]
       # @see Vedeu::Borders::Title#start_index
       def start_index
         (width - size) - 1
       end
 
-      # @return [Fixnum]
+      # @return [Integer]
       # @see Vedeu::Borders::Title#y
       def y
         geometry.yn

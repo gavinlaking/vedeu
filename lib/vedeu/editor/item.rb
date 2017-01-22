@@ -19,7 +19,7 @@ module Vedeu
       # Returns a new instance of Vedeu::Editor::Item.
       #
       # @param collection [Vedeu::Editor::Line|Vedeu::Editor::Lines]
-      # @param index [Fixnum]
+      # @param index [Integer]
       # @return [Vedeu::Editor::item]
       def initialize(collection, index = nil)
         @collection = collection
@@ -49,7 +49,7 @@ module Vedeu
       attr_reader :collection
 
       # @!attribute [r] index
-      # @return [Fixnum]
+      # @return [Integer]
       attr_reader :index
 
       private

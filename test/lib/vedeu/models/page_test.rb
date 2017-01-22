@@ -172,7 +172,7 @@ module Vedeu
       describe '#size' do
         subject { instance.size }
 
-        it { subject.must_be_instance_of(Fixnum) }
+        it { subject.must_be_instance_of(Integer) }
       end
 
     end # Page

@@ -21,8 +21,8 @@ module Vedeu
       # Returns a new instance of Vedeu::Editor::Delete.
       #
       # @param collection [Vedeu::Editor::Line|Vedeu::Editor::Lines]
-      # @param index [Fixnum]
-      # @param size [Fixnum]
+      # @param index [Integer]
+      # @param size [Integer]
       # @return [Vedeu::Editor::Delete]
       def initialize(collection, index = nil, size = 0)
         @collection = collection
@@ -45,12 +45,12 @@ module Vedeu
       attr_reader :collection
 
       # @!attribute [r] size
-      # @return [Fixnum]
+      # @return [Integer]
       attr_reader :size
 
       private
 
-      # @return [Fixnum]
+      # @return [Integer]
       def index
         return nil unless @index
 

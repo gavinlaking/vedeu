@@ -20,10 +20,10 @@ module Vedeu
 
       # Return a new instance of Vedeu::Cursors::Coordinate.
       #
-      # @param attributes [Hash<Symbol => Fixnum|String|Symbol>]
+      # @param attributes [Hash<Symbol => Integer|String|Symbol>]
       # @option attributes geometry [Vedeu::Geometries::Geometry]
       # @option attributes type [Symbol]
-      # @option attributes offset [Fixnum]
+      # @option attributes offset [Integer]
       # @return [Vedeu::Cursors::Coordinate]
       def initialize(attributes = {})
         defaults.merge!(attributes).each do |key, value|
@@ -38,7 +38,7 @@ module Vedeu
       #   # d_dn = 4 # represents width or height
       #   dn # => 6
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def dn_position
         return 0 if d_dn <= 0
 
@@ -56,7 +56,7 @@ module Vedeu
       #   position(2)  # => 6
       #   position(15) # => 13
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def d_position
         Vedeu::Point.coerce(value: position, min: bd, max: bdn).value
       end
@@ -70,7 +70,7 @@ module Vedeu
       attr_reader :geometry
 
       # @!attribute [r] offset
-      # @return [Fixnum]
+      # @return [Integer]
       attr_reader :offset
 
       # @!attribute [r] type
@@ -97,7 +97,7 @@ module Vedeu
       #   # d_dn = 3
       #   dn_index # => 2
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def dn_index
         return 0 if d_dn < 1
 
@@ -128,7 +128,7 @@ module Vedeu
 
       # Return the position respective of the offset.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def position
         if offset <= 0
           d

@@ -20,40 +20,40 @@ module Vedeu
                      :top?
 
       # @!attribute [r] y
-      # @return [Fixnum] Returns the top coordinate (row/line start
+      # @return [Integer] Returns the top coordinate (row/line start
       #   position) of the interface.
       attr_reader :y
       alias top y
 
       # @!attribute [r] yn
-      # @return [Fixnum] Returns the bottom coordinate (row/line end
+      # @return [Integer] Returns the bottom coordinate (row/line end
       #   position) of the interface.
       attr_reader :yn
       alias bottom yn
 
       # @!attribute [r] x
-      # @return [Fixnum] Returns the left coordinate (column/character
+      # @return [Integer] Returns the left coordinate (column/character
       #   start position) of the interface.
       attr_reader :x
       alias left x
 
       # @!attribute [r] xn
-      # @return [Fixnum] Returns the right coordinate (column/
+      # @return [Integer] Returns the right coordinate (column/
       #   character end position) of the interface.
       attr_reader :xn
       alias right xn
 
-      # @param attributes [Hash<Symbol => Boolean|Fixnum|Symbol>]
+      # @param attributes [Hash<Symbol => Boolean|Integer|Symbol>]
       # @option attributes horizontal_alignment [Symbol]
       # @option attributes maximised [Boolean]
       # @option attributes name [String|Symbol]
       # @option attributes vertical_alignment [Symbol]
-      # @option attributes x [Fixnum] The starting x coordinate.
-      # @option attributes xn [Fixnum] The ending x coordinate.
-      # @option attributes width [Fixnum]
-      # @option attributes y [Fixnum] The starting y coordinate.
-      # @option attributes yn [Fixnum] The ending y coordinate.
-      # @option attributes height [Fixnum]
+      # @option attributes x [Integer] The starting x coordinate.
+      # @option attributes xn [Integer] The ending x coordinate.
+      # @option attributes width [Integer]
+      # @option attributes y [Integer] The starting y coordinate.
+      # @option attributes yn [Integer] The ending y coordinate.
+      # @option attributes height [Integer]
       # @return [Vedeu::Geometries::Area]
       def self.from_attributes(attributes = {})
         y_attributes = {
@@ -83,10 +83,10 @@ module Vedeu
       # Returns a new instance of Vedeu::Area.
       #
       # @macro param_name
-      # @param y [Fixnum] The starting row/line position.
-      # @param yn [Fixnum] The ending row/line position.
-      # @param x [Fixnum] The starting column/character position.
-      # @param xn [Fixnum] The ending column/character position.
+      # @param y [Integer] The starting row/line position.
+      # @param yn [Integer] The ending row/line position.
+      # @param x [Integer] The starting column/character position.
+      # @param xn [Integer] The ending column/character position.
       # @return [Vedeu::Geometries::Area]
       def initialize(name:, y:, yn:, x:, xn:)
         @name = name
@@ -113,7 +113,7 @@ module Vedeu
       # Returns the width of the interface determined by whether a
       # left, right, both or neither borders are shown.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def bordered_width
         return width unless border && enabled?
 
@@ -132,7 +132,7 @@ module Vedeu
       # Returns the height of the interface determined by whether a
       # top, bottom, both or neither borders are shown.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def bordered_height
         return height unless border && enabled?
 
@@ -151,7 +151,7 @@ module Vedeu
       # Return the column position for 1 character right of the left
       #   border.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def bx
         (enabled? && left?) ? x + 1 : x
       end
@@ -159,7 +159,7 @@ module Vedeu
       # Return the column position for 1 character left of the right
       #   border.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def bxn
         (enabled? && right?) ? xn - 1 : xn
       end
@@ -167,7 +167,7 @@ module Vedeu
       # Return the row position for 1 character under of the top
       #   border.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def by
         (enabled? && top?) ? y + 1 : y
       end
@@ -175,7 +175,7 @@ module Vedeu
       # Return the column position for 1 character above of the bottom
       #   border.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def byn
         (enabled? && bottom?) ? yn - 1 : yn
       end
@@ -183,7 +183,7 @@ module Vedeu
       # Returns an array containing the centred y and x coordinates of
       # the interface.
       #
-      # @return [Array<Fixnum>]
+      # @return [Array<Integer>]
       def centre
         [centre_y, centre_x]
       end
@@ -191,7 +191,7 @@ module Vedeu
       # Returns the centred y coordinate (the vertical centre row) of
       # the interface.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def centre_y
         (height / 2) + y
       end
@@ -199,21 +199,21 @@ module Vedeu
       # Returns the centred x coordinate (the horizontal centre
       # character) of the interface.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def centre_x
         (width / 2) + x
       end
 
       # Returns the height of the interface.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def height
         (yn - y) + 1
       end
 
       # Returns the width of the interface.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def width
         (xn - x) + 1
       end
@@ -227,8 +227,8 @@ module Vedeu
       #   north(2)  # => 2 (positive goes 'more' north)
       #   north(-4) # => 8 (negative goes south)
       #
-      # @param offset [Fixnum]
-      # @return [Fixnum]
+      # @param offset [Integer]
+      # @return [Integer]
       def north(offset = 1)
         y - offset
       end
@@ -242,8 +242,8 @@ module Vedeu
       #   east(2)  # => 21 (positive goes 'more' east)
       #   east(-4) # => 15 (negative goes west)
       #
-      # @param offset [Fixnum]
-      # @return [Fixnum]
+      # @param offset [Integer]
+      # @return [Integer]
       def east(offset = 1)
         xn + offset
       end
@@ -257,8 +257,8 @@ module Vedeu
       #   south(2)  # => 14 (positive goes 'more' south)
       #   south(-4) # => 8  (negative goes north)
       #
-      # @param offset [Fixnum]
-      # @return [Fixnum]
+      # @param offset [Integer]
+      # @return [Integer]
       def south(offset = 1)
         yn + offset
       end
@@ -272,8 +272,8 @@ module Vedeu
       #   west(2)   # => 6  (positive goes 'more' west)
       #   west(-4)  # => 12 (negative goes east)
       #
-      # @param offset [Fixnum]
-      # @return [Fixnum]
+      # @param offset [Integer]
+      # @return [Integer]
       def west(offset = 1)
         x - offset
       end

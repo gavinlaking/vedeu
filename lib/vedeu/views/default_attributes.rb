@@ -26,7 +26,7 @@ module Vedeu
       alias truncate? truncate
 
       # @!attribute [r] width
-      # @return [Fixnum|NilClass]
+      # @return [Integer|NilClass]
       attr_reader :width
 
       # @!attribute [r] wordwrap

@@ -24,7 +24,7 @@ module Vedeu
 
       # @macro param_name
       # @param direction [Symbol]
-      # @param offset [Fixnum]
+      # @param offset [Integer]
       # @return [Vedeu::Cursors::Move]
       def initialize(name, direction, offset)
         @name      = name

@@ -114,7 +114,7 @@ module Vedeu
 
       # Returns the current line from the collection of lines.
       #
-      # @param index [Fixnum]
+      # @param index [Integer]
       # @return [Array<String|void>]
       def line(index = y)
         lines.line(index)
@@ -245,7 +245,7 @@ module Vedeu
         y + 1 >= lines.size
       end
 
-      # @return [Fixnum]
+      # @return [Integer]
       def next_line_size
         line(y + 1).size
       end
@@ -263,7 +263,7 @@ module Vedeu
                                    oy:    oy).viewport
       end
 
-      # @return [Fixnum]
+      # @return [Integer]
       def prev_line_size
         line(y - 1).size
       end
