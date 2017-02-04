@@ -35,7 +35,7 @@ module Vedeu
       context 'when the model is nil' do
         let(:model) {}
 
-        it { subject.must_equal(nil) }
+        it { assert_nil(subject) }
       end
 
       context 'when the model is not nil' do
@@ -46,7 +46,7 @@ module Vedeu
         end
 
         context 'when the model has no name' do
-          it { subject.must_equal(nil) }
+          it { assert_nil(subject) }
         end
       end
     end

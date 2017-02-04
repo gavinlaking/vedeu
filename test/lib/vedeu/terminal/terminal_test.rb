@@ -114,7 +114,7 @@ module Vedeu
 
       it 'leaves the cursor hidden in raw mode' do
         described.raw_mode!
-        subject.must_equal(nil)
+        assert_nil(subject)
       end
     end
 

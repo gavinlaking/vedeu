@@ -44,7 +44,7 @@ module Vedeu
       #   context 'when a position is not set' do
       #     let(:position) {}
 
-      #     it { subject.must_equal(nil) }
+      #     it { assert_nil(subject) }
       #   end
       # end
 
@@ -60,7 +60,7 @@ module Vedeu
       #   context 'when a position is not set' do
       #     let(:position) {}
 
-      #     it { subject.must_equal(nil) }
+      #     it { assert_nil(subject) }
       #   end
       # end
 

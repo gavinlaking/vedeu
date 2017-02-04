@@ -47,7 +47,7 @@ module Vedeu
         subject { instance.cell(row_index, cell_index) }
 
         context 'when the row_index is nil' do
-          it { subject.must_equal(nil) }
+          it { assert_nil(subject) }
         end
 
         context 'when the row_index is not nil' do
@@ -57,7 +57,7 @@ module Vedeu
             let(:row_index) { 1 }
 
             context 'when the cell_index is nil' do
-              it { subject.must_equal(nil) }
+              it { assert_nil(subject) }
             end
 
             context 'when the cell_index is not nil' do
@@ -70,13 +70,13 @@ module Vedeu
               context 'and the cell_index is out of range' do
                 let(:cell_index) { 4 }
 
-                it { subject.must_equal(nil) }
+                it { assert_nil(subject) }
               end
 
               context 'and the cell_index is out of range' do
                 let(:cell_index) { -4 }
 
-                it { subject.must_equal(nil) }
+                it { assert_nil(subject) }
               end
             end
           end
@@ -84,13 +84,13 @@ module Vedeu
           context 'and the row_index is out of range' do
             let(:row_index) { 4 }
 
-            it { subject.must_equal(nil) }
+            it { assert_nil(subject) }
           end
 
           context 'and the row_index is out of range' do
             let(:row_index) { -4 }
 
-            it { subject.must_equal(nil) }
+            it { assert_nil(subject) }
           end
         end
       end
@@ -145,7 +145,7 @@ module Vedeu
         subject { instance.row(index) }
 
         context 'when the index is nil' do
-          it { subject.must_equal(nil) }
+          it { assert_nil(subject) }
         end
 
         context 'when the index is not nil' do
@@ -158,13 +158,13 @@ module Vedeu
           context 'and the index is out of range' do
             let(:index) { 4 }
 
-            it { subject.must_equal(nil) }
+            it { assert_nil(subject) }
           end
 
           context 'and the index is out of range' do
             let(:index) { -4 }
 
-            it { subject.must_equal(nil) }
+            it { assert_nil(subject) }
           end
         end
       end

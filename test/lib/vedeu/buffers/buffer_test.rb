@@ -247,7 +247,7 @@ module Vedeu
         end
 
         context 'when there is no content on any buffer' do
-          it { subject.must_equal(nil) }
+          it { assert_nil(subject) }
         end
       end
 

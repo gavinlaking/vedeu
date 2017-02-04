@@ -58,7 +58,7 @@ module Vedeu
         context 'when the view is empty or nil' do
           let(:view) {}
 
-          it { subject.must_equal(nil) }
+          it { assert_nil(subject) }
         end
 
         context 'when the view is visible' do
@@ -72,14 +72,14 @@ module Vedeu
           context 'but Vedeu is not ready' do
             let(:ready) { false }
 
-            it { subject.must_equal(nil) }
+            it { assert_nil(subject) }
           end
         end
 
         context 'when the interface is not visible' do
           let(:visible) { false }
 
-          it { subject.must_equal(nil) }
+          it { assert_nil(subject) }
         end
       end
 

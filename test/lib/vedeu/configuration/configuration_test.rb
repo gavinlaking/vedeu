@@ -87,7 +87,7 @@ module Vedeu
           end
         end
 
-        it { described.log.must_equal(nil) }
+        it { assert_nil(described.log) }
       end
     end
 
@@ -221,19 +221,19 @@ module Vedeu
 
     describe '.stdin' do
       it 'returns the value of the redefined STDIN' do
-        described.stdin.must_equal(nil)
+        assert_nil(described.stdin)
       end
     end
 
     describe '.stdout' do
       it 'returns the value of the redefined STDOUT' do
-        described.stdout.must_equal(nil)
+        assert_nil(described.stdout)
       end
     end
 
     describe '.stderr' do
       it 'returns the value of the redefined STDERR' do
-        described.stderr.must_equal(nil)
+        assert_nil(described.stderr)
       end
     end
 
