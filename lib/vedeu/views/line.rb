@@ -85,7 +85,7 @@ module Vedeu
       # Returns the size of the content in characters without
       # formatting.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def size
         streams.map(&:size).inject(0, :+)
       end

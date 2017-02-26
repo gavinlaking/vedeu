@@ -24,7 +24,7 @@ module Vedeu
 
       # @macro param_name
       # @param direction [Symbol]
-      # @param offset [Fixnum]
+      # @param offset [Integer]
       # @return [Vedeu::Cursors::Move]
       def initialize(name, direction, offset)
         @name      = name
@@ -90,7 +90,7 @@ module Vedeu
 
       # @return [Boolean]
       def valid_left?
-        (cursor.ox - offset) > 0
+        (cursor.ox - offset).positive?
       end
 
       # @return [Boolean]
@@ -100,7 +100,7 @@ module Vedeu
 
       # @return [Boolean]
       def valid_up?
-        (cursor.oy - offset) > 0
+        (cursor.oy - offset).positive?
       end
 
     end # Move

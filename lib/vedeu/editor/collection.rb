@@ -15,7 +15,7 @@ module Vedeu
 
       # Fetches an item from a collection.
       #
-      # @param index [Fixnum]
+      # @param index [Integer]
       # @return [String]
       def by_index(index)
         Vedeu::Editor::Item.by_index(collection, index)

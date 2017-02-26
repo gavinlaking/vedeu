@@ -70,13 +70,13 @@ module Vedeu
             let(:visible) { false }
 
             it { Vedeu.expects(:render_output).never }
-            it { subject.must_equal(nil) }
+            it { assert_nil(subject) }
           end
         end
 
         context 'when the border is not enabled' do
           it { Vedeu.expects(:render_output).never }
-          it { subject.must_equal(nil) }
+          it { assert_nil(subject) }
         end
       end
 

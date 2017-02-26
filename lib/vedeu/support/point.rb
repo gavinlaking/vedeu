@@ -14,7 +14,7 @@ module Vedeu
     include Vedeu::Common
 
     # @!attribute [r] value
-    # @return [Fixnum]
+    # @return [Integer]
     attr_reader :value
 
     # @param (see #initialize)
@@ -30,9 +30,9 @@ module Vedeu
       new(value: value, min: min, max: max).valid?
     end
 
-    # @param value [Fixnum|NilClass]
-    # @param min [Fixnum]
-    # @param max [Fixnum|Float::INFINITY]
+    # @param value [Integer|NilClass]
+    # @param min [Integer]
+    # @param max [Integer|Float::INFINITY]
     # @return [Vedeu::Point]
     def initialize(value: nil, min: 1, max: Float::INFINITY)
       @min   = min
@@ -68,21 +68,21 @@ module Vedeu
     private
 
     # @macro raise_invalid_syntax
-    # @return [Fixnum]
+    # @return [Integer]
     def min
       return @min if numeric?(@min)
 
       raise Vedeu::Error::InvalidSyntax,
-            "Expecting 'min' to be a Fixnum."
+            "Expecting 'min' to be a Integer."
     end
 
     # @macro raise_invalid_syntax
-    # @return [Fixnum]
+    # @return [Integer]
     def max
       return @max if numeric?(@max)
 
       raise Vedeu::Error::InvalidSyntax,
-            "Expecting 'max' to be a Fixnum or Float::INFINITY."
+            "Expecting 'max' to be a Integer or Float::INFINITY."
     end
 
   end # Point

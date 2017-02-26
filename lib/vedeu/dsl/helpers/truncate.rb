@@ -16,14 +16,14 @@ module Vedeu
       # Returns a new instance of Vedeu::DSL::Truncate.
       #
       # @param value [String]
-      # @param options [Hash<Symbol => Boolean|Fixnum|NilClass|String|
+      # @param options [Hash<Symbol => Boolean|Integer|NilClass|String|
       #   Symbol]
       # @option options name [String|Symbol] The name of the geometry
       #   to use to determine the width if the width option is not
       #   given.
       # @option options truncate [Boolean] Whether to truncate the
       #   value.
-      # @option options width [Fixnum] The width of the new value.
+      # @option options width [Integer] The width of the new value.
       # @return [Vedeu::DSL::Truncate]
       def initialize(value = '', options = {})
         @value   = value || ''
@@ -44,7 +44,7 @@ module Vedeu
       protected
 
       # @!attribute [r] options
-      # @return [Hash<Symbol => Boolean|Fixnum|NilClass|String|
+      # @return [Hash<Symbol => Boolean|Integer|NilClass|String|
       #   Symbol]
       attr_reader :options
 
@@ -91,7 +91,7 @@ module Vedeu
       # Return the width of the interface when a name is given,
       # otherwise use the given width.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def width
         if present?(options[:width])
           options[:width]

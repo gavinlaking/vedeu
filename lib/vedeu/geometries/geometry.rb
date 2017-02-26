@@ -46,7 +46,7 @@ module Vedeu
       attr_accessor :client
 
       # @!attribute [w] height
-      # @return [Fixnum]
+      # @return [Integer]
       attr_writer :height
 
       # @!attribute [rw] horizontal_alignment
@@ -67,41 +67,41 @@ module Vedeu
       attr_accessor :vertical_alignment
 
       # @!attribute [w] width
-      # @return [Fixnum]
+      # @return [Integer]
       attr_writer :width
 
       # @!attribute [w] x
-      # @return [Fixnum]
+      # @return [Integer]
       attr_writer :x
 
       # @!attribute [w] xn
-      # @return [Fixnum]
+      # @return [Integer]
       attr_writer :xn
 
       # @!attribute [w] y
-      # @return [Fixnum]
+      # @return [Integer]
       attr_writer :y
 
       # @!attribute [w] yn
-      # @return [Fixnum]
+      # @return [Integer]
       attr_writer :yn
 
       # Returns a new instance of Vedeu::Geometries::Geometry.
       #
-      # @param attributes [Hash<Symbol => Boolean|Fixnum|String|
+      # @param attributes [Hash<Symbol => Boolean|Integer|String|
       #   Symbol|Vedeu::Geometries::Repository]
       # @option attributes client [void]
-      # @option attributes height [Fixnum]
+      # @option attributes height [Integer]
       # @option attributes horizontal_alignment [Symbol]
       # @option attributes maximised [Boolean]
       # @option attributes name [String|Symbol]
       # @option attributes repository [Vedeu::Geometries::Repository]
       # @option attributes vertical_alignment [Symbol]
-      # @option attributes width [Fixnum]
-      # @option attributes x [Fixnum]
-      # @option attributes xn [Fixnum]
-      # @option attributes y [Fixnum]
-      # @option attributes yn [Fixnum]
+      # @option attributes width [Integer]
+      # @option attributes x [Integer]
+      # @option attributes xn [Integer]
+      # @option attributes y [Integer]
+      # @option attributes yn [Integer]
       # @return [Vedeu::Geometries::Geometry]
       def initialize(attributes = {})
         defaults.merge!(attributes).each do |key, value|
@@ -109,7 +109,7 @@ module Vedeu
         end
       end
 
-      # @return [Hash<Symbol => Boolean|Fixnum|String|Symbol>]
+      # @return [Hash<Symbol => Boolean|Integer|String|Symbol>]
       def attributes
         {
           client:               client,

@@ -106,7 +106,7 @@ module Vedeu
           /^Array/,
           /^Hash/,
           /^String/,
-          /^Fixnum/,
+          /^Integer/,
         ]
       end
 

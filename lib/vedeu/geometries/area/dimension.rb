@@ -22,21 +22,21 @@ module Vedeu
                      :unaligned?
 
       # @param (see #initialize)
-      # @return [Array<Fixnum>]
+      # @return [Array<Integer>]
       def self.pair(attributes = {})
         new(attributes).pair
       end
 
       # Returns a new instance of Vedeu::Geometries::Dimension.
       #
-      # @param attributes [Hash<Symbol => Fixnum, NilClass>]
+      # @param attributes [Hash<Symbol => Integer, NilClass>]
       # @option attributes alignment [Symbol]
-      # @option attributes d [Fixnum|NilClass]
+      # @option attributes d [Integer|NilClass]
       #   The starting value (y or x).
-      # @option attributes dn [Fixnum|NilClass]
+      # @option attributes dn [Integer|NilClass]
       #   The ending value (yn or xn).
-      # @option attributes d_dn [Fixnum|NilClass] A width or a height.
-      # @option attributes default [Fixnum|NilClass]
+      # @option attributes d_dn [Integer|NilClass] A width or a height.
+      # @option attributes default [Integer|NilClass]
       #   The terminal width or height.
       # @option attributes maximised [Boolean]
       # @return [Vedeu::Geometries::Dimension]
@@ -52,7 +52,7 @@ module Vedeu
       #    character to the last row/line or column/character of the
       #    terminal.
       #
-      # @return [Array<Fixnum>]
+      # @return [Array<Integer>]
       def pair
         if maximised?
           [1, default]
@@ -75,19 +75,19 @@ module Vedeu
       protected
 
       # @!attribute [r] d
-      # @return [Fixnum|NilClass] The starting value (y or x).
+      # @return [Integer|NilClass] The starting value (y or x).
       attr_reader :d
 
       # @!attribute [r] dn
-      # @return [Fixnum|NilClass] The ending value (yn or xn).
+      # @return [Integer|NilClass] The ending value (yn or xn).
       attr_reader :dn
 
       # @!attribute [r] d_dn
-      # @return [Fixnum|NilClass] A width or a height.
+      # @return [Integer|NilClass] A width or a height.
       attr_reader :d_dn
 
       # @!attribute [r] default
-      # @return [Fixnum|NilClass] The terminal width or height.
+      # @return [Integer|NilClass] The terminal width or height.
       attr_reader :default
 
       # @!attribute [r] maximised
@@ -108,7 +108,7 @@ module Vedeu
       # 2) Or use the width or height value.
       # 3) Or use the default/current terminal width or height value.
       #
-      # @return [Fixnum|NilClass]
+      # @return [Integer|NilClass]
       def length
         if d && dn
           (dn - d) + 1
@@ -129,7 +129,7 @@ module Vedeu
       #    length = 24 # => 12
       #    centred_d = 27 # (39 - 12 = 27)
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def centred_d
         d = (default / 2) - (length / 2)
         d < 1 ? 1 : d
@@ -142,7 +142,7 @@ module Vedeu
       #    length = 24 # => 12
       #    centred_dn = 51 # (39 + 12 = 51)
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def centred_dn
         dn = (default / 2) + (length / 2)
         dn > default ? default : dn
@@ -155,7 +155,7 @@ module Vedeu
       # 2) Use the xn or yn (dn), or
       # 3) Default to the terminal width or height.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def end_coordinate
         if d_dn
           (d_dn > default) ? default : d_dn
@@ -176,7 +176,7 @@ module Vedeu
       # 2) Use the x or y (d), or
       # 3) Default to 1.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def start_coordinate
         if d_dn
           (default - d_dn) < 1 ? 1 : (default - d_dn)
@@ -192,7 +192,7 @@ module Vedeu
 
       # Fetch the starting coordinate, or use 1 when not set.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def _d
         d || 1
       end
@@ -206,7 +206,7 @@ module Vedeu
       #    add the width or height to the start and minus 1.
       # 4) otherwise, use the terminal default width or height.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def _dn
         if dn
           dn

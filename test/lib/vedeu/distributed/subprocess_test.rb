@@ -17,7 +17,7 @@ module Vedeu
         it do
           instance.instance_variable_get('@application').must_equal(application)
         end
-        it { instance.instance_variable_get('@pid').must_equal(nil) }
+        it { assert_nil(instance.instance_variable_get('@pid')) }
       end
 
       describe '.execute!' do

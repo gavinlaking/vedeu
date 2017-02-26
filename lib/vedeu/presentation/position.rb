@@ -37,7 +37,7 @@ module Vedeu
       # Returns the x coordinate for the model when the position
       # attribute of the including model is set.
       #
-      # @return [Fixnum|NilClass]
+      # @return [Integer|NilClass]
       def x
         position.x if position?
       end
@@ -45,7 +45,7 @@ module Vedeu
       # Returns the y coordinate for the model when the position
       # attribute of the including model is set.
       #
-      # @return [Fixnum|NilClass]
+      # @return [Integer|NilClass]
       def y
         position.y if position?
       end

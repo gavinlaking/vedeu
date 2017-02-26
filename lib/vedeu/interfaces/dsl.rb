@@ -123,7 +123,7 @@ module Vedeu
       # refreshing too often, the reduces artefacts particularly when
       # resizing the terminal screen.
       #
-      # @param value [Fixnum|Float] Time in seconds. (0.5 = 500ms).
+      # @param value [Integer|Float] Time in seconds. (0.5 = 500ms).
       #
       # @example
       #   Vedeu.interface :my_interface do
@@ -132,7 +132,7 @@ module Vedeu
       #     # ...
       #   end
       #
-      # @return [Fixnum|Float]
+      # @return [Integer|Float]
       def delay(value)
         model.delay = value
       end
@@ -306,8 +306,8 @@ module Vedeu
       #     # ...
       #   end
       #
-      # @param value [Fixnum]
-      # @return [Fixnum]
+      # @param value [Integer]
+      # @return [Integer]
       def zindex(value)
         model.zindex = value
       end

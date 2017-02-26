@@ -68,7 +68,7 @@ module Vedeu
         subject { described.last_command }
 
         context 'when there are no stored commands' do
-          it { subject.must_equal(nil) }
+          it { assert_nil(subject) }
         end
 
         context 'when there are stored commands' do
@@ -86,7 +86,7 @@ module Vedeu
         subject { described.last_keypress }
 
         context 'when there are no stored keypresses' do
-          it { subject.must_equal(nil) }
+          it { assert_nil(subject) }
         end
 
         context 'when there are stored keypresses' do

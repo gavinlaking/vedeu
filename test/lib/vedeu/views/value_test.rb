@@ -56,7 +56,7 @@ module Vedeu
       describe '#client' do
         subject { included_instance.client }
 
-        it { subject.must_equal(nil) }
+        it { assert_nil(subject) }
       end
 
       describe '#client?' do
@@ -66,7 +66,7 @@ module Vedeu
       describe '#collection' do
         subject { included_instance.collection }
 
-        it { subject.must_equal(nil) }
+        it { assert_nil(subject) }
       end
 
       describe '#deputy' do
@@ -78,7 +78,7 @@ module Vedeu
       describe '#entity' do
         subject { included_instance.entity }
 
-        it { subject.must_equal(nil) }
+        it { assert_nil(subject) }
       end
 
       describe '#parent' do
@@ -89,7 +89,7 @@ module Vedeu
         end
 
         context 'when the parent attribute is not set' do
-          it { subject.must_equal(nil) }
+          it { assert_nil(subject) }
         end
       end
 

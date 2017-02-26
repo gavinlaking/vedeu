@@ -58,7 +58,7 @@ module Vedeu
 
       # Return a new instance of Vedeu::Colours::Translator.
       #
-      # @param colour [Fixnum|String|Symbol]
+      # @param colour [Integer|String|Symbol]
       # @return [Vedeu::Colours::Translator]
       def initialize(colour = '')
         @colour = colour || ''
@@ -186,7 +186,7 @@ module Vedeu
         ]
       end
 
-      # @return [Fixnum]
+      # @return [Integer]
       def css_to_numbered
         [16, red, green, blue].inject(:+)
       end
@@ -194,7 +194,7 @@ module Vedeu
       # Takes the red component of {#css_to_rgb} and converts to the
       # correct value for setting the terminal red value.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def red
         (css_to_rgb[0] / 51) * 36
       end
@@ -202,7 +202,7 @@ module Vedeu
       # Takes the green component of {#css_to_rgb} and converts to the
       # correct value for setting the terminal green value.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def green
         (css_to_rgb[1] / 51) * 6
       end
@@ -210,7 +210,7 @@ module Vedeu
       # Takes the blue component of {#css_to_rgb} and converts to the
       # correct value for setting the terminal blue value.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def blue
         (css_to_rgb[2] / 51) * 1
       end

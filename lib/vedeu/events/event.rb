@@ -46,11 +46,11 @@ module Vedeu
         # @macro param_name
         # @param options [Hash<Symbol => void>] The options to
         #   register the event with.
-        # @option options :delay [Fixnum|Float] Limits the execution
+        # @option options :delay [Integer|Float] Limits the execution
         #   of the triggered event to only execute when first
         #   triggered, with subsequent triggering being ignored until
         #   the delay has expired.
-        # @option options :debounce [Fixnum|Float] Limits the
+        # @option options :debounce [Integer|Float] Limits the
         #   execution of the triggered event to only execute once the
         #   debounce has expired. Subsequent triggers before debounce
         #   expiry are ignored.
@@ -195,7 +195,7 @@ module Vedeu
       def throttling?
         @now = Vedeu.clock_time
 
-        options[:delay] > 0
+        options[:delay].positive?
       end
 
       # Returns a boolean indicating whether the throttle has expired.
@@ -222,7 +222,7 @@ module Vedeu
 
         @deadline = @now + debounce unless deadline?
 
-        options[:debounce] > 0
+        options[:debounce].positive?
       end
 
       # Returns a boolean indicating whether the debounce has expired.
@@ -241,19 +241,19 @@ module Vedeu
       #
       # @return [Boolean]
       def deadline?
-        @deadline > 0
+        @deadline.positive?
       end
 
       # Return the amount of time in seconds to debounce the event by.
       #
-      # @return [Fixnum|Float]
+      # @return [Integer|Float]
       def debounce
         options[:debounce] || defaults[:debounce]
       end
 
       # Return the amount of time in seconds to throttle the event by.
       #
-      # @return [Fixnum|Float]
+      # @return [Integer|Float]
       def delay
         options[:delay] || defaults[:delay]
       end

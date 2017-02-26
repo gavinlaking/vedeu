@@ -18,11 +18,11 @@ module Vedeu
       attr_reader :name
 
       # @!attribute [r] x
-      # @return [Fixnum]
+      # @return [Integer]
       attr_reader :x
 
       # @!attribute [r] y
-      # @return [Fixnum]
+      # @return [Integer]
       attr_reader :y
 
       # @return [Array<Array<Vedeu::Cells::Empty>>]
@@ -30,12 +30,12 @@ module Vedeu
         @buffer ||= empty
       end
 
-      # @return [Fixnum]
+      # @return [Integer]
       def height
         @height + 1
       end
 
-      # @return [Fixnum]
+      # @return [Integer]
       def width
         @width + 1
       end

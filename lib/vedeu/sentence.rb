@@ -83,7 +83,7 @@ module Vedeu
       elements[-1]
     end
 
-    # @return [Fixnum]
+    # @return [Integer]
     def count
       elements.size
     end

@@ -24,7 +24,7 @@ module Vedeu
       # @option options align [Symbol]
       # @option options name [String|Symbol]
       # @option options pad [String]
-      # @option options width [Fixnum]
+      # @option options width [Integer]
       # @return [Vedeu::DSL::Align]
       def initialize(value = '', options = {})
         @value   = value || ''
@@ -117,7 +117,7 @@ module Vedeu
       # Return the width of the interface when a name is given,
       # otherwise use the given width.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def width
         if present?(options[:width])
           options[:width]

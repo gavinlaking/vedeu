@@ -19,7 +19,7 @@ module Vedeu
       include Vedeu::Toggleable
 
       # @!attribute [rw] client
-      # @return [Fixnum|Float]
+      # @return [Integer|Float]
       attr_accessor :client
 
       # @!attribute [rw] cursor_visible
@@ -28,7 +28,7 @@ module Vedeu
       alias cursor_visible? cursor_visible
 
       # @!attribute [rw] delay
-      # @return [Fixnum|Float]
+      # @return [Integer|Float]
       attr_accessor :delay
 
       # @!attribute [rw] editable
@@ -53,7 +53,7 @@ module Vedeu
       attr_accessor :wordwrap
 
       # @!attribute [rw] zindex
-      # @return [Fixnum]
+      # @return [Integer]
       attr_accessor :zindex
 
       # Return a new instance of Vedeu::Interfaces::Interface.
@@ -70,7 +70,7 @@ module Vedeu
       # @option attributes style [Vedeu::Presentation::Style]
       # @option attributes visible [Boolean]
       # @option attributes wordwrap [Boolean]
-      # @option attributes zindex [Fixnum]
+      # @option attributes zindex [Integer]
       # @return [Vedeu::Interfaces::Interface]
       def initialize(attributes = {})
         defaults.merge!(attributes).each do |key, value|

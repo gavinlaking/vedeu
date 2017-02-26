@@ -114,7 +114,7 @@ module Vedeu
 
       it 'leaves the cursor hidden in raw mode' do
         described.raw_mode!
-        subject.must_equal(nil)
+        assert_nil(subject)
       end
     end
 
@@ -131,7 +131,7 @@ module Vedeu
     describe '.centre_y' do
       subject { described.centre_y }
 
-      it { subject.must_be_instance_of(Fixnum) }
+      it { subject.must_be_instance_of(Integer) }
 
       it 'returns the centre `y` point on the terminal' do
         subject.must_equal(12)
@@ -141,7 +141,7 @@ module Vedeu
     describe '.centre_x' do
       subject { described.centre_x }
 
-      it { subject.must_be_instance_of(Fixnum) }
+      it { subject.must_be_instance_of(Integer) }
 
       it 'returns the centre `x` point on the terminal' do
         subject.must_equal(20)
@@ -151,7 +151,7 @@ module Vedeu
     describe '.origin' do
       subject { Vedeu::Terminal.origin }
 
-      it { subject.must_be_instance_of(Fixnum) }
+      it { subject.must_be_instance_of(Integer) }
       it { subject.must_equal(1) }
       it { described.must_respond_to(:tx) }
       it { described.must_respond_to(:ty) }

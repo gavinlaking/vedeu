@@ -85,7 +85,7 @@ module Vedeu
         context 'when the interface does not yet have a name' do
           let(:_name) {}
 
-          it { subject.must_equal(nil) }
+          it { assert_nil(subject) }
         end
 
         context 'when the interface has a name' do

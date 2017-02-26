@@ -56,7 +56,7 @@ module Vedeu
 
       # Return the number of entries stored.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def size
         storage.size
       end

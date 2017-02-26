@@ -24,9 +24,9 @@ AllCops:
   DisplayCopNames: true
   DisplayStyleGuide: true
   StyleGuideCopsOnly: false
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.4
 
-Lint/Eval:
+Security/Eval:
   Description: 'The use of eval represents a serious security risk.'
   Enabled: false
 

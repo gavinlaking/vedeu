@@ -306,21 +306,21 @@ module Vedeu
       describe '#centre_y' do
         subject { instance.centre_y }
 
-        it { subject.must_be_instance_of(Fixnum) }
+        it { subject.must_be_instance_of(Integer) }
         it { subject.must_equal(7) }
       end
 
       describe '#centre_x' do
         subject { instance.centre_x }
 
-        it { subject.must_be_instance_of(Fixnum) }
+        it { subject.must_be_instance_of(Integer) }
         it { subject.must_equal(14) }
       end
 
       describe '#height' do
         subject { instance.height }
 
-        it { subject.must_be_instance_of(Fixnum) }
+        it { subject.must_be_instance_of(Integer) }
 
         context 'when a starting coordinate and height is given' do
           let(:y)       { 3 }
@@ -342,7 +342,7 @@ module Vedeu
       describe '#width' do
         subject { instance.width }
 
-        it { subject.must_be_instance_of(Fixnum) }
+        it { subject.must_be_instance_of(Integer) }
 
         # it { subject.must_equal(16) }
       end
@@ -350,7 +350,7 @@ module Vedeu
       describe '#north' do
         subject { instance.north(offset) }
 
-        it { subject.must_be_instance_of(Fixnum) }
+        it { subject.must_be_instance_of(Integer) }
 
         context 'with the default offset' do
           it { subject.must_equal(3) }
@@ -372,7 +372,7 @@ module Vedeu
       describe '#east' do
         subject { instance.east(offset) }
 
-        it { subject.must_be_instance_of(Fixnum) }
+        it { subject.must_be_instance_of(Integer) }
 
         context 'with the default offset' do
           it { subject.must_equal(22) }
@@ -394,7 +394,7 @@ module Vedeu
       describe '#south' do
         subject { instance.south(offset) }
 
-        it { subject.must_be_instance_of(Fixnum) }
+        it { subject.must_be_instance_of(Integer) }
 
         context 'with the default offset' do
           it { subject.must_equal(10) }
@@ -416,7 +416,7 @@ module Vedeu
       describe '#west' do
         subject { instance.west(offset) }
 
-        it { subject.must_be_instance_of(Fixnum) }
+        it { subject.must_be_instance_of(Integer) }
 
         context 'with the default offset' do
           it { subject.must_equal(5) }

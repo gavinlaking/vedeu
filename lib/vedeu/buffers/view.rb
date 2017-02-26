@@ -64,7 +64,7 @@ module Vedeu
       private
 
       # @param value [void]
-      # @return [Fixnum]
+      # @return [Integer]
       def column(value)
         Vedeu::Point.coerce(value: value.position.x, min: bx, max: bxn).value
       end
@@ -91,7 +91,7 @@ module Vedeu
       end
 
       # @param value [void]
-      # @return [Fixnum]
+      # @return [Integer]
       def row(value)
         Vedeu::Point.coerce(value: value.position.y, min: by, max: byn).value
       end

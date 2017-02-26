@@ -18,7 +18,7 @@ module Vedeu
     describe '#d' do
       subject { instance.d }
 
-      # it { subject.must_be_instance_of(Fixnum) }
+      # it { subject.must_be_instance_of(Integer) }
       # it { subject.must_equal() }
     end
 
@@ -29,7 +29,7 @@ module Vedeu
     describe '#bd' do
       subject { instance.bd }
 
-      # it { subject.must_be_instance_of(Fixnum) }
+      # it { subject.must_be_instance_of(Integer) }
       # it { subject.must_equal() }
     end
 
@@ -40,7 +40,7 @@ module Vedeu
     describe '#bdn' do
       subject { instance.bdn }
 
-      # it { subject.must_be_instance_of(Fixnum) }
+      # it { subject.must_be_instance_of(Integer) }
       # it { subject.must_equal() }
     end
 
@@ -51,7 +51,7 @@ module Vedeu
     describe '#d_dn' do
       subject { instance.d_dn }
 
-      # it { subject.must_be_instance_of(Fixnum) }
+      # it { subject.must_be_instance_of(Integer) }
       # it { subject.must_equal() }
     end
 

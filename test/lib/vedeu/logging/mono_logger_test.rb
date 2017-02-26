@@ -21,7 +21,7 @@ module Vedeu
           instance.instance_variable_get('@default_formatter').
             must_be_instance_of(::Logger::Formatter)
         end
-        it { instance.instance_variable_get('@Formatter').must_equal(nil) }
+        it { assert_nil(instance.instance_variable_get('@Formatter')) }
 
         context 'when a log device is given' do
           # it do

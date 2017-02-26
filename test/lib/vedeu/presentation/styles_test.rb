@@ -67,7 +67,7 @@ module Vedeu
           context 'when a parent is not available' do
             let(:parent) {}
 
-            it { subject.value.must_equal(nil) }
+            it { assert_nil(subject.value) }
           end
         end
 

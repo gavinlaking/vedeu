@@ -87,12 +87,12 @@ module Vedeu
         direction != :none
       end
 
-      # @return [Hash<Symbol => Hash<Symbol => Fixnum>>]
+      # @return [Hash<Symbol => Hash<Symbol => Integer>>]
       def directional_move
         movement.fetch(direction, {})
       end
 
-      # @return [Hash<Symbol => Fixnum>]
+      # @return [Hash<Symbol => Integer>]
       def down
         {
           y:  y + offset,
@@ -105,7 +105,7 @@ module Vedeu
         @geometry ||= Vedeu.geometries.by_name(name)
       end
 
-      # @return [Hash<Symbol => Fixnum>]
+      # @return [Hash<Symbol => Integer>]
       def left
         {
           x:  x - offset,
@@ -116,7 +116,7 @@ module Vedeu
       # Moves the geometry in the direction given by the offset also
       # given.
       #
-      # @return [Hash<Symbol => Hash<Symbol => Fixnum>>]
+      # @return [Hash<Symbol => Hash<Symbol => Integer>>]
       def movement
         {
           down:   down,
@@ -133,7 +133,7 @@ module Vedeu
         geometry.attributes.merge!(unalign_unmaximise)
       end
 
-      # @return [Hash<Symbol => Fixnum>]
+      # @return [Hash<Symbol => Integer>]
       def origin
         {
           x:  1,
@@ -143,7 +143,7 @@ module Vedeu
         }
       end
 
-      # @return [Hash<Symbol => Fixnum>]
+      # @return [Hash<Symbol => Integer>]
       def right
         {
           x:  x + offset,
@@ -160,7 +160,7 @@ module Vedeu
         }.merge(directional_move)
       end
 
-      # @return [Hash<Symbol => Fixnum>]
+      # @return [Hash<Symbol => Integer>]
       def up
         {
           y:  y - offset,

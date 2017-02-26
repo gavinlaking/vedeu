@@ -49,7 +49,7 @@ module Vedeu
           context 'when a parent name is not set' do
             let(:parent) {}
 
-            it { subject.must_equal(nil) }
+            it { assert_nil(subject) }
           end
         end
       end

@@ -26,7 +26,7 @@ module Vedeu
       # @option options ellipsis [String] See {#ellipsis}.
       # @option options mode [Symbol] See {#mode}.
       # @option options name [String|Symbol] See {#name}.
-      # @option options width [Fixnum] See {#width}.
+      # @option options width [Integer] See {#width}.
       # @return [Vedeu::DSL::Wordwrap]
       def initialize(text, options = {})
         @text    = text
@@ -131,7 +131,7 @@ module Vedeu
 
       # Returns the width of the string minus the ellipsis.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def pruned_width
         width - ellipsis.size
       end
@@ -182,7 +182,7 @@ module Vedeu
       # Returns the width to prune or wrap to.
       #
       # @macro raise_missing_required
-      # @return [Fixnum]
+      # @return [Integer]
       def width
         return options[:width] if present?(options[:width])
         return geometry.width if registered?

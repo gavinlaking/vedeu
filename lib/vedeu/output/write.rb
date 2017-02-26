@@ -28,9 +28,9 @@ module Vedeu
       # Returns a new instance of Vedeu::Output::Write.
       #
       # @param output [String]
-      # @param options [Hash<Symbol => Fixnum>]
-      # @option x [Fixnum]
-      # @option y [Fixnum]
+      # @param options [Hash<Symbol => Integer>]
+      # @option x [Integer]
+      # @option y [Integer]
       # @option colour [Hash<Symbol => String>]
       # @option style [Array<Symbol>|Symbol]
       # @return [Vedeu::Output::Write]
@@ -75,7 +75,7 @@ module Vedeu
         }
       end
 
-      # @return [Hash<Symbol => Fixnum>]
+      # @return [Hash<Symbol => Integer>]
       def options
         defaults.merge!(@options)
       end
@@ -86,7 +86,7 @@ module Vedeu
         @output.to_s
       end
 
-      # @return [Hash<Symbol => Fixnum>]
+      # @return [Hash<Symbol => Integer>]
       def position_start
         {
           x: options[:x],
@@ -94,7 +94,7 @@ module Vedeu
         }
       end
 
-      # @return [Hash<Symbol => Fixnum>]
+      # @return [Hash<Symbol => Integer>]
       def position_end
         {
           x: options[:x] + output.size,

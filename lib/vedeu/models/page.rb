@@ -38,8 +38,8 @@ module Vedeu
         rows.flat_map(&:content)
       end
 
-      # @param row_index [Fixnum]
-      # @param cell_index [Fixnum]
+      # @param row_index [Integer]
+      # @param cell_index [Integer]
       # @return [NilClass|void]
       def cell(row_index = nil, cell_index = nil)
         return nil if row_index.nil? || cell_index.nil?
@@ -70,7 +70,7 @@ module Vedeu
       end
       alias == eql?
 
-      # @param index [Fixnum]
+      # @param index [Integer]
       # @return [NilClass|Vedeu::Models::Row]
       def row(index = nil)
         return nil if index.nil?
@@ -78,7 +78,7 @@ module Vedeu
         rows[index]
       end
 
-      # @return [Fixnum]
+      # @return [Integer]
       def size
         rows.size
       end

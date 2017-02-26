@@ -22,8 +22,8 @@ module Vedeu
       #
       # @param collection [String|Vedeu::Editor::Line|Vedeu::Editor::Lines]
       # @param entity [String]
-      # @param index [Fixnum]
-      # @param size [Fixnum]
+      # @param index [Integer]
+      # @param size [Integer]
       # @return [Vedeu::Editor::Insert]
       def initialize(collection, entity, index = nil, size = 0)
         @collection = collection
@@ -46,11 +46,11 @@ module Vedeu
       attr_reader :entity
 
       # @!attribute [r] index
-      # @return [Fixnum]
+      # @return [Integer]
       attr_reader :index
 
       # @!attribute [r] size
-      # @return [Fixnum]
+      # @return [Integer]
       attr_reader :size
 
       private
@@ -72,9 +72,9 @@ module Vedeu
         numeric?(index)
       end
 
-      # @return [Fixnum]
+      # @return [Integer]
       def position
-        if index < 0
+        if index.negative?
           0
 
         elsif index > size

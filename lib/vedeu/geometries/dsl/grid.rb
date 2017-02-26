@@ -27,7 +27,7 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Geometries::Grid.
       #
-      # @param value [Fixnum]
+      # @param value [Integer]
       # @return [Vedeu::Geometries::Grid]
       def initialize(value)
         @value = value
@@ -47,7 +47,7 @@ module Vedeu
 
       # Returns the width of a single column in characters.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def column
         Vedeu.width / 12
       end
@@ -62,13 +62,13 @@ module Vedeu
 
       # Returns the height of a single row in characters.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def row
         Vedeu.height / 12
       end
 
       # @macro raise_out_of_range
-      # @return [Fixnum]
+      # @return [Integer]
       def value
         raise Vedeu::Error::OutOfRange if out_of_range?(@value)
 

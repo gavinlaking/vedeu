@@ -22,7 +22,7 @@ module Vedeu
     describe '.coerce' do
       subject { described.coerce(value: _value, min: min, max: max) }
 
-      context 'when :min is not a Fixnum' do
+      context 'when :min is not a Integer' do
         let(:min) { :invalid }
 
         it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
@@ -40,7 +40,7 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Point) }
       end
 
-      context 'when :max is not a Fixnum or Float::INFINITY' do
+      context 'when :max is not a Integer or Float::INFINITY' do
         let(:max) { :invalid }
 
         it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
@@ -99,13 +99,13 @@ module Vedeu
     describe '.valid?' do
       subject { described.valid?(value: _value, min: min, max: max) }
 
-      context 'when the value is not a Fixnum' do
+      context 'when the value is not a Integer' do
         let(:_value) { :invalid }
 
         it { subject.must_equal(false) }
       end
 
-      context 'when the value is a Fixnum' do
+      context 'when the value is a Integer' do
         context 'but the value < min' do
           let(:_value) { 1 }
 

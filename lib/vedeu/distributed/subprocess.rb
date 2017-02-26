@@ -53,7 +53,7 @@ module Vedeu
       attr_reader :application
 
       # @!attribute [r] pid
-      # @return [Fixnum]
+      # @return [Integer]
       attr_reader :pid
 
       private
@@ -63,7 +63,7 @@ module Vedeu
         "ruby #{file_path}"
       end
 
-      # @return [Fixnum] The number of bytes written.
+      # @return [Integer] The number of bytes written.
       def file_write
         file.write(application)
       end
@@ -73,7 +73,7 @@ module Vedeu
         file.close
       end
 
-      # @return [Fixnum] The number of files removed; 1.
+      # @return [Integer] The number of files removed; 1.
       def file_unlink
         File.unlink(file_name)
       end
@@ -94,7 +94,7 @@ module Vedeu
         Dir.tmpdir + "/foo_#{timestamp}"
       end
 
-      # return [Fixnum]
+      # return [Integer]
       def timestamp
         @timestamp ||= Time.now.to_i
       end

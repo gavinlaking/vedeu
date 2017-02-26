@@ -40,7 +40,7 @@ module Vedeu
       #   Hash<Symbol => Array<Symbol>|Symbol>|Symbol] The style.
       # @option options truncate [Boolean] Whether the value should be
       #   truncated.
-      # @option options width [Fixnum] The desired width for the
+      # @option options width [Integer] The desired width for the
       #   value.
       # @option options wordwrap [Boolean] Whether the value should be
       #   wordwrapped.
@@ -180,7 +180,7 @@ module Vedeu
         end
       end
 
-      # @return [Fixnum|NilClass]
+      # @return [Integer|NilClass]
       def width
         if numeric?(options[:width])
           options[:width]

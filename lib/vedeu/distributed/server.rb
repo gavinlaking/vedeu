@@ -14,8 +14,6 @@ module Vedeu
     #
     class Server
 
-      $SAFE = 1 # disable `eval` and related calls on strings passed
-
       include Singleton
 
       class << self
@@ -85,7 +83,7 @@ module Vedeu
       end
       alias write output
 
-      # @return [Fixnum] The PID of the currently running application.
+      # @return [Integer] The PID of the currently running application.
       def pid
         Process.pid
       end

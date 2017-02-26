@@ -64,7 +64,7 @@ module Vedeu
       end
 
       # {include:file:docs/configuration/colour_mode.md}
-      # @param value [Fixnum]
+      # @param value [Integer]
       # @macro raise_invalid_syntax
       # @return [Boolean]
       def colour_mode(value = nil)
@@ -86,7 +86,7 @@ module Vedeu
 
       # Returns the configuration options set up by the API DSL.
       #
-      # @return [Hash<Symbol => Boolean, Fixnum, String>]
+      # @return [Hash<Symbol => Boolean, Integer, String>]
       def configuration
         if options[:log].nil?          ||
            options[:log] == false      ||
@@ -130,8 +130,8 @@ module Vedeu
       alias drb drb!
 
       # {include:file:docs/configuration/drb_height.md}
-      # @param height [Fixnum]
-      # @return [Fixnum]
+      # @param height [Integer]
+      # @return [Integer]
       def drb_height(height = 25)
         options[:drb_height] = height
       end
@@ -144,15 +144,15 @@ module Vedeu
       end
 
       # {include:file:docs/configuration/drb_port.md}
-      # @param port [Fixnum|String]
+      # @param port [Integer|String]
       # @return [String]
       def drb_port(port = '')
         options[:drb_port] = port
       end
 
       # {include:file:docs/configuration/drb_width.md}
-      # @param width [Fixnum]
-      # @return [Fixnum]
+      # @param width [Integer]
+      # @return [Integer]
       def drb_width(width = 80)
         options[:drb_width] = width
       end
@@ -174,8 +174,8 @@ module Vedeu
       end
 
       # {include:file:docs/configuration/height.md}
-      # @param height [Fixnum]
-      # @return [Fixnum]
+      # @param height [Integer]
+      # @return [Integer]
       def height(height = 25)
         options[:height] = height
       end
@@ -318,8 +318,8 @@ module Vedeu
       alias threaded= threaded
 
       # {include:file:docs/configuration/width.md}
-      # @param width [Fixnum]
-      # @return [Fixnum]
+      # @param width [Integer]
+      # @return [Integer]
       def width(width = 80)
         options[:width] = width
       end
@@ -357,7 +357,7 @@ module Vedeu
 
       # Checks that the value provided to {#colour_mode} is valid.
       #
-      # @param value [Fixnum]
+      # @param value [Integer]
       # @return [Boolean]
       def valid_colour_mode?(value)
         numeric?(value) && [8, 16, 256, 16_777_216].include?(value)

@@ -62,7 +62,7 @@ module Vedeu
       alias wordwrap? wordwrap
 
       # @!attribute [rw] zindex
-      # @return [Fixnum]
+      # @return [Integer]
       attr_accessor :zindex
 
       # Return a new instance of Vedeu::Views::View.
@@ -76,7 +76,7 @@ module Vedeu
       # @option attributes parent [Vedeu::Views::Composition]
       # @option attributes style [Vedeu::Presentation::Style]
       # @option attributes wordwrap [Boolean]
-      # @option attributes zindex [Fixnum]
+      # @option attributes zindex [Integer]
       # @return [Vedeu::Views::View]
       def initialize(attributes = {})
         defaults.merge!(attributes).each do |key, value|

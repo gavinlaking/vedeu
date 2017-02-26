@@ -34,7 +34,7 @@ module Vedeu
         context 'when the block is not given' do
           subject { described.indent }
 
-          it { subject.must_equal(nil) }
+          it { assert_nil(subject) }
         end
 
         context 'when the indentation count > 0' do
@@ -82,7 +82,7 @@ module Vedeu
         context 'when the log is disabled' do
           let(:enabled)  { false }
 
-          it { subject.must_equal(nil) }
+          it { assert_nil(subject) }
         end
       end
 
@@ -126,7 +126,7 @@ module Vedeu
         context 'when the block is not given' do
           subject { described.outdent }
 
-          it { subject.must_equal(nil) }
+          it { assert_nil(subject) }
         end
 
         context 'when the indentation count > 0' do

@@ -26,8 +26,8 @@ module Vedeu
       #
       # @param lines [Vedeu::Editor::Lines]
       # @macro param_name
-      # @param ox [Fixnum]
-      # @param oy [Fixnum]
+      # @param ox [Integer]
+      # @param oy [Integer]
       # @return [Vedeu::Editor::Cropper]
       def initialize(lines:, ox:, oy:, name:)
         @lines = lines
@@ -68,11 +68,11 @@ module Vedeu
       attr_reader :name
 
       # @!attribute [r] ox
-      # @return [Fixnum]
+      # @return [Integer]
       attr_reader :ox
 
       # @!attribute [r] oy
-      # @return [Fixnum]
+      # @return [Integer]
       attr_reader :oy
 
       private

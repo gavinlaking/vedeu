@@ -37,7 +37,7 @@ module Vedeu
     describe '#absent?' do
       subject { instance.undefined_value_test(_value) }
 
-      context 'when the variable is a Fixnum' do
+      context 'when the variable is a Integer' do
         let(:_value) { 17 }
 
         it { subject.must_equal(false) }
@@ -262,7 +262,7 @@ module Vedeu
 
       subject { instance.numeric?(_value) }
 
-      it { instance.must_respond_to(:fixnum?) }
+      it { instance.must_respond_to(:Integer?) }
 
       context 'when the value is numeric' do
         let(:_value) { 16 }
@@ -309,7 +309,7 @@ module Vedeu
     describe '#present?' do
       subject { instance.defined_value_test(_value) }
 
-      context 'when the variable is a Fixnum' do
+      context 'when the variable is a Integer' do
         let(:_value) { 17 }
 
         it { subject.must_equal(true) }

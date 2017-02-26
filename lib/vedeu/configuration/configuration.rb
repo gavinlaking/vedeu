@@ -113,7 +113,7 @@ module Vedeu
 
       # Returns the chosen colour mode.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def colour_mode
         instance.options[:colour_mode]
       end
@@ -153,14 +153,14 @@ module Vedeu
 
       # Returns the height for the fake terminal in the DRb server.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def drb_height
         instance.options[:drb_height]
       end
 
       # Returns the width for the fake terminal in the DRb server.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def drb_width
         instance.options[:drb_width]
       end
@@ -175,7 +175,7 @@ module Vedeu
       #
       # {include:file:docs/dsl/by_method/height.md}
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def height
         if drb?
           drb_height
@@ -340,7 +340,7 @@ module Vedeu
       #
       # {include:file:docs/dsl/by_method/width.md}
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def width
         if drb?
           drb_width
@@ -446,7 +446,7 @@ module Vedeu
     # environment variable, or be optimistic and settle for 256
     # colours.
     #
-    # @return [Fixnum]
+    # @return [Integer]
     def detect_colour_mode
       case ENV['TERM']
       when 'xterm-256color', 'screen-256color'

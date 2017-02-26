@@ -52,19 +52,19 @@ module Vedeu
             context 'when an invalid direction is given' do
               let(:direction) { :move_left }
 
-              it { subject.must_equal(nil) }
+              it { assert_nil(subject) }
             end
           end
 
           context 'when the cursor is not visible' do
             let(:visible) { false }
 
-            it { subject.must_equal(nil) }
+            it { assert_nil(subject) }
           end
         end
 
         context 'when a name is not given' do
-          it { subject.must_equal(nil) }
+          it { assert_nil(subject) }
         end
       end
 

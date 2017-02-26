@@ -37,7 +37,7 @@ module Vedeu
 
       # Return the character at the given index.
       #
-      # @param index [Fixnum|NilClass]
+      # @param index [Integer|NilClass]
       # @return [String|NilClass]
       def character(index = nil)
         return ''             if collection && collection.empty?
@@ -49,7 +49,7 @@ module Vedeu
       # Delete the character from the line positioned at the given
       # index.
       #
-      # @param index [Fixnum|NilClass]
+      # @param index [Integer|NilClass]
       # @return [String]
       def delete_character(index = nil)
         Vedeu::Editor::Line.coerce(Vedeu::Editor::Delete
@@ -60,7 +60,7 @@ module Vedeu
       # index.
       #
       # @param character [String]
-      # @param index [Fixnum|NilClass]
+      # @param index [Integer|NilClass]
       # @return [Vedeu::Editor::Line]
       def insert_character(character, index = nil)
         return self unless character

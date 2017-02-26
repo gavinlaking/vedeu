@@ -8,11 +8,11 @@ the passed block.
   later.
 @param options [Hash<Symbol => void>] The options to
   register the event with.
-@option options :delay [Fixnum|Float] Limits the execution
+@option options :delay [Integer|Float] Limits the execution
   of the triggered event to only execute when first
   triggered, with subsequent triggering being ignored until
   the delay has expired.
-@option options :debounce [Fixnum|Float] Limits the
+@option options :debounce [Integer|Float] Limits the
   execution of the triggered event to only execute once the
   debounce has expired. Subsequent triggers before debounce
   expiry are ignored.

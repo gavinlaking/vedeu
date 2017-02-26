@@ -74,7 +74,7 @@ module Vedeu
       describe '#parent' do
         subject { instance.parent }
 
-        it { subject.must_equal(nil) }
+        it { assert_nil(subject) }
       end
 
       describe '#position' do
