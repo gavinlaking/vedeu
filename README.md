@@ -2,6 +2,7 @@
 [![Build Status](https://travis-ci.org/gavinlaking/vedeu.svg?branch=master)](https://travis-ci.org/gavinlaking/vedeu)
 
 # Vedeu
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/gavinlaking/vedeu?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Vedeu (vee-dee-you; aka VDU) is my attempt at creating a terminal based
  application framework without the need for Ncurses. I've tried to make Vedeu
