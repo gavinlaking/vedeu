@@ -226,7 +226,7 @@ module Vedeu
 
         subject { instance.pid }
 
-        it { subject.must_be_instance_of(Fixnum) }
+        it { subject.must_be_instance_of(Integer) }
         it { subject.must_equal(9876) }
       end
 
