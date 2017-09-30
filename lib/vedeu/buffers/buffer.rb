@@ -145,7 +145,7 @@ module Vedeu
       # Returns the number of lines of content for the buffer or 0 if
       # the buffer is empty.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def size
         if back?
           back.lines.size

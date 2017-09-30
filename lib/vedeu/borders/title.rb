@@ -88,7 +88,7 @@ module Vedeu
       private
 
       # @param char [String]
-      # @param x [Fixnum]
+      # @param x [Integer]
       # @return [Hash<Symbol => void>]
       def attributes(char, x)
         border.attributes.merge(position: Vedeu::Geometries::Position.new(y, x),
@@ -121,7 +121,7 @@ module Vedeu
         value.empty?
       end
 
-      # @return [Fixnum]
+      # @return [Integer]
       def end_index
         start_index + (size - 1)
       end
@@ -149,7 +149,7 @@ module Vedeu
 
       # Return the size of the padded, truncated value.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def size
         pad.size
       end
@@ -158,7 +158,7 @@ module Vedeu
       # title (or caption) should start. The title will appear
       # top-left, whilst the caption will be justified bottom-right.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def start_index
         1
       end
@@ -183,19 +183,19 @@ module Vedeu
 
       # Return the size of the horizontal border given.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def width
         horizontal.size
       end
 
-      # @return [Fixnum]
+      # @return [Integer]
       def x
         geometry.bx + start_index
       end
 
       # Return the vertical position for the title (or caption).
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def y
         geometry.y
       end

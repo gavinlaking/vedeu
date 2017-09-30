@@ -11,7 +11,7 @@ module Vedeu
     # Returns a boolean indicating whether a variable is nil, false or
     # empty.
     #
-    # @param variable [String|Symbol|Array|Fixnum] The variable to
+    # @param variable [String|Symbol|Array|Integer] The variable to
     #   check.
     # @return [Boolean]
     def absent?(variable)
@@ -94,12 +94,12 @@ module Vedeu
       end
     end
 
-    # Returns a boolean indicating whether the value is a Fixnum.
+    # Returns a boolean indicating whether the value is a Integer.
     #
-    # @param value [Fixnum|void]
+    # @param value [Integer|void]
     # @return [Boolean]
     def numeric?(value)
-      value.is_a?(Fixnum) || value == Float::INFINITY
+      value.is_a?(Integer) || value == Float::INFINITY
     end
     alias fixnum? numeric?
 
@@ -116,7 +116,7 @@ module Vedeu
     # Returns a boolean indicating whether a variable has a useful
     # value.
     #
-    # @param variable [String|Symbol|Array|Fixnum] The variable to
+    # @param variable [String|Symbol|Array|Integer] The variable to
     #   check.
     # @return [Boolean]
     def present?(variable)
