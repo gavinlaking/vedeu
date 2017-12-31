@@ -201,7 +201,7 @@ module Vedeu
       # Build a collection with the given size of objects given within
       # the block.
       #
-      # @param size [Fixnum]
+      # @param size [Integer]
       # @macro param_block
       # @return [Array<void>]
       def build_collection(size, &block)

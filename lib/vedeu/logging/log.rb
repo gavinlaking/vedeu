@@ -18,7 +18,7 @@ module Vedeu
 
         # @api private
         # @!attribute [rw] count
-        # @return [Fixnum] Used by tests to access the `count`
+        # @return [Integer] Used by tests to access the `count`
         #   instance variable.
         attr_accessor :count
 

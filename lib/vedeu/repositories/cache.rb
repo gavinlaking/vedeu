@@ -25,7 +25,7 @@ module Vedeu
       # @param resource [void]
       # @param options [Hash]
       # @option options value [void] The value to be cached.
-      # @option options expires [Fixnum] The number of seconds after
+      # @option options expires [Integer] The number of seconds after
       #   which the resource will have expired.
       # @return [void]
       def add(resource, options = {})

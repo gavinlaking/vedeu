@@ -12,12 +12,12 @@ module Vedeu
     class Position
 
       # @!attribute [r] y
-      # @return [Fixnum]
+      # @return [Integer]
       attr_reader :y
       alias first y
 
       # @!attribute [r] x
-      # @return [Fixnum]
+      # @return [Integer]
       attr_reader :x
       alias last x
 
@@ -39,8 +39,8 @@ module Vedeu
 
       # Initializes a new instance of Vedeu::Geometries::Position.
       #
-      # @param y [Fixnum] The row/line position.
-      # @param x [Fixnum] The column/character position.
+      # @param y [Integer] The row/line position.
+      # @param x [Integer] The column/character position.
       # @return [Vedeu::Geometries::Position]
       def initialize(y = 1, x = 1)
         @y = Vedeu::Point.coerce(value: y, max: Vedeu.height).value
@@ -52,7 +52,7 @@ module Vedeu
       # Converts a position into an index for the terminal. An index
       # is the position minus 1.
       #
-      # @return [Array<Fixnum>]
+      # @return [Array<Integer>]
       def as_indices
         ix = Vedeu::Point.coerce(value: (x - 1), min: 0).value
         iy = Vedeu::Point.coerce(value: (y - 1), min: 0).value
@@ -61,7 +61,7 @@ module Vedeu
       end
 
       # @param other [Vedeu::Geometries::Position]
-      # @return [Fixnum]
+      # @return [Integer]
       def <=>(other)
         if y == other.y
           x <=> other.x
@@ -83,7 +83,7 @@ module Vedeu
 
       # Return a tuple containing the y and x coordinates.
       #
-      # @return [Array<Fixnum>]
+      # @return [Array<Integer>]
       def to_a
         [y, x]
       end
@@ -95,7 +95,7 @@ module Vedeu
 
       # Return the position as a Hash.
       #
-      # @return [Hash<Symbol => Fixnum|NilClass>]
+      # @return [Hash<Symbol => Integer|NilClass>]
       def to_h
         {
           position: {

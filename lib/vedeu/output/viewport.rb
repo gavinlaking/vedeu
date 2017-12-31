@@ -88,9 +88,9 @@ module Vedeu
       # columns to change the viewport by on either the y or x axis)
       # determined by the offset (the cursor's y or x offset position.
       #
-      # @param offset [Fixnum] The cursor's oy or ox values.
-      # @param dimension [Fixnum] Either the height or width.
-      # @return [Fixnum]
+      # @param offset [Integer] The cursor's oy or ox values.
+      # @param dimension [Integer] Either the height or width.
+      # @return [Integer]
       def content_offset(offset, dimension)
         return 0 unless offset >= dimension
 
@@ -107,7 +107,7 @@ module Vedeu
         Vedeu.geometries.by_name(name)
       end
 
-      # @return [Fixnum]
+      # @return [Integer]
       def left
         content_offset(ox, bordered_width)
       end
@@ -156,7 +156,7 @@ module Vedeu
         (lines[rows] || []).map { |line| (line.chars[columns] || []) }
       end
 
-      # @return [Fixnum]
+      # @return [Integer]
       def top
         content_offset(oy, bordered_height)
       end

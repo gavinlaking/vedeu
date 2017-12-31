@@ -38,8 +38,8 @@ module Vedeu
       # Deletes the character from the line where the cursor is
       # currently positioned.
       #
-      # @param y [Fixnum]
-      # @param x [Fixnum]
+      # @param y [Integer]
+      # @param x [Integer]
       # @return [Vedeu::Editor::Lines]
       def delete_character(y, x)
         collection[y] = line(y).delete_character(x) unless line(y).empty?
@@ -49,7 +49,7 @@ module Vedeu
 
       # Delete the line from the lines positioned at the given index.
       #
-      # @param index [Fixnum|NilClass]
+      # @param index [Integer|NilClass]
       # @return [String]
       def delete_line(index = nil)
         Vedeu::Editor::Lines.coerce(Vedeu::Editor::Delete
@@ -67,8 +67,8 @@ module Vedeu
       # Insert a character in to a line.
       #
       # @param character [String]
-      # @param y [Fixnum]
-      # @param x [Fixnum]
+      # @param y [Integer]
+      # @param x [Integer]
       # @return [Vedeu::Editor::Lines]
       def insert_character(character, y, x)
         collection[y] = line(y).insert_character(character, x)
@@ -78,7 +78,7 @@ module Vedeu
 
       # Insert the line on the line below the given index.
       #
-      # @param index [Fixnum|NilClass]
+      # @param index [Integer|NilClass]
       # @return [Vedeu::Editor::Lines]
       def insert_line(index = nil)
         Vedeu::Editor::Lines.coerce(
@@ -91,7 +91,7 @@ module Vedeu
 
       # Returns the line at the given index.
       #
-      # @param index [Fixnum|NilClass]
+      # @param index [Integer|NilClass]
       # @return [Vedeu::Editor::Line]
       def line(index = nil)
         return Vedeu::Editor::Line.new unless collection

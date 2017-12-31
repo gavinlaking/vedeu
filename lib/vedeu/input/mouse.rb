@@ -62,7 +62,7 @@ module Vedeu
 
       private
 
-      # @return [Fixnum]
+      # @return [Integer]
       def button
         mouse[0]
       end
@@ -75,7 +75,7 @@ module Vedeu
         button == 0
       end
 
-      # @return [Array<Fixnum>]
+      # @return [Array<Integer>]
       def mouse
         @_input ||= input.chars[3..-1].map { |character| character.ord - 32 }
       end
@@ -96,12 +96,12 @@ module Vedeu
         button == 65
       end
 
-      # @return [Fixnum]
+      # @return [Integer]
       def x
         mouse[1]
       end
 
-      # @return [Fixnum]
+      # @return [Integer]
       def y
         mouse[2]
       end

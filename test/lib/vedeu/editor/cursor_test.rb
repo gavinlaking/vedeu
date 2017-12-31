@@ -198,7 +198,7 @@ module Vedeu
       describe '#x' do
         subject { instance.x }
 
-        it { subject.must_be_instance_of(Fixnum) }
+        it { subject.class < Integer }
 
         # @todo Add more tests.
         # it { skip }
@@ -207,7 +207,7 @@ module Vedeu
       describe '#y' do
         subject { instance.x }
 
-        it { subject.must_be_instance_of(Fixnum) }
+        it { subject.class < Integer  }
 
         # @todo Add more tests.
         # it { skip }
