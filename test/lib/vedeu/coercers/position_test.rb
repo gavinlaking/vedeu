@@ -40,7 +40,7 @@ module Vedeu
           it { subject.x.must_equal(8) }
         end
 
-        context 'when the value is an Fixnum' do
+        context 'when the value is an Integer' do
           let(:_value) { 2 }
 
           it { subject.must_be_instance_of(klass) }

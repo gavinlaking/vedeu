@@ -15,7 +15,7 @@ module Vedeu
       # Return an individual element or collection of elements (if
       # the given index is a Range).
       #
-      # @param index [Fixnum|Range]
+      # @param index [Integer|Range]
       # @return [void]
       def [](index)
         collection[index]
@@ -56,7 +56,7 @@ module Vedeu
 
       # Return the size of the collection.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def size
         collection.size
       end

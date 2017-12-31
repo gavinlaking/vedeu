@@ -16,7 +16,7 @@ module Vedeu
 
     # Return the :y value from the geometry.
     #
-    # @return [Fixnum]
+    # @return [Integer]
     def d
       geometry.y
     end
@@ -24,7 +24,7 @@ module Vedeu
 
     # Return the :by value from the geometry.
     #
-    # @return [Fixnum]
+    # @return [Integer]
     def bd
       geometry.by
     end
@@ -32,7 +32,7 @@ module Vedeu
 
     # Return the :byn value from the geometry.
     #
-    # @return [Fixnum]
+    # @return [Integer]
     def bdn
       geometry.byn
     end
@@ -40,7 +40,7 @@ module Vedeu
 
     # Return the :bordered_height value from the geometry.
     #
-    # @return [Fixnum]
+    # @return [Integer]
     def d_dn
       geometry.bordered_height
     end

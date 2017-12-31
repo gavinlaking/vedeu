@@ -73,7 +73,7 @@ module Vedeu
         @_interface ||= Vedeu.interfaces.by_name(name)
       end
 
-      # @param iy [Fixnum]
+      # @param iy [Integer]
       # @return [String]
       def optimised_line(iy)
         Vedeu::Geometries::Position.new(by + iy, bx).to_s + colour.to_s + chars

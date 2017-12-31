@@ -130,7 +130,7 @@ module Vedeu
       describe '#size' do
         subject { instance.size }
 
-        it { subject.must_be_instance_of(Integer) }
+        it { subject.class < Integer }
       end
 
     end # Row

@@ -24,30 +24,30 @@ module Vedeu
       attr_reader :name
 
       # @!attribute [rw] ox
-      # @return [Fixnum]
+      # @return [Integer]
       attr_accessor :ox
 
       # @!attribute [rw] oy
-      # @return [Fixnum]
+      # @return [Integer]
       attr_accessor :oy
 
       # @!attribute [rw] x
-      # @return [Fixnum]
+      # @return [Integer]
       attr_writer :x
 
       # @!attribute [rw] y
-      # @return [Fixnum]
+      # @return [Integer]
       attr_writer :y
 
       # Returns a new instance of Vedeu::Editor::Cursor.
       #
-      # @param attributes [Hash<Symbol => Fixnum|String|Symbol>]
-      # @option attributes y [Fixnum] The current line.
-      # @option attributes x [Fixnum] The current character within the
+      # @param attributes [Hash<Symbol => Integer|String|Symbol>]
+      # @option attributes y [Integer] The current line.
+      # @option attributes x [Integer] The current character within the
       #   line.
       # @option attributes name [String|Symbol]
-      # @option attributes oy [Fixnum]
-      # @option attributes ox [Fixnum]
+      # @option attributes oy [Integer]
+      # @option attributes ox [Integer]
       # @return [Vedeu::Editor::Cursor]
       def initialize(attributes = {})
         defaults.merge!(attributes).each do |key, value|
@@ -67,7 +67,7 @@ module Vedeu
 
       # Move the virtual cursor down by one line.
       #
-      # @param size [Fixnum] The number of characters on the next
+      # @param size [Integer] The number of characters on the next
       #   line. The cursor is placed at the end of this next line if
       #   the x coordinate is greater than the next line length.
       # @return [Vedeu::Editor::Cursor]
@@ -134,7 +134,7 @@ module Vedeu
 
       # Move the virtual cursor up by one line.
       #
-      # @param size [Fixnum] The number of characters on the next
+      # @param size [Integer] The number of characters on the next
       #   line. The cursor is placed at the end of this next line if
       #   the x coordinate is greater than the next line length.
       # @return [Vedeu::Editor::Cursor]
@@ -146,7 +146,7 @@ module Vedeu
         self
       end
 
-      # @return [Fixnum] The column/character coordinate.
+      # @return [Integer] The column/character coordinate.
       def x
         @x  = 0               if @x <= 0
         @ox = @x - (bxn - bx) if @x > bxn - bx
@@ -154,7 +154,7 @@ module Vedeu
         @x
       end
 
-      # @return [Fixnum] The row/line coordinate.
+      # @return [Integer] The row/line coordinate.
       def y
         @y  = 0               if @y <= 0
         @oy = @y - (byn - by) if @y > byn - by
@@ -182,19 +182,19 @@ module Vedeu
 
       # Return the real y coordinate.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def real_y
         (by + y) - oy
       end
 
       # Return the real x coordinate.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def real_x
         (bx + x) - ox
       end
 
-      # @return [Hash<Symbol => Fixnum, String, Symbol>]
+      # @return [Hash<Symbol => Integer, String, Symbol>]
       def new_attributes
         {
           name:    name,

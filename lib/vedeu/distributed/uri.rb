@@ -19,13 +19,13 @@ module Vedeu
       attr_reader :host
 
       # @!attribute [r] port
-      # @return [Fixnum|String]
+      # @return [Integer|String]
       attr_reader :port
 
       # Returns a new instance of Vedeu::Distributed::Uri.
       #
       # @param host [String] Hostname or IP address.
-      # @param port [Fixnum|String]
+      # @param port [Integer|String]
       # @return [Vedeu::Distributed::Uri]
       def initialize(host = 'localhost', port = 21_420)
         @host = host || 'localhost'
