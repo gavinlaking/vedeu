@@ -244,19 +244,29 @@ module Vedeu
   # @api public
   # @!method drb_restart
   #   @see Vedeu::Distributed::Server#restart
+  def drb_restart
+    Vedeu::Distributed::Server.restart
+  end
+
   # @api public
   # @!method drb_start
   #   @see Vedeu::Distributed::Server#start
+  def drb_start
+    Vedeu::Distributed::Server.start
+  end
+
   # @api public
   # @!method drb_status
   #   @see Vedeu::Distributed::Server#status
+  def drb_status
+    Vedeu::Distributed::Server.status
+  end
+
   # @api public
   # @!method drb_stop
   #   @see Vedeu::Distributed::Server#stop
-  def_delegators Vedeu::Distributed::Server,
-                 :drb_restart,
-                 :drb_start,
-                 :drb_status,
-                 :drb_stop
+  def drb_stop
+    Vedeu::Distributed::Server.stop
+  end
 
 end # Vedeu
