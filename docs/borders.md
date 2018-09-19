@@ -4,7 +4,7 @@
 The interfaces of Vedeu can each have their own border.
 
 - It has a name. This name associates it with an
-  {file:docs/interface.md Interface}.
+  {file:docs/interfaces.md Interface}.
 - Each of its corners, the horizontal, and the vertical characters can
   be defined as different characters, with custom colours and styles.
 - It can have a foreground and a background and style, independent of
