@@ -11,7 +11,7 @@ focus. The global keymap is useful for mapping the key to exit the
 application for example.
 
 - It has a name. This name associates it with an
-  {file:docs/interface.md Interface}.
+  {file:docs/interfaces.md Interface}.
 - A key registered with a keymap can call a method or trigger an
   event, or either, in multitude.
 - Keymaps only affect the interface/view with the same name.
