@@ -7,7 +7,7 @@ Terminal geometry starts at position (1, 1), which is the top left
 of the terminal.
 
 - It has a name. This name associates it with an
-  {file:docs/interface.md Interface}.
+  {file:docs/interfaces.md Interface}.
 - It has dimensions- a width and a height.
   - The 'width' is the number of characters wide, and is defined as
     being ('xn' - 'x') or ('x' + 'width').
