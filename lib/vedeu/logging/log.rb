@@ -18,7 +18,7 @@ module Vedeu
 
         # @api private
         # @!attribute [rw] count
-        # @return [Fixnum] Used by tests to access the `count`
+        # @return [Integer] Used by tests to access the `count`
         #   instance variable.
         attr_accessor :count
 
@@ -88,7 +88,7 @@ module Vedeu
         def outdent(&block)
           result = yield if block_given?
 
-          if @count && @count > 0
+          if @count && @count.positive?
             @count -= 1
           else
             @count = 0

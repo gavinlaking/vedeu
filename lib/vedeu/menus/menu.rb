@@ -21,7 +21,7 @@ module Vedeu
       # current.
       #
       # @!attribute [rw] current
-      # @return [Fixnum]
+      # @return [Integer]
       attr_accessor :current
 
       # The name of the menu. Used to reference the menu throughout
@@ -35,7 +35,7 @@ module Vedeu
       # selected.
       #
       # @!attribute [rw] selected
-      # @return [Fixnum]
+      # @return [Integer]
       attr_accessor :selected
 
       # Returns a new instance of Vedeu::Menus::Menu.
@@ -43,8 +43,8 @@ module Vedeu
       # @param attributes [Hash]
       # @option attributes collection [Array]
       # @option attributes name [String|Symbol]
-      # @option attributes current [Fixnum]
-      # @option attributes selected [Fixnum|NilClass]
+      # @option attributes current [Integer]
+      # @option attributes selected [Integer|NilClass]
       # @return [Vedeu::Menus::Menu]
       def initialize(attributes = {})
         defaults.merge!(attributes).each do |key, value|
@@ -161,7 +161,7 @@ module Vedeu
       #
       # @return [Array]
       def prev_item
-        @current -= 1 if @current > 0
+        @current -= 1 if @current.positive?
 
         items
       end
@@ -188,14 +188,14 @@ module Vedeu
 
       # Returns the last index of the collection.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def last
         collection.size - 1
       end
 
       # Returns the size of the collection.
       #
-      # @return [Fixnum]
+      # @return [Integer]
       def size
         collection.size
       end

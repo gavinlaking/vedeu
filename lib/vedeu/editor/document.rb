@@ -56,7 +56,7 @@ module Vedeu
       def delete_character
         return self if document_start?
 
-        if first_char? && y > 0
+        if (first_char? && y).positive?
           delete_line
 
           return
@@ -114,7 +114,7 @@ module Vedeu
 
       # Returns the current line from the collection of lines.
       #
-      # @param index [Fixnum]
+      # @param index [Integer]
       # @return [Array<String|void>]
       def line(index = y)
         lines.line(index)
@@ -227,12 +227,12 @@ module Vedeu
 
       # @return [Boolean]
       def first_char?
-        x - 1 < 0
+        (x - 1).negative?
       end
 
       # @return [Boolean]
       def first_line?
-        y - 1 < 0
+        (y - 1).negative?
       end
 
       # @return [Boolean]
@@ -245,7 +245,7 @@ module Vedeu
         y + 1 >= lines.size
       end
 
-      # @return [Fixnum]
+      # @return [Integer]
       def next_line_size
         line(y + 1).size
       end
@@ -263,7 +263,7 @@ module Vedeu
                                    oy:    oy).viewport
       end
 
-      # @return [Fixnum]
+      # @return [Integer]
       def prev_line_size
         line(y - 1).size
       end

@@ -89,10 +89,10 @@ module Vedeu
       # @param vertical [Symbol] One of :bottom, :middle, :none, :top.
       # @param horizontal [Symbol] One of :center, :centre, :left,
       #   :none, :right.
-      # @param width [Fixnum] The number of characters/columns wide;
+      # @param width [Integer] The number of characters/columns wide;
       #   this is required when the given value for horizontal is any
       #   value other than :none.
-      # @param height [Fixnum] The number of lines/rows tall; this is
+      # @param height [Integer] The number of lines/rows tall; this is
       #   required when the given value for vertical is any value
       #   other than :none.
       # @macro raise_invalid_syntax
@@ -104,8 +104,8 @@ module Vedeu
 
       # @param value [Symbol] One of :center, :centre, :left, :none,
       #   :right.
-      # @param width [Fixnum] The number of characters/columns.
-      # @param x [Fixnum] When given, sets the x coordinate.
+      # @param width [Integer] The number of characters/columns.
+      # @param x [Integer] When given, sets the x coordinate.
       # @return [Vedeu::Geometries::Geometry]
       def horizontal_alignment(value = :none, width = nil, x = nil)
         alignment = Vedeu::Coercers::HorizontalAlignment.validate(value)
@@ -117,8 +117,8 @@ module Vedeu
       end
 
       # @param value [Symbol] One of :bottom, :middle, :none, :top.
-      # @param height [Fixnum] The number of lines/rows.
-      # @param y [Fixnum] When given, sets the y coordinate.
+      # @param height [Integer] The number of lines/rows.
+      # @param y [Integer] When given, sets the y coordinate.
       # @return [Vedeu::Geometries::Geometry]
       def vertical_alignment(value = :none, height = nil, y = nil)
         alignment = Vedeu::Coercers::VerticalAlignment.validate(value)
@@ -130,7 +130,7 @@ module Vedeu
       end
 
       # {include:file:docs/dsl/by_method/geometry/align_bottom.md}
-      # @param height [Fixnum] The number of lines/rows.
+      # @param height [Integer] The number of lines/rows.
       # @return [Vedeu::Geometries::Geometry]
       def align_bottom(height = nil)
         y = if height
@@ -143,7 +143,7 @@ module Vedeu
       end
 
       # {include:file:docs/dsl/by_method/geometry/align_centre.md}
-      # @param width [Fixnum] The number of characters/columns.
+      # @param width [Integer] The number of characters/columns.
       # @return [Vedeu::Geometries::Geometry]
       def align_centre(width = nil)
         x = if width
@@ -157,14 +157,14 @@ module Vedeu
       alias align_center align_centre
 
       # {include:file:docs/dsl/by_method/geometry/align_left.md}
-      # @param width [Fixnum] The number of characters/columns.
+      # @param width [Integer] The number of characters/columns.
       # @return [Vedeu::Geometries::Geometry]
       def align_left(width = nil)
         horizontal_alignment(:left, width)
       end
 
       # {include:file:docs/dsl/by_method/geometry/align_middle.md}
-      # @param height [Fixnum] The number of lines/rows.
+      # @param height [Integer] The number of lines/rows.
       # @return [Vedeu::Geometries::Geometry]
       def align_middle(height = nil)
         y = if height
@@ -177,7 +177,7 @@ module Vedeu
       end
 
       # {include:file:docs/dsl/by_method/geometry/align_right.md}
-      # @param width [Fixnum] The number of characters/columns.
+      # @param width [Integer] The number of characters/columns.
       # @return [Vedeu::Geometries::Geometry]
       def align_right(width = nil)
         x = if width
@@ -190,48 +190,48 @@ module Vedeu
       end
 
       # {include:file:docs/dsl/by_method/geometry/align_top.md}
-      # @param height [Fixnum] The number of lines/rows.
+      # @param height [Integer] The number of lines/rows.
       # @return [Vedeu::Geometries::Geometry]
       def align_top(height = nil)
         vertical_alignment(:top, height)
       end
 
       # {include:file:docs/dsl/by_method/geometry/columns.md}
-      # @param value [Fixnum]
+      # @param value [Integer]
       # @macro raise_out_of_range
-      # @return [Fixnum|Vedeu::Error::OutOfRange]
+      # @return [Integer|Vedeu::Error::OutOfRange]
       def columns(value)
         Vedeu::Geometries::Grid.columns(value)
       end
 
       # {include:file:docs/dsl/by_method/geometry/height.md}
-      # @param value [Fixnum]
-      # @return [Fixnum]
+      # @param value [Integer]
+      # @return [Integer]
       def height(value)
         model.height = proc { value }
       end
       alias height= height
 
       # {include:file:docs/dsl/by_method/geometry/rows.md}
-      # @param value [Fixnum]
+      # @param value [Integer]
       # @macro raise_out_of_range
-      # @return [Fixnum]
+      # @return [Integer]
       def rows(value)
         Vedeu::Geometries::Grid.rows(value)
       end
 
       # {include:file:docs/dsl/by_method/geometry/width.md}
-      # @param value [Fixnum] The number of characters/columns.
-      # @return [Fixnum]
+      # @param value [Integer] The number of characters/columns.
+      # @return [Integer]
       def width(value)
         model.width = proc { value }
       end
       alias width= width
 
       # {include:file:docs/dsl/by_method/geometry/x.md}
-      # @param value [Fixnum]
+      # @param value [Integer]
       # @macro param_block
-      # @return [Fixnum]
+      # @return [Integer]
       def x(value = 1, &block)
         return model.x = block if block_given?
 
@@ -240,9 +240,9 @@ module Vedeu
       alias x= x
 
       # {include:file:docs/dsl/by_method/geometry/xn.md}
-      # @param value [Fixnum]
+      # @param value [Integer]
       # @macro param_block
-      # @return [Fixnum]
+      # @return [Integer]
       def xn(value = 1, &block)
         return model.xn = block if block_given?
 
@@ -251,9 +251,9 @@ module Vedeu
       alias xn= xn
 
       # {include:file:docs/dsl/by_method/geometry/y.md}
-      # @param value [Fixnum]
+      # @param value [Integer]
       # @macro param_block
-      # @return [Fixnum]
+      # @return [Integer]
       def y(value = 1, &block)
         return model.y = block if block_given?
 
@@ -262,9 +262,9 @@ module Vedeu
       alias y= y
 
       # {include:file:docs/dsl/by_method/geometry/yn.md}
-      # @param value [Fixnum]
+      # @param value [Integer]
       # @macro param_block
-      # @return [Fixnum]
+      # @return [Integer]
       def yn(value = 1, &block)
         return model.yn = block if block_given?
 

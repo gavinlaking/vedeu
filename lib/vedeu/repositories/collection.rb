@@ -22,7 +22,7 @@ module Vedeu
       alias value collection
 
       # @!attribute [rw] parent
-      # @return [Fixnum]
+      # @return [Integer]
       attr_accessor :parent
 
       # @!attribute [rw] name

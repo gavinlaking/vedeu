@@ -122,7 +122,7 @@ module Vedeu
     # Returns the `y` (row/line) component of the coordinate tuple
     # provided by {Vedeu::Terminal.centre}
     #
-    # @return [Fixnum]
+    # @return [Integer]
     def centre_y
       centre[0]
     end
@@ -130,7 +130,7 @@ module Vedeu
     # Returns the `x` (column/character) component of the coodinate
     # tuple provided by {Vedeu::Terminal.centre}
     #
-    # @return [Fixnum]
+    # @return [Integer]
     def centre_x
       centre[-1]
     end
@@ -138,7 +138,7 @@ module Vedeu
     # Returns 1. This 1 is either the top-most or left-most coordinate
     # of the terminal.
     #
-    # @return [Fixnum]
+    # @return [Integer]
     def origin
       1
     end
@@ -148,7 +148,7 @@ module Vedeu
     # Returns a tuple containing the height and width of the current
     # terminal.
     #
-    # @return [Array<Fixnum>]
+    # @return [Array<Integer>]
     def size
       console.winsize
     end

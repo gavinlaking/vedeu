@@ -76,7 +76,7 @@ module Vedeu
         end
 
         context 'when the cursor is not visible' do
-          it { subject.must_equal(nil) }
+          it { assert_nil(subject) }
         end
       end
 

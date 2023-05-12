@@ -42,7 +42,7 @@ module Vedeu
         subject { instance.cell(index) }
 
         context 'when the index is nil' do
-          it { subject.must_equal(nil) }
+          it { assert_nil(subject) }
         end
 
         context 'when the index is not nil' do
@@ -57,13 +57,13 @@ module Vedeu
           context 'and the index is out of range' do
             let(:index) { 4 }
 
-            it { subject.must_equal(nil) }
+            it { assert_nil(subject) }
           end
 
           context 'and the index is out of range' do
             let(:index) { -4 }
 
-            it { subject.must_equal(nil) }
+            it { assert_nil(subject) }
           end
         end
       end
@@ -130,7 +130,7 @@ module Vedeu
       describe '#size' do
         subject { instance.size }
 
-        it { subject.must_be_instance_of(Fixnum) }
+        it { subject.must_be_instance_of(Integer) }
       end
 
     end # Row

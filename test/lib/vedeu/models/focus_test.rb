@@ -115,7 +115,7 @@ module Vedeu
         end
 
         context 'when no interfaces are defined' do
-          it { subject.must_equal(nil) }
+          it { assert_nil(subject) }
         end
 
         context 'API methods' do

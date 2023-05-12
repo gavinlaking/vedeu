@@ -29,7 +29,7 @@ module Vedeu
       context 'when the klass is nil' do
         let(:klass) {}
 
-        it { subject.must_equal(nil) }
+        it { assert_nil(subject) }
       end
 
       context 'when the klass is a repository class' do

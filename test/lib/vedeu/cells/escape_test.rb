@@ -26,11 +26,11 @@ module Vedeu
       end
 
       describe '#null' do
-        it { instance.null.must_equal(nil) }
-        it { instance.background.must_equal(nil) }
-        it { instance.colour.must_equal(nil) }
-        it { instance.foreground.must_equal(nil) }
-        it { instance.style.must_equal(nil) }
+        it { assert_nil(instance.null) }
+        it { assert_nil(instance.background) }
+        it { assert_nil(instance.colour) }
+        it { assert_nil(instance.foreground) }
+        it { assert_nil(instance.style) }
       end
 
       describe '#eql?' do

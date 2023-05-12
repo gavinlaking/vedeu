@@ -23,7 +23,7 @@ module Vedeu
         subject { described.by_index(collection, index) }
 
         context 'when the collection is empty or nil' do
-          it { subject.must_equal(nil) }
+          it { assert_nil(subject) }
         end
 
         context 'when the collection is not empty' do

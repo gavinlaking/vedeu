@@ -30,7 +30,7 @@ module Vedeu
         end
         it { instance.instance_variable_get('@name').must_equal('elements') }
         it { instance.instance_variable_get('@current').must_equal(0) }
-        it { instance.instance_variable_get('@selected').must_equal(nil) }
+        it { assert_nil(instance.instance_variable_get('@selected')) }
         it do
           instance.instance_variable_get('@repository').must_equal(Vedeu.menus)
         end
@@ -76,7 +76,7 @@ module Vedeu
         subject { instance.selected }
 
         it 'returns nil when no item is selected' do
-          subject.must_equal(nil)
+          assert_nil(subject)
         end
 
         it 'returns the selected index when an item is selected' do
@@ -110,7 +110,7 @@ module Vedeu
         subject { instance.selected_item }
 
         it 'returns nil when nothing is selected' do
-          subject.must_equal(nil)
+          assert_nil(subject)
         end
 
         it 'returns the selected item from the collection' do
@@ -284,7 +284,7 @@ module Vedeu
           instance.next_item
           instance.select_item
           instance.deselect_item
-          instance.selected.must_equal(nil)
+          assert_nil(instance.selected)
         end
 
         it 'returns the items' do

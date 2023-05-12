@@ -111,7 +111,7 @@ module Vedeu
         context 'when the model does not have a name' do
           let(:_name) {}
 
-          it { subject[:name].must_equal(nil) }
+          it { assert_nil(subject[:name]) }
         end
 
         context 'when the model has a name' do
@@ -121,7 +121,7 @@ module Vedeu
         context 'when the model does not have a name' do
           let(:_name) {}
 
-          it { subject[:name].must_equal(nil) }
+          it { assert_nil(subject[:name]) }
         end
 
         context 'when the pad option is nil' do
@@ -144,7 +144,7 @@ module Vedeu
 
         context 'when there are no style options' do
           it { subject[:style].must_be_instance_of(Vedeu::Presentation::Style) }
-          it { subject[:style].value.must_equal(nil) }
+          it { assert_nil(subject[:style].value) }
         end
 
         context 'when there are style options' do
@@ -188,7 +188,7 @@ module Vedeu
           context 'when the name option is not given' do
             let(:_name) {}
 
-            it { subject[:width].must_equal(nil) }
+            it { assert_nil(subject[:width]) }
           end
         end
 

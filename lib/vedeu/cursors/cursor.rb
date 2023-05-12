@@ -26,36 +26,36 @@ module Vedeu
       attr_reader :name
 
       # @!attribute [w] ox
-      # @return [Fixnum]
+      # @return [Integer]
       attr_writer :ox
 
       # @!attribute [w] oy
-      # @return [Fixnum]
+      # @return [Integer]
       attr_writer :oy
 
       # @!attribute [w] x
-      # @return [Fixnum]
+      # @return [Integer]
       attr_writer :x
 
       # @!attribute [w] y
-      # @return [Fixnum]
+      # @return [Integer]
       attr_writer :y
 
       # Returns a new instance of Vedeu::Cursors::Cursor.
       #
-      # @param attributes [Hash<Symbol => Boolean|Fixnum|String|
+      # @param attributes [Hash<Symbol => Boolean|Integer|String|
       #   Vedeu::Cursors::Repository>]
       # @option attributes name [String|Symbol] The name of the
       #   interface this cursor belongs to.
-      # @option attributes ox [Fixnum] The offset x coordinate.
-      # @option attributes oy [Fixnum] The offset y coordinate.
+      # @option attributes ox [Integer] The offset x coordinate.
+      # @option attributes oy [Integer] The offset y coordinate.
       # @option attributes repository
       #   [Vedeu::Repositories::Repository]
       # @option attributes visible [Boolean] The visibility of the
       #   cursor.
-      # @option attributes x [Fixnum] The terminal x coordinate for
+      # @option attributes x [Integer] The terminal x coordinate for
       #   the cursor.
-      # @option attributes y [Fixnum] The terminal y coordinate for
+      # @option attributes y [Integer] The terminal y coordinate for
       #   the cursor.
       # @return [Vedeu::Cursors::Cursor]
       def initialize(attributes = {})
@@ -64,7 +64,7 @@ module Vedeu
         end
       end
 
-      # @return [Hash<Symbol => Boolean|Fixnum|String|
+      # @return [Hash<Symbol => Boolean|Integer|String|
       #   Vedeu::Cursors::Repository>]
       def attributes
         {
@@ -147,7 +147,7 @@ module Vedeu
         Vedeu.render_output(escape_sequence)
       end
 
-      # @return [Array<Fixnum>]
+      # @return [Array<Integer>]
       def to_a
         position.to_a
       end
@@ -175,12 +175,12 @@ module Vedeu
         render
       end
 
-      # @return [Fixnum]
+      # @return [Integer]
       def ox
         @ox = @ox < 1 ? 1 : @ox
       end
 
-      # @return [Fixnum]
+      # @return [Integer]
       def oy
         @oy = @oy < 1 ? 1 : @oy
       end
@@ -202,12 +202,12 @@ module Vedeu
         render
       end
 
-      # @return [Fixnum] The column/character coordinate.
+      # @return [Integer] The column/character coordinate.
       def x
         @x = Vedeu::Point.coerce(value: @x, min: bx, max: bxn).value
       end
 
-      # @return [Fixnum] The row/line coordinate.
+      # @return [Integer] The row/line coordinate.
       def y
         @y = Vedeu::Point.coerce(value: @y, min: by, max: byn).value
       end

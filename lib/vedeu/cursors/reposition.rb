@@ -12,13 +12,13 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Cursors::Reposition.
       #
-      # @param attributes [Hash<Symbol => Fixnum|Symbol|String]
+      # @param attributes [Hash<Symbol => Integer|Symbol|String]
       # @option attributes mode [Symbol] One of either :absolute or
       #   :relative. Relates to the coordinates provided.
       # @option attributes name [String|Symbol] The name of the cursor
       #   and related interface/view.
-      # @option attributes x [Fixnum] The new row/line position.
-      # @option attributes y [Fixnum] The new column/character
+      # @option attributes x [Integer] The new row/line position.
+      # @option attributes y [Integer] The new column/character
       #   position.
       # @return [Vedeu::Cursors::Reposition]
       def initialize(attributes = {})
@@ -41,16 +41,16 @@ module Vedeu
       attr_reader :name
 
       # @!attribute [r] x
-      # @return [Fixnum]
+      # @return [Integer]
       attr_reader :x
 
       # @!attribute [r] y
-      # @return [Fixnum]
+      # @return [Integer]
       attr_reader :y
 
       private
 
-      # @return [Hash<Symbol => Fixnum>]
+      # @return [Hash<Symbol => Integer>]
       def absolute
         {
           x:  coordinate((x - geometry.x), :x).x,
@@ -67,7 +67,7 @@ module Vedeu
 
       # Determine correct x and y related coordinates.
       #
-      # @param offset [Fixnum]
+      # @param offset [Integer]
       # @param type [Symbol]
       # @return [Vedeu::Cursors::Coordinate]
       def coordinate(offset, type)
@@ -125,7 +125,7 @@ module Vedeu
         [:relative, :absolute]
       end
 
-      # @return [Hash<Symbol => Fixnum>]
+      # @return [Hash<Symbol => Integer>]
       def new_attributes
         if absolute? && inside_geometry?
           cursor.attributes.merge!(absolute)
@@ -139,7 +139,7 @@ module Vedeu
         end
       end
 
-      # @return [Hash<Symbol => Fixnum>]
+      # @return [Hash<Symbol => Integer>]
       def relative
         {
           x:  coordinate(x, :x).x,

@@ -16,7 +16,7 @@ module Vedeu
       # Produces the background named colour escape sequence hash from
       # the foreground escape sequence hash.
       #
-      # @return [Hash<Symbol => Fixnum>]
+      # @return [Hash<Symbol => Integer>]
       def background_codes
         foreground_codes.each_with_object({}) do |(k, v), h|
           h[k] = v + 10
@@ -68,7 +68,7 @@ module Vedeu
       #   :light_yellow, :light_blue, :light_magenta, :light_cyan,
       #   :white
       #
-      # @return [Hash<Symbol => Fixnum>]
+      # @return [Hash<Symbol => Integer>]
       def foreground_codes
         {
           black:         30,

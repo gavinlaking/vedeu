@@ -34,7 +34,7 @@ module Vedeu
         @cells = cells || []
       end
 
-      # @param index [Fixnum]
+      # @param index [Integer]
       # @return [NilClass|void]
       def cell(index)
         return nil if index.nil? || empty?
@@ -78,7 +78,7 @@ module Vedeu
         Vedeu::Cells::Escape.new(value: Vedeu.esc.reset)
       end
 
-      # @return [Fixnum]
+      # @return [Integer]
       def size
         cells.size
       end
